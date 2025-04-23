@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPassengerPayments } from '@/lib/api';
@@ -19,16 +18,11 @@ const PaymentsPage = () => {
   
   const { data, isLoading } = useQuery({
     queryKey: ['payments', page, pageSize, search, selectedPassengerId],
-    queryFn: () => {
-      // If no passenger is selected, return empty data
-      if (!selectedPassengerId) {
-        return Promise.resolve({
-          status: 'success',
-          data: { payments: [], total: 0 }
-        });
-      }
-      return fetchPassengerPayments(selectedPassengerId, page, pageSize);
-    },
+    queryFn: () => 
+      selectedPassengerId 
+        ? fetchPassengerPayments(selectedPassengerId, page, pageSize)
+        : Promise.resolve({ status: 'success', data: { payments: [], total: 0 } }),
+    enabled: !!selectedPassengerId
   });
   
   const handlePaginationChange = (page: number, pageSize: number) => {

@@ -1,4 +1,4 @@
-import { ApiResponse, ChartData, DashboardStats, Driver, Passenger, Trip } from "@/types";
+import { ApiResponse, ChartData, DashboardStats, Driver, Passenger, Trip, PaymentMethod, Payment, PaymentMethodType } from "@/types";
 
 // Base API URL - In a real app, this would come from environment variables
 const API_BASE_URL = 'https://api.ridenexus.example';
@@ -291,48 +291,6 @@ export async function fetchTrips(
   };
 }
 
-export async function fetchPassengerPayments(
-  passengerId: string,
-  page = 1,
-  limit = 10
-): Promise<ApiResponse<{payments: Payment[], total: number}>> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 600));
-  
-  const mockPayments: Payment[] = Array(30).fill(null).map((_, index) => {
-    const paymentMethods: PaymentMethodType[] = ['credit_card', 'debit_card', 'paypal', 'apple_pay', 'google_pay', 'bank_transfer'];
-    const statuses: Array<'pending' | 'completed' | 'failed' | 'refunded'> = ['completed', 'completed', 'completed', 'pending', 'failed', 'refunded'];
-    
-    const createdAt = new Date(Date.now() - Math.floor(Math.random() * 90 * 24 * 60 * 60 * 1000));
-    const updatedAt = new Date(createdAt.getTime() + Math.floor(Math.random() * 2 * 24 * 60 * 60 * 1000));
-    
-    return {
-      id: `pay-${10000 + index}`,
-      passengerId,
-      amount: Math.floor(10 + Math.random() * 200),
-      currency: 'USD',
-      status: statuses[Math.floor(Math.random() * statuses.length)],
-      paymentMethod: paymentMethods[Math.floor(Math.random() * paymentMethods.length)],
-      description: ['Ride payment', 'Monthly subscription', 'Service fee', 'Tip for driver'][Math.floor(Math.random() * 4)],
-      tripId: Math.random() > 0.3 ? `t-${100000 + Math.floor(Math.random() * 200)}` : undefined,
-      createdAt: createdAt.toISOString(),
-      updatedAt: updatedAt.toISOString()
-    };
-  });
-  
-  // Paginate results
-  const start = (page - 1) * limit;
-  const paginatedData = mockPayments.slice(start, start + limit);
-  
-  return { 
-    status: 'success', 
-    data: {
-      payments: paginatedData,
-      total: mockPayments.length
-    }
-  };
-}
-
 export async function fetchPassengerPaymentMethods(
   passengerId: string
 ): Promise<ApiResponse<{paymentMethods: PaymentMethod[]}>> {
@@ -409,5 +367,47 @@ export async function processPayment(
   return { 
     status: 'success', 
     data: payment
+  };
+}
+
+export async function fetchPassengerPayments(
+  passengerId: string,
+  page = 1,
+  limit = 10
+): Promise<ApiResponse<{payments: Payment[], total: number}>> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 600));
+  
+  const mockPayments: Payment[] = Array(30).fill(null).map((_, index) => {
+    const paymentMethods: PaymentMethodType[] = ['credit_card', 'debit_card', 'paypal', 'apple_pay', 'google_pay', 'bank_transfer'];
+    const statuses: Array<'pending' | 'completed' | 'failed' | 'refunded'> = ['completed', 'completed', 'completed', 'pending', 'failed', 'refunded'];
+    
+    const createdAt = new Date(Date.now() - Math.floor(Math.random() * 90 * 24 * 60 * 60 * 1000));
+    const updatedAt = new Date(createdAt.getTime() + Math.floor(Math.random() * 2 * 24 * 60 * 60 * 1000));
+    
+    return {
+      id: `pay-${10000 + index}`,
+      passengerId,
+      amount: Math.floor(10 + Math.random() * 200),
+      currency: 'USD',
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+      paymentMethod: paymentMethods[Math.floor(Math.random() * paymentMethods.length)],
+      description: ['Ride payment', 'Monthly subscription', 'Service fee', 'Tip for driver'][Math.floor(Math.random() * 4)],
+      tripId: Math.random() > 0.3 ? `t-${100000 + Math.floor(Math.random() * 200)}` : undefined,
+      createdAt: createdAt.toISOString(),
+      updatedAt: updatedAt.toISOString()
+    };
+  });
+  
+  // Paginate results
+  const start = (page - 1) * limit;
+  const paginatedData = mockPayments.slice(start, start + limit);
+  
+  return { 
+    status: 'success', 
+    data: {
+      payments: paginatedData,
+      total: mockPayments.length
+    }
   };
 }

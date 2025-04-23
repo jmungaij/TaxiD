@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CreditCard, Paypal, Smartphone, PlusCircle } from 'lucide-react';
+import { CreditCard, Smartphone, PlusCircle, WalletMinimal } from 'lucide-react';
 
 interface PassengerPaymentDetailsProps {
   passengerId: string;
@@ -25,7 +25,7 @@ export function PassengerPaymentDetails({ passengerId }: PassengerPaymentDetails
       case 'debit_card':
         return <CreditCard className="h-5 w-5" />;
       case 'paypal':
-        return <Paypal className="h-5 w-5" />;
+        return <WalletMinimal className="h-5 w-5" />;
       case 'apple_pay':
       case 'google_pay':
         return <Smartphone className="h-5 w-5" />;

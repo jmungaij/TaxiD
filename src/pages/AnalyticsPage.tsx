@@ -1,5 +1,5 @@
 
-import { TripChart } from "@/components/Dashboard/TripChart";
+import TripChart from "@/components/Dashboard/TripChart";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { fetchTripChartData } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";

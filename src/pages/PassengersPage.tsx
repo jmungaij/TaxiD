@@ -1,4 +1,3 @@
-
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchPassengers } from "@/lib/api";
@@ -20,7 +19,6 @@ const PassengersPage = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["passengers", page, pageSize, search],
     queryFn: () => fetchPassengers(page, pageSize, search),
-    keepPreviousData: true,
   });
   
   const handlePaginationChange = useCallback((page: number, pageSize: number) => {

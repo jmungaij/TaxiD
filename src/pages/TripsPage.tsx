@@ -1,4 +1,3 @@
-
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchTrips } from "@/lib/api";
@@ -27,7 +26,6 @@ const TripsPage = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["trips", page, pageSize, statusFilter, search],
     queryFn: () => fetchTrips(page, pageSize, statusFilter !== "all" ? statusFilter : undefined, search),
-    keepPreviousData: true,
   });
   
   const handlePaginationChange = useCallback((page: number, pageSize: number) => {

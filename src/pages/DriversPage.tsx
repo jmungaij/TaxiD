@@ -1,4 +1,3 @@
-
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchDrivers } from "@/lib/api";
@@ -20,7 +19,6 @@ const DriversPage = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["drivers", page, pageSize, search],
     queryFn: () => fetchDrivers(page, pageSize, search),
-    keepPreviousData: true,
   });
   
   const handlePaginationChange = useCallback((page: number, pageSize: number) => {

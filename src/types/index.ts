@@ -1,4 +1,3 @@
-
 export interface User {
   id: string;
   name: string;
@@ -19,6 +18,7 @@ export interface Passenger {
   createdAt: string;
   status: 'active' | 'inactive' | 'blocked';
   avatarUrl?: string;
+  paymentMethods?: PaymentMethod[];
 }
 
 export interface Driver {
@@ -103,3 +103,28 @@ export type ApiResponse<T> = {
   status: 'success' | 'error';
   message?: string;
 };
+
+export type PaymentMethodType = 'credit_card' | 'debit_card' | 'paypal' | 'apple_pay' | 'google_pay' | 'bank_transfer';
+
+export interface PaymentMethod {
+  id: string;
+  type: PaymentMethodType;
+  last4: string;
+  expMonth?: number;
+  expYear?: number;
+  isDefault: boolean;
+  createdAt: string;
+}
+
+export interface Payment {
+  id: string;
+  passengerId: string;
+  amount: number;
+  currency: string;
+  status: 'pending' | 'completed' | 'failed' | 'refunded';
+  paymentMethod: PaymentMethodType;
+  description: string;
+  tripId?: string;
+  createdAt: string;
+  updatedAt: string;
+}

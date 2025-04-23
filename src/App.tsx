@@ -14,6 +14,8 @@ import TripsPage from "./pages/TripsPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
 import HelpSupportPage from "./pages/HelpSupportPage";
+import PaymentsPage from "./pages/PaymentsPage";
+import PassengerDetailsPage from "./pages/PassengerDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,26 +27,30 @@ const queryClient = new QueryClient({
 });
 
 const App: React.FC = () => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <TooltipProvider>
-        <Routes>
-          <Route path="/" element={<MainLayout title="Dashboard" />}>
-            <Route index element={<Index />} />
-            <Route path="passengers" element={<PassengersPage />} />
-            <Route path="trips" element={<TripsPage />} />
-            <Route path="drivers" element={<DriversPage />} />
-            <Route path="analytics" element={<AnalyticsPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="help" element={<HelpSupportPage />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Toaster />
-        <Sonner />
-      </TooltipProvider>
-    </BrowserRouter>
-  </QueryClientProvider>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <TooltipProvider>
+          <Routes>
+            <Route path="/" element={<MainLayout title="Dashboard" />}>
+              <Route index element={<Index />} />
+              <Route path="passengers" element={<PassengersPage />} />
+              <Route path="passengers/:id" element={<PassengerDetailsPage />} />
+              <Route path="trips" element={<TripsPage />} />
+              <Route path="drivers" element={<DriversPage />} />
+              <Route path="payments" element={<PaymentsPage />} />
+              <Route path="analytics" element={<AnalyticsPage />} />
+              <Route path="settings" element={<SettingsPage />} />
+              <Route path="help" element={<HelpSupportPage />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </React.StrictMode>
 );
 
 export default App;

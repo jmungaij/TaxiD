@@ -1,4 +1,3 @@
-
 import { ApiResponse, ChartData, DashboardStats, Driver, Passenger, Trip } from "@/types";
 
 // Base API URL - In a real app, this would come from environment variables
@@ -289,5 +288,126 @@ export async function fetchTrips(
       trips: paginatedData,
       total: filtered.length
     }
+  };
+}
+
+export async function fetchPassengerPayments(
+  passengerId: string,
+  page = 1,
+  limit = 10
+): Promise<ApiResponse<{payments: Payment[], total: number}>> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 600));
+  
+  const mockPayments: Payment[] = Array(30).fill(null).map((_, index) => {
+    const paymentMethods: PaymentMethodType[] = ['credit_card', 'debit_card', 'paypal', 'apple_pay', 'google_pay', 'bank_transfer'];
+    const statuses: Array<'pending' | 'completed' | 'failed' | 'refunded'> = ['completed', 'completed', 'completed', 'pending', 'failed', 'refunded'];
+    
+    const createdAt = new Date(Date.now() - Math.floor(Math.random() * 90 * 24 * 60 * 60 * 1000));
+    const updatedAt = new Date(createdAt.getTime() + Math.floor(Math.random() * 2 * 24 * 60 * 60 * 1000));
+    
+    return {
+      id: `pay-${10000 + index}`,
+      passengerId,
+      amount: Math.floor(10 + Math.random() * 200),
+      currency: 'USD',
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+      paymentMethod: paymentMethods[Math.floor(Math.random() * paymentMethods.length)],
+      description: ['Ride payment', 'Monthly subscription', 'Service fee', 'Tip for driver'][Math.floor(Math.random() * 4)],
+      tripId: Math.random() > 0.3 ? `t-${100000 + Math.floor(Math.random() * 200)}` : undefined,
+      createdAt: createdAt.toISOString(),
+      updatedAt: updatedAt.toISOString()
+    };
+  });
+  
+  // Paginate results
+  const start = (page - 1) * limit;
+  const paginatedData = mockPayments.slice(start, start + limit);
+  
+  return { 
+    status: 'success', 
+    data: {
+      payments: paginatedData,
+      total: mockPayments.length
+    }
+  };
+}
+
+export async function fetchPassengerPaymentMethods(
+  passengerId: string
+): Promise<ApiResponse<{paymentMethods: PaymentMethod[]}>> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 400));
+  
+  const mockPaymentMethods: PaymentMethod[] = [
+    {
+      id: 'pm-1',
+      type: 'credit_card',
+      last4: '4242',
+      expMonth: 12,
+      expYear: 2025,
+      isDefault: true,
+      createdAt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString()
+    },
+    {
+      id: 'pm-2',
+      type: 'paypal',
+      last4: 'user@example.com',
+      isDefault: false,
+      createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+    },
+    {
+      id: 'pm-3',
+      type: 'apple_pay',
+      last4: '0124',
+      isDefault: false,
+      createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString()
+    }
+  ];
+  
+  return { 
+    status: 'success', 
+    data: {
+      paymentMethods: mockPaymentMethods
+    }
+  };
+}
+
+export async function processPayment(
+  passengerId: string, 
+  amount: number, 
+  paymentMethodId: string,
+  description: string
+): Promise<ApiResponse<Payment>> {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 800));
+  
+  // Simulate 90% success rate
+  const isSuccess = Math.random() > 0.1;
+  
+  if (!isSuccess) {
+    return {
+      status: 'error',
+      message: 'Payment processing failed. Please try again.'
+    };
+  }
+  
+  const paymentMethods: PaymentMethodType[] = ['credit_card', 'debit_card', 'paypal', 'apple_pay', 'google_pay', 'bank_transfer'];
+  
+  const payment: Payment = {
+    id: `pay-${Math.floor(Math.random() * 100000)}`,
+    passengerId,
+    amount,
+    currency: 'USD',
+    status: 'completed',
+    paymentMethod: paymentMethods[Math.floor(Math.random() * paymentMethods.length)],
+    description,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  
+  return { 
+    status: 'success', 
+    data: payment
   };
 }

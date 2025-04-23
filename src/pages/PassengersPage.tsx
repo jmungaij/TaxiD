@@ -1,3 +1,4 @@
+
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchPassengers } from "@/lib/api";
@@ -7,7 +8,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UserIcon } from "lucide-react";
+import { UserIcon, CreditCard } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useQuery } from "@tanstack/react-query";
 
@@ -125,6 +126,12 @@ const PassengersPage = () => {
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" asChild>
             <Link to={`/passengers/${row.original.id}`}>View</Link>
+          </Button>
+          <Button variant="outline" size="sm" className="flex items-center gap-1" asChild>
+            <Link to={`/passengers/${row.original.id}`}>
+              <CreditCard className="h-3.5 w-3.5 mr-1" />
+              Payments
+            </Link>
           </Button>
         </div>
       ),

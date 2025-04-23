@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { fetchPassengerPayments } from '@/lib/api';
 import { Payment } from '@/types';
 import { DataTable } from '@/components/DataTable/DataTable';
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { formatDistanceToNow, format } from 'date-fns';
+import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { PaymentsFilter } from '@/components/Payments/PaymentsFilter';
+import { usePassengerPayments } from '@/hooks/usePayments';
 
 const PaymentsPage = () => {
   const [page, setPage] = useState(1);
@@ -16,14 +15,7 @@ const PaymentsPage = () => {
   const [search, setSearch] = useState('');
   const [selectedPassengerId, setSelectedPassengerId] = useState<string | null>(null);
   
-  const { data, isLoading } = useQuery({
-    queryKey: ['payments', page, pageSize, search, selectedPassengerId],
-    queryFn: () => 
-      selectedPassengerId 
-        ? fetchPassengerPayments(selectedPassengerId, page, pageSize)
-        : Promise.resolve({ status: 'success', data: { payments: [], total: 0 } }),
-    enabled: !!selectedPassengerId
-  });
+  const { data, isLoading } = usePassengerPayments(selectedPassengerId, page, pageSize);
   
   const handlePaginationChange = (page: number, pageSize: number) => {
     setPage(page);

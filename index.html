@@ -1,26 +1,69 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ride-nexus-enterprise</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <!-- Home-route metadata. Kept identical to the "/" entry in RouteSEO.tsx and
+         deliberately different from that file's generic fallback, so no two URLs
+         share a title, description or social preview. -->
+    <title>SAFARID — Mobility & Travel Platform</title>
+    <meta name="description" data-rh="true" content="One platform for rides, corporate mobility, charter, vehicle rental and leasing, delivery and freight — with verified providers and M-Pesa payment.">
+    <meta name="author" content="SAFARID" />
+    <!-- Brand marks. `?v=` is bumped whenever the logo artwork changes so
+         browsers and social crawlers fetch the new file instead of a cached one. -->
+    <link rel="icon" href="/favicon.png?v=7" type="image/png">
+    <link rel="icon" href="/favicon-32.png?v=7" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16.png?v=7" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" sizes="180x180">
+    <link rel="manifest" href="/site.webmanifest?v=7">
+    <meta name="google-site-verification" content="2N-TJdIHUNegnnbjwqDhXcZ8efSGtkyBFf9EXjpFhHM" />
+    <meta name="theme-color" content="#143490">
+    <meta name="application-name" content="SAFARID">
+    <meta name="apple-mobile-web-app-title" content="SAFARID">
+    <meta name="msapplication-TileColor" content="#143490">
 
-    <meta property="og:title" content="ride-nexus-enterprise" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    
+
+    
+    
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    
+    
+    <meta property="og:title" data-rh="true" content="SAFARID — Mobility & Travel Platform">
+  <meta name="twitter:title" data-rh="true" content="SAFARID — Mobility & Travel Platform">
+  <meta property="og:description" data-rh="true" content="One platform for rides, corporate mobility, charter, vehicle rental and leasing, delivery and freight — with verified providers and M-Pesa payment.">
+  <meta name="twitter:description" data-rh="true" content="One platform for rides, corporate mobility, charter, vehicle rental and leasing, delivery and freight — with verified providers and M-Pesa payment.">
+  <!-- Primary preview: 1200x630 for Twitter/X large cards, LinkedIn, Slack, Facebook. -->
+  <!-- Fallback preview: 600x315 for platforms that prefer the smaller 2:1 asset. -->
+
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","@id":"https://yalla-africa.lovable.app/#organization","name":"SAFARID","alternateName":"Safarid","legalName":"Yalla Beena Limited","slogan":"Move with confidence.","url":"https://yalla-africa.lovable.app","logo":{"@type":"ImageObject","url":"https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png","width":1200,"height":630,"caption":"SAFARID"},"image":"https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png","description":"Africa's mobility super-platform for ride-hailing, corporate mobility, package delivery, charter, leasing and car rentals.","areaServed":[{"@type":"Country","name":"Kenya"},{"@type":"Place","name":"Africa"}],"address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"},"telephone":"+254142970050","email":"support@yalla.africa","contactPoint":[{"@type":"ContactPoint","contactType":"customer support","telephone":"+254142970050","email":"support@yalla.africa","areaServed":"KE","availableLanguage":["en","sw"]},{"@type":"ContactPoint","contactType":"sales","telephone":"+254142970050","email":"sales@yalla.africa","areaServed":"KE","availableLanguage":["en","sw"]}],"sameAs":[]}
+  </script>
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","@id":"https://yalla-africa.lovable.app/#website","name":"SAFARID","alternateName":"Safarid","url":"https://yalla-africa.lovable.app","inLanguage":"en","description":"SAFARID connects individuals, businesses and organisations with trusted transportation providers — rides, corporate mobility, charter, vehicle rental and leasing, delivery, freight and logistics.","publisher":{"@id":"https://yalla-africa.lovable.app/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://yalla-africa.lovable.app/faq?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+  </script>
+
+  <!-- Service schema lives on each service's own landing page (RouteSEO / page-level
+       JsonLd), never sitewide — a sitewide Service block mismatches every other route. -->
+  <!-- Non-critical third-party origin: warm the connection, but never block paint. -->
+  <link rel="dns-prefetch" href="https://cdn.gpteng.co">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts load without blocking the LCP paint: fetched at low priority and
+       applied when ready (font-display: swap already ships in the stylesheet). -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  
+</head>
 
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" async fetchpriority="low"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

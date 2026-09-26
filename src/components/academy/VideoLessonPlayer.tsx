@@ -102,7 +102,7 @@ export function VideoLessonPlayer({
   // Load completion state on mount
   useEffect(() => {
     (async () => {
-      const { data } = await supabase
+      const { data } = await untypedDb
         .from("video_completion_logs")
         .select("watched_percent, checkpoints_passed, completed")
         .eq("video_id", video.id)

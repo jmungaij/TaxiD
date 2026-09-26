@@ -59,27 +59,27 @@ export function LiveOperationsPanel() {
     setError(null);
     try {
       const [drivers, deliveries, trips, charters, incidents] = await Promise.all([
-        supabase
+        untypedDb
           .from("driver_locations")
           .select("driver_id,lat,lng,is_online,is_available,speed_kph,vehicle_id,battery_pct,updated_at")
           .order("updated_at", { ascending: false })
           .limit(200),
-        supabase
+        untypedDb
           .from("delivery_orders")
           .select("id,order_number,status,pickup_lat,pickup_lng,sla_deadline,updated_at")
           .order("updated_at", { ascending: false })
           .limit(200),
-        supabase
+        untypedDb
           .from("trip_bookings")
           .select("id,booking_number,status,pickup_lat,pickup_lng,pickup_eta,scheduled_for,updated_at")
           .order("updated_at", { ascending: false })
           .limit(200),
-        supabase
+        untypedDb
           .from("charter_bookings")
           .select("id,reference,category_slug,asset_name,status,flight_status,updated_at")
           .order("updated_at", { ascending: false })
           .limit(100),
-        supabase
+        untypedDb
           .from("service_incidents")
           .select("id,incident_number,service_name,title,severity,status,detected_at,resolved_at,updated_at")
           .order("updated_at", { ascending: false })

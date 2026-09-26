@@ -28,7 +28,7 @@ const ACTIVE = [
 ];
 
 async function loadEmployeeIds(corporateId: string): Promise<{ ids: string[]; nameById: Record<string, string> }> {
-  const { data } = await supabase
+  const { data } = await untypedDb
     .from("corporate_employees")
     .select("user_id,full_name,email")
     .eq("corporate_id", corporateId)
@@ -64,7 +64,7 @@ export function CorporateLiveTripsCard({ corporateId }: { corporateId: string | 
       if (cancelled) return;
       setNames(nameById);
       if (ids.length === 0) { setRows([]); setLoading(false); return; }
-      const { data } = await supabase
+      const { data } = await untypedDb
         .from("trip_bookings")
         .select("id,booking_number,rider_user_id,pickup_address,dropoff_address,status,started_at,total_fare")
         .in("rider_user_id", ids)

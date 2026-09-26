@@ -26,7 +26,7 @@ export function OnboardingMessageCard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase
+    untypedDb
       .from("platform_settings")
       .select("onboarding_welcome_message")
       .order("created_at", { ascending: true })

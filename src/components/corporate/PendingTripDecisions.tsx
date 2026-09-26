@@ -45,7 +45,7 @@ export function PendingTripDecisions({ corporateId }: { corporateId: string | nu
   const load = useCallback(async () => {
     if (!corporateId) { setLoading(false); return; }
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await untypedDb
       .from("corporate_ride_approvals")
       .select(
         "id,ride_type,pickup_address,dropoff_address,estimated_fare_cents," +

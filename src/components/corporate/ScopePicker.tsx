@@ -12,7 +12,7 @@ export function useDepartments(corporateId: string | null) {
     if (!corporateId) return;
     let active = true;
     (async () => {
-      const { data } = await supabase
+      const { data } = await untypedDb
         .from("corporate_departments")
         .select("id,name")
         .eq("corporate_id", corporateId)

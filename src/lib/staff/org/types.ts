@@ -7,9 +7,11 @@
  * booking, fulfilment, payment or revenue truth — those stay in their
  * authoritative systems and are referenced by `staff_work_items`.
  */
-import type { Database } from "@/integrations/supabase/types";
+import type { LooseDatabase } from "@/integrations/supabase/loose-types";
 
-type T = Database["public"]["Tables"];
+// The generated types only cover Cloud-created tables; the Staff 360 schema
+// is not recreated in the backend yet, so rows are typed loosely here.
+type T = LooseDatabase["public"]["Tables"];
 
 export type OrgEntity = T["org_entities"]["Row"];
 export type OrgUnit = T["org_units"]["Row"];

@@ -202,7 +202,7 @@ export function ReadinessReconciliationPanel({ view, evidence, audit, onSubmitEv
             </div>
             <div>
               <Label htmlFor="approver">Accountable approver email</Label>
-              <Input id="approver" type="email" value={approver} onChange={(e) => setApprover(e.target.value)} placeholder="name@yalla.africa" />
+              <Input id="approver" type="email" value={approver} onChange={(e) => setApprover(e.target.value)} placeholder="name@safarid.org" />
             </div>
           </div>
           <div>

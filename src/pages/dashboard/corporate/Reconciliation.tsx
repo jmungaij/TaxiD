@@ -77,7 +77,7 @@ export default function CorporateReconciliation({ corporateId }: { corporateId: 
         })
       .on("postgres_changes",
         { event: "INSERT", schema: "public", table: "wallet_freezes", filter: `corporate_id=eq.${corporateId}` },
-        () => toast.warning("Your corporate wallet was frozen pending review. Contact support@yalla.africa."))
+        () => toast.warning("Your corporate wallet was frozen pending review. Contact support@safarid.org."))
       .subscribe();
     return () => { supabase.removeChannel(ch); };
   }, [corporateId]);
@@ -176,7 +176,7 @@ export default function CorporateReconciliation({ corporateId }: { corporateId: 
 
       <p className="text-xs text-muted-foreground">
         Mismatches and fraud alerts are reviewed by SAFARID finance. For questions, contact{" "}
-        <a href="mailto:support@yalla.africa" className="text-primary hover:underline">support@yalla.africa</a>.
+        <a href="mailto:support@safarid.org" className="text-primary hover:underline">support@safarid.org</a>.
       </p>
     </div>
   );

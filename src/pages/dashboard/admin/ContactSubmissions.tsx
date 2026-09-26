@@ -372,31 +372,31 @@ export default function ContactSubmissions() {
           <div className="grid md:grid-cols-3 gap-4">
             <div>
               <Label htmlFor="contact_inbox">General contact inbox</Label>
-              <Input id="contact_inbox" type="email" placeholder="support@yalla.africa"
+              <Input id="contact_inbox" type="email" placeholder="support@safarid.org"
                 value={settings.contact_inbox ?? ""}
                 onChange={(e) => setSettings((s) => ({ ...s, contact_inbox: e.target.value }))} />
             </div>
             <div>
               <Label htmlFor="support_inbox">Support inbox</Label>
-              <Input id="support_inbox" type="email" placeholder="support@yalla.africa"
+              <Input id="support_inbox" type="email" placeholder="support@safarid.org"
                 value={settings.support_inbox ?? ""}
                 onChange={(e) => setSettings((s) => ({ ...s, support_inbox: e.target.value }))} />
             </div>
             <div>
               <Label htmlFor="sales_inbox">Sales / commercial inbox</Label>
-              <Input id="sales_inbox" type="email" placeholder="sales@yalla.africa"
+              <Input id="sales_inbox" type="email" placeholder="sales@safarid.org"
                 value={settings.sales_inbox ?? ""}
                 onChange={(e) => setSettings((s) => ({ ...s, sales_inbox: e.target.value }))} />
             </div>
             <div>
               <Label htmlFor="demo_inbox">Demo inbox (legacy fallback)</Label>
-              <Input id="demo_inbox" type="email" placeholder="sales@yalla.africa"
+              <Input id="demo_inbox" type="email" placeholder="sales@safarid.org"
                 value={settings.demo_inbox ?? ""}
                 onChange={(e) => setSettings((s) => ({ ...s, demo_inbox: e.target.value }))} />
             </div>
             <div>
               <Label htmlFor="hr_inbox">Recruitment inbox</Label>
-              <Input id="hr_inbox" type="email" placeholder="hr@yalla.africa"
+              <Input id="hr_inbox" type="email" placeholder="hr@safarid.org"
                 value={settings.hr_inbox ?? ""}
                 onChange={(e) => setSettings((s) => ({ ...s, hr_inbox: e.target.value }))} />
             </div>

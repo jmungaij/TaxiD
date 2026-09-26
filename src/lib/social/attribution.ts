@@ -95,7 +95,7 @@ export const lastTouch = () => read(LAST_TOUCH_KEY);
 
 /**
  * Outbound social destinations are NOT decorated with our own UTMs (they are
- * inbound-only parameters for traffic arriving at yalla.africa). Campaign
+ * inbound-only parameters for traffic arriving at safarid.org). Campaign
  * landing URLs are built here instead, from the governed campaign record.
  */
 export function campaignLandingUrl(origin: string, landingPath: string, platform: string, campaign: string): string {

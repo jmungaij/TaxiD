@@ -112,7 +112,7 @@ export function RequireStaffPortal({ children }: { children: React.ReactNode }) 
                 Try again
               </Button>
               <Button size="sm" variant="outline" asChild>
-                <a href="mailto:support@yalla.africa?subject=Staff%20portal%20access">
+                <a href="mailto:support@safarid.org?subject=Staff%20portal%20access">
                   Contact administrator
                 </a>
               </Button>

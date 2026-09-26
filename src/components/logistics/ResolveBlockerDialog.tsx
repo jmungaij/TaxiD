@@ -84,7 +84,7 @@ export function ResolveBlockerDialog({
         </div>
         <div>
           <Label htmlFor="approver">Approver email *</Label>
-          <Input id="approver" value={form.approver ?? ""} onChange={set("approver")} placeholder="director@yalla.africa" />
+          <Input id="approver" value={form.approver ?? ""} onChange={set("approver")} placeholder="director@safarid.org" />
         </div>
         <div>
           <Label htmlFor="doc">Document location</Label>

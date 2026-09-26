@@ -225,7 +225,7 @@ export function buildOpenApiSpec(version: string = currentRelease().version) {
       title: "SAFARID Partner API",
       version: release.version,
       description: `${release.headline}\n\nStatus: ${release.status}${release.sunsetOn ? ` — sunset ${release.sunsetOn}` : ""}.`,
-      contact: { name: "SAFARID integration desk", url: "https://yalla.africa/partners/api" },
+      contact: { name: "SAFARID integration desk", url: "https://safarid.org/partners/api" },
     },
     servers: [
       { url: API_BASE_URL, description: "Production" },

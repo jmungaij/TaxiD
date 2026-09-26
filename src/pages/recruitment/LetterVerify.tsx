@@ -67,7 +67,7 @@ export default function LetterVerify() {
           name="description"
           content="Confirm that a SAFARID recruitment letter was officially issued using its reference and printed verification code."
         />
-        <link rel="canonical" href="https://yalla.africa/verify/letter" />
+        <link rel="canonical" href="https://safarid.org/verify/letter" />
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 

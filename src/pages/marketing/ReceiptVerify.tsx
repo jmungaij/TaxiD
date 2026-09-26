@@ -100,7 +100,7 @@ export default function ReceiptVerify() {
           name="description"
           content="Enter the control number printed on a SAFARID Air receipt or itinerary to confirm its fingerprint, template version and booking reference are authentic."
         />
-        <link rel="canonical" href="https://www.yalla.africa/verify" />
+        <link rel="canonical" href="https://www.safarid.org/verify" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>

@@ -82,7 +82,7 @@ export function buildWebhookSchema(event: string) {
   if (!contract) return null;
   return {
     $schema: "https://json-schema.org/draft/2020-12/schema",
-    $id: `https://api.yalla.africa/schemas/white-label/${event}.json`,
+    $id: `https://api.safarid.org/schemas/white-label/${event}.json`,
     title: `SAFARID white-label webhook — ${event}`,
     description: contract.when,
     type: "object",

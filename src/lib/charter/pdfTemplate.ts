@@ -35,8 +35,8 @@ export const FALLBACK_BRANDING: PdfBranding = {
   division: "SAFARID Air · Charter, Leasing & Rentals",
   address: "Nairobi, Kenya",
   phone: "+254 142 970050",
-  email: "support@yalla.africa",
-  web: "yalla.africa",
+  email: "support@safarid.org",
+  web: "safarid.org",
   logo_url: null,
 };
 

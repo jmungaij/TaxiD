@@ -152,7 +152,7 @@ export async function buildReceiptPdf(input: ReceiptInput): Promise<jsPDF> {
       `Document fingerprint: ${fingerprint}`,
       `Control number: ${control} · Template ${version}`,
       "Guilloche rosettes, lathe bands, void-pantograph hatch and 1.6pt microtext are embedded.",
-      "Any alteration breaks the fingerprint. Verify at yalla.africa/verify with the control number.",
+      "Any alteration breaks the fingerprint. Verify at safarid.org/verify with the control number.",
     ],
     M + 5,
     sy + 5,

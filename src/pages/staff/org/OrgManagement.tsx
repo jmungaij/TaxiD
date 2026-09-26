@@ -230,7 +230,7 @@ function OrganisationProfile({
     operating_address: entity?.operating_address ?? "",
     contact_email: entity?.contact_email ?? "",
     contact_phone: entity?.contact_phone ?? "",
-    website: entity?.website ?? "https://yalla.africa",
+    website: entity?.website ?? "https://safarid.org",
     operating_markets: (entity?.operating_markets ?? ["Nairobi"]).join(", "),
     status: entity?.status ?? "active",
   });

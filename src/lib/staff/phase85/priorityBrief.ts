@@ -183,7 +183,7 @@ function shortDate(iso: string | null): string {
 }
 
 function drillUrl(ref: string | null | undefined): string {
-  const base = typeof window !== "undefined" ? window.location.origin : "https://yalla.africa";
+  const base = typeof window !== "undefined" ? window.location.origin : "https://safarid.org";
   return ref ? `${base}/staff/closure?tx=${encodeURIComponent(ref)}` : `${base}/staff/closure`;
 }
 

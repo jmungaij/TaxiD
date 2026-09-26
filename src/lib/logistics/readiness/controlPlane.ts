@@ -151,7 +151,7 @@ export function proveReconciliationControls(): { passed: boolean; detected: stri
 /** Partner compliance self-proof: flags alone never authorise dispatch. */
 export function provePartnerComplianceGate(): { passed: boolean, cases: { name: string; eligible: boolean; blockers: string[] }[] } {
   const required = ["IDENTITY", "OPERATING_LICENCE", "VEHICLE_REGISTRATION", "VEHICLE_INSPECTION", "PROTECTION_COVER", "COURIER_DOCUMENT"] as const;
-  const full = required.map((kind) => ({ kind, document_ref: `DOC-${kind}`, verified_by: "compliance@yalla.africa", verified_at: "2026-08-01T00:00:00.000Z", expiry_at: "2027-08-01T00:00:00.000Z" }));
+  const full = required.map((kind) => ({ kind, document_ref: `DOC-${kind}`, verified_by: "compliance@safarid.org", verified_at: "2026-08-01T00:00:00.000Z", expiry_at: "2027-08-01T00:00:00.000Z" }));
   const base = { partner_id: "P-1", required_kinds: [...required], service_capability: ["PARCEL_SAME_DAY"], geographic_capability: ["NAIROBI"], requested_service: "PARCEL_SAME_DAY", requested_area: "NAIROBI", now: "2026-08-26T00:00:00.000Z" };
   const cases = [
     { name: "complete evidence", ...evaluatePartnerDispatchEligibility({ ...base, evidence: full }) },

@@ -143,7 +143,7 @@ export function InterviewScheduleDialog({
           starts_at: toIso(when),
           duration_minutes: minutes,
           timezone,
-          attendees: [{ email: "hr@yalla.africa" }],
+          attendees: [{ email: "hr@safarid.org" }],
           mint_only: true,
         });
         if (!minted.join_url) throw new Error("The Google Meet link could not be created.");

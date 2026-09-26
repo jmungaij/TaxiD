@@ -106,7 +106,7 @@ const JSON_LD = [
     "@type": "Service",
     name: "SAFARID Partners — mobility distribution platform",
     serviceType: "Mobility distribution and fulfilment infrastructure",
-    provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla.africa" },
+    provider: { "@type": "Organization", name: "SAFARID", url: "https://safarid.org" },
     areaServed: "Kenya",
     audience: { "@type": "BusinessAudience", audienceType: "Travel, hospitality, corporate, commerce, logistics and technology partners" },
   },

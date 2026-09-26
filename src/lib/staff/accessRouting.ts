@@ -12,7 +12,7 @@ import { homeForRoles } from "@/lib/staff/rbacMatrix";
 
 /** Corporate identity domain for SAFARID staff logins (advisory hint only — the
  *  authoritative check is account existence + status + role, server-side). */
-export const STAFF_EMAIL_DOMAIN = "yalla.africa";
+export const STAFF_EMAIL_DOMAIN = "safarid.org";
 
 export function looksLikeStaffEmail(email: string): boolean {
   return email.trim().toLowerCase().endsWith(`@${STAFF_EMAIL_DOMAIN}`);

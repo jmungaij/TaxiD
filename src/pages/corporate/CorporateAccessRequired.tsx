@@ -78,7 +78,7 @@ export default function CorporateAccessRequired() {
             </Link>
           </Button>
           <Button asChild>
-            <a href="mailto:sales@yalla.africa?subject=Corporate%20charter%20access%20request">
+            <a href="mailto:sales@safarid.org?subject=Corporate%20charter%20access%20request">
               Request access
             </a>
           </Button>

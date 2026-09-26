@@ -260,7 +260,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
       {
         eyebrow: "Talk to us",
         heading: "Contact Investor Relations",
-        body: "For data rooms, briefings and partnership enquiries, contact sales@yalla.africa.",
+        body: "For data rooms, briefings and partnership enquiries, contact sales@safarid.org.",
       },
     ],
     ctaTitle: "Partner with the team building Africa's mobility OS",
@@ -311,7 +311,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
       {
         eyebrow: "Get access",
         heading: "Request API keys",
-        body: "Email sales@yalla.africa with your use case. We onboard partners weekly.",
+        body: "Email sales@safarid.org with your use case. We onboard partners weekly.",
       },
     ],
     ctaTitle: "Build on SAFARID",

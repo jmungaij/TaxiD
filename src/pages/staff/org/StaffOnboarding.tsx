@@ -161,7 +161,7 @@ export default function StaffOnboarding() {
                 onChange={set("workEmail")}
                 required
                 type="email"
-                placeholder="jmwangi@yalla.africa"
+                placeholder="jmwangi@safarid.org"
               />
               <TextField label="Personal email" value={form.personalEmail} onChange={set("personalEmail")} type="email" />
               <TextField label="Phone" value={form.phone} onChange={set("phone")} placeholder="+254…" />

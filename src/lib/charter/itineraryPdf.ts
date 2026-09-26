@@ -33,8 +33,8 @@ export const ISSUER: IssuerBranding = {
   division: "SAFARID Air · Charter, Leasing & Rentals",
   address: "Nairobi, Kenya",
   phone: "+254 142 970050",
-  email: "support@yalla.africa",
-  web: "yalla.africa",
+  email: "support@safarid.org",
+  web: "safarid.org",
 };
 
 
@@ -423,7 +423,7 @@ export async function buildItineraryPdf(input: ItineraryInput): Promise<jsPDF> {
       `Control number: ${control}`,
       `Document fingerprint: ${fingerprint}`,
       `Issued: ${issuedAt.toISOString()}`,
-      "Verify at yalla.africa/charter/status using the reference and control number.",
+      "Verify at safarid.org/charter/status using the reference and control number.",
       "Security features: guilloche lathe-work, void-pantograph micro-hatch, microtext,",
       "vector emblem and a deterministic fingerprint bound to this itinerary's contents.",
       "Any alteration invalidates the fingerprint and voids this document.",

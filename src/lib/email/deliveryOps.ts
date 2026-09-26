@@ -221,12 +221,12 @@ export const PREVIEW_DATA: Record<string, Record<string, string>> = {
     subject: "Corporate mobility enquiry",
     category: "corporate",
     message: "We would like a quotation for staff transport.",
-    supportEmail: "support@yalla.africa",
+    supportEmail: "support@safarid.org",
   },
   "staff-access-credentials": {
-    email: "jmungai@yalla.africa",
+    email: "jmungai@safarid.org",
     password: "Yalla2026",
-    accessUrl: "https://yalla.africa/staff/access",
+    accessUrl: "https://safarid.org/staff/access",
     roleLabel: "Director",
   },
 };

@@ -72,7 +72,7 @@ export default function CommunicationPreferences() {
           name="description"
           content="Choose which optional SAFARID emails you receive. Security and booking receipts always remain on."
         />
-        <link rel="canonical" href="https://yalla.africa/account/communication-preferences" />
+        <link rel="canonical" href="https://safarid.org/account/communication-preferences" />
       </Helmet>
 
       <header className="space-y-2">

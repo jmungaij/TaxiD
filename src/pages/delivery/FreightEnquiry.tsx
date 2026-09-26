@@ -191,7 +191,7 @@ const FreightEnquiry = () => {
           name="description"
           content="Tell us about your freight, truck dispatch, warehousing or fulfilment requirement. A SAFARID commercial specialist responds with a costed proposal and a reference you can quote."
         />
-        <link rel="canonical" href="https://yalla.africa/delivery/enquiry" />
+        <link rel="canonical" href="https://safarid.org/delivery/enquiry" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>

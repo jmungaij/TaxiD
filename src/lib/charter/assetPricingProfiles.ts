@@ -244,7 +244,7 @@ export interface AssetQuote {
  * every asset class — aircraft, coach, van, yacht, equipment — shares one
  * implementation and only contributes its own fee components and terminology.
  */
-export { computeAssetQuote } from "./assetQuote";
+export type { computeAssetQuote } from "./assetQuote";
 
 
 /* ------------------------------------------------------------------ */

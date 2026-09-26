@@ -189,7 +189,7 @@ export default function TicketInspector() {
           name="description"
           content="Scan a SAFARID digital bus ticket QR and verify its server-issued cryptographic signature against SAFARID's secure verification service."
         />
-        <link rel="canonical" href="https://www.yalla.africa/inspect" />
+        <link rel="canonical" href="https://www.safarid.org/inspect" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>

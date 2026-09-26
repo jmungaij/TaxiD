@@ -102,7 +102,7 @@ export default function IntegrityGates() {
                   <Label className="text-xs">Notify emails (comma-separated)</Label>
                   <Input
                     value={row.notify_emails?.join(", ") ?? ""}
-                    placeholder="ops@yalla.africa"
+                    placeholder="ops@safarid.org"
                     onChange={e => update(row.id, {
                       notify_emails: e.target.value.split(",").map(s => s.trim()).filter(Boolean),
                     })}

@@ -282,8 +282,8 @@ export async function buildCharterInvoicePdf(input: CharterInvoiceInput): Promis
     `Control number: ${control} - Template ${version}`,
     "Guilloche rosettes, lathe bands, void-pantograph hatch and 1.6pt microtext are embedded.",
     qr
-      ? "Scan the encrypted QR seal, or verify the control number at yalla.africa/verify."
-      : "Any alteration breaks the fingerprint. Verify at yalla.africa/verify with the control number.",
+      ? "Scan the encrypted QR seal, or verify the control number at safarid.org/verify."
+      : "Any alteration breaks the fingerprint. Verify at safarid.org/verify with the control number.",
   ].flatMap((line) => doc.splitTextToSize(ascii(line), footerWidth) as string[]);
   doc.text(footerLines.slice(0, 5), M + 5, sy + 5, { lineHeightFactor: 1.5 });
 

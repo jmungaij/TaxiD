@@ -67,7 +67,7 @@ export interface LgDossierEntry {
 }
 
 export const LG_ROOT_FOLDER = "SAFARID Documents 360 / Legal & Regulatory / Logistics & Courier";
-export const LG_CORRESPONDENCE_EMAIL = "admin@yalla.africa";
+export const LG_CORRESPONDENCE_EMAIL = "admin@safarid.org";
 export const LG_DRAFT_WATERMARK = "DRAFT — FOR LEGAL REVIEW — NOT EVIDENCE OF REGULATORY APPROVAL";
 export const LG_ENTITY = "Yalla Beena Limited, trading as SAFARID";
 

@@ -6,28 +6,28 @@
  * import from here so one change propagates across the whole platform.
  *
  * Approved channels (see also public.notification_settings for server routing):
- *   support@yalla.africa  general + customer support + technical assistance
- *   sales@yalla.africa    commercial, corporate, enterprise, partnerships, quotes
- *   hr@yalla.africa       recruitment / careers enquiries only (Recruitment 360)
+ *   support@safarid.org  general + customer support + technical assistance
+ *   sales@safarid.org    commercial, corporate, enterprise, partnerships, quotes
+ *   hr@safarid.org       recruitment / careers enquiries only (Recruitment 360)
  *   +254 142 970050       primary public telephone (voice + WhatsApp)
  */
 
 export const CONTACT = {
-  supportEmail: "support@yalla.africa",
-  salesEmail: "sales@yalla.africa",
+  supportEmail: "support@safarid.org",
+  salesEmail: "sales@safarid.org",
   /** Recruitment enquiries only. Applications themselves go through Recruitment 360. */
-  hrEmail: "hr@yalla.africa",
+  hrEmail: "hr@safarid.org",
   /** Administrative / platform-governance mailbox. */
-  adminEmail: "admin@yalla.africa",
+  adminEmail: "admin@safarid.org",
   /** Display format. */
   phoneDisplay: "+254 142 970050",
   /** E.164, used for tel: / wa.me links. */
   phoneE164: "+254142970050",
   whatsappNumber: "254142970050",
   addressLocality: "Nairobi, Kenya",
-  webDomain: "yalla.africa",
+  webDomain: "safarid.org",
   /** Authoritative public web origin. */
-  webUrl: "https://www.yalla.africa",
+  webUrl: "https://www.safarid.org",
 } as const;
 
 export const SUPPORT_MAILTO = `mailto:${CONTACT.supportEmail}`;

@@ -120,7 +120,7 @@ export default function ApiPartners() {
             "@type": "Service",
             name: "SAFARID API Platform",
             serviceType: "Mobility infrastructure API",
-            provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla.africa" },
+            provider: { "@type": "Organization", name: "SAFARID", url: "https://safarid.org" },
             areaServed: "KE",
             description:
               "Programmatic quoting, booking, tracking, documents and settlement for platforms embedding mobility into their own products.",

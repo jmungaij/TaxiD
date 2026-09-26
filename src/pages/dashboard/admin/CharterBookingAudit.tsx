@@ -222,7 +222,7 @@ export default function CharterBookingAudit() {
                   type="email"
                   value={recipient}
                   onChange={(e) => setRecipient(e.target.value)}
-                  placeholder="compliance@yalla.africa"
+                  placeholder="compliance@safarid.org"
                 />
                 <Button onClick={() => void emailCsv()} disabled={emailing || !recipient}>
                   {emailing ? <Loader2 className="h-4 w-4 mr-1.5 animate-spin" /> : <Mail className="h-4 w-4 mr-1.5" />}

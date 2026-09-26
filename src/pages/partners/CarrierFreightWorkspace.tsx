@@ -230,7 +230,7 @@ export default function CarrierFreightWorkspace() {
       <Helmet>
         <title>Carrier freight workspace | SAFARID Partners</title>
         <meta name="description" content="Respond to freight tenders, submit quotations, publish capacity and manage awarded jobs as a SAFARID carrier partner." />
-        <link rel="canonical" href="https://yalla.africa/partner/freight" />
+        <link rel="canonical" href="https://safarid.org/partner/freight" />
       </Helmet>
 
       <header className="flex flex-wrap items-start justify-between gap-4">

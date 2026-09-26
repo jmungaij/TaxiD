@@ -1985,7 +1985,7 @@ const CharterBookingForm = () => {
           estimatedCost={total}
           extras={conciergeLabels}
           quoteExpiry={`Quote valid until ${new Date(Date.now() + 48 * 60 * 60 * 1000).toLocaleString("en-KE", { dateStyle: "medium", timeStyle: "short" })} (48 hours from issue)`}
-          supportContact="support@yalla.africa · +254 142 970050"
+          supportContact="support@safarid.org · +254 142 970050"
         />
         <aside className="rounded-2xl border border-border bg-card p-6 space-y-2 text-sm">
           <h2 className="font-semibold">Quote summary</h2>

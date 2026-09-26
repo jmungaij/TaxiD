@@ -1020,7 +1020,7 @@ export default function CorporateWalletFinance() {
                 <div className="space-y-1.5">
                   <Label htmlFor="cwf-recipients">Finance email recipients (comma separated)</Label>
                   <Input id="cwf-recipients" value={recipients} onChange={(e) => setRecipients(e.target.value)}
-                    placeholder="finance@yalla.africa, controller@yalla.africa" />
+                    placeholder="finance@safarid.org, controller@safarid.org" />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="cwf-webhook">Webhook URL (signed with HMAC-SHA256)</Label>

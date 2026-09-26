@@ -72,8 +72,8 @@ export interface CommercialTier {
   inclusions: string[];
 }
 
-export const API_BASE_URL = "https://api.yalla.africa/v1";
-export const API_SANDBOX_URL = "https://sandbox.api.yalla.africa/v1";
+export const API_BASE_URL = "https://api.safarid.org/v1";
+export const API_SANDBOX_URL = "https://sandbox.api.safarid.org/v1";
 
 export const CAPABILITY_DOMAINS: ApiCapabilityDomain[] = [
   {

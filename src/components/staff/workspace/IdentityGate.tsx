@@ -74,7 +74,7 @@ export function IdentityGate({
               </Button>
             )}
             <Button size="sm" variant="outline" asChild>
-              <a href="mailto:support@yalla.africa?subject=Staff%20profile%20link%20request">
+              <a href="mailto:support@safarid.org?subject=Staff%20profile%20link%20request">
                 Contact administrator
               </a>
             </Button>

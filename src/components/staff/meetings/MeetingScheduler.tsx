@@ -161,7 +161,7 @@ export default function MeetingScheduler({ accountId = null, defaultKind = "inte
           <div className="sm:col-span-2">
             <Label htmlFor="mtg-emails">Who to invite</Label>
             <Input id="mtg-emails" value={emails} onChange={(e) => setEmails(e.target.value)}
-              placeholder="admin@yalla.africa, client@example.com" />
+              placeholder="admin@safarid.org, client@example.com" />
           </div>
           <div className="sm:col-span-2">
             <Label htmlFor="mtg-purpose">Agenda (optional)</Label>

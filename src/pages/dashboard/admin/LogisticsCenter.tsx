@@ -1531,7 +1531,7 @@ export default function LogisticsCenter() {
                       aria-label="Scheduled export email recipients"
                       value={scheduleRecipients}
                       onChange={(e) => setScheduleRecipients(e.target.value)}
-                      placeholder="ops@yalla.africa, audit@…"
+                      placeholder="ops@safarid.org, audit@…"
                       className="mt-1"
                     />
                   </label>

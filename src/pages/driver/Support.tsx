@@ -18,7 +18,7 @@ export default function DriverSupport() {
           {[
             { i: MessageSquare, t: "In-app chat",   d: "Average first response under 2 minutes.", cta: "Open chat",   href: "/dashboard/driver/support" },
             { i: Phone,         t: "Phone support", d: "+254 142 970050 · 24/7 driver hotline.",  cta: "Call now",    href: "tel:+254142970050" },
-            { i: Mail,          t: "Email",         d: "support@yalla.africa · replies under 4 hours.", cta: "Email us", href: "mailto:support@yalla.africa" },
+            { i: Mail,          t: "Email",         d: "support@safarid.org · replies under 4 hours.", cta: "Email us", href: "mailto:support@safarid.org" },
           ].map((c) => (
             <div key={c.t} className="p-6 rounded-xl bg-card border border-border">
               <c.i className="h-7 w-7 text-primary mb-3" />

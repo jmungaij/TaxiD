@@ -89,7 +89,7 @@ export default function Support() {
             <div className="space-y-3 text-sm text-muted-foreground">
               <p><strong className="text-foreground">Safety emergency:</strong> use SOS inside the app — connected to our safety center in under 60 seconds.</p>
               <p><strong className="text-foreground">Lost item:</strong> message us with the trip ID; we contact the driver on your behalf.</p>
-              <p><strong className="text-foreground">Press & media:</strong> support@yalla.africa</p>
+              <p><strong className="text-foreground">Press & media:</strong> support@safarid.org</p>
             </div>
           </div>
           <ContactForm

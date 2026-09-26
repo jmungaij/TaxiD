@@ -49,7 +49,7 @@ export default function Unauthorized() {
               <Home className="h-4 w-4" /> Return Home
             </Link>
           )}
-          <a href={`mailto:support@yalla.africa?subject=Access%20issue%20%E2%80%93%20${ref}`}
+          <a href={`mailto:support@safarid.org?subject=Access%20issue%20%E2%80%93%20${ref}`}
              className="inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm hover:opacity-90">
             <LifeBuoy className="h-4 w-4" /> Contact Support
           </a>

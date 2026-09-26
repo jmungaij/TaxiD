@@ -17,7 +17,7 @@ type Artifact = "url" | "email_address" | "phone_number" | "sender_name" | "scre
 const OFFICIAL = {
   domains: ["yalla-africa.lovable.app", "yallaride.co.ke", "yallaride.com"],
   sms_sender: "SAFARID",
-  support_email: "support@yalla.africa",
+  support_email: "support@safarid.org",
 };
 
 export default function SecurityCenter() {

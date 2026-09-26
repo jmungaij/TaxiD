@@ -1,0 +1,456 @@
+import { useEffect, useRef, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { RiderShell } from "@/components/rider/RiderShell";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { loadGoogleMaps } from "@/lib/googleMaps";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Loader2, AlertTriangle, Share2, X, Copy, UserRound, Star, Phone } from "lucide-react";
+import { toast } from "sonner";
+
+interface Booking {
+  id: string;
+  booking_number: string;
+  pickup_address: string;
+  pickup_lat: number;
+  pickup_lng: number;
+  dropoff_address: string;
+  dropoff_lat: number;
+  dropoff_lng: number;
+  status: string;
+  total_fare: number | null;
+  driver_id: string | null;
+  payment_method: string;
+  pickup_eta: string | null;
+
+}
+
+interface SosConfirmation {
+  sentAt: Date;
+  contactName: string | null;
+  contactPhone: string | null;
+  contactRelationship: string | null;
+  etaMinutes: number;
+}
+
+interface DriverCard {
+  driver_id: string;
+  name: string;
+  phone: string | null;
+  rating: number | null;
+  driver_code: string | null;
+  pickup_eta: string | null;
+}
+
+const SEARCHING_STATUSES = ["pending", "searching", "scheduled"];
+
+export default function RiderTripDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
+  const [booking, setBooking] = useState<Booking | null>(null);
+  const [driverPos, setDriverPos] = useState<{ lat: number; lng: number } | null>(null);
+  const [driver, setDriver] = useState<DriverCard | null>(null);
+  const [assigning, setAssigning] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [ratingComment, setRatingComment] = useState("");
+  const [ratingSaved, setRatingSaved] = useState(false);
+  const [savingRating, setSavingRating] = useState(false);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [sos, setSos] = useState<SosConfirmation | null>(null);
+  const mapEl = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<any>(null);
+  const driverMarkerRef = useRef<any>(null);
+
+
+  // Load booking + realtime
+  useEffect(() => {
+    if (!id || !user) return;
+    supabase.from("trip_bookings").select("*").eq("id", id).single().then(({ data }) => {
+      if (data) setBooking(data as Booking);
+    });
+    const ch = supabase
+      .channel(`booking-${id}`)
+      .on("postgres_changes", { event: "UPDATE", schema: "public", table: "trip_bookings", filter: `id=eq.${id}` }, (p) =>
+        setBooking(p.new as Booking)
+      )
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "trip_tracking", filter: `trip_booking_id=eq.${id}` },
+        (p) => setDriverPos({ lat: Number((p.new as any).lat), lng: Number((p.new as any).lng) })
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(ch);
+    };
+  }, [id, user]);
+
+  // Resolve the assigned driver through the definer RPC — riders cannot read
+  // public.drivers directly, which is why this card used to show a raw UUID.
+  useEffect(() => {
+    if (!booking?.driver_id) {
+      setDriver(null);
+      return;
+    }
+    supabase.rpc("trip_driver_card", { _booking_id: booking.id }).then(({ data }) => {
+      if (data) setDriver(data as unknown as DriverCard);
+    });
+  }, [booking?.driver_id, booking?.id, booking?.pickup_eta]);
+
+  // Existing rating (a rider may only rate a trip once).
+  useEffect(() => {
+    if (!id || !user || booking?.status !== "completed") return;
+    supabase
+      .from("trip_ratings")
+      .select("overall")
+      .eq("trip_booking_id", id)
+      .eq("rater_user_id", user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data) {
+          setRating(Number(data.overall ?? 0));
+          setRatingSaved(true);
+        }
+      });
+  }, [id, user, booking?.status]);
+
+  async function findDriver() {
+    if (!booking) return;
+    setAssigning(true);
+    try {
+      const { data, error } = await supabase.rpc("trip_assign_driver", { _booking_id: booking.id });
+      if (error) throw error;
+      if ((data as any)?.assigned) {
+        toast.success("Driver assigned");
+        const { data: fresh } = await supabase.from("trip_bookings").select("*").eq("id", booking.id).single();
+        if (fresh) setBooking(fresh as Booking);
+      } else {
+        toast.info("No driver available nearby yet. We'll keep looking — try again in a moment.");
+      }
+    } catch (err) {
+      toast.error(err.message ?? "Could not assign a driver");
+    } finally {
+      setAssigning(false);
+    }
+  }
+
+  async function submitRating() {
+    if (!booking || !user || rating < 1) return;
+    setSavingRating(true);
+    const { error } = await supabase.from("trip_ratings").insert({
+      trip_booking_id: booking.id,
+      rater_user_id: user.id,
+      ratee_kind: "driver",
+      overall: rating,
+      comment: ratingComment.trim() || null,
+    });
+    setSavingRating(false);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    setRatingSaved(true);
+    toast.success("Thanks for rating your trip");
+  }
+
+
+  // Init map
+  useEffect(() => {
+    if (!booking || !mapEl.current) return;
+    loadGoogleMaps().then((g) => {
+      mapRef.current = new g.maps.Map(mapEl.current!, {
+        center: { lat: booking.pickup_lat, lng: booking.pickup_lng },
+        zoom: 14,
+        disableDefaultUI: true,
+        zoomControl: true,
+      });
+      new g.maps.Marker({
+        map: mapRef.current,
+        position: { lat: booking.pickup_lat, lng: booking.pickup_lng },
+        label: { text: "A", color: "white" },
+      });
+      new g.maps.Marker({
+        map: mapRef.current,
+        position: { lat: booking.dropoff_lat, lng: booking.dropoff_lng },
+        label: { text: "B", color: "white" },
+      });
+      new g.maps.Polyline({
+        map: mapRef.current,
+        path: [
+          { lat: booking.pickup_lat, lng: booking.pickup_lng },
+          { lat: booking.dropoff_lat, lng: booking.dropoff_lng },
+        ],
+        strokeColor: "hsl(217 91% 60%)",
+        strokeOpacity: 0.5,
+        strokeWeight: 3,
+      });
+      const bounds = new g.maps.LatLngBounds();
+      bounds.extend({ lat: booking.pickup_lat, lng: booking.pickup_lng });
+      bounds.extend({ lat: booking.dropoff_lat, lng: booking.dropoff_lng });
+      mapRef.current.fitBounds(bounds, 60);
+    });
+  }, [booking?.id]);
+
+  // Live driver marker
+  useEffect(() => {
+    if (!driverPos || !mapRef.current) return;
+    const g = window.google;
+    if (!driverMarkerRef.current) {
+      driverMarkerRef.current = new g.maps.Marker({
+        map: mapRef.current,
+        position: driverPos,
+        icon: {
+          path: g.maps.SymbolPath.CIRCLE,
+          scale: 8,
+          fillColor: "hsl(142 76% 36%)",
+          fillOpacity: 1,
+          strokeColor: "white",
+          strokeWeight: 2,
+        },
+      });
+    } else {
+      driverMarkerRef.current.setPosition(driverPos);
+    }
+  }, [driverPos]);
+
+  async function raiseSOS() {
+    if (!booking) return;
+    const pos = driverPos ?? { lat: booking.pickup_lat, lng: booking.pickup_lng };
+    const { error } = await supabase.rpc("safety_raise_sos", {
+      _booking_id: booking.id,
+      _lat: pos.lat,
+      _lng: pos.lng,
+      _message: "SOS from rider",
+    });
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    toast.success("SOS alert sent. Help is on the way.");
+    // Pull the primary emergency contact so the rider can see who was notified
+    // and an ETA estimate. Falls back gracefully when nothing is set.
+    let contactName: string | null = null;
+    let contactPhone: string | null = null;
+    let contactRelationship: string | null = null;
+    if (user) {
+      const { data: contacts } = await supabase
+        .from("emergency_contacts")
+        .select("name, phone_number, relationship, is_primary")
+        .eq("user_id", user.id)
+        .order("is_primary", { ascending: false })
+        .limit(1);
+      const primary = contacts?.[0];
+      if (primary) {
+        contactName = primary.name;
+        contactPhone = primary.phone_number;
+        contactRelationship = primary.relationship;
+      }
+    }
+    setSos({
+      sentAt: new Date(),
+      contactName,
+      contactPhone,
+      contactRelationship,
+      etaMinutes: 5,
+    });
+  }
+
+  async function cancelTrip() {
+    if (!booking) return;
+    const { error } = await supabase.rpc("trip_cancel_booking", { _booking_id: booking.id, _reason: "Cancelled by rider" });
+    if (error) toast.error(error.message);
+    else toast.success("Trip cancelled");
+  }
+
+  async function shareTrip() {
+    if (!booking || !user) return;
+    const { data, error } = await supabase.functions.invoke("trip-share-issue", {
+      body: { trip_booking_id: booking.id, ttl_seconds: 3600, max_uses: 3 },
+    });
+    if (error || !data?.token) {
+      toast.error(error?.message ?? "Failed to create share link");
+      return;
+    }
+    const url = `${window.location.origin}/t/${data.token}`;
+    setShareUrl(url);
+    await navigator.clipboard.writeText(url).catch(() => {});
+    toast.success("Share link copied to clipboard (valid 1h, 3 uses)");
+  }
+
+  if (!booking) {
+    return (
+      <RiderShell>
+        <div className="flex justify-center p-12">
+          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        </div>
+      </RiderShell>
+    );
+  }
+
+  const cancellable = !["completed", "cancelled"].includes(booking.status);
+
+  return (
+    <RiderShell>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h1 className="text-xl font-bold">{booking.booking_number}</h1>
+            <Badge>{booking.status}</Badge>
+          </div>
+          <div className="flex gap-2">
+            <Button size="sm" variant="outline" onClick={shareTrip}>
+              <Share2 className="h-4 w-4 mr-1" /> Share trip
+            </Button>
+            <Button size="sm" variant="destructive" onClick={raiseSOS}>
+              <AlertTriangle className="h-4 w-4 mr-1" /> SOS
+            </Button>
+            {cancellable && (
+              <Button size="sm" variant="ghost" onClick={cancelTrip}>
+                <X className="h-4 w-4 mr-1" /> Cancel
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <Card className="overflow-hidden">
+          <div ref={mapEl} className="w-full h-[420px]" />
+        </Card>
+
+        <Card className="p-4 space-y-2 text-sm">
+          <div><span className="text-muted-foreground">From:</span> {booking.pickup_address}</div>
+          <div><span className="text-muted-foreground">To:</span> {booking.dropoff_address}</div>
+          <div><span className="text-muted-foreground">Fare:</span> KES {Number(booking.total_fare ?? 0).toLocaleString()} · {booking.payment_method}</div>
+        </Card>
+
+        {driver ? (
+          <Card className="p-4 space-y-1 text-sm" data-testid="driver-card">
+            <div className="flex items-center gap-2 font-semibold">
+              <UserRound className="h-4 w-4 text-primary" /> {driver.name}
+              {driver.rating != null && (
+                <Badge variant="secondary" className="text-[10px]">
+                  <Star className="h-3 w-3 mr-1" /> {Number(driver.rating).toFixed(1)}
+                </Badge>
+              )}
+            </div>
+            {driver.driver_code && (
+              <div className="text-xs text-muted-foreground">Driver ID {driver.driver_code}</div>
+            )}
+            {driver.pickup_eta && (
+              <div className="text-muted-foreground">
+                Arriving around{" "}
+                {new Date(driver.pickup_eta).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              </div>
+            )}
+            {driver.phone && (
+              <Button asChild size="sm" variant="outline" className="mt-2">
+                <a href={`tel:${driver.phone}`}>
+                  <Phone className="h-4 w-4 mr-1" /> Call driver
+                </a>
+              </Button>
+            )}
+          </Card>
+        ) : (
+          SEARCHING_STATUSES.includes(booking.status) && (
+            <Card className="p-4 space-y-2 text-sm" data-testid="driver-search-card">
+              <div className="flex items-center gap-2 font-medium">
+                <Loader2 className="h-4 w-4 animate-spin text-primary" /> Matching you with a nearby driver…
+              </div>
+              <p className="text-xs text-muted-foreground">
+                We look for the closest online driver to your pickup point. If none is free yet, try again in a moment.
+              </p>
+              <Button size="sm" onClick={findDriver} disabled={assigning} aria-busy={assigning}>
+                {assigning && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                Find a driver now
+              </Button>
+            </Card>
+          )
+        )}
+
+        {booking.status === "completed" && (
+          <Card className="p-4 space-y-3 text-sm" data-testid="trip-rating-card">
+            <div className="font-semibold">Rate your trip</div>
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  aria-label={`${n} star${n > 1 ? "s" : ""}`}
+                  disabled={ratingSaved}
+                  onClick={() => setRating(n)}
+                  className="p-1 disabled:opacity-70"
+                >
+                  <Star
+                    className={`h-6 w-6 ${n <= rating ? "text-primary fill-primary" : "text-muted-foreground"}`}
+                  />
+                </button>
+              ))}
+            </div>
+            {ratingSaved ? (
+              <p className="text-xs text-muted-foreground">Thanks — your rating has been recorded.</p>
+            ) : (
+              <>
+                <Input
+                  value={ratingComment}
+                  onChange={(e) => setRatingComment(e.target.value)}
+                  placeholder="Anything we should know? (optional)"
+                />
+                <Button size="sm" onClick={submitRating} disabled={rating < 1 || savingRating} aria-busy={savingRating}>
+                  {savingRating && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                  Submit rating
+                </Button>
+              </>
+            )}
+          </Card>
+        )}
+
+
+        {sos && (
+          <Card
+            data-testid="sos-confirmation"
+            role="status"
+            aria-live="polite"
+            className="p-4 border-destructive/40 bg-destructive/5 space-y-2"
+          >
+            <div className="flex items-center gap-2 font-semibold text-destructive">
+              <AlertTriangle className="h-4 w-4" /> SOS confirmation
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Primary contact:</span>{" "}
+              <span data-testid="sos-contact-name">{sos.contactName ?? "No emergency contact on file"}</span>
+              {sos.contactPhone && (
+                <>
+                  {" · "}
+                  <span data-testid="sos-contact-phone">{sos.contactPhone}</span>
+                </>
+              )}
+              {sos.contactRelationship && (
+                <span className="text-muted-foreground"> ({sos.contactRelationship})</span>
+              )}
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Estimated response ETA:</span>{" "}
+              <span data-testid="sos-eta">~{sos.etaMinutes} min</span>
+            </div>
+            <div className="text-xs text-muted-foreground">
+              SAFARID safety operators have been alerted with your live location. A live share link has been
+              sent to your primary contact.
+            </div>
+          </Card>
+        )}
+
+        {shareUrl && (
+          <Card className="p-3 flex items-center gap-2">
+            <Input value={shareUrl} readOnly className="font-mono text-xs" />
+            <Button size="icon" variant="ghost" onClick={() => navigator.clipboard.writeText(shareUrl)}>
+              <Copy className="h-4 w-4" />
+            </Button>
+          </Card>
+        )}
+
+        <Link to="/rider/trips" className="text-sm text-primary underline">← Back to trips</Link>
+      </div>
+    </RiderShell>
+  );
+}

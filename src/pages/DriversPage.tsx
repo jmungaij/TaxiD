@@ -1,165 +1,137 @@
-import { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
-import { fetchDrivers } from "@/lib/api";
-import { Driver } from "@/types";
-import { DataTable } from "@/components/DataTable/DataTable";
-import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Car, UserIcon } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
-import { useQuery } from "@tanstack/react-query";
+
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Button } from '@/components/ui/button';
+import DataTable from '@/components/common/DataTable';
+import StatusBadge from '@/components/common/StatusBadge';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { api } from '@/lib/api';
+import { Driver } from '@/lib/types';
+import { Plus, Car, Star } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
 
 const DriversPage = () => {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   
-  const { data, isLoading } = useQuery({
-    queryKey: ["drivers", page, pageSize, search],
-    queryFn: () => fetchDrivers(page, pageSize, search),
+  const { data: drivers, isLoading } = useQuery({
+    queryKey: ['drivers'],
+    queryFn: api.drivers.getAll
   });
-  
-  const handlePaginationChange = useCallback((page: number, pageSize: number) => {
-    setPage(page);
-    setPageSize(pageSize);
-  }, []);
-  
-  const handleSearchChange = useCallback((value: string) => {
-    setSearch(value);
-    setPage(1);
-  }, []);
-  
-  const columns: ColumnDef<Driver>[] = [
+
+  const columns = [
     {
-      accessorKey: "id",
-      header: "ID",
-      cell: ({ row }) => <span className="text-xs font-mono">{row.original.id}</span>,
-    },
-    {
-      accessorKey: "name",
-      header: "Name",
-      cell: ({ row }) => (
-        <div className="flex items-center gap-2">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={row.original.avatarUrl} />
-            <AvatarFallback className="bg-primary/10">
-              <UserIcon className="h-4 w-4" />
+      header: 'Driver',
+      accessor: (row: Driver) => (
+        <div className="flex items-center gap-3">
+          <Avatar>
+            <AvatarImage src={row.profileImage} alt={row.name} />
+            <AvatarFallback>
+              {row.name.split(' ').map(n => n[0]).join('')}
             </AvatarFallback>
           </Avatar>
           <div>
-            <Link
-              to={`/drivers/${row.original.id}`}
-              className="font-medium text-primary hover:underline"
-            >
-              {row.original.firstName} {row.original.lastName}
-            </Link>
-            <div className="text-xs text-muted-foreground">{row.original.email}</div>
+            <p className="font-medium">{row.name}</p>
+            <p className="text-xs text-muted-foreground">{row.email}</p>
           </div>
         </div>
       ),
     },
     {
-      accessorKey: "vehicle",
-      header: "Vehicle",
-      cell: ({ row }) => (
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-8 h-8 bg-primary/10 rounded-full">
-            <Car className="h-4 w-4" />
-          </span>
-          <div>
-            <div className="font-medium">
-              {row.original.vehicle.make} {row.original.vehicle.model}
-            </div>
-            <div className="text-xs text-muted-foreground">
-              {row.original.vehicle.licensePlate} • {row.original.vehicle.color}
-            </div>
+      header: 'Phone',
+      accessor: 'phone' as keyof Driver,
+      sortable: true,
+    },
+    {
+      header: 'Vehicle',
+      accessor: (row: Driver) => (
+        <div>
+          <div className="flex items-center gap-1 mb-1">
+            <Car className="w-3 h-3 text-muted-foreground" />
+            <span>{row.vehicle.model} ({row.vehicle.year})</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Badge variant="outline" className="h-5 text-xs font-normal">
+              {row.vehicle.type.charAt(0).toUpperCase() + row.vehicle.type.slice(1)}
+            </Badge>
+            <Badge variant="outline" className="h-5 text-xs font-normal">
+              {row.vehicle.licensePlate}
+            </Badge>
           </div>
         </div>
       ),
     },
     {
-      accessorKey: "rating",
-      header: "Rating",
-      cell: ({ row }) => (
-        <span className="inline-flex items-center">
-          {row.original.rating}
-          <span className="ml-1 text-amber-500">★</span>
-        </span>
-      ),
-    },
-    {
-      accessorKey: "tripCount",
-      header: "Trips",
-      cell: ({ row }) => row.original.tripCount.toLocaleString(),
-    },
-    {
-      accessorKey: "earnings",
-      header: "Total Earnings",
-      cell: ({ row }) => (
-        <span className="font-medium">
-          ${row.original.totalEarnings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-        </span>
-      ),
-    },
-    {
-      accessorKey: "status",
-      header: "Status",
-      cell: ({ row }) => {
-        const status = row.original.status;
-        return (
-          <Badge
-            variant="outline"
-            className={
-              status === "active" 
-                ? "border-emerald-500 text-emerald-700 bg-emerald-50"
-                : status === "inactive" 
-                ? "border-amber-500 text-amber-700 bg-amber-50" 
-                : "border-red-500 text-red-700 bg-red-50"
-            }
-          >
-            {status.charAt(0).toUpperCase() + status.slice(1)}
-          </Badge>
-        );
-      },
-    },
-    {
-      id: "actions",
-      header: "Actions",
-      cell: ({ row }) => (
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to={`/drivers/${row.original.id}`}>View</Link>
-          </Button>
+      header: 'Rating',
+      accessor: 'rating' as keyof Driver,
+      render: (value: number) => (
+        <div className="flex items-center">
+          <Star className="w-4 h-4 text-status-warning mr-1" />
+          <span>{value.toFixed(1)}</span>
         </div>
       ),
+      sortable: true,
+    },
+    {
+      header: 'Status',
+      accessor: 'status' as keyof Driver,
+      render: (value: string) => <StatusBadge status={value as any} />,
+      sortable: true,
+    },
+    {
+      header: 'Total Trips',
+      accessor: 'totalTrips' as keyof Driver,
+      sortable: true,
+    },
+    {
+      header: 'Earnings',
+      accessor: 'totalEarnings' as keyof Driver,
+      render: (value: number) => `$${value.toFixed(2)}`,
+      sortable: true,
     },
   ];
 
+  // Driver 360 is the declared driver detail surface. `/drivers/<id>` was never
+  // a route (only the public `/drivers` brochure page), so every row click 404'd.
+  const handleRowClick = (driver: Driver) => {
+    navigate(`/dashboard/admin/drivers/${driver.id}`);
+  };
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Drivers</h2>
-          <p className="text-muted-foreground">
-            View and manage all driver accounts and vehicles
-          </p>
+          <h1 className="text-3xl font-bold tracking-tight">Drivers</h1>
+          <p className="text-muted-foreground">Manage your platform drivers</p>
         </div>
-        <Button>
+        <Button
+          className="gap-1"
+          aria-label="Add new driver"
+          data-testid="drivers-add"
+          data-analytics="admin.drivers.add"
+          onClick={() => {
+            void import("@/lib/cta").then(({ trackCta }) =>
+              trackCta({ buttonName: "admin.drivers.add", actionType: "dialog" })
+            );
+          }}
+        >
+          <Plus className="h-4 w-4" aria-hidden="true" />
           Add Driver
         </Button>
       </div>
 
-      <DataTable
-        columns={columns}
-        data={data?.data?.drivers || []}
-        loading={isLoading}
-        searchFilter={search}
-        onSearchChange={handleSearchChange}
-        onPaginationChange={handlePaginationChange}
-        pageCount={data?.data ? Math.ceil(data.data.total / pageSize) : 0}
-      />
+      {isLoading ? (
+        <LoadingSpinner className="py-10" size={40} />
+      ) : (
+        <DataTable
+          data={drivers || []}
+          columns={columns}
+          keyField="id"
+          isLoading={isLoading}
+          onRowClick={handleRowClick}
+        />
+      )}
     </div>
   );
 };

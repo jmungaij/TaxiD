@@ -1,3 +1,21 @@
+User-agent: *
+Allow: /
+
+# Public marketing pages that live under an otherwise private prefix
+Allow: /rider/airport
+Allow: /rider/safety
+
+# Internal & authenticated areas — do not index
+Disallow: /app/
+Disallow: /dashboard/
+Disallow: /auth
+Disallow: /reset-password
+Disallow: /rider/
+Disallow: /driver/dashboard
+Disallow: /delivery/ops/
+Disallow: /t/
+
+# Bot-specific rules
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +28,4 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+Sitemap: https://yalla-africa.lovable.app/sitemap.xml

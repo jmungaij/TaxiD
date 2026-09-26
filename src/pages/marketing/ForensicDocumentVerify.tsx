@@ -70,8 +70,8 @@ export default function ForensicDocumentVerify() {
           content="Confirm that a SAFARID letter, contract or invoice was genuinely issued, using the printed document number and verification code."
         />
         <link rel="canonical" href="https://yalla.africa/verify/document" />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 

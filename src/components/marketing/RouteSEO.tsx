@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useRouteHeadClaimed } from "@/components/seo/headClaim";
 
 const BASE_URL = "https://yalla-africa.lovable.app";
-const OG_IMAGE = `${BASE_URL}/og-yalla-mobility-1200x630.v3.png`;
+const OG_IMAGE = `${BASE_URL}/og-safarid-1200x630.v1.png`;
 
 /**
  * Fallback for routes with no entry below. Deliberately distinct from the home

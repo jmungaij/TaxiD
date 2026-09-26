@@ -78,8 +78,8 @@ export default function SmartFarePage() {
         <meta property="og:title" content="SAFARID SmartFare™ — Transparent Charter Mission Pricing" />
         <meta property="og:description" content="Mission-based charter pricing for East Africa: transparent cost layers, explained savings, empty-leg matching and lean platform fees in KSh." />
         <meta property="og:url" content="https://yalla-africa.lovable.app/charter/smartfare" />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>
 
       <header className="mb-8">

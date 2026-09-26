@@ -3,7 +3,7 @@ import { useClaimRouteHead } from "./headClaim";
 
 const SITE_URL = "https://yalla-africa.lovable.app";
 const SITE_NAME = "SAFARID";
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-yalla-mobility-1200x630.v3.png`;
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-safarid-1200x630.v1.png`;
 
 export interface SeoHeadProps {
   title: string;

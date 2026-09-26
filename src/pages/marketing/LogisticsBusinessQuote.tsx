@@ -32,7 +32,7 @@ import {
 
 const ROUTE = "/logistics/quote";
 const CANONICAL = `https://yalla-africa.lovable.app${ROUTE}`;
-const OG_IMAGE = "https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png";
+const OG_IMAGE = "https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png";
 
 const CARGO_LABEL: Record<PackageType, string> = {
   DOCUMENT: "Documents",

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -26,7 +25,7 @@ export default function AllowedServicesPanel({ corporateId }: { corporateId: str
 
   useEffect(() => {
     (async () => {
-      const { data } = await untypedDb.from("ride_types").select("id,name").eq("is_active", true).order("sort_order");
+      const { data } = await supabase.from("ride_types").select("id,name").eq("is_active", true).order("sort_order");
       setRideTypes((data ?? []) as RideType[]);
     })();
   }, []);

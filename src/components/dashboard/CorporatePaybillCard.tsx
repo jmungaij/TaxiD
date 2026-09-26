@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,7 +34,7 @@ export function CorporatePaybillCard({ corporateId, corporateName, balanceCents 
   useEffect(() => {
     if (!corporateId) { setAccountRef("—"); return; }
     (async () => {
-      const { data } = await untypedDb.from("corporate_accounts")
+      const { data } = await supabase.from("corporate_accounts")
         .select("paybill_reference").eq("id", corporateId).maybeSingle();
       setAccountRef(data?.paybill_reference ?? `CORP-${corporateId.slice(0, 8).toUpperCase()}`);
     })();
@@ -69,7 +68,7 @@ export function CorporatePaybillCard({ corporateId, corporateName, balanceCents 
         proofPath = path;
       }
       const cents = Math.round(parseFloat(amount) * 100);
-      const { error } = await untypedDb.from("corporate_paybill_proofs").insert({
+      const { error } = await supabase.from("corporate_paybill_proofs").insert({
         corporate_id: corporateId,
         mpesa_code: mpesaCode.trim().toUpperCase(),
         amount_cents: cents,

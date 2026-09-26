@@ -6,7 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Save } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import RestrictedMarkdown from "@/components/marketing/RestrictedMarkdown";
 
 const MAX = 4000;
@@ -26,7 +25,7 @@ export function OnboardingMessageCard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    untypedDb
+    supabase
       .from("platform_settings")
       .select("onboarding_welcome_message")
       .order("created_at", { ascending: true })
@@ -42,7 +41,7 @@ export function OnboardingMessageCard() {
 
   const save = async () => {
     setSaving(true);
-    const { data, error } = await untypedDb.rpc("set_onboarding_message", { _message: value });
+    const { data, error } = await supabase.rpc("set_onboarding_message", { _message: value });
     setSaving(false);
     const env = (data ?? {}) as { ok?: boolean; message?: string };
     if (error || env.ok === false) {

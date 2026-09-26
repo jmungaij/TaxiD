@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -12,7 +11,7 @@ export function useDepartments(corporateId: string | null) {
     if (!corporateId) return;
     let active = true;
     (async () => {
-      const { data } = await untypedDb
+      const { data } = await supabase
         .from("corporate_departments")
         .select("id,name")
         .eq("corporate_id", corporateId)

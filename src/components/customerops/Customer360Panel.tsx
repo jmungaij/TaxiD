@@ -21,7 +21,6 @@ import {
   FileText,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -135,10 +134,10 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
       const none = Promise.resolve({ data: [] as Row[], error: null });
       const [profile, trips, deliveries, charters, wallet, payments, refunds, invoices, cases] = await Promise.all([
         uid
-          ? untypedDb.from("profiles").select("user_id,full_name,phone,avatar_url,created_at").eq("user_id", uid).maybeSingle()
+          ? supabase.from("profiles").select("user_id,full_name,phone,avatar_url,created_at").eq("user_id", uid).maybeSingle()
           : Promise.resolve({ data: null, error: null }),
         uid
-          ? untypedDb
+          ? supabase
               .from("trip_bookings")
               .select("id,booking_number,status,total_fare,payment_method,pickup_address,dropoff_address,created_at")
               .eq("rider_user_id", uid)
@@ -146,7 +145,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         uid
-          ? untypedDb
+          ? supabase
               .from("delivery_orders")
               .select("id,order_number,status,total_amount,currency,payment_status,created_at")
               .eq("customer_id", uid)
@@ -154,7 +153,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         uid
-          ? untypedDb
+          ? supabase
               .from("charter_bookings")
               .select("id,reference,asset_name,status,payment_status,amount,currency,mpesa_receipt,created_at")
               .eq("user_id", uid)
@@ -162,7 +161,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         uid
-          ? untypedDb
+          ? supabase
               .from("wallet_transactions")
               .select("id,amount_cents,kind,status,created_at")
               .eq("user_id", uid)
@@ -170,7 +169,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         uid
-          ? untypedDb
+          ? supabase
               .from("fact_payments")
               .select("id,amount_cents,currency,status,payment_method,paid_at,created_at")
               .eq("rider_id", uid)
@@ -178,7 +177,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         uid
-          ? untypedDb
+          ? supabase
               .from("refund_requests")
               .select("id,amount_cents,currency,status,reason,created_at")
               .eq("requested_by", uid)
@@ -186,7 +185,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         corporateId
-          ? untypedDb
+          ? supabase
               .from("corporate_invoices")
               .select("id,invoice_number,status,total_cents,balance_cents,currency,issued_at,due_at")
               .eq("corporate_id", corporateId)
@@ -194,14 +193,14 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
               .limit(10)
           : none,
         uid
-          ? untypedDb
+          ? supabase
               .from("support_cases")
               .select("id,case_number,subject,category,status,priority,satisfaction_score,created_at,resolved_at")
               .eq("requester_user_id", uid)
               .order("created_at", { ascending: false })
               .limit(15)
           : email
-            ? untypedDb
+            ? supabase
                 .from("support_cases")
                 .select("id,case_number,subject,category,status,priority,satisfaction_score,created_at,resolved_at")
                 .eq("requester_email", email)

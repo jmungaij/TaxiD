@@ -9,7 +9,6 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -77,13 +76,13 @@ export function ForensicCertificationCard() {
   const load = useCallback(async () => {
     setBusy(true);
     const [n, f, s] = await Promise.all([
-      untypedDb.rpc("payment_certification_next_action" as never, { _suite: "chain" } as never),
-      untypedDb.from("payment_certification_forensics" as never)
+      supabase.rpc("payment_certification_next_action" as never, { _suite: "chain" } as never),
+      supabase.from("payment_certification_forensics" as never)
         .select("*")
         .like("scenario_key", "chain\\_%")
         .order("classified_at", { ascending: false })
         .limit(50),
-      untypedDb.from("payment_certification_scenarios")
+      supabase.from("payment_certification_scenarios")
         .select("id,scenario_key,status,started_at,error_message")
         .eq("status", "FAILED")
         .like("scenario_key", "chain\\_%")
@@ -100,7 +99,7 @@ export function ForensicCertificationCard() {
 
   const classify = async (scenarioId: string) => {
     setBusy(true);
-    const { error } = await untypedDb.rpc(
+    const { error } = await supabase.rpc(
       "payment_certification_classify_failure" as never,
       { _scenario_id: scenarioId } as never,
     );
@@ -133,7 +132,7 @@ export function ForensicCertificationCard() {
       edge_function: fx.edge_function, rpc_name: fx.rpc_name,
       pinned_from_run: fx.run_id,
     };
-    const { error } = await untypedDb.rpc(
+    const { error } = await supabase.rpc(
       "payment_certification_pin_regression" as never,
       { _scenario_key: fx.scenario_key, _fingerprint: fingerprint, _run_id: fx.run_id } as never,
     );

@@ -27,7 +27,6 @@ import { AsyncState } from "@/components/dashboard/AsyncState";
 import { SectionErrorBoundary } from "@/components/dashboard/SectionErrorBoundary";
 import { chartTheme, gridProps, axisProps, tooltipStyle } from "@/lib/chartTheme";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import {
   ELOS_CAPABILITIES, ELOS_PILLARS, ELOS_VERSION, certifyElos,
   type ElosPillar, type ElosStage,
@@ -80,16 +79,16 @@ export function LogisticsEnterprisePanels() {
     (async () => {
       try {
         const [pk, or, pod, ret, veh, reg] = await Promise.all([
-          untypedDb.from("packages")
+          supabase.from("packages")
             .select("id,module,status,fragile,cold_chain,declared_value,weight_kg,picked_up_at,delivered_at,created_at")
             .order("created_at", { ascending: false }).limit(500),
-          untypedDb.from("delivery_orders")
+          supabase.from("delivery_orders")
             .select("id,module,status,total_amount,sla_deadline,created_at")
             .order("created_at", { ascending: false }).limit(500),
-          untypedDb.from("proof_of_delivery").select("id", { count: "exact", head: true }),
-          untypedDb.from("package_returns").select("id", { count: "exact", head: true }),
-          untypedDb.from("vehicles").select("vehicle_status,vehicle_type").limit(300),
-          untypedDb.from("regions").select("id,name").limit(20),
+          supabase.from("proof_of_delivery").select("id", { count: "exact", head: true }),
+          supabase.from("package_returns").select("id", { count: "exact", head: true }),
+          supabase.from("vehicles").select("vehicle_status,vehicle_type").limit(300),
+          supabase.from("regions").select("id,name").limit(20),
         ]);
         if (cancelled) return;
         setPackages((pk.data as Pkg[]) ?? []);

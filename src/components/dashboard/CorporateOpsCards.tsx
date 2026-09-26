@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -28,7 +27,7 @@ const ACTIVE = [
 ];
 
 async function loadEmployeeIds(corporateId: string): Promise<{ ids: string[]; nameById: Record<string, string> }> {
-  const { data } = await untypedDb
+  const { data } = await supabase
     .from("corporate_employees")
     .select("user_id,full_name,email")
     .eq("corporate_id", corporateId)
@@ -64,7 +63,7 @@ export function CorporateLiveTripsCard({ corporateId }: { corporateId: string | 
       if (cancelled) return;
       setNames(nameById);
       if (ids.length === 0) { setRows([]); setLoading(false); return; }
-      const { data } = await untypedDb
+      const { data } = await supabase
         .from("trip_bookings")
         .select("id,booking_number,rider_user_id,pickup_address,dropoff_address,status,started_at,total_fare")
         .in("rider_user_id", ids)
@@ -134,15 +133,15 @@ export function useCorporateTripCounts(corporateId: string | null) {
       if (ids.length === 0) return;
       const since = new Date(Date.now() - 30 * 86400000).toISOString();
       const [scheduledRes, cancelledRes, activeRes] = await Promise.all([
-        untypedDb.from("trip_bookings").select("id", { count: "exact", head: true })
+        supabase.from("trip_bookings").select("id", { count: "exact", head: true })
           .in("rider_user_id", ids).eq("intent", "corporate")
           .in("status", ["scheduled", "requested"])
           .not("scheduled_for", "is", null)
           .gte("scheduled_for", new Date().toISOString()),
-        untypedDb.from("trip_bookings").select("id", { count: "exact", head: true })
+        supabase.from("trip_bookings").select("id", { count: "exact", head: true })
           .in("rider_user_id", ids).eq("intent", "corporate")
           .eq("status", "cancelled").gte("cancelled_at", since),
-        untypedDb.from("trip_bookings").select("id", { count: "exact", head: true })
+        supabase.from("trip_bookings").select("id", { count: "exact", head: true })
           .in("rider_user_id", ids).eq("intent", "corporate").in("status", ACTIVE),
       ]);
       setCounts({
@@ -172,13 +171,13 @@ export function SpendByDepartmentCard({ corporateId }: { corporateId: string | n
       setLoading(true);
       const since = new Date(Date.now() - 30 * 86400000).toISOString();
       const [ledgerRes, deptRes] = await Promise.all([
-        untypedDb.from("corporate_cash_ledger")
+        supabase.from("corporate_cash_ledger")
           .select("amount_cents,metadata,occurred_at")
           .eq("corporate_id", corporateId)
           .gte("occurred_at", since)
           .lt("amount_cents", 0)
           .limit(2000),
-        untypedDb.from("corporate_departments")
+        supabase.from("corporate_departments")
           .select("id,name")
           .eq("corporate_id", corporateId),
       ]);

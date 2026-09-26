@@ -9,7 +9,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Activity, AlertTriangle, MapPin, RefreshCw, Radio } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,27 +58,27 @@ export function LiveOperationsPanel() {
     setError(null);
     try {
       const [drivers, deliveries, trips, charters, incidents] = await Promise.all([
-        untypedDb
+        supabase
           .from("driver_locations")
           .select("driver_id,lat,lng,is_online,is_available,speed_kph,vehicle_id,battery_pct,updated_at")
           .order("updated_at", { ascending: false })
           .limit(200),
-        untypedDb
+        supabase
           .from("delivery_orders")
           .select("id,order_number,status,pickup_lat,pickup_lng,sla_deadline,updated_at")
           .order("updated_at", { ascending: false })
           .limit(200),
-        untypedDb
+        supabase
           .from("trip_bookings")
           .select("id,booking_number,status,pickup_lat,pickup_lng,pickup_eta,scheduled_for,updated_at")
           .order("updated_at", { ascending: false })
           .limit(200),
-        untypedDb
+        supabase
           .from("charter_bookings")
           .select("id,reference,category_slug,asset_name,status,flight_status,updated_at")
           .order("updated_at", { ascending: false })
           .limit(100),
-        untypedDb
+        supabase
           .from("service_incidents")
           .select("id,incident_number,service_name,title,severity,status,detected_at,resolved_at,updated_at")
           .order("updated_at", { ascending: false })

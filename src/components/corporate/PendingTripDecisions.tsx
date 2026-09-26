@@ -18,7 +18,6 @@ import {
   Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
-import { untypedDb } from "@/integrations/supabase/untyped";
 import { decideCorporateRideRequest } from "@/lib/corporateRides";
 import { toast } from "sonner";
 import { Check, ClipboardCheck, RefreshCw, X } from "lucide-react";
@@ -45,7 +44,7 @@ export function PendingTripDecisions({ corporateId }: { corporateId: string | nu
   const load = useCallback(async () => {
     if (!corporateId) { setLoading(false); return; }
     setLoading(true);
-    const { data, error } = await untypedDb
+    const { data, error } = await supabase
       .from("corporate_ride_approvals")
       .select(
         "id,ride_type,pickup_address,dropoff_address,estimated_fare_cents," +

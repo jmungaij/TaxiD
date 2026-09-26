@@ -7,3 +7,4 @@ export * from "./controlPlane";
 export * from "./execution";
 export * from "./reconciliation";
 export * from "./registers";
+export type { ReconciliationRow } from "./reconciliation";

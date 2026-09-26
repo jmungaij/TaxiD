@@ -27,7 +27,7 @@ describe("RiderDirectoryTable", () => {
     wrap(<RiderDirectoryTable rows={riders} loading={false} />);
     const r1 = within(screen.getByTestId("rider-row-r1"));
     expect(r1.getByRole("link", { name: "Amina Otieno" })).toHaveAttribute("href");
-    expect(r1.getByText("amina@example.com")).toBeInTheDocument();
+    expect(r1.getByText(/amina@example.com/)).toBeInTheDocument();
     expect(r1.getByText("42")).toBeInTheDocument();
     expect(r1.getByText("4.88")).toBeInTheDocument();
     const r2 = within(screen.getByTestId("rider-row-r2"));

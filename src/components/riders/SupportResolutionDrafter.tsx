@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Loader2, Sparkles, Copy } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { SendToRiderInbox } from "./SendToRiderInbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -96,6 +97,7 @@ export function SupportResolutionDrafter() {
         {draft
           ? <pre className="whitespace-pre-wrap font-sans text-sm">{draft}</pre>
           : <p className="text-sm text-muted-foreground">The draft appears here. Always review it before sending to the rider.</p>}
+        {draft && <SendToRiderInbox draft={draft} category={category} />}
       </div>
     </div>
   );

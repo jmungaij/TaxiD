@@ -240,6 +240,7 @@ const RiderTrips = lazyWithRetry(() => import("./pages/rider/Trips"));
 const RiderTripDetail = lazyWithRetry(() => import("./pages/rider/TripDetail"));
 const RiderTripShare = lazyWithRetry(() => import("./pages/rider/TripShare"));
 const RiderWallet = lazyWithRetry(() => import("./pages/rider/Wallet"));
+const RiderInbox = lazyWithRetry(() => import("./pages/rider/Inbox"));
 const RiderSafety = lazyWithRetry(() => import("./pages/rider/Safety"));
 const RiderSchedule = lazyWithRetry(() => import("./pages/rider/Schedule"));
 const RiderAirport = lazyWithRetry(() => import("./pages/rider/Airport"));
@@ -739,6 +740,7 @@ const App = () => (
           <Route path="/rider/schedule" element={<RiderSchedule />} />
           <Route path="/rider/airport" element={<RiderAirport />} />
           <Route path="/rider/wallet" element={<RiderWallet />} />
+          <Route path="/rider/inbox" element={<RiderInbox />} />
           <Route path="/rider/rentals" element={<RiderRentals />} />
           <Route path="/rider/favorites" element={<RiderFavorites />} />
           <Route path="/rider/safety" element={<RiderSafety />} />

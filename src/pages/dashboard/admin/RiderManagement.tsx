@@ -22,6 +22,7 @@ import {
   type ActivityTableProps, type RiderRow,
 } from "@/components/riders/RiderTables";
 import { SupportResolutionDrafter } from "@/components/riders/SupportResolutionDrafter";
+import { SupportConversations } from "@/components/riders/SupportConversations";
 
 const riderSecondaryCache = createTtlCache<{ wallets: WalletRow[]; txns: TxnRow[] }>(60_000);
 
@@ -401,6 +402,10 @@ export default function RiderManagement() {
           <Card className="mt-4">
             <CardHeader><CardTitle className="text-base">AI resolution drafter</CardTitle></CardHeader>
             <CardContent><SupportResolutionDrafter /></CardContent>
+          </Card>
+          <Card className="mt-4">
+            <CardHeader><CardTitle className="text-base">Rider conversations</CardTitle></CardHeader>
+            <CardContent><SupportConversations /></CardContent>
           </Card>
         </TabsContent>
       </Tabs>

@@ -11,7 +11,6 @@ import gigLogistics from "@/assets/partners/gig-logistics.png";
 type Partner = { name: string; note: string; logo?: string };
 
 const PARTNERS: Partner[] = [
-  { name: "TaxiD", note: "Ride-hailing operator" },
   { name: "Royal Prince", note: "Corporate & executive travel", logo: royalPrince },
   { name: "Metro ICT", note: "Technology partner", logo: metroIct },
   { name: "M-KOPA", note: "Asset financing", logo: undefined },

@@ -18,6 +18,7 @@ import {
   Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedDb } from "@/integrations/supabase/untyped";
 import { decideCorporateRideRequest } from "@/lib/corporateRides";
 import { toast } from "sonner";
 import { Check, ClipboardCheck, RefreshCw, X } from "lucide-react";

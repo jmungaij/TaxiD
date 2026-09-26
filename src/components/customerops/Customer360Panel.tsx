@@ -21,6 +21,7 @@ import {
   FileText,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedDb } from "@/integrations/supabase/untyped";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -134,7 +135,7 @@ export function Customer360Panel({ identity }: { identity: Customer360Identity |
       const none = Promise.resolve({ data: [] as Row[], error: null });
       const [profile, trips, deliveries, charters, wallet, payments, refunds, invoices, cases] = await Promise.all([
         uid
-          ? supabase.from("profiles").select("user_id,full_name,phone,avatar_url,created_at").eq("user_id", uid).maybeSingle()
+          ? untypedDb.from("profiles").select("user_id,full_name,phone,avatar_url,created_at").eq("user_id", uid).maybeSingle()
           : Promise.resolve({ data: null, error: null }),
         uid
           ? supabase

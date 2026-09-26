@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedDb } from "@/integrations/supabase/untyped";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -133,15 +134,15 @@ export function useCorporateTripCounts(corporateId: string | null) {
       if (ids.length === 0) return;
       const since = new Date(Date.now() - 30 * 86400000).toISOString();
       const [scheduledRes, cancelledRes, activeRes] = await Promise.all([
-        supabase.from("trip_bookings").select("id", { count: "exact", head: true })
+        untypedDb.from("trip_bookings").select("id", { count: "exact", head: true })
           .in("rider_user_id", ids).eq("intent", "corporate")
           .in("status", ["scheduled", "requested"])
           .not("scheduled_for", "is", null)
           .gte("scheduled_for", new Date().toISOString()),
-        supabase.from("trip_bookings").select("id", { count: "exact", head: true })
+        untypedDb.from("trip_bookings").select("id", { count: "exact", head: true })
           .in("rider_user_id", ids).eq("intent", "corporate")
           .eq("status", "cancelled").gte("cancelled_at", since),
-        supabase.from("trip_bookings").select("id", { count: "exact", head: true })
+        untypedDb.from("trip_bookings").select("id", { count: "exact", head: true })
           .in("rider_user_id", ids).eq("intent", "corporate").in("status", ACTIVE),
       ]);
       setCounts({
@@ -171,13 +172,13 @@ export function SpendByDepartmentCard({ corporateId }: { corporateId: string | n
       setLoading(true);
       const since = new Date(Date.now() - 30 * 86400000).toISOString();
       const [ledgerRes, deptRes] = await Promise.all([
-        supabase.from("corporate_cash_ledger")
+        untypedDb.from("corporate_cash_ledger")
           .select("amount_cents,metadata,occurred_at")
           .eq("corporate_id", corporateId)
           .gte("occurred_at", since)
           .lt("amount_cents", 0)
           .limit(2000),
-        supabase.from("corporate_departments")
+        untypedDb.from("corporate_departments")
           .select("id,name")
           .eq("corporate_id", corporateId),
       ]);

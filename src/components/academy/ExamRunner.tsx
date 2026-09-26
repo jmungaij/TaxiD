@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedDb } from "@/integrations/supabase/untyped";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -41,7 +42,7 @@ export function ExamRunner({
        * only; correctness never leaves the database. Grading stays in
        * training_submit_assessment.
        */
-      const { data, error } = await supabase.rpc("training_exam_paper", {
+      const { data, error } = await untypedDb.rpc("training_exam_paper", {
         _assessment_id: assessmentId,
       });
       if (error) {
@@ -62,7 +63,7 @@ export function ExamRunner({
 
   async function submit() {
     setSubmitting(true);
-    const { data, error } = await supabase.rpc("training_submit_assessment", {
+    const { data, error } = await untypedDb.rpc("training_submit_assessment", {
       _assessment_id: assessmentId,
       _answers: selected,
     });

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { untypedDb } from "@/integrations/supabase/untyped";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -81,7 +82,7 @@ export function VideoLessonPlayer({
     if (passedRef.current.includes(pct)) return;
     passedRef.current = [...passedRef.current, pct];
     setPassed([...passedRef.current]);
-    const { error } = await supabase.rpc("training_record_video_watch", {
+    const { error } = await untypedDb.rpc("training_record_video_watch", {
       _video_id: video.id,
       _watched_seconds: Math.floor(watchedSec),
       _watched_percent: pct,

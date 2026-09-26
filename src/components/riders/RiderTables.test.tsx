@@ -33,7 +33,7 @@ describe("RiderDirectoryTable", () => {
     const r2 = within(screen.getByTestId("rider-row-r2"));
     expect(r2.getByRole("link", { name: "Brian K" })).toBeInTheDocument();
     expect(r2.getByText("0.00")).toBeInTheDocument();
-    expect(r2.getAllByText("—").length).toBeGreaterThanOrEqual(3);
+    expect(r2.getAllByText("—")).toHaveLength(2);
   });
 
   it("shows loading and empty states", () => {

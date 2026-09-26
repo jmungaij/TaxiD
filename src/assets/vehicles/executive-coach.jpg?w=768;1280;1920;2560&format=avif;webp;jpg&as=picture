@@ -1,1 +1,0 @@
-export const sources={avif:"__VITE_ASSET__BEklNBmc__ 768w, __VITE_ASSET__CnqdOlkV__ 1280w",webp:"__VITE_ASSET__CHMi8yEt__ 768w, __VITE_ASSET__Ezq03UCp__ 1280w",jpeg:"__VITE_ASSET__Dib3eS$U__ 768w, __VITE_ASSET__CmtvuUhT__ 1280w"};export const img={src:"__VITE_ASSET__CmtvuUhT__",w:1280,h:720};export default{sources:sources,img:img};

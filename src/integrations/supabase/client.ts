@@ -34,7 +34,11 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+// Typed with LooseDatabase (see loose-types.ts): the connected backend's
+// generated types only cover Cloud-created tables, while the app queries a
+// much larger schema. Switch back to the generated `Database` type once the
+// full schema is recreated and types are regenerated.
+export const supabase = createClient<LooseDatabase>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   global: {
     fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
   },

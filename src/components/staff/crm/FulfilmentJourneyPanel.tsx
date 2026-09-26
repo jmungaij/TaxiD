@@ -174,7 +174,7 @@ export default function FulfilmentJourneyPanel({
                     <div className="min-w-0">
                       <p className="text-sm font-medium">{c.commitment}</p>
                       <p className="mt-1 text-xs text-muted-foreground">
-                        {c.direction === "yalla_to_customer" ? "Yalla → customer" : "Customer → Yalla"}
+                        {c.direction === "yalla_to_customer" ? "SAFARID → customer" : "Customer → SAFARID"}
                         {c.expected_outcome ? ` · ${c.expected_outcome}` : ""}
                         {c.evidence_ref ? ` · Evidence: ${c.evidence_ref}` : " · Evidence: not yet captured"}
                       </p>

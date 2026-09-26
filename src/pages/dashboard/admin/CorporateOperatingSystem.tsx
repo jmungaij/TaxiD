@@ -219,7 +219,7 @@ export default function CorporateOperatingSystem() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Corporate Mobility Operating System | Yalla Mobility"
+        title="Corporate Mobility Operating System | SAFARID"
         description="Enterprise CRM pipeline, workflow SLA orchestration, live fleet intelligence, account health and integration resilience in one operating surface."
         path="/dashboard/admin/corporate-os"
       />

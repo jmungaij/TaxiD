@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — versioned specification & changelog.
+ * SAFARID API PARTNERS — versioned specification & changelog.
  *
  * The OpenAPI document is *generated* from the canonical platform contract
  * (`apiPlatform.ts`) rather than hand-maintained, so a published spec can never
@@ -222,10 +222,10 @@ export function buildOpenApiSpec(version: string = currentRelease().version) {
   return {
     openapi: "3.1.0",
     info: {
-      title: "Yalla Mobility Partner API",
+      title: "SAFARID Partner API",
       version: release.version,
       description: `${release.headline}\n\nStatus: ${release.status}${release.sunsetOn ? ` — sunset ${release.sunsetOn}` : ""}.`,
-      contact: { name: "Yalla integration desk", url: "https://yalla.africa/partners/api" },
+      contact: { name: "SAFARID integration desk", url: "https://yalla.africa/partners/api" },
     },
     servers: [
       { url: API_BASE_URL, description: "Production" },

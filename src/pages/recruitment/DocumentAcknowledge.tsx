@@ -94,8 +94,8 @@ export default function DocumentAcknowledge() {
   return (
     <main className="min-h-screen bg-background py-12">
       <Helmet>
-        <title>Acknowledge your document | Yalla Mobility</title>
-        <meta name="description" content="Acknowledge and sign your Yalla Mobility appointment letter or onboarding documents securely." />
+        <title>Acknowledge your document | SAFARID</title>
+        <meta name="description" content="Acknowledge and sign your SAFARID appointment letter or onboarding documents securely." />
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
 

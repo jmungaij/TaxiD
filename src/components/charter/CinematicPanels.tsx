@@ -13,7 +13,7 @@ export function AircraftCard({ item }: { item: CharterInventoryRow }) {
       <div className="relative p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{item.operator_name || "Yalla Air partner"}</p>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{item.operator_name || "SAFARID Air partner"}</p>
             <h3 className="mt-1 truncate text-base font-semibold tracking-tight">{item.name}</h3>
           </div>
           <span className="rounded-xl bg-primary/10 p-2 text-primary transition-transform duration-300 group-hover:rotate-12">

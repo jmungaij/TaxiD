@@ -1,5 +1,5 @@
 /**
- * Phase 11 §11.1 — Yalla Enterprise Sensing Layer.
+ * Phase 11 §11.1 — SAFARID Enterprise Sensing Layer.
  *
  * The adaptive loop starts with sensing, and sensing is only admissible when the
  * signal declares where it came from and under whose authority it was read. A

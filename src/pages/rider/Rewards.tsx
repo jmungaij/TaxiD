@@ -55,7 +55,7 @@ export default function RiderRewardsPage() {
 
   return (
     <RiderShell>
-      <h1 className="text-2xl font-bold mb-4">Yalla Rewards</h1>
+      <h1 className="text-2xl font-bold mb-4">SAFARID Rewards</h1>
       {loadError && (
         <div className="mb-4">
           <ErrorState

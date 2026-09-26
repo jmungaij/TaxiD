@@ -177,7 +177,7 @@ export default function PartnerPortal() {
         <EnterpriseHeroBand
           eyebrow="Delivery & Logistics"
           title={<h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">Partner Portal</h1>}
-          subtitle="Join the Yalla Mobility logistics network — couriers, fleets, carriers and warehouses. One application, governed review, live operational access on approval."
+          subtitle="Join the SAFARID logistics network — couriers, fleets, carriers and warehouses. One application, governed review, live operational access on approval."
           actions={
             status ? (
               <Badge variant="outline" className="border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground">

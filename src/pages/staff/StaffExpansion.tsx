@@ -79,7 +79,7 @@ export default function StaffExpansion() {
     <div className="p-6 lg:p-8">
       <StaffPageHeader
         eyebrow="Phase 9 · Market expansion"
-        title="Where should Yalla go next — and what would it cost to be right?"
+        title="Where should SAFARID go next — and what would it cost to be right?"
         lede="Candidate markets scored on evidenced signals, projected through a digital twin, stressed, gated, and allocated capital only when the return is provable."
         actions={
           <Button variant="outline" size="sm" onClick={() => void load()} disabled={loading}>
@@ -100,7 +100,7 @@ export default function StaffExpansion() {
               sub={`of KES ${programme.portfolio.envelope.totalCapitalKes.toLocaleString()} envelope`} />
             <Stat icon={Gauge} label="Expected annual contribution"
               value={formatMeasureSafe(programme.portfolio.expectedContribution)}
-              sub="Simulated — not Yalla performance" />
+              sub="Simulated — not SAFARID performance" />
             <Stat icon={ShieldAlert} label="Evidence backlog"
               value={String(programme.evidenceBacklog.length)}
               sub="markets blocked from any decision" />

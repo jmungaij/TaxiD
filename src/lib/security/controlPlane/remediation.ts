@@ -1,5 +1,5 @@
 /**
- * Yalla Security Control Plane — Remediation Orchestrator.
+ * SAFARID Security Control Plane — Remediation Orchestrator.
  *
  * Dependency-aware, not linear. A remediation plan is only valid when it names:
  *   - the strategy and the exact change surface (code / DB / config),

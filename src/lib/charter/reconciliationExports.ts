@@ -93,7 +93,7 @@ export function reconciliationFindingsReport(
 
   return {
     id: "wallet-reconciliation-findings",
-    title: "Yalla Mobility · corporate wallet reconciliation findings",
+    title: "SAFARID · corporate wallet reconciliation findings",
     subtitle: "Discrepancy detail with linked reconciliation runs",
     meta: [
       ["Findings", String(findings.length)],
@@ -136,7 +136,7 @@ export function reconciliationFindingsReport(
 export function reconciliationAttemptsReport(attempts: ReconAttemptLike[]): ReportTable {
   return {
     id: "wallet-reconciliation-attempts",
-    title: "Yalla Mobility · reconciliation attempt audit",
+    title: "SAFARID · reconciliation attempt audit",
     subtitle: "Every finance-triggered rerun, retry and its outcome",
     meta: [
       ["Attempts", String(attempts.length)],
@@ -167,7 +167,7 @@ export function reconciliationAttemptsReport(attempts: ReconAttemptLike[]): Repo
 export function reconciliationAlertsReport(alerts: ReconAlertLike[]): ReportTable {
   return {
     id: "wallet-reconciliation-alerts",
-    title: "Yalla Mobility · mismatch alert delivery",
+    title: "SAFARID · mismatch alert delivery",
     subtitle: "Email and webhook delivery attempts with retry state",
     meta: [
       ["Alerts", String(alerts.length)],

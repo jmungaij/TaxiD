@@ -44,7 +44,7 @@ export default function OrchestrationStream() {
   return (
     <>
       <StaffPageHeader
-        eyebrow="Yalla Operations Centre"
+        eyebrow="SAFARID Operations Centre"
         title="Orchestration stream"
         lede="Every platform event and the routing decision taken on it. Automation absorbs the routine; only exceptions become staff work."
         actions={<Button variant="outline" size="sm" onClick={load}>Refresh</Button>}

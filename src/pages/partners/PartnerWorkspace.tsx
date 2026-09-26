@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS — partner workspace.
+ * SAFARID PARTNERS — partner workspace.
  *
  * The authenticated surface a partner's own team uses: their customer register,
  * the "book for a customer" order desk, journeys, capacity requests and their
@@ -152,7 +152,7 @@ export default function PartnerWorkspace() {
         requirements: cap.requirements,
       }),
     onSuccess: () => {
-      toast.success("Capacity request sent to the Yalla supply desk.");
+      toast.success("Capacity request sent to the SAFARID supply desk.");
       setCap({ service_type: "CHARTER", origin_label: "", destination_label: "", needed_at: "", passengers: 0, requirements: "" });
       void qc.invalidateQueries({ queryKey: ["partner-capacity", activeId] });
     },
@@ -175,10 +175,10 @@ export default function PartnerWorkspace() {
       <Shell>
         <Card className="mx-auto max-w-2xl">
           <CardContent className="space-y-4 pt-6">
-            <Badge variant="outline" className="text-[10px] uppercase tracking-wider">Yalla Partners</Badge>
+            <Badge variant="outline" className="text-[10px] uppercase tracking-wider">SAFARID Partners</Badge>
             <h1 className="text-2xl font-bold tracking-tight">Sign in to your partner workspace</h1>
             <p className="text-sm text-muted-foreground">
-              Partner workspaces are opened by the Yalla partner desk after verification and contracting.
+              Partner workspaces are opened by the SAFARID partner desk after verification and contracting.
             </p>
             <div className="flex flex-wrap gap-2">
               <Button asChild><Link to="/auth?redirect=%2Fpartner%2Fworkspace">Sign in</Link></Button>
@@ -198,14 +198,14 @@ export default function PartnerWorkspace() {
             <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-warning">
               <ShieldAlert className="h-3.5 w-3.5" aria-hidden /> No partner workspace linked
             </div>
-            <h1 className="text-2xl font-bold tracking-tight">This login is not linked to a Yalla partner.</h1>
+            <h1 className="text-2xl font-bold tracking-tight">This login is not linked to a SAFARID partner.</h1>
             <p className="text-sm text-muted-foreground">
               A workspace opens once the partner desk links your login to a verified partner account.
               Nothing has been substituted in its place.
             </p>
             <div className="flex flex-wrap gap-2">
               <AppButton variant="outline" analytics="partner_workspace_unlinked_apply" action="navigate" target="/partners/apply">Apply to become a partner</AppButton>
-              <Button variant="outline" asChild><Link to="/partners">Yalla Partners</Link></Button>
+              <Button variant="outline" asChild><Link to="/partners">SAFARID Partners</Link></Button>
             </div>
           </CardContent>
         </Card>
@@ -218,7 +218,7 @@ export default function PartnerWorkspace() {
       {/* Header */}
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-3xl">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">Yalla Partners</div>
+          <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">SAFARID Partners</div>
           <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
             {partner ? partnerName(partner) : "Partner workspace"}
           </h1>
@@ -255,7 +255,7 @@ export default function PartnerWorkspace() {
           <CardContent className="flex flex-wrap items-center gap-3 pt-6 text-sm">
             <ShieldAlert className="h-4 w-4 text-warning" aria-hidden />
             <span>
-              This partner account is <strong>{partner.status}</strong>. Orders can be drafted, but Yalla
+              This partner account is <strong>{partner.status}</strong>. Orders can be drafted, but SAFARID
               will not allocate supply until the account is active and verified.
             </span>
           </CardContent>
@@ -376,7 +376,7 @@ export default function PartnerWorkspace() {
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Commercial breakdown</p>
                 <dl className="grid gap-2 text-sm sm:grid-cols-5">
                   <div><dt className="text-muted-foreground">Supplier cost</dt><dd className="font-medium tabular-nums">{kes(quote.supplierCost)}</dd></div>
-                  <div><dt className="text-muted-foreground">Yalla margin</dt><dd className="font-medium tabular-nums">{kes(quote.yallaMargin)}</dd></div>
+                  <div><dt className="text-muted-foreground">SAFARID margin</dt><dd className="font-medium tabular-nums">{kes(quote.yallaMargin)}</dd></div>
                   <div><dt className="text-muted-foreground">Your margin</dt><dd className="font-medium tabular-nums">{kes(quote.partnerMargin)}</dd></div>
                   <div><dt className="text-muted-foreground">VAT (16%)</dt><dd className="font-medium tabular-nums">{kes(quote.taxes)}</dd></div>
                   <div><dt className="text-muted-foreground">Customer price</dt><dd className="font-semibold tabular-nums">{kes(quote.customerPrice)}</dd></div>
@@ -562,7 +562,7 @@ export default function PartnerWorkspace() {
 
       <p className="mt-10 flex items-center gap-2 text-xs text-muted-foreground">
         <Building2 className="h-3.5 w-3.5" aria-hidden />
-        Yalla Partners · every figure shown here comes from your own recorded orders.
+        SAFARID Partners · every figure shown here comes from your own recorded orders.
       </p>
     </Shell>
   );

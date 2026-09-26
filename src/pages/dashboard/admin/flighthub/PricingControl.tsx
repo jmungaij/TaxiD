@@ -257,7 +257,7 @@ export default function PricingControl() {
     <FlightHubPage
       eyebrow="Flight Hub · Commercial"
       title="Dynamic Pricing Control"
-      subtitle="Yalla Air prices every charter automatically: aircraft hourly rate × billable flight time, plus airport charges, demand multipliers and platform revenue layers. Nothing is quoted by hand."
+      subtitle="SAFARID Air prices every charter automatically: aircraft hourly rate × billable flight time, plus airport charges, demand multipliers and platform revenue layers. Nothing is quoted by hand."
       actions={
         <div className="flex items-center gap-2">
           <Button data-analytics="pricingcontrol.export" size="sm" variant="secondary" className="bg-primary-foreground/12 text-primary-foreground border-0 hover:bg-primary-foreground/20" onClick={exportAudit} disabled={versions.length === 0}>

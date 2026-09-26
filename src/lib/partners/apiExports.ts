@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — Postman & SDK export builders.
+ * SAFARID API PARTNERS — Postman & SDK export builders.
  *
  * Everything downloadable is derived from the canonical platform contract, so a
  * collection or SDK a partner downloads is always in lockstep with the
@@ -64,9 +64,9 @@ export function buildPostmanCollection(scope: ExportScope = {}) {
 
   return {
     info: {
-      name: `Yalla Partner API — ${label} (${currentRelease().version})`,
+      name: `SAFARID Partner API — ${label} (${currentRelease().version})`,
       description:
-        "Generated from the Yalla partner API contract. Set `client_id`, `client_secret` and `base_url` " +
+        "Generated from the SAFARID partner API contract. Set `client_id`, `client_secret` and `base_url` " +
         "in a Postman environment; the pre-request script mints a short-lived bearer token automatically. " +
         "No credentials are embedded in this file.",
       schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -175,7 +175,7 @@ export function buildTypeScriptSdk(scope: ExportScope = {}): string {
     .join("\n\n");
 
   return `/**
- * Yalla Partner API — TypeScript SDK (generated, spec ${currentRelease().version}).
+ * SAFARID Partner API — TypeScript SDK (generated, spec ${currentRelease().version}).
  * Zero dependencies. Node 18+ or any runtime with global fetch.
  *
  * Never hard-code credentials: read them from the environment.
@@ -307,7 +307,7 @@ export function buildPythonSdk(scope: ExportScope = {}): string {
     })
     .join("\n\n");
 
-  return `"""Yalla Partner API - Python SDK (generated, spec ${currentRelease().version}).
+  return `"""SAFARID Partner API - Python SDK (generated, spec ${currentRelease().version}).
 
 Requires: requests. Read credentials from the environment; never commit them.
 """

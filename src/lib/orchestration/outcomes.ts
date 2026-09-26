@@ -1,5 +1,5 @@
 /**
- * Yalla orchestration — permitted canonical outcomes.
+ * SAFARID orchestration — permitted canonical outcomes.
  *
  * A staff member never edits a canonical record directly. They choose one of a
  * FIXED set of outcomes for the entity the work refers to, and the server

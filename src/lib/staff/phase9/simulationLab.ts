@@ -245,7 +245,7 @@ export function runScenario(base: SimulationBaseline, scenario: Scenario): Scena
       { metric: "Operator earnings / hour", deltaPercent: pct(s.operatorEarnings, b.operatorEarnings) },
       { metric: "Customer experience", deltaPercent: pct(s.cx, b.cx) },
     ],
-    disclaimer: "Simulated output from an explicit model of the baseline. It is not Yalla performance and must never be reported as actual results.",
+    disclaimer: "Simulated output from an explicit model of the baseline. It is not SAFARID performance and must never be reported as actual results.",
   };
 }
 
@@ -393,7 +393,7 @@ export function rankMarkets(candidates: readonly MarketCandidate[]): MarketRanki
       recommendation: regulatory !== null && regulatory < 40
         ? "Do not enter: regulatory feasibility is the binding constraint, and no amount of demand compensates for it."
         : supply !== null && supply < 40
-          ? "Do not enter yet: supply availability is too thin to serve demand Yalla would create."
+          ? "Do not enter yet: supply availability is too thin to serve demand SAFARID would create."
           : unassessed.length > 3
             ? `Insufficiently assessed: ${unassessed.length} criteria unscored. Entry decisions require evidence, not intuition.`
             : "Viable candidate — sequence against the higher-scoring markets.",

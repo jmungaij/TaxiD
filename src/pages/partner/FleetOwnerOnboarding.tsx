@@ -150,7 +150,7 @@ export default function FleetOwnerOnboarding() {
         <Alert className="mt-6">
           <AlertTitle>No Fleet Owner record is linked to your account</AlertTitle>
           <AlertDescription>
-            Fleet Owner onboarding starts from an approved partner account. Contact the Yalla Mobility
+            Fleet Owner onboarding starts from an approved partner account. Contact the SAFARID
             partnerships team to have your transport business registered, then return to this page.
           </AlertDescription>
         </Alert>
@@ -361,7 +361,7 @@ export default function FleetOwnerOnboarding() {
         <CardHeader>
           <CardTitle className="text-lg">Where your earnings are paid</CardTitle>
           <CardDescription>
-            Yalla Mobility collects the Client's payment on your instruction and records your entitlement
+            SAFARID collects the Client's payment on your instruction and records your entitlement
             in your Fleet Owner wallet. Withdrawals are paid only to a destination verified by our finance team.
           </CardDescription>
         </CardHeader>

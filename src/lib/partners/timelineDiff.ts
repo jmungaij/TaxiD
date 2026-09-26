@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS 360 — lifecycle timeline diff.
+ * SAFARID PARTNERS 360 — lifecycle timeline diff.
  *
  * Pure comparison of two consecutive lifecycle audit entries: what the visitor
  * declared before, what they declared after, and which of the four governed

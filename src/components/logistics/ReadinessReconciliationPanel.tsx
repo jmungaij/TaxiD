@@ -65,7 +65,7 @@ export function ReadinessReconciliationPanel({ view, evidence, audit, onSubmitEv
   const applyTemplate = (rpoM: number, rtoM: number, label: string) => {
     setRpo(String(rpoM));
     setRto(String(rtoM));
-    setNotes((n) => n || `Reference template: ${label}. Confirmed as Yalla's business requirement by the accountable approver.`);
+    setNotes((n) => n || `Reference template: ${label}. Confirmed as SAFARID's business requirement by the accountable approver.`);
   };
 
   const submitTargets = async () => {
@@ -170,7 +170,7 @@ export function ReadinessReconciliationPanel({ view, evidence, audit, onSubmitEv
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
             These are business decisions. The templates below are references drawn from common recovery
-            architectures — they are not Yalla's targets until an accountable approver confirms them.
+            architectures — they are not SAFARID's targets until an accountable approver confirms them.
           </p>
           <div className="grid gap-2 sm:grid-cols-3">
             {RECOVERY_TARGET_TEMPLATES.map((t) => (

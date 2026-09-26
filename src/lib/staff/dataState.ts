@@ -1,7 +1,7 @@
 /**
  * Data-provenance discipline for Staff 360.
  *
- * Non-negotiable principle: never present a hypothetical figure as live Yalla
+ * Non-negotiable principle: never present a hypothetical figure as live SAFARID
  * performance. Every metric rendered in the staff portal must declare its
  * state, and a metric without a data source renders as DATA NOT AVAILABLE.
  */

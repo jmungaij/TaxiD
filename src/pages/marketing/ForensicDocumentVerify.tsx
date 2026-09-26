@@ -1,7 +1,7 @@
 /**
  * Public document authenticity check.
  *
- * Anyone holding a Yalla Mobility document can confirm it was genuinely issued
+ * Anyone holding a SAFARID document can confirm it was genuinely issued
  * by entering the printed document number and verification code. The response
  * deliberately carries authenticity state only — never document content, never
  * personal data.
@@ -64,10 +64,10 @@ export default function ForensicDocumentVerify() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-16">
       <Helmet>
-        <title>Verify a Yalla Mobility document | Authenticity check</title>
+        <title>Verify a SAFARID document | Authenticity check</title>
         <meta
           name="description"
-          content="Confirm that a Yalla Mobility letter, contract or invoice was genuinely issued, using the printed document number and verification code."
+          content="Confirm that a SAFARID letter, contract or invoice was genuinely issued, using the printed document number and verification code."
         />
         <link rel="canonical" href="https://yalla.africa/verify/document" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
@@ -76,7 +76,7 @@ export default function ForensicDocumentVerify() {
       </Helmet>
 
       <BrandLogo tone="ink" className="h-9" priority />
-      <h1 className="mt-6 text-3xl font-bold tracking-tight">Verify a Yalla Mobility document</h1>
+      <h1 className="mt-6 text-3xl font-bold tracking-tight">Verify a SAFARID document</h1>
       <p className="mt-2 text-muted-foreground">
         Enter the document number and verification code printed in the control line at the foot of the
         document. We confirm authenticity only — no document content is ever shown here.
@@ -139,7 +139,7 @@ export default function ForensicDocumentVerify() {
                   </div>
                   <div>
                     <dt className="text-xs uppercase tracking-wide text-muted-foreground">Issuing organisation</dt>
-                    <dd>{result.organisation ?? "Yalla Mobility"}</dd>
+                    <dd>{result.organisation ?? "SAFARID"}</dd>
                   </div>
                 </dl>
               )}
@@ -184,14 +184,14 @@ export default function ForensicDocumentVerify() {
               {result.signature_material ? (
                 <div className="space-y-2 rounded-md border border-border bg-muted/40 p-3">
                   <p className="text-sm font-medium">
-                    Digitally signed by Yalla Mobility
+                    Digitally signed by SAFARID
                     <span className="ml-2 font-normal text-muted-foreground">
                       {result.signature_material.algorithm.toUpperCase()} · key {result.signature_material.key_id}
                     </span>
                   </p>
                   <p className="text-xs text-muted-foreground">
                     The signature and the public key below let you or your own auditors confirm this document
-                    independently, without any access to Yalla Mobility systems.
+                    independently, without any access to SAFARID systems.
                   </p>
                   <AppButton
                     analytics="public_document_signature_download"

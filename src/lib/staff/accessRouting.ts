@@ -10,7 +10,7 @@ import { STAFF_ROLES } from "@/lib/staff/access";
 import { homeForRoles } from "@/lib/staff/rbacMatrix";
 
 
-/** Corporate identity domain for Yalla staff logins (advisory hint only — the
+/** Corporate identity domain for SAFARID staff logins (advisory hint only — the
  *  authoritative check is account existence + status + role, server-side). */
 export const STAFF_EMAIL_DOMAIN = "yalla.africa";
 

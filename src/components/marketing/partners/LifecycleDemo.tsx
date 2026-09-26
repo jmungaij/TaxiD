@@ -27,7 +27,7 @@ const STAGES: Stage[] = [
   {
     key: "customer", label: "Customer", icon: UserRound,
     headline: "Your customer stays yours",
-    detail: "You register the customer in your own workspace with their references, cost centres and preferences. Yalla never markets to them.",
+    detail: "You register the customer in your own workspace with their references, cost centres and preferences. SAFARID never markets to them.",
     facts: [{ k: "Owner", v: "Partner" }, { k: "Record", v: "Partner customer register" }, { k: "Visibility", v: "Scoped to your organisation" }],
   },
   {
@@ -51,7 +51,7 @@ const STAGES: Stage[] = [
   {
     key: "margin", label: "Margin", icon: Coins,
     headline: "You see the split before you confirm",
-    detail: "Supplier cost, Yalla margin, your contracted margin and the applicable taxes are shown on the order before confirmation.",
+    detail: "Supplier cost, SAFARID margin, your contracted margin and the applicable taxes are shown on the order before confirmation.",
     facts: [{ k: "Margin", v: "Contracted and versioned" }, { k: "Models", v: "Net rate · markup · commission · revenue share · fee · tiered" }, { k: "Taxes", v: "Per transaction and jurisdiction" }],
   },
   {
@@ -63,7 +63,7 @@ const STAGES: Stage[] = [
   {
     key: "dispatch", label: "Dispatch", icon: Radio,
     headline: "Allocation and execution",
-    detail: "The order is allocated to the assigned supply and executed on Yalla's operating stack, with status flowing back into your workspace.",
+    detail: "The order is allocated to the assigned supply and executed on SAFARID's operating stack, with status flowing back into your workspace.",
     facts: [{ k: "Allocation", v: "Assigned asset and operator" }, { k: "Tracking", v: "Status events per leg" }, { k: "Exceptions", v: "Raised as operational cases" }],
   },
   {

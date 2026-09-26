@@ -1,4 +1,4 @@
-# Yalla Mobility — cPanel / Apache hosting config (SPA)
+# SAFARID — cPanel / Apache hosting config (SPA)
 
 <IfModule mod_rewrite.c>
   RewriteEngine On

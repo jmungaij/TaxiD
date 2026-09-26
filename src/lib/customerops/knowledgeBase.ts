@@ -48,7 +48,7 @@ export const KNOWLEDGE_BASE: KnowledgeArticle[] = [
     summary:
       "Fare disputes raised within 7 days of trip completion are eligible for review. Verified overcharges and duplicate charges are refunded in full. M-PESA reversals settle in 1-3 business days; wallet credits are instant.",
     reply:
-      "I've reviewed your fare. Where an overcharge or duplicate payment is confirmed, we refund the full difference. M-PESA reversals reach your number within 1-3 business days, or I can credit your Yalla wallet instantly if you prefer.",
+      "I've reviewed your fare. Where an overcharge or duplicate payment is confirmed, we refund the full difference. M-PESA reversals reach your number within 1-3 business days, or I can credit your SAFARID wallet instantly if you prefer.",
     keywords: ["refund", "overcharge", "double charge", "duplicate", "reversal", "fare dispute", "money back"],
     caseTypes: ["payment_issue", "refund_dispute"],
     owner: "Finance Operations",
@@ -265,7 +265,7 @@ export function composeSuggestedReply(
   const greeting = `Hi ${ctx.customerName?.split(" ")[0] ?? "there"},`;
   const body = articles.map((a) => a.reply).join("\n\n");
   const refs = articles.map((a) => `${KNOWLEDGE_KIND_LABEL[a.kind]}: ${a.title} (v${a.version})`);
-  const sign = `Best regards,\n${ctx.agentName ?? "Yalla Mobility Customer Operations"}${
+  const sign = `Best regards,\n${ctx.agentName ?? "SAFARID Customer Operations"}${
     ctx.caseNumber ? `\nCase ${ctx.caseNumber}` : ""
   }`;
   return `${greeting}\n\n${body}\n\n${sign}\n\n— Sources: ${refs.join(" · ")}`;

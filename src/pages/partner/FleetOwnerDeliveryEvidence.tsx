@@ -2,7 +2,7 @@
  * FLEET OWNER — DELIVERY EVIDENCE (Proof of Delivery submission)
  *
  * The Fleet Owner is the carrier-side obligated party: it submits the delivery
- * evidence for a completed movement. Yalla only facilitates. Nothing is
+ * evidence for a completed movement. SAFARID only facilitates. Nothing is
  * accepted here — the database decides whether the leg is complete, whether
  * evidence is sufficient, and (after staff approval) what is payable.
  */
@@ -139,7 +139,7 @@ export default function FleetOwnerDeliveryEvidence() {
       } else {
         toast({
           title: res.replay ? "Already submitted" : "Delivery evidence submitted",
-          description: `Reference ${String(res.reference ?? "")} — awaiting Yalla review.`,
+          description: `Reference ${String(res.reference ?? "")} — awaiting SAFARID review.`,
         });
         setRecipientName(""); setRelationship(""); setIdRef(""); setPhone(""); setNotes("");
         setFiles([]); setLegId("");
@@ -166,7 +166,7 @@ export default function FleetOwnerDeliveryEvidence() {
         <h1 className="text-3xl font-semibold tracking-tight">Delivery evidence</h1>
         <p className="max-w-2xl text-muted-foreground">
           As Fleet Owner you are the carrier-side obligated party for this consignment. Submit the
-          proof of delivery here. Yalla reviews the evidence and, once approved, releases your
+          proof of delivery here. SAFARID reviews the evidence and, once approved, releases your
           settlement into your wallet.
         </p>
         {carrier && (
@@ -255,7 +255,7 @@ export default function FleetOwnerDeliveryEvidence() {
                 <AlertTitle>Evidence is sealed on submission</AlertTitle>
                 <AlertDescription>
                   Each file is fingerprinted before upload. Once submitted, the evidence and its
-                  fingerprint cannot be changed — only Yalla's review decision is added.
+                  fingerprint cannot be changed — only SAFARID's review decision is added.
                 </AlertDescription>
               </Alert>
 
@@ -271,7 +271,7 @@ export default function FleetOwnerDeliveryEvidence() {
       <Card>
         <CardHeader>
           <CardTitle>Your submissions</CardTitle>
-          <CardDescription>Review status recorded by Yalla operations.</CardDescription>
+          <CardDescription>Review status recorded by SAFARID operations.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
           {submissions.length === 0 ? (
@@ -300,7 +300,7 @@ export default function FleetOwnerDeliveryEvidence() {
         <CardHeader>
           <CardTitle>Settlement lines</CardTitle>
           <CardDescription>
-            Created only when Yalla approves your delivery evidence. Released amounts are withdrawable
+            Created only when SAFARID approves your delivery evidence. Released amounts are withdrawable
             from your wallet.
           </CardDescription>
         </CardHeader>

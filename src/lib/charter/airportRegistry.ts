@@ -1,5 +1,5 @@
 /**
- * Yalla Air airport registry — the seeded East African airport / airstrip
+ * SAFARID Air airport registry — the seeded East African airport / airstrip
  * database behind the charter search widget.
  *
  * Pure data + search helpers (no React, no fetch) so the widget, the results

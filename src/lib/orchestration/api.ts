@@ -1,5 +1,5 @@
 /**
- * Yalla orchestration — data access.
+ * SAFARID orchestration — data access.
  *
  * `emitPlatformEvent` is the single entry point every portal and engine uses to
  * hand a platform event to the orchestration layer. The classification happens

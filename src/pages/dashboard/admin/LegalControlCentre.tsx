@@ -227,8 +227,8 @@ export default function LegalControlCentre() {
   return (
     <div className="space-y-6 p-6">
       <Helmet>
-        <title>Legal &amp; Compliance Centre | Yalla Mobility</title>
-        <meta name="description" content="Regulatory register, licences, goods controls, contracts, data protection and legal reviews governing Yalla Mobility operations." />
+        <title>Legal &amp; Compliance Centre | SAFARID</title>
+        <meta name="description" content="Regulatory register, licences, goods controls, contracts, data protection and legal reviews governing SAFARID operations." />
       </Helmet>
 
       <header className="flex flex-wrap items-start justify-between gap-4">
@@ -350,7 +350,7 @@ export default function LegalControlCentre() {
                 <AlertTitle>Legal determinations are not automated</AlertTitle>
                 <AlertDescription>
                   Software configures fields, expiry dates, workflows, evidence requirements and status calculations. Whether a
-                  particular licence is legally required for the Yalla operating model, whether a contract is sufficient, and
+                  particular licence is legally required for the SAFARID operating model, whether a contract is sufficient, and
                   whether a policy covers a loss remain human determinations captured through the legal review workflow.
                 </AlertDescription>
               </Alert>
@@ -618,7 +618,7 @@ export default function LegalControlCentre() {
                     </div>
                     <div className="space-y-1 md:col-span-2">
                       <Label htmlFor="review-question">Question requiring determination</Label>
-                      <Textarea id="review-question" rows={3} value={reviewQuestion} onChange={(e) => setReviewQuestion(e.target.value)} placeholder="e.g. Is Yalla the licensed courier operator, or does it operate through licensed carriers?" />
+                      <Textarea id="review-question" rows={3} value={reviewQuestion} onChange={(e) => setReviewQuestion(e.target.value)} placeholder="e.g. Is SAFARID the licensed courier operator, or does it operate through licensed carriers?" />
                     </div>
                   </div>
                   <Button onClick={() => void submitReview()} disabled={savingId === "review"}>

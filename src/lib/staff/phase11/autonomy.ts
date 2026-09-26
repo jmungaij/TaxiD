@@ -337,7 +337,7 @@ export const AGENT_CONTRACTS: readonly AgentContract[] = [
     auditRequirement: "Every lesson cites its evidence and comparison method", failureBehaviour: "Report the outcome as unmeasured",
   },
   {
-    key: "orchestrator", name: "Yalla Orchestrator", purpose: "Coordinate the agents into one loop under human authority.",
+    key: "orchestrator", name: "SAFARID Orchestrator", purpose: "Coordinate the agents into one loop under human authority.",
     inputs: ["all agent outputs", "policy registry", "kill-switch state"], outputs: ["one ranked decision per condition"],
     authority: "A2", dataPermissions: ["agent outputs only"],
     actionsPermitted: ["sequence the loop", "route for approval", "halt the loop"], actionsProhibited: ["exceed any agent's authority", "bypass policy"],

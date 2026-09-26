@@ -1,5 +1,5 @@
 /**
- * Yalla Mobility Enterprise Document System 2.0 — document title resolver.
+ * SAFARID Enterprise Document System 2.0 — document title resolver.
  *
  * Charter documents are NOT tax invoices. A tax invoice may only be issued for
  * a completed taxable supply, so the title is derived from the booking

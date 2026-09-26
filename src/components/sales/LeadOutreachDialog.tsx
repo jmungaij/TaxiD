@@ -2,7 +2,7 @@
  * LEAD OUTREACH — compose a message to one allocated lead.
  *
  * Prospecting mail is sent from the specialist's own work mailbox, not through
- * Yalla's app-email system (that system carries messages a person is expecting,
+ * SAFARID's app-email system (that system carries messages a person is expecting,
  * and mixing prospecting into it would damage their delivery). The panel builds
  * the message with the lead's private contact link, hands it to the mailbox, and
  * records the outreach against the lead so the desk keeps the history.
@@ -52,7 +52,7 @@ export default function LeadOutreachDialog({
   const senderName =
     (user?.user_metadata?.full_name as string | undefined)?.trim() ||
     user?.email?.split("@")[0] ||
-    "Yalla Mobility";
+    "SAFARID";
 
   const tokenQuery = useQuery({
     queryKey: ["lead-contact-token", lead.id],
@@ -115,7 +115,7 @@ export default function LeadOutreachDialog({
         <DialogHeader>
           <DialogTitle>Write to {lead.organisation_name}</DialogTitle>
           <DialogDescription>
-            The message opens in your own Yalla mailbox. Send it there, then record it here so the
+            The message opens in your own SAFARID mailbox. Send it there, then record it here so the
             desk and the follow-up queue know it went out.
           </DialogDescription>
         </DialogHeader>

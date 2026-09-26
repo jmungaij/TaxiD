@@ -5,7 +5,7 @@
  *
  * IMPORTANT LEGAL BOUNDARY
  * This module records and enforces licensing/protection FACTS supplied by
- * counsel or compliance. It does NOT and must not determine Yalla's regulatory
+ * counsel or compliance. It does NOT and must not determine SAFARID's regulatory
  * classification. `LICENSING_DETERMINATION` below is deliberately
  * LEGAL_REVIEW / undetermined until an authoritative record is entered.
  */
@@ -50,7 +50,7 @@ export interface PartnerLicenceRecord {
 }
 
 /**
- * Yalla's own licensing position. Unresolved by design: the platform records
+ * SAFARID's own licensing position. Unresolved by design: the platform records
  * the question, counsel records the answer.
  */
 export const LICENSING_DETERMINATION = {
@@ -62,7 +62,7 @@ export const LICENSING_DETERMINATION = {
   determined_at: null as string | null,
   evidence_reference: null as string | null,
   note:
-    "The published market structure includes a courier-hailing category for platforms linking consumers with licensed courier operators. Whether Yalla falls within it is a regulatory determination reserved to counsel; no surface may state a licensed status until a record exists here.",
+    "The published market structure includes a courier-hailing category for platforms linking consumers with licensed courier operators. Whether SAFARID falls within it is a regulatory determination reserved to counsel; no surface may state a licensed status until a record exists here.",
 };
 
 const inDate = (from: string | null, until: string | null, now: Date) =>

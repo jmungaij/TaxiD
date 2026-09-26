@@ -54,7 +54,7 @@ function OpsDashboard() {
         <Card className="lg:col-span-2"><CardHeader><CardTitle className="text-base">Calendar load — next 7 days per host</CardTitle></CardHeader><CardContent className="h-72">
           <ResponsiveContainer><BarChart data={load}><CartesianGrid strokeDasharray="3 3" className="stroke-border" /><XAxis dataKey="name" fontSize={11} /><YAxis allowDecimals={false} fontSize={11} /><Tooltip /><Legend />
             <Bar dataKey="Meetings" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="Blocks" name="Yalla calendar blocks" fill="hsl(var(--muted-foreground))" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Blocks" name="SAFARID calendar blocks" fill="hsl(var(--muted-foreground))" radius={[4, 4, 0, 0]} />
             <Bar dataKey="Capacity" name="Weekly limit" fill="hsl(var(--border))" radius={[4, 4, 0, 0]} />
           </BarChart></ResponsiveContainer>
         </CardContent></Card>
@@ -82,7 +82,7 @@ export function useMyStaffId() {
   return id;
 }
 
-/** Yalla native calendar: the staff member's own busy blocks, leave, prep and travel time. */
+/** SAFARID native calendar: the staff member's own busy blocks, leave, prep and travel time. */
 export function YallaCalendar() {
   const staffId = useMyStaffId();
   const { toast } = useToast();
@@ -95,7 +95,7 @@ export function YallaCalendar() {
   }, [staffId]);
   React.useEffect(() => { load(); }, [load]);
   if (staffId === undefined) return <Loader2 className="h-5 w-5 animate-spin" />;
-  if (!staffId) return <p className="text-sm text-muted-foreground">Your staff profile is not linked to this sign-in, so there is no Yalla calendar to show.</p>;
+  if (!staffId) return <p className="text-sm text-muted-foreground">Your staff profile is not linked to this sign-in, so there is no SAFARID calendar to show.</p>;
   const add = async () => {
     if (!f.date) return toast({ title: "Pick a date", variant: "destructive" });
     const s = new Date(`${f.date}T${f.from}:00+03:00`), e = new Date(`${f.date}T${f.to}:00+03:00`);
@@ -106,7 +106,7 @@ export function YallaCalendar() {
   const del = async (id: string) => { await db.from("staff_calendar_blocks").delete().eq("id", id); load(); };
   return (
     <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">Your Yalla calendar is the main source of your availability. Anything you add here hides those times from clients and colleagues booking you. Meetings booked through Yalla appear automatically.</p>
+      <p className="text-sm text-muted-foreground">Your SAFARID calendar is the main source of your availability. Anything you add here hides those times from clients and colleagues booking you. Meetings booked through SAFARID appear automatically.</p>
       <Card><CardContent className="grid items-end gap-3 p-4 sm:grid-cols-6">
         <label className="text-xs text-muted-foreground">Type
           <select className="mt-1 h-10 w-full rounded-md border bg-background px-2 text-sm" value={f.kind} onChange={(e) => setF({ ...f, kind: e.target.value })}>
@@ -193,13 +193,13 @@ export function CalendarConnections() {
   return (
     <div className="space-y-4">
       <div className="grid gap-3 sm:grid-cols-4">
-        {[["Yalla calendar", "verified", "Always on: working hours, your blocks and Yalla bookings."],
+        {[["SAFARID calendar", "verified", "Always on: working hours, your blocks and SAFARID bookings."],
           ["Shared Google free/busy", shared, host?.calendar_checked_at ? `Last checked ${new Date(host.calendar_checked_at).toLocaleString("en-KE")}` : "Not checked yet"],
           ["Google Calendar sign-in", st("google"), "Coming once the Google sign-in setup is finished."]].map(([t, s, d]) => (
           <Card key={t}><CardContent className="space-y-1 p-4"><div className="text-sm font-medium">{t}</div><Badge variant={s === "verified" ? "default" : "secondary"}>{label[s] ?? s}</Badge><p className="text-xs text-muted-foreground">{d}</p></CardContent></Card>
         ))}
       </div>
-      <Card><CardHeader><CardTitle className="text-base">Share your Google Calendar free/busy with Yalla (2 minutes)</CardTitle></CardHeader>
+      <Card><CardHeader><CardTitle className="text-base">Share your Google Calendar free/busy with SAFARID (2 minutes)</CardTitle></CardHeader>
         <CardContent className="space-y-3 text-sm">
           <ol className="list-decimal space-y-1 pl-5">
             <li>Open <a className="underline" href="https://calendar.google.com" target="_blank" rel="noreferrer">calendar.google.com</a> on a computer and sign in with the Google account you use for work.</li>
@@ -209,7 +209,7 @@ export function CalendarConnections() {
             <li>Under permissions choose <b>See only free/busy (hide details)</b>, then click <b>Send</b>.</li>
             <li>Come back here and press <b>I've shared it</b>. The next availability check confirms it.</li>
           </ol>
-          <p className="text-xs text-muted-foreground">Yalla only sees when you are busy, never the event titles or details. Busy elsewhere? Add those times to your Yalla calendar.</p>
+          <p className="text-xs text-muted-foreground">SAFARID only sees when you are busy, never the event titles or details. Busy elsewhere? Add those times to your SAFARID calendar.</p>
           <Button onClick={markShared}>I've shared it</Button>
         </CardContent></Card>
     </div>

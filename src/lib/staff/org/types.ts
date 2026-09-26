@@ -1,5 +1,5 @@
 /**
- * Yalla Staff 360 — Organisation & Workforce types.
+ * SAFARID Staff 360 — Organisation & Workforce types.
  *
  * These types mirror the persisted tables exactly. Staff 360 is the human
  * organisation and work-orchestration layer: it owns organisation structure,

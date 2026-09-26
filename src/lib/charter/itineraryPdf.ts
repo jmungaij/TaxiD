@@ -29,8 +29,8 @@ export interface IssuerBranding {
 
 /** Built-in branding — superseded by the active server-side PDF template. */
 export const ISSUER: IssuerBranding = {
-  name: "Yalla Mobility",
-  division: "Yalla Air · Charter, Leasing & Rentals",
+  name: "SAFARID",
+  division: "SAFARID Air · Charter, Leasing & Rentals",
   address: "Nairobi, Kenya",
   phone: "+254 142 970050",
   email: "support@yalla.africa",
@@ -411,7 +411,7 @@ export async function buildItineraryPdf(input: ItineraryInput): Promise<jsPDF> {
   doc.setFontSize(6);
   doc.setTextColor(29, 78, 216);
   doc.text("SECURED", W - 34, sy + 11, { align: "center" });
-  doc.text("YALLA AIR", W - 34, sy + 15, { align: "center" });
+  doc.text("SAFARID AIR", W - 34, sy + 15, { align: "center" });
   doc.setFontSize(5);
   doc.text(fingerprint.slice(0, 8), W - 34, sy + 19, { align: "center" });
 

@@ -298,7 +298,7 @@ export async function buildCharterInvoicePdf(input: CharterInvoiceInput): Promis
     doc.addImage(qr.dataUrl, "PNG", qx, qy, qrSize, qrSize, undefined, "NONE");
   }
 
-  microtext(doc, M, H - 12, W - M * 2, `YALLA CHARTER ${kind.toUpperCase()} ${input.reference} ${control} ${version}`);
+  microtext(doc, M, H - 12, W - M * 2, `SAFARID CHARTER ${kind.toUpperCase()} ${input.reference} ${control} ${version}`);
   return doc;
 }
 

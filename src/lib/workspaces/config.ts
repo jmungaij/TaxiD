@@ -84,8 +84,8 @@ export const WORKSPACES: WorkspaceDefinition[] = [
       { path: "/dashboard/admin/people-partners", label: "People & Partners Hub", section: "Overview" },
       { path: "/dashboard/admin/people-console", label: "People Management Console", section: "Overview" },
       { path: "/dashboard/admin/partner-invite", label: "Partner Onboarding & Invite", section: "Overview" },
-      // Yalla Partners — the distribution network (agencies, hotels, operators).
-      { path: "/staff/partners", label: "Yalla Partners Operations", section: "Yalla Partners" },
+      // SAFARID Partners — the distribution network (agencies, hotels, operators).
+      { path: "/staff/partners", label: "SAFARID Partners Operations", section: "SAFARID Partners" },
       // Riders (mirrors the public "Ride" tab)
       { path: "/dashboard/admin/riders-center", label: "Riders Center", section: "Riders" },
       { path: "/dashboard/admin/rider-management", label: "Rider Dashboard", section: "Riders" },
@@ -202,7 +202,7 @@ export const WORKSPACES: WorkspaceDefinition[] = [
   },
   {
     key: "flight_hub",
-    title: "Yalla Air · Flight Hub",
+    title: "SAFARID Air · Flight Hub",
     icon: "PlaneTakeoff",
     description:
       "Air mobility command centre — live flights, operator onboarding, demand lifecycle, settlement, aviation compliance, customer relations and support.",

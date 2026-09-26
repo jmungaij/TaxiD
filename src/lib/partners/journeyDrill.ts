@@ -237,7 +237,7 @@ export const labelOf = (key: DrillKey, id: string | undefined): string =>
 export function journeyTable(journeys: PartnerJourney[], windowLabel: string) {
   return {
     id: "partner-journeys",
-    title: "Yalla Partners - individual partner journeys",
+    title: "SAFARID Partners - individual partner journeys",
     subtitle: `Session-level view → interact → CTA (${windowLabel})`,
     meta: [
       ["Journeys", String(journeys.length)],

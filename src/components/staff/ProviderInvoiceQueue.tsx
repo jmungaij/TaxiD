@@ -53,7 +53,7 @@ export default function ProviderInvoiceQueue() {
         <CardHeader>
           <CardTitle className="text-base">Operator statements</CardTitle>
           <CardDescription>
-            Each statement lists the trips the platform recorded, Yalla's 15% and the operator's 85%.
+            Each statement lists the trips the platform recorded, SAFARID's 15% and the operator's 85%.
             Approving one is what releases the money for withdrawal.
           </CardDescription>
         </CardHeader>
@@ -104,7 +104,7 @@ export default function ProviderInvoiceQueue() {
                     <p className="text-xs text-muted-foreground">
                       {periodLabel(i)} · {i.lines_count} trip(s) ·{" "}
                       {money(i.gross_cents, i.currency)} gross ·{" "}
-                      {money(i.commission_cents, i.currency)} Yalla 15% ·{" "}
+                      {money(i.commission_cents, i.currency)} SAFARID 15% ·{" "}
                       {money(i.estimated_fee_cents, i.currency)} fee on withdrawal
                     </p>
                   </div>
@@ -162,7 +162,7 @@ export default function ProviderInvoiceQueue() {
                         <TableHead>Trip</TableHead>
                         <TableHead>Date</TableHead>
                         <TableHead className="text-right">Trip value</TableHead>
-                        <TableHead className="text-right">Yalla 15%</TableHead>
+                        <TableHead className="text-right">SAFARID 15%</TableHead>
                         <TableHead className="text-right">Operator 85%</TableHead>
                       </TableRow>
                     </TableHeader>

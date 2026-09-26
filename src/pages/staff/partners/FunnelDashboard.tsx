@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS 360 — captured funnel comparison, journeys and experiment.
+ * SAFARID PARTNERS 360 — captured funnel comparison, journeys and experiment.
  *
  * Three readings of the same counted telemetry the /partners experience writes
  * (view → interact → CTA):
@@ -112,8 +112,8 @@ export default function PartnerFunnelDashboard() {
     <div className="space-y-6">
       <StaffPageHeader
         title="Partner funnel comparison"
-        eyebrow="Yalla Partners 360"
-        lede="Counted view → interact → CTA behaviour on the Yalla Partners experience — compared by dimension, drillable to individual journeys, and split by messaging experiment arm."
+        eyebrow="SAFARID Partners 360"
+        lede="Counted view → interact → CTA behaviour on the SAFARID Partners experience — compared by dimension, drillable to individual journeys, and split by messaging experiment arm."
         actions={
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant={connected ? "secondary" : "outline"}>

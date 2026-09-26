@@ -1,8 +1,8 @@
 /**
- * YALLA MOBILITY WALLET desk.
+ * SAFARID WALLET desk.
  *
  * Shows the four real balances of the platform account — cash held, client money
- * in custody, money owed to operators and Yalla's earned income — with the
+ * in custody, money owed to operators and SAFARID's earned income — with the
  * append-only movement history, plus funding through M-Pesa.
  */
 import * as React from "react";
@@ -58,7 +58,7 @@ export function YallaWalletPanel() {
       setProgress(null);
       if (res.state === "funded") {
         toast({
-          title: "Yalla wallet funded",
+          title: "SAFARID wallet funded",
           description: `${walletMoney(res.amountCents)} received${res.receipt ? ` · ${res.receipt}` : ""}.`,
         });
         setAmount("");
@@ -88,7 +88,7 @@ export function YallaWalletPanel() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Yalla Mobility wallet</CardTitle>
+          <CardTitle className="text-base">SAFARID wallet</CardTitle>
           <CardDescription>
             {error instanceof Error ? error.message : "The wallet could not be loaded."}
           </CardDescription>
@@ -119,7 +119,7 @@ export function YallaWalletPanel() {
           hint={`${walletMoney(w.lifetime_paid_out_cents, cur)} withdrawn to date`}
         />
         <Balance
-          label="Yalla income earned"
+          label="SAFARID income earned"
           value={walletMoney(w.income_cents, cur)}
           hint={`15% at fulfilment and 5% on successful withdrawals · paybill ${w.paybill}`}
         />
@@ -164,7 +164,7 @@ export function YallaWalletPanel() {
           <CardHeader>
             <CardTitle className="text-base">Paid, awaiting fulfilment</CardTitle>
             <CardDescription>
-              These client funds stay in the Yalla wallet. Nothing is released and no commission is
+              These client funds stay in the SAFARID wallet. Nothing is released and no commission is
               taken until the job is fulfilled.
             </CardDescription>
           </CardHeader>
@@ -175,7 +175,7 @@ export function YallaWalletPanel() {
                   <TableHead>Booking</TableHead>
                   <TableHead className="text-right">Client paid</TableHead>
                   <TableHead className="text-right">Operator 85%</TableHead>
-                  <TableHead className="text-right">Yalla 15% (not yet taken)</TableHead>
+                  <TableHead className="text-right">SAFARID 15% (not yet taken)</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

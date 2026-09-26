@@ -31,8 +31,8 @@ export interface PdfTemplate {
 }
 
 export const FALLBACK_BRANDING: PdfBranding = {
-  name: "Yalla Mobility",
-  division: "Yalla Air · Charter, Leasing & Rentals",
+  name: "SAFARID",
+  division: "SAFARID Air · Charter, Leasing & Rentals",
   address: "Nairobi, Kenya",
   phone: "+254 142 970050",
   email: "support@yalla.africa",
@@ -43,7 +43,7 @@ export const FALLBACK_BRANDING: PdfBranding = {
 export const FALLBACK_TEMPLATE: PdfTemplate = {
   id: "fallback",
   version: "v1",
-  label: "Yalla Air secure itinerary v1",
+  label: "SAFARID Air secure itinerary v1",
   active: true,
   brand: FALLBACK_BRANDING,
   layout: {},

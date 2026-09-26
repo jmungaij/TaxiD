@@ -1,5 +1,5 @@
 /**
- * Forensic M-Pesa payment receipt (Yalla Air).
+ * Forensic M-Pesa payment receipt (SAFARID Air).
  *
  * Reuses the exact same security primitives as the itinerary document —
  * guilloche rosettes, lathe bands, void-pantograph hatch, microtext, the
@@ -164,7 +164,7 @@ export async function buildReceiptPdf(input: ReceiptInput): Promise<jsPDF> {
     M,
     H - 12,
     W - M * 2,
-    `YALLA AIR RECEIPT ${input.reference} ${control} ${version} AUTHENTIC`,
+    `SAFARID AIR RECEIPT ${input.reference} ${control} ${version} AUTHENTIC`,
   );
 
   return doc;

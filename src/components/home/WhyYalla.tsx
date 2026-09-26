@@ -1,5 +1,5 @@
 /**
- * "Why Choose Yalla Mobility", "How It Works" and "Built on Trust" — the
+ * "Why Choose SAFARID", "How It Works" and "Built on Trust" — the
  * confidence layer of the homepage. Presentation only.
  */
 import {
@@ -48,7 +48,7 @@ export function WhyYalla() {
       <section className="border-y border-border bg-secondary/30 py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Why Yalla Mobility</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Why SAFARID</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
               One marketplace, many ways to move — with the confidence of verified providers.
             </h2>

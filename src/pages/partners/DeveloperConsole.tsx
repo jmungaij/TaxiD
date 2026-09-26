@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — developer console.
+ * SAFARID API PARTNERS — developer console.
  *
  * The authenticated technical surface behind /partners/api:
  *   • Usage, rate limits and remaining quota per environment
@@ -232,8 +232,8 @@ export default function DeveloperConsole() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Developer Console | Yalla API Partners"
-        description="Usage, rate limits and quotas, Postman and SDK downloads, versioned OpenAPI specs, webhook replay testing and API credential rotation for Yalla API partners."
+        title="Developer Console | SAFARID API Partners"
+        description="Usage, rate limits and quotas, Postman and SDK downloads, versioned OpenAPI specs, webhook replay testing and API credential rotation for SAFARID API partners."
         path="/partners/api/console"
       />
 
@@ -782,7 +782,7 @@ export default function DeveloperConsole() {
                 </div>
 
                 <div>
-                  <Label htmlFor="wh-header">Yalla-Signature header</Label>
+                  <Label htmlFor="wh-header">SAFARID-Signature header</Label>
                   <div className="mt-1 flex flex-wrap items-center gap-2">
                     <Input
                       id="wh-header"
@@ -880,7 +880,7 @@ export function verifyYallaWebhook(rawBody: string, header: string, secret: stri
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
                   <p className="text-muted-foreground">
-                    Store this in your secret manager now. Yalla keeps only a one-way hash — it cannot be
+                    Store this in your secret manager now. SAFARID keeps only a one-way hash — it cannot be
                     retrieved or re-sent. {issued.replaces_client_id && (
                       <>The previous credential <code className="font-mono text-xs">{issued.replaces_client_id}</code>{" "}
                       stays valid until {issued.grace_expires_at?.slice(0, 16).replace("T", " ")} UTC.</>

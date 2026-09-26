@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS 360 — fine-grained staff permissions.
+ * SAFARID PARTNERS 360 — fine-grained staff permissions.
  *
  * The authority lives in the database: `partner_permissions()` resolves the
  * signed-in user's staff standing and whether their role may revert a partner to

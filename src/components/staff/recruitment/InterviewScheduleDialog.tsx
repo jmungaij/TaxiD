@@ -292,7 +292,7 @@ export function InterviewScheduleDialog({
               <div className="space-y-1.5">
                 <Label htmlFor="iv-location">Location</Label>
                 <Input id="iv-location" value={location} onChange={(e) => setLocation(e.target.value)}
-                  placeholder="Yalla HQ, Westlands" />
+                  placeholder="SAFARID HQ, Westlands" />
               </div>
             )}
           </div>

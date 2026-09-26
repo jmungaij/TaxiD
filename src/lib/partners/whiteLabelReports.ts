@@ -83,7 +83,7 @@ export function buildWebhookSchema(event: string) {
   return {
     $schema: "https://json-schema.org/draft/2020-12/schema",
     $id: `https://api.yalla.africa/schemas/white-label/${event}.json`,
-    title: `Yalla white-label webhook — ${event}`,
+    title: `SAFARID white-label webhook — ${event}`,
     description: contract.when,
     type: "object",
     required: ["event", "sent_at", "delivery_id", "data"],
@@ -115,7 +115,7 @@ export function buildWebhookContractBundle(tenantCode?: string) {
     release: currentWhiteLabelRelease().version,
     tenant: tenantCode ?? null,
     signature: {
-      header: "Yalla-Signature",
+      header: "SAFARID-Signature",
       scheme: "v2",
       signed_payload: "`${timestamp}.${rawBody}`",
       algorithm: "HMAC-SHA256",
@@ -160,14 +160,14 @@ export function buildDiffMarkdown(diff: WlDiffReport): string {
   const from = whiteLabelReleaseByVersion(d.from);
   const to = whiteLabelReleaseByVersion(d.to);
   const lines: string[] = [
-    `# Yalla white-label API — migration report`,
+    `# SAFARID white-label API — migration report`,
     "",
     `**From** \`${d.from}\`${from ? ` (released ${from.releasedOn}, ${from.status})` : ""}  `,
     `**To** \`${d.to}\`${to ? ` (released ${to.releasedOn}, ${to.status})` : ""}  `,
     tenantCode ? `**Tenant** \`${tenantCode}\`  ` : "",
     `**Generated** ${new Date().toISOString()}`,
     "",
-    `Every operation below is an operation of the single Yalla API contract, viewed through the`,
+    `Every operation below is an operation of the single SAFARID API contract, viewed through the`,
     `mandatory \`${TENANT_HEADER}\` header. There is no separate white-label API.`,
     "",
     `## Breaking changes (${d.breakingChanges.length})`,

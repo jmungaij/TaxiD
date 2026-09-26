@@ -51,7 +51,7 @@ const money = (n: number) => Math.round(n);
 export function funnelReport(stages: FunnelStage[], conversionPct: number): ReportTable {
   return {
     id: "conversion-funnel",
-    title: "Yalla Mobility · conversion funnel",
+    title: "SAFARID · conversion funnel",
     subtitle: "Enquiry to invoice, trailing 90 days",
     meta: [["Overall conversion %", conversionPct.toFixed(2)]],
     columns: ["Stage", "Count", "% of top", "Step conversion %"],
@@ -67,7 +67,7 @@ export function funnelReport(stages: FunnelStage[], conversionPct: number): Repo
 export function pipelineReport(p: ContractPipeline): ReportTable {
   return {
     id: "contract-pipeline",
-    title: "Yalla Mobility · contract pipeline",
+    title: "SAFARID · contract pipeline",
     columns: ["Measure", "Value"],
     rows: [
       ["Open opportunities", p.open],
@@ -226,6 +226,6 @@ export async function downloadReportPdf(table: ReportTable): Promise<void> {
 
   doc.setTextColor(120);
   doc.setFontSize(8);
-  doc.text(`Yalla Mobility · generated ${new Date().toISOString()}`, M, 290);
+  doc.text(`SAFARID · generated ${new Date().toISOString()}`, M, 290);
   doc.save(reportFilename(table, "pdf"));
 }

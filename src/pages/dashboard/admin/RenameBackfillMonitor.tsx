@@ -413,7 +413,7 @@ export default function RenameBackfillMonitor() {
     // Header banner rows (comment-prefixed) so the report is
     // self-describing but still parses as CSV in Excel/Sheets.
     const banner = [
-      `# Yalla Mobility — Phase 3 verification & alert history`,
+      `# SAFARID — Phase 3 verification & alert history`,
       `# Range: ${filterFrom} → ${filterTo}`,
       `# Source filter: ${filterSource} · Status filter: ${filterStatus}`,
       `# ${ROLLBACK_LINE}`,
@@ -484,7 +484,7 @@ export default function RenameBackfillMonitor() {
     (thresholds ?? []).forEach(t => thresholdIndex.set(t.source, t));
 
     const doc = new jsPDF();
-    doc.setFontSize(16); doc.text("Yalla Mobility — Phase 3 Verification & Alert Report", 14, 18);
+    doc.setFontSize(16); doc.text("SAFARID — Phase 3 Verification & Alert Report", 14, 18);
     doc.setFontSize(9);
     doc.text(`Range: ${filterFrom} → ${filterTo}   Source: ${filterSource}   Status: ${filterStatus}`, 14, 25);
     doc.text(ROLLBACK_LINE, 14, 31);

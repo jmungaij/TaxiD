@@ -95,7 +95,7 @@ export function RoadQuoteApproval({
   const statusLabel = roadPaymentLabel(paymentStatus);
 
   const summaryText = [
-    `Yalla Mobility — charter quotation ${reference}`,
+    `SAFARID — charter quotation ${reference}`,
     `Vehicle: ${itinerary.assetName}`,
     `Journey: ${itinerary.origin || "—"} → ${itinerary.destination || "—"}`,
     `Pickup coordinates: ${coord(itinerary.originPoint)}`,
@@ -140,7 +140,7 @@ export function RoadQuoteApproval({
           subject: `Bank transfer details requested — quotation ${reference}`,
           message:
             `I would like to settle charter quotation ${reference} by bank transfer. ` +
-            `Please send the Yalla Mobility bank account details for the amount ${totalLabel}.\n\n${summaryText}`,
+            `Please send the SAFARID bank account details for the amount ${totalLabel}.\n\n${summaryText}`,
           source_page: "/charter/book",
           elapsed_ms: 60_000,
         },
@@ -326,7 +326,7 @@ export function RoadQuoteApproval({
               <div className="space-y-2">
                 <p className="font-medium">Bank transfer</p>
                 <p className="text-xs text-muted-foreground">
-                  Email operations for the Yalla Mobility account details, quoting {reference}.
+                  Email operations for the SAFARID account details, quoting {reference}.
                 </p>
                 <Button
                   size="sm"

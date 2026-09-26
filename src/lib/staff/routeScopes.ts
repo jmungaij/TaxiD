@@ -21,7 +21,7 @@ export const STAFF_ROUTE_SCOPE: { prefix: string; scope: StaffScope }[] = [
   { prefix: "/staff/stream", scope: "department" },
   { prefix: "/staff/search", scope: "department" },
 
-  // Yalla 360
+  // SAFARID 360
   { prefix: "/staff/360", scope: "department" },
   { prefix: "/staff/customers", scope: "commercial" },
   { prefix: "/staff/marketplace", scope: "department" },
@@ -46,7 +46,7 @@ export const STAFF_ROUTE_SCOPE: { prefix: string; scope: StaffScope }[] = [
   // Provider supply governance
   { prefix: "/staff/providers", scope: "department" },
 
-  // Yalla Partners Operations System
+  // SAFARID Partners Operations System
   { prefix: "/staff/partners", scope: "commercial" },
 
   // Commercial engines

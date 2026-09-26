@@ -1,5 +1,5 @@
 /**
- * Yalla Security Control Plane — Verification, Evidence and Posture.
+ * SAFARID Security Control Plane — Verification, Evidence and Posture.
  *
  * Posture is computed from executed controls, never asserted. A control with no
  * evidence is UNVERIFIED, and an unverified control never counts as a pass.

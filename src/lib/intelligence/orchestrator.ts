@@ -1,5 +1,5 @@
 /**
- * Ask Yalla orchestrator.
+ * Ask SAFARID orchestrator.
  *
  * Intent → required domains → authorisation → parallel domain reads →
  * cross-check → data quality → confidence → quality gate → answer, with every

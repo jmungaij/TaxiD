@@ -1,7 +1,7 @@
 /**
  * PHASE 9 (a) — COMPLETE RLS ROLE MATRIX.
  *
- * Fifteen real Yalla principals × every logistics resource × every access path,
+ * Fifteen real SAFARID principals × every logistics resource × every access path,
  * including the negative cases that matter most (Corporate A → Corporate B
  * shipment, Partner A → Partner B courier, Courier A → Courier B POD).
  *

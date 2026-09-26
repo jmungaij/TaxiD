@@ -210,7 +210,7 @@ export default function CorporateOrganisation({ corporateId }: { corporateId: st
         <AlertTitle>No organisation linked yet</AlertTitle>
         <AlertDescription>
           Your account is not linked to an approved organisation. An organisation is created only
-          once a Yalla manager approves the business application.
+          once a SAFARID manager approves the business application.
         </AlertDescription>
       </Alert>
     );
@@ -267,7 +267,7 @@ export default function CorporateOrganisation({ corporateId }: { corporateId: st
       {isAnyAdmin && (
         <Alert>
           <ShieldCheck className="h-4 w-4" aria-hidden />
-          <AlertTitle>Yalla manager view</AlertTitle>
+          <AlertTitle>SAFARID manager view</AlertTitle>
           <AlertDescription className="flex flex-wrap items-center gap-3 text-sm">
             <span>
               Approve business applications, check submitted documents and change account settings in
@@ -319,7 +319,7 @@ export default function CorporateOrganisation({ corporateId }: { corporateId: st
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
             These settings decide what your people see on the sign-in screen. A change is saved as a
-            new dated version and takes effect only once Yalla approves it — the version in force now
+            new dated version and takes effect only once SAFARID approves it — the version in force now
             keeps working until then.
           </p>
 

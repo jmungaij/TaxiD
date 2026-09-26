@@ -1,9 +1,9 @@
 /**
  * FLEET OWNER CLAIMS — the Fleet Owner claims payment for a completed movement.
  *
- * A claim can only be raised against delivery evidence Yalla has already
+ * A claim can only be raised against delivery evidence SAFARID has already
  * approved. The claimed amount, the declaration and the movement identity are
- * all recorded; the decision, the invoice and the payment belong to Yalla.
+ * all recorded; the decision, the invoice and the payment belong to SAFARID.
  */
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -87,7 +87,7 @@ export default function FleetOwnerClaims({
       });
       toast({
         title: "Claim submitted",
-        description: `Reference ${String(res.claim_ref ?? res.reference ?? "recorded")}. Yalla will review it.`,
+        description: `Reference ${String(res.claim_ref ?? res.reference ?? "recorded")}. SAFARID will review it.`,
       });
       setPodId("");
       setDescription("");
@@ -118,7 +118,7 @@ export default function FleetOwnerClaims({
         <CardHeader>
           <CardTitle className="text-lg">Claim payment for a completed movement</CardTitle>
           <CardDescription>
-            Only movements whose delivery evidence Yalla has approved can be claimed. One claim per movement.
+            Only movements whose delivery evidence SAFARID has approved can be claimed. One claim per movement.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -191,7 +191,7 @@ export default function FleetOwnerClaims({
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Your claims</CardTitle>
-          <CardDescription>Yalla's decision, the invoice raised and the payment recorded against it.</CardDescription>
+          <CardDescription>SAFARID's decision, the invoice raised and the payment recorded against it.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
           {claims.length === 0 && <p className="text-sm text-muted-foreground">No claim submitted yet.</p>}

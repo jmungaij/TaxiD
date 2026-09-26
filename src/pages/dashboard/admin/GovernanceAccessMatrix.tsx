@@ -108,7 +108,7 @@ export default function GovernanceAccessMatrix() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Governance Access Matrix | Yalla"
+        title="Governance Access Matrix | SAFARID"
         description="Manage fine-grained RBAC grants for alert history, concierge audit trails, report schedules and governance webhooks."
         path="/dashboard/admin/governance-access"
       />

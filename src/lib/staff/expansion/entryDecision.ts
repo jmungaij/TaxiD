@@ -116,7 +116,7 @@ export function decideEntry(
 
   if (unknown.length > 0) {
     verdict = "defer";
-    rationale = `Entry cannot be decided: ${unknown.length} gate${unknown.length > 1 ? "s" : ""} lack admissible evidence. Yalla does not commit capital against an unevidenced market.`;
+    rationale = `Entry cannot be decided: ${unknown.length} gate${unknown.length > 1 ? "s" : ""} lack admissible evidence. SAFARID does not commit capital against an unevidenced market.`;
   } else if (failed.length === 0) {
     verdict = "go";
     rationale = "All entry gates pass on evidenced signals and the base case survives stress.";

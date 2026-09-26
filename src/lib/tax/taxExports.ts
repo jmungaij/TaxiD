@@ -37,7 +37,7 @@ export function invoicesReport(
   const vat = rows.reduce((a, r) => a + kes(r.tax_total_cents), 0);
   return {
     id: "etims-invoices",
-    title: "Yalla Mobility · eTIMS invoices",
+    title: "SAFARID · eTIMS invoices",
     subtitle: `${window.from} to ${window.to}${window.status && window.status !== "ALL" ? ` · ${window.status}` : ""}`,
     meta: [
       ["Invoices", String(rows.length)],
@@ -83,7 +83,7 @@ export function vatSummaryReport(data: VatSummaryData | null, window: { from: st
   const total = schemes.reduce((a, s) => a + kes(s.total_cents), 0);
   return {
     id: "vat-summary",
-    title: "Yalla Mobility · VAT summary by scheme",
+    title: "SAFARID · VAT summary by scheme",
     subtitle: `${window.from} to ${window.to}`,
     meta: [
       ["Taxable base KES", taxable.toFixed(2)],
@@ -106,7 +106,7 @@ export function vatDailyReport(data: VatSummaryData | null, window: { from: stri
   const daily = data?.daily ?? [];
   return {
     id: "vat-daily",
-    title: "Yalla Mobility · daily VAT movement",
+    title: "SAFARID · daily VAT movement",
     subtitle: `${window.from} to ${window.to}`,
     meta: [["Days", String(daily.length)]],
     columns: ["Date", "Invoices", "Net", "VAT", "Gross"],

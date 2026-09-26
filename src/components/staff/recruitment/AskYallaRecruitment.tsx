@@ -15,7 +15,7 @@ import * as rec from "@/lib/recruitment/api";
 import { recommendNextBestActions, type AskYallaInputs, type NextBestAction } from "@/lib/recruitment/askYalla";
 
 /**
- * Ask Yalla for Recruitment 360.
+ * Ask SAFARID for Recruitment 360.
  *
  * Recommendations are computed from the recruiter's own RLS-scoped pipeline —
  * no model output, no automatic execution. Acting on one logs an AI request and
@@ -63,7 +63,7 @@ export function AskYallaRecruitment(props: AskYallaInputs & { limit?: number }) 
     <Card className="border-primary/25 bg-primary/[0.03]">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
-          <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" /> Ask Yalla — next best actions
+          <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" /> Ask SAFARID — next best actions
         </CardTitle>
         <p className="text-xs text-muted-foreground">
           Computed from your pipeline records. Every suggestion is logged as an AI request and needs your decision.

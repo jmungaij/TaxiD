@@ -293,5 +293,5 @@ export const PROVIDER_LABEL: Record<CommsAccount["provider"], string> = {
   microsoft_graph: "Microsoft 365",
   gmail_api: "Google Workspace",
   imap: "IMAP / SMTP",
-  platform: "Yalla platform",
+  platform: "SAFARID platform",
 };

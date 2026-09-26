@@ -1,9 +1,9 @@
 /**
- * Phase 10 §10.16 — the Yalla Trust & Safety Graph.
+ * Phase 10 §10.16 — the SAFARID Trust & Safety Graph.
  *
- * For every mission Yalla must be able to state who the customer is, who the
+ * For every mission SAFARID must be able to state who the customer is, who the
  * provider is, which resource performed the work, that compliance was valid,
- * that payment is accounted for, and that completion is evidenced. As Yalla
+ * that payment is accounted for, and that completion is evidenced. As SAFARID
  * moves into charter, aircraft and logistics this is not a nicety: without it,
  * the mission cannot be economically closed.
  */

@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — webhook delivery forensics.
+ * SAFARID API PARTNERS — webhook delivery forensics.
  *
  * Reads the append-only `partner_api_webhook_deliveries` ledger. One row per
  * *attempt*, so a delivery that was retried five times appears five times and
@@ -61,7 +61,7 @@ export const FAILURE_GUIDANCE: Record<FailureCategory, { label: string; cause: s
   },
   signature_mismatch: {
     label: "Signature mismatch",
-    cause: "Your endpoint recomputed a different HMAC to the one in Yalla-Signature.",
+    cause: "Your endpoint recomputed a different HMAC to the one in SAFARID-Signature.",
     remedy: "Sign the raw request bytes with the `${t}.` prefix and the current secret. Re-serialising parsed JSON is the most common cause.",
   },
   timestamp_out_of_tolerance: {
@@ -71,7 +71,7 @@ export const FAILURE_GUIDANCE: Record<FailureCategory, { label: string; cause: s
   },
   malformed_header: {
     label: "Malformed signature header",
-    cause: "The Yalla-Signature header could not be parsed into `t` and `v1` elements.",
+    cause: "The SAFARID-Signature header could not be parsed into `t` and `v1` elements.",
     remedy: "Parse the header as comma-separated key=value pairs rather than by fixed offsets.",
   },
   missing_header: {
@@ -97,7 +97,7 @@ export const FAILURE_GUIDANCE: Record<FailureCategory, { label: string; cause: s
   connection_error: {
     label: "Connection error",
     cause: "The dispatcher could not establish a TCP connection.",
-    remedy: "Confirm DNS, that the host is reachable from the public internet, and that Yalla egress is allow-listed.",
+    remedy: "Confirm DNS, that the host is reachable from the public internet, and that SAFARID egress is allow-listed.",
   },
   timeout: {
     label: "Timeout",

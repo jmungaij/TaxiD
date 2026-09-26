@@ -404,7 +404,7 @@ export default function LogisticsControlTower() {
   if (denied) {
     return (
       <div className="mx-auto max-w-3xl p-6">
-        <Helmet><title>Control Tower | Yalla Mobility</title></Helmet>
+        <Helmet><title>Control Tower | SAFARID</title></Helmet>
         <Withheld message={denied} />
       </div>
     );
@@ -413,7 +413,7 @@ export default function LogisticsControlTower() {
   return (
     <div className="space-y-6 p-4 md:p-6">
       <Helmet>
-        <title>Logistics Control Tower | Yalla Mobility</title>
+        <title>Logistics Control Tower | SAFARID</title>
         <meta name="description" content="Real-time logistics control tower: live operations, SLA intelligence, exceptions and operator commands." />
       </Helmet>
 

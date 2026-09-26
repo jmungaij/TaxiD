@@ -1,7 +1,7 @@
 /**
- * FLEET OWNER CLAIMS REVIEW — Yalla's side of the claim chain.
+ * FLEET OWNER CLAIMS REVIEW — SAFARID's side of the claim chain.
  *
- * Yalla reviews the Fleet Owner's claim, approves an amount, raises the invoice
+ * SAFARID reviews the Fleet Owner's claim, approves an amount, raises the invoice
  * and authorises the payment against the verified settlement destination. The
  * receipt is only issued once real provider evidence for the money movement is
  * recorded, so nothing here can invent a payment.

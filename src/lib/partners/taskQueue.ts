@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS 360 — lifecycle task queue status.
+ * SAFARID PARTNERS 360 — lifecycle task queue status.
  *
  * Every lifecycle-stage signal raises (or folds into) a partner-desk task. This
  * module reads `v_partner_lifecycle_task_queue`, the server-side view that joins

@@ -1,7 +1,7 @@
 /**
  * MEETINGS (client side)
  * ----------------------
- * One path for every Yalla meeting — interviews, internal reviews, client and
+ * One path for every SAFARID meeting — interviews, internal reviews, client and
  * partner meetings. For a Google Meet meeting nobody types a joining link: the
  * server mints it through the Google Calendar connector and emails an
  * iCalendar invitation, so Google Calendar, Outlook and Teams users all receive

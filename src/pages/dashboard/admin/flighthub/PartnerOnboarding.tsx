@@ -298,7 +298,7 @@ export default function PartnerOnboarding() {
         </TabsContent>
 
         <TabsContent value="apply">
-          <HubSection title="Operator application" description="Submit operator details and airworthiness evidence to join the Yalla Air marketplace.">
+          <HubSection title="Operator application" description="Submit operator details and airworthiness evidence to join the SAFARID Air marketplace.">
             <div className="grid gap-4 md:grid-cols-2">
               <Field id="operator_name" label="Operator name" value={form.operator_name} onChange={(v) => set("operator_name", v)} />
               <Field id="home_base" label="Home base" value={form.home_base} onChange={(v) => set("home_base", v)} />

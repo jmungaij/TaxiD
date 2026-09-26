@@ -67,7 +67,7 @@ export const ADMIN_CENTERS: { key: AdminCenter; label: string; order: number }[]
   { key: "logistics",    label: "Delivery Dashboard",     order: 6 },
   { key: "fleet",        label: "Fleet Dashboard",        order: 7 },
   { key: "marketplace",  label: "Marketplace",            order: 8 },
-  { key: "flight_hub",   label: "Yalla Air · Flight Hub", order: 8.5 },
+  { key: "flight_hub",   label: "SAFARID Air · Flight Hub", order: 8.5 },
   { key: "finance",      label: "Finance Dashboard",      order: 9 },
   { key: "fraud",        label: "Trust & Safety",         order: 10 },
   { key: "compliance",   label: "Compliance & Audit",     order: 11 },
@@ -127,7 +127,7 @@ function defineRoutes(routes: RouteDef[]): RouteRegistry {
 
 
 /**
- * Canonical role set for the Yalla Staff Portal (/staff/*). Route-level entry is
+ * Canonical role set for the SAFARID Staff Portal (/staff/*). Route-level entry is
  * additionally gated server-side by the staff identity guard (RequireStaffPortal).
  */
 export const STAFF_PORTAL_ROLES: AppRole[] = [
@@ -183,8 +183,8 @@ export const ROUTES: RouteRegistry = defineRoutes([
 
   { path: "/staff/workforce/blueprints", title: "Role Blueprints", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/workforce/launchpad", title: "Workforce Launchpad", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
-  { path: "/partners", title: "Yalla Partners", group: "marketing", rolesAllowed: [], sortOrder: 74 },
-  { path: "/partners/apply", title: "Become a Yalla Partner", group: "marketing", rolesAllowed: [], sortOrder: 74 },
+  { path: "/partners", title: "SAFARID Partners", group: "marketing", rolesAllowed: [], sortOrder: 74 },
+  { path: "/partners/apply", title: "Become a SAFARID Partner", group: "marketing", rolesAllowed: [], sortOrder: 74 },
   /* Partner segment landing pages — one per entry in the Partner Capability
      Registry (src/lib/partners/taxonomy.ts), all served by /partners/:segment. */
   { path: "/partners/travel-tourism", title: "Travel & Tourism Partners", group: "marketing", rolesAllowed: [], sortOrder: 74 },
@@ -212,8 +212,8 @@ export const ROUTES: RouteRegistry = defineRoutes([
   { path: "/partner/fleet-owner/onboarding", title: "Fleet Owner Onboarding", group: "marketing", rolesAllowed: [], sortOrder: 74.2 },
   { path: "/partner/fleet-owner/delivery-evidence", title: "Fleet Owner Delivery Evidence", group: "marketing", rolesAllowed: [], sortOrder: 74.3 },
   { path: "/partner/freight", title: "Carrier Freight Workspace", group: "marketing", rolesAllowed: [], sortOrder: 74.5 },
-  { path: "/staff/partners", title: "Yalla Partners Operations", group: "admin", icon: "Handshake", rolesAllowed: ["admin","super_admin","operations_admin","finance_admin","compliance_admin"], sortOrder: 72 },
-  { path: "/staff/partners/:partnerId", title: "Yalla Partners 360", group: "admin", rolesAllowed: ["admin","super_admin","operations_admin","finance_admin","compliance_admin"], sortOrder: 72 },
+  { path: "/staff/partners", title: "SAFARID Partners Operations", group: "admin", icon: "Handshake", rolesAllowed: ["admin","super_admin","operations_admin","finance_admin","compliance_admin"], sortOrder: 72 },
+  { path: "/staff/partners/:partnerId", title: "SAFARID Partners 360", group: "admin", rolesAllowed: ["admin","super_admin","operations_admin","finance_admin","compliance_admin"], sortOrder: 72 },
   { path: "/staff/interns", title: "Interns 360", group: "admin", rolesAllowed: ["admin","super_admin","operations_admin"], sortOrder: 72 },
   { path: "/staff/interns/cohorts", title: "Intern Cohorts", group: "admin", rolesAllowed: ["admin","super_admin","operations_admin"], sortOrder: 72 },
   { path: "/staff/interns/register", title: "Intern Register", group: "admin", rolesAllowed: ["admin","super_admin","operations_admin"], sortOrder: 72 },
@@ -226,11 +226,11 @@ export const ROUTES: RouteRegistry = defineRoutes([
   { path: "/staff/customers", title: "Customer 360", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/customers/accounts", title: "Account 360", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/people", title: "People & Capability", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
-  { path: "/staff/knowledge", title: "Yalla Knowledge", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
+  { path: "/staff/knowledge", title: "SAFARID Knowledge", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/innovation", title: "Innovation Lab", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/intelligence", title: "Enterprise Intelligence", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/operations", title: "Operations Command", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
-  { path: "/staff/agentic", title: "Agentic Yalla", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
+  { path: "/staff/agentic", title: "Agentic SAFARID", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/staff/governance", title: "Staff Governance", group: "admin", rolesAllowed: ["admin","super_admin","finance_admin","compliance_admin","operations_admin","operations_manager","pricing_manager","fleet_manager"], sortOrder: 72 },
   { path: "/charter",    title: "Charter Business", group: "marketing", icon: "Plane", rolesAllowed: [], showInFooter: true, sortOrder: 71 },
   { path: "/charter/aircraft-charter",        title: "Private Aircraft Charter",   group: "marketing", rolesAllowed: [], sortOrder: 711 },
@@ -298,7 +298,7 @@ export const ROUTES: RouteRegistry = defineRoutes([
 
 
 
-  // ---------- Yalla Air · Flight Hub ----------
+  // ---------- SAFARID Air · Flight Hub ----------
   { path: "/dashboard/admin/flight-hub",           title: "Flight Hub",                  group: "admin", icon: "PlaneTakeoff", rolesAllowed: ["admin","super_admin"], center: "flight_hub", showInSidebar: true, sortOrder: 700 },
   { path: "/dashboard/admin/flight-hub/console",   title: "Flights Console",             group: "admin", icon: "Radar",        rolesAllowed: ["admin","super_admin"], center: "flight_hub", sortOrder: 701 },
   { path: "/dashboard/admin/flight-hub/partners",  title: "Flight Partner Onboarding",   group: "admin", icon: "Handshake",    rolesAllowed: ["admin","super_admin"], center: "flight_hub", sortOrder: 702 },
@@ -658,7 +658,7 @@ export const ROUTES: RouteRegistry = defineRoutes([
   { path: "/unauthorized", title: "Unauthorized", group: "auth", rolesAllowed: [], sortOrder: 990, hideFromSitemap: true, internalAlias: true },
   { path: "/unsubscribe",  title: "Unsubscribe",  group: "auth", rolesAllowed: [], sortOrder: 991, hideFromSitemap: true, internalAlias: true },
   // Reached only through the private contact link inside a sales outreach message.
-  { path: "/lead/reply",   title: "Reply to Yalla Mobility", group: "auth", rolesAllowed: [], sortOrder: 993, hideFromSitemap: true, internalAlias: true },
+  { path: "/lead/reply",   title: "Reply to SAFARID", group: "auth", rolesAllowed: [], sortOrder: 993, hideFromSitemap: true, internalAlias: true },
   { path: "/account/communication-preferences", title: "Communication Preferences", group: "auth", rolesAllowed: [], sortOrder: 992, hideFromSitemap: true, internalAlias: true },
   { path: "/account/security", title: "Security Centre", group: "auth", rolesAllowed: [], sortOrder: 994, hideFromSitemap: true, internalAlias: true },
 
@@ -714,7 +714,7 @@ export const ROUTES: RouteRegistry = defineRoutes([
   { path: "/staff/value",                title: "Value Engine",                 group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },
   { path: "/staff/forensics",            title: "Operational Forensics",        group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },
   { path: "/staff/control-tower",        title: "Control Tower",                group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },
-  { path: "/staff/ask-yalla",            title: "Ask Yalla",                    group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },
+  { path: "/staff/ask-yalla",            title: "Ask SAFARID",                    group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },
   { path: "/staff/commerce-os",          title: "Commerce OS",                  group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },
   { path: "/staff/commerce-os/review",   title: "Financial Capture Review",     group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true, internalAlias: true },
   { path: "/staff/closure",              title: "Economic Closure",             group: "admin", rolesAllowed: STAFF_PORTAL_ROLES, sortOrder: 72, hideFromSitemap: true },

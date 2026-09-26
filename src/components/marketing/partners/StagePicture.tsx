@@ -2,7 +2,7 @@
  * StagePicture — responsive <picture> with a branded failure state.
  *
  * If the network drops or a variant 404s, the frame degrades to an Executive
- * Blue plate carrying the Yalla mark rather than a broken-image glyph, and the
+ * Blue plate carrying the SAFARID mark rather than a broken-image glyph, and the
  * surrounding section keeps working without imagery.
  */
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ export const StagePicture = ({ picture, alt, sizes, className, priority }: Stage
         className={`flex items-center justify-center bg-primary ${className ?? ""}`}
       >
         <span className="select-none text-xs font-semibold uppercase tracking-[0.32em] text-primary-foreground/70">
-          Yalla Mobility
+          SAFARID
         </span>
       </div>
     );

@@ -660,9 +660,9 @@ export default function LogisticsIntegrations() {
             <Alert className="mt-4">
               <ShieldAlert className="h-4 w-4" aria-hidden />
               <AlertDescription className="text-xs">
-                Webhook signature scheme v2 — <code>Yalla-Signature: t=&lt;unix&gt;,v1=&lt;hex hmac-sha256&gt;</code> over
+                Webhook signature scheme v2 — <code>SAFARID-Signature: t=&lt;unix&gt;,v1=&lt;hex hmac-sha256&gt;</code> over
                 <code> ${"{t}"}.${"{rawBody}"}</code>. Verify with a ±300s timestamp tolerance and reject a repeated
-                <code> Yalla-Event-Id</code>. Signing secrets are shown once at creation and rotation, and are never
+                <code> SAFARID-Event-Id</code>. Signing secrets are shown once at creation and rotation, and are never
                 readable afterwards.
               </AlertDescription>
             </Alert>
@@ -673,7 +673,7 @@ export default function LogisticsIntegrations() {
       <Dialog open={!!secretOnce} onOpenChange={(o) => !o && setSecretOnce(null)}>
         <DialogContent>
           <DialogHeader><DialogTitle>Signing secret — shown once</DialogTitle></DialogHeader>
-          <p className="text-sm text-muted-foreground">Share this with {secretOnce?.label} over a secure channel. Yalla cannot show it again.</p>
+          <p className="text-sm text-muted-foreground">Share this with {secretOnce?.label} over a secure channel. SAFARID cannot show it again.</p>
           <code className="block break-all rounded bg-muted p-3 text-xs">{secretOnce?.secret}</code>
           <DialogFooter><Button onClick={() => setSecretOnce(null)}>I have stored it</Button></DialogFooter>
         </DialogContent>

@@ -41,7 +41,7 @@ export interface DomainFeatureFlags {
 
 export interface DomainLexicon {
   id: AssetDomainId;
-  /** Product brand shown in the header, e.g. "🚌 Yalla Coach". */
+  /** Product brand shown in the header, e.g. "🚌 SAFARID Coach". */
   brandName: string;
   brandEmoji: string;
   brandTagline: string;
@@ -92,7 +92,7 @@ const noFeatures: DomainFeatureFlags = {
 export const DOMAIN_LEXICONS: Record<AssetDomainId, DomainLexicon> = {
   aviation: {
     id: "aviation",
-    brandName: "Yalla Air",
+    brandName: "SAFARID Air",
     brandEmoji: "✈️",
     brandTagline: "Private aviation charter & leasing",
     confirmationTitle: "Flight itinerary",
@@ -121,7 +121,7 @@ export const DOMAIN_LEXICONS: Record<AssetDomainId, DomainLexicon> = {
   },
   road_passenger: {
     id: "road_passenger",
-    brandName: "Yalla Coach",
+    brandName: "SAFARID Coach",
     brandEmoji: "🚌",
     brandTagline: "Bus, van & coach charter",
     confirmationTitle: "Trip confirmation",
@@ -150,7 +150,7 @@ export const DOMAIN_LEXICONS: Record<AssetDomainId, DomainLexicon> = {
   },
   car_rental: {
     id: "car_rental",
-    brandName: "Yalla Drive",
+    brandName: "SAFARID Drive",
     brandEmoji: "🚘",
     brandTagline: "Car rentals & self-drive",
     confirmationTitle: "Rental confirmation",
@@ -179,7 +179,7 @@ export const DOMAIN_LEXICONS: Record<AssetDomainId, DomainLexicon> = {
   },
   truck: {
     id: "truck",
-    brandName: "Yalla Haul",
+    brandName: "SAFARID Haul",
     brandEmoji: "🚚",
     brandTagline: "Truck, lorry & hauler transport",
     confirmationTitle: "Cargo transport confirmation",
@@ -208,7 +208,7 @@ export const DOMAIN_LEXICONS: Record<AssetDomainId, DomainLexicon> = {
   },
   marine: {
     id: "marine",
-    brandName: "Yalla Marine",
+    brandName: "SAFARID Marine",
     brandEmoji: "🛥",
     brandTagline: "Yacht, boat & ship charter",
     confirmationTitle: "Voyage confirmation",
@@ -237,7 +237,7 @@ export const DOMAIN_LEXICONS: Record<AssetDomainId, DomainLexicon> = {
   },
   equipment: {
     id: "equipment",
-    brandName: "Yalla Assets",
+    brandName: "SAFARID Assets",
     brandEmoji: "🏗",
     brandTagline: "Machinery, equipment & event assets",
     confirmationTitle: "Hire confirmation",

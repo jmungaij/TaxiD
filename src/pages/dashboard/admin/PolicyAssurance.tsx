@@ -130,7 +130,7 @@ export default function PolicyAssurance() {
             <h1 className="text-3xl font-bold flex items-center gap-2">
               <ShieldCheck className="text-primary" /> Policy Assurance Framework
             </h1>
-            <p className="text-muted-foreground">Continuous authorization governance for Yalla Mobility.</p>
+            <p className="text-muted-foreground">Continuous authorization governance for SAFARID.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button onClick={() => runScan(true)} disabled={scanning} variant="default">

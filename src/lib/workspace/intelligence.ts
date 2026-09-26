@@ -402,7 +402,7 @@ export function fromCommitment(c: PersonalCommitment, now: Date = new Date()): W
     },
     secondaryActions: [],
     evidence: [
-      { fact: `Promise direction: ${inbound ? "customer to Yalla" : "Yalla to customer"}`, from: "crm_commitments.direction" },
+      { fact: `Promise direction: ${inbound ? "customer to SAFARID" : "SAFARID to customer"}`, from: "crm_commitments.direction" },
       ...(c.due_at ? [{ fact: `Due ${c.due_at}`, from: "crm_commitments.due_at" }] : []),
     ],
     minutes: 15,

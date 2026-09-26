@@ -137,7 +137,7 @@ const MarketingFooter = () => {
 
         <div className="mt-8 pt-6 border-t border-nav-border/60 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-nav-muted-foreground/80">
           <div className="flex flex-wrap items-center gap-4">
-            <p>© 2026 Yalla Mobility. All Rights Reserved.</p>
+            <p>© 2026 SAFARID. All Rights Reserved.</p>
             {/* Secondary discoverability for the SAME canonical Staff Access route. */}
             <Link
               to={STAFF_ACCESS.to}

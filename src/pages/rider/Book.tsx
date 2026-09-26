@@ -138,7 +138,7 @@ export default function RiderBookPage() {
             fareEstimate: String(quote[0].total ?? ""),
             currency: "KES",
             tripUrl: `${window.location.origin}/rider/trips/${bookingId}`,
-            siteName: "Yalla Africa",
+            siteName: "SAFARID Africa",
           },
         },
       }).catch((e) => console.warn("booking email enqueue failed", e));

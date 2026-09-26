@@ -1,5 +1,5 @@
 /**
- * Phase 7 — Yalla Revenue Data Authority Register.
+ * Phase 7 — SAFARID Revenue Data Authority Register.
  *
  * This module exists to stop the Revenue Tree being built on a guess. It does
  * NOT designate a revenue table. It declares the canonical commercial event
@@ -10,12 +10,12 @@
  * Deliberate refusals encoded here:
  *   • bookings are not revenue          • payments are not revenue
  *   • invoices are not revenue unless the accounting model recognises them
- *   • GMV / transaction value is not Yalla revenue
+ *   • GMV / transaction value is not SAFARID revenue
  *   • modelled or simulated values may never populate the authoritative tree
  *
- * Because Yalla is a marketplace, the register separates gross marketplace
+ * Because SAFARID is a marketplace, the register separates gross marketplace
  * transaction value, service-provider entitlement, taxes, refunds and
- * adjustments, cash collected, and Yalla recognised revenue.
+ * adjustments, cash collected, and SAFARID recognised revenue.
  */
 import { untypedDb } from "@/integrations/supabase/untyped";
 
@@ -53,7 +53,7 @@ export const REVENUE_LAYER_LABEL: Record<RevenueLayer, string> = {
   taxes: "Taxes",
   refunds_and_adjustments: "Refunds & adjustments",
   cash_collected: "Cash collected",
-  yalla_recognised_revenue: "Yalla recognised revenue",
+  yalla_recognised_revenue: "SAFARID recognised revenue",
 };
 
 /* --------------------------------------------------------- authority levels */
@@ -62,7 +62,7 @@ export const REVENUE_LAYER_LABEL: Record<RevenueLayer, string> = {
  * `authoritative` — may populate the Revenue Tree once LIVE.
  * `recognition_candidate` — designated recognition layer, not yet populated.
  * `evidence` — traceable support around the truth, never the truth itself.
- * `forbidden` — must never be presented as Yalla revenue.
+ * `forbidden` — must never be presented as SAFARID revenue.
  */
 export type AuthorityLevel = "authoritative" | "recognition_candidate" | "evidence" | "forbidden";
 
@@ -85,7 +85,7 @@ export interface RegisterEntry {
   primaryKey: string;
   /** Field that traces the row back to a transaction/booking. */
   transactionKey: string | null;
-  /** What the number actually means in Yalla's commercial model. */
+  /** What the number actually means in SAFARID's commercial model. */
   revenueMeaning: string;
   calculation: string;
   reconciliationSource: string | null;
@@ -97,7 +97,7 @@ export interface RegisterEntry {
 
 export const REVENUE_DATA_AUTHORITY_REGISTER: readonly RegisterEntry[] = [
   {
-    metric: "Yalla recognised revenue",
+    metric: "SAFARID recognised revenue",
     layer: "yalla_recognised_revenue",
     stage: "revenue",
     sourceTable: "revenue_events",
@@ -105,9 +105,9 @@ export const REVENUE_DATA_AUTHORITY_REGISTER: readonly RegisterEntry[] = [
     primaryKey: "id",
     transactionKey: "source_ref",
     revenueMeaning:
-      "Declared canonical revenue recognition event: the point at which Yalla's own earned revenue is recognised, linked to a journal.",
+      "Declared canonical revenue recognition event: the point at which SAFARID's own earned revenue is recognised, linked to a journal.",
     calculation:
-      "SUM over revenue_allocations of the Yalla-entitlement allocation kinds for events where recognized_at IS NOT NULL — never gross amount alone.",
+      "SUM over revenue_allocations of the SAFARID-entitlement allocation kinds for events where recognized_at IS NOT NULL — never gross amount alone.",
     reconciliationSource: "journals / journal_lines via revenue_events.journal_id",
     owner: "Finance",
     authority: "recognition_candidate",
@@ -123,7 +123,7 @@ export const REVENUE_DATA_AUTHORITY_REGISTER: readonly RegisterEntry[] = [
     primaryKey: "id",
     transactionKey: "event_id",
     revenueMeaning:
-      "Splits a recognised revenue event into its components (Yalla entitlement, partner entitlement, tax, adjustment), which is what makes marketplace revenue separable.",
+      "Splits a recognised revenue event into its components (SAFARID entitlement, partner entitlement, tax, adjustment), which is what makes marketplace revenue separable.",
     calculation: "SUM(amount_cents) grouped by kind for the events in scope.",
     reconciliationSource: "revenue_events",
     owner: "Finance",
@@ -162,7 +162,7 @@ export const REVENUE_DATA_AUTHORITY_REGISTER: readonly RegisterEntry[] = [
     reconciliationSource: "charter_payment_events",
     owner: "Service Operations",
     authority: "forbidden",
-    authorityReason: "Bookings are demand records. GMV is not Yalla revenue.",
+    authorityReason: "Bookings are demand records. GMV is not SAFARID revenue.",
   },
   {
     metric: "Delivery marketplace transaction value",
@@ -204,7 +204,7 @@ export const REVENUE_DATA_AUTHORITY_REGISTER: readonly RegisterEntry[] = [
     sourceField: "tax amount",
     primaryKey: "id",
     transactionKey: "invoice_id",
-    revenueMeaning: "Tax collected on behalf of the revenue authority. Never Yalla income.",
+    revenueMeaning: "Tax collected on behalf of the revenue authority. Never SAFARID income.",
     calculation: "SUM of tax amount by invoice.",
     reconciliationSource: "etims_invoices",
     owner: "Finance",
@@ -236,12 +236,12 @@ export const REVENUE_DATA_AUTHORITY_REGISTER: readonly RegisterEntry[] = [
     primaryKey: "id",
     transactionKey: "batch_ref",
     revenueMeaning:
-      "Value paid out to independent service providers — the portion of GMV that was never Yalla's to recognise.",
+      "Value paid out to independent service providers — the portion of GMV that was never SAFARID's to recognise.",
     calculation: "SUM(total_amount_cents) for closed batches.",
     reconciliationSource: "journal_lines via treasury account",
     owner: "Finance",
     authority: "evidence",
-    authorityReason: "Required to derive Yalla entitlement from GMV; not itself revenue.",
+    authorityReason: "Required to derive SAFARID entitlement from GMV; not itself revenue.",
   },
   {
     metric: "Refunds and adjustments",
@@ -386,7 +386,7 @@ export function revenueTreeGate(assessed: readonly AssessedEntry[]): RevenueTree
     }
   }
   if (admissible.length === 0) {
-    blockers.push("No source is classified authoritative, so no number may be presented as Yalla revenue");
+    blockers.push("No source is classified authoritative, so no number may be presented as SAFARID revenue");
   }
   const forbidden = assessed.filter((a) => a.authority === "forbidden").map((a) => a.sourceTable);
   if (forbidden.length > 0) {
@@ -401,10 +401,10 @@ export function revenueTreeGate(assessed: readonly AssessedEntry[]): RevenueTree
     blockers,
     admissibleSources: admissible.map((a) => a.sourceTable),
     requiredWork: [
-      "Confirm with Finance which accounting event constitutes Yalla revenue recognition (completion, invoice or settlement).",
+      "Confirm with Finance which accounting event constitutes SAFARID revenue recognition (completion, invoice or settlement).",
       "Build a controlled canonical revenue derivation that writes revenue_events + revenue_allocations from completed transactions, invoices, payments, settlements, refunds and adjustments, retaining source_ref traceability on every row.",
       "Reconcile every derived revenue_event to a POSTED journal and surface discrepancies as findings rather than suppressing them.",
-      "Separate GMV, partner entitlement, taxes, refunds, cash collected and Yalla recognised revenue as distinct measures in every presentation.",
+      "Separate GMV, partner entitlement, taxes, refunds, cash collected and SAFARID recognised revenue as distinct measures in every presentation.",
       "Re-run this register; only then promote revenue_events to authority level `authoritative` and build the Revenue Tree on it.",
     ],
   };

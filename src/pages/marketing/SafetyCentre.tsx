@@ -81,16 +81,16 @@ export default function SafetyCentre() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Safety Centre | Yalla Mobility"
-        description="How Yalla Mobility protects riders, drivers, couriers and corporate travellers: partner verification, trip monitoring, incident review and how to report a safety concern."
+        title="Safety Centre | SAFARID"
+        description="How SAFARID protects riders, drivers, couriers and corporate travellers: partner verification, trip monitoring, incident review and how to report a safety concern."
         path="/safety"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Yalla Mobility Safety Centre",
+          name: "SAFARID Safety Centre",
           url: `${SITE_URL}/safety`,
           description:
-            "Partner verification, trip monitoring, incident review and safety reporting across Yalla Mobility services.",
+            "Partner verification, trip monitoring, incident review and safety reporting across SAFARID services.",
         }}
       />
 

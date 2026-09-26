@@ -16,7 +16,7 @@ type Artifact = "url" | "email_address" | "phone_number" | "sender_name" | "scre
 
 const OFFICIAL = {
   domains: ["yalla-africa.lovable.app", "yallaride.co.ke", "yallaride.com"],
-  sms_sender: "YALLA",
+  sms_sender: "SAFARID",
   support_email: "support@yalla.africa",
 };
 
@@ -63,13 +63,13 @@ export default function SecurityCenter() {
     if (v.includes("@")) {
       const domain = v.split("@")[1] ?? "";
       const ok = OFFICIAL.domains.some((d) => domain === d || domain.endsWith("." + d));
-      setVerifyResult({ ok, reason: ok ? "This email domain matches an official Yalla Mobility domain." : "This domain is NOT one of our official domains. Treat the message as suspicious." });
+      setVerifyResult({ ok, reason: ok ? "This email domain matches an official SAFARID domain." : "This domain is NOT one of our official domains. Treat the message as suspicious." });
       return;
     }
     if (/^https?:\/\//.test(v) || v.includes(".")) {
       const host = v.replace(/^https?:\/\//, "").split("/")[0];
       const ok = OFFICIAL.domains.some((d) => host === d || host.endsWith("." + d));
-      setVerifyResult({ ok, reason: ok ? "Link belongs to an official Yalla Mobility domain." : "This URL does NOT match any of our official domains. Do not enter credentials." });
+      setVerifyResult({ ok, reason: ok ? "Link belongs to an official SAFARID domain." : "This URL does NOT match any of our official domains. Do not enter credentials." });
       return;
     }
     if (/^\+?\d[\d\s-]{4,}$/.test(v)) {
@@ -81,7 +81,7 @@ export default function SecurityCenter() {
 
   return (
     <MarketingPage>
-      <PageHero eyebrow="Security Center" title="Stay safe on Yalla Mobility" subtitle="Report phishing, verify suspicious messages, and learn how we protect your account.">
+      <PageHero eyebrow="Security Center" title="Stay safe on SAFARID" subtitle="Report phishing, verify suspicious messages, and learn how we protect your account.">
         <div className="flex flex-wrap gap-3">
           <Button asChild size="lg" className="bg-ice text-primary hover:bg-ice/90">
             <a href="#report"><Shield className="mr-2 h-4 w-4" />Report phishing</a>
@@ -120,7 +120,7 @@ export default function SecurityCenter() {
       <section id="verify" className="container mx-auto px-4 py-12">
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle>Is this from Yalla Mobility?</CardTitle>
+            <CardTitle>Is this from SAFARID?</CardTitle>
             <CardDescription>Paste a link, email address, or phone number you received.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">

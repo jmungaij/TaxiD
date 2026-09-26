@@ -1,8 +1,8 @@
 /**
- * YALLA API PARTNERS — webhook signature verification & replay.
+ * SAFARID API PARTNERS — webhook signature verification & replay.
  *
  * Signature scheme v2 (current):
- *   Yalla-Signature: t=<unix-seconds>,v1=<hex hmac-sha256>
+ *   SAFARID-Signature: t=<unix-seconds>,v1=<hex hmac-sha256>
  *   signed payload  = `${t}.${rawBody}`
  *
  * Verification is constant-time and timestamp-bounded so a captured delivery
@@ -46,7 +46,7 @@ async function hmacSha256Hex(secret: string, message: string): Promise<string> {
   return toHex(await crypto.subtle.sign("HMAC", key, encoder.encode(message)));
 }
 
-/** Build the header value Yalla would send for a payload. */
+/** Build the header value SAFARID would send for a payload. */
 export async function signWebhook(
   secret: string,
   rawBody: string,
@@ -78,7 +78,7 @@ export async function verifyWebhook(
   nowSeconds: number = Math.floor(Date.now() / 1000),
 ): Promise<VerificationResult> {
   if (!headerValue?.trim()) {
-    return { valid: false, failure: "missing_header", detail: "No Yalla-Signature header was supplied. Reject the delivery with 400." };
+    return { valid: false, failure: "missing_header", detail: "No SAFARID-Signature header was supplied. Reject the delivery with 400." };
   }
 
   const parts = Object.fromEntries(

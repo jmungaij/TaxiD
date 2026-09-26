@@ -1,5 +1,5 @@
 /**
- * "WHAT DO YOU BRING TO YALLA?" — the routing step that comes before a visitor
+ * "WHAT DO YOU BRING TO SAFARID?" — the routing step that comes before a visitor
  * is asked to choose a partner category.
  *
  * Three answers: customers (demand), capacity (supply), technology reach
@@ -65,7 +65,7 @@ export function PartnerIntentRouter({ value, onChange }: PartnerIntentRouterProp
           id="bring-heading"
           className="mt-3 mb-3 text-balance text-[clamp(1.5rem,3vw,2.25rem)] font-bold leading-[1.15] tracking-tight"
         >
-          What do you bring to Yalla?
+          What do you bring to SAFARID?
         </h2>
         <p className="text-pretty text-muted-foreground">
           Answer this first and the rest of this page — the partnership on offer, the ecosystem you
@@ -125,7 +125,7 @@ export function PartnerIntentRouter({ value, onChange }: PartnerIntentRouterProp
           <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-8">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                Your route into Yalla
+                Your route into SAFARID
               </span>
               <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">{active.lead}</p>
               <p className="mt-3 text-xs text-muted-foreground">

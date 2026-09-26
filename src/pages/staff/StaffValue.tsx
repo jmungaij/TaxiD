@@ -1,5 +1,5 @@
 /**
- * Phase 6 — Yalla Autonomous Value & Production Excellence surface.
+ * Phase 6 — SAFARID Autonomous Value & Production Excellence surface.
  *
  * Four questions, answered from readable evidence only:
  *  1. What value is the enterprise actually creating? (value engine + EEI)

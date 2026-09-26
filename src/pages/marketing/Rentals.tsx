@@ -140,16 +140,16 @@ const Rentals = () => {
   return (
   <MarketingPage>
     <SeoHead
-      title="Car rentals — self-drive, chauffeur, bus & coach | Yalla Mobility"
+      title="Car rentals — self-drive, chauffeur, bus & coach | SAFARID"
       description="Rent by the hour, day or week. Self-drive, chauffeur services, bus & coach booking and corporate fleet leasing across Kenya."
       path="/rentals"
       jsonLd={{
         "@context": "https://schema.org",
         "@type": "Service",
         serviceType: "Vehicle rental",
-        name: "Car rentals — self-drive, chauffeur, bus & coach | Yalla Mobility",
+        name: "Car rentals — self-drive, chauffeur, bus & coach | SAFARID",
         description: "Rent by the hour, day or week. Self-drive, chauffeur services, bus & coach booking and corporate fleet leasing across Kenya.",
-        provider: { "@type": "Organization", name: "Yalla Mobility", url: "https://yalla-africa.lovable.app" },
+        provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla-africa.lovable.app" },
         areaServed: "Africa",
         url: "https://yalla-africa.lovable.app/rentals",
       }}

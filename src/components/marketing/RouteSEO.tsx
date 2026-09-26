@@ -11,22 +11,22 @@ const OG_IMAGE = `${BASE_URL}/og-yalla-mobility-1200x630.v3.png`;
  * preview.
  */
 const DEFAULT_META = {
-  title: "Yalla Mobility — Transport & Logistics in Kenya",
+  title: "SAFARID — Transport & Logistics in Kenya",
   description:
-    "Browse Yalla Mobility services across Kenya: rides, corporate mobility, charter, vehicle rental and leasing, delivery, freight and logistics.",
+    "Browse SAFARID services across Kenya: rides, corporate mobility, charter, vehicle rental and leasing, delivery, freight and logistics.",
 };
 
 // Per-route head metadata. Titles <60 chars, descriptions 50–160 chars.
 const META: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "Yalla Mobility — Move Smart. Book Yalla.",
+    title: "SAFARID — Move with confidence.",
     description:
       "One platform for rides, corporate mobility, charter, vehicle rental and leasing, delivery and freight — with verified providers and M-Pesa payment.",
   },
   "/about": {
-    title: "About Yalla Mobility — Mobility & Transportation Marketplace",
+    title: "About SAFARID — Mobility & Transportation Marketplace",
     description:
-      "Learn how Yalla Mobility connects customers and organisations with transportation, fleet, charter, rental, leasing and logistics providers.",
+      "Learn how SAFARID connects customers and organisations with transportation, fleet, charter, rental, leasing and logistics providers.",
   },
   "/riders": {
     title: "Rides — Everyday, Airport and Scheduled Journeys",
@@ -34,12 +34,12 @@ const META: Record<string, { title: string; description: string }> = {
       "Book everyday rides, airport transfers and scheduled journeys with verified driver partners. Pay by M-Pesa, card or wallet.",
   },
   "/drivers": {
-    title: "Drive with Yalla Mobility — Become a Driver Partner",
+    title: "Drive with SAFARID — Become a Driver Partner",
     description:
-      "Join Yalla Mobility as a driver partner: access more demand, manage your work, get paid, and use training and support.",
+      "Join SAFARID as a driver partner: access more demand, manage your work, get paid, and use training and support.",
   },
   "/corporates": {
-    title: "Corporate Mobility — Manage Business Travel with Yalla",
+    title: "Corporate Mobility — Manage Business Travel with SAFARID",
     description:
       "Manage employee transportation with centralised booking, controlled spending, approvals, invoicing and reporting.",
   },
@@ -59,109 +59,109 @@ const META: Record<string, { title: string; description: string }> = {
       "Dispatch, fleet management and payment technology for transport operators, logistics businesses and large organisations.",
   },
   "/pricing": {
-    title: "Pricing — Transparent Yalla Mobility & Delivery Fares",
+    title: "Pricing — Transparent SAFARID & Delivery Fares",
     description:
       "See fares, per-kilometre rates, surge limits and business plans for rides, delivery and corporate mobility.",
   },
   "/support": {
-    title: "Help Centre — Yalla Mobility Rider & Driver Support",
+    title: "Help Centre — SAFARID Rider & Driver Support",
     description:
       "Get help with bookings, payments, accounts and safety — support for customers, driver partners and business customers.",
   },
   "/faq": {
-    title: "FAQ — Common Questions About Yalla Mobility",
+    title: "FAQ — Common Questions About SAFARID",
     description:
       "Answers on booking, driver partner onboarding, payments, business accounts, safety and service coverage.",
   },
   "/news": {
-    title: "Newsroom — Yalla Mobility Updates & Press Releases",
+    title: "Newsroom — SAFARID Updates & Press Releases",
     description:
-      "Latest news from Yalla Mobility: launches, partnerships, policy updates and product milestones across African markets.",
+      "Latest news from SAFARID: launches, partnerships, policy updates and product milestones across African markets.",
   },
   "/careers": {
-    title: "Careers at Yalla Mobility — Open Roles and Apply",
+    title: "Careers at SAFARID — Open Roles and Apply",
     description:
       "Open roles in engineering, operations, design, commercial and compliance. Apply and track your application online.",
   },
   "/contact": {
-    title: "Contact Yalla Mobility — Sales, Support & Partnerships",
+    title: "Contact SAFARID — Sales, Support & Partnerships",
     description:
-      "Contact Yalla Mobility for customer support, commercial enquiries, driver partner applications, partnerships and media.",
+      "Contact SAFARID for customer support, commercial enquiries, driver partner applications, partnerships and media.",
   },
   "/developers": {
-    title: "Developers — Yalla Mobility APIs & Integrations",
+    title: "Developers — SAFARID APIs & Integrations",
     description:
-      "Integrate Yalla Mobility booking, dispatch and payment APIs. Documentation, SDKs and sandbox access for developers.",
+      "Integrate SAFARID booking, dispatch and payment APIs. Documentation, SDKs and sandbox access for developers.",
   },
   "/security": {
-    title: "Security at Yalla — Platform Security Overview",
+    title: "Security at SAFARID — Platform Security Overview",
     description:
-      "How Yalla Mobility secures rider, driver and corporate data: encryption in transit and at rest, MFA, RBAC and SOC-style controls.",
+      "How SAFARID secures rider, driver and corporate data: encryption in transit and at rest, MFA, RBAC and SOC-style controls.",
   },
   "/security-center": {
     title: "Security Centre — Compliance, Disclosure & Reports",
     description:
-      "Yalla's Security Centre: compliance certifications, audit reports, vulnerability disclosure program and incident response.",
+      "SAFARID's Security Centre: compliance certifications, audit reports, vulnerability disclosure program and incident response.",
   },
   "/rentals/self-drive": {
-    title: "Self-Drive Car Rental in Nairobi — Yalla Mobility",
+    title: "Self-Drive Car Rental in Nairobi — SAFARID",
     description:
       "Hire a self-drive car in Nairobi with published daily rates, included kilometres and transparent excess-kilometre pricing. Book or request a quote.",
   },
   "/rentals/chauffeur": {
-    title: "Chauffeured Car Hire in Nairobi — Yalla Mobility",
+    title: "Chauffeured Car Hire in Nairobi — SAFARID",
     description:
       "Chauffeured vehicles with vetted drivers for business travel, events and airport transfers. Published day rates, clear extras, corporate discount.",
   },
   "/logistics/solutions": {
-    title: "Business Logistics Solutions in Kenya — Yalla Mobility",
+    title: "Business Logistics Solutions in Kenya — SAFARID",
     description:
       "Document courier, express city delivery, standard parcel, freight and e-commerce fulfilment with coverage areas, collection hours and proof of delivery.",
   },
   "/blog/corporate-travel-management-guide": {
-    title: "Corporate Travel Management Guide — Yalla for Business",
+    title: "Corporate Travel Management Guide — SAFARID for Business",
     description:
       "A practical guide for finance and HR teams: setting travel policies, controlling costs and reporting on corporate mobility.",
   },
   "/reliability": {
-    title: "Reliability at Yalla Mobility — How Bookings Hold Up",
+    title: "Reliability at SAFARID — How Bookings Hold Up",
     description:
-      "How Yalla Mobility protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation.",
+      "How SAFARID protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation.",
   },
   "/transparency": {
-    title: "Transparency at Yalla Mobility — Prices and Records",
+    title: "Transparency at SAFARID — Prices and Records",
     description:
-      "See how Yalla Mobility shows prices before payment, issues references and receipts, and reports corporate spending without hidden fees.",
+      "See how SAFARID shows prices before payment, issues references and receipts, and reports corporate spending without hidden fees.",
   },
   "/innovation": {
-    title: "Engineering & Innovation at Yalla Mobility",
+    title: "Engineering & Innovation at SAFARID",
     description:
-      "How Yalla Mobility is built: event-driven operations, configurable business rules, evidence-gated releases and AI used as a reasoning layer.",
+      "How SAFARID is built: event-driven operations, configurable business rules, evidence-gated releases and AI used as a reasoning layer.",
   },
   "/compliance": {
-    title: "Compliance at Yalla Mobility — Kenya Requirements",
+    title: "Compliance at SAFARID — Kenya Requirements",
     description:
-      "How Yalla Mobility handles Kenyan compliance: partner document checks, KRA tax details, data-protection rights and recorded approvals.",
+      "How SAFARID handles Kenyan compliance: partner document checks, KRA tax details, data-protection rights and recorded approvals.",
   },
   "/privacy": {
-    title: "Privacy at Yalla Mobility — Your Data and Rights",
+    title: "Privacy at SAFARID — Your Data and Rights",
     description:
-      "What personal data Yalla Mobility collects, why it is needed, who can see it, and how to access, correct, export or delete your information.",
+      "What personal data SAFARID collects, why it is needed, who can see it, and how to access, correct, export or delete your information.",
   },
   "/leadership": {
-    title: "Leadership at Yalla Mobility — How It Is Run",
+    title: "Leadership at SAFARID — How It Is Run",
     description:
-      "How responsibility is divided at Yalla Mobility, an early-stage founder-led Kenyan mobility company, and how to reach the right team.",
+      "How responsibility is divided at SAFARID, an early-stage founder-led Kenyan mobility company, and how to reach the right team.",
   },
   "/governance": {
-    title: "Governance at Yalla Mobility — Controls and Approvals",
+    title: "Governance at SAFARID — Controls and Approvals",
     description:
-      "How Yalla Mobility governs decisions: role-based access, second-approver rules, recorded audit trails and evidence-based release gates.",
+      "How SAFARID governs decisions: role-based access, second-approver rules, recorded audit trails and evidence-based release gates.",
   },
   "/sustainability": {
-    title: "Sustainability at Yalla Mobility — An Honest Position",
+    title: "Sustainability at SAFARID — An Honest Position",
     description:
-      "Yalla Mobility's honest sustainability position: measurable vehicle utilisation and paperless operations today, no unverified emissions claims.",
+      "SAFARID's honest sustainability position: measurable vehicle utilisation and paperless operations today, no unverified emissions claims.",
   },
 };
 
@@ -169,7 +169,7 @@ const META: Record<string, { title: string; description: string }> = {
 const ARTICLE_ROUTES = new Set(["/blog/corporate-travel-management-guide"]);
 
 // Per-route JSON-LD structured data. Stacks with sitewide Organization/WebSite in index.html.
-const ORG = { "@type": "Organization", name: "Yalla Mobility", url: BASE_URL } as const;
+const ORG = { "@type": "Organization", name: "SAFARID", url: BASE_URL } as const;
 
 function buildRouteJsonLd(pathname: string, title: string, description: string, url: string) {
   const blocks: Record<string, unknown>[] = [];

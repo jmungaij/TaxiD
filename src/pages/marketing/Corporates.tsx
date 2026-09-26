@@ -30,7 +30,7 @@ const Corporates = () => (
       title="Enterprise Mobility and Travel Governance Platform"
       subtitle="Control travel spend, compliance, approvals, budgets, and employee mobility from a single platform."
       image={corporatesImg}
-      imageAlt="Corporate executive entering chauffeured Yalla Mobility vehicle"
+      imageAlt="Corporate executive entering chauffeured SAFARID vehicle"
     >
       <Button id="demo" size="lg" className="bg-ice text-primary hover:bg-ice/90" asChild><Link to="/contact?subject=enterprise-demo">Request Enterprise Demo <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
     </PageHero>
@@ -153,7 +153,7 @@ const Corporates = () => (
       </div>
     </section>
     <CrossLinks
-      heading="Related on Yalla"
+      heading="Related on SAFARID"
       keys={["enterprise", "developers", "pricing", "delivery", "rentals", "careers"]}
     />
   </MarketingPage>

@@ -71,7 +71,7 @@ export function OnboardingMessageCard() {
             disabled={loading}
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder={"Welcome to **Yalla Mobility**.\n\n- Upload your documents\n- [Read the guide](https://yalla.africa/docs)"}
+            placeholder={"Welcome to **SAFARID**.\n\n- Upload your documents\n- [Read the guide](https://yalla.africa/docs)"}
           />
           <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
             <span>{value.length} / {MAX}</span>

@@ -152,10 +152,10 @@ export default function MeetingsHub() {
     <div className="space-y-6 p-6">
       <div>
         <h1 className="text-2xl font-semibold">Meetings</h1>
-        <p className="text-sm text-muted-foreground">Your Yalla calendar and meetings: prepare, join, log outcomes and book for clients. Clients book themselves at /book-a-meeting.</p>
+        <p className="text-sm text-muted-foreground">Your SAFARID calendar and meetings: prepare, join, log outcomes and book for clients. Clients book themselves at /book-a-meeting.</p>
       </div>
       <Tabs value={tab} onValueChange={(v) => setSp({ tab: v })}>
-        <TabsList className="flex-wrap h-auto"><TabsTrigger value="mine">My meetings</TabsTrigger><TabsTrigger value="followup">Follow-up</TabsTrigger><TabsTrigger value="calendar">My Yalla calendar</TabsTrigger><TabsTrigger value="book">Book for a client</TabsTrigger><TabsTrigger value="connections">Calendar connections</TabsTrigger><TabsTrigger value="health">Health</TabsTrigger><TabsTrigger value="settings">Meeting types</TabsTrigger><TabsTrigger value="analytics">Analytics (90 days)</TabsTrigger></TabsList>
+        <TabsList className="flex-wrap h-auto"><TabsTrigger value="mine">My meetings</TabsTrigger><TabsTrigger value="followup">Follow-up</TabsTrigger><TabsTrigger value="calendar">My SAFARID calendar</TabsTrigger><TabsTrigger value="book">Book for a client</TabsTrigger><TabsTrigger value="connections">Calendar connections</TabsTrigger><TabsTrigger value="health">Health</TabsTrigger><TabsTrigger value="settings">Meeting types</TabsTrigger><TabsTrigger value="analytics">Analytics (90 days)</TabsTrigger></TabsList>
         <TabsContent value="book" className="pt-4"><BookingWizard mode="staff" /></TabsContent>
         <TabsContent value="mine" className="pt-4"><Bookings /></TabsContent>
         <TabsContent value="followup" className="pt-4"><HostFollowUp /></TabsContent>

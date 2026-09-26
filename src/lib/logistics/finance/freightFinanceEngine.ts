@@ -6,7 +6,7 @@
  * The client may not write to the financial tables directly, may not compute a
  * price, and may not decide who is allowed to act.
  *
- * INTEGRATION LAW: Yalla's existing M-Pesa engine (`mpesa_transactions`,
+ * INTEGRATION LAW: SAFARID's existing M-Pesa engine (`mpesa_transactions`,
  * `payment_attempts`, callbacks, idempotency keys, reconciliation runs) remains
  * the PAYMENT AUTHORITY. Nothing here initiates, mutates or re-implements a
  * payment. `allocatePayment` only records the relationship between money that

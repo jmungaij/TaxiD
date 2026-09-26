@@ -1,7 +1,7 @@
 /**
  * PLATFORM-LEVEL public commitment governance.
  *
- * Elevated out of logistics: every Yalla service surface (mobility, charter,
+ * Elevated out of logistics: every SAFARID service surface (mobility, charter,
  * rentals, delivery, corporate, partner marketplace) must resolve what it may
  * promise through this module.
  *

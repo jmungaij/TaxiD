@@ -1,7 +1,7 @@
 /**
- * YALLA PARTNERS 360 — one partner journey, drill-through.
+ * SAFARID PARTNERS 360 — one partner journey, drill-through.
  *
- * Everything one visitor session did on the Yalla Partners experience, in order:
+ * Everything one visitor session did on the SAFARID Partners experience, in order:
  * which messaging frames they read, what they said they bring, the category and
  * maturity level they chose, the lifecycle stages they opened, the messaging arm
  * they were shown, and every CTA they clicked. Alongside it, the staff work this
@@ -177,8 +177,8 @@ export default function PartnerJourneyDetail() {
     <div className="space-y-6">
       <StaffPageHeader
         title="Partner journey"
-        eyebrow="Yalla Partners 360"
-        lede={`Everything this session did on the Yalla Partners experience, in order, over the last ${days} days.`}
+        eyebrow="SAFARID Partners 360"
+        lede={`Everything this session did on the SAFARID Partners experience, in order, over the last ${days} days.`}
         actions={
           <div className="flex flex-wrap gap-2">
             <Button

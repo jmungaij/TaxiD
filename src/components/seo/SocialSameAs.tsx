@@ -26,7 +26,7 @@ export function SocialSameAs() {
           "@context": "https://schema.org",
           "@type": "Organization",
           "@id": ORG_ID,
-          name: "Yalla Mobility",
+          name: "SAFARID",
           url: "https://yalla-africa.lovable.app",
           sameAs,
         })}

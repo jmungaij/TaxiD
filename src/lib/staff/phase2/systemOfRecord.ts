@@ -2,7 +2,7 @@
  * Phase 2 — System of Record.
  *
  * One canonical definition per business entity: which domain owns it, which
- * department is accountable, which existing Yalla table is authoritative, and
+ * department is accountable, which existing SAFARID table is authoritative, and
  * which lifecycle governs its state. There are deliberately NO competing
  * duplicate entities: if a concept already exists in the platform schema, the
  * registry points at that table rather than inventing a parallel one.
@@ -40,7 +40,7 @@ export interface CanonicalEntity {
   domain: RecordDomain;
   /** Accountable department (owner of the data, not merely its consumer). */
   owner: string;
-  /** Authoritative table in the Yalla platform schema, or null when absent. */
+  /** Authoritative table in the SAFARID platform schema, or null when absent. */
   table: string | null;
   /** Lifecycle key from lifecycles.ts governing this entity's state. */
   lifecycle?: string;
@@ -90,7 +90,7 @@ export const CANONICAL_ENTITIES: readonly CanonicalEntity[] = [
   /* human capital */
   { key: "capability", label: "Capability", domain: "human_capital", owner: "People & Culture", table: "capabilities" },
   { key: "goal_kpi", label: "Goal / KPI", domain: "human_capital", owner: "People & Culture", table: null, note: "Performance goals not yet persisted." },
-  { key: "learning", label: "Learning programme / certification", domain: "human_capital", owner: "Yalla Academy", table: "certification_workflows" },
+  { key: "learning", label: "Learning programme / certification", domain: "human_capital", owner: "SAFARID Academy", table: "certification_workflows" },
 
   /* governance */
   { key: "task", label: "Task (Work Engine)", domain: "governance", owner: "Each department", table: "staff_follow_up_tasks", lifecycle: "task" },

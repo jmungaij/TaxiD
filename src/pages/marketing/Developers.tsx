@@ -26,19 +26,19 @@ export default function Developers() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Yalla Mobility for developers — Mobility, Delivery, Wallet & Identity APIs"
+        title="SAFARID for developers — Mobility, Delivery, Wallet & Identity APIs"
         description="REST APIs, webhooks and event streams for mobility, delivery, rentals and identity. Token-based auth, signed webhooks, sandbox environments."
         path="/developers"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "TechArticle",
-          headline: "Yalla Mobility Developer Platform",
+          headline: "SAFARID Developer Platform",
           about: "Mobility, Delivery, Wallet, Identity APIs",
         }}
       />
       <PageHero
         eyebrow="Developers"
-        title="Build on Yalla Mobility"
+        title="Build on SAFARID"
         subtitle="REST APIs, signed webhooks and event streams for mobility, delivery, rentals and identity. Token-based auth, sandbox environments, OpenAPI spec."
       >
         <div className="flex flex-wrap gap-3">
@@ -80,9 +80,9 @@ export default function Developers() {
           <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-border bg-card p-8 md:flex-row md:items-center">
             <div className="max-w-2xl">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">AI assistants · MCP</span>
-              <h2 className="text-2xl font-bold mt-2 mb-2">Use Yalla from Claude or ChatGPT</h2>
+              <h2 className="text-2xl font-bold mt-2 mb-2">Use SAFARID from Claude or ChatGPT</h2>
               <p className="text-muted-foreground">
-                Connect the Yalla Mobility MCP server to your AI assistant and ask about your wallet,
+                Connect the SAFARID MCP server to your AI assistant and ask about your wallet,
                 trips and transactions — secured with OAuth sign-in.
               </p>
             </div>

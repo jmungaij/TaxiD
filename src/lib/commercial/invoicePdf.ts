@@ -1,5 +1,5 @@
 /**
- * Printed tax invoice and payment receipt, on the Yalla Mobility letterhead.
+ * Printed tax invoice and payment receipt, on the SAFARID letterhead.
  *
  * The bytes returned here are hashed and the digest is stored against the
  * record when the document is emailed, so the file in the customer's inbox can
@@ -32,7 +32,7 @@ function letterhead(pdf: any, heading: string, reference: string) {
   pdf.setTextColor(255);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(16);
-  pdf.text("YALLA MOBILITY", M, 13);
+  pdf.text("SAFARID", M, 13);
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(8.5);
   pdf.text("Yalla Beena Limited · Nairobi, Kenya", M, 19);

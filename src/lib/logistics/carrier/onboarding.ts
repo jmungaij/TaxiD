@@ -1,7 +1,7 @@
 /**
  * FLEET OWNER (CARRIER) ONBOARDING — client API.
  *
- * Yalla Mobility is a digital marketplace. The Fleet Owner / Transport Service
+ * SAFARID is a digital marketplace. The Fleet Owner / Transport Service
  * Provider is the independent provider of the physical transport service and is
  * the OWNER of the carrier-side evidence: operating licences, insurance, vehicle
  * inspection, driver licences and professional badges.

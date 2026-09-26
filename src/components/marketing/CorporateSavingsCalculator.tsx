@@ -3,7 +3,7 @@
  *
  * Commercial intelligence for the buyer: it compares the company's current
  * transport arrangement (owned fleet, reimbursements or ad-hoc taxis) with a
- * managed Yalla Mobility programme priced through the governed rate engine
+ * managed SAFARID programme priced through the governed rate engine
  * (`estimateDailyRate`), then reports savings, admin time recovered, carbon
  * reduction, cost per employee trip and the payback period.
  *
@@ -156,7 +156,7 @@ export function CorporateSavingsCalculator({ authenticated }: { authenticated: b
       ["Trips per employee / month", inputs.tripsPerEmployeePerMonth],
       ["Current cost per trip (KES)", inputs.currentCostPerTripKes],
       ["Current annual spend (KES)", result.currentAnnualKes],
-      ["Yalla annual programme (KES)", result.yallaAnnualKes],
+      ["SAFARID annual programme (KES)", result.yallaAnnualKes],
       ["Annual saving (KES)", result.annualSavingKes],
       ["Saving (%)", result.savingPct.toFixed(1)],
       ["Cost per employee / month (KES)", result.costPerEmployeeKes],
@@ -267,7 +267,7 @@ export function CorporateSavingsCalculator({ authenticated }: { authenticated: b
         <dl className="mt-6 grid gap-4 sm:grid-cols-2">
           {[
             { icon: TrendingDown, k: "Current annual spend", v: kes(result.currentAnnualKes) },
-            { icon: PiggyBank, k: "With Yalla Mobility", v: kes(result.yallaAnnualKes) },
+            { icon: PiggyBank, k: "With SAFARID", v: kes(result.yallaAnnualKes) },
             { icon: PiggyBank, k: "Annual saving", v: kes(result.annualSavingKes) },
             { icon: Timer, k: "Admin hours recovered / year", v: `${result.adminHoursSavedPerYear} h` },
             { icon: Leaf, k: "CO₂e avoided / year", v: `${result.co2SavedKg.toLocaleString("en-KE")} kg` },

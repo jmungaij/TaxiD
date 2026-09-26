@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS 360 — onboarding checklist drill-down (staff surface).
+ * SAFARID PARTNERS 360 — onboarding checklist drill-down (staff surface).
  *
  * Presents the requirement catalogue against what the partner has actually
  * submitted: nothing is inferred. Verification is gated by the server

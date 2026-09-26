@@ -1,5 +1,5 @@
 /**
- * AUTHORITATIVE YALLA MOBILITY COMMUNICATIONS CONFIGURATION
+ * AUTHORITATIVE SAFARID COMMUNICATIONS CONFIGURATION
  * ---------------------------------------------------------
  * Single source of truth for every public-facing contact channel.
  * Never hard-code a phone number or contact email address anywhere else —
@@ -41,7 +41,7 @@ export const WHATSAPP_LINK = `https://wa.me/${CONTACT.whatsappNumber}`;
 /**
  * Social profiles are NO LONGER configured here.
  *
- * Ownership, verification, approval and activation of every official Yalla
+ * Ownership, verification, approval and activation of every official SAFARID
  * Mobility social destination is governed by the Social Distribution
  * subsystem (`public.social_accounts` + /dashboard/admin/social-distribution)
  * and read at runtime via `src/lib/social/api.ts`. Hard-coding a handle here
@@ -53,11 +53,11 @@ export const WHATSAPP_LINK = `https://wa.me/${CONTACT.whatsappNumber}`;
 
 /** Accessible labels — never rely on icons alone. */
 export const CONTACT_A11Y = {
-  phone: `Call Yalla Mobility at ${CONTACT.phoneDisplay}`,
-  support: "Email Yalla Mobility Support",
-  sales: "Email Yalla Mobility Sales",
-  hr: "Email Yalla Mobility Recruitment",
-  whatsapp: `Message Yalla Mobility on WhatsApp at ${CONTACT.phoneDisplay}`,
+  phone: `Call SAFARID at ${CONTACT.phoneDisplay}`,
+  support: "Email SAFARID Support",
+  sales: "Email SAFARID Sales",
+  hr: "Email SAFARID Recruitment",
+  whatsapp: `Message SAFARID on WhatsApp at ${CONTACT.phoneDisplay}`,
 } as const;
 
 /** Public enquiry categories. Server decides the destination inbox from these. */
@@ -83,4 +83,4 @@ export function categoryTeam(category: string): "support" | "sales" | "hr" {
 
 /** User-facing fallback when a submission cannot be delivered. */
 export const CONTACT_FAILURE_MESSAGE =
-  `Unable to submit your enquiry at this time. Please contact Yalla Mobility Support at ${CONTACT.supportEmail} or call ${CONTACT.phoneDisplay}.`;
+  `Unable to submit your enquiry at this time. Please contact SAFARID Support at ${CONTACT.supportEmail} or call ${CONTACT.phoneDisplay}.`;

@@ -101,7 +101,7 @@ export function RequireStaffPortal({ children }: { children: React.ReactNode }) 
               <ShieldAlert className="h-3.5 w-3.5" aria-hidden /> Staff portal unavailable
             </div>
             <h1 className="text-xl font-semibold tracking-tight">
-              This login is not on the Yalla staff register.
+              This login is not on the SAFARID staff register.
             </h1>
             <p className="text-sm text-muted-foreground">
               The staff portal opens automatically once your employee record carries your verified

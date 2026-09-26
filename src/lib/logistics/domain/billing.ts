@@ -79,7 +79,7 @@ export function evaluateBilling(results: PackageResult[], contract: BillingContr
       delivery_outcome: r.outcome,
       reason_code: r.reason_code,
       evaluation: contract.charge_return_leg ? "BILLABLE" : "NOT_BILLABLE",
-      basis: contract.charge_return_leg ? "return-leg charge permitted by contract" : "return leg absorbed by Yalla",
+      basis: contract.charge_return_leg ? "return-leg charge permitted by contract" : "return leg absorbed by SAFARID",
     };
   });
 
@@ -172,7 +172,7 @@ export type ClaimCandidateState = "CLAIM_CANDIDATE" | "CLAIM_OPENED" | "REJECTED
 
 /**
  * A claim candidate NEVER becomes a claim automatically — eligibility review is
- * mandatory so Yalla never auto-assumes liability.
+ * mandatory so SAFARID never auto-assumes liability.
  */
 export function promoteClaimCandidate(input: {
   reviewed: boolean;

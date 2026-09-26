@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — rate-limit simulator (deterministic, client-side).
+ * SAFARID API PARTNERS — rate-limit simulator (deterministic, client-side).
  *
  * This is a *model* of the documented throttling contract, not a live probe of
  * production. It exists so a partner engineer can reason about burst behaviour,

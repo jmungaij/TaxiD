@@ -135,7 +135,7 @@ export function Step3Verification() {
       <div>
         <h2 className="text-xl font-semibold">Business verification</h2>
         <p className="text-sm text-muted-foreground">
-          Here is exactly what Yalla will collect and verify for your registration type.
+          Here is exactly what SAFARID will collect and verify for your registration type.
         </p>
       </div>
 
@@ -162,7 +162,7 @@ export function Step3Verification() {
           </div>
 
           <section aria-labelledby="checklist">
-            <h3 id="checklist" className="mb-3 text-sm font-medium">Yalla admin verification checklist</h3>
+            <h3 id="checklist" className="mb-3 text-sm font-medium">SAFARID admin verification checklist</h3>
             <ul className="grid gap-2 text-sm md:grid-cols-2">
               {checklist.map((s) => (
                 <li key={s.key} className="flex items-start gap-2 rounded-md border p-3">
@@ -458,7 +458,7 @@ function DocSlotCard({
           {pendingFile && needsDeclare && (
             <div className="mt-3 grid gap-2 rounded-md border bg-muted/30 p-3 md:grid-cols-2">
               <div className="md:col-span-2 text-xs text-muted-foreground">
-                Provide details from the document so Yalla can verify it matches your business.
+                Provide details from the document so SAFARID can verify it matches your business.
               </div>
               {slot.declares?.includes("expiry_date") && (
                 <div>
@@ -670,7 +670,7 @@ export function Step5Review() {
             <CheckCircle2 className="mx-auto h-12 w-12 text-status-success" aria-hidden />
             <h2 className="text-xl font-semibold">Application submitted</h2>
             <p className="text-sm text-muted-foreground">
-              Yalla's compliance team will verify your documents within 1–2 business days and email your authorized officer.
+              SAFARID's compliance team will verify your documents within 1–2 business days and email your authorized officer.
             </p>
           </>
         )}

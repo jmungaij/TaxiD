@@ -1,5 +1,5 @@
 /**
- * Yalla Air charter search — turns a search criteria object into priced,
+ * SAFARID Air charter search — turns a search criteria object into priced,
  * comparable aircraft options plus price insights and an AI recommendation.
  *
  * Everything is derived from the existing aviation pricing engine
@@ -236,7 +236,7 @@ export interface SearchResult {
 }
 
 const OPERATORS = [
-  { name: "Yalla Air Charter", rating: 4.9 },
+  { name: "SAFARID Air Charter", rating: 4.9 },
   { name: "Rift Valley Aviation", rating: 4.7 },
   { name: "Savannah Wings", rating: 4.6 },
   { name: "Lakeside Executive Air", rating: 4.5 },

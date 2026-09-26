@@ -237,7 +237,7 @@ export function HeroCinematic() {
   return (
     <section
       ref={sectionRef}
-      aria-label="Yalla Mobility — book rides, deliveries, rentals, leasing, charter and corporate mobility"
+      aria-label="SAFARID — book rides, deliveries, rentals, leasing, charter and corporate mobility"
       className="relative isolate flex min-h-[92svh] items-end overflow-hidden bg-background"
     >
       {/* 1 — primary daylight frame (always present, LCP candidate).
@@ -351,7 +351,7 @@ export function HeroCinematic() {
           </h1>
 
           <p className={cn("mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg", !still && "cine-rise")} style={still ? undefined : { animationDelay: "160ms" }}>
-            Yalla Mobility connects individuals, businesses and organisations with trusted mobility and
+            SAFARID connects individuals, businesses and organisations with trusted mobility and
             transportation providers — from everyday rides and corporate travel to charter, vehicle rental
             and leasing, delivery, freight and specialised transport.
           </p>

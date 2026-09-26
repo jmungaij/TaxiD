@@ -1,5 +1,5 @@
 /**
- * Yalla Workforce Operating System — Role Blueprint Engine.
+ * SAFARID Workforce Operating System — Role Blueprint Engine.
  *
  * A role blueprint is the reusable contract between the operating model and a
  * human being: why the position exists, what it owns, what must change because
@@ -113,7 +113,7 @@ const SALES: RoleBlueprint = {
   jobFamily: "Revenue",
   grade: "P3",
   purpose:
-    "Acquire and activate corporate mobility customers that generate recurring, compliant transaction value on the Yalla platform.",
+    "Acquire and activate corporate mobility customers that generate recurring, compliant transaction value on the SAFARID platform.",
   accountabilities: [
     "Qualified corporate pipeline in assigned territory",
     "Proposal quality and commercial accuracy",
@@ -131,7 +131,7 @@ const SALES: RoleBlueprint = {
     "Proposal and tender writing",
     "CRM discipline",
   ],
-  requiredTraining: ["Yalla platform fundamentals", "Corporate pricing & policy", "KYB and compliance basics"],
+  requiredTraining: ["SAFARID platform fundamentals", "Corporate pricing & policy", "KYB and compliance basics"],
   authority: ["Standard rate-card proposals", "Meeting scheduling", "Pipeline stage changes"],
   escalation: ["Non-standard discounts", "Bespoke SLAs", "Credit terms", "Contract deviations"],
   dependencies: ["Corporate Ops (activation)", "Finance (credit & invoicing)", "Compliance (KYB)", "Supply Ops (capacity)"],
@@ -210,7 +210,7 @@ const CUSTOMER_OPS: RoleBlueprint = {
   jobFamily: "Customer",
   grade: "P2",
   purpose:
-    "Resolve customer requests and service failures fast enough to protect revenue, retention and the Yalla service promise.",
+    "Resolve customer requests and service failures fast enough to protect revenue, retention and the SAFARID service promise.",
   accountabilities: ["First-response and resolution SLA", "Case quality and evidence", "Commercial opportunity referral"],
   outcomes: ["Customers stay after a failure", "Revenue at risk is recovered", "Repeat causes are escalated, not absorbed"],
   capabilities: ["Case management", "Service recovery", "Root-cause articulation"],
@@ -314,7 +314,7 @@ const CORPORATE_SALES_SPECIALIST: RoleBlueprint = {
   jobFamily: "Revenue",
   grade: "Officer",
   purpose:
-    "Acquire and grow a portfolio of corporate mobility clients for Yalla Mobility by identifying opportunities, building strong relationships and closing deals that deliver sustainable revenue growth.",
+    "Acquire and grow a portfolio of corporate mobility clients for SAFARID by identifying opportunities, building strong relationships and closing deals that deliver sustainable revenue growth.",
   accountabilities: [
     "Qualified corporate lead pipeline created and progressed in the platform",
     "Proposals, quotations and service agreements prepared within approved pricing",
@@ -335,7 +335,7 @@ const CORPORATE_SALES_SPECIALIST: RoleBlueprint = {
     "CRM and pipeline discipline",
   ],
   requiredTraining: [
-    "Yalla Mobility service portfolio",
+    "SAFARID service portfolio",
     "Corporate pricing, policy and delegation limits",
     "Sales portal and lead pipeline enablement",
     "Data Protection Act 2019 and confidentiality obligations",

@@ -77,7 +77,7 @@ export async function buildCommercialDocumentPdf(doc: CommercialPdfInput): Promi
   pdf.setTextColor(255);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(15);
-  pdf.text("YALLA MOBILITY", M, 12);
+  pdf.text("SAFARID", M, 12);
   pdf.setFontSize(9);
   pdf.setFont("helvetica", "normal");
   pdf.text("Commercial Document · Forensic Original", M, 19);
@@ -141,7 +141,7 @@ export async function buildCommercialDocumentPdf(doc: CommercialPdfInput): Promi
 
   pdf.setTextColor(140);
   pdf.setFontSize(8);
-  pdf.text(`Yalla Mobility · ${doc.document_number} · generated ${new Date().toISOString()}`, M, 290);
+  pdf.text(`SAFARID · ${doc.document_number} · generated ${new Date().toISOString()}`, M, 290);
 
   return new Uint8Array(pdf.output("arraybuffer"));
 }

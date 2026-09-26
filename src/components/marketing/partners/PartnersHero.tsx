@@ -1,5 +1,5 @@
 /**
- * Yalla Partners hero — the proposition and the product in one frame.
+ * SAFARID Partners hero — the proposition and the product in one frame.
  *
  * The right half is not decoration: it is a labelled *illustration* of the
  * partner workspace (order book, commercial split, supply coverage). Every
@@ -21,7 +21,7 @@ const ORDER_ROWS = [
 const SPLIT = [
   { label: "Customer price", value: "KES 50,000" },
   { label: "Supplier cost", value: "KES 40,000" },
-  { label: "Yalla margin", value: "KES 5,000" },
+  { label: "SAFARID margin", value: "KES 5,000" },
   { label: "Your margin", value: "KES 5,000" },
 ];
 
@@ -50,12 +50,12 @@ export function PartnersHero() {
             Mobility distribution infrastructure
           </span>
           <h1 className="mt-4 text-[clamp(2rem,4.6vw,3.4rem)] font-bold leading-[1.05] tracking-tight">
-            Build your mobility offering on Yalla.
+            Build your mobility offering on SAFARID.
           </h1>
           <p className="mt-5 max-w-xl text-lg text-primary-foreground/85">
-            Yalla Partners gives travel, hospitality, corporate, commerce and logistics businesses the
+            SAFARID Partners gives travel, hospitality, corporate, commerce and logistics businesses the
             infrastructure to sell and fulfil transportation under their own customer relationships.
-            You keep the customer, the brand and the margin. Yalla is the execution layer — supply,
+            You keep the customer, the brand and the margin. SAFARID is the execution layer — supply,
             dispatch, journey, settlement.
           </p>
 
@@ -94,7 +94,7 @@ export function PartnersHero() {
         <div
           className="glass-card space-y-4 p-4 sm:p-5 motion-safe:animate-scale-in"
           role="img"
-          aria-label="Illustration of the Yalla partner workspace showing an order book, the commercial split of an order and supply coverage"
+          aria-label="Illustration of the SAFARID partner workspace showing an order book, the commercial split of an order and supply coverage"
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2 text-sm font-semibold text-primary-foreground">

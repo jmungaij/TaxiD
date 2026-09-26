@@ -143,7 +143,7 @@ export default function SecurityCentre() {
   return (
     <main className="container mx-auto max-w-4xl px-4 py-10">
       <Helmet>
-        <title>Security Centre | Yalla</title>
+        <title>Security Centre | SAFARID</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 
@@ -155,7 +155,7 @@ export default function SecurityCentre() {
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">Your account security</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Where you are signed in, the devices you have used, and recent activity on your account.
-          Only you and Yalla security staff can see this.
+          Only you and SAFARID security staff can see this.
         </p>
       </header>
 
@@ -411,7 +411,7 @@ export default function SecurityCentre() {
           )}
           <Separator className="my-4" />
           <p className="text-xs text-muted-foreground">
-            Activity is written by Yalla after each attempt. If you see something you do not
+            Activity is written by SAFARID after each attempt. If you see something you do not
             recognise, sign out everywhere else and change your password.
           </p>
         </CardContent>

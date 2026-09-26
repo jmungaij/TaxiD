@@ -24,7 +24,7 @@ import { airportByCode } from "@/lib/charter/airportRegistry";
 
 const SEASON_LABEL: Record<string, string> = { peak: "Peak season", shoulder: "Shoulder", steady: "Steady demand" };
 
-/** Yalla SmartFare™ — mission-centric charter pricing workspace. */
+/** SAFARID SmartFare™ — mission-centric charter pricing workspace. */
 export default function SmartFarePage() {
   const [segment, setSegment] = useState<CustomerSegment>("retail");
   const [routeId, setRouteId] = useState(POPULAR_ROUTES[0].id);
@@ -72,10 +72,10 @@ export default function SmartFarePage() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <Helmet>
-        <title>Yalla SmartFare™ — Transparent Charter Mission Pricing</title>
+        <title>SAFARID SmartFare™ — Transparent Charter Mission Pricing</title>
         <meta name="description" content="Mission-based charter pricing for East Africa: transparent cost layers, explained savings, empty-leg matching and lean platform fees in KSh." />
         <link rel="canonical" href="https://yalla-africa.lovable.app/charter/smartfare" />
-        <meta property="og:title" content="Yalla SmartFare™ — Transparent Charter Mission Pricing" />
+        <meta property="og:title" content="SAFARID SmartFare™ — Transparent Charter Mission Pricing" />
         <meta property="og:description" content="Mission-based charter pricing for East Africa: transparent cost layers, explained savings, empty-leg matching and lean platform fees in KSh." />
         <meta property="og:url" content="https://yalla-africa.lovable.app/charter/smartfare" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
@@ -83,7 +83,7 @@ export default function SmartFarePage() {
       </Helmet>
 
       <header className="mb-8">
-        <Badge variant="secondary" className="mb-3">Yalla SmartFare™ v2.0</Badge>
+        <Badge variant="secondary" className="mb-3">SAFARID SmartFare™ v2.0</Badge>
         <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
           You are buying a mission, not aircraft hours.
         </h1>

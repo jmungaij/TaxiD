@@ -115,7 +115,7 @@ export default function MyAlertPreferences() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="My Alert Preferences | Yalla"
+        title="My Alert Preferences | SAFARID"
         description="Control which service-level, integration and circuit-breaker alerts reach you by toast or email, and set quiet hours."
         path="/dashboard/admin/my-alert-preferences"
       />

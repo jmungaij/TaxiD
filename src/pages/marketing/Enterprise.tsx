@@ -30,14 +30,14 @@ export default function Enterprise() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Enterprise mobility & logistics platform | Yalla Mobility"
-        description="National logistics & mobility operating system: trust, fraud, identity, NOC and SOC built in. Book a demo with the Yalla Mobility enterprise team."
+        title="Enterprise mobility & logistics platform | SAFARID"
+        description="National logistics & mobility operating system: trust, fraud, identity, NOC and SOC built in. Book a demo with the SAFARID enterprise team."
         path="/enterprise"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Yalla Mobility Enterprise Platform",
-          provider: { "@type": "Organization", name: "Yalla Mobility" },
+          name: "SAFARID Enterprise Platform",
+          provider: { "@type": "Organization", name: "SAFARID" },
           areaServed: "KE",
           description:
             "Enterprise mobility, logistics and rental operating system with built-in trust, fraud, identity, NOC and governance.",
@@ -75,7 +75,7 @@ export default function Enterprise() {
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">Platform</span>
             <h2 className="text-3xl font-bold mt-2 mb-3">An enterprise platform, not an app</h2>
             <p className="text-muted-foreground text-lg">
-              Yalla Mobility is engineered as digital infrastructure for mobility and logistics. Every transaction is signed, every device is fingerprinted, every package is traced.
+              SAFARID is engineered as digital infrastructure for mobility and logistics. Every transaction is signed, every device is fingerprinted, every package is traced.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">

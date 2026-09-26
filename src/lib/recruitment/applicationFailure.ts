@@ -55,7 +55,7 @@ export interface ClassifiedApplicationFailure {
   missing: string[];
   /** Message shown to the candidate — never a raw database error. */
   message: string;
-  /** What the candidate (or Yalla) must do next. */
+  /** What the candidate (or SAFARID) must do next. */
   guidance: string;
   /** True when retrying the identical submission can succeed. */
   retryable: boolean;

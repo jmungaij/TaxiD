@@ -166,7 +166,7 @@ export default function Marketplace() {
       <SeoHead
         path="/marketplace"
         title="Marketplace — Search Mobility Capacity by City & Date"
-        description="Search rides, charter, vehicle rental and logistics capacity by city, date and vehicle type, then request it through your Yalla Mobility portal."
+        description="Search rides, charter, vehicle rental and logistics capacity by city, date and vehicle type, then request it through your SAFARID portal."
       />
 
 
@@ -175,7 +175,7 @@ export default function Marketplace() {
           <h1 className="text-3xl font-bold md:text-4xl">Search transportation capacity</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             One search across rides, charter, vehicle rental and logistics. Tell us the city, the date
-            and the vehicle you need; request what fits and your Yalla Mobility contact takes it from there.
+            and the vehicle you need; request what fits and your SAFARID contact takes it from there.
           </p>
 
           <form
@@ -277,7 +277,7 @@ export default function Marketplace() {
               <CardDescription>
                 {query.family === "charter"
                   ? "Try a different city, date or vehicle type — or send us the brief and we will source it from our operators."
-                  : `Operators have not yet published ${FAMILY_LABEL[query.family].toLowerCase()} capacity here. Send us the brief and your Yalla Mobility contact will source it and come back with a quotation.`}
+                  : `Operators have not yet published ${FAMILY_LABEL[query.family].toLowerCase()} capacity here. Send us the brief and your SAFARID contact will source it and come back with a quotation.`}
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">

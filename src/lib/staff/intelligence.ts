@@ -1,5 +1,5 @@
 /**
- * Yalla Intelligence Layer — contextual intelligence families for Staff 360.
+ * SAFARID Intelligence Layer — contextual intelligence families for Staff 360.
  *
  * There is no generic chatbot. Each family answers a specific class of
  * question, and every recommendation must carry why, evidence, confidence,
@@ -19,7 +19,7 @@ export const SIGNAL_KINDS: SignalKind[] = [
   { family: "revenue", label: "Next best customer", question: "Which customer should we engage next?" },
   { family: "revenue", label: "Next best opportunity", question: "Which opportunity has the highest expected value?" },
   { family: "revenue", label: "Next best action", question: "What is the highest-value action on this account?" },
-  { family: "revenue", label: "Next best service", question: "Which Yalla service should we introduce next?" },
+  { family: "revenue", label: "Next best service", question: "Which SAFARID service should we introduce next?" },
   { family: "revenue", label: "Revenue risk", question: "Where is committed revenue at risk?" },
   { family: "revenue", label: "Expansion signal", question: "Which accounts show expansion behaviour?" },
   { family: "revenue", label: "Churn risk", question: "Which customers are disengaging?" },

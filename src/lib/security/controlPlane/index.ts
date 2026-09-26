@@ -1,5 +1,5 @@
 /**
- * Yalla Security Control Plane.
+ * SAFARID Security Control Plane.
  *
  *   Asset Graph ─┐
  *   Threat/Finding ├→ Risk & Decision Engine → Remediation Orchestrator
@@ -8,7 +8,7 @@
  *
  * Deterministic throughout: authorisation, policy, risk arithmetic, control
  * status and posture are computed from recorded facts. Interpretation and
- * explanation belong to Ask Yalla, which reads this layer — it never overrides it.
+ * explanation belong to Ask SAFARID, which reads this layer — it never overrides it.
  */
 export * from "./assetGraph";
 export * from "./riskEngine";

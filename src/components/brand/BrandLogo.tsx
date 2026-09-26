@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import yallaLogoInk from "@/assets/yalla-logo.png";
-import yallaLogoLight from "@/assets/yalla-logo-light.png";
-import yallaMark from "@/assets/yalla-mark.png";
+import yallaLogoInk from "@/assets/safarid-logo.png";
+import yallaLogoLight from "@/assets/safarid-logo-light.png";
+import yallaMark from "@/assets/safarid-mark.png";
 
 /**
- * BrandLogo — single source of truth for the Yalla Mobility lockup.
+ * BrandLogo — single source of truth for the SAFARID lockup.
  *
  * `ink`  — Executive Blue wordmark, for light / ice-blue surfaces.
  * `light`— Ice White wordmark, for Executive Blue, midnight and glass surfaces.
@@ -33,7 +33,7 @@ const BrandLogo = ({
   tone = "ink",
   variant = "lockup",
   className,
-  alt = "Yalla Mobility — Move Smart. Book Yalla.",
+  alt = "SAFARID — Move with confidence.",
   priority = false,
 }: BrandLogoProps) => (
   <img

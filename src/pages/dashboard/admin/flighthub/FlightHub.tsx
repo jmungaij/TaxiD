@@ -41,7 +41,7 @@ export default function FlightHub() {
 
   return (
     <FlightHubPage
-      eyebrow="Yalla Air · Flight Hub"
+      eyebrow="SAFARID Air · Flight Hub"
       title="Air Mobility Command Center"
       subtitle="One governed cockpit for charter demand, fleet readiness, settlement, compliance and traveller relations."
       loading={loading}
@@ -64,7 +64,7 @@ export default function FlightHub() {
       <LiveFlightMap legs={routes} dataset={data} />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <HubSection title="Journey visualisation" description="Live origin → destination ribbons across the Yalla Air network.">
+        <HubSection title="Journey visualisation" description="Live origin → destination ribbons across the SAFARID Air network.">
           <JourneyRibbon legs={routes} />
         </HubSection>
         <HubSection title="Destinations" description="Most-flown arrival points across current demand.">

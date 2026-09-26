@@ -73,15 +73,15 @@ export default function DriverExperienceLanding() {
     <MarketingPage>
       <SeoHead
         path="/driver/onboarding"
-        title="Drive with Yalla Mobility — Driver Application"
-        description="Join Yalla Mobility's professional driver network: corporate travel, airport transfers, executive mobility, charter and logistics. Apply in minutes, approval within 24 hours."
+        title="Drive with SAFARID — Driver Application"
+        description="Join SAFARID's professional driver network: corporate travel, airport transfers, executive mobility, charter and logistics. Apply in minutes, approval within 24 hours."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "JobPosting",
-          title: "Professional Driver — Yalla Mobility",
+          title: "Professional Driver — SAFARID",
           description: "Drive for corporate travel, airport transfers, executive mobility, charter operations and logistics across East Africa.",
           employmentType: "CONTRACTOR",
-          hiringOrganization: { "@type": "Organization", name: "Yalla Mobility" },
+          hiringOrganization: { "@type": "Organization", name: "SAFARID" },
           jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressCountry: "KE" } },
         }}
       />

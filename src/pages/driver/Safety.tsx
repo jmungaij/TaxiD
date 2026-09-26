@@ -47,14 +47,14 @@ export default function DriverSafety() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Driver Safety & SOS Support | Yalla Mobility"
-        description="Yalla Mobility driver safety: one-tap SOS, 24/7 safety centre response, trip monitoring, insurance options and incident escalation for Kenyan drivers."
+        title="Driver Safety & SOS Support | SAFARID"
+        description="SAFARID driver safety: one-tap SOS, 24/7 safety centre response, trip monitoring, insurance options and incident escalation for Kenyan drivers."
         path="/driver/safety"
       />
       <PageHero eyebrow="Safety Command Center" title="You drive. We have your back."
         subtitle="24/7 ops, in-app SOS, trip monitoring, and an independent safety board reviewing every serious incident.">
         <Button asChild size="lg" className="bg-ice text-primary hover:bg-ice/90">
-          <Link to="/driver/onboarding">Become a Yalla driver <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <Link to="/driver/onboarding">Become a SAFARID driver <ArrowRight className="ml-2 h-4 w-4" /></Link>
         </Button>
       </PageHero>
 
@@ -86,7 +86,7 @@ export default function DriverSafety() {
               </div>
               <div>
                 <h2 className="text-xl font-bold">Emergency SOS</h2>
-                <p className="text-sm text-muted-foreground">Logs an immediate alert to the Yalla safety ops team.</p>
+                <p className="text-sm text-muted-foreground">Logs an immediate alert to the SAFARID safety ops team.</p>
               </div>
             </div>
             <Label htmlFor="sos-details">What's happening? (optional)</Label>

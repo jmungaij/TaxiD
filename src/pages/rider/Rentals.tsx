@@ -123,7 +123,7 @@ export default function RiderRentalsPage() {
   return (
     <RiderShell>
       <Helmet>
-        <title>My rentals | Yalla Mobility</title>
+        <title>My rentals | SAFARID</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 

@@ -1,7 +1,7 @@
 /**
  * Phase 10 §10.27–10.28 — Staff 360 rebuilt around products and missions.
  *
- * The portal reflects how Yalla creates value, not how HR files people. It is
+ * The portal reflects how SAFARID creates value, not how HR files people. It is
  * explicitly not surveillance software: the model exposes clarity, ownership and
  * decision quality, and deliberately excludes activity monitoring, keystroke or
  * location tracking, and per-person productivity ranking.

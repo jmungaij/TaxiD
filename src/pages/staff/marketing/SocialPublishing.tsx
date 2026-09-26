@@ -12,10 +12,10 @@ export default function SocialPublishing() {
   return (
     <div className="space-y-6">
       <Helmet>
-        <title>Social Publishing | Yalla Staff</title>
+        <title>Social Publishing | SAFARID Staff</title>
         <meta
           name="description"
-          content="Manage Yalla Mobility social connections, content approval, scheduling and publication health from one governed control plane."
+          content="Manage SAFARID social connections, content approval, scheduling and publication health from one governed control plane."
         />
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>

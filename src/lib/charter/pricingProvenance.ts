@@ -15,7 +15,7 @@ export const SOURCE_LABEL: Record<FareSource, string> = {
   operator_confirmed: "Operator rate card · availability confirmed",
   operator_rate_card: "Operator rate card (submitted)",
   airport_tariff: "Published airport / navigation tariff",
-  platform_estimate: "Yalla platform estimate",
+  platform_estimate: "SAFARID platform estimate",
   customer_selected: "Customer selection",
 };
 

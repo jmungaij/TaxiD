@@ -189,7 +189,7 @@ export default function CarrierFreightWorkspace() {
   if (!user) {
     return (
       <main className="mx-auto max-w-3xl p-6">
-        <Helmet><title>Carrier freight workspace | Yalla Partners</title></Helmet>
+        <Helmet><title>Carrier freight workspace | SAFARID Partners</title></Helmet>
         <Card className="p-8 text-center">
           <h1 className="text-xl font-semibold">Sign in to your carrier account</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -205,13 +205,13 @@ export default function CarrierFreightWorkspace() {
     return (
       <main className="mx-auto max-w-3xl p-6">
         <Helmet>
-          <title>Carrier freight workspace | Yalla Partners</title>
-          <meta name="description" content="Respond to freight tenders, quote, manage capacity and track awarded jobs as a Yalla carrier partner." />
+          <title>Carrier freight workspace | SAFARID Partners</title>
+          <meta name="description" content="Respond to freight tenders, quote, manage capacity and track awarded jobs as a SAFARID carrier partner." />
         </Helmet>
         <Card className="p-8">
           <h1 className="text-xl font-semibold">No carrier organisation is linked to your account</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Freight sourcing is open to onboarded carrier partners. Apply through Yalla Partners and the integration
+            Freight sourcing is open to onboarded carrier partners. Apply through SAFARID Partners and the integration
             desk will link your organisation, after which invitations appear here.
           </p>
           <div className="mt-4 flex gap-2">
@@ -228,8 +228,8 @@ export default function CarrierFreightWorkspace() {
   return (
     <main className="mx-auto max-w-7xl space-y-6 p-6">
       <Helmet>
-        <title>Carrier freight workspace | Yalla Partners</title>
-        <meta name="description" content="Respond to freight tenders, submit quotations, publish capacity and manage awarded jobs as a Yalla carrier partner." />
+        <title>Carrier freight workspace | SAFARID Partners</title>
+        <meta name="description" content="Respond to freight tenders, submit quotations, publish capacity and manage awarded jobs as a SAFARID carrier partner." />
         <link rel="canonical" href="https://yalla.africa/partner/freight" />
       </Helmet>
 
@@ -265,7 +265,7 @@ export default function CarrierFreightWorkspace() {
             {verdict.blocking.length > 0 && (
               <> — {verdict.blocking.map((b) => b.code + (b.requirement ? ` (${b.requirement})` : "")).join(", ")}.</>
             )}{" "}
-            You may quote, but Yalla cannot award work until this clears.
+            You may quote, but SAFARID cannot award work until this clears.
           </AlertDescription>
         </Alert>
       )}
@@ -495,7 +495,7 @@ export default function CarrierFreightWorkspace() {
           <Card className="p-5">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Your capacity</h2>
             {slots.length === 0 ? (
-              <p className="mt-3 text-sm text-muted-foreground">No capacity published. Yalla can only award work against published capacity.</p>
+              <p className="mt-3 text-sm text-muted-foreground">No capacity published. SAFARID can only award work against published capacity.</p>
             ) : (
               <table className="mt-3 w-full text-sm">
                 <thead className="text-left text-xs uppercase text-muted-foreground">
@@ -548,7 +548,7 @@ export default function CarrierFreightWorkspace() {
             </div>
             <p className="mt-2 text-xs text-muted-foreground">
               Hazardous-goods capability is not self-declared: it requires an authority reference recorded by the
-              Yalla compliance desk.
+              SAFARID compliance desk.
             </p>
             <Button className="mt-3" disabled={busy === "cap"} onClick={() => {
               if (!capForm.vehicleType.trim() || !Number(capForm.maxPayloadKg)) return toast.error("Vehicle type and payload are required.");
@@ -583,7 +583,7 @@ export default function CarrierFreightWorkspace() {
               <FileText className="h-4 w-4" aria-hidden /> Submit compliance document
             </h2>
             <p className="mt-1 text-xs text-muted-foreground">
-              Submitted evidence is reviewed by Yalla. A carrier can never mark its own document verified.
+              Submitted evidence is reviewed by SAFARID. A carrier can never mark its own document verified.
             </p>
             <div className="mt-3 grid gap-3 md:grid-cols-3">
               <Select value={docForm.requirementCode} onValueChange={(v) => setDocForm((f) => ({ ...f, requirementCode: v }))}>
@@ -664,7 +664,7 @@ export default function CarrierFreightWorkspace() {
                 : "—"}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Completed jobs post their agreed and actual amounts into the freight price lineage, which is what Yalla
+              Completed jobs post their agreed and actual amounts into the freight price lineage, which is what SAFARID
               finance reconciles and settles against. Invoices are never adjusted without an adjustment record.
             </p>
           </Card>
@@ -758,7 +758,7 @@ export default function CarrierFreightWorkspace() {
           <DialogHeader><DialogTitle>Decline {declineTarget?.kind === "award" ? "award" : "invitation"}</DialogTitle></DialogHeader>
           <p className="text-sm text-muted-foreground">
             {declineTarget?.label} — a reason is required and is recorded against your tender-response record.
-            {declineTarget?.kind === "award" && " Declining releases the capacity Yalla reserved with you."}
+            {declineTarget?.kind === "award" && " Declining releases the capacity SAFARID reserved with you."}
           </p>
           <Textarea rows={3} value={declineReason} onChange={(e) => setDeclineReason(e.target.value)} placeholder="Reason" />
           <DialogFooter>

@@ -1,5 +1,5 @@
 /**
- * YALLA MOBILITY — Business Domain Navigation Layer (IA v5).
+ * SAFARID — Business Domain Navigation Layer (IA v5).
  *
  * The sidebar is a navigation instrument, not a database table. This file adds
  * ONE layer above the existing 14 YEOS workspaces so the rail exposes exactly

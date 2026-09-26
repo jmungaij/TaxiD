@@ -1,7 +1,7 @@
 /**
- * YALLA PARTNERS 360 — settlement drill-down.
+ * SAFARID PARTNERS 360 — settlement drill-down.
  *
- * Settlement status, the variance between what Yalla approved and what was
+ * Settlement status, the variance between what SAFARID approved and what was
  * actually paid, and the linked reconciliation audit trail (staff cases and
  * their append-only event log). Approval and reconciliation are server
  * routines — the browser only submits the paid amount and reference.
@@ -232,7 +232,7 @@ export function PartnerSettlementPanel({
               <div><dt className="text-muted-foreground">Orders</dt><dd className="font-medium tabular-nums">{selected.orders_count}</dd></div>
               <div><dt className="text-muted-foreground">Gross value</dt><dd className="font-medium tabular-nums">{kes(Number(selected.gross_value))}</dd></div>
               <div><dt className="text-muted-foreground">Supplier cost</dt><dd className="font-medium tabular-nums">{kes(Number(selected.supplier_cost))}</dd></div>
-              <div><dt className="text-muted-foreground">Yalla margin</dt><dd className="font-medium tabular-nums">{kes(Number(selected.yalla_margin))}</dd></div>
+              <div><dt className="text-muted-foreground">SAFARID margin</dt><dd className="font-medium tabular-nums">{kes(Number(selected.yalla_margin))}</dd></div>
               <div><dt className="text-muted-foreground">Partner margin</dt><dd className="font-medium tabular-nums">{kes(Number(selected.partner_margin))}</dd></div>
               <div><dt className="text-muted-foreground">Taxes</dt><dd className="font-medium tabular-nums">{kes(Number(selected.taxes))}</dd></div>
             </dl>
@@ -297,7 +297,7 @@ export function PartnerSettlementPanel({
                         <th scope="col" className="py-2 pr-4">Order</th>
                         <th scope="col" className="py-2 pr-4 text-right">Customer price</th>
                         <th scope="col" className="py-2 pr-4 text-right">Supplier cost</th>
-                        <th scope="col" className="py-2 pr-4 text-right">Yalla margin</th>
+                        <th scope="col" className="py-2 pr-4 text-right">SAFARID margin</th>
                         <th scope="col" className="py-2 text-right">Partner margin</th>
                       </tr>
                     </thead>

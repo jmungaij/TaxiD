@@ -43,7 +43,7 @@ export const DMFD_SEED_OUTSTANDING = [
 
 /** Supply-side learning domains. */
 export const DMFD_LEARNING_DOMAINS = [
-  "Yalla Mobility marketplace & product surface",
+  "SAFARID marketplace & product surface",
   "Destination intelligence & mobility demand mapping",
   "Driver acquisition & qualification",
   "Fleet & supplier development",
@@ -142,7 +142,7 @@ export function destinationsMobilitySupplySeed(): InternshipProgrammeDraft {
     location: "Nairobi, Kenya",
     position_id: "",
     position_exception_reason:
-      "Yalla Mobility requires a supply-side talent pipeline able to discover, qualify, organise and activate mobility supply (drivers, vehicles, fleet suppliers and destination capacity) across corporate mobility, airport transfers, charter, rentals & leasing and logistics. Production publication requires approval of the corresponding internship position (INT-DMFD-001) or an authorised exception.",
+      "SAFARID requires a supply-side talent pipeline able to discover, qualify, organise and activate mobility supply (drivers, vehicles, fleet suppliers and destination capacity) across corporate mobility, airport transfers, charter, rentals & leasing and logistics. Production publication requires approval of the corresponding internship position (INT-DMFD-001) or an authorised exception.",
     work_arrangement: "hybrid",
     priority: "high",
     headcount: 5,
@@ -154,14 +154,14 @@ export function destinationsMobilitySupplySeed(): InternshipProgrammeDraft {
     application_deadline: "2026-09-18",
     host_function: "Mobility Supply & Destination Operations",
     department: "Operations & Commercial Development",
-    business_unit: "Yalla Mobility",
+    business_unit: "SAFARID",
 
     programme_purpose:
-      "Develop commercially productive mobility professionals capable of identifying destinations, mobility demand, drivers, vehicles and fleet capacity; recruiting and qualifying mobility supply; maintaining accurate supply records; supporting driver onboarding; developing destination mobility opportunities; and converting verified supply into operational and commercial capacity for Yalla Mobility. Interns do not observe or shadow — every intern carries a measurable, evidence-backed operational production mandate.",
+      "Develop commercially productive mobility professionals capable of identifying destinations, mobility demand, drivers, vehicles and fleet capacity; recruiting and qualifying mobility supply; maintaining accurate supply records; supporting driver onboarding; developing destination mobility opportunities; and converting verified supply into operational and commercial capacity for SAFARID. Interns do not observe or shadow — every intern carries a measurable, evidence-backed operational production mandate.",
 
     learning_objectives: [
       {
-        competency: "Yalla Mobility marketplace and product surface competence",
+        competency: "SAFARID marketplace and product surface competence",
         evidence:
           "Product map covering drivers, business & corporate mobility, charter, rentals & leasing and logistics, each with the supply required to fulfil it",
         assessment: "Product & supply knowledge assessment (gate at week 2)",
@@ -169,7 +169,7 @@ export function destinationsMobilitySupplySeed(): InternshipProgrammeDraft {
       {
         competency: "Destination intelligence and mobility demand mapping",
         evidence:
-          "Destination profiles carrying destination, type, customer segments, demand hypothesis, evidence, mobility requirements, vehicle categories, driver requirements, fleet requirements and Yalla product mapping — demand recorded as UNVERIFIED where evidence is absent",
+          "Destination profiles carrying destination, type, customer segments, demand hypothesis, evidence, mobility requirements, vehicle categories, driver requirements, fleet requirements and SAFARID product mapping — demand recorded as UNVERIFIED where evidence is absent",
         assessment: "Supervisor review of destination reasoning and evidence quality",
       },
       {
@@ -293,7 +293,7 @@ export function destinationsMobilitySupplySeed(): InternshipProgrammeDraft {
       { competency: "Field prospecting", evidence: "Verified field assignments with contacts and records created", level: "Working" },
       { competency: "Qualification judgement", evidence: "Accepted qualified records with documented rationale", level: "Working" },
       { competency: "Data accuracy", evidence: "Quality score and low return / rejection rate", level: "Proficient" },
-      { competency: "Commercial awareness", evidence: "Qualified mobility opportunities mapped to Yalla products", level: "Working" },
+      { competency: "Commercial awareness", evidence: "Qualified mobility opportunities mapped to SAFARID products", level: "Working" },
       { competency: "Integrity", evidence: "No open integrity flags after human review", level: "Proficient" },
     ],
 
@@ -360,12 +360,12 @@ export function destinationsMobilitySupplySeed(): InternshipProgrammeDraft {
       "Produces accepted supply records every week",
       "Never inflates volume at the cost of quality",
       "Escalates rather than assumes compliance",
-      "Understands which Yalla product each supply unit serves",
+      "Understands which SAFARID product each supply unit serves",
       "Leaves behind a supply pipeline another operator can pick up",
     ],
 
     development_plan: [
-      { phase: "Phase 1 · Weeks 1–2 · Orientation", focus: "Yalla marketplace, products, driver & fleet ecosystems, destination management, conduct, data integrity, safety", milestone: "Product & supply knowledge assessment passed" },
+      { phase: "Phase 1 · Weeks 1–2 · Orientation", focus: "SAFARID marketplace, products, driver & fleet ecosystems, destination management, conduct, data integrity, safety", milestone: "Product & supply knowledge assessment passed" },
       { phase: "Phase 2 · Weeks 3–6 · Mobility supply", focus: "Driver acquisition and qualification, vehicle categories, fleet mapping, supplier development, document verification, onboarding", milestone: "First qualified drivers and suppliers accepted" },
       { phase: "Phase 3 · Weeks 7–10 · Destination intelligence", focus: "Destination research, demand mapping, airport transfers, corporate and tourism destinations, event mobility, route analysis, supplier mapping", milestone: "Three accepted destination profiles" },
       { phase: "Phase 4 · Weeks 11–14 · Field production", focus: "Driver and fleet prospecting, supplier outreach, field verification, data capture, activation support", milestone: "Fleet capacity review passed" },
@@ -376,7 +376,7 @@ export function destinationsMobilitySupplySeed(): InternshipProgrammeDraft {
 
     public_preview: {
       summary:
-        "Join Yalla Mobility's supply-side team in Nairobi and help build the driver, vehicle, fleet and destination capacity that moves people and goods across Kenya. A 24-week professional internship with real operational production, structured learning and evidence-based performance.",
+        "Join SAFARID's supply-side team in Nairobi and help build the driver, vehicle, fleet and destination capacity that moves people and goods across Kenya. A 24-week professional internship with real operational production, structured learning and evidence-based performance.",
       what_you_will_do:
         "Map destinations and their mobility demand, prospect and qualify drivers and vehicle owners, develop fleet suppliers, map vehicles and capacity, support driver onboarding, and identify commercial mobility opportunities across corporate mobility, airport transfers, charter, rentals and logistics.",
       what_you_will_learn:

@@ -1,6 +1,6 @@
 /**
  * FLEET OWNER APPLICATION — the entry point for an independent transport
- * business that wants its capacity matched on the Yalla Mobility marketplace.
+ * business that wants its capacity matched on the SAFARID marketplace.
  *
  * The form only records an application. Nothing here approves a Fleet Owner,
  * creates a carrier record or implies compliance: the staff decision function
@@ -141,7 +141,7 @@ export default function FleetOwnerApply() {
   return (
     <main className="container max-w-4xl py-12">
       <header className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Become a Yalla Fleet Owner</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Become a SAFARID Fleet Owner</h1>
         <p className="mt-2 text-sm text-muted-foreground">{FACILITATOR_DISCLOSURE}</p>
       </header>
 

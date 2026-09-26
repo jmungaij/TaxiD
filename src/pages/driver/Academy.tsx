@@ -122,14 +122,14 @@ export default function DriverAcademy() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Yalla Driver Academy — Training & Certification"
-        description="Free Yalla Mobility driver training: professional service, safety, compliance and earnings courses with certification that unlocks higher-tier trips."
+        title="SAFARID Driver Academy — Training & Certification"
+        description="Free SAFARID driver training: professional service, safety, compliance and earnings courses with certification that unlocks higher-tier trips."
         path="/driver/training"
       />
       <PageHero
-        eyebrow="Yalla Driver Academy"
+        eyebrow="SAFARID Driver Academy"
         title="Build Your Skills. Grow Your Income. Drive Professionally."
-        subtitle="Become a certified Yalla Mobility Driver through Africa's most advanced mobility training and certification platform."
+        subtitle="Become a certified SAFARID Driver through Africa's most advanced mobility training and certification platform."
       >
         <div className="flex flex-wrap gap-3">
           {user ? (

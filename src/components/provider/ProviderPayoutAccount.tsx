@@ -4,9 +4,9 @@
  * Policy shown here, exactly as the database enforces it:
  *   client pays in full   -> the operator's 85% is HELD in this wallet
  *   trip fulfilled        -> the 85% is released and becomes withdrawable,
- *                            and Yalla's 15% is posted to the Yalla paybill
+ *                            and SAFARID's 15% is posted to the SAFARID paybill
  *   operator withdraws    -> the amount is taken from THIS wallet balance only,
- *                            a 5% withdrawal fee is retained by Yalla and the
+ *                            a 5% withdrawal fee is retained by SAFARID and the
  *                            remainder is sent to their M-Pesa number over the
  *                            dedicated payouts short code (never the paybill)
  */
@@ -102,7 +102,7 @@ export default function ProviderPayoutAccount() {
           </CardTitle>
           <CardDescription>
             When a client pays in full, your {share}% appears here as held. It becomes withdrawable as soon
-            as the trip is fulfilled — that is also when Yalla's {commission}% goes to the Yalla paybill.
+            as the trip is fulfilled — that is also when SAFARID's {commission}% goes to the SAFARID paybill.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-4">
@@ -185,8 +185,8 @@ export default function ProviderPayoutAccount() {
               <ArrowUpRight className="h-4 w-4" />Withdraw to M-Pesa
             </CardTitle>
             <CardDescription>
-              Withdrawals come out of your own wallet balance above — never out of Yalla's collections
-              paybill. A {feeRate}% withdrawal fee is deducted and kept by Yalla. Smallest amount that can
+              Withdrawals come out of your own wallet balance above — never out of SAFARID's collections
+              paybill. A {feeRate}% withdrawal fee is deducted and kept by SAFARID. Smallest amount that can
               reach M-Pesa: {settlementMoney(data?.min_payout_cents ?? 1000)}.
             </CardDescription>
           </CardHeader>
@@ -301,7 +301,7 @@ export default function ProviderPayoutAccount() {
         <CardHeader>
           <CardTitle className="text-base">Earnings by job</CardTitle>
           <CardDescription>
-            Gross is the rate agreed on the booking; commission is Yalla's {commission}% share.
+            Gross is the rate agreed on the booking; commission is SAFARID's {commission}% share.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -315,7 +315,7 @@ export default function ProviderPayoutAccount() {
                 <TableRow>
                   <TableHead>Booking</TableHead>
                   <TableHead className="text-right">Gross</TableHead>
-                  <TableHead className="text-right">Yalla {commission}%</TableHead>
+                  <TableHead className="text-right">SAFARID {commission}%</TableHead>
                   <TableHead className="text-right">Your {share}%</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>

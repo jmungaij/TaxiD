@@ -40,11 +40,11 @@ export const RENTAL_CATEGORY_SIZES =
 export const RENTAL_HERO_IMAGES: Record<string, RentalImage> = {
   "/rentals": {
     picture: rentalsHub,
-    alt: "Premium Yalla Mobility rental fleet lined up on a depot forecourt",
+    alt: "Premium SAFARID rental fleet lined up on a depot forecourt",
   },
   "/rentals/self-drive": {
     picture: selfDrive,
-    alt: "Yalla Mobility agent handing keys to a professional collecting a self-drive rental car",
+    alt: "SAFARID agent handing keys to a professional collecting a self-drive rental car",
   },
   "/rentals/chauffeur": {
     picture: chauffeur,

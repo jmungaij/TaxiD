@@ -64,7 +64,7 @@ const FAQ = () => {
   return (
     <MarketingPage>
       <JsonLd data={faqJsonLd} />
-      <PageHero eyebrow="FAQ" title="Help Center" subtitle="Search our knowledge base or chat with the Yalla AI assistant.">
+      <PageHero eyebrow="FAQ" title="Help Center" subtitle="Search our knowledge base or chat with the SAFARID AI assistant.">
         <div className="relative max-w-xl">
           <Search className="absolute left-3 top-3 h-5 w-5 text-primary-foreground/60" />
           <Input value={q} onChange={(e) => handleSearch(e.target.value)} placeholder="Search the help center..." className="pl-10 bg-ice text-foreground border-0 h-12" />
@@ -93,7 +93,7 @@ const FAQ = () => {
 
       <div className="fixed bottom-6 right-6 z-40">
         <Button size="lg" className="rounded-full shadow-elegant bg-primary" asChild>
-          <Link to="/support"><MessageCircle className="h-5 w-5 mr-2" />Chat with Yalla AI</Link>
+          <Link to="/support"><MessageCircle className="h-5 w-5 mr-2" />Chat with SAFARID AI</Link>
         </Button>
       </div>
     </MarketingPage>

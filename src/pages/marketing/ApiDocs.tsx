@@ -19,7 +19,7 @@ const ApiDocs = () => (
     <PageHero
       eyebrow="Developers"
       title="API Documentation"
-      subtitle="Build mobility, delivery, and corporate-travel products on the Yalla Mobility platform."
+      subtitle="Build mobility, delivery, and corporate-travel products on the SAFARID platform."
     >
       <div className="flex flex-wrap gap-3 justify-center">
         <Button asChild size="lg">

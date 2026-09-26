@@ -65,7 +65,7 @@ export default function DriverWealth() {
   const [vehicleApr, setVehicleApr] = useState(15);   // KCB / Stanbic vehicle finance
   const [pensionTopUp, setPensionTopUp] = useState(0);
 
-  // Pull live pricing for Yalla Standard in the chosen city (baseline)
+  // Pull live pricing for SAFARID Standard in the chosen city (baseline)
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -344,7 +344,7 @@ export default function DriverWealth() {
           </div>
 
           <div className="mt-8 text-xs text-muted-foreground max-w-3xl">
-            Projections use live {city} pricing for Yalla Standard at 9 hrs/day × 6 days/week, with KRA 3% Turnover Tax and your city's
+            Projections use live {city} pricing for SAFARID Standard at 9 hrs/day × 6 days/week, with KRA 3% Turnover Tax and your city's
             fuel/maintenance/insurance cost assumptions. Adjust your actual hours in the
             <Link to="/driver/earnings" className="text-primary underline ml-1">earnings simulator</Link>.
           </div>

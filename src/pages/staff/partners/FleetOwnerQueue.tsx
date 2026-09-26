@@ -45,7 +45,7 @@ export default function FleetOwnerQueuePage() {
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Fleet Owner work queue</h1>
           <p className="text-sm text-muted-foreground">
-            Everything waiting on a Yalla decision across intake, compliance, delivery evidence and settlement.
+            Everything waiting on a SAFARID decision across intake, compliance, delivery evidence and settlement.
           </p>
         </div>
         <Button size="sm" variant="outline" onClick={() => void load()} disabled={loading}>

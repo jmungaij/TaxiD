@@ -38,7 +38,7 @@ export function SuccessStoriesStrip() {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {stories.map((s) => {
-        const name = s.display_name ?? "Yalla driver";
+        const name = s.display_name ?? "SAFARID driver";
         return (
           <Card key={s.id} className="overflow-hidden">
             <CardContent className="p-5 space-y-3">

@@ -55,15 +55,15 @@ const RUNGS: Rung[] = [
   {
     id: "refer",
     level: "Level 1", t: "Refer", icon: Users, to: "/partners/apply?track=distribution&model=REFER",
-    d: "Send the customer to Yalla and earn on the completed movement. No operations for you to run.",
+    d: "Send the customer to SAFARID and earn on the completed movement. No operations for you to run.",
     needs: "Commercial agreement only",
     does: [
       "Refer a customer with your partner reference attached",
-      "Yalla quotes, books and executes the movement",
+      "SAFARID quotes, books and executes the movement",
       "Your earning is recorded against the completed order",
     ],
     image: imgRefer,
-    alt: "A travel adviser handing an arriving guest over to a waiting Yalla chauffeur at a Nairobi terminal",
+    alt: "A travel adviser handing an arriving guest over to a waiting SAFARID chauffeur at a Nairobi terminal",
   },
   {
     id: "book",
@@ -94,12 +94,12 @@ const RUNGS: Rung[] = [
   {
     id: "embed",
     level: "Level 4", t: "Embed", icon: Layers, to: "/partners/apply?track=technology&model=EMBED",
-    d: "Place Yalla mobility inside your own product journey, so booking never leaves your experience.",
+    d: "Place SAFARID mobility inside your own product journey, so booking never leaves your experience.",
     needs: "Embedded surface and commercial scope agreed",
     does: [
       "Embed quoting and booking in your own journey",
       "Keep your branding on the customer-facing surface",
-      "Yalla holds execution, documents and settlement behind it",
+      "SAFARID holds execution, documents and settlement behind it",
     ],
     image: imgEmbed,
     alt: "A product team reviewing an embedded mobility booking flow on a tablet held over a design desk",
@@ -120,7 +120,7 @@ const RUNGS: Rung[] = [
   {
     id: "orchestrate",
     level: "Level 6", t: "White label / Orchestrate", icon: ShieldCheck, to: "/partners/apply?track=technology&model=WHITE_LABEL",
-    d: "Your brand at the front, Yalla's execution engine behind it — across multi-service journeys.",
+    d: "Your brand at the front, SAFARID's execution engine behind it — across multi-service journeys.",
     needs: "Technical discovery, certification and go-live plan",
     does: [
       "Operate a mobility product under your own brand",

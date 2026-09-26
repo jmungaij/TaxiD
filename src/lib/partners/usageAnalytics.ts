@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — usage analytics: filtering, aggregation and export.
+ * SAFARID API PARTNERS — usage analytics: filtering, aggregation and export.
  *
  * All figures are derived from `partner_api_usage_daily`, which is the platform's
  * own accounting of partner traffic. Nothing here is estimated or synthesised:
@@ -143,7 +143,7 @@ export function usageCsv(agg: UsageAggregate, ctx: ExportContext): string {
   const lines: string[] = [];
   const row = (...cells: unknown[]) => lines.push(cells.map(csvCell).join(","));
 
-  row("Yalla API Partners — usage analytics export");
+  row("SAFARID API Partners — usage analytics export");
   row("Partner", ctx.partnerName);
   row("Generated at (UTC)", at);
   row("Environments", ctx.filter.environments.join(" | ") || "all");
@@ -228,7 +228,7 @@ export async function exportUsagePdf(agg: UsageAggregate, ctx: ExportContext): P
   };
 
   const at = ctx.generatedAt ?? new Date();
-  line("YALLA API PARTNERS", 9, true);
+  line("SAFARID API PARTNERS", 9, true);
   line("Usage analytics", 18, true);
   line(ctx.partnerName, 11);
   line(`Generated ${at.toISOString()} · aggregated from platform request accounting`, 8);

@@ -40,7 +40,7 @@ const useCases = [
 
 const steps = [
   { t: "Open a corporate account", d: "Register your organisation with its certificate, KRA PIN and letter of authority." },
-  { t: "Wait for verification", d: "A Yalla manager reviews the documents. The account is created only once it is approved." },
+  { t: "Wait for verification", d: "A SAFARID manager reviews the documents. The account is created only once it is approved." },
   { t: "Set your rules", d: "Spend limits, approvers, departments, cost centres and sign-in settings." },
   { t: "Add your people", d: "Invite staff, assign departments and approvers." },
   { t: "Book, approve, report", d: "Staff book, approvers decide, finance reconciles from one statement." },
@@ -50,7 +50,7 @@ export default function CorporateTravelManagement() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Corporate Travel Management in Kenya | Yalla"
+        title="Corporate Travel Management in Kenya | SAFARID"
         description="Manage corporate travel in Kenya on one account: travel policy limits, approval routing, cost centres, budgets and eTIMS tax invoices for staff, executive and airport travel."
         path={PATH}
         jsonLd={{
@@ -59,7 +59,7 @@ export default function CorporateTravelManagement() {
           name: "Corporate travel management",
           serviceType: "Corporate travel management",
           areaServed: { "@type": "Country", name: "Kenya" },
-          provider: { "@type": "Organization", name: "Yalla Mobility", url: SITE_URL },
+          provider: { "@type": "Organization", name: "SAFARID", url: SITE_URL },
           description:
             "Corporate travel management for organisations in Kenya: policy limits, approval routing, cost centres, budgets and eTIMS tax invoices.",
           url: `${SITE_URL}${PATH}`,

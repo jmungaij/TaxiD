@@ -1,7 +1,7 @@
 /**
- * YALLA PARTNERS — public partner application.
+ * SAFARID PARTNERS — public partner application.
  *
- * Submits to `partner_applications`, which anyone may write to and only Yalla
+ * Submits to `partner_applications`, which anyone may write to and only SAFARID
  * staff may read. The reference returned is the applicant's only handle on the
  * submission; it is shown once, plainly, with no invented approval timeline.
  */
@@ -57,7 +57,7 @@ const TRACKS = {
     commercial_model: "ORCHESTRATE" as CommercialModel,
   },
   technology: {
-    label: "Technology & enterprise partner — integrate Yalla",
+    label: "Technology & enterprise partner — integrate SAFARID",
     partner_type: "TRAVEL_PLATFORM" as PartnerType,
     commercial_model: "API" as CommercialModel,
   },
@@ -176,7 +176,7 @@ export default function PartnerApply() {
   if (reference) {
     return (
       <MarketingPage>
-        <PageHero eyebrow="Yalla Partners" title="Application received" subtitle="The partner desk reviews every application against company registration, tax and contact verification." />
+        <PageHero eyebrow="SAFARID Partners" title="Application received" subtitle="The partner desk reviews every application against company registration, tax and contact verification." />
         <section className="container mx-auto max-w-2xl px-4 py-20">
           <div className="rounded-2xl border border-border bg-card p-8">
             <CheckCircle2 className="mb-4 h-8 w-8 text-status-success" aria-hidden />
@@ -186,7 +186,7 @@ export default function PartnerApply() {
               <span className="font-medium text-foreground">{form.contact_email}</span> once the review is complete.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild><Link to="/partners">Back to Yalla Partners</Link></Button>
+              <Button asChild><Link to="/partners">Back to SAFARID Partners</Link></Button>
               <Button variant="outline" asChild>
                 <a href={`mailto:${CONTACT.salesEmail}?subject=Partner%20application%20${reference}`}>Email the partner desk</a>
               </Button>
@@ -200,14 +200,14 @@ export default function PartnerApply() {
   return (
     <MarketingPage>
       <PageHero
-        eyebrow="Yalla Partners"
-        title="Become a Yalla Partner"
-        subtitle="Tell us who you are, what you sell and how you want to work with Yalla. Verification and commercial terms follow the review."
+        eyebrow="SAFARID Partners"
+        title="Become a SAFARID Partner"
+        subtitle="Tell us who you are, what you sell and how you want to work with SAFARID. Verification and commercial terms follow the review."
       />
 
       <section className="container mx-auto max-w-3xl px-4 py-16">
         <Link to="/partners" className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" aria-hidden /> Back to Yalla Partners
+          <ArrowLeft className="h-4 w-4" aria-hidden /> Back to SAFARID Partners
         </Link>
 
         {segment ? (
@@ -351,7 +351,7 @@ export default function PartnerApply() {
           </fieldset>
 
           <fieldset className="rounded-2xl border border-border bg-card p-6">
-            <legend className="px-2 text-sm font-semibold">What do you need from Yalla?</legend>
+            <legend className="px-2 text-sm font-semibold">What do you need from SAFARID?</legend>
             <Label htmlFor="requirements" className="sr-only">Requirements</Label>
             <Textarea id="requirements" rows={5}
               placeholder="Services you sell, typical routes, group sizes, delivery volumes, integration needs…"
@@ -382,7 +382,7 @@ export default function PartnerApply() {
               </Button>
               <p className="flex items-center gap-2 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4" aria-hidden />
-                Reviewed by the Yalla partner desk. Verification documents are requested after review.
+                Reviewed by the SAFARID partner desk. Verification documents are requested after review.
               </p>
             </div>
           </div>

@@ -1,5 +1,5 @@
 /**
- * YALLA SALES ASSISTANT — the answering surface for the commercial book.
+ * SAFARID SALES ASSISTANT — the answering surface for the commercial book.
  *
  * It does not generate prose about your book: it reads it. Every answer is
  * computed from the same records the book renders — the ranked next best
@@ -164,7 +164,7 @@ export function BookAssistant(props: AssistantInput) {
     <Card className="border-primary/25 bg-primary/[0.03]">
       <CardContent className="space-y-3 pt-5">
         <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden /> Yalla sales assistant
+          <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden /> SAFARID sales assistant
         </div>
         <form
           className="flex flex-wrap items-center gap-2"

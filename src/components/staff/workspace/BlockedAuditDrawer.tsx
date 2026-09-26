@@ -35,7 +35,7 @@ async function exportAuditPdf(workTitle: string, entries: OpsAuditEntry[]) {
   ]);
   const doc = new JsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
   doc.setFontSize(14);
-  doc.text("Yalla Mobility — blocked work audit trail", 40, 44);
+  doc.text("SAFARID — blocked work audit trail", 40, 44);
   doc.setFontSize(10);
   doc.text(workTitle, 40, 62);
   doc.text(`Exported ${new Date().toLocaleString("en-KE")} · ${entries.length} recorded entries`, 40, 78);

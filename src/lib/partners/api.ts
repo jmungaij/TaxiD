@@ -1,14 +1,14 @@
 /**
- * YALLA PARTNERS — data access layer.
+ * SAFARID PARTNERS — data access layer.
  *
- * Yalla Partners is the demand & distribution layer on top of the existing
+ * SAFARID Partners is the demand & distribution layer on top of the existing
  * execution engine (dispatch, charter, logistics, rental). A partner sells or
- * arranges mobility for its OWN customers; Yalla fulfils it.
+ * arranges mobility for its OWN customers; SAFARID fulfils it.
  *
  * Every read and write below is RLS-scoped server-side:
  *   • partner team members reach only their own partner's rows
  *     (`public.is_partner_member`),
- *   • Yalla staff reach every partner (`public.yp_is_staff`).
+ *   • SAFARID staff reach every partner (`public.yp_is_staff`).
  * Nothing in this module is an authorization boundary — it is the query
  * surface the UI is allowed to ask for.
  */
@@ -197,9 +197,9 @@ export const PARTNER_TYPE_LABEL: Record<PartnerType, string> = {
 };
 
 export const COMMERCIAL_MODEL_LABEL: Record<CommercialModel, string> = {
-  REFER: "Refer — send the customer to Yalla",
+  REFER: "Refer — send the customer to SAFARID",
   BOOK: "Book — arrange on the customer's behalf",
-  EMBED: "Embed — Yalla inside your product",
+  EMBED: "Embed — SAFARID inside your product",
   API: "API — programmatic booking",
   WHITE_LABEL: "White label — your brand, our engine",
   ORCHESTRATE: "Orchestrate — multi-service journeys",
@@ -571,7 +571,7 @@ export interface OrderDraft {
 /**
  * Commercial arithmetic for a partner-booked order.
  *
- * Supplier cost is the money Yalla owes the executing supplier. The partner
+ * Supplier cost is the money SAFARID owes the executing supplier. The partner
  * margin comes from the partner's contracted percentage; VAT is applied on the
  * customer-facing amount. No figure is invented: everything derives from the
  * supplier cost and the partner's own contracted margin.

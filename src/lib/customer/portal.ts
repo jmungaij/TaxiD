@@ -1,6 +1,6 @@
 /**
  * CUSTOMER PORTAL DATA — what a signed-in company contact may see about their
- * own relationship with Yalla.
+ * own relationship with SAFARID.
  *
  * Everything is assembled by the database under the caller's own identity and
  * translated into plain language. Internal notes, win probability, ownership

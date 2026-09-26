@@ -2,7 +2,7 @@
  * INTEGRATION READINESS CHECKLIST — a downloadable, level-specific preparation
  * document for a prospective partner.
  *
- * The checklist states only what Yalla actually asks for during admission:
+ * The checklist states only what SAFARID actually asks for during admission:
  * commercial agreement, company and tax verification, workspace configuration,
  * and (for embedded, API and white-label partners) sandbox certification before
  * production. No timelines, volumes, rates, uptime figures or guarantees are
@@ -97,9 +97,9 @@ const CERTIFICATION: ChecklistSection = {
 const BRAND: ChecklistSection = {
   title: "Brand and customer experience",
   items: [
-    { t: "Customer-facing surface", d: "Where Yalla mobility appears inside your product or under your brand." },
+    { t: "Customer-facing surface", d: "Where SAFARID mobility appears inside your product or under your brand." },
     { t: "Brand assets and terminology", d: "The naming, logo usage and wording your customers will see." },
-    { t: "Support routing", d: "Who your customer contacts first, and how it escalates to the Yalla partner desk." },
+    { t: "Support routing", d: "Who your customer contacts first, and how it escalates to the SAFARID partner desk." },
     { t: "Document presentation", d: "How sealed commercial documents are surfaced to your customer for verification." },
   ],
 };
@@ -114,12 +114,12 @@ const SECTIONS_BY_LEVEL: Record<string, ChecklistSection[]> = {
 };
 
 const PURPOSE: Record<string, string> = {
-  refer: "You refer the customer and Yalla quotes, books and executes the movement. Preparation is commercial and identity verification only.",
+  refer: "You refer the customer and SAFARID quotes, books and executes the movement. Preparation is commercial and identity verification only.",
   book: "You arrange mobility on your customer's behalf from your own workspace, so your team, customers and approval route are configured before go-live.",
   manage: "You run your own team, customers, approvals, journeys and margin reporting, and may also offer capacity to the network.",
-  embed: "Yalla quoting and booking sit inside your own product journey, so both the commercial and the technical surface are prepared and certified.",
+  embed: "SAFARID quoting and booking sit inside your own product journey, so both the commercial and the technical surface are prepared and certified.",
   api: "Your systems quote, book, track and read settlement data programmatically, so credentials, sandbox work and certification come before production.",
-  orchestrate: "You operate a mobility product under your own brand across service lines, with Yalla's execution engine, documents and settlement behind it.",
+  orchestrate: "You operate a mobility product under your own brand across service lines, with SAFARID's execution engine, documents and settlement behind it.",
 };
 
 const NOTES = [
@@ -164,7 +164,7 @@ export async function downloadReadinessChecklistPdf(levelId: string): Promise<vo
     doc.setFont("helvetica", "normal");
     doc.setFontSize(7.5);
     doc.setTextColor(130);
-    doc.text("Yalla Mobility - Yalla Partners - integration readiness checklist", M, 288);
+    doc.text("SAFARID - SAFARID Partners - integration readiness checklist", M, 288);
     doc.text(`Page ${page}`, W - M, 288, { align: "right" });
   };
 
@@ -242,7 +242,7 @@ export async function downloadReadinessChecklistPdf(levelId: string): Promise<vo
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9.5);
   doc.setTextColor(...NAVY);
-  doc.text("How Yalla governs the relationship", M, y);
+  doc.text("How SAFARID governs the relationship", M, y);
   y += 6;
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);

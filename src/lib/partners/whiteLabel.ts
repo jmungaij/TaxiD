@@ -1,5 +1,5 @@
 /**
- * YALLA WHITE-LABEL PARTNERS — canonical platform contract.
+ * SAFARID WHITE-LABEL PARTNERS — canonical platform contract.
  *
  * Every public claim on `/partners/white-label` is rendered from this module.
  * Each capability carries an explicit `status`, so the page can never present
@@ -8,7 +8,7 @@
  *
  * Status vocabulary (also used by the claim matrix):
  *   LIVE          — implemented in the platform today and exercised in production.
- *   CONFIGURED    — exists, but switched on per programme by the Yalla desk.
+ *   CONFIGURED    — exists, but switched on per programme by the SAFARID desk.
  *   CONTRACTUAL   — governed by the signed agreement, not by software configuration.
  *   PARTIAL       — partially implemented; usable with named limitations.
  *   ROADMAP       — committed direction, not available today.
@@ -35,11 +35,11 @@ export const STATUS_TONE: Record<CapabilityStatus, string> = {
   ROADMAP: "border-border bg-muted/60 text-muted-foreground",
 };
 
-export type Owner = "PARTNER" | "YALLA" | "SHARED";
+export type Owner = "PARTNER" | "SAFARID" | "SHARED";
 
 export const OWNER_LABEL: Record<Owner, string> = {
   PARTNER: "Partner",
-  YALLA: "Yalla",
+  SAFARID: "SAFARID",
   SHARED: "Shared",
 };
 
@@ -58,7 +58,7 @@ export const BRAND_SURFACES: BrandSurface[] = [
   { surface: "Brand identity", detail: "Logo, colour tokens, typography and tone applied to the partner-facing surfaces in scope.", status: "CONFIGURED", owner: "SHARED" },
   { surface: "Booking experience", detail: "Branded quote-and-book journey for the services admitted to the programme.", status: "CONFIGURED", owner: "SHARED" },
   { surface: "Customer portal", detail: "Order history, tracking and documents under the partner brand.", status: "PARTIAL", owner: "SHARED" },
-  { surface: "Partner Workspace", detail: "Operational workspace at /partner/workspace for the partner's own staff.", status: "LIVE", owner: "YALLA" },
+  { surface: "Partner Workspace", detail: "Operational workspace at /partner/workspace for the partner's own staff.", status: "LIVE", owner: "SAFARID" },
   { surface: "Transactional email", detail: "Partner sender name and template content; authenticated sending domain is agreed during provisioning.", status: "CONFIGURED", owner: "SHARED" },
   { surface: "Receipts and invoices", detail: "Partner brand on documents, with statutory identifiers and tax data fixed by the issuing entity.", status: "CONFIGURED", owner: "SHARED" },
   { surface: "Custom domain", detail: "Partner-owned hostname with DNS verification and managed TLS.", status: "ROADMAP", owner: "SHARED" },
@@ -110,11 +110,11 @@ export const RESPONSIBILITY_MATRIX: Responsibility[] = [
   { area: "Brand and creative", owner: "PARTNER", detail: "Marks, tone and approved customer-facing presentation." },
   { area: "Customer relationship", owner: "PARTNER", detail: "Acquisition, first-line commercial contact and retention." },
   { area: "Distribution", owner: "PARTNER", detail: "Channels, campaigns and demand generation." },
-  { area: "Mobility infrastructure", owner: "YALLA", detail: "Quoting, ordering, tracking, documents and the operating platform." },
-  { area: "Fulfilment and dispatch", owner: "YALLA", detail: "Supply admission, assignment and completion of journeys in scope." },
-  { area: "Settlement infrastructure", owner: "YALLA", detail: "Charge capture, statement generation and reconciliation records." },
-  { area: "Pricing", owner: "SHARED", detail: "Yalla governs the rate structure; partner margin is contracted per programme." },
-  { area: "Customer support", owner: "SHARED", detail: "Partner takes first line; Yalla operates mobility escalation in scope." },
+  { area: "Mobility infrastructure", owner: "SAFARID", detail: "Quoting, ordering, tracking, documents and the operating platform." },
+  { area: "Fulfilment and dispatch", owner: "SAFARID", detail: "Supply admission, assignment and completion of journeys in scope." },
+  { area: "Settlement infrastructure", owner: "SAFARID", detail: "Charge capture, statement generation and reconciliation records." },
+  { area: "Pricing", owner: "SHARED", detail: "SAFARID governs the rate structure; partner margin is contracted per programme." },
+  { area: "Customer support", owner: "SHARED", detail: "Partner takes first line; SAFARID operates mobility escalation in scope." },
   { area: "Governance and performance", owner: "SHARED", detail: "Joint review cadence against the agreed measures." },
   { area: "Compliance", owner: "SHARED", detail: "Each party is accountable for its own regulated obligations under the agreement." },
 ];
@@ -207,7 +207,7 @@ export const PRIVACY_CONTROLS: Control[] = [
   { name: "Access logging", detail: "Privileged reads of partner and customer records are recorded with the acting identity.", status: "LIVE" },
   { name: "Data residency", detail: "Platform data is held in the managed cloud region agreed at provisioning.", status: "CONFIGURED" },
   { name: "Retention and deletion", detail: "Retention periods and deletion handling are set in the data-processing terms of the agreement.", status: "CONTRACTUAL" },
-  { name: "Data subject requests", detail: "Requests are routed through the partner as first line and executed by Yalla for platform-held data.", status: "CONTRACTUAL" },
+  { name: "Data subject requests", detail: "Requests are routed through the partner as first line and executed by SAFARID for platform-held data.", status: "CONTRACTUAL" },
   { name: "Subprocessors and incident notification", detail: "Named in the agreement, with notification obligations on both parties.", status: "CONTRACTUAL" },
 ];
 
@@ -244,7 +244,7 @@ export const COMMERCIAL_MODEL: CommercialTerm[] = [
   { term: "Partner margin", basis: "Applied on top of the governed rate, agreed per service and market.", status: "CONTRACTUAL" },
   { term: "Payment terms", basis: "Settlement period and payment window fixed in the agreement.", status: "CONTRACTUAL" },
   { term: "Minimum volumes", basis: "Where a programme carries dedicated supply or operations capacity.", status: "CONTRACTUAL" },
-  { term: "Refunds and chargebacks", basis: "Allocated by cause between partner and Yalla under the agreement.", status: "CONTRACTUAL" },
+  { term: "Refunds and chargebacks", basis: "Allocated by cause between partner and SAFARID under the agreement.", status: "CONTRACTUAL" },
   { term: "Taxes", basis: "Charged and remitted by the issuing entity per Kenyan tax law.", status: "CONTRACTUAL" },
   { term: "Support and service levels", basis: "Selected support tier and the associated response targets.", status: "CONTRACTUAL" },
 ];
@@ -280,13 +280,13 @@ export interface LifecycleStage {
 }
 
 export const LIFECYCLE: LifecycleStage[] = [
-  { step: 1, name: "Partner qualification", owner: "YALLA", entryCriteria: "Application submitted with company, market and volume profile.", activities: "Eligibility, brand and market screening.", deliverables: "Qualification decision.", exitCriteria: "Partner accepted into discovery.", approval: "Partner desk" },
+  { step: 1, name: "Partner qualification", owner: "SAFARID", entryCriteria: "Application submitted with company, market and volume profile.", activities: "Eligibility, brand and market screening.", deliverables: "Qualification decision.", exitCriteria: "Partner accepted into discovery.", approval: "Partner desk" },
   { step: 2, name: "Solution discovery", owner: "SHARED", entryCriteria: "Qualified partner.", activities: "Services, markets, customer journey and branding scope.", deliverables: "Solution outline.", exitCriteria: "Scope agreed in writing.", approval: "Commercial lead" },
   { step: 3, name: "Technical and operational feasibility", owner: "SHARED", entryCriteria: "Solution outline.", activities: "Integration pattern, supply feasibility, data flows, security review.", deliverables: "Feasibility record and risk list.", exitCriteria: "No unresolved blocking risk.", approval: "Integration desk" },
   { step: 4, name: "Commercial and operating agreement", owner: "SHARED", entryCriteria: "Feasibility cleared.", activities: "Pricing, margin, settlement, support, governance, data terms.", deliverables: "Signed agreement.", exitCriteria: "Agreement executed.", approval: "Both parties" },
-  { step: 5, name: "Tenant and configuration provisioning", owner: "YALLA", entryCriteria: "Signed agreement.", activities: "Tenant creation, brand profile, services, markets, roles, sandbox credentials.", deliverables: "Sandbox tenant and workspace access.", exitCriteria: "Partner can authenticate and quote in sandbox.", approval: "Integration desk" },
+  { step: 5, name: "Tenant and configuration provisioning", owner: "SAFARID", entryCriteria: "Signed agreement.", activities: "Tenant creation, brand profile, services, markets, roles, sandbox credentials.", deliverables: "Sandbox tenant and workspace access.", exitCriteria: "Partner can authenticate and quote in sandbox.", approval: "Integration desk" },
   { step: 6, name: "Build and integration", owner: "PARTNER", entryCriteria: "Sandbox tenant issued.", activities: "Booking flow, webhooks, documents, reconciliation handling.", deliverables: "Working integration in sandbox.", exitCriteria: "Agreed scenarios implemented.", approval: "Partner engineering" },
-  { step: 7, name: "Certification", owner: "YALLA", entryCriteria: "Sandbox integration complete.", activities: "Happy-path and failure-path scenarios, signature verification, idempotency, cancellation, reconciliation.", deliverables: "Certification record.", exitCriteria: "All mandatory scenarios pass.", approval: "Integration desk" },
+  { step: 7, name: "Certification", owner: "SAFARID", entryCriteria: "Sandbox integration complete.", activities: "Happy-path and failure-path scenarios, signature verification, idempotency, cancellation, reconciliation.", deliverables: "Certification record.", exitCriteria: "All mandatory scenarios pass.", approval: "Integration desk" },
   { step: 8, name: "Controlled production launch", owner: "SHARED", entryCriteria: "Certification passed and production credentials issued.", activities: "Staged traffic exposure against rollback triggers.", deliverables: "Live programme at full exposure.", exitCriteria: "100% exposure held without a rollback trigger.", approval: "Both parties" },
   { step: 9, name: "Hypercare", owner: "SHARED", entryCriteria: "Programme live.", activities: "Heightened monitoring of bookings, payments, webhooks and settlement.", deliverables: "Hypercare exit report.", exitCriteria: "Agreed stability window met.", approval: "Operations" },
   { step: 10, name: "Joint performance governance", owner: "SHARED", entryCriteria: "Hypercare exited.", activities: "Scheduled review of volume, quality, incidents, settlement and change.", deliverables: "Review record and actions.", exitCriteria: "Continuous — the programme stays in governance.", approval: "Both parties" },
@@ -409,7 +409,7 @@ export const DEVELOPER_RESOURCES: DeveloperResource[] = [
   { name: "API documentation", to: "/api-docs", detail: "Reference material for the published surface.", status: "LIVE" },
   { name: "Developer portal", to: "/developers", detail: "Entry point for partner engineering teams.", status: "LIVE" },
   { name: "Partner Workspace", to: "/partner/workspace", detail: "Operational workspace for an admitted partner.", status: "LIVE" },
-  { name: "Yalla Enterprise", to: "/enterprise", detail: "The enterprise proposition this programme sits inside.", status: "LIVE" },
+  { name: "SAFARID Enterprise", to: "/enterprise", detail: "The enterprise proposition this programme sits inside.", status: "LIVE" },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -447,15 +447,15 @@ export interface Faq {
 }
 
 export const WHITE_LABEL_FAQ: Faq[] = [
-  { q: "What exactly is white-labelled?", a: "The customer-facing surfaces in scope — brand identity, booking experience, notifications and documents — carry the partner brand. Fulfilment, dispatch, payments and settlement run on Yalla's operating platform. Statutory identifiers, safety information and privacy notices are never overridden by branding." },
-  { q: "Can we use our own domain?", a: "Not today. Custom partner domains are on the roadmap and are labelled as such throughout the programme material; the branded experience is served on a Yalla-operated hostname until then." },
+  { q: "What exactly is white-labelled?", a: "The customer-facing surfaces in scope — brand identity, booking experience, notifications and documents — carry the partner brand. Fulfilment, dispatch, payments and settlement run on SAFARID's operating platform. Statutory identifiers, safety information and privacy notices are never overridden by branding." },
+  { q: "Can we use our own domain?", a: "Not today. Custom partner domains are on the roadmap and are labelled as such throughout the programme material; the branded experience is served on a SAFARID-operated hostname until then." },
   { q: "Is there a branded mobile app?", a: "No. The white-label programme covers web and API surfaces. A store-published branded application is not part of the programme today." },
   { q: "How is our data kept separate from other partners?", a: "Every partner record is scoped to a tenant and enforced by row-level security in the database. Sandbox and production are separate tenants, and credentials cannot cross either boundary." },
   { q: "How do we integrate?", a: "Through the same API platform published for API partners — quoting, orders, tracking, documents and settlement, with scoped credentials, idempotency keys and signed webhooks. Sandbox comes first, then certification, then production credentials." },
   { q: "How does money flow?", a: "Order to charge to payment to fees and tax to settlement to statement to reconciliation. Payments are only recognised on a verified provider callback, and corrections are made as adjustments rather than edits." },
   { q: "What service levels apply?", a: "Availability and latency are published as objectives and targets and reported to the partner. Contractual commitments, including any service credits, exist only where the signed agreement states them." },
   { q: "How long does launch take?", a: "It depends on scope. The lifecycle has ten stages with explicit entry and exit criteria; the gating items are usually the operating agreement and certification rather than the build." },
-  { q: "Who supports the customer?", a: "The partner takes first line, because the customer relationship is the partner's. Yalla operates mobility escalation for orders in scope under the agreed support tier." },
+  { q: "Who supports the customer?", a: "The partner takes first line, because the customer relationship is the partner's. SAFARID operates mobility escalation for orders in scope under the agreed support tier." },
 ];
 
 /* ------------------------------------------------------------------ *

@@ -3,7 +3,7 @@
  *
  * Every control on this page executes a server-authoritative database operation.
  * There are no client-side calculations, no placeholder actions and no fabricated
- * outcomes. Payments are never initiated here: the existing Yalla M-Pesa engine
+ * outcomes. Payments are never initiated here: the existing SAFARID M-Pesa engine
  * remains the payment authority and this surface only records and reconciles the
  * relationship between confirmed money and freight invoices.
  */
@@ -190,7 +190,7 @@ export default function FreightAudit() {
           <h1 className="text-2xl font-semibold tracking-tight">Freight Audit &amp; Financial Reconciliation</h1>
           <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
             Operational, commercial and financial truth for freight. Payments remain owned by the
-            existing Yalla M-Pesa engine — this centre records, allocates and reconciles them.
+            existing SAFARID M-Pesa engine — this centre records, allocates and reconciles them.
           </p>
         </div>
         <Button variant="outline" onClick={() => void refresh()} disabled={busy !== null}>
@@ -550,7 +550,7 @@ export default function FreightAudit() {
           <Alert>
             <Wallet className="h-4 w-4" />
             <AlertDescription>
-              The existing Yalla M-Pesa engine remains the payment authority. Nothing here initiates
+              The existing SAFARID M-Pesa engine remains the payment authority. Nothing here initiates
               or edits a payment — allocations only attach already-confirmed money to freight invoices
               and can be reversed without touching the original transaction.
             </AlertDescription>

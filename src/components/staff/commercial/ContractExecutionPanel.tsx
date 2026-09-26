@@ -305,7 +305,7 @@ function ContractCard({ contract, onChanged }: { contract: ContractRecord; onCha
                     />
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs">Signed for Yalla Mobility by</Label>
+                    <Label className="text-xs">Signed for SAFARID by</Label>
                     <Input
                       value={draft.company_signatory}
                       onChange={(e) => set("company_signatory", e.target.value)}

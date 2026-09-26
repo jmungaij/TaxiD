@@ -3,15 +3,15 @@ import { NarrativePage } from "@/components/marketing/NarrativePage";
 export default function Reliability() {
   return (
     <NarrativePage
-      eyebrow="Why Yalla"
-      title="How Yalla keeps journeys and payments dependable"
+      eyebrow="Why SAFARID"
+      title="How SAFARID keeps journeys and payments dependable"
       subtitle="What actually happens behind a booking, a payment and a handover — described plainly, without numbers we cannot evidence."
       path="/reliability"
-      seoTitle="Reliability at Yalla Mobility — How Bookings Hold Up"
-      seoDescription="How Yalla Mobility protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation."
+      seoTitle="Reliability at SAFARID — How Bookings Hold Up"
+      seoDescription="How SAFARID protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation."
       intro={[
         "Reliability, for a mobility platform, is not a slogan. It is whether the vehicle you were promised is actually free, whether the money you paid is actually recorded, and whether someone notices when a step fails.",
-        "Yalla Mobility is an early-stage Kenyan company, so instead of publishing service statistics we cannot yet stand behind, this page describes the controls that are built into the platform today.",
+        "SAFARID is an early-stage Kenyan company, so instead of publishing service statistics we cannot yet stand behind, this page describes the controls that are built into the platform today.",
       ]}
       sections={[
         {

@@ -1,9 +1,9 @@
 /**
- * Yalla Air client portal sign-in.
+ * SAFARID Air client portal sign-in.
  *
  * Serves charter and leasing customers plus flight operators. Built on the same
  * authentication primitives, forensic login recording and risk scoring as the
- * corporate portal so every Yalla Mobility surface enforces one standard.
+ * corporate portal so every SAFARID surface enforces one standard.
  */
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
@@ -89,7 +89,7 @@ export default function CharterLogin() {
 
   const finalize = async (userId: string, userEmail: string) => {
     await recordLoginEvent({ email: userEmail, event_type: "login_success", user_id: userId });
-    toast({ title: "Welcome to Yalla Air", description: "Taking you to your flights…" });
+    toast({ title: "Welcome to SAFARID Air", description: "Taking you to your flights…" });
     navigate(redirectTo, { replace: true });
   };
 
@@ -206,8 +206,8 @@ export default function CharterLogin() {
   return (
     <>
       <SeoHead
-        title="Yalla Air Client Portal — Charter & Leasing Sign In"
-        description="Sign in to the Yalla Air client portal to manage private charter and aircraft leasing bookings, live flight status, quotes and settlement."
+        title="SAFARID Air Client Portal — Charter & Leasing Sign In"
+        description="Sign in to the SAFARID Air client portal to manage private charter and aircraft leasing bookings, live flight status, quotes and settlement."
         path="/charter/login"
       />
       <main className="min-h-screen grid lg:grid-cols-2 bg-background">
@@ -216,7 +216,7 @@ export default function CharterLogin() {
           <div className="absolute inset-0 opacity-20 [background:radial-gradient(circle_at_20%_20%,white,transparent_45%),radial-gradient(circle_at_80%_70%,white,transparent_40%)]" />
           <div className="relative">
             <div className="flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
-              <Plane className="h-5 w-5" /> Yalla Air
+              <Plane className="h-5 w-5" /> SAFARID Air
             </div>
             <h1 className="mt-10 text-4xl font-bold leading-tight max-w-md">
               Private aviation, operated with enterprise discipline.
@@ -241,7 +241,7 @@ export default function CharterLogin() {
         <section className="flex items-center justify-center p-6 sm:p-12">
           <div className="w-full max-w-md space-y-6">
             <div className="lg:hidden flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-primary">
-              <Plane className="h-5 w-5" /> Yalla Air
+              <Plane className="h-5 w-5" /> SAFARID Air
             </div>
             <div>
               <h2 className="text-2xl font-bold">Client portal</h2>

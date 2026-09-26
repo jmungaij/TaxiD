@@ -136,7 +136,7 @@ export function reconcileReadiness(view: CommandCenterView, now = new Date().toI
 
 export function renderReconciliationMarkdown(r: ReconciliationReport): string {
   return [
-    "# YALLA MOBILITY — CERTIFICATION RECONCILIATION REPORT",
+    "# SAFARID — CERTIFICATION RECONCILIATION REPORT",
     "",
     `Generated ${r.generated_at}`,
     "",
@@ -166,7 +166,7 @@ export function renderReconciliationMarkdown(r: ReconciliationReport): string {
 /**
  * RPO/RTO TEMPLATES.
  *
- * These are reference templates only. They are NOT approvals and NOT Yalla's
+ * These are reference templates only. They are NOT approvals and NOT SAFARID's
  * targets: an approver must consciously select or override the values and sign
  * off. Nothing here writes to the register.
  */

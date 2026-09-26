@@ -1,5 +1,5 @@
 /**
- * Phase 4 — Yalla Event Fabric and Business State Machines.
+ * Phase 4 — SAFARID Event Fabric and Business State Machines.
  *
  * Agents never act on prose instructions. They subscribe to machine-readable
  * business events and operate against explicit object states, so every agent

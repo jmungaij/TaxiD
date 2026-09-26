@@ -34,7 +34,7 @@ export async function buildProformaPdf(p: Proforma): Promise<Uint8Array> {
   pdf.setTextColor(255);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(16);
-  pdf.text("YALLA MOBILITY", M, 13);
+  pdf.text("SAFARID", M, 13);
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(8.5);
   pdf.text("Yalla Beena Limited · Nairobi, Kenya", M, 19);

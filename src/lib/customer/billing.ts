@@ -20,7 +20,7 @@ export interface BillingLine {
   amount_cents: number | null;
 }
 
-/** The next collections step Yalla has planned on an unpaid invoice. */
+/** The next collections step SAFARID has planned on an unpaid invoice. */
 export interface CustomerNextStep {
   action_type: string | null;
   due_on: string | null;

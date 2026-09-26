@@ -177,7 +177,7 @@ export function VideoLessonPlayer({
           <div className="flex items-center justify-center gap-2 text-muted-foreground">
             <AlertCircle className="h-4 w-4" />
             {video.provider === "yalla"
-              ? "Internal Yalla Mobility video — coming soon. Use the manual checkpoints below to acknowledge each section."
+              ? "Internal SAFARID video — coming soon. Use the manual checkpoints below to acknowledge each section."
               : "External resource — open it in a new tab and confirm each section."}
           </div>
           <Button asChild size="sm" variant="outline" disabled={video.url.startsWith("internal_")}>

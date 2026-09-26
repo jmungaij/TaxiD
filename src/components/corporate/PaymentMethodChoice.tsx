@@ -2,7 +2,7 @@
  * PAYMENT METHOD CHOICE (cash-first).
  *
  * Shows only the payment methods this company may actually use right now:
- *   • Yalla M-Pesa PayBill and Yalla bank account — always available, and a
+ *   • SAFARID M-Pesa PayBill and SAFARID bank account — always available, and a
  *     payment is never treated as received until it has been verified.
  *   • Approved corporate credit — shown ONLY when the server reports an active,
  *     verified, approved and activated bank-guarantee-backed credit facility
@@ -151,7 +151,7 @@ export function PaymentMethodChoice({ corporateId, amountCents, bookingReference
           <Alert>
             <Info className="h-4 w-4" aria-hidden />
             <AlertDescription>
-              Corporate credit is unavailable. Pay using Yalla M-Pesa PayBill or bank transfer.
+              Corporate credit is unavailable. Pay using SAFARID M-Pesa PayBill or bank transfer.
               {snapshot?.reason_codes?.length ? ` (${snapshot.reason_codes.map(reasonText).join("; ")})` : ""}
             </AlertDescription>
           </Alert>
@@ -177,7 +177,7 @@ export function PaymentMethodChoice({ corporateId, amountCents, bookingReference
 
         <p className="text-xs text-muted-foreground">{CREDIT_WARNING}</p>
         <p className="text-xs text-muted-foreground">
-          A payment is only treated as received once Yalla has verified it. Screenshots, transaction numbers typed in by
+          A payment is only treated as received once SAFARID has verified it. Screenshots, transaction numbers typed in by
           hand and proforma invoices are kept as evidence for reconciliation — they never confirm payment on their own.
         </p>
       </CardContent>

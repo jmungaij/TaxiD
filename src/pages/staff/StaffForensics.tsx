@@ -236,7 +236,7 @@ export default function StaffForensics() {
               <CardHeader>
                 <CardTitle className="text-base">Marketplace revenue layers</CardTitle>
                 <CardDescription>
-                  Yalla is a marketplace: these are separate measures and are never merged into one
+                  SAFARID is a marketplace: these are separate measures and are never merged into one
                   “revenue” figure.
                 </CardDescription>
               </CardHeader>

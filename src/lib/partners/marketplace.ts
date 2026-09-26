@@ -1,11 +1,11 @@
 /**
- * YALLA PARTNERS 360 — marketplace orchestration client.
+ * SAFARID PARTNERS 360 — marketplace orchestration client.
  *
  * Supply, demand matching, quotation, explainable performance and risk.
  * Every write below is a governed server routine (SECURITY DEFINER + role
  * checks + audit). Nothing here is an authorization boundary: the browser can
  * only ask, the database decides. All money on quotes (commission, partner net,
- * Yalla margin) is computed server-side from the contracted margin — the client
+ * SAFARID margin) is computed server-side from the contracted margin — the client
  * never supplies it.
  */
 import { supabase } from "@/integrations/supabase/client";

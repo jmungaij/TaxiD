@@ -26,7 +26,7 @@ const ACTIONS = [
   {
     to: "/driver/apply",
     label: "Join as a Driver",
-    desc: "Register as a Yalla Mobility driver partner and access more demand.",
+    desc: "Register as a SAFARID driver partner and access more demand.",
     icon: IdCard,
   },
 ];

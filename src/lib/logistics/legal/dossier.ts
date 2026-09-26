@@ -62,14 +62,14 @@ export interface LgDossierEntry {
   authoritative_fields: string[];
   /** What the approved, effective document authorises in the operational spine. */
   operational_linkage: string;
-  /** Public regulatory sources filed as REGULATORY_REFERENCE (never as a Yalla licence). */
+  /** Public regulatory sources filed as REGULATORY_REFERENCE (never as a SAFARID licence). */
   regulatory_references: string[];
 }
 
-export const LG_ROOT_FOLDER = "Yalla Mobility Documents 360 / Legal & Regulatory / Logistics & Courier";
+export const LG_ROOT_FOLDER = "SAFARID Documents 360 / Legal & Regulatory / Logistics & Courier";
 export const LG_CORRESPONDENCE_EMAIL = "admin@yalla.africa";
 export const LG_DRAFT_WATERMARK = "DRAFT — FOR LEGAL REVIEW — NOT EVIDENCE OF REGULATORY APPROVAL";
-export const LG_ENTITY = "Yalla Beena Limited trading as Yalla Mobility";
+export const LG_ENTITY = "Yalla Beena Limited, trading as SAFARID";
 
 /** Marker used wherever the issuing authority cannot be asserted yet. */
 export const LEGAL_DETERMINATION_REQUIRED = "LEGAL DETERMINATION REQUIRED";
@@ -80,20 +80,20 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-01",
     document_id: "YB-LG01-REG-001",
-    title: "Yalla Mobility Courier / Parcel Operating Model and Applicable Licensing Determination",
+    title: "SAFARID Courier / Parcel Operating Model and Applicable Licensing Determination",
     folder: folderFor("LG-01"),
     evidence_type: "LEGAL_DETERMINATION",
     provenance: "INTERNAL_DOCUMENT",
     issuing_authority: "Communications Authority of Kenya (CA) — determination required",
     draft_state: "LEGAL_REVIEW_REQUIRED",
     declaration:
-      "Draft legal determination prepared for authorised legal review. No regulatory licence, exemption or regulatory approval is asserted by this record. The applicable Yalla operating model and licensing category must be confirmed against current Communications Authority requirements and authoritative Yalla evidence.",
+      "Draft legal determination prepared for authorised legal review. No regulatory licence, exemption or regulatory approval is asserted by this record. The applicable SAFARID operating model and licensing category must be confirmed against current Communications Authority requirements and authoritative SAFARID evidence.",
     sections: [
       "Purpose, scope and entity description",
       "Actual service description: parcel booking, collection, dispatch, handling, conveyance, delivery, courier matching",
-      "Capability inventory: Yalla-owned delivery capability, driver/partner network, third-party licensed courier partners",
+      "Capability inventory: SAFARID-owned delivery capability, driver/partner network, third-party licensed courier partners",
       "Candidate regulatory categories: (A) Courier Hailing Service Provider, (B) National Courier Operator, (C) International Courier Operator, (D) platform plus principal courier operator, (E) platform operating exclusively through licensed courier partners, (F) other legally applicable model",
-      "Mapping of each Yalla service to each candidate category, with the facts relied upon",
+      "Mapping of each SAFARID service to each candidate category, with the facts relied upon",
       "Domestic versus international operations analysis",
       "Determination question reserved to counsel — NOT decided by this draft",
       "Licence application pathway and regulatory correspondence log (if a licence is required)",
@@ -111,7 +111,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-02",
     document_id: "YB-LG02-REG-001",
-    title: "Yalla Mobility Transport Operator and Commercial Goods-Carriage Requirements Determination",
+    title: "SAFARID Transport Operator and Commercial Goods-Carriage Requirements Determination",
     folder: folderFor("LG-02"),
     evidence_type: "LEGAL_DETERMINATION",
     provenance: "INTERNAL_DOCUMENT",
@@ -121,7 +121,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
       "Draft determination of transport operator obligations, separated by operation type and vehicle relationship. No statutory conclusion, exemption or operator authorisation is asserted. PSV requirements are not applied to goods operations without an approved legal basis.",
     sections: [
       "Separation of operations: passenger transport, parcel transport, commercial goods carriage",
-      "Separation of fleet relationships: Yalla-owned, leased, partner, subcontracted carrier",
+      "Separation of fleet relationships: SAFARID-owned, leased, partner, subcontracted carrier",
       "Requirement matrix per combination: licensing, inspection, driver, vehicle, load, safety, operator records",
       "Analysis of whether any mobility/ride-hailing approval extends to commercial goods carriage — reserved to counsel",
       "Uncertain requirements register, each marked LEGAL_REVIEW_REQUIRED",
@@ -142,7 +142,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
     issuing_authority: LEGAL_DETERMINATION_REQUIRED,
     draft_state: "LEGAL_REVIEW_REQUIRED",
     declaration:
-      "Draft personnel requirements framework distinguishing statutory requirement, Yalla policy and customer safety standard. No internal policy is represented as a statutory requirement.",
+      "Draft personnel requirements framework distinguishing statutory requirement, SAFARID policy and customer safety standard. No internal policy is represented as a statutory requirement.",
     sections: [
       "Identity verification and document standards",
       "Driver licence and vehicle-category entitlement",
@@ -151,7 +151,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
       "Safety training and operational training",
       "Contractual engagement and code of conduct",
       "Incident reporting duties",
-      "Three-column classification: LEGAL REQUIREMENT | YALLA POLICY | CUSTOMER SAFETY STANDARD",
+      "Three-column classification: LEGAL REQUIREMENT | SAFARID POLICY | CUSTOMER SAFETY STANDARD",
       "Eligibility consequences per requirement",
     ],
     authoritative_fields: ["legal_basis_citation", "counsel_reviewer", "approval_date"],
@@ -188,7 +188,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-05",
     document_id: "YB-LG05-INS-001",
-    title: "Yalla Goods Handling Insurance and Protection Determination",
+    title: "SAFARID Goods Handling Insurance and Protection Determination",
     folder: folderFor("LG-05"),
     evidence_type: "INSURANCE_POLICY",
     provenance: "INSURER_DOCUMENT",
@@ -197,7 +197,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
     declaration:
       "Evidence template only. No insurance cover, insurer, policy number, limit or period is asserted. Insured status cannot be derived from an internal policy document; only an insurer-issued policy or certificate filed in Documents 360 is evidence.",
     sections: [
-      "Scope of goods handled by Yalla and by partners",
+      "Scope of goods handled by SAFARID and by partners",
       "Required cover template — completed only from insurer-issued evidence",
       "Certificate filing and renewal calendar",
       "Escalation where cover is unavailable (INSURER_ACTION_REQUIRED)",
@@ -218,7 +218,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
       "certificate_location",
     ],
     operational_linkage:
-      "Without insurer evidence, services depending on Yalla-held goods cover stay restricted. Expired insurance restricts the affected service automatically.",
+      "Without insurer evidence, services depending on SAFARID-held goods cover stay restricted. Expired insurance restricts the affected service automatically.",
     regulatory_references: [],
   },
   {
@@ -294,7 +294,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-09",
     document_id: "YB-LG09-CLAIMS-001",
-    title: "Yalla Logistics Claims Handling and Evidentiary Standard",
+    title: "SAFARID Logistics Claims Handling and Evidentiary Standard",
     folder: folderFor("LG-09"),
     evidence_type: "POLICY",
     provenance: "INTERNAL_DOCUMENT",
@@ -319,7 +319,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-10",
     document_id: "YB-LG10-LIAB-001",
-    title: "Yalla Logistics Liability and Limitation Framework",
+    title: "SAFARID Logistics Liability and Limitation Framework",
     folder: folderFor("LG-10"),
     evidence_type: "LEGAL_DETERMINATION",
     provenance: "EXTERNAL_COUNSEL_DOCUMENT",
@@ -346,7 +346,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-11",
     document_id: "YB-LG11-CON-001",
-    title: "Yalla Customer Terms of Carriage",
+    title: "SAFARID Customer Terms of Carriage",
     folder: folderFor("LG-11"),
     evidence_type: "TERMS_OF_SERVICE",
     provenance: "CUSTOMER_CONTRACT",
@@ -382,7 +382,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-12",
     document_id: "YB-LG12-CON-001",
-    title: "Yalla Courier / Carrier Partner Agreement",
+    title: "SAFARID Courier / Carrier Partner Agreement",
     folder: folderFor("LG-12"),
     evidence_type: "CONTRACT",
     provenance: "PARTNER_CONTRACT",
@@ -414,7 +414,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-13",
     document_id: "YB-LG13-DP-001",
-    title: "Yalla Logistics Privacy and Lawful Basis Determination",
+    title: "SAFARID Logistics Privacy and Lawful Basis Determination",
     folder: folderFor("LG-13"),
     evidence_type: "DATA_PROTECTION_DOCUMENT",
     provenance: "INTERNAL_DOCUMENT",
@@ -428,7 +428,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
       "Per processing purpose: data, purpose, lawful basis, controller/processor role, recipients, retention, security, cross-border transfer, data-subject rights, legal source",
       "Controller versus processor determination per relationship",
       "Data-subject rights handling and response routes",
-      "Mapping to the published Yalla privacy notice",
+      "Mapping to the published SAFARID privacy notice",
     ],
     authoritative_fields: ["lawful_basis_per_purpose", "dpo_reviewer", "approval_date"],
     operational_linkage:
@@ -442,7 +442,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-14",
     document_id: "YB-LG14-DP-001",
-    title: "Yalla Logistics Data Handling, Retention and Cross-Border Transfer Determination",
+    title: "SAFARID Logistics Data Handling, Retention and Cross-Border Transfer Determination",
     folder: folderFor("LG-14"),
     evidence_type: "DATA_PROTECTION_DOCUMENT",
     provenance: "INTERNAL_DOCUMENT",
@@ -469,7 +469,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-15",
     document_id: "YB-LG15-REG-001",
-    title: "Yalla Regional and Cross-Border Logistics Requirements Determination",
+    title: "SAFARID Regional and Cross-Border Logistics Requirements Determination",
     folder: folderFor("LG-15"),
     evidence_type: "LEGAL_DETERMINATION",
     provenance: "INTERNAL_DOCUMENT",
@@ -493,7 +493,7 @@ export const LG_DOSSIER: LgDossierEntry[] = [
   {
     control_id: "LG-GOODS",
     document_id: "YB-LG-GOODS-001",
-    title: "Yalla Mobility Goods Classification Policy",
+    title: "SAFARID Goods Classification Policy",
     folder: folderFor("LG-GOODS"),
     evidence_type: "POLICY",
     provenance: "INTERNAL_DOCUMENT",
@@ -561,7 +561,7 @@ export function renderLgDraft(entry: LgDossierEntry, now = new Date()): string {
     "## Operational linkage once approved and effective",
     entry.operational_linkage,
     "",
-    "## Regulatory references (filed as REGULATORY_REFERENCE, not as Yalla licences)",
+    "## Regulatory references (filed as REGULATORY_REFERENCE, not as SAFARID licences)",
     ...(entry.regulatory_references.length ? entry.regulatory_references.map((r) => `- ${r}`) : ["- none"]),
     "",
     `${LG_DRAFT_WATERMARK}`,

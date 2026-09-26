@@ -7,8 +7,8 @@ export default function Sustainability() {
       title="Sustainability: what we can measure, and what we won't guess"
       subtitle="Our position on emissions, vehicle use and livelihoods as a young Kenyan mobility company — written without offsets we have not bought or savings we have not measured."
       path="/sustainability"
-      seoTitle="Sustainability at Yalla Mobility — An Honest Position"
-      seoDescription="Yalla Mobility's honest sustainability position: measurable vehicle utilisation and paperless operations today, no unverified emissions or offset claims."
+      seoTitle="Sustainability at SAFARID — An Honest Position"
+      seoDescription="SAFARID's honest sustainability position: measurable vehicle utilisation and paperless operations today, no unverified emissions or offset claims."
       intro={[
         "Transport is a significant source of emissions, and a mobility platform that ignores that is not credible. Nor is one that publishes a carbon figure it cannot substantiate.",
         "So this page states two things: what we can genuinely influence today, and what we refuse to claim until it is measured.",

@@ -150,7 +150,7 @@ export default function EvidenceVault({ tenantId, partnerId, canWrite = true }: 
           <CardDescription>
             {chain.intact
               ? "The tenant evidence chain is unbroken: every entry links to the hash of the one before it."
-              : "The evidence chain does not link end to end. Escalate to the Yalla partner desk."}
+              : "The evidence chain does not link end to end. Escalate to the SAFARID partner desk."}
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-2 text-sm text-muted-foreground">

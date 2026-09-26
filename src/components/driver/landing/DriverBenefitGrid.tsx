@@ -25,7 +25,7 @@ const BENEFITS = [
 export function DriverBenefitGrid() {
   return (
     <section className="container mx-auto px-4 py-16 md:py-20" aria-labelledby="why-drive-title">
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Why drive with Yalla Mobility</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Why drive with SAFARID</p>
       <h2 id="why-drive-title" className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
         A professional platform, not just an app
       </h2>

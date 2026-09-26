@@ -67,10 +67,10 @@ export default function CommunicationPreferences() {
   return (
     <main className="container mx-auto max-w-3xl space-y-6 px-4 py-10">
       <Helmet>
-        <title>Email preferences | Yalla Mobility</title>
+        <title>Email preferences | SAFARID</title>
         <meta
           name="description"
-          content="Choose which optional Yalla Mobility emails you receive. Security and booking receipts always remain on."
+          content="Choose which optional SAFARID emails you receive. Security and booking receipts always remain on."
         />
         <link rel="canonical" href="https://yalla.africa/account/communication-preferences" />
       </Helmet>
@@ -82,7 +82,7 @@ export default function CommunicationPreferences() {
         </div>
         <p className="text-sm text-muted-foreground">
           {email
-            ? `Preferences for ${email}. Changes apply immediately to every Yalla Mobility service.`
+            ? `Preferences for ${email}. Changes apply immediately to every SAFARID service.`
             : "Sign in to manage which optional emails you receive."}
         </p>
       </header>

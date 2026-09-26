@@ -568,7 +568,7 @@ export default function CorporateWalletFinance() {
     <div className="space-y-6">
       <SeoHead
         path="/dashboard/admin/corporate-wallet-finance"
-        title="Corporate Wallet Finance Console | Yalla Mobility"
+        title="Corporate Wallet Finance Console | SAFARID"
         description="Reconciliation exports, mismatch alerting, reversals and the immutable finance audit trail for corporate wallet funding."
       />
 

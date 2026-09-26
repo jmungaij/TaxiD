@@ -41,7 +41,7 @@ import { evaluateSignInRisk } from "@/lib/identity/risk";
 const HIGHLIGHTS = [
   "One platform. Every journey. Every destination.",
   "Connected mobility for individuals, businesses and partners",
-  "Secure access across Yalla's mobility ecosystem",
+  "Secure access across SAFARID's mobility ecosystem",
 ];
 
 /** Self-service audiences. Admin/finance/ops roles are never self-assignable. */
@@ -49,7 +49,7 @@ type SelfRole = "rider" | "driver" | "corporate_admin" | "corporate_employee" | 
 
 const AUDIENCES: { id: string; label: string; hint: string; role: SelfRole }[] = [
   { id: "rider", label: "Rider", hint: "Book rides & airport transfers", role: "rider" },
-  { id: "driver", label: "Driver", hint: "Drive & earn on Yalla", role: "driver" },
+  { id: "driver", label: "Driver", hint: "Drive & earn on SAFARID", role: "driver" },
   { id: "corporate", label: "Corporate", hint: "Company travel & billing", role: "corporate_admin" },
   { id: "employee", label: "Corporate employee", hint: "Ride on your company account", role: "corporate_employee" },
   { id: "logistics", label: "Logistics & delivery partner", hint: "Deliveries, courier & fleet ops", role: "fleet_owner" },
@@ -383,7 +383,7 @@ export default function AuthPage() {
       scoreAuthEvent({ event_type: "signup", email, method: "password" });
       if (data.session) {
         await applyPendingSignupRole();
-        toast({ title: "Account created", description: `Welcome to Yalla, ${chosen.label}.` });
+        toast({ title: "Account created", description: `Welcome to SAFARID, ${chosen.label}.` });
       } else {
         toast({
           title: `${chosen.label} account created`,
@@ -451,8 +451,8 @@ export default function AuthPage() {
     <>
       <SeoHead
         path="/auth"
-        title="Sign in | Yalla Africa"
-        description="One secure Yalla account for rides, business travel, rentals, leasing, delivery, fleet and charter."
+        title="Sign in | SAFARID Africa"
+        description="One secure SAFARID account for rides, business travel, rentals, leasing, delivery, fleet and charter."
       />
       <main className="min-h-screen bg-background">
         <div className="grid min-h-screen lg:grid-cols-[1fr_1fr] xl:grid-cols-[1.05fr_1fr]">
@@ -495,7 +495,7 @@ export default function AuthPage() {
                 One secure account. Simple access.
               </span>
               <h1 className="mt-6 text-4xl xl:text-5xl font-semibold leading-[1.1] tracking-tight">
-                Welcome back to Yalla.
+                Welcome back to SAFARID.
               </h1>
               <p className="mt-4 text-base xl:text-lg text-ice/90 max-w-lg">
                 One secure account for every journey — rides, business travel, rentals, leasing,
@@ -588,7 +588,7 @@ export default function AuthPage() {
                 <>
                   <div className="space-y-2">
                     <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
-                      Sign in to Yalla
+                      Sign in to SAFARID
                     </h1>
                     <p className="text-sm text-muted-foreground">
                       One secure account for your rides, mobility, business travel and more.
@@ -744,7 +744,7 @@ export default function AuthPage() {
                   <div className="mt-6 pt-6 border-t border-border/60 space-y-3 text-sm text-center">
                     {methods.signupOpen && (
                       <p className="text-muted-foreground">
-                        New to Yalla?{" "}
+                        New to SAFARID?{" "}
                         <button
                           type="button"
                           onClick={() => { setNotice(null); setTab("signup"); }}
@@ -766,10 +766,10 @@ export default function AuthPage() {
                 <>
                   <div className="space-y-2">
                     <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
-                      Create your Yalla account
+                      Create your SAFARID account
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                      Tell us how you'll use Yalla — you can add more later.
+                      Tell us how you'll use SAFARID — you can add more later.
                     </p>
                   </div>
 
@@ -842,7 +842,7 @@ export default function AuthPage() {
                   </form>
 
                   <div className="mt-6 pt-6 border-t border-border/60 text-sm text-muted-foreground text-center">
-                    Already have a Yalla account?{" "}
+                    Already have a SAFARID account?{" "}
                     <button
                       type="button"
                       onClick={() => { setNotice(null); setTab("signin"); }}

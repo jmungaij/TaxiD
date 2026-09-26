@@ -1,5 +1,5 @@
 /**
- * PUBLIC SOCIAL SURFACE — "Connect with Yalla"
+ * PUBLIC SOCIAL SURFACE — "Connect with SAFARID"
  *
  * A consumer of the Social Distribution read service. It contains NO URLs, no
  * per-platform branches and no administrative concepts: it renders whatever
@@ -69,7 +69,7 @@ export function SocialLink({ account, location, className }: SocialLinkProps) {
     });
     return null;
   }
-  const label = account.aria_label || `Yalla Mobility on ${account.display_name}`;
+  const label = account.aria_label || `SAFARID on ${account.display_name}`;
   const isConversation = PLATFORM_KIND[account.platform_slug as SocialPlatformSlug] === "CONVERSATION";
   return (
     <a
@@ -124,7 +124,7 @@ export function SocialLinks({ location = "footer", className, headingClassName, 
           id="connect-with-yalla"
           className={cn("font-semibold mb-3 text-sm uppercase tracking-wider", headingClassName)}
         >
-          Connect with Yalla
+          Connect with SAFARID
         </h2>
       )}
       {accounts === null ? (
@@ -133,7 +133,7 @@ export function SocialLinks({ location = "footer", className, headingClassName, 
         </p>
       ) : accounts.length === 0 ? (
         <p className="text-sm text-nav-muted-foreground/80">
-          Official Yalla Mobility social channels are being verified and will appear here once published.
+          Official SAFARID social channels are being verified and will appear here once published.
         </p>
       ) : (
         <ul className="flex flex-wrap items-center gap-1">

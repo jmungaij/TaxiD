@@ -1,5 +1,5 @@
 /**
- * Yalla Intelligence OS — answer contract.
+ * SAFARID Intelligence OS — answer contract.
  *
  * Every claim the intelligence layer returns declares WHAT KIND of statement it
  * is, WHERE it came from, HOW FRESH the underlying data is and HOW CONFIDENT the

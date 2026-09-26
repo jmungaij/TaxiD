@@ -1,5 +1,5 @@
 /**
- * Yalla Security Control Plane — Risk & Decision Engine.
+ * SAFARID Security Control Plane — Risk & Decision Engine.
  *
  * Not all findings deserve equal treatment. Four public recruitment reference
  * tables and a PUBLIC EXECUTE grant on a contract mutation are not the same

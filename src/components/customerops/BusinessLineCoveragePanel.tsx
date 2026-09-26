@@ -1,7 +1,7 @@
 /**
  * Customer Operations — Business Line Coverage panel.
  *
- * Proves the cockpit services every commercial line Yalla Mobility sells, and
+ * Proves the cockpit services every commercial line SAFARID sells, and
  * exposes per-line health plus desk load. Composed only from shadcn atoms and
  * frozen dashboard primitives.
  */

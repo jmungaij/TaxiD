@@ -12,7 +12,7 @@ export const COMPANY_PROFILE_SLUG = "company-profile";
 /** Repository-committed pointer — the profile renders even before a DB read. */
 export const COMPANY_PROFILE_FALLBACK = {
   slug: COMPANY_PROFILE_SLUG,
-  title: "Yalla Mobility — Enterprise Company Profile",
+  title: "SAFARID — Enterprise Company Profile",
   version: "v1.0",
   description:
     "Six-page enterprise company profile: corporate identity, service ecosystem, corporate mobility, partners and future direction.",

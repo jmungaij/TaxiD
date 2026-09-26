@@ -125,8 +125,8 @@ export default function CharterBookingStatus() {
     <MarketingPage>
       <SeoHead
         path="/charter/booking-status"
-        title="Charter Booking Status | Yalla Mobility"
-        description="Track your Yalla Mobility charter booking in real time: live flight timeline, operator updates and downloadable confirmation summary."
+        title="Charter Booking Status | SAFARID"
+        description="Track your SAFARID charter booking in real time: live flight timeline, operator updates and downloadable confirmation summary."
       />
       <PageHero
         eyebrow="Charter Business"

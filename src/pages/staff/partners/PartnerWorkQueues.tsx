@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS — staff work queues.
+ * SAFARID PARTNERS — staff work queues.
  *
  * Work, not master data: every row is a case tied to a partner, MobilityOrder,
  * journey or settlement, carrying its SLA clock, compliance flags, risk score
@@ -146,7 +146,7 @@ export default function PartnerWorkQueues() {
   return (
     <div className="space-y-6">
       <StaffPageHeader
-        eyebrow="Yalla Partners Operations System"
+        eyebrow="SAFARID Partners Operations System"
         title="Partner work queues"
         lede="Every open partner case with its SLA clock, compliance flags and escalation path. Actions are recorded against the case forever."
       />

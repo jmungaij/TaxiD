@@ -1,7 +1,7 @@
 /**
  * FINANCE FIGURES FOR OPERATOR SETTLEMENT.
  *
- * One authoritative read: withdrawals by stage, Yalla's 15% commission income
+ * One authoritative read: withdrawals by stage, SAFARID's 15% commission income
  * and 5% withdrawal-fee income, wallet position, statements awaiting a
  * decision, a six-month trend and an operator-by-operator breakdown. Every
  * figure is summed in the database from posted records — nothing is estimated

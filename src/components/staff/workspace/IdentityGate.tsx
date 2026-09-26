@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 /**
  * IDENTITY GATE — shown when the authenticated login cannot be securely mapped
- * to a Yalla staff record. No personal work, customer, document or calendar
+ * to a SAFARID staff record. No personal work, customer, document or calendar
  * information may render behind this state.
  *
  * Platform administrators get a self-service repair action; it calls a
@@ -55,7 +55,7 @@ export function IdentityGate({
             <ShieldAlert className="h-3.5 w-3.5" /> Workspace withheld
           </div>
           <h2 className="text-xl font-semibold tracking-tight">
-            We couldn't securely connect this login to a Yalla Staff profile.
+            We couldn't securely connect this login to a SAFARID Staff profile.
           </h2>
           <p className="text-sm text-muted-foreground">
             Your personal workspace is temporarily withheld to protect your account and customer

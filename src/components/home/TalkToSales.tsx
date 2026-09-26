@@ -3,7 +3,7 @@ import { Building2, Clock, Headphones, ShieldCheck } from "lucide-react";
 import { ContactForm } from "@/components/marketing/ContactForm";
 
 const assurances = [
-  { icon: Clock, title: "Reply within one business day", desc: "Every enquiry reaches a named Yalla Mobility specialist." },
+  { icon: Clock, title: "Reply within one business day", desc: "Every enquiry reaches a named SAFARID specialist." },
   { icon: Building2, title: "Built for enterprise scale", desc: "Travel policy, cost centres, approvals and consolidated invoicing." },
   { icon: ShieldCheck, title: "Compliance ready", desc: "Business verification, insurance validity and audit trails from day one." },
   { icon: Headphones, title: "Dedicated onboarding", desc: "Guided rollout for your employees, driver partners and fleet operators." },
@@ -15,7 +15,7 @@ const TalkToSales = () => (
       <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
         <div>
           <span className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Talk to Sales</span>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Talk to Yalla Mobility.</h2>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Talk to SAFARID.</h2>
           <p className="mt-4 max-w-xl text-muted-foreground">
             Tell us how your organisation moves people, goods or assets. We will recommend the right mix of
             rides, corporate mobility, charter, rental, leasing and logistics — and help you get started.
@@ -53,7 +53,7 @@ const TalkToSales = () => (
           showEmployeeCount
           submitLabel="Talk to Sales"
           heading="Request a tailored proposal"
-          subheading="Share a few details and a Yalla Mobility specialist will be in touch."
+          subheading="Share a few details and a SAFARID specialist will be in touch."
         />
       </div>
     </div>

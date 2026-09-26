@@ -1,8 +1,8 @@
 /**
- * Phase 10 §10.1–10.2 — the Yalla Platform Operating Model and the universal
+ * Phase 10 §10.1–10.2 — the SAFARID Platform Operating Model and the universal
  * Mission Object.
  *
- * Yalla is modelled as a platform that coordinates independent demand and
+ * SAFARID is modelled as a platform that coordinates independent demand and
  * independent supply — never as a transport company owning the underlying
  * asset. The Mission is the customer's intended mobility or logistics outcome,
  * and it is the single object every product line shares. Nine services, one
@@ -50,7 +50,7 @@ export const MISSION_LABEL: Record<MissionType, string> = {
   corporate_ground: "Corporate ground mission",
   airport: "Airport mission",
   charter: "Charter mission",
-  air: "Yalla Air mission",
+  air: "SAFARID Air mission",
   delivery: "Delivery mission",
   logistics: "Logistics mission",
   rental: "Rental mission",
@@ -179,7 +179,7 @@ const REQUIRED_FIELDS: Record<MissionType, (keyof MissionRequirement)[]> = {
   leasing: ["origin", "startAt", "endAt"],
 };
 
-/** Compliance credentials Yalla will not orchestrate a mission without. */
+/** Compliance credentials SAFARID will not orchestrate a mission without. */
 const REQUIRED_COMPLIANCE: Partial<Record<MissionType, string[]>> = {
   charter: ["psv_licence", "psv_insurance"],
   air: ["aoc", "aircraft_insurance", "airworthiness"],

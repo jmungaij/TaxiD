@@ -15,7 +15,7 @@ const assurances = [
 const CharterHub = () => (
   <MarketingPage>
     <SeoHead
-      title="Charter, Leasing & Rentals — aircraft, machinery, vehicles | Yalla Mobility"
+      title="Charter, Leasing & Rentals — aircraft, machinery, vehicles | SAFARID"
       description="Charter aircraft, buses and vessels, lease aircraft, heavy machinery and haulage fleets, or rent cars, equipment and event infrastructure — one governed marketplace."
       path="/charter"
     />

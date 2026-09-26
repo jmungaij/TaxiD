@@ -1,5 +1,5 @@
 /**
- * Versioned, auditable store for the Yalla Air pricing configuration.
+ * Versioned, auditable store for the SAFARID Air pricing configuration.
  *
  * Pricing rules are governance artefacts: every change is versioned with an
  * effective date, an actor and a field-level diff, so the Pricing Control

@@ -1,5 +1,5 @@
 /**
- * Yalla Air enterprise charter search widget.
+ * SAFARID Air enterprise charter search widget.
  *
  * Glassmorphism booking panel used on the Charter Business hero. It captures a
  * complete charter brief (trip type, geography, calendar, time band, party mix,
@@ -355,7 +355,7 @@ export function CharterSearchWidget({ initial, variant = "hero" }: CharterSearch
       </div>
       {submitting && (
         <p className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-          <Loader2 className="h-3 w-3 animate-spin" /> Yalla AI is checking verified operators across East Africa.
+          <Loader2 className="h-3 w-3 animate-spin" /> SAFARID AI is checking verified operators across East Africa.
         </p>
       )}
     </div>

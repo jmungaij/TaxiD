@@ -142,7 +142,7 @@ const REQUIREMENTS: Array<[ComplianceDomain, ComplianceRecord["entityType"], str
 ];
 
 const ENTITIES: Record<ComplianceRecord["entityType"], string[]> = {
-  operator: ["Yalla Logistics Ltd", "Nairobi Haulage Partners", "Coast Freight Services"],
+  operator: ["SAFARID Logistics Ltd", "Nairobi Haulage Partners", "Coast Freight Services"],
   driver: ["J. Mwangi (DRV-1042)", "A. Wanjiru (DRV-2210)", "P. Otieno (DRV-3391)", "S. Kamau (DRV-4487)"],
   vehicle: ["KDA 312F", "KDG 884M", "KCW 190Q", "KDJ 675T"],
   customer: ["Naivas Supermarkets", "Kenya Red Cross", "Safaricom PLC"],

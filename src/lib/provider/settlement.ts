@@ -1,7 +1,7 @@
 /**
  * PROVIDER SETTLEMENT — the 15% / 85% split, and how the 85% leaves the app.
  *
- * Yalla Mobility collects the customer's money into its M-Pesa paybill and
+ * SAFARID collects the customer's money into its M-Pesa paybill and
  * retains a 15% platform commission there. The remaining 85% is disbursed to
  * the mobility service provider's own M-Pesa number (their "M-Pesa account")
  * over the same Daraja rail used for collections.
@@ -277,7 +277,7 @@ export const preparePayouts = () =>
 
 /**
  * Operator-initiated withdrawal from their own wallet balance. The 5%
- * withdrawal fee is deducted here and posted to the Yalla paybill; the
+ * withdrawal fee is deducted here and posted to the SAFARID paybill; the
  * remainder is what leaves for their M-Pesa number once finance approves.
  */
 export const requestWithdrawal = (amountCents: number) =>

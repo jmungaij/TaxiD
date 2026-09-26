@@ -1,7 +1,7 @@
 /**
  * KENYA CORPORATE ADMIN PORTAL.
  *
- * One place for a Yalla manager to act on business accounts:
+ * One place for a SAFARID manager to act on business accounts:
  *   • applications awaiting a decision (approve / decline, with the reason kept),
  *   • the documents each application submitted and their scan state,
  *   • verified organisations, their account settings, and the sign-in rules

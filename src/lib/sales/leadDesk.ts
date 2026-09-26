@@ -408,28 +408,28 @@ export const OUTREACH_TEMPLATES: {
     label: "Introduction",
     subject: "Corporate mobility for {organisation}",
     body: ({ contact, organisation, link, sender }) =>
-      `Dear ${contact || "Sir/Madam"},\n\nI am ${sender} from Yalla Mobility. We provide corporate staff transport, airport transfers, chartered movements and last-mile delivery for organisations in Kenya, billed to one monthly corporate account with full trip records.\n\nI would value a short conversation about how ${organisation} moves its people and goods today, and where we could take cost or admin work off your desk.\n\nYou can reply to me directly here: ${link}\n\nKind regards,\n${sender}\nYalla Mobility`,
+      `Dear ${contact || "Sir/Madam"},\n\nI am ${sender} from SAFARID. We provide corporate staff transport, airport transfers, chartered movements and last-mile delivery for organisations in Kenya, billed to one monthly corporate account with full trip records.\n\nI would value a short conversation about how ${organisation} moves its people and goods today, and where we could take cost or admin work off your desk.\n\nYou can reply to me directly here: ${link}\n\nKind regards,\n${sender}\nSAFARID`,
   },
   {
     id: "follow_up",
     label: "Follow-up",
     subject: "Following up — corporate mobility for {organisation}",
     body: ({ contact, organisation, link, sender }) =>
-      `Dear ${contact || "Sir/Madam"},\n\nI wrote to you recently about corporate mobility for ${organisation}. I appreciate how full your week is, so I will keep this short: if staff transport, airport transfers or deliveries are on your agenda this quarter, I can share indicative rates for your own routes.\n\nReply here and I will pick it up: ${link}\n\nKind regards,\n${sender}\nYalla Mobility`,
+      `Dear ${contact || "Sir/Madam"},\n\nI wrote to you recently about corporate mobility for ${organisation}. I appreciate how full your week is, so I will keep this short: if staff transport, airport transfers or deliveries are on your agenda this quarter, I can share indicative rates for your own routes.\n\nReply here and I will pick it up: ${link}\n\nKind regards,\n${sender}\nSAFARID`,
   },
   {
     id: "proposal_chase",
     label: "Proposal chase",
-    subject: "Your Yalla Mobility proposal — {organisation}",
+    subject: "Your SAFARID proposal — {organisation}",
     body: ({ contact, organisation, link, sender }) =>
-      `Dear ${contact || "Sir/Madam"},\n\nI am checking in on the proposal we shared for ${organisation}. If anything in the scope, rates or terms needs adjusting, tell me what to change and I will reissue it.\n\nYou can reply here: ${link}\n\nKind regards,\n${sender}\nYalla Mobility`,
+      `Dear ${contact || "Sir/Madam"},\n\nI am checking in on the proposal we shared for ${organisation}. If anything in the scope, rates or terms needs adjusting, tell me what to change and I will reissue it.\n\nYou can reply here: ${link}\n\nKind regards,\n${sender}\nSAFARID`,
   },
   {
     id: "meeting_request",
     label: "Meeting request",
     subject: "15 minutes on mobility — {organisation}",
     body: ({ contact, organisation, link, sender }) =>
-      `Dear ${contact || "Sir/Madam"},\n\nWould you have fifteen minutes this week or next to talk through mobility at ${organisation}? I will come with route options and indicative pricing rather than a general presentation.\n\nTell me a time that suits you here: ${link}\n\nKind regards,\n${sender}\nYalla Mobility`,
+      `Dear ${contact || "Sir/Madam"},\n\nWould you have fifteen minutes this week or next to talk through mobility at ${organisation}? I will come with route options and indicative pricing rather than a general presentation.\n\nTell me a time that suits you here: ${link}\n\nKind regards,\n${sender}\nSAFARID`,
   },
 ];
 

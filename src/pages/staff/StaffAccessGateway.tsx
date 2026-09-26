@@ -1,5 +1,5 @@
 /**
- * YALLA MOBILITY — STAFF OPERATIONS SECURE ACCESS
+ * SAFARID — STAFF OPERATIONS SECURE ACCESS
  *
  * The single authoritative Staff Access entry point (/staff/access).
  * Authentication only: identity is verified here, authorisation is resolved
@@ -111,7 +111,7 @@ export default function StaffAccessGateway() {
       scoreAuthEvent({ event_type: "login_failed", email: address, method: "password" });
       toast({
         title: "Access denied",
-        description: "Those credentials are not valid for Yalla Mobility Staff Operations.",
+        description: "Those credentials are not valid for SAFARID Staff Operations.",
         variant: "destructive",
       });
       return;
@@ -135,7 +135,7 @@ export default function StaffAccessGateway() {
   async function handleReset() {
     const address = email.trim().toLowerCase();
     if (!address) {
-      toast({ title: "Enter your work email", description: "We send the reset link to your Yalla address." });
+      toast({ title: "Enter your work email", description: "We send the reset link to your SAFARID address." });
       return;
     }
     setResetting(true);
@@ -189,11 +189,11 @@ export default function StaffAccessGateway() {
   return (
     <div className="relative min-h-dvh overflow-hidden bg-primary">
       <Helmet>
-        <title>Staff Operations Secure Access | Yalla Mobility</title>
+        <title>Staff Operations Secure Access | SAFARID</title>
         <meta name="robots" content="noindex, nofollow, noarchive" />
         <meta
           name="description"
-          content="Authorised Yalla Mobility personnel only. Secure access to your assigned Staff Operations workspace."
+          content="Authorised SAFARID personnel only. Secure access to your assigned Staff Operations workspace."
         />
       </Helmet>
 
@@ -217,14 +217,14 @@ export default function StaffAccessGateway() {
           <div className="text-primary-foreground">
             <BrandLogo tone="light" priority className="h-16 sm:h-20" />
             <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-ice">
-              Yalla Mobility
+              SAFARID
             </p>
             <h1 className="mt-2 text-3xl font-bold leading-tight tracking-tight sm:text-5xl">
               Staff Operations
               <span className="block text-brand-azure">Secure Access</span>
             </h1>
             <p className="mt-5 max-w-md text-sm text-ice sm:text-base">
-              One platform. Every journey. Every destination. Sign in to reach the Yalla Mobility
+              One platform. Every journey. Every destination. Sign in to reach the SAFARID
               workspaces you are authorised to operate.
             </p>
             <p className="mt-6 max-w-md text-xs text-ice/80">
@@ -338,7 +338,7 @@ export default function StaffAccessGateway() {
                   Welcome back
                 </h2>
                 <p className="mt-1 text-sm text-ice">
-                  Sign in to access your Yalla Mobility workspace
+                  Sign in to access your SAFARID workspace
                 </p>
               </div>
 
@@ -462,13 +462,13 @@ export default function StaffAccessGateway() {
 
             <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-ice/80">
               <Lock className="h-3.5 w-3.5" aria-hidden="true" />
-              Authorised Yalla Mobility personnel only
+              Authorised SAFARID personnel only
             </p>
           </div>
         </div>
 
         <footer className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-4 text-[11px] text-ice/70 sm:flex-row">
-          <span>© {new Date().getFullYear()} Yalla Mobility. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} SAFARID. All rights reserved.</span>
           <Link to="/staff" className="underline-offset-4 hover:underline">
             Staff portal overview
           </Link>

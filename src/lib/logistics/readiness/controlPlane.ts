@@ -1,5 +1,5 @@
 /**
- * YALLA MOBILITY LOGISTICS — PRODUCTION READINESS CONTROL PLANE.
+ * SAFARID LOGISTICS — PRODUCTION READINESS CONTROL PLANE.
  *
  * Single authoritative source of truth for logistics readiness. It does not
  * replace the existing domain engines: it AGGREGATES them (evidenceCertificate,
@@ -594,7 +594,7 @@ export function certifyLogisticsProductionReadiness(now = new Date().toISOString
 export function renderLogisticsCertificateMarkdown(cert: LogisticsCertification): string {
   const df10 = buildProductionEvidenceCertificate(cert.generated_at);
   return [
-    "# YALLA MOBILITY — LOGISTICS PRODUCTION READINESS CERTIFICATE",
+    "# SAFARID — LOGISTICS PRODUCTION READINESS CERTIFICATE",
     "",
     `**${cert.headline}**`,
     "",

@@ -1,5 +1,5 @@
 /**
- * Ask Yalla — Recruitment 360.
+ * Ask SAFARID — Recruitment 360.
  *
  * Recommendations are computed deterministically from the recruiter's own
  * RLS-scoped pipeline records. Nothing is generated from a model and nothing is

@@ -4,7 +4,7 @@
  * The database table `logistics_event_catalogue` is authoritative; this module
  * mirrors it so the console can render, group and validate without a round-trip,
  * and so a drift between the two is caught by a unit test rather than by a
- * partner receiving an event Yalla never declared.
+ * partner receiving an event SAFARID never declared.
  *
  * Versioning law: an existing event's schema is never changed in place. A
  * breaking change ships as a new `event_version` while the old one keeps being
@@ -125,7 +125,7 @@ export function evaluateOrdering(input: {
 // ------------------------------------------------------------------ scopes
 export const LOGISTICS_API_SCOPES = [
   { scope: "logistics.orders.read", summary: "Read orders you created or that belong to a tenant you are entitled to." },
-  { scope: "logistics.orders.write", summary: "Create orders. Pricing is always Yalla's; orders are created unpaid." },
+  { scope: "logistics.orders.write", summary: "Create orders. Pricing is always SAFARID's; orders are created unpaid." },
   { scope: "logistics.shipments.read", summary: "Read shipments and their package states." },
   { scope: "logistics.shipments.write", summary: "Create shipments." },
   { scope: "logistics.packages.read", summary: "Read packages, milestones and delivery attempts." },

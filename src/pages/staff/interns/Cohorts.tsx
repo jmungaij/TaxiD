@@ -115,7 +115,7 @@ export default function InternCohorts() {
                 </div>
                 <div className="mt-3 flex flex-wrap gap-4 text-xs text-muted-foreground">
                   <span>Verified revenue: <strong className="text-foreground">{money(c.verified_revenue_kes)}</strong></span>
-                  <span>Yalla Talent: <strong className="text-foreground">{c.yalla_talent}</strong></span>
+                  <span>SAFARID Talent: <strong className="text-foreground">{c.yalla_talent}</strong></span>
                   <span>Open integrity flags: <strong className="text-foreground">{c.open_integrity_flags}</strong></span>
                   <Link className="underline" to={`/staff/interns/register?cohort=${c.cohort_id}`}>
                     View interns

@@ -153,7 +153,7 @@ export default function PartnerInvite() {
             <Building2 className="h-6 w-6" /> Partner Onboarding &amp; Invite
           </span>
         }
-        subtitle="Invite corporate partners and their admins into Yalla Mobility with certified layout and audited RLS-protected writes."
+        subtitle="Invite corporate partners and their admins into SAFARID with certified layout and audited RLS-protected writes."
         actions={
           <Button
             size="sm"

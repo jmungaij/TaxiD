@@ -474,7 +474,7 @@ export async function ap360SaveQuote(input: Ap360QuoteInput, quoteRef?: string):
 /** Customer-safe meaning of every non-priced outcome — never a fabricated zero. */
 export const AP360_STATUS_COPY: Record<string, string> = {
   OK: "Priced from the published pricing version.",
-  PRICE_RAISED_TO_FLOOR: "Priced at the operator economic floor — Yalla never sells below cost.",
+  PRICE_RAISED_TO_FLOOR: "Priced at the operator economic floor — SAFARID never sells below cost.",
   PRICE_EXCEPTION_REQUIRED: "This price needs a governed commercial exception before it can be sold.",
   QUOTE_REQUIRED: "This asset is priced by negotiated quote — our team will confirm the figure.",
   NO_PUBLISHED_VERSION: "No published pricing version governs this asset yet, so no price is shown.",

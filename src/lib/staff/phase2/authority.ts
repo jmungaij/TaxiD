@@ -1,12 +1,12 @@
 /**
- * Phase 2 — Yalla Authority Engine.
+ * Phase 2 — SAFARID Authority Engine.
  *
  * Identity → Role → Position → Department → Permission → Authority.
  *
  * This module is the *configurable* client-side view of authority so the UI
  * never offers an action the caller cannot perform. It is NOT the boundary:
  * RLS policies and the privileged-update / approval edge functions remain the
- * enforcement layer. Where Yalla already defines authority (admin capability
+ * enforcement layer. Where SAFARID already defines authority (admin capability
  * matrix, governance grants), those definitions are reused rather than
  * re-invented; anything else is expressed as a configurable rule with no
  * hardcoded monetary limit.

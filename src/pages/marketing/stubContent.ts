@@ -35,7 +35,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   "/driver": {
     eyebrow: "Driver Hub",
     title: "Welcome, driver",
-    subtitle: "Everything you need to join, train, earn and grow with Yalla Mobility.",
+    subtitle: "Everything you need to join, train, earn and grow with SAFARID.",
     sections: [{
       heading: "Where to go next",
       items: [
@@ -125,7 +125,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   // ---------- Trust ----------
   "/security": {
     eyebrow: "Trust",
-    title: "Security at Yalla Mobility",
+    title: "Security at SAFARID",
     subtitle: "Defense in depth, from device to ledger.",
     highlights: [
       { value: "AES-256", label: "At rest" },
@@ -237,7 +237,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   "/investors": {
     eyebrow: "Company",
     title: "Investor Relations",
-    subtitle: "Yalla Mobility is building Africa's mobility operating system. Here is the opportunity.",
+    subtitle: "SAFARID is building Africa's mobility operating system. Here is the opportunity.",
     highlights: [
       { value: "$120B", label: "African mobility TAM" },
       { value: "12,400+", label: "Active drivers" },
@@ -293,7 +293,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
 
   // ---------- Newsroom + Developers ----------
   "/developers": {
-    eyebrow: "Build with Yalla Mobility",
+    eyebrow: "Build with SAFARID",
     title: "Developer Platform",
     subtitle: "REST APIs, webhooks and SDKs for delivery, corporate and rental partners.",
     sections: [
@@ -314,7 +314,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
         body: "Email sales@yalla.africa with your use case. We onboard partners weekly.",
       },
     ],
-    ctaTitle: "Build on Yalla Mobility",
+    ctaTitle: "Build on SAFARID",
     ctaSubtitle: "API access is free for early partners.",
   },
 
@@ -366,7 +366,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
         ],
       },
     ],
-    ctaTitle: "Bring your team on Yalla Mobility",
+    ctaTitle: "Bring your team on SAFARID",
     ctaSubtitle: "Talk to corporate sales about onboarding your employees.",
   },
 
@@ -496,7 +496,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
     sections: [
       { heading: "For fleet owners", bullets: [
         "List vehicles for self-drive, chauffeur or platform use",
-        "Yalla Mobility handles KYC, insurance verification and payouts",
+        "SAFARID handles KYC, insurance verification and payouts",
         "Live utilization and earnings dashboard",
         "Compliance alerts before documents expire",
       ]},

@@ -27,7 +27,7 @@ const Delivery = () => (
         "@context": "https://schema.org",
         "@type": "Service",
         serviceType: "Delivery and logistics",
-        provider: { "@type": "Organization", name: "Yalla Mobility" },
+        provider: { "@type": "Organization", name: "SAFARID" },
         areaServed: { "@type": "Country", name: "Kenya" },
         description:
           "Parcel delivery, courier, express city delivery, freight, truck dispatch, warehousing and corporate logistics across Kenya and East Africa.",

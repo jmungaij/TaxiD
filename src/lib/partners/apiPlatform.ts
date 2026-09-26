@@ -1,5 +1,5 @@
 /**
- * YALLA API PARTNERS — canonical platform contract.
+ * SAFARID API PARTNERS — canonical platform contract.
  *
  * Single source of truth for everything the public API Partners experience
  * claims: capability domains, the API surface, webhook catalogue, integration
@@ -431,7 +431,7 @@ export const COMMERCIAL_TIERS: CommercialTier[] = [
   {
     key: "integrate",
     name: "Integrate",
-    positioning: "Single-market platforms adding Yalla mobility to an existing product journey.",
+    positioning: "Single-market platforms adding SAFARID mobility to an existing product journey.",
     rateLimit: "2,000 req/min",
     support: "Business-hours desk, shared integration channel",
     commercials: "Fee per completed transaction, agreed before certification.",
@@ -449,7 +449,7 @@ export const COMMERCIAL_TIERS: CommercialTier[] = [
   {
     key: "infrastructure",
     name: "Infrastructure",
-    positioning: "Enterprise, institutional and government programmes embedding Yalla as core mobility infrastructure.",
+    positioning: "Enterprise, institutional and government programmes embedding SAFARID as core mobility infrastructure.",
     rateLimit: "Negotiated, dedicated capacity",
     support: "Joint operating model with executive escalation",
     commercials: "Master services agreement with committed volumes and custom settlement.",

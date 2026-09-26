@@ -161,7 +161,7 @@ export default function RoleBlueprints() {
   return (
     <>
       <StaffPageHeader
-        eyebrow="Yalla Workforce Operating System"
+        eyebrow="SAFARID Workforce Operating System"
         title="Role blueprints"
         lede="Why each position exists, what it owns, what must change because it exists, how that is measured, and the standard work that produces it. Every blueprint is validated against the management rule before it can be activated."
       />

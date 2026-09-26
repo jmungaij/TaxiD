@@ -1,7 +1,7 @@
 /**
  * Phase 6 — Resource Allocation Engine and the Attention Economy.
  *
- * Yalla's scarce resources are capital, human time, management attention, AI
+ * SAFARID's scarce resources are capital, human time, management attention, AI
  * compute and marketplace capacity. Allocation is ranked by marginal value per
  * unit of the scarce resource, and every claim is either supported by a readable
  * system of record or reported as unsupported. Management attention is treated

@@ -1,9 +1,9 @@
 /**
- * Phase 9 §30 — Yalla Mobility Commerce OS.
+ * Phase 9 §30 — SAFARID Commerce OS.
  *
  * One operating surface over the commerce loop: what demand exists, what
  * capacity can be committed, what requires intervention, what would happen
- * under stress, what Yalla depends on, and whether the phase may be certified.
+ * under stress, what SAFARID depends on, and whether the phase may be certified.
  *
  * Every figure carries provenance. Unreadable inputs render as DATA NOT
  * AVAILABLE — never as a plausible number.
@@ -152,7 +152,7 @@ const SIM_BASELINE: SimulationBaseline = {
   operatorEarningsPerHour: 420,
   cancellationRate: 0.08,
   priceIndex: 1,
-  source: "Reference baseline (not Yalla actuals)",
+  source: "Reference baseline (not SAFARID actuals)",
 };
 
 const EXIT_EVIDENCE: ExitEvidence[] = [
@@ -199,7 +199,7 @@ export default function StaffCommerceOS() {
         <h1 className="text-2xl font-semibold tracking-tight">Commerce OS</h1>
         <p className="max-w-3xl text-sm text-muted-foreground">
           Demand, capacity, trust, matching, fulfilment and revenue as one operating system.
-          Figures state their own provenance; nothing modelled or simulated is reported as Yalla performance.
+          Figures state their own provenance; nothing modelled or simulated is reported as SAFARID performance.
         </p>
       </header>
 
@@ -219,7 +219,7 @@ export default function StaffCommerceOS() {
               <CardTitle className="text-base">Revenue fulfilment funnel</CardTitle>
               <CardDescription>
                 Demand → qualified demand → capacity → match → booking → fulfilment → payment → settlement → repeat.
-                The bottleneck is the step Yalla should fix, regardless of which team owns it.
+                The bottleneck is the step SAFARID should fix, regardless of which team owns it.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -328,7 +328,7 @@ export default function StaffCommerceOS() {
             <CardHeader>
               <CardTitle className="text-base">Simulation lab</CardTitle>
               <CardDescription>
-                Scenario outcomes against an explicit reference baseline. Simulated output is never Yalla performance.
+                Scenario outcomes against an explicit reference baseline. Simulated output is never SAFARID performance.
               </CardDescription>
             </CardHeader>
             <CardContent>

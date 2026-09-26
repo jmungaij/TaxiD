@@ -35,7 +35,7 @@ export default function LeadContactReply() {
   const [sent, setSent] = React.useState(false);
 
   React.useEffect(() => {
-    document.title = "Your Yalla Mobility portal | Yalla";
+    document.title = "Your SAFARID portal | SAFARID";
   }, []);
 
   const view = useQuery({
@@ -59,7 +59,7 @@ export default function LeadContactReply() {
       </div>
       {children}
       <p className="mt-6 text-xs text-muted-foreground">
-        Yalla Mobility · {CONTACT.salesEmail} · {CONTACT.phoneDisplay}
+        SAFARID · {CONTACT.salesEmail} · {CONTACT.phoneDisplay}
       </p>
     </main>
   );
@@ -169,7 +169,7 @@ export default function LeadContactReply() {
     <>
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Your Yalla Mobility portal</CardTitle>
+        <CardTitle className="text-lg">Your SAFARID portal</CardTitle>
         <CardDescription>
           {lead.organisation_name}
           {lead.service_interest ? ` · ${lead.service_interest}` : ""}

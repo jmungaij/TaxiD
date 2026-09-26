@@ -37,7 +37,7 @@ export function bookingsUpTo(dataset: FlightHubDataset, fromMs: number, cursorMs
 
 /**
  * Live flight status map — an SVG route network rendered from live bookings.
- * Deliberately key-less (no maps API): it projects the known Yalla Air point
+ * Deliberately key-less (no maps API): it projects the known SAFARID Air point
  * registry so the widget always renders inside the dashboard shell.
  *
  * When a `dataset` is supplied the widget also offers playback: pick a time

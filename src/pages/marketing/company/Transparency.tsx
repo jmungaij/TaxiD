@@ -3,15 +3,15 @@ import { NarrativePage } from "@/components/marketing/NarrativePage";
 export default function Transparency() {
   return (
     <NarrativePage
-      eyebrow="Why Yalla"
+      eyebrow="Why SAFARID"
       title="What you can see before, during and after a booking"
       subtitle="Prices you can check, references you can quote, records you can ask for — and a clear answer when a number simply is not available."
       path="/transparency"
-      seoTitle="Transparency at Yalla Mobility — Prices and Records"
-      seoDescription="See how Yalla Mobility shows prices before payment, issues references and receipts, and reports corporate spending without hidden fees."
+      seoTitle="Transparency at SAFARID — Prices and Records"
+      seoDescription="See how SAFARID shows prices before payment, issues references and receipts, and reports corporate spending without hidden fees."
       intro={[
         "Most disputes in transport come from someone not being able to check something: the fare, the extras, who authorised the trip, what the vehicle looked like at collection.",
-        "This page sets out what Yalla Mobility shows you, and where the record lives when you need to go back to it.",
+        "This page sets out what SAFARID shows you, and where the record lives when you need to go back to it.",
       ]}
       sections={[
         {
@@ -33,7 +33,7 @@ export default function Transparency() {
         {
           heading: "Corporate customers see their own spending",
           body: [
-            "Organisations that book through Yalla get a view of their own bookings, who requested them, which cost centre they belong to and what was invoiced. Approval steps are recorded, so a finance team can see not just the cost but the authorisation behind it.",
+            "Organisations that book through SAFARID get a view of their own bookings, who requested them, which cost centre they belong to and what was invoiced. Approval steps are recorded, so a finance team can see not just the cost but the authorisation behind it.",
           ],
         },
         {

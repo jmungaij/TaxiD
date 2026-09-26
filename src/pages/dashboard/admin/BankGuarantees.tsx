@@ -1,7 +1,7 @@
 /**
  * BANK GUARANTEES & CREDIT CONTROL (finance authority).
  *
- * Yalla rides are cash-first. This console is the only place a guarantee-backed
+ * SAFARID rides are cash-first. This console is the only place a guarantee-backed
  * credit facility can come into existence, and every step is decided by the
  * database, never here:
  *   • corp_guarantee_transition — lifecycle (submit, document check, bank check,
@@ -9,7 +9,7 @@
  *     reject). Only finance authority may act past submission, and "verify" is
  *     refused until an independent bank confirmation has been recorded.
  *   • corp_credit_facility_upsert / corp_credit_facility_transition — the credit
- *     amount Yalla actually authorises, which is never assumed to be the
+ *     amount SAFARID actually authorises, which is never assumed to be the
  *     guarantee amount.
  *   • corp_payment_policy_propose / corp_payment_policy_approve — the company's
  *     versioned payment rule.
@@ -158,7 +158,7 @@ function BankGuaranteesInner() {
       const raw = limitInput[g.id];
       const amount = Number(raw);
       if (!raw || !Number.isFinite(amount) || amount <= 0) {
-        toast.error("Enter the credit limit Yalla authorises, in shillings.");
+        toast.error("Enter the credit limit SAFARID authorises, in shillings.");
         return;
       }
       setActing(g.id + "facility");
@@ -308,7 +308,7 @@ function BankGuaranteesInner() {
                       <div className="mt-2 flex flex-wrap items-end gap-2">
                         <div>
                           <Label htmlFor={`limit-${g.id}`} className="text-xs">
-                            Credit limit Yalla authorises (KES)
+                            Credit limit SAFARID authorises (KES)
                           </Label>
                           <Input
                             id={`limit-${g.id}`}

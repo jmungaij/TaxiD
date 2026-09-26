@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 
 /**
  * Visible provenance notice for the seeded intelligence batch. Seeded numbers
- * are demonstration data and must never be read as actual Yalla performance.
+ * are demonstration data and must never be read as actual SAFARID performance.
  */
 export function SeedBatchNotice({ batch, className }: { batch: string; className?: string }) {
   return (
@@ -16,7 +16,7 @@ export function SeedBatchNotice({ batch, className }: { batch: string; className
       </div>
       <p className="mt-2 text-sm text-muted-foreground">
         Figures on this surface come from a labelled seed batch so the intelligence chain can be
-        exercised end to end. They are demonstration values, not recorded Yalla performance, and are
+        exercised end to end. They are demonstration values, not recorded SAFARID performance, and are
         replaced automatically once the corresponding live data source is connected to your scope.
       </p>
     </div>

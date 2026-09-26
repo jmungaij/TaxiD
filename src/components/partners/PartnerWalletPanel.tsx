@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS 360 — wallet, margin and ledger drill-down.
+ * SAFARID PARTNERS 360 — wallet, margin and ledger drill-down.
  *
  * The wallet balance is never computed in the browser: it is read from
  * `partner_wallets`, which only the server-side money routines write. The

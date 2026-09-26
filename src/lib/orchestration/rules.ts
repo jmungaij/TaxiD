@@ -1,5 +1,5 @@
 /**
- * Yalla orchestration — event-to-work engine.
+ * SAFARID orchestration — event-to-work engine.
  *
  * This is the layer that was missing between the Super Admin data ecosystem and
  * the Staff Portal. It answers, for every platform event:

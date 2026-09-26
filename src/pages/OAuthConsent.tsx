@@ -111,7 +111,7 @@ export default function OAuthConsent() {
             <ShieldCheck className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold leading-tight">Connect {clientName} to Yalla Mobility</h1>
+            <h1 className="text-lg font-semibold leading-tight">Connect {clientName} to SAFARID</h1>
             {account && <p className="text-xs text-muted-foreground">Signed in as {account}</p>}
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function OAuthConsent() {
         )}
 
         <p className="text-xs text-muted-foreground">
-          This does not bypass Yalla Mobility's permissions or backend policies.
+          This does not bypass SAFARID's permissions or backend policies.
         </p>
 
         <div className="flex gap-3">

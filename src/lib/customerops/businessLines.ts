@@ -1,5 +1,5 @@
 /**
- * Customer Operations — Yalla Mobility business line registry.
+ * Customer Operations — SAFARID business line registry.
  *
  * One canonical list of every commercial line the Customer Operations Center
  * must support. Deterministic and dependency-free: the registry drives tab

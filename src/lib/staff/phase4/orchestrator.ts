@@ -1,5 +1,5 @@
 /**
- * Phase 4 — Yalla Enterprise Orchestrator.
+ * Phase 4 — SAFARID Enterprise Orchestrator.
  *
  * The orchestrator is the coordination layer, not an agent. It runs one loop
  * for every business event: detect → assemble context → analyse → generate
@@ -333,7 +333,7 @@ export interface AttentionResult {
 }
 
 /**
- * "What requires Yalla's attention today?" — answered only from readable
+ * "What requires SAFARID's attention today?" — answered only from readable
  * evidence. Items whose evidence is unreachable are returned as unestablished
  * with the missing sources named, never dropped and never asserted.
  */

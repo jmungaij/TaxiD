@@ -3,7 +3,7 @@
  *
  * Nothing here is invented: rides waiting for dispatch come from bookings that
  * no driver holds yet, booked trips are the driver's own bookings, and earnings
- * are the recorded trip value less Yalla's commission share on the booking.
+ * are the recorded trip value less SAFARID's commission share on the booking.
  */
 import { supabase } from "@/integrations/supabase/client";
 

@@ -614,7 +614,7 @@ export function usePersonalWorkspace() {
   );
 
 
-  /* --------------------------------------------------------- Ask Yalla */
+  /* --------------------------------------------------------- Ask SAFARID */
 
   const ask = useCallback(
     (question: string): AskYallaAnswer =>

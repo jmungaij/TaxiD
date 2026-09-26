@@ -97,7 +97,7 @@ export default function Step2Business() {
       <div>
         <h2 className="text-xl font-semibold">Corporate business information</h2>
         <p className="text-sm text-muted-foreground">
-          Yalla collects the correct legal documents based on your registration type.
+          SAFARID collects the correct legal documents based on your registration type.
         </p>
       </div>
 

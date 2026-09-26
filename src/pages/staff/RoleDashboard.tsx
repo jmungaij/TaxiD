@@ -192,7 +192,7 @@ export default function RoleDashboard() {
                 <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground/75">
                   {identity?.fullName
                     ? `${identity.fullName}${identity.position ? ` · ${identity.position}` : ""}`
-                    : "Yalla executive workspace"}
+                    : "SAFARID executive workspace"}
                 </span>
               </div>
               <h1 className="mt-2 flex items-center gap-2 text-2xl font-semibold tracking-tight sm:text-3xl">

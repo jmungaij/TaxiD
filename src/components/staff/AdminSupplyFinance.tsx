@@ -3,7 +3,7 @@
  * enterprise invoices, read straight from the register.
  *
  * Every figure is derived from recorded bookings and invoices: gross value is
- * the agreed rate on each booking, Yalla retains a 15% service commission and
+ * the agreed rate on each booking, SAFARID retains a 15% service commission and
  * the operator keeps 85% of services actually delivered. Nothing is estimated
  * and nothing is written from this view.
  */
@@ -113,7 +113,7 @@ function Empty({ title, body }: { title: string; body: string }) {
   );
 }
 
-/** Earnings owed to each operator, with the commission Yalla retains. */
+/** Earnings owed to each operator, with the commission SAFARID retains. */
 export function OperatorEarningsPanel() {
   const { data, isLoading, error } = useSupplyFinance();
   if (isLoading) return <Skeleton className="h-64 w-full" />;
@@ -127,7 +127,7 @@ export function OperatorEarningsPanel() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Kpi label="Delivered service value" value={money(s.delivered_gross_cents)} hint="Gross value of services completed" />
         <Kpi label="Owed to operators" value={money(s.operator_payout_cents)} hint="85% of delivered value" />
-        <Kpi label="Yalla commission" value={money(s.commission_cents)} hint="15% service commission retained" />
+        <Kpi label="SAFARID commission" value={money(s.commission_cents)} hint="15% service commission retained" />
         <Kpi label="Work ahead" value={money(s.pipeline_gross_cents)} hint="Requested and confirmed, not yet delivered" />
       </div>
 
@@ -178,7 +178,7 @@ export function OperatorEarningsPanel() {
         </Table>
       )}
       <p className="text-xs text-muted-foreground">
-        Operators keep 85% of every service they deliver; Yalla retains a 15% service commission. Test listings are excluded.
+        Operators keep 85% of every service they deliver; SAFARID retains a 15% service commission. Test listings are excluded.
       </p>
     </div>
   );

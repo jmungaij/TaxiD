@@ -251,7 +251,7 @@ export default function InternshipProgrammeBuilder() {
       references: DMFD_SEED_REFERENCES,
       outstanding: DMFD_SEED_OUTSTANDING,
       title: `Destinations, Mobility Supply & Fleet Development seed loaded · ${DMFD_SEED_REFERENCES.programmeCodeDmfd}`,
-      description: `24-week supply-side capability programme seeded across ${DMFD_LEARNING_DOMAINS.length} learning domains and the ${DMFD_PRODUCT_SURFACE.length} Yalla product families that consume mobility supply (${DMFD_PRODUCT_SURFACE.join(", ").toLowerCase()}). Performance weights supply development at 25% and is computed server-side; demand stays UNVERIFIED without evidence, compliance is never inferred, and interns can never verify, activate, approve or declare revenue.`,
+      description: `24-week supply-side capability programme seeded across ${DMFD_LEARNING_DOMAINS.length} learning domains and the ${DMFD_PRODUCT_SURFACE.length} SAFARID product families that consume mobility supply (${DMFD_PRODUCT_SURFACE.join(", ").toLowerCase()}). Performance weights supply development at 25% and is computed server-side; demand stays UNVERIFIED without evidence, compliance is never inferred, and interns can never verify, activate, approve or declare revenue.`,
       toast: "Destinations & Mobility Supply seed loaded (DMFD-INT-2608). Assign the outstanding records before publishing.",
     });
 
@@ -424,7 +424,7 @@ export default function InternshipProgrammeBuilder() {
             </div>
             <FieldRow
               label="Programme purpose"
-              hint="State the capability Yalla is building and the business problem the intern helps solve. At least 40 characters."
+              hint="State the capability SAFARID is building and the business problem the intern helps solve. At least 40 characters."
             >
               <Textarea rows={4} value={draft.programme_purpose}
                 onChange={(e) => set("programme_purpose", e.target.value)} />
@@ -600,14 +600,14 @@ export default function InternshipProgrammeBuilder() {
             </FieldRow>
             <Repeater
               title="Curriculum-to-capability map"
-              description="Map coursework to the Yalla capability it supports. A degree title alone is not capability."
+              description="Map coursework to the SAFARID capability it supports. A degree title alone is not capability."
               rows={draft.curriculum_map}
               onChange={(rows) => set("curriculum_map", rows)}
               blank={() => ({ course: "", capability: "", application: "" })}
               render={(row, update) => (
                 <>
                   <Input placeholder="Course unit" value={row.course} onChange={(e) => update({ course: e.target.value })} aria-label="Course unit" />
-                  <Input placeholder="Yalla capability" value={row.capability} onChange={(e) => update({ capability: e.target.value })} aria-label="Capability" />
+                  <Input placeholder="SAFARID capability" value={row.capability} onChange={(e) => update({ capability: e.target.value })} aria-label="Capability" />
                   <Input placeholder="How it is applied" value={row.application} onChange={(e) => update({ application: e.target.value })} aria-label="Application" />
                 </>
               )}

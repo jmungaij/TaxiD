@@ -26,7 +26,7 @@ const groups: { title: string; items: Faq[] }[] = [
     title: "Availability",
     items: [
       {
-        q: "Where does Yalla Mobility operate?",
+        q: "Where does SAFARID operate?",
         a: "Rides, deliveries and corporate mobility operate across major Kenyan urban corridors, with freight, charter and leasing available regionally through licensed partner operators.",
       },
       {

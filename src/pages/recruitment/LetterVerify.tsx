@@ -1,7 +1,7 @@
 /**
  * Public letter verification — /verify/letter
  *
- * Proves that a Yalla Mobility recruitment letter reference plus its printed
+ * Proves that a SAFARID recruitment letter reference plus its printed
  * verification code was genuinely issued. It deliberately returns no candidate
  * personal data: only issuance facts, the document fingerprint and whether the
  * letter has since been superseded by a later revision.
@@ -62,10 +62,10 @@ export default function LetterVerify() {
   return (
     <main className="min-h-screen bg-background px-4 py-16">
       <Helmet>
-        <title>Verify a Yalla Mobility recruitment letter</title>
+        <title>Verify a SAFARID recruitment letter</title>
         <meta
           name="description"
-          content="Confirm that a Yalla Mobility recruitment letter was officially issued using its reference and printed verification code."
+          content="Confirm that a SAFARID recruitment letter was officially issued using its reference and printed verification code."
         />
         <link rel="canonical" href="https://yalla.africa/verify/letter" />
         <meta name="robots" content="noindex,follow" />
@@ -73,7 +73,7 @@ export default function LetterVerify() {
 
       <div className="mx-auto w-full max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-          Yalla Mobility · Recruitment
+          SAFARID · Recruitment
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">Letter verification</h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -133,7 +133,7 @@ export default function LetterVerify() {
                 <div className="rounded-md border border-success/40 bg-success/5 p-4">
                   <p className="flex items-center gap-2 font-semibold text-success">
                     <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                    Officially issued by Yalla Mobility
+                    Officially issued by SAFARID
                   </p>
                   <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
                     <div>

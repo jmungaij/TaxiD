@@ -223,7 +223,7 @@ export function certifyProductionReadiness(inputs: ReadinessInputs = {}): Produc
 
 export function renderReadinessMarkdown(report: ProductionReadinessReport = certifyProductionReadiness()): string {
   const lines: string[] = [
-    "# Yalla Mobility — Enterprise Production Readiness Report",
+    "# SAFARID — Enterprise Production Readiness Report",
     "",
     `**Decision:** ${report.decision} · **Score:** ${report.score}/100`,
     "",

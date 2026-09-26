@@ -2,7 +2,7 @@
  * Fleetbase feature-parity register.
  *
  * Fleetbase is used strictly as a *capability benchmark*. Each row records what
- * Yalla actually executes today, with the authoritative module that proves it.
+ * SAFARID actually executes today, with the authoritative module that proves it.
  *
  * The status vocabulary is deliberately narrow, and a row may only be `parity`
  * when the capability can be created, authorised, executed, persisted, tracked,

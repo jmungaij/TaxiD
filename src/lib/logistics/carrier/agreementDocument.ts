@@ -53,9 +53,9 @@ export interface AgreementDocument {
 }
 
 export const PLATFORM_PARTY = {
-  legalEntityName: "Yalla Mobility Limited",
+  legalEntityName: "SAFARID Limited",
   role:
-    "Digital marketplace and transaction-facilitation platform. Yalla Mobility does not provide the physical transport service.",
+    "Digital marketplace and transaction-facilitation platform. SAFARID does not provide the physical transport service.",
 } as const;
 
 /** SHA-256 hex of a string, using Web Crypto. */
@@ -166,7 +166,7 @@ export function agreementDocumentText(doc: AgreementDocument): string {
 
   lines.push("");
   lines.push(
-    "This pack is a record of the instruments accepted on the Yalla Mobility platform and of the acceptance evidence held against them. It is not legal advice.",
+    "This pack is a record of the instruments accepted on the SAFARID platform and of the acceptance evidence held against them. It is not legal advice.",
   );
   return lines.join("\n");
 }

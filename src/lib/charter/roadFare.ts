@@ -4,7 +4,7 @@
  * Road charter quotes are presented with exactly three items:
  *   1. Booking fee   — vehicle, fuel and driver / co-driver cost, all in.
  *   2. Surcharge     — ×1.25, and only for vehicles booked at night or on Sunday.
- *   3. Marketplace Service — the configurable Yalla platform service fee.
+ *   3. Marketplace Service — the configurable SAFARID platform service fee.
  *
  * Nothing else is shown; the operator cost drivers stay in the pricing engine.
  */

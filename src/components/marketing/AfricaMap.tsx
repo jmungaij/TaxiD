@@ -19,7 +19,7 @@ export function AfricaMap() {
 
   return (
     <div className="relative">
-      <svg viewBox="0 0 560 540" className="w-full h-auto" role="img" aria-label="Yalla Mobility Africa coverage map">
+      <svg viewBox="0 0 560 540" className="w-full h-auto" role="img" aria-label="SAFARID Africa coverage map">
         <defs>
           <radialGradient id="afGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="hsl(var(--primary) / 0.25)" />

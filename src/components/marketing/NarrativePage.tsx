@@ -4,7 +4,7 @@
  * sustainability).
  *
  * Deliberately prose-first: these pages exist to state, in plain language,
- * what Yalla Mobility actually does today. There are no metrics, badges or
+ * what SAFARID actually does today. There are no metrics, badges or
  * certifications in this layout, because a figure or standard we cannot
  * evidence must never appear on a public page.
  *
@@ -97,7 +97,7 @@ export function NarrativePage({
             {cta?.note ?? `Questions about this page? Email ${CONTACT.supportEmail} or call ${CONTACT.phoneDisplay}.`}
           </p>
           <Button asChild className="mt-4">
-            <Link to={cta?.to ?? "/contact"}>Contact Yalla Mobility</Link>
+            <Link to={cta?.to ?? "/contact"}>Contact SAFARID</Link>
           </Button>
         </div>
       </div>

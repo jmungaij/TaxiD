@@ -1,5 +1,5 @@
 /**
- * Yalla Air Dynamic Pricing Engine.
+ * SAFARID Air Dynamic Pricing Engine.
  *
  * Kenya's charter market still quotes manually (aircraft type, route, flight
  * hours, positioning, landing fees, crew). This engine inverts that model: the

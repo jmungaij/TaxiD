@@ -95,7 +95,7 @@ export default function TicketInspector() {
       if (!online) {
         toast({
           title: "Connection required",
-          description: "Ticket signatures are verified against Yalla's secure signing service — reconnect to verify.",
+          description: "Ticket signatures are verified against SAFARID's secure signing service — reconnect to verify.",
           variant: "destructive",
         });
         return;
@@ -184,10 +184,10 @@ export default function TicketInspector() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <Helmet>
-        <title>Ticket Inspector | Yalla Mobility</title>
+        <title>Ticket Inspector | SAFARID</title>
         <meta
           name="description"
-          content="Scan a Yalla digital bus ticket QR and verify its server-issued cryptographic signature against Yalla's secure verification service."
+          content="Scan a SAFARID digital bus ticket QR and verify its server-issued cryptographic signature against SAFARID's secure verification service."
         />
         <link rel="canonical" href="https://www.yalla.africa/inspect" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-yalla-mobility-1200x630.v3.png" />
@@ -198,7 +198,7 @@ export default function TicketInspector() {
         <div>
           <h1 className="text-2xl font-bold text-foreground">Ticket inspector</h1>
           <p className="text-sm text-muted-foreground">
-            Every scan is verified against Yalla's secure signing service. Verdicts sync automatically.
+            Every scan is verified against SAFARID's secure signing service. Verdicts sync automatically.
           </p>
         </div>
         <Badge variant="outline" className="gap-1">

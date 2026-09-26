@@ -29,7 +29,7 @@ interface FacetState {
 const EMPTY: FacetState = { entities: [], statuses: [], from: "", to: "", orgUnit: "", stage: "" };
 
 /**
- * Yalla Universal Search — one field, every authorised entity class, with
+ * SAFARID Universal Search — one field, every authorised entity class, with
  * faceted narrowing, permission-aware actions, saved/shared views and a direct
  * jump into the Demand → CLV workflow trace. Classes outside the employee's
  * scope, or without a wired source, say so plainly.
@@ -105,7 +105,7 @@ export default function StaffSearch() {
   return (
     <>
       <StaffPageHeader
-        eyebrow="Yalla Universal Search"
+        eyebrow="SAFARID Universal Search"
         title="Search everything you are authorised to see"
         lede="Customers, leads, contracts, bookings, transactions, marketplace partners, documents, tasks, projects, policies, knowledge and people — resolved class by class, with the governing scope stated, and actionable where your role permits."
       />

@@ -81,15 +81,15 @@ const Riders = () => {
   return (
     <MarketingPage>
       <SeoHead
-        title="Ride with Yalla Mobility — safe, fast, transparent"
+        title="Ride with SAFARID — safe, fast, transparent"
         description="Daily rides, airport transfers, scheduled trips, and corporate travel. Upfront pricing, live SOS, multiple payment methods."
         path="/riders"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
           serviceType: "Ride-hailing",
-          name: "Yalla Mobility Ride-Hailing",
-          provider: { "@type": "Organization", name: "Yalla Mobility" },
+          name: "SAFARID Ride-Hailing",
+          provider: { "@type": "Organization", name: "SAFARID" },
           areaServed: "Africa",
           description:
             "On-demand ride-hailing with economy, SUV, executive and airport transfer tiers, paid by M-Pesa, card or corporate wallet.",
@@ -134,7 +134,7 @@ const Riders = () => {
 
             <div id="get-the-app" className="scroll-mt-28 focus:outline-none rounded-2xl bg-primary p-10 text-center text-primary-foreground">
 
-              <h3 className="text-2xl font-bold mb-3">Get the Yalla Mobility app</h3>
+              <h3 className="text-2xl font-bold mb-3">Get the SAFARID app</h3>
               <p className="text-primary-foreground/90 mb-6">Affordable fares · Safe drivers · Fast pickups · Transparent pricing</p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <AppButton
@@ -234,7 +234,7 @@ const Riders = () => {
       </section>
 
       <CrossLinks
-        heading="Related on Yalla"
+        heading="Related on SAFARID"
         keys={["drivers", "corporates", "delivery", "rentals", "pricing", "careers"]}
       />
     </MarketingPage>

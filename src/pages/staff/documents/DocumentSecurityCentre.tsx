@@ -1,6 +1,6 @@
 /**
  * Document Security Centre — the forensic control plane for every document
- * Yalla Mobility issues. Registry, tamper investigation and the full identity,
+ * SAFARID issues. Registry, tamper investigation and the full identity,
  * provenance, distribution and event record for a selected document.
  */
 import { useMemo, useState } from "react";
@@ -85,7 +85,7 @@ export default function DocumentSecurityCentre() {
         <StaffPageHeader
           eyebrow="Document OS"
           title="Document Security Centre"
-          lede="Forensic identity, provenance and authenticity for every document Yalla Mobility issues."
+          lede="Forensic identity, provenance and authenticity for every document SAFARID issues."
         />
 
         {metricsQ.isLoading ? (

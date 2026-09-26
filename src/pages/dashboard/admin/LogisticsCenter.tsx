@@ -589,7 +589,7 @@ export default function LogisticsCenter() {
         }
         const esc = (s: unknown) => String(s ?? "").replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c] as string));
         w.document.write(
-          `<h1>Yalla Mobility · Audit Log Export</h1><p>${esc(rows.length)} rows · partner: ${esc(auditPartner || "any")} · order: ${esc(auditOrder || "any")} · ${esc(auditFrom || "…")} → ${esc(auditTo || "…")}</p>` +
+          `<h1>SAFARID · Audit Log Export</h1><p>${esc(rows.length)} rows · partner: ${esc(auditPartner || "any")} · order: ${esc(auditOrder || "any")} · ${esc(auditFrom || "…")} → ${esc(auditTo || "…")}</p>` +
           `<table border="1" cellspacing="0" cellpadding="4" style="font:12px sans-serif;border-collapse:collapse"><tr><th>Time</th><th>Action</th><th>Resource</th><th>Target</th><th>Actor</th></tr>` +
           rows.map((r) => `<tr><td>${esc(r.created_at)}</td><td>${esc(r.action)}</td><td>${esc(r.entity_type)}</td><td>${esc(r.after_data?.target)}</td><td>${esc(r.actor_user_id)}</td></tr>`).join("") +
           `</table>`,

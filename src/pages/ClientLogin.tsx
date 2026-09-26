@@ -1,5 +1,5 @@
 /**
- * Yalla Mobility client sign-in.
+ * SAFARID client sign-in.
  *
  * The way a real corporate customer contact reaches their own account: a
  * one-tap email link, a password, or Google. Once signed in they land on My
@@ -205,8 +205,8 @@ export default function ClientLogin() {
   return (
     <>
       <SeoHead
-        title="Client Sign In — Yalla Mobility Account & Invoices"
-        description="Sign in to your Yalla Mobility client account to view quotations, proforma invoices, tax invoices and payment receipts, and confirm receipt of documents."
+        title="Client Sign In — SAFARID Account & Invoices"
+        description="Sign in to your SAFARID client account to view quotations, proforma invoices, tax invoices and payment receipts, and confirm receipt of documents."
         path="/clients/login"
       />
       <main className="min-h-screen grid lg:grid-cols-2 bg-background">
@@ -214,7 +214,7 @@ export default function ClientLogin() {
           <div className="absolute inset-0 opacity-20 [background:radial-gradient(circle_at_20%_20%,white,transparent_45%),radial-gradient(circle_at_80%_70%,white,transparent_40%)]" />
           <div className="relative">
             <div className="flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
-              <Building2 className="h-5 w-5" /> Yalla Mobility
+              <Building2 className="h-5 w-5" /> SAFARID
             </div>
             <h1 className="mt-10 text-4xl font-bold leading-tight max-w-md">
               Your account, your documents, your balances.
@@ -238,7 +238,7 @@ export default function ClientLogin() {
         <section className="flex items-center justify-center p-6 sm:p-12">
           <div className="w-full max-w-md space-y-6">
             <div className="lg:hidden flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-primary">
-              <Building2 className="h-5 w-5" /> Yalla Mobility
+              <Building2 className="h-5 w-5" /> SAFARID
             </div>
             <div>
               <h2 className="text-2xl font-bold">Client sign in</h2>

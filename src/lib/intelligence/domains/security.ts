@@ -2,7 +2,7 @@
  * Security intelligence — deterministic read service over the Security Control
  * Plane.
  *
- * This is how Ask Yalla answers "is Yalla secure right now?" without pretending.
+ * This is how Ask SAFARID answers "is SAFARID secure right now?" without pretending.
  * Posture is computed from recorded control evidence; controls with no evidence
  * are reported as unverified, and unverified is never presented as a pass.
  *

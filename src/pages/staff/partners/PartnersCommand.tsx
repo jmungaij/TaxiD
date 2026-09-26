@@ -1,5 +1,5 @@
 /**
- * YALLA PARTNERS OPERATIONS SYSTEM — network command centre.
+ * SAFARID PARTNERS OPERATIONS SYSTEM — network command centre.
  *
  * The staff view of the distribution network: who is in it, who is waiting to
  * be let in, what they are selling and what supply they are asking for.
@@ -141,7 +141,7 @@ export default function PartnersCommand() {
   return (
     <div className="space-y-6">
       <StaffPageHeader
-        eyebrow="Yalla Partners Operations System"
+        eyebrow="SAFARID Partners Operations System"
         title="Partner network command"
         lede="Distribution partners, their commercial position, pending admissions and open supply requests — one operating picture."
       />
@@ -153,7 +153,7 @@ export default function PartnersCommand() {
         <Kpi label="Open demand" value={String(openCapacity.length)} hint="Unmatched supply requests" />
         <Kpi label="Network orders" value={String(metrics.orders)} hint={`${metrics.openOrders} in progress`} />
         <Kpi label="Gross booked value" value={kes(metrics.grossValue)} hint="Customer-facing, VAT inclusive" />
-        <Kpi label="Yalla margin" value={kes(metrics.yallaMargin)} hint={`Partners earned ${kes(metrics.partnerEarnings)}`} />
+        <Kpi label="SAFARID margin" value={kes(metrics.yallaMargin)} hint={`Partners earned ${kes(metrics.partnerEarnings)}`} />
         <Kpi label="Open risk flags" value={risk.isError ? "—" : String(openRisk.length)} hint={risk.isError ? "Risk feed unavailable" : `${criticalRisk} critical`} />
       </div>
 
@@ -213,7 +213,7 @@ export default function PartnersCommand() {
             <Card>
               <CardContent className="overflow-x-auto pt-6">
                 <table className="w-full text-sm">
-                  <caption className="sr-only">Yalla partner network</caption>
+                  <caption className="sr-only">SAFARID partner network</caption>
                   <thead className="text-left text-xs uppercase tracking-wide text-muted-foreground">
                     <tr>
                       <th scope="col" className="py-2 pr-4">Partner</th>

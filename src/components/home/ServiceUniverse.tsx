@@ -99,7 +99,7 @@ export function ServiceUniverse() {
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Everything that moves</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">One marketplace. Every way to move.</h2>
         <p className="mt-4 text-muted-foreground">
-          Yalla Mobility connects mobility demand with transportation supply: discover verified providers,
+          SAFARID connects mobility demand with transportation supply: discover verified providers,
           compare options and book rides, charter, rentals, leasing and logistics from one account.
         </p>
       </div>

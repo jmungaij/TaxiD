@@ -114,7 +114,7 @@ const num = (n: number | null | undefined) => (n == null ? "" : Math.round(Numbe
 export function dryRunReport(preview: DryRunPreview): ReportTable {
   return {
     id: "wallet-reconciliation-dry-run",
-    title: "Yalla Mobility · reconciliation rerun preview (dry run)",
+    title: "SAFARID · reconciliation rerun preview (dry run)",
     subtitle: "Discrepancies a real rerun would record — nothing was written",
     meta: [
       ["Window", `${preview.window_start} → ${preview.window_end}`],

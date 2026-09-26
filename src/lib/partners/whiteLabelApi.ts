@@ -223,10 +223,10 @@ export function buildWhiteLabelOpenApi(version: string = currentWhiteLabelReleas
   return {
     openapi: "3.1.0",
     info: {
-      title: "Yalla White-Label Platform API",
+      title: "SAFARID White-Label Platform API",
       version: release.version,
       description:
-        "Tenant-scoped view of the Yalla mobility API. Identical operations to the API partner " +
+        "Tenant-scoped view of the SAFARID mobility API. Identical operations to the API partner " +
         `surface, with a mandatory ${TENANT_HEADER} header and tenant identity on webhook envelopes.`,
     },
     servers: [

@@ -1,5 +1,5 @@
 /**
- * Yalla Universal Search — one query across every authorised entity class.
+ * SAFARID Universal Search — one query across every authorised entity class.
  *
  * Each entity class declares the table it reads, the columns it matches, the
  * sensitivity scope required to see it, the facets it can be narrowed by, the

@@ -311,7 +311,7 @@ export default function RiderManagement() {
           <Card>
             <CardHeader><CardTitle className="text-base">Rider Wallets</CardTitle></CardHeader>
             <CardContent>
-              <ActivityTable<WalletRow>
+              <WalletTable
                 columns={[
                   { key: "wallet", header: "Wallet",
                     sortValue: (w) => w.user_id,
@@ -376,7 +376,7 @@ export default function RiderManagement() {
           <Card>
             <CardHeader><CardTitle className="text-base">Recent Rider Wallet Activity (Trip Charges & Top-ups)</CardTitle></CardHeader>
             <CardContent>
-              <ActivityTable<TxnRow>
+              <TxnTable
                 columns={[
                   { key: "type", header: "Type", sortValue: (t) => t.txn_type,
                     render: (t) => <span className="capitalize">{t.txn_type.replace(/_/g, " ")}</span> },
@@ -463,6 +463,20 @@ type ActivityColumn<T> = {
   sortValue?: (row: T) => string | number | null | undefined;
 };
 
+type ActivityTableProps<T> = {
+  columns: ActivityColumn<T>[];
+  rows: T[];
+  rowKey: (row: T) => string;
+  loading?: boolean;
+  emptyMessage?: string;
+  loadingMessage?: string;
+};
+
+// Pre-bound aliases: generic JSX call syntax (<ActivityTable<T>>) breaks the
+// dev-mode instrumentation transform, so bind the row types here instead.
+const WalletTable: (props: ActivityTableProps<WalletRow>) => ReactNode = ActivityTable;
+const TxnTable: (props: ActivityTableProps<TxnRow>) => ReactNode = ActivityTable;
+
 function ActivityTable<T>({
   columns,
   rows,
@@ -470,14 +484,7 @@ function ActivityTable<T>({
   loading = false,
   emptyMessage = "No records.",
   loadingMessage = "Loading…",
-}: {
-  columns: ActivityColumn<T>[];
-  rows: T[];
-  rowKey: (row: T) => string;
-  loading?: boolean;
-  emptyMessage?: string;
-  loadingMessage?: string;
-}) {
+}: ActivityTableProps<T>) {
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
 

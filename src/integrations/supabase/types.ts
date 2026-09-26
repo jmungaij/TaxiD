@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       support_messages: {
         Row: {
           body: string
@@ -55,7 +85,11 @@ export type Database = {
           created_at: string
           created_by: string
           id: string
+          last_message_at: string | null
           rider_email: string
+          rider_last_read_at: string | null
+          rider_user_id: string | null
+          staff_last_read_at: string | null
           status: string
           subject: string
           updated_at: string
@@ -65,7 +99,11 @@ export type Database = {
           created_at?: string
           created_by?: string
           id?: string
+          last_message_at?: string | null
           rider_email: string
+          rider_last_read_at?: string | null
+          rider_user_id?: string | null
+          staff_last_read_at?: string | null
           status?: string
           subject: string
           updated_at?: string
@@ -75,7 +113,11 @@ export type Database = {
           created_at?: string
           created_by?: string
           id?: string
+          last_message_at?: string | null
           rider_email?: string
+          rider_last_read_at?: string | null
+          rider_user_id?: string | null
+          staff_last_read_at?: string | null
           status?: string
           subject?: string
           updated_at?: string
@@ -108,6 +150,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      has_any_role: {
+        Args: {
+          _roles: Database["public"]["Enums"]["app_role"][]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -117,7 +166,15 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "support" | "rider"
+      app_role:
+        | "admin"
+        | "support"
+        | "rider"
+        | "driver"
+        | "corporate_admin"
+        | "corporate_employee"
+        | "finance_admin"
+        | "super_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -245,7 +302,16 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "support", "rider"],
+      app_role: [
+        "admin",
+        "support",
+        "rider",
+        "driver",
+        "corporate_admin",
+        "corporate_employee",
+        "finance_admin",
+        "super_admin",
+      ],
     },
   },
 } as const

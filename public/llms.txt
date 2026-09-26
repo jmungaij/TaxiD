@@ -1,0 +1,29 @@
+# Yalla Mobility
+
+> Africa's mobility super-platform — ride-hailing, corporate mobility, package delivery and car rentals on one enterprise-grade stack built for African cities.
+
+Yalla Mobility operates a multi-product mobility network across Kenya and expanding African markets. The platform serves individual riders, driver-partners, corporate travel managers, delivery senders, and rental customers, with M-Pesa, card and corporate-wallet payments.
+
+## Pages
+
+- [About](/about): Company mission, leadership and Africa-wide footprint.
+- [Riders](/riders): Booking rides, vehicle tiers, safety and payment options.
+- [Drivers](/drivers): Driver-partner earnings, requirements and onboarding.
+- [Corporates](/corporates): Corporate mobility, dual wallets and KRA-compliant invoicing.
+- [Delivery](/delivery): Same-day and scheduled package delivery with POD.
+- [Rentals](/rentals): Self-drive, chauffeur, bus/coach and corporate leasing.
+- [Enterprise](/enterprise): White-label dispatch, fleet and payments infrastructure.
+- [Pricing](/pricing): Fares, surge caps and corporate plans.
+- [Developers](/developers): Public APIs, SDKs and sandbox.
+- [Security Centre](/security): Security, privacy and compliance posture.
+- [FAQ](/faq): Common questions for riders, drivers and corporates.
+- [Support](/support): Help centre and contact channels.
+- [Careers](/careers): Open roles across engineering, operations and design.
+- [News](/news): Press releases and product updates.
+- [Contact](/contact): Sales, support and partnership enquiries.
+- [Corporate Travel Guide](/blog/corporate-travel-management-guide): Practical guide for finance and HR teams.
+
+## Optional
+
+- [Driver Apply](/driver/apply): Public driver application entry point.
+- [Driver Academy](/driver/training): Driver training catalogue.

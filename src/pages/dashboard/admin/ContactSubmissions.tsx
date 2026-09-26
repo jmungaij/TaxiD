@@ -215,8 +215,10 @@ export default function ContactSubmissions() {
       { dataset: "marketing.contact_submissions", exportType: "csv", rowCount: filtered.length, filters: { search } },
       () => {
         const escape = (v: unknown) => {
-          const s = v === null || v === undefined ? "" : String(v);
-          return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+          let s = v === null || v === undefined ? "" : String(v);
+          // Neutralise spreadsheet formula triggers (=, +, -, @, tab, CR).
+          if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+          return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
         };
         const headers = ["created_at","status","is_spam","spam_score","type","name","email","company","phone","subject","message","source_page","employee_count","ip_address"];
         const lines = [headers.join(",")];

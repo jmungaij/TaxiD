@@ -402,6 +402,10 @@ export default function RiderManagement() {
             <CardHeader><CardTitle className="text-base">AI resolution drafter</CardTitle></CardHeader>
             <CardContent><SupportResolutionDrafter /></CardContent>
           </Card>
+          <Card className="mt-4">
+            <CardHeader><CardTitle className="text-base">Rider conversations</CardTitle></CardHeader>
+            <CardContent><SupportConversations /></CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>

@@ -352,7 +352,7 @@ export async function loadLatestEvpEvidence(): Promise<EvpEvidenceOverlay> {
     validationOverlay.integrationTelemetry = rollup.integrations as never;
     diagnostics.integrations = {
       observed: Object.keys(rollup.integrations).sort(),
-      totalSamples: Object.values(rollup.integrations).reduce((a, i) => a + Number(i?.sampleSize ?? 0), 0),
+      totalSamples: Object.values(rollup.integrations).reduce<number>((a, i) => a + Number((i as { sampleSize?: number } | null)?.sampleSize ?? 0), 0),
       source: "evp_rollup",
     };
   }

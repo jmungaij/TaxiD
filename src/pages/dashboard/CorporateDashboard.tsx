@@ -237,7 +237,7 @@ export default function CorporateDashboard() {
         let cid = "", cname = "";
         if (emp?.corporate_id) {
           cid = emp.corporate_id;
-          const ca = emp.corporate_accounts as { legal_name: string } | null;
+          const ca = emp.corporate_accounts as unknown as { legal_name: string } | null;
           cname = ca?.legal_name ?? "";
           setCorporateId(cid);
           setCorporateName(cname);

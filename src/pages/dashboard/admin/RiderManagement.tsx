@@ -22,6 +22,7 @@ import {
   type ActivityTableProps, type RiderRow,
 } from "@/components/riders/RiderTables";
 import { SupportResolutionDrafter } from "@/components/riders/SupportResolutionDrafter";
+import { SupportConversations } from "@/components/riders/SupportConversations";
 
 const riderSecondaryCache = createTtlCache<{ wallets: WalletRow[]; txns: TxnRow[] }>(60_000);
 

@@ -89,18 +89,137 @@ var my_roles_default = defineTool2({
   }
 });
 
+// src/lib/mcp/tools/my-assigned-cases.ts
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@3.0.4";
+import { z } from "npm:zod@^4.6.5";
+var toCase = (t) => ({
+  id: t.id,
+  subject: t.subject,
+  category: t.category,
+  status: t.status,
+  rider_email: t.rider_email,
+  assigned_at: t.assigned_at,
+  last_message_at: t.last_message_at
+});
+var my_assigned_cases_default = defineTool3({
+  name: "my_assigned_cases",
+  title: "My assigned cases",
+  description: "List rider support cases assigned to the signed-in support agent.",
+  inputSchema: {
+    status: z.enum(["open", "resolved", "closed", "any"]).default("open").describe("Filter by case status.")
+  },
+  annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+  handler: async ({ status }, ctx) => {
+    if (!ctx.isAuthenticated()) return { content: [{ type: "text", text: "Not authenticated" }], isError: true };
+    let q = supabaseForUser(ctx).from("support_threads").select("id, subject, category, status, rider_email, assigned_at, last_message_at").eq("assigned_agent_id", ctx.getUserId() ?? "").order("last_message_at", { ascending: false, nullsFirst: false }).limit(50);
+    if (status !== "any") q = q.eq("status", status);
+    const { data, error } = await q;
+    if (error) return { content: [{ type: "text", text: error.message }], isError: true };
+    const cases = (data ?? []).map(toCase);
+    return { content: [{ type: "text", text: JSON.stringify(cases) }], structuredContent: { cases } };
+  }
+});
+
+// src/lib/mcp/tools/get-case.ts
+import { defineTool as defineTool4, ToolError } from "npm:@lovable.dev/mcp-js@3.0.4";
+import { z as z2 } from "npm:zod@^4.6.5";
+var get_case_default = defineTool4({
+  name: "get_case",
+  title: "Get case",
+  description: "Read one rider support case, including its full message history (the AI-drafted resolution and rider replies).",
+  inputSchema: { case_id: z2.string().uuid().describe("The case ID from my_assigned_cases.") },
+  annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+  handler: async ({ case_id }, ctx) => {
+    if (!ctx.isAuthenticated()) return { content: [{ type: "text", text: "Not authenticated" }], isError: true };
+    const db = supabaseForUser(ctx);
+    const { data: t, error } = await db.from("support_threads").select("id, subject, category, status, rider_email, assigned_agent_id").eq("id", case_id).maybeSingle();
+    if (error) throw new ToolError(error.message);
+    if (!t) throw new ToolError("Case not found or you don't have access to it.");
+    const { data: msgs, error: mErr } = await db.from("support_messages").select("id, sender_role, body, created_at").eq("thread_id", case_id).order("created_at", { ascending: true });
+    if (mErr) throw new ToolError(mErr.message);
+    const row = t;
+    const result = {
+      id: row.id,
+      subject: row.subject,
+      category: row.category,
+      status: row.status,
+      rider_email: row.rider_email,
+      assigned_to_me: row.assigned_agent_id === ctx.getUserId(),
+      messages: (msgs ?? []).map((m) => ({ id: m.id, from: m.sender_role, body: m.body, sent_at: m.created_at }))
+    };
+    return { content: [{ type: "text", text: JSON.stringify(result) }], structuredContent: { case: result } };
+  }
+});
+
+// src/lib/mcp/tools/reply-to-case.ts
+import { defineTool as defineTool5, ToolError as ToolError2 } from "npm:@lovable.dev/mcp-js@3.0.4";
+import { z as z3 } from "npm:zod@^4.6.5";
+var reply_to_case_default = defineTool5({
+  name: "reply_to_case",
+  title: "Reply to case",
+  description: "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their SAFARID inbox.",
+  inputSchema: {
+    case_id: z3.string().uuid().describe("The case ID."),
+    message: z3.string().trim().min(1).max(4e3).describe("The reply the rider will read.")
+  },
+  annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
+  handler: async ({ case_id, message }, ctx) => {
+    if (!ctx.isAuthenticated()) return { content: [{ type: "text", text: "Not authenticated" }], isError: true };
+    const uid = ctx.getUserId() ?? "";
+    const db = supabaseForUser(ctx);
+    const { data: t, error } = await db.from("support_threads").select("id, status, assigned_agent_id").eq("id", case_id).maybeSingle();
+    if (error) throw new ToolError2(error.message);
+    const row = t;
+    if (!row) throw new ToolError2("Case not found or you don't have access to it.");
+    if (row.assigned_agent_id !== uid) throw new ToolError2("This case is not assigned to you.");
+    if (row.status !== "open") throw new ToolError2("This case is not open.");
+    const { error: iErr } = await db.from("support_messages").insert({ thread_id: case_id, sender_id: uid, sender_role: "staff", body: message });
+    if (iErr) throw new ToolError2(iErr.message);
+    await db.from("support_assignment_events").insert({
+      thread_id: case_id,
+      event_type: "agent_reply",
+      actor_id: uid,
+      source: "mcp",
+      note: message.slice(0, 200)
+    });
+    return { content: [{ type: "text", text: "Reply sent to the rider." }], structuredContent: { sent: true } };
+  }
+});
+
+// src/lib/mcp/tools/update-case-status.ts
+import { defineTool as defineTool6, ToolError as ToolError3 } from "npm:@lovable.dev/mcp-js@3.0.4";
+import { z as z4 } from "npm:zod@^4.6.5";
+var update_case_status_default = defineTool6({
+  name: "update_case_status",
+  title: "Update case status",
+  description: "Mark a support case assigned to you as open, resolved or closed. The change is tracked in the app's case history.",
+  inputSchema: {
+    case_id: z4.string().uuid().describe("The case ID."),
+    status: z4.enum(["open", "resolved", "closed"]).describe("New status.")
+  },
+  annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+  handler: async ({ case_id, status }, ctx) => {
+    if (!ctx.isAuthenticated()) return { content: [{ type: "text", text: "Not authenticated" }], isError: true };
+    const uid = ctx.getUserId() ?? "";
+    const { data, error } = await supabaseForUser(ctx).from("support_threads").update({ status }).eq("id", case_id).eq("assigned_agent_id", uid).select("id, status");
+    if (error) throw new ToolError3(error.message);
+    if (!data || data.length === 0) throw new ToolError3("Case not found or not assigned to you.");
+    return { content: [{ type: "text", text: `Case marked ${status}.` }], structuredContent: { id: case_id, status } };
+  }
+});
+
 // src/lib/mcp/index.ts
 var projectRef = "sdobywndeugzykwugqke";
 var mcp_default = defineMcp({
   name: "safarid",
   title: "safarid",
-  version: "0.1.0",
-  instructions: "Tools for the SAFARID mobility platform, acting as the signed-in user. Use `whoami` to confirm the account and `my_roles` to see its permissions.",
+  version: "0.2.0",
+  instructions: "Tools for the SAFARID mobility platform, acting as the signed-in user. Use `whoami` and `my_roles` to confirm the account. Support agents use `my_assigned_cases` to see rider cases assigned to them, `get_case` to read the AI-drafted resolution and rider replies, `reply_to_case` to answer the rider, and `update_case_status` to resolve or close a case. Every action is tracked in the app.",
   auth: auth.oauth.issuer({
     issuer: `https://${projectRef}.supabase.co/auth/v1`,
     acceptedAudiences: "authenticated"
   }),
-  tools: [whoami_default, my_roles_default]
+  tools: [whoami_default, my_roles_default, my_assigned_cases_default, get_case_default, reply_to_case_default, update_case_status_default]
 });
 
 // lovable-mcp-supabase-entry.ts

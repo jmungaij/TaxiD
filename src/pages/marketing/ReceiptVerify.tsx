@@ -101,8 +101,8 @@ export default function ReceiptVerify() {
           content="Enter the control number printed on a TaxiD Air receipt or itinerary to confirm its fingerprint, template version and booking reference are authentic."
         />
         <link rel="canonical" href="https://www.taxid.us/verify" />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
       </Helmet>
 
       <header className="mb-8 space-y-2">

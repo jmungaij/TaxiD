@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useRouteHeadClaimed } from "@/components/seo/headClaim";
 
 const BASE_URL = "https://yalla-africa.lovable.app";
-const OG_IMAGE = `${BASE_URL}/og-safarid-1200x630.v1.png`;
+const OG_IMAGE = `${BASE_URL}/og-taxid-1200x630.png`;
 
 /**
  * Fallback for routes with no entry below. Deliberately distinct from the home
@@ -19,7 +19,7 @@ const DEFAULT_META = {
 // Per-route head metadata. Titles <60 chars, descriptions 50–160 chars.
 const META: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "TaxiD — Move People. Power Business.",
+    title: "TaxiD — Move Smarter. Go Further.",
     description:
       "One platform for rides, corporate mobility, charter, vehicle rental and leasing, delivery and freight — with verified providers and M-Pesa payment.",
   },

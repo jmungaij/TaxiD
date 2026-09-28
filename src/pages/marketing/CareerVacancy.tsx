@@ -245,8 +245,8 @@ export default function CareerVacancy() {
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={url} />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />

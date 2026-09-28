@@ -1,23 +1,19 @@
 import { cn } from "@/lib/utils";
-import yallaLogoInk from "@/assets/safarid-logo.png";
-import yallaLogoLight from "@/assets/safarid-logo-light.png";
-import yallaMark from "@/assets/safarid-mark.png";
+import taxiDLockup from "@/assets/taxid-lockup";
+import taxiDMark from "@/assets/taxid-mark";
 
 /**
  * BrandLogo — single source of truth for the TaxiD lockup.
  *
- * `ink`  — Executive Blue wordmark, for light / ice-blue surfaces.
- * `light`— Ice White wordmark, for Executive Blue, midnight and glass surfaces.
- * Both variants share the same orange mobility pin, so the brand mark reads
- * identically across the ecosystem.
+ * The supplied multicolour wordmark is used for both surface tones.
  */
 export type BrandLogoTone = "ink" | "light";
 /** `lockup` = pin + wordmark; `mark` = the mobility pin alone (square). */
 export type BrandLogoVariant = "lockup" | "mark";
 
 const SOURCES: Record<BrandLogoTone, string> = {
-  ink: yallaLogoInk,
-  light: yallaLogoLight,
+  ink: taxiDLockup,
+  light: taxiDLockup,
 };
 
 interface BrandLogoProps {
@@ -33,14 +29,14 @@ const BrandLogo = ({
   tone = "ink",
   variant = "lockup",
   className,
-  alt = "TaxiD — Move People. Power Business.",
+  alt = "TaxiD — Move Smarter. Go Further.",
   priority = false,
 }: BrandLogoProps) => (
   <img
-    src={variant === "mark" ? yallaMark : SOURCES[tone]}
+    src={variant === "mark" ? taxiDMark : SOURCES[tone]}
     alt={alt}
-    width={variant === "mark" ? 256 : 723}
-    height={variant === "mark" ? 256 : 260}
+    width={variant === "mark" ? 696 : 927}
+    height={variant === "mark" ? 840 : 357}
     decoding="async"
     loading={priority ? "eager" : "lazy"}
     // React 18 does not map the camelCase prop; emit the DOM attribute directly.

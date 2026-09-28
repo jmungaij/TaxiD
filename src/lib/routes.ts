@@ -149,6 +149,7 @@ export const ROUTES: RouteRegistry = defineRoutes([
   { path: "/riders",     title: "Riders",     group: "marketing", icon: "User",        rolesAllowed: [], showInFooter: true, sortOrder: 30 },
   { path: "/drivers",    title: "Drivers",    group: "marketing", icon: "Car",         rolesAllowed: [], showInFooter: true, sortOrder: 40 },
   { path: "/corporates", title: "Corporates", group: "marketing", icon: "Building",    rolesAllowed: [], showInFooter: true, sortOrder: 50 },
+  { path: "/business/portal", title: "Power Business Portal", group: "marketing", icon: "Building", rolesAllowed: [], sortOrder: 51, hideFromSitemap: true },
   { path: "/delivery",   title: "Delivery",   group: "marketing", icon: "Package",     rolesAllowed: [], showInFooter: true, sortOrder: 60 },
   { path: "/rentals",    title: "Rentals",    group: "marketing", icon: "Key",         rolesAllowed: [], showInFooter: true, sortOrder: 70 },
   { path: "/staff",       title: "Staff Access", group: "marketing", icon: "Users", rolesAllowed: [], showInFooter: true, sortOrder: 72 },

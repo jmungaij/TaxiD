@@ -256,6 +256,7 @@ export function buildPrimaryNav(appLinks: {
         {
           heading: "Business account",
           items: [
+            { to: "/business/portal", label: "Power Business Portal", desc: "Your requests, trips and business activity", requiresAuth: true, audience: "corporate" },
             { to: "/corporate/register", label: "Open a Business Account", desc: "Register your organisation and verify it online" },
             { to: "/dashboard/corporate", label: "Corporate Dashboard", desc: "Employees, trips, approvals and spend", requiresAuth: true, audience: "corporate" },
             { to: "/dashboard/charter/portal", label: "Charter Management", desc: "Charter requests, procurement and approvals", requiresAuth: true, audience: "corporate" },

@@ -311,9 +311,9 @@ export function DeliveryBusiness() {
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="sm:col-span-2 grid gap-5 sm:grid-cols-3">
             {[
-              { src: warehouseImg, alt: "Fulfilment centre with pallets and conveyor lines" },
-              { src: freightImg, alt: "Cargo truck on an open highway at golden hour" },
-              { src: courierImg, alt: "Courier riding through city traffic with a cargo box" },
+              { src: warehouseImg, alt: "Freight vehicles and boxed consignments at a distribution yard" },
+              { src: freightImg, alt: "Courier motorbike and delivery van on a city road" },
+              { src: courierImg, alt: "Courier handing a sealed parcel to its recipient" },
             ].map((img) => (
               <img
                 key={img.src}

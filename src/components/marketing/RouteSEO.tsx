@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { useRouteHeadClaimed } from "@/components/seo/headClaim";
 
-const BASE_URL = "https://yalla-africa.lovable.app";
+const BASE_URL = "https://taxid.lovable.app";
 const OG_IMAGE = `${BASE_URL}/og-taxid-1200x630.png`;
 
 /**

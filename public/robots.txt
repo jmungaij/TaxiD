@@ -28,4 +28,4 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-Sitemap: https://yalla-africa.lovable.app/sitemap.xml
+Sitemap: https://taxid.lovable.app/sitemap.xml

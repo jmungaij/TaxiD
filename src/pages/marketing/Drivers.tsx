@@ -213,9 +213,9 @@ export default function Drivers() {
 
       {/* ---------- HERO ---------- */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
-        <div className="absolute inset-0 opacity-25" aria-hidden>
-          <img src={driverDaylight} alt="TaxiD driver partner beside his vehicle in Nairobi" className="h-full w-full object-cover object-[65%_center]" loading="eager" />
-          <div className="absolute inset-0 bg-primary/80" />
+        <div className="absolute inset-0" aria-hidden>
+          <img src={driverDaylight} alt="" className="h-full w-full object-cover object-[65%_center]" loading="eager" width={1600} height={1008} />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#031D7C]/95 via-[#031D7C]/80 to-[#031D7C]/20" />
         </div>
         <div className="relative container mx-auto px-4 py-24 md:py-32">
           <div className="max-w-3xl">

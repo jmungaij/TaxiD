@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { isActiveTrip, tripStatusLabel } from "@/lib/rider/tripStatus";
+import riderImage from "@/assets/rider/taxid-rider-daylight.jpg";
 
 interface Trip {
   id: string;
@@ -61,12 +62,20 @@ export default function RiderDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Your journeys</h1>
-        {walletId && <TopUpDialog walletType="personal" walletId={walletId} onSuccess={(b) => setBalance(b)} />}
+      <div className="relative overflow-hidden rounded-md bg-[#031D7C] text-white">
+        <img src={riderImage} alt="TaxiD rider with a driver partner" className="absolute inset-0 h-full w-full object-cover object-[65%_center]" width={1600} height={1008} />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#031D7C] via-[#031D7C]/90 to-[#031D7C]/20" />
+        <div className="relative max-w-xl px-6 py-12 md:px-10 md:py-16">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#FDBB03]">Your TaxiD</p>
+          <h1 className="mt-3 text-3xl font-bold md:text-4xl">Welcome back, your journey starts here.</h1>
+          <p className="mt-3 text-sm text-white/80">Book a ride, send a package or review your recent trips and wallet.</p>
+          <div className="mt-7 flex flex-wrap gap-2">
+            <Button asChild><Link to="/rider"><Car className="mr-2 h-4 w-4" />Book a ride</Link></Button>
+            <Button asChild variant="secondary"><Link to="/delivery">Package delivery</Link></Button>
+          </div>
+        </div>
       </div>
-
-      <Button asChild size="lg"><Link to="/rider"><Car className="mr-2 h-4 w-4" />Book a ride</Link></Button>
+      {walletId && <div className="flex justify-end"><TopUpDialog walletType="personal" walletId={walletId} onSuccess={(b) => setBalance(b)} /></div>}
 
       {active && <Card className="border-primary p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">

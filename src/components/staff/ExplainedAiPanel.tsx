@@ -65,7 +65,7 @@ function confidenceLabel(c: number) {
  *
  * Every insight must disclose its data sources, its assumptions and its
  * confidence. When a source is unavailable, the panel states that the insight
- * cannot be produced instead of presenting an estimate as SAFARID performance.
+ * cannot be produced instead of presenting an estimate as TaxiD performance.
  */
 export function ExplainedAiPanel({
   insight,
@@ -184,7 +184,7 @@ export function ExplainedAiPanel({
               {insight.blockedReason ??
                 `No conclusion is offered: ${unresolved.length || "the required"} data source${
                   unresolved.length === 1 ? "" : "s"
-                } have not resolved. SAFARID does not present a modelled figure as measured performance.`}
+                } have not resolved. TaxiD does not present a modelled figure as measured performance.`}
             </span>
           </div>
         )}

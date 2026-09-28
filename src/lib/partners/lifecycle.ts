@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS — lifecycle, money and case-management access layer.
+ * TaxiD PARTNERS — lifecycle, money and case-management access layer.
  *
  * Everything in this module is a thin, typed call onto server-side routines.
  * The rules live in the database, not here:

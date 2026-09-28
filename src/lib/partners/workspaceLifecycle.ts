@@ -3,9 +3,9 @@
  * "Partner workspace" control surface on /partners.
  *
  * The workspace is not six features; it is one continuous record moving from a
- * partner's customer relationship into SAFARID's execution network and back into
+ * partner's customer relationship into TaxiD's execution network and back into
  * settlement. Each stage below states:
- *   • who owns it (the partner, SAFARID, or both),
+ *   • who owns it (the partner, TaxiD, or both),
  *   • what actually happens in the platform today,
  *   • where the record lives — a real deep link into an existing surface.
  *
@@ -32,8 +32,8 @@ export type StageOwner = "partner" | "yalla" | "shared";
 
 export const OWNER_LABEL: Record<StageOwner, string> = {
   partner: "You own this",
-  yalla: "SAFARID operates this",
-  shared: "You and SAFARID, on one record",
+  yalla: "TaxiD operates this",
+  shared: "You and TaxiD, on one record",
 };
 
 export interface LifecycleStage {
@@ -67,7 +67,7 @@ export const LIFECYCLE: LifecycleStage[] = [
     label: "Customer",
     owner: "partner",
     claim: "My customer.",
-    lead: "Your customer register stays yours — SAFARID never becomes the relationship owner.",
+    lead: "Your customer register stays yours — TaxiD never becomes the relationship owner.",
     does: [
       "Create and maintain customer records with references and preferences",
       "Attach cost centres and internal references used by your own billing",
@@ -105,7 +105,7 @@ export const LIFECYCLE: LifecycleStage[] = [
     label: "Booking",
     owner: "shared",
     claim: "My order.",
-    lead: "One order surface for every SAFARID service line, placed on your customer's behalf.",
+    lead: "One order surface for every TaxiD service line, placed on your customer's behalf.",
     does: [
       "Place the order across service lines from a single form",
       "Route it through your own approval path where your account requires one",
@@ -124,7 +124,7 @@ export const LIFECYCLE: LifecycleStage[] = [
     label: "Commercials",
     owner: "shared",
     claim: "My commercial.",
-    lead: "Supplier cost, SAFARID margin, your margin and applicable taxes — visible before you confirm.",
+    lead: "Supplier cost, TaxiD margin, your margin and applicable taxes — visible before you confirm.",
     does: [
       "Pricing is computed server-side from your contracted rate card",
       "The commercial breakdown is shown on the order, not sent later",
@@ -143,8 +143,8 @@ export const LIFECYCLE: LifecycleStage[] = [
     n: "05",
     label: "Capacity",
     owner: "yalla",
-    claim: "SAFARID's supply.",
-    lead: "You do not have to own the vehicles. SAFARID matches the order to verified capacity.",
+    claim: "TaxiD's supply.",
+    lead: "You do not have to own the vehicles. TaxiD matches the order to verified capacity.",
     does: [
       "Matching scores admitted supply against the order and records the reason",
       "Raise a capacity request when the supply you need is not yet visible",
@@ -163,13 +163,13 @@ export const LIFECYCLE: LifecycleStage[] = [
     label: "Execution",
     owner: "yalla",
     claim: "One execution engine.",
-    lead: "Allocation, dispatch and delivery run on SAFARID's operating layer — one engine for every service line.",
+    lead: "Allocation, dispatch and delivery run on TaxiD's operating layer — one engine for every service line.",
     does: [
       "Allocation to the assigned operator, driver, vehicle or carrier",
       "Operational exceptions are raised as tracked cases with owners",
       "Order state moves forward on the same record your customer was booked on",
     ],
-    provenance: "Execution events are produced onto the operational spine and worked by SAFARID operations.",
+    provenance: "Execution events are produced onto the operational spine and worked by TaxiD operations.",
     cta: "Follow the order lifecycle",
     to: "/partner/workspace?tab=orders",
     analyticsEvent: "partner_lifecycle_execution",

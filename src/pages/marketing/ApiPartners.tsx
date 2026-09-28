@@ -1,5 +1,5 @@
 /**
- * SAFARID API PARTNERS — enterprise API platform experience.
+ * TaxiD API PARTNERS — enterprise API platform experience.
  *
  * This is the technical buying surface for CTOs, enterprise architects and
  * platform teams. Every claim on the page is rendered from the canonical
@@ -111,16 +111,16 @@ export default function ApiPartners() {
   return (
     <MarketingPage>
       <SeoHead
-        title="API Partners | SAFARID"
+        title="API Partners | TaxiD"
         description="Enterprise mobility infrastructure APIs for quoting, booking, tracking, documents and settlement. Scoped OAuth credentials, signed webhooks, certified go-live."
         path="/partners/api"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "SAFARID API Platform",
+            name: "TaxiD API Platform",
             serviceType: "Mobility infrastructure API",
-            provider: { "@type": "Organization", name: "SAFARID", url: "https://safarid.org" },
+            provider: { "@type": "Organization", name: "TaxiD", url: "https://taxid.us" },
             areaServed: "KE",
             description:
               "Programmatic quoting, booking, tracking, documents and settlement for platforms embedding mobility into their own products.",
@@ -272,7 +272,7 @@ export default function ApiPartners() {
           <div>
             <h2 className="text-2xl font-bold">Event-driven, not polled</h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              SAFARID pushes state to you. Every delivery is HMAC-SHA-256 signed with a timestamp; reject unsigned or
+              TaxiD pushes state to you. Every delivery is HMAC-SHA-256 signed with a timestamp; reject unsigned or
               stale payloads, respond 2xx to acknowledge, and let backoff handle the rest.
             </p>
             <CodeBlock
@@ -293,7 +293,7 @@ export function verifyYallaWebhook(rawBody: string, header: string, secret: stri
           </div>
           <div className="rounded-2xl border border-border bg-card p-2">
             <table className="w-full text-left text-sm">
-              <caption className="sr-only">SAFARID webhook event catalogue</caption>
+              <caption className="sr-only">TaxiD webhook event catalogue</caption>
               <thead>
                 <tr className="border-b border-border text-xs uppercase tracking-wide text-muted-foreground">
                   <th scope="col" className="p-3">Event</th>

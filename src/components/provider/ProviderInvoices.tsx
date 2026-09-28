@@ -1,6 +1,6 @@
 /**
  * OPERATOR STATEMENTS — provider portal.
- * Open a period, see every trip with SAFARID's 15%, your 85% and the 5% fee that
+ * Open a period, see every trip with TaxiD's 15%, your 85% and the 5% fee that
  * applies when you withdraw, then submit it for payment. Amounts come from the
  * platform's own trip records, so nothing here can be typed over.
  */
@@ -128,7 +128,7 @@ export default function ProviderInvoices() {
                     <p className="text-sm font-semibold">{money(i.net_cents, i.currency)} payable to you</p>
                     <p className="text-xs text-muted-foreground">
                       {periodLabel(i)} · {i.lines_count} trip(s) · {money(i.gross_cents, i.currency)} trip
-                      value · {money(i.commission_cents, i.currency)} SAFARID{" "}
+                      value · {money(i.commission_cents, i.currency)} TaxiD{" "}
                       {(i.commission_bps / 100).toFixed(0)}% ·{" "}
                       {money(i.estimated_fee_cents, i.currency)} withdrawal fee at{" "}
                       {(i.withdrawal_fee_bps / 100).toFixed(0)}%
@@ -161,7 +161,7 @@ export default function ProviderInvoices() {
                         <TableHead>Trip</TableHead>
                         <TableHead>Date</TableHead>
                         <TableHead className="text-right">Trip value</TableHead>
-                        <TableHead className="text-right">SAFARID 15%</TableHead>
+                        <TableHead className="text-right">TaxiD 15%</TableHead>
                         <TableHead className="text-right">Your 85%</TableHead>
                       </TableRow>
                     </TableHeader>

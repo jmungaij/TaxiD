@@ -4,7 +4,7 @@ import yallaLogoLight from "@/assets/safarid-logo-light.png";
 import yallaMark from "@/assets/safarid-mark.png";
 
 /**
- * BrandLogo — single source of truth for the SAFARID lockup.
+ * BrandLogo — single source of truth for the TaxiD lockup.
  *
  * `ink`  — Executive Blue wordmark, for light / ice-blue surfaces.
  * `light`— Ice White wordmark, for Executive Blue, midnight and glass surfaces.
@@ -33,7 +33,7 @@ const BrandLogo = ({
   tone = "ink",
   variant = "lockup",
   className,
-  alt = "SAFARID — Move with confidence.",
+  alt = "TaxiD — Move People. Power Business.",
   priority = false,
 }: BrandLogoProps) => (
   <img

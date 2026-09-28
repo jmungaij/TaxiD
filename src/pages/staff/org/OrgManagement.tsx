@@ -20,7 +20,7 @@ import { REQUIREMENT_KINDS, UNIT_TYPES, titleise } from "@/lib/staff/org/types";
 import type { OrgEntity, OrgPosition, OrgUnit, PositionRequirement } from "@/lib/staff/org/types";
 
 /**
- * Organisation Management — the authoritative internal structure of SAFARID
+ * Organisation Management — the authoritative internal structure of TaxiD
  * Mobility: organisation profile, division/department/team hierarchy, and the
  * positions (with requirements) that people are appointed into.
  */
@@ -51,7 +51,7 @@ export default function OrgManagement() {
     <AdminOnly roles={["admin", "super_admin", "compliance_admin", "operations_admin", "finance_admin"]}>
       <StaffPageHeader
         eyebrow="Organisation management"
-        title="SAFARID organisation"
+        title="TaxiD organisation"
         lede="One structure of record: the legal entity, its divisions, departments and teams, and every approved position people are appointed into."
         actions={
           <Button variant="outline" size="sm" asChild>
@@ -221,8 +221,8 @@ function OrganisationProfile({
   org: entity, canEdit, onSaved,
 }: { org: OrgEntity | null; canEdit: boolean; onSaved: () => void }) {
   const [form, setForm] = useState({
-    legal_name: entity?.legal_name ?? "SAFARID Limited",
-    trading_name: entity?.trading_name ?? "SAFARID",
+    legal_name: entity?.legal_name ?? "TaxiD Limited",
+    trading_name: entity?.trading_name ?? "TaxiD",
     registration_number: entity?.registration_number ?? "",
     tax_pin: entity?.tax_pin ?? "",
     country: entity?.country ?? "KE",
@@ -230,7 +230,7 @@ function OrganisationProfile({
     operating_address: entity?.operating_address ?? "",
     contact_email: entity?.contact_email ?? "",
     contact_phone: entity?.contact_phone ?? "",
-    website: entity?.website ?? "https://safarid.org",
+    website: entity?.website ?? "https://taxid.us",
     operating_markets: (entity?.operating_markets ?? ["Nairobi"]).join(", "),
     status: entity?.status ?? "active",
   });
@@ -254,7 +254,7 @@ function OrganisationProfile({
       <CardHeader className="flex-row items-center justify-between gap-3">
         <CardTitle className="flex items-center gap-2 text-base">
           <Building2 className="h-4 w-4 text-primary" />
-          {entity ? entity.legal_name : "Create the SAFARID organisation"}
+          {entity ? entity.legal_name : "Create the TaxiD organisation"}
         </CardTitle>
         <div className="flex items-center gap-2">
           <ProvenanceTag provenance={entity?.provenance} />

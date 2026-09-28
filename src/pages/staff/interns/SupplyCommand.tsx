@@ -253,7 +253,7 @@ export default function SupplyCommand() {
                 </div>
                 <p>Segments: {d.customer_segments.join(", ") || "—"}</p>
                 <p>Vehicles: {d.vehicle_categories.join(", ") || "—"}</p>
-                <p>SAFARID products: {d.yalla_products.join(", ") || "—"}</p>
+                <p>TaxiD products: {d.yalla_products.join(", ") || "—"}</p>
                 <div className="pt-1"><Progress value={d.completeness} className="h-1.5" /></div>
               </CardContent>
             </Card>

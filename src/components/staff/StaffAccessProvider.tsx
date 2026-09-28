@@ -101,7 +101,7 @@ export function RequireStaffPortal({ children }: { children: React.ReactNode }) 
               <ShieldAlert className="h-3.5 w-3.5" aria-hidden /> Staff portal unavailable
             </div>
             <h1 className="text-xl font-semibold tracking-tight">
-              This login is not on the SAFARID staff register.
+              This login is not on the TaxiD staff register.
             </h1>
             <p className="text-sm text-muted-foreground">
               The staff portal opens automatically once your employee record carries your verified
@@ -112,7 +112,7 @@ export function RequireStaffPortal({ children }: { children: React.ReactNode }) 
                 Try again
               </Button>
               <Button size="sm" variant="outline" asChild>
-                <a href="mailto:support@safarid.org?subject=Staff%20portal%20access">
+                <a href="mailto:support@taxid.us?subject=Staff%20portal%20access">
                   Contact administrator
                 </a>
               </Button>

@@ -1,19 +1,19 @@
 import { CONTACT } from "./contact";
 
 /**
- * SAFARID brand configuration — single source of truth for product identity.
- * Legal entity stays Yalla Beena Limited; SAFARID is the trading/product brand.
+ * TaxiD brand configuration — single source of truth for product identity.
+ * Legal entity stays Yalla Beena Limited; TaxiD is the trading/product brand.
  * Contact addresses and web domain intentionally still point at the existing
- * safarid.org mailboxes until the SAFARID domain and email are verified.
+ * taxid.us mailboxes until the TaxiD domain and email are verified.
  */
 export const BRAND = {
-  name: "SAFARID",
+  name: "TaxiD",
   legalName: "Yalla Beena Limited",
-  legalLine: "SAFARID is operated by Yalla Beena Limited.",
-  productDescriptor: "Mobility & Travel Platform",
-  tagline: "Move with confidence.",
-  supportName: "SAFARID Support",
-  defaultSenderName: "SAFARID",
+  legalLine: "TaxiD is operated by Yalla Beena Limited.",
+  productDescriptor: "Integrated Mobility & Transport Platform",
+  tagline: "Move People. Power Business.",
+  supportName: "TaxiD Support",
+  defaultSenderName: "TaxiD",
   supportEmail: CONTACT.supportEmail,
   website: CONTACT.webUrl,
   primaryColor: "#143490",

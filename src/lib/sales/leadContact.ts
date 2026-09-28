@@ -1,7 +1,7 @@
 /**
  * LEAD CONTACT PERSON.
  *
- * The client list SAFARID imported carried organisations, phone numbers and
+ * The client list TaxiD imported carried organisations, phone numbers and
  * emails but no contact people, so those fields were filled with the literal
  * text "NOT STATED". That is a placeholder, not a name: it is treated here as
  * an empty field so the workspace asks for the real person instead of showing

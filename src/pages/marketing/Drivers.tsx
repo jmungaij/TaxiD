@@ -14,7 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import driversImg from "@/assets/drivers.jpg";
 
 /* ============================================================
-   SAFARID DRIVER SUCCESS ECOSYSTEM
+   TaxiD DRIVER SUCCESS ECOSYSTEM
    Positioning: Earn. Grow. Protect. Build Wealth. Operate Smarter. Scale.
    ============================================================ */
 
@@ -45,7 +45,7 @@ const ecosystemPillars = [
     href: "/driver/safety",
   },
   {
-    icon: GraduationCap, t: "SAFARID Driver Academy",
+    icon: GraduationCap, t: "TaxiD Driver Academy",
     d: "Certifications in service, executive transport, tourism, safety and business.",
     href: "/driver/training",
   },
@@ -62,7 +62,7 @@ const ecosystemPillars = [
 ];
 
 const driverToOwnerSteps = [
-  { icon: Car,          t: "Drive",    d: "Start earning with SAFARID from day one." },
+  { icon: Car,          t: "Drive",    d: "Start earning with TaxiD from day one." },
   { icon: PiggyBank,    t: "Save",     d: "Automated micro-savings on every trip." },
   { icon: Award,        t: "Qualify",  d: "Build a strong performance record through trip history." },
   { icon: Banknote,     t: "Finance",  d: "Access partner vehicle financing." },
@@ -195,16 +195,16 @@ export default function Drivers() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Drive with SAFARID — Earn, Grow, Build a Transport Business"
-        description="SAFARID Driver Success Ecosystem: instant payouts, fleet ownership pathway, driver academy, AI business tools, family protection and wealth building across Kenya."
+        title="Drive with TaxiD — Earn, Grow, Build a Transport Business"
+        description="TaxiD Driver Success Ecosystem: instant payouts, fleet ownership pathway, driver academy, AI business tools, family protection and wealth building across Kenya."
         path="/drivers"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
           serviceType: "Driver-partner network",
-          name: "Drive with SAFARID — Earn, Grow, Build a Transport Business",
-          description: "SAFARID Driver Success Ecosystem: instant payouts, fleet ownership pathway, driver academy, AI business tools, family protection and wealth building across Kenya.",
-          provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla-africa.lovable.app" },
+          name: "Drive with TaxiD — Earn, Grow, Build a Transport Business",
+          description: "TaxiD Driver Success Ecosystem: instant payouts, fleet ownership pathway, driver academy, AI business tools, family protection and wealth building across Kenya.",
+          provider: { "@type": "Organization", name: "TaxiD", url: "https://yalla-africa.lovable.app" },
           areaServed: "Africa",
           url: "https://yalla-africa.lovable.app/drivers",
         }}
@@ -226,7 +226,7 @@ export default function Drivers() {
               Earn today. Save automatically. Access asset financing. Build a transport business. Own vehicles. Grow a fleet.
             </p>
             <p className="text-base text-primary-foreground/80 mb-8">
-              SAFARID is more than ride-hailing. It is a complete platform designed to help African drivers earn, grow, protect their families and build their own transportation businesses.
+              TaxiD is more than ride-hailing. It is a complete platform designed to help African drivers earn, grow, protect their families and build their own transportation businesses.
             </p>
             <div className="flex flex-wrap gap-3">
               <AppButton size="lg" className="bg-ice text-primary hover:bg-ice/90" analytics="driver_hero_apply" action="navigate" target="/driver/onboarding" onClick={() => trackDriverEvent("hero_start_driving_click", { funnel_stage: "intent" })}>
@@ -261,7 +261,7 @@ export default function Drivers() {
       <section className="container mx-auto px-4 py-20">
         <SectionHeader
           eyebrow="Driver Success Ecosystem"
-          title="Why Thousands of Drivers Are Building Their Future With SAFARID"
+          title="Why Thousands of Drivers Are Building Their Future With TaxiD"
           subtitle="Earn More. Grow Faster. Build a Business."
         />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -421,7 +421,7 @@ export default function Drivers() {
             </div>
             <div className="p-6 rounded-2xl bg-card border border-border shadow-xl">
               <div className="flex items-center justify-between mb-4">
-                <div className="font-semibold flex items-center gap-2"><Bot className="h-5 w-5 text-primary" /> SAFARID AI · Today</div>
+                <div className="font-semibold flex items-center gap-2"><Bot className="h-5 w-5 text-primary" /> TaxiD AI · Today</div>
                 <span className="text-xs font-semibold text-status-success">+12% vs avg</span>
               </div>
               <div className="space-y-3 text-sm">
@@ -438,7 +438,7 @@ export default function Drivers() {
       {/* ---------- COMMUNITY ---------- */}
       <section className="container mx-auto px-4 py-20">
         <SectionHeader
-          eyebrow="SAFARID Driver Network"
+          eyebrow="TaxiD Driver Network"
           title="You're Not Alone. You're Part of Africa's Fastest Growing Driver Network."
         />
         <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
@@ -481,13 +481,13 @@ export default function Drivers() {
         </div>
       </section>
 
-      {/* ---------- WHY SAFARID WINS — COMPARISON ---------- */}
+      {/* ---------- WHY TaxiD WINS — COMPARISON ---------- */}
       <section className="bg-gradient-to-br from-primary/5 via-background to-primary-glow/5 py-20">
         <div className="container mx-auto px-4">
           <SectionHeader
-            eyebrow="Why SAFARID Wins"
+            eyebrow="Why TaxiD Wins"
             title="What Other Platforms Don't Offer"
-            subtitle="A side-by-side look at the SAFARID advantage."
+            subtitle="A side-by-side look at the TaxiD advantage."
           />
           <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-lg">
             <table className="w-full text-sm">
@@ -495,7 +495,7 @@ export default function Drivers() {
                 <tr className="bg-secondary/40 text-left">
                   <th className="p-4 font-semibold">Feature</th>
                   <th className="p-4 font-semibold text-center">Typical Platforms</th>
-                  <th className="p-4 font-semibold text-center text-primary">SAFARID</th>
+                  <th className="p-4 font-semibold text-center text-primary">TaxiD</th>
                 </tr>
               </thead>
               <tbody>
@@ -611,7 +611,7 @@ export default function Drivers() {
           <Banknote className="h-12 w-12 mx-auto mb-4 opacity-90" />
           <h2 className="text-3xl font-bold mb-3">Your Future Starts Here</h2>
           <p className="opacity-90 mb-6">
-            Whether you want extra income, a full-time career, or your own transport company — SAFARID gives you the tools, support and opportunities to grow beyond driving.
+            Whether you want extra income, a full-time career, or your own transport company — TaxiD gives you the tools, support and opportunities to grow beyond driving.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <AppButton analytics="driver_start_driving_today" action="navigate" target="/driver/onboarding"
@@ -626,7 +626,7 @@ export default function Drivers() {
         </div>
       </section>
       <CrossLinks
-        heading="Related on SAFARID"
+        heading="Related on TaxiD"
         keys={["riders", "corporates", "delivery", "rentals", "careers", "support"]}
       />
     </MarketingPage>

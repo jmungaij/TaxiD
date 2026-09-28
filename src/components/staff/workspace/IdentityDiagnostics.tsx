@@ -31,7 +31,7 @@ const EXPLANATION: Record<StaffLinkReason, { title: string; cause: string; actio
   no_staff_record: {
     title: "No staff record carries this email address",
     cause:
-      "Nothing on the SAFARID staff register uses your work or personal email, so no record can be matched.",
+      "Nothing on the TaxiD staff register uses your work or personal email, so no record can be matched.",
     action:
       "Ask an administrator to add you to the staff register with this exact email, then run the staff link backfill.",
   },

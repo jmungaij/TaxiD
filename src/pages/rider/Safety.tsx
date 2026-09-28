@@ -93,7 +93,7 @@ export default function RiderSafetyPage() {
           <AlertTriangle className="h-5 w-5" /> Panic Button
         </h3>
         <p className="text-sm text-muted-foreground mb-3">
-          Sends your live location and an SOS alert to SAFARID safety operators and your emergency contacts.
+          Sends your live location and an SOS alert to TaxiD safety operators and your emergency contacts.
         </p>
         <Button variant="destructive" size="lg" onClick={panic} className="w-full sm:w-auto">
           <AlertTriangle className="h-4 w-4 mr-2" /> Trigger SOS now

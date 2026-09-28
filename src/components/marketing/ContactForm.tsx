@@ -136,7 +136,7 @@ export function ContactForm({
         <CheckCircle2 className="h-10 w-10 text-primary mx-auto mb-3" aria-hidden="true" />
         <h3 className="text-xl font-semibold mb-1">Thanks — we've got it.</h3>
         <p className="text-muted-foreground text-sm">
-          Your enquiry has been routed to the SAFARID {TEAM_LABEL[routedTeam]}. We respond within one business day.
+          Your enquiry has been routed to the TaxiD {TEAM_LABEL[routedTeam]}. We respond within one business day.
         </p>
         <p className="text-muted-foreground text-xs mt-2">
           Need us sooner? Call {CONTACT.phoneDisplay} or email {CONTACT.supportEmail}.

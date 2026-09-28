@@ -25,7 +25,7 @@ const AI_FLAGS: { key: string; label: string; description: string }[] = [
   },
   {
     key: "ai_next_best_action_enabled",
-    label: "Ask SAFARID next-best-action",
+    label: "Ask TaxiD next-best-action",
     description: "Suggest the next recruitment action from pipeline records. Suggestions always require human review.",
   },
   {

@@ -76,7 +76,7 @@ export default function PlatformSettings() {
       supabase.from("notification_settings").select("*").order("created_at", { ascending: true }).limit(1).maybeSingle(),
     ]);
     const pv = (p as Platform) ?? {
-      brand_name: "SAFARID", support_email: null, support_phone: null,
+      brand_name: "TaxiD", support_email: null, support_phone: null,
       default_currency: "KES", default_timezone: "Africa/Nairobi", default_locale: "en",
       maintenance_mode: false, maintenance_message: null,
       email_from_name: null, email_from_address: null, email_reply_to: null, feature_flags: {},
@@ -285,7 +285,7 @@ export default function PlatformSettings() {
 
               <div className="grid md:grid-cols-3 gap-4">
                 <div><Label>From name</Label>
-                  <Input placeholder="SAFARID" value={platform.email_from_name ?? ""} onChange={(e) => setPlatform({ ...platform, email_from_name: e.target.value })} />
+                  <Input placeholder="TaxiD" value={platform.email_from_name ?? ""} onChange={(e) => setPlatform({ ...platform, email_from_name: e.target.value })} />
                 </div>
                 <div><Label>From address</Label>
                   <Input type="email" placeholder="hello@notify.yourdomain.com" value={platform.email_from_address ?? ""} onChange={(e) => setPlatform({ ...platform, email_from_address: e.target.value })} />

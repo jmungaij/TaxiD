@@ -1,7 +1,7 @@
 /**
  * Document Templates Registry — /staff/commercial/templates
  *
- * The single register of every master document SAFARID issues: the Mobility
+ * The single register of every master document TaxiD issues: the Mobility
  * Service Contract, the Charter Rate Card and the Tax Invoice. Every version
  * carries its own content, its fill-in fields, a content fingerprint and a
  * permanent history. The database owns the gates:
@@ -153,7 +153,7 @@ export default function DocumentTemplates() {
           Document templates
         </h1>
         <p className="max-w-3xl text-sm text-muted-foreground">
-          The master wording behind every contract, rate card and invoice SAFARID issues. Each version is
+          The master wording behind every contract, rate card and invoice TaxiD issues. Each version is
           reviewed and approved before it can be published, and only one version of a document is live at a time.
         </p>
       </header>

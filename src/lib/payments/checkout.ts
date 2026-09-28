@@ -18,7 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { FunctionsHttpError } from "@supabase/supabase-js";
 import { normalizeKenyanMsisdn } from "@/lib/kenyaPhone";
 
-/** Paybill that receives every SAFARID M-Pesa collection. */
+/** Paybill that receives every TaxiD M-Pesa collection. */
 export const YALLA_PAYBILL = "4148095";
 
 /** Maximum a single M-Pesa transaction may carry, per paying phone number. */

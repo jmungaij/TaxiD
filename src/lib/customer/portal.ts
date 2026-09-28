@@ -1,6 +1,6 @@
 /**
  * CUSTOMER PORTAL DATA — what a signed-in company contact may see about their
- * own relationship with SAFARID.
+ * own relationship with TaxiD.
  *
  * Everything is assembled by the database under the caller's own identity and
  * translated into plain language. Internal notes, win probability, ownership

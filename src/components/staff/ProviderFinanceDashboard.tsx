@@ -71,7 +71,7 @@ export default function ProviderFinanceDashboard() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">SAFARID income</CardTitle>
+          <CardTitle className="text-base">TaxiD income</CardTitle>
           <CardDescription>
             15% commission is recognised at fulfilment; the 5% fee posts only when a withdrawal
             actually succeeds.
@@ -117,7 +117,7 @@ export default function ProviderFinanceDashboard() {
                     <div
                       className="w-3 rounded-t bg-primary"
                       style={{ height: `${Math.max(2, (income / peak) * 100)}%` }}
-                      title={`SAFARID income ${money(income)}`}
+                      title={`TaxiD income ${money(income)}`}
                     />
                     <div
                       className="w-3 rounded-t bg-muted-foreground/40"

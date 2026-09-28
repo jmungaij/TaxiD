@@ -568,7 +568,7 @@ export default function CorporateWalletFinance() {
     <div className="space-y-6">
       <SeoHead
         path="/dashboard/admin/corporate-wallet-finance"
-        title="Corporate Wallet Finance Console | SAFARID"
+        title="Corporate Wallet Finance Console | TaxiD"
         description="Reconciliation exports, mismatch alerting, reversals and the immutable finance audit trail for corporate wallet funding."
       />
 
@@ -1020,7 +1020,7 @@ export default function CorporateWalletFinance() {
                 <div className="space-y-1.5">
                   <Label htmlFor="cwf-recipients">Finance email recipients (comma separated)</Label>
                   <Input id="cwf-recipients" value={recipients} onChange={(e) => setRecipients(e.target.value)}
-                    placeholder="finance@safarid.org, controller@safarid.org" />
+                    placeholder="finance@taxid.us, controller@taxid.us" />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="cwf-webhook">Webhook URL (signed with HMAC-SHA256)</Label>

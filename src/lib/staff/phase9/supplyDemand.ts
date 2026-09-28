@@ -125,7 +125,7 @@ export interface SupplyFacts extends MarketCell {
 export interface SupplySignal extends SupplyFacts {
   registered: Measure;
   available: Measure;
-  /** Capacity SAFARID may actually commit: qualified units × jobs per unit. */
+  /** Capacity TaxiD may actually commit: qualified units × jobs per unit. */
   committableCapacity: Measure;
   /** Reliability-discounted capacity. */
   effectiveCapacity: Measure;
@@ -180,7 +180,7 @@ export interface BalanceCell extends MarketCell {
   expectedWaitMinutes: Measure;
   capacityGap: Measure;
   revenueOpportunity: Measure;
-  /** §19 — commercially valuable demand SAFARID can actually fulfil now. */
+  /** §19 — commercially valuable demand TaxiD can actually fulfil now. */
   revenueWeightedLiquidity: Measure;
   verdict: BalanceVerdict;
   narrative: string;

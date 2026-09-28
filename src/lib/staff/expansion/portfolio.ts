@@ -103,7 +103,7 @@ export function buildPortfolio(
         requestedCapital: requested,
         allocatedCapital: unavailableMeasure("Allocated capital", "kes", SRC, "Return on capital at risk is not evidenced"),
         returnMultiple: x.multiple, verdict: x.c.decision.verdict, status: "unfunded",
-        reason: "Return on capital at risk cannot be evidenced — SAFARID does not fund an unquantified launch.",
+        reason: "Return on capital at risk cannot be evidenced — TaxiD does not fund an unquantified launch.",
       });
       continue;
     }

@@ -1,7 +1,7 @@
 /**
- * SAFARID PARTNERS — partner-side onboarding document submission.
+ * TaxiD PARTNERS — partner-side onboarding document submission.
  *
- * The partner sees exactly what SAFARID requires, submits evidence into their own
+ * The partner sees exactly what TaxiD requires, submits evidence into their own
  * storage folder (RLS-scoped), and reads back the reviewer's decision. Approval
  * is never granted here: a fresh upload is always "awaiting review".
  */
@@ -25,7 +25,7 @@ import {
 const ACCEPT = ".pdf,.png,.jpg,.jpeg,.webp";
 
 const STATUS_VIEW: Record<DocStatus | "missing", { label: string; tone: string }> = {
-  approved: { label: "Approved by SAFARID", tone: "border-success/50 text-success" },
+  approved: { label: "Approved by TaxiD", tone: "border-success/50 text-success" },
   pending: { label: "Awaiting review", tone: "border-info/50 text-info" },
   rejected: { label: "Rejected — resubmit", tone: "border-destructive/50 text-destructive" },
   expired: { label: "Expired — resubmit", tone: "border-warning/50 text-warning" },
@@ -60,7 +60,7 @@ export function PartnerDocumentUploadPanel({ partnerId }: { partnerId: string })
         expiresAt: expiry[v.code] || null,
       }),
     onSuccess: (_d, v) => {
-      toast.success("Document submitted. The SAFARID partner desk will review it.");
+      toast.success("Document submitted. The TaxiD partner desk will review it.");
       setExpiry((e) => ({ ...e, [v.code]: "" }));
       void qc.invalidateQueries({ queryKey: ["yp-my-docs", partnerId] });
       void qc.invalidateQueries({ queryKey: ["yp-my-gaps", partnerId] });
@@ -111,7 +111,7 @@ export function PartnerDocumentUploadPanel({ partnerId }: { partnerId: string })
           <Progress value={pct} aria-label="Mandatory documents approved" />
           <p className="text-sm text-muted-foreground">
             {done} of {mandatory.length} mandatory document(s) approved. Your account cannot be verified
-            until all of them are approved by the SAFARID partner desk.
+            until all of them are approved by the TaxiD partner desk.
           </p>
         </CardContent>
       </Card>
@@ -119,7 +119,7 @@ export function PartnerDocumentUploadPanel({ partnerId }: { partnerId: string })
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Required documents</CardTitle>
-          <p className="text-xs text-muted-foreground">PDF or image, up to 10 MB. Uploads are private to your partner account and the SAFARID desk.</p>
+          <p className="text-xs text-muted-foreground">PDF or image, up to 10 MB. Uploads are private to your partner account and the TaxiD desk.</p>
         </CardHeader>
         <CardContent>
           {rows.length === 0 ? (

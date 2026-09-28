@@ -43,13 +43,13 @@ export default function DriverStart() {
     <MarketingPage>
       <SeoHead
         path="/driver/start"
-        title="Start Driving with SAFARID — Driver Sign-up"
-        description="Create your SAFARID driver account, confirm the M-Pesa number your earnings are paid to, and take a guided tour of the driver portal."
+        title="Start Driving with TaxiD — Driver Sign-up"
+        description="Create your TaxiD driver account, confirm the M-Pesa number your earnings are paid to, and take a guided tour of the driver portal."
       />
 
       <section className="container mx-auto px-4 py-12 md:py-16">
         <Badge variant="outline">Driver onboarding</Badge>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">Start driving with SAFARID</h1>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">Start driving with TaxiD</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
           Three steps: create your account, tell us the M-Pesa number your money should go to, and take a short
           welcome ride through the portal so you know where your trips, earnings and payouts live.

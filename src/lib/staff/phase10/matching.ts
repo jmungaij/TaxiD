@@ -2,7 +2,7 @@
  * Phase 10 §10.4–10.5 — the Universal Matching Engine.
  *
  * The objective is not cheapest and not nearest. It is the BEST FEASIBLE MATCH
- * under SAFARID's configured commercial, service and governance rules. Feasibility
+ * under TaxiD's configured commercial, service and governance rules. Feasibility
  * is a hard gate — a provider that fails compliance, capacity, category or
  * availability is never scored, never ranked and never quietly preferred because
  * it is cheap.
@@ -33,7 +33,7 @@ export interface SupplyCandidate {
   acceptanceRate: number | null;
   /** Quoted price to the customer in cents. */
   priceCents: number | null;
-  /** Provider entitlement in cents — used to derive SAFARID contribution. */
+  /** Provider entitlement in cents — used to derive TaxiD contribution. */
   entitlementCents: number | null;
   /** Customer-declared preference for this provider, if any. */
   customerPreferred?: boolean;
@@ -200,7 +200,7 @@ export function matchMission(
         dimension: "contribution",
         weight: w.contribution,
         score: normalise(contribution, contributions.length ? Math.max(...contributions) : null, contributions.length ? Math.min(...contributions) : null, false),
-        basis: "expected SAFARID contribution relative to the feasible set",
+        basis: "expected TaxiD contribution relative to the feasible set",
       },
       {
         dimension: "preference",

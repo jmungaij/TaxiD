@@ -2,7 +2,7 @@
  * OPERATOR INVOICES (SELF-BILLING STATEMENTS).
  *
  * An operator opens a statement of the trips the platform recorded for a
- * period. Every figure — trip value, SAFARID's 15%, the operator's 85%, and the
+ * period. Every figure — trip value, TaxiD's 15%, the operator's 85%, and the
  * 5% fee that applies when money is withdrawn — is recomputed in the database
  * from those trip records; nothing the browser sends can change an amount.
  *

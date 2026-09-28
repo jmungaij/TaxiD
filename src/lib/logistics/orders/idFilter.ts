@@ -7,7 +7,7 @@
  * and lookups are always parameterised (`.in("order_number", ids)`).
  */
 
-/** SAFARID identifier schemes accepted by the console. */
+/** TaxiD identifier schemes accepted by the console. */
 export const ORDER_ID_PATTERN = /^(ORD|PKG|YAL|SHP)-[A-Z0-9]{4,24}$/;
 
 export const MAX_IDS = 200;

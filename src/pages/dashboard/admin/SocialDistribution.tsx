@@ -108,7 +108,7 @@ export default function SocialDistribution() {
       <header>
         <h1 className="text-2xl font-semibold tracking-tight">Social Distribution — Control Plane</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Authoritative ownership, verification, approval and activation of SAFARID's official social channels.
+          Authoritative ownership, verification, approval and activation of TaxiD's official social channels.
           No destination becomes a public footer link until it is verified, approved and activated here.
         </p>
       </header>

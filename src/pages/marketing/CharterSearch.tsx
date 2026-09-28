@@ -1,5 +1,5 @@
 /**
- * SAFARID Air charter search results — the marketplace comparison surface.
+ * TaxiD Air charter search results — the marketplace comparison surface.
  *
  * Reads the search brief from the URL, prices every eligible aircraft through
  * the governed aviation pricing engine, and presents price insights, an AI
@@ -111,7 +111,7 @@ const CharterSearchPage = () => {
   return (
     <MarketingPage>
       <SeoHead
-        title="Charter flight search — compare private aircraft | SAFARID Air"
+        title="Charter flight search — compare private aircraft | TaxiD Air"
         description="Compare verified private jets, turboprops and helicopters across East Africa with transparent pricing, flight times, cabin imagery and seat selection."
         path="/charter/search"
       />
@@ -278,7 +278,7 @@ const CharterSearchPage = () => {
               <Card className="border-primary/40">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <Sparkles className="h-4 w-4 text-primary" /> SAFARID AI recommends
+                    <Sparkles className="h-4 w-4 text-primary" /> TaxiD AI recommends
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">

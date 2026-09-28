@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — timeline diff panel.
+ * TaxiD PARTNERS 360 — timeline diff panel.
  *
  * Highlights exactly what moved between two consecutive lifecycle stage updates
  * across the four governed dimensions — stage, what they bring, partner category

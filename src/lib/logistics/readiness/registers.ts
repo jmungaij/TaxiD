@@ -53,11 +53,11 @@ export interface LegalControlRecord {
  * legal status.
  */
 export const LEGAL_REGISTER: LegalControlRecord[] = [
-  "Courier / parcel operating licence determination for SAFARID as principal",
+  "Courier / parcel operating licence determination for TaxiD as principal",
   "Transport operator requirements (PSV / commercial goods carriage)",
   "Courier personnel requirements (identity, vetting, right to work)",
   "Vehicle requirements (inspection, roadworthiness, category fitness)",
-  "Insurance / protection cover for goods handled by SAFARID",
+  "Insurance / protection cover for goods handled by TaxiD",
   "Goods-in-transit cover scope, limits and exclusions",
   "Restricted goods policy approval",
   "Prohibited goods policy approval",
@@ -403,7 +403,7 @@ export const FINANCIAL_REGISTER: AcceptanceRecord[] = [
   acc("FN-04", "Refund path verified with audit trail", "finance"),
   acc("FN-05", "Payment failure and duplicate callback handling verified", "finance"),
   acc("FN-06", "Daily reconciliation control operating with owned exception queue", "finance"),
-  acc("FN-07", "Partner payable and SAFARID revenue split reconciled", "finance"),
+  acc("FN-07", "Partner payable and TaxiD revenue split reconciled", "finance"),
   acc("FN-08", "Settlement batch approval and audit verified", "finance"),
 ];
 

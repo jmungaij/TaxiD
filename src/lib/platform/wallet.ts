@@ -1,9 +1,9 @@
 /**
- * SAFARID WALLET — the platform's own custody account.
+ * TaxiD WALLET — the platform's own custody account.
  *
  * Every shilling a client pays lands here first and is locked (custody) until the
  * job is fulfilled. Only fulfilment releases the operator's 85% into their own
- * wallet and recognises SAFARID's 15% as income. The 5% withdrawal fee is earned
+ * wallet and recognises TaxiD's 15% as income. The 5% withdrawal fee is earned
  * only when an operator withdrawal actually succeeds; a failed or cancelled
  * withdrawal returns the full amount to the operator with no fee.
  *
@@ -16,7 +16,7 @@ import { runMpesaCheckout, type CheckoutProgress } from "@/lib/payments/checkout
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db = supabase as any;
 
-/** Default funding phone for the SAFARID wallet. */
+/** Default funding phone for the TaxiD wallet. */
 export const YALLA_WALLET_FUNDING_MSISDN = "254710100090";
 
 export interface PlatformWallet {
@@ -97,14 +97,14 @@ export type FundWalletResult =
   | { state: "failed"; message: string };
 
 /**
- * Funds the SAFARID wallet by charging the funding phone through M-Pesa
+ * Funds the TaxiD wallet by charging the funding phone through M-Pesa
  * and crediting the wallet from the confirmed collection.
  */
 export async function fundPlatformWallet(
   input: { amountKes: number; phone: string; reference?: string },
   onProgress?: (p: CheckoutProgress) => void,
 ): Promise<FundWalletResult> {
-  const reference = input.reference?.trim() || `SAFARID-WALLET-${Date.now().toString(36).toUpperCase()}`;
+  const reference = input.reference?.trim() || `TaxiD-WALLET-${Date.now().toString(36).toUpperCase()}`;
   const outcome = await runMpesaCheckout(
     { amountKes: input.amountKes, phone: input.phone, reference, method: "mpesa", walletType: "platform" },
     onProgress,

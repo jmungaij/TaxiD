@@ -47,9 +47,9 @@ export default function OpsCommandBoard() {
   return (
     <>
       <StaffPageHeader
-        eyebrow="SAFARID Operations Centre"
+        eyebrow="TaxiD Operations Centre"
         title="Operations command board"
-        lede="The live state of the marketplace where humans are needed. SAFARID orchestrates demand and independent supply — this board shows where that orchestration needs a person."
+        lede="The live state of the marketplace where humans are needed. TaxiD orchestrates demand and independent supply — this board shows where that orchestration needs a person."
         actions={<Button variant="outline" size="sm" onClick={reload}>Refresh</Button>}
       />
 

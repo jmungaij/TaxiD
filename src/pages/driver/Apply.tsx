@@ -1,6 +1,6 @@
 /**
  * DRIVER APPLICATION — the entry point for a professional driver who wants to
- * join the SAFARID network.
+ * join the TaxiD network.
  *
  * The form records an application and a document checklist. Nothing here
  * approves a driver or marks a document verified: the staff decision functions
@@ -209,11 +209,11 @@ export default function DriverApply() {
     <main className="container max-w-4xl py-12">
       <SeoHead
         path="/driver/apply"
-        title="Drive with SAFARID — Driver Application"
-        description="Apply to join the SAFARID professional driver network in Kenya: submit your licence, ID and good conduct certificate and track your approval."
+        title="Drive with TaxiD — Driver Application"
+        description="Apply to join the TaxiD professional driver network in Kenya: submit your licence, ID and good conduct certificate and track your approval."
       />
       <header className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Join the SAFARID driver network</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Join the TaxiD driver network</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Apply once, upload your documents, and go live after verification. Corporate travel, airport
           transfers, executive mobility and delivery work all run from one driver account.

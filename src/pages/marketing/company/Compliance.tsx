@@ -7,10 +7,10 @@ export default function Compliance() {
       title="Compliance in the Kenyan market"
       subtitle="The documents we check, the records we keep, and the obligations we work to as a Kenyan mobility company."
       path="/compliance"
-      seoTitle="Compliance at SAFARID — Kenya Requirements"
-      seoDescription="How SAFARID handles Kenyan compliance: partner document checks, KRA tax details, data-protection rights and recorded approvals."
+      seoTitle="Compliance at TaxiD — Kenya Requirements"
+      seoDescription="How TaxiD handles Kenyan compliance: partner document checks, KRA tax details, data-protection rights and recorded approvals."
       intro={[
-        "SAFARID operates in Kenya, so our compliance work is built around Kenyan requirements first: business registration and tax details, driver and vehicle documents, insurance validity, and the Data Protection Act, 2019.",
+        "TaxiD operates in Kenya, so our compliance work is built around Kenyan requirements first: business registration and tax details, driver and vehicle documents, insurance validity, and the Data Protection Act, 2019.",
         "This page describes what the platform enforces today. Where a framework is not listed, we do not hold it.",
       ]}
       sections={[

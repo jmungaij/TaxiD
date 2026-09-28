@@ -76,7 +76,7 @@ const row = (cells: unknown[]) => cells.map(esc).join(",");
 /** CSV: quote header, block reason, then one row per audit event. */
 export function quoteAuditToCsv(bundle: QuoteAuditBundle): string {
   const lines: string[] = [];
-  lines.push(row(["SAFARID SmartFare quote pricing audit log"]));
+  lines.push(row(["TaxiD SmartFare quote pricing audit log"]));
   lines.push(row(["Mission reference", bundle.missionRef]));
   lines.push(row(["Generated", bundle.generatedAt]));
   lines.push(row(["Chain verified", bundle.chain.ok ? "Yes" : "No"]));

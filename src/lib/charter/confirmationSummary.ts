@@ -93,7 +93,7 @@ export function buildConfirmationHtml(
   footer { margin-top:28px; font-size:11px; color:#8a8f9c; }
 </style></head>
 <body><div class="sheet">
-  <p class="brand">SAFARID · ${esc(lex.brandName)}</p>
+  <p class="brand">TaxiD · ${esc(lex.brandName)}</p>
   <h1>${esc(lex.brandEmoji)} ${esc(lex.confirmationTitle)}</h1>
   <p class="sub">Reference ${esc(booking.reference ?? "—")}</p>
   <dl>${facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>

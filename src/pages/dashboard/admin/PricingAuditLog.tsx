@@ -165,7 +165,7 @@ export default function PricingAuditLog() {
                 <Label htmlFor="audit-actor">Actor email</Label>
                 <Input
                   id="audit-actor"
-                  placeholder="e.g. admin@safarid.org"
+                  placeholder="e.g. admin@taxid.us"
                   value={actor}
                   onChange={(e) => setActor(e.target.value)}
                 />

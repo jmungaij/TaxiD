@@ -267,7 +267,7 @@ export function buildProductionEvidenceCertificate(now = new Date().toISOString(
 /** Auditable certificate document: control, test, environment, evidence, timestamp, result, owner, remediation, approval authority. */
 export function renderCertificateMarkdown(cert: ProductionEvidenceCertificate): string {
   const lines: string[] = [
-    "# SAFARID LOGISTICS PRODUCTION READINESS CERTIFICATE",
+    "# TaxiD LOGISTICS PRODUCTION READINESS CERTIFICATE",
     "",
     `**${cert.headline}**`,
     "",

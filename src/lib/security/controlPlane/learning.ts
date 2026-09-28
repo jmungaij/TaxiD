@@ -1,5 +1,5 @@
 /**
- * SAFARID Security Control Plane — Learning Engine.
+ * TaxiD Security Control Plane — Learning Engine.
  *
  * The step that linear remediation always skips: after a finding is fixed, look
  * for the same shape elsewhere. A fix that is not generalised leaves siblings

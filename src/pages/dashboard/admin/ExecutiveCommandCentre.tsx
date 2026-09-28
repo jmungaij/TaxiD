@@ -255,7 +255,7 @@ export default function ExecutiveCommandCentre() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Executive Command Centre | SAFARID"
+        title="Executive Command Centre | TaxiD"
         description="Real-time corporate mobility executive view: revenue, bookings, fleet, service levels, funnel, contract pipeline and integration health."
         path="/dashboard/admin/executive-command-centre"
       />

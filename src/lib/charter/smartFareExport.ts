@@ -38,7 +38,7 @@ export function smartFareToCsv(fare: MissionFare, generatedAt = new Date()): str
   const p = buildMissionProvenance(fare);
   const lines: string[] = [];
 
-  lines.push(row(["SAFARID SmartFare pricing breakdown"]));
+  lines.push(row(["TaxiD SmartFare pricing breakdown"]));
   lines.push(row(["Reference", missionRef(fare)]));
   lines.push(row(["Generated", generatedAt.toISOString()]));
   lines.push(row(["Route", `${fare.from?.city ?? ""} (${fare.from?.code ?? ""}) -> ${fare.to?.city ?? ""} (${fare.to?.code ?? ""})`]));
@@ -87,7 +87,7 @@ export function smartFareToCsv(fare: MissionFare, generatedAt = new Date()): str
 
   lines.push(row(["Settlement", "Amount (KES)"]));
   lines.push(row(["Operator mission cost", fare.operatorMissionCost]));
-  lines.push(row([`SAFARID platform fee (${fare.platformFeePct}%)`, fare.platformFee]));
+  lines.push(row([`TaxiD platform fee (${fare.platformFeePct}%)`, fare.platformFee]));
   lines.push(row(["VAT", fare.vat]));
   lines.push(row(["Mission price", fare.total]));
   lines.push(row(["Price per seat", fare.perSeat]));
@@ -170,7 +170,7 @@ export async function downloadSmartFarePdf(fare: MissionFare) {
   };
 
   doc.setFont("helvetica", "bold").setFontSize(18).setTextColor(20);
-  doc.text("SAFARID SmartFare™ pricing breakdown", 40, y);
+  doc.text("TaxiD SmartFare™ pricing breakdown", 40, y);
   y += 18;
   doc.setFont("helvetica", "normal").setFontSize(9).setTextColor(120);
   doc.text(`${missionRef(fare)} · generated ${new Date().toLocaleString("en-KE")}`, 40, y);
@@ -209,7 +209,7 @@ export async function downloadSmartFarePdf(fare: MissionFare) {
 
   page(); heading("Settlement");
   kv("Operator mission cost", formatKes(fare.operatorMissionCost));
-  kv(`SAFARID platform fee (${fare.platformFeePct}%)`, formatKes(fare.platformFee));
+  kv(`TaxiD platform fee (${fare.platformFeePct}%)`, formatKes(fare.platformFee));
   kv("VAT", formatKes(fare.vat));
   doc.setFont("helvetica", "bold").setFontSize(11).setTextColor(20);
   doc.text("Mission price", 40, y);

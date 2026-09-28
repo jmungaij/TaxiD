@@ -135,7 +135,7 @@ export const PRIMARY_CATEGORIES = [
   "Rentals & Leasing",
   "Logistics",
   "Marketplace",
-  "SAFARID Partners",
+  "TaxiD Partners",
   "Resources",
 ] as const;
 
@@ -163,7 +163,7 @@ export function buildPrimaryNav(appLinks: {
             { to: "/rider/airport", label: "Airport Transfers", desc: "Pre-arranged pickups and drop-offs, timed to your flight", requiresAuth: true, audience: "rider" },
             { to: "/rider/schedule", label: "Intercity & Scheduled Travel", desc: "Book journeys in advance, in town or between cities", requiresAuth: true, audience: "rider" },
             { to: "/pricing", label: "Fares & Vehicle Categories", desc: "Compare taxi, comfort and executive options" },
-            { to: "/riders/individual", label: "Why Ride with SAFARID", desc: "Verified driver partners, clear fares, wide coverage" },
+            { to: "/riders/individual", label: "Why Ride with TaxiD", desc: "Verified driver partners, clear fares, wide coverage" },
           ],
         },
 
@@ -192,18 +192,18 @@ export function buildPrimaryNav(appLinks: {
     /* 02 — DRIVERS: join → operate → grow. Restored as a first-class category. */
     {
       label: "Drivers",
-      desc: "Drive, deliver and grow with SAFARID — access more demand, manage your work and get paid.",
+      desc: "Drive, deliver and grow with TaxiD — access more demand, manage your work and get paid.",
       cols: 3,
-      featured: { to: "/driver/apply", label: "Become a Driver", desc: "Register as a SAFARID driver partner" },
+      featured: { to: "/driver/apply", label: "Become a Driver", desc: "Register as a TaxiD driver partner" },
       groups: [
         {
-          heading: "Join SAFARID",
+          heading: "Join TaxiD",
           items: [
-            { to: "/driver/apply", label: "Become a Driver", desc: "Register as a SAFARID driver partner" },
+            { to: "/driver/apply", label: "Become a Driver", desc: "Register as a TaxiD driver partner" },
             { to: "/driver/start", label: "Create Driver Account", desc: "Sign up, confirm your payout number and tour the portal" },
             { to: "/driver/apply?track=courier", label: "Courier & Logistics Driver", desc: "Deliver parcels and freight on your own schedule" },
             { to: "/driver/onboarding", label: "Vehicle Requirements", desc: "Eligibility, documents and vehicle standards" },
-            { to: "/drivers", label: "Why Drive with SAFARID", desc: "Earnings, benefits and driver partner support" },
+            { to: "/drivers", label: "Why Drive with TaxiD", desc: "Earnings, benefits and driver partner support" },
           ],
         },
         {
@@ -240,7 +240,7 @@ export function buildPrimaryNav(appLinks: {
           items: [
             { to: "/riders/corporate", label: "Employee Mobility", desc: "Company-paid staff travel with central booking and spend visibility" },
             { to: "/rentals/chauffeur", label: "Executive Travel", desc: "Chauffeured travel and protocol support for senior teams and guests" },
-            { to: "/corporates", label: "Corporate Programmes", desc: "How managed corporate mobility works with SAFARID" },
+            { to: "/corporates", label: "Corporate Programmes", desc: "How managed corporate mobility works with TaxiD" },
             { to: "/riders/corporate#book", label: "Request a Movement", desc: "Arrange a business trip in a few steps" },
           ],
         },
@@ -266,9 +266,9 @@ export function buildPrimaryNav(appLinks: {
           items: [
             { to: "/enterprise", label: "Enterprise Solutions", desc: "Tailored mobility programmes with service-level commitments" },
             { to: "/enterprise/demo", label: "Enterprise Walkthrough", desc: "See booking, policy checks, approval and spend control step by step" },
-            { to: "/corporate", label: "Company Profile", desc: "Read and download the SAFARID company profile" },
+            { to: "/corporate", label: "Company Profile", desc: "Read and download the TaxiD company profile" },
             { to: "/logistics/solutions", label: "Business Logistics", desc: "Warehousing, line-haul, distribution and third-party logistics" },
-            { to: "/corporate-travel-management", label: "Corporate Travel Programmes", desc: "How corporate travel and staff mobility works with SAFARID in Kenya" },
+            { to: "/corporate-travel-management", label: "Corporate Travel Programmes", desc: "How corporate travel and staff mobility works with TaxiD in Kenya" },
             { to: "/blog/corporate-travel-management-guide", label: "Corporate Travel Guide", desc: "A practical playbook for travel and finance teams" },
           ],
         },
@@ -302,7 +302,7 @@ export function buildPrimaryNav(appLinks: {
           items: [
             { to: "/charter", label: "All Charter Categories", desc: "Browse every charter service in one place" },
             { to: "/charter/booking-status", label: "My Charters", desc: "Charter status, manifests and receipts", requiresAuth: true },
-            { to: "/contact", label: "Request a Charter", desc: "Speak to a SAFARID charter consultant" },
+            { to: "/contact", label: "Request a Charter", desc: "Speak to a TaxiD charter consultant" },
           ],
         },
       ],
@@ -372,7 +372,7 @@ export function buildPrimaryNav(appLinks: {
           items: [
             { to: "/logistics/solutions", label: "Business Logistics", desc: "Warehousing, line-haul, distribution and third-party logistics" },
             { to: "/logistics", label: "Logistics Network", desc: "Coverage, hubs and operating capabilities" },
-            { to: "/delivery", label: "Logistics Overview", desc: "How the SAFARID delivery network works" },
+            { to: "/delivery", label: "Logistics Overview", desc: "How the TaxiD delivery network works" },
           ],
         },
       ],
@@ -406,17 +406,17 @@ export function buildPrimaryNav(appLinks: {
     },
 
     /*
-     * 07 — SAFARID PARTNERS: the supply/distribution side, projected from the
+     * 07 — TaxiD PARTNERS: the supply/distribution side, projected from the
      * Partner Capability Registry (src/lib/partners/taxonomy.ts) so a menu
      * entry cannot exist without a real segment page, application route and
      * workspace. Demand-side actors (riders, corporate customers) are never
      * listed here.
      */
     {
-      label: "SAFARID Partners",
-      desc: "Partner with SAFARID to distribute mobility services, provide transportation capacity or integrate SAFARID into your technology ecosystem.",
+      label: "TaxiD Partners",
+      desc: "Partner with TaxiD to distribute mobility services, provide transportation capacity or integrate TaxiD into your technology ecosystem.",
       cols: 4,
-      featured: { to: "/partners", label: "SAFARID Partners", desc: "Bring demand, provide capacity or integrate technology" },
+      featured: { to: "/partners", label: "TaxiD Partners", desc: "Bring demand, provide capacity or integrate technology" },
       groups: [
         {
           heading: "Demand partners — bring customers",
@@ -448,7 +448,7 @@ export function buildPrimaryNav(appLinks: {
         {
           heading: "Apply & operate",
           items: [
-            { to: "/partners", label: "Partner Programme Overview", desc: "How partnering with SAFARID works" },
+            { to: "/partners", label: "Partner Programme Overview", desc: "How partnering with TaxiD works" },
             { to: "/partners/apply", label: "Become a Partner", desc: "Tell us about your company and get verified" },
             { to: "/partner/workspace", label: "Partner Workspace", desc: "Quote, book, track and settle in one workspace", requiresAuth: true, audience: "partner" },
             { to: "/dashboard/driver", label: "Driver Portal", desc: "Trips, earnings and payouts for driver partners", requiresAuth: true, audience: "partner" },
@@ -493,7 +493,7 @@ export function buildPrimaryNav(appLinks: {
         {
           heading: "Company & trust",
           items: [
-            { to: "/about", label: "About SAFARID", desc: "Who we are and what we are building" },
+            { to: "/about", label: "About TaxiD", desc: "Who we are and what we are building" },
             { to: "/news", label: "Newsroom", desc: "Announcements and platform updates" },
             { to: "/careers", label: "Careers", desc: "Open roles — apply and track your application", footerPin: true },
             { to: "/compliance", label: "Compliance", desc: "Our regulatory and governance posture" },
@@ -513,7 +513,7 @@ export function buildPrimaryNav(appLinks: {
  * Sign-in destinations surfaced from the header's Sign In control.
  *
  * Identity principle: the public gateway lets a visitor declare HOW they use
- * SAFARID — never WHAT authority they hold. Privileged operating contexts
+ * TaxiD — never WHAT authority they hold. Privileged operating contexts
  * (Super Admin Control Center) are resolved server-side from the
  * authenticated identity's roles, so they are deliberately absent here.
  */
@@ -559,7 +559,7 @@ export const SIGN_IN_ITEMS: NavChild[] = SIGN_IN_GROUPS.flatMap((g) => g.items);
 export const GET_STARTED: NavChild = {
   to: "/auth?mode=register",
   label: "Get Started",
-  desc: "Create your SAFARID account",
+  desc: "Create your TaxiD account",
 };
 
 /**
@@ -630,7 +630,7 @@ export function buildFooterColumns(nav: NavItem[]): FooterColumn[] {
 export const STAFF_ACCESS: NavChild = {
   to: "/staff",
   label: "Staff Access",
-  desc: "SAFARID staff sign-in — operations and administration",
+  desc: "TaxiD staff sign-in — operations and administration",
   audience: "staff",
 };
 
@@ -645,7 +645,7 @@ export const STAFF_ACCESS: NavChild = {
  */
 export const STAFF_PORTAL_SECTIONS: NavGroup[] = [
   {
-    heading: "SAFARID Staff 360",
+    heading: "TaxiD Staff 360",
     items: [
       { to: "/staff/360", label: "Staff 360", desc: "Who am I, my work, my impact" },
       { to: "/staff/organisation", label: "Organisation", desc: "Divisions, departments, positions" },

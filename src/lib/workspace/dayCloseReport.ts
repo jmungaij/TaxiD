@@ -173,7 +173,7 @@ export function buildDayCloseReport(input: DayCloseReportInput): ReportTable {
 
   return {
     id: "day-close",
-    title: "SAFARID · day close",
+    title: "TaxiD · day close",
     subtitle: `${input.staffName ?? "Employee"}${input.position ? ` · ${input.position}` : ""} — ${today}`,
     meta: [
       ["Completed today", String(close.completedToday)],

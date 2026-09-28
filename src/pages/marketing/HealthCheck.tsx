@@ -44,8 +44,8 @@ export default function HealthCheck() {
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
       <Helmet>
-        <title>Deployment Health · SAFARID</title>
-        <meta name="description" content="Runtime health of this SAFARID deployment: app shell, build info, source maps and role-guard bundle." />
+        <title>Deployment Health · TaxiD</title>
+        <meta name="description" content="Runtime health of this TaxiD deployment: app shell, build info, source maps and role-guard bundle." />
         <meta name="robots" content="noindex" />
       </Helmet>
 

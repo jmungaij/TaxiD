@@ -1,8 +1,8 @@
-# SAFARID
+# TaxiD
 
 > Africa's mobility super-platform — ride-hailing, corporate mobility, package delivery and car rentals on one enterprise-grade stack built for African cities.
 
-SAFARID operates a multi-product mobility network across Kenya and expanding African markets. The platform serves individual riders, driver-partners, corporate travel managers, delivery senders, and rental customers, with M-Pesa, card and corporate-wallet payments.
+TaxiD operates a multi-product mobility network across Kenya and expanding African markets. The platform serves individual riders, driver-partners, corporate travel managers, delivery senders, and rental customers, with M-Pesa, card and corporate-wallet payments.
 
 ## Pages
 

@@ -236,7 +236,7 @@ export default function StaffForensics() {
               <CardHeader>
                 <CardTitle className="text-base">Marketplace revenue layers</CardTitle>
                 <CardDescription>
-                  SAFARID is a marketplace: these are separate measures and are never merged into one
+                  TaxiD is a marketplace: these are separate measures and are never merged into one
                   “revenue” figure.
                 </CardDescription>
               </CardHeader>

@@ -199,7 +199,7 @@ export interface KnowledgeGraphHealth {
 }
 
 export function assessKnowledgeGraph(nodes: readonly KnowledgeNode[]): KnowledgeGraphHealth {
-  const src = "SAFARID enterprise knowledge graph registry";
+  const src = "TaxiD enterprise knowledge graph registry";
   const instrumented = nodes.filter((n) => n.count !== null).length;
   return {
     nodes: [...nodes],

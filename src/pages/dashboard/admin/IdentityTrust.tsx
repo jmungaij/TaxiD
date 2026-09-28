@@ -87,7 +87,7 @@ export default function IdentityTrust() {
   return (
     <main className="container mx-auto px-4 py-8">
       <Helmet>
-        <title>Identity & Trust Plane | SAFARID Admin</title>
+        <title>Identity & Trust Plane | TaxiD Admin</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 

@@ -39,7 +39,7 @@ export const FRAME_COPY: Record<FrameVariant, Record<string, { t: string; d: str
   operational: {
     acquire: {
       t: "Keep the customer relationship",
-      d: "Your customer register, references and brand stay yours; SAFARID never becomes the relationship owner.",
+      d: "Your customer register, references and brand stay yours; TaxiD never becomes the relationship owner.",
     },
     services: {
       t: "One order surface, every service line",

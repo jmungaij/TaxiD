@@ -321,7 +321,7 @@ export default function RecruitmentImportWizard() {
                 id="source-org"
                 value={form.source_organization}
                 onChange={(e) => setForm({ ...form, source_organization: e.target.value })}
-                placeholder="Who held this data before SAFARID"
+                placeholder="Who held this data before TaxiD"
               />
             </div>
             <div>

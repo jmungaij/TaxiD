@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — Supply control tower.
+ * TaxiD PARTNERS 360 — Supply control tower.
  *
  * Live capacity against open demand, per city and service line. Every row is
  * aggregated server-side (`partner_supply_coverage`) from partner supply assets
@@ -85,7 +85,7 @@ export default function SupplyControlTower() {
   return (
     <div className="space-y-6">
       <StaffPageHeader
-        eyebrow="SAFARID Partners 360"
+        eyebrow="TaxiD Partners 360"
         title="Supply control tower"
         lede="Verified partner capacity measured against open demand, by city and service line."
       />

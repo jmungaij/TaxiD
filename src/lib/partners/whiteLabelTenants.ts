@@ -246,7 +246,7 @@ export interface ReadinessItem {
   title: string;
   requirement: string;
   /** Who must satisfy it. */
-  owner: "PARTNER" | "SAFARID" | "SHARED";
+  owner: "PARTNER" | "TaxiD" | "SHARED";
   /** Blocking items must be verified before production exposure. */
   blocking: boolean;
 }
@@ -263,9 +263,9 @@ export const READINESS_ITEMS: ReadinessItem[] = [
   { key: "webhook.idempotency", section: "Webhooks", title: "Duplicate delivery handled", requirement: "A replayed delivery id is acknowledged without double-processing the order.", owner: "PARTNER", blocking: true },
   { key: "ops.contacts", section: "Operations", title: "Escalation contacts registered", requirement: "Named first-line and engineering contacts with hours of cover.", owner: "PARTNER", blocking: true },
   { key: "ops.incident_drill", section: "Operations", title: "Incident drill completed", requirement: "One simulated severity-2 incident run through the agreed escalation path.", owner: "SHARED", blocking: false },
-  { key: "ops.change_control", section: "Operations", title: "Change control agreed", requirement: "Change classes, approval route and rollback plan recorded for the tenant.", owner: "SAFARID", blocking: true },
+  { key: "ops.change_control", section: "Operations", title: "Change control agreed", requirement: "Change classes, approval route and rollback plan recorded for the tenant.", owner: "TaxiD", blocking: true },
   { key: "finance.settlement", section: "Finance", title: "Settlement details verified", requirement: "Settlement account confirmed and one sandbox statement reconciled.", owner: "PARTNER", blocking: true },
-  { key: "finance.exceptions", section: "Finance", title: "Exception handling agreed", requirement: "Reconciliation exception ownership and response route recorded.", owner: "SAFARID", blocking: false },
+  { key: "finance.exceptions", section: "Finance", title: "Exception handling agreed", requirement: "Reconciliation exception ownership and response route recorded.", owner: "TaxiD", blocking: false },
 ];
 
 export interface ReadinessProgress {

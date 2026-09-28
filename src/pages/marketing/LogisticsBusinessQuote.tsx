@@ -121,13 +121,13 @@ export default function LogisticsBusinessQuote() {
   return (
     <main className="min-h-screen bg-background">
       <Helmet>
-        <title>Business logistics quote in Nairobi | SAFARID</title>
+        <title>Business logistics quote in Nairobi | TaxiD</title>
         <meta
           name="description"
           content="Get a business logistics quote for Nairobi and upcountry Kenya: give us pickup, drop-off, cargo type and vehicle preference and see a priced quote with a booking link."
         />
         <link rel="canonical" href={CANONICAL} />
-        <meta property="og:title" content="Business logistics quote in Nairobi | SAFARID" />
+        <meta property="og:title" content="Business logistics quote in Nairobi | TaxiD" />
         <meta
           property="og:description"
           content="Priced from our governed rate plan: pickup, drop-off, cargo type and vehicle preference, then book or reach the freight desk."

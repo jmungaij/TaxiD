@@ -1,5 +1,5 @@
 /**
- * SAFARID orchestration — controlled work lifecycle and SLA engine.
+ * TaxiD orchestration — controlled work lifecycle and SLA engine.
  *
  * Staff cannot move work arbitrarily: transitions are validated here and
  * enforced again server-side by `ops_work_transition`. Time is operationalised —

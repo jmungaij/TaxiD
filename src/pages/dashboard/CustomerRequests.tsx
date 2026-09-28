@@ -3,7 +3,7 @@
  *
  * A signed-in company contact submits a mobility requirement and tracks it
  * through a simple lifecycle. What is shown is deliberately narrow: the request
- * as it was submitted, where it stands, who at SAFARID is looking after it, and
+ * as it was submitted, where it stands, who at TaxiD is looking after it, and
  * anything we need back. Internal pricing, notes, ownership and pipeline
  * intelligence are never sent to this page.
  */
@@ -190,7 +190,7 @@ function NewRequestForm({
           e.message === "INCOMPLETE_REQUEST_CONTRACT"
             ? "Please give your organisation, your name and what you need."
             : e.message === "NO_SALES_OWNER_AVAILABLE"
-              ? "No SAFARID contact is available to receive this right now. Please try again shortly."
+              ? "No TaxiD contact is available to receive this right now. Please try again shortly."
               : e.message,
         variant: "destructive",
       }),
@@ -221,7 +221,7 @@ function NewRequestForm({
       <CardHeader>
         <CardTitle className="text-base">Tell us what you need</CardTitle>
         <CardDescription>
-          A SAFARID contact is assigned to your request and you can follow it here.
+          A TaxiD contact is assigned to your request and you can follow it here.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -365,7 +365,7 @@ function RequestCard({ request, onChanged }: { request: CustomerRequest; onChang
   const mutation = useMutation({
     mutationFn: () => respondToRequest(request.id, reply.trim()),
     onSuccess: () => {
-      toast({ title: "Sent to your SAFARID contact" });
+      toast({ title: "Sent to your TaxiD contact" });
       setReply("");
       onChanged();
     },
@@ -399,8 +399,8 @@ function RequestCard({ request, onChanged }: { request: CustomerRequest; onChang
           <span className="inline-flex items-center gap-1">
             <UserRound className="h-3.5 w-3.5" aria-hidden />
             {request.relationship_contact
-              ? `Your SAFARID contact: ${request.relationship_contact}${request.relationship_email ? ` · ${request.relationship_email}` : ""}`
-              : "Your SAFARID contact is being assigned"}
+              ? `Your TaxiD contact: ${request.relationship_contact}${request.relationship_email ? ` · ${request.relationship_email}` : ""}`
+              : "Your TaxiD contact is being assigned"}
           </span>
         </div>
 
@@ -553,7 +553,7 @@ export default function CustomerRequests() {
           <CardHeader>
             <CardTitle className="text-base">No requests yet</CardTitle>
             <CardDescription>
-              Submit your first requirement and a SAFARID contact will pick it up.
+              Submit your first requirement and a TaxiD contact will pick it up.
             </CardDescription>
           </CardHeader>
         </Card>

@@ -1,5 +1,5 @@
 /**
- * PARTNER INTENT ROUTER — "What do you bring to SAFARID?"
+ * PARTNER INTENT ROUTER — "What do you bring to TaxiD?"
  *
  * A prospective partner is routed by what they contribute before they are asked
  * to pick a category: demand (customers), supply (capacity) or technology
@@ -26,7 +26,7 @@ export interface BringOption {
   answer: string;
   /** Who this is. */
   who: string;
-  /** What SAFARID does with it. */
+  /** What TaxiD does with it. */
   lead: string;
   /** What the partner brings, in short operational phrases. */
   brings: string[];
@@ -45,7 +45,7 @@ export const BRING_OPTIONS: BringOption[] = [
     key: "demand",
     answer: "I bring customers",
     who: "Tour operators, DMCs, travel agencies, OTAs, hotels, corporates, retailers, couriers and event companies.",
-    lead: "You own the customer relationship and the sale. SAFARID supplies the movement, the commercial record and the settlement behind it.",
+    lead: "You own the customer relationship and the sale. TaxiD supplies the movement, the commercial record and the settlement behind it.",
     brings: ["Customers", "Orders", "Your own brand"],
     track: "distribution",
     ecosystem: "distribution",
@@ -56,7 +56,7 @@ export const BRING_OPTIONS: BringOption[] = [
     key: "supply",
     answer: "I bring capacity",
     who: "Drivers, chauffeurs, fleet operators, rental companies, bus and coach operators, logistics providers, aircraft and marine operators.",
-    lead: "You hold the vehicles, crews and licences. SAFARID brings recorded demand, matching with stated reasons and reconciled settlement.",
+    lead: "You hold the vehicles, crews and licences. TaxiD brings recorded demand, matching with stated reasons and reconciled settlement.",
     brings: ["Vehicles", "Crews", "Licences"],
     track: "supply",
     ecosystem: "supply",
@@ -66,8 +66,8 @@ export const BRING_OPTIONS: BringOption[] = [
   {
     key: "technology",
     answer: "I bring technology reach",
-    who: "Platforms, OTAs, ERPs and enterprises that want SAFARID inside their own product or operated behind their brand.",
-    lead: "You hold the digital surface your customers already use. SAFARID exposes quoting, booking, documents and settlement behind it.",
+    who: "Platforms, OTAs, ERPs and enterprises that want TaxiD inside their own product or operated behind their brand.",
+    lead: "You hold the digital surface your customers already use. TaxiD exposes quoting, booking, documents and settlement behind it.",
     brings: ["A platform", "Developers", "Distribution scale"],
     track: "technology",
     ecosystem: "distribution",

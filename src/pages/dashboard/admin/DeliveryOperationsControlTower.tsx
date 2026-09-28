@@ -146,7 +146,7 @@ export default function DeliveryOperationsControlTower() {
               </div>
               <h1 className="mt-2 text-xl font-bold tracking-tight">Delivery Operations Control Tower</h1>
               <p className="max-w-2xl text-[13px] text-muted-foreground">
-                Real-time visibility and intelligent orchestration across the SAFARID delivery network.
+                Real-time visibility and intelligent orchestration across the TaxiD delivery network.
               </p>
             </div>
             <div className="flex flex-col items-end gap-2">

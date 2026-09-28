@@ -1,5 +1,5 @@
 /**
- * SAFARID Air cinematic hero — the Charter Business entry point.
+ * TaxiD Air cinematic hero — the Charter Business entry point.
  *
  * Rotating aviation backdrop (jet, helicopter, safari turboprop, cabin) with a
  * glassmorphism charter search widget layered over it, followed by the
@@ -27,7 +27,7 @@ const STEPS = [
   { n: 2, t: "Choose your journey type", d: "One way, return or multi-city — the form adapts to the itinerary you are building." },
   { n: 3, t: "Pick dates and time", d: "Select travel dates and a preferred departure window, or set an exact departure time." },
   { n: 4, t: "Add your party", d: "Adults, children, infants, pets, baggage and any special assistance requirements." },
-  { n: 5, t: "Search available aircraft", d: "SAFARID AI instantly searches verified operators across East Africa." },
+  { n: 5, t: "Search available aircraft", d: "TaxiD AI instantly searches verified operators across East Africa." },
   { n: 6, t: "Compare aircraft", d: "Review aircraft photos, cabin interiors, seat maps, capacity, flight time, amenities, operator rating and estimated total price." },
   { n: 7, t: "Confirm and fly", d: "Complete payment securely, then receive your itinerary and live trip updates." },
 ];
@@ -60,7 +60,7 @@ export function AviationHero() {
 
         <div className="container relative mx-auto px-4 py-14 md:py-20">
           <div className="max-w-3xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">SAFARID Air · Charter Business</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">TaxiD Air · Charter Business</p>
             <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
               Fly Private. Book Instantly. Travel Without Limits.
             </h1>

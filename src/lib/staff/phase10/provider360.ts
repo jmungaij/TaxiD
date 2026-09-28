@@ -99,7 +99,7 @@ export function scoreProviderQuality(o: ProviderObservations): ProviderQuality {
       coverage,
       confidence: null,
       components,
-      note: `Only ${coverage}% of quality weight is observed — SAFARID will not publish a provider score on this evidence`,
+      note: `Only ${coverage}% of quality weight is observed — TaxiD will not publish a provider score on this evidence`,
     };
   }
 
@@ -132,8 +132,8 @@ export function buildProvider360(identity: ProviderIdentity, o: ProviderObservat
     : liveMeasure("Provider earnings", o.earningsCents / 100, "kes", src, "sum of partner entitlement on recognised transactions", asOf);
 
   const contribution = o.contributionCents === null
-    ? na("SAFARID contribution", "kes", "No contribution is recorded against this provider's missions")
-    : liveMeasure("SAFARID contribution", o.contributionCents / 100, "kes", src, "sum of contribution on recognised transactions", asOf);
+    ? na("TaxiD contribution", "kes", "No contribution is recorded against this provider's missions")
+    : liveMeasure("TaxiD contribution", o.contributionCents / 100, "kes", src, "sum of contribution on recognised transactions", asOf);
 
   /* LTV is modelled, and is only stated when both a run rate and tenure exist. */
   const months = identity.onboardedAt

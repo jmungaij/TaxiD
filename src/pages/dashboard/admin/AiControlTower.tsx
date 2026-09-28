@@ -292,7 +292,7 @@ export default function AiControlTower() {
   return (
     <div className="space-y-6 p-4 md:p-6">
       <Helmet>
-        <title>AI Control Tower | SAFARID Logistics Governance</title>
+        <title>AI Control Tower | TaxiD Logistics Governance</title>
         <meta
           name="description"
           content="Governed AI operations: recommendations, approvals, the non-action register and the security remediation ledger."

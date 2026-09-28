@@ -4,7 +4,7 @@
  * itinerary management, logistics, fleet and tourism-commercial services.
  *
  * This seed replaces the generic "enterprise growth & mobility" starting point
- * with SAFARID's actual travel and mobility operating model, expressed as
+ * with TaxiD's actual travel and mobility operating model, expressed as
  * five connected engines: TRAVEL DESK → CORPORATE MOBILITY → OPERATIONS →
  * TOURISM PRODUCT → COMMERCIAL.
  *
@@ -42,7 +42,7 @@ export const TTO_SEED_OUTSTANDING = [
 
 /** The twelve learning domains of the specialist curriculum. */
 export const TTO_LEARNING_DOMAINS = [
-  "SAFARID & Travel Ecosystem",
+  "TaxiD & Travel Ecosystem",
   "Corporate Mobility",
   "Ride-Hailing Operations",
   "Airport Transfers",
@@ -84,7 +84,7 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
     location: "Nairobi, Kenya",
     position_id: "",
     position_exception_reason:
-      "SAFARID is establishing a specialist Travel & Tour Operations internship capability pipeline covering corporate mobility, airport transfers, itinerary management, logistics, fleet coordination and tourism-product sales. Production publication requires approval of the corresponding internship position (INT-TTO-001).",
+      "TaxiD is establishing a specialist Travel & Tour Operations internship capability pipeline covering corporate mobility, airport transfers, itinerary management, logistics, fleet coordination and tourism-product sales. Production publication requires approval of the corresponding internship position (INT-TTO-001).",
     work_arrangement: "hybrid",
     priority: "high",
     headcount: 8,
@@ -96,10 +96,10 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
     application_deadline: "2026-09-07",
     host_function: "Travel & Mobility Operations",
     department: "Travel, Corporate Mobility & Tourism Operations",
-    business_unit: "SAFARID",
+    business_unit: "TaxiD",
 
     programme_purpose:
-      "Develop practical Travel & Tour Operations capability by training interns to understand, plan, quote, sell, coordinate and support corporate mobility, ride-hailing, airport transfers, itineraries, fleet and logistics services, while developing the ability to market and sell travel and tourism products as commercially viable SAFARID services. SAFARID requires a scalable early-career talent pipeline capable of converting corporate and leisure travel requirements into well-planned, commercially viable and operationally deliverable mobility and tourism solutions.",
+      "Develop practical Travel & Tour Operations capability by training interns to understand, plan, quote, sell, coordinate and support corporate mobility, ride-hailing, airport transfers, itineraries, fleet and logistics services, while developing the ability to market and sell travel and tourism products as commercially viable TaxiD services. TaxiD requires a scalable early-career talent pipeline capable of converting corporate and leisure travel requirements into well-planned, commercially viable and operationally deliverable mobility and tourism solutions.",
 
     learning_objectives: [
       {
@@ -175,7 +175,7 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
       { action: "Quote", competency: "Travel quotation under supervision", context: "A corporate or leisure travel requirement", evidence: "Issued quotation record" },
       { action: "Prospect and qualify", competency: "Travel sales", context: "Corporate and leisure travel buyers", evidence: "CRM pipeline entries" },
       { action: "Manage", competency: "Service exception handling", context: "Driver delay, vehicle substitution or booking amendment", evidence: "Closed case record" },
-      { action: "Create", competency: "Digital travel marketing", context: "One approved SAFARID travel or mobility product", evidence: "Approved campaign asset" },
+      { action: "Create", competency: "Digital travel marketing", context: "One approved TaxiD travel or mobility product", evidence: "Approved campaign asset" },
       { action: "Maintain", competency: "Data and CRM discipline", context: "Daily travel desk operations", evidence: "Audited record accuracy" },
     ],
 
@@ -197,7 +197,7 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
       { kpi: "Airport transfer plans delivered without avoidable exception", target: "≥ 90%", evidence_source: "Operations records" },
       { kpi: "Quotation turnaround", target: "Within 24 working hours of a complete brief", evidence_source: "Quotation engine" },
       { kpi: "Qualified leads per week", target: "5", evidence_source: "CRM" },
-      { kpi: "Verified commercial contribution", target: "Attributed only from authoritative SAFARID systems", evidence_source: "Commercial transactions" },
+      { kpi: "Verified commercial contribution", target: "Attributed only from authoritative TaxiD systems", evidence_source: "Commercial transactions" },
       { kpi: "Service cases closed within SLA", target: "≥ 90%", evidence_source: "Customer experience cases" },
       { kpi: "Record and CRM accuracy", target: "≥ 95% audited accuracy", evidence_source: "Data integrity audit" },
     ],
@@ -291,7 +291,7 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
 
     interview_framework: [
       { question: "A corporate client has ten executives arriving in Nairobi at different times over two days. Explain how you would gather the requirements and construct the mobility plan.", rubric: "Requirement gathering, planning, vehicle logic, timing, airport coordination, communication, contingency and commercial awareness", max_marks: 5 },
-      { question: "Walk through how a travel request becomes a confirmed booking at SAFARID.", rubric: "Understands request → research → quote → approval → book → confirm → operate → reconcile → close", max_marks: 5 },
+      { question: "Walk through how a travel request becomes a confirmed booking at TaxiD.", rubric: "Understands request → research → quote → approval → book → confirm → operate → reconcile → close", max_marks: 5 },
       { question: "A client's flight is delayed by three hours and the driver is already at JKIA. What do you do?", rubric: "Customer protection, alternative, cost awareness, escalation and documentation", max_marks: 5 },
       { question: "How would you decide which vehicle and driver to allocate to an executive airport transfer?", rubric: "Vehicle suitability, driver readiness, route, timing and service level reasoning", max_marks: 5 },
       { question: "Design a three-day travel experience for a family visiting Nairobi and the Maasai Mara. How would you price and sell it?", rubric: "Product thinking, transport integration, supplier logic, cost and margin awareness", max_marks: 5 },
@@ -328,9 +328,9 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
     ],
 
     commercial_objective: {
-      objective: "Convert corporate and leisure travel requirements into quoted, booked and delivered SAFARID mobility and tourism services",
+      objective: "Convert corporate and leisure travel requirements into quoted, booked and delivered TaxiD mobility and tourism services",
       measure: "Prospects, qualified leads, opportunities, quotations, bookings assisted and attributed revenue — tracked as LEAD_CREATED, LEAD_QUALIFIED, QUOTE_PREPARED, OPPORTUNITY_CREATED, SALES_ASSIST, BOOKING_ASSIST and CUSTOMER_RETAINED events",
-      attribution_source: "Authoritative SAFARID systems only (commercial transactions, quotations, bookings). Self-declared revenue is never counted as verified revenue.",
+      attribution_source: "Authoritative TaxiD systems only (commercial transactions, quotations, bookings). Self-declared revenue is never counted as verified revenue.",
     },
 
     success_profile: [
@@ -343,7 +343,7 @@ export function travelTourOperationsSeed(): InternshipProgrammeDraft {
     ],
 
     development_plan: [
-      { phase: "Weeks 1–4", focus: "SAFARID travel ecosystem, corporate mobility fundamentals, records and systems discipline", milestone: "First accepted corporate mobility requirement brief" },
+      { phase: "Weeks 1–4", focus: "TaxiD travel ecosystem, corporate mobility fundamentals, records and systems discipline", milestone: "First accepted corporate mobility requirement brief" },
       { phase: "Weeks 5–8", focus: "Airport transfers, ride-hailing coordination and itinerary construction", milestone: "Airport transfer plan and itinerary delivered to standard" },
       { phase: "Weeks 9–12", focus: "Travel desk lifecycle, quotations, suppliers and confirmations", milestone: "Supervised quotation issued and booked" },
       { phase: "Weeks 13–16", focus: "Logistics movement planning and fleet allocation reasoning", milestone: "Approved logistics movement plan" },

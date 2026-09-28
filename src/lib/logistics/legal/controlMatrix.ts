@@ -12,7 +12,7 @@
  * questions into one, so that:
  *
  *   - an implemented engineering gate is never reported as a legal approval;
- *   - a Fleet Owner's document pack is never reported as a SAFARID licence;
+ *   - a Fleet Owner's document pack is never reported as a TaxiD licence;
  *   - a control is only ever LEGALLY_CLEARED when the required approvers have
  *     actually approved the current document version.
  *
@@ -66,13 +66,13 @@ export const ENGINEERING_ENFORCEMENT: EngineeringEnforcement[] = [
     control: "Facilitator disclosure and service attribution (responsibilityModel.FACILITATOR_DISCLOSURE)",
     enforced_at: "Customer-facing booking surfaces and carrier agreements",
     does_not_establish:
-      "Does not determine SAFARID's regulatory classification and does not evidence any Communications Authority licence.",
+      "Does not determine TaxiD's regulatory classification and does not evidence any Communications Authority licence.",
   },
   {
     control_id: "LG-02",
     control: "carrier_compliance_items (FO-CAK-COURIER-LICENCE, FO-TRANSPORT-LICENCE) + carrier_dispatch_gate",
     enforced_at: "Fleet Owner onboarding, matchability evaluation, dispatch gate (fail-closed)",
-    does_not_establish: "Does not mean SAFARID holds a transport operator authority.",
+    does_not_establish: "Does not mean TaxiD holds a transport operator authority.",
   },
   {
     control_id: "LG-03",
@@ -90,7 +90,7 @@ export const ENGINEERING_ENFORCEMENT: EngineeringEnforcement[] = [
     control_id: "LG-05",
     control: "carrier_compliance_items (FO-MOTOR-INSURANCE, VEH-INSURANCE) with expiry tracking",
     enforced_at: "Matchability gate and dispatch gate",
-    does_not_establish: "Does not create any SAFARID-held insurance cover.",
+    does_not_establish: "Does not create any TaxiD-held insurance cover.",
   },
   {
     control_id: "LG-06",

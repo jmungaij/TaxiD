@@ -42,7 +42,7 @@ export default function MyClientPortal() {
 
   return (
     <MarketingPage>
-      <PageHero eyebrow="Client portal" title="Your SAFARID account" subtitle="Your bookings, enquiries, invoices and meetings in one place." />
+      <PageHero eyebrow="Client portal" title="Your TaxiD account" subtitle="Your bookings, enquiries, invoices and meetings in one place." />
       <section className="container mx-auto max-w-5xl space-y-6 px-4 py-10">
         {authLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : !user ? (
           <Card><CardContent className="space-y-4 p-8 text-center">

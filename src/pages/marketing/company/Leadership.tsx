@@ -5,13 +5,13 @@ export default function Leadership() {
   return (
     <NarrativePage
       eyebrow="Company"
-      title="Who runs SAFARID"
+      title="Who runs TaxiD"
       subtitle="An early-stage, founder-led Kenyan company. Here is how responsibility is divided while the team is being built."
       path="/leadership"
-      seoTitle="Leadership at SAFARID — How the Company Is Run"
-      seoDescription="How responsibility is divided at SAFARID, an early-stage founder-led Kenyan mobility company, and how to reach the right team."
+      seoTitle="Leadership at TaxiD — How the Company Is Run"
+      seoDescription="How responsibility is divided at TaxiD, an early-stage founder-led Kenyan mobility company, and how to reach the right team."
       intro={[
-        "SAFARID is a young company based in Nairobi. Rather than list titles we have not filled, this page explains how the work is currently organised and who to contact for what.",
+        "TaxiD is a young company based in Nairobi. Rather than list titles we have not filled, this page explains how the work is currently organised and who to contact for what.",
         "Named profiles will be published here as appointments are confirmed.",
       ]}
       sections={[

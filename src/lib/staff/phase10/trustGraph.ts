@@ -1,9 +1,9 @@
 /**
- * Phase 10 §10.16 — the SAFARID Trust & Safety Graph.
+ * Phase 10 §10.16 — the TaxiD Trust & Safety Graph.
  *
- * For every mission SAFARID must be able to state who the customer is, who the
+ * For every mission TaxiD must be able to state who the customer is, who the
  * provider is, which resource performed the work, that compliance was valid,
- * that payment is accounted for, and that completion is evidenced. As SAFARID
+ * that payment is accounted for, and that completion is evidenced. As TaxiD
  * moves into charter, aircraft and logistics this is not a nicety: without it,
  * the mission cannot be economically closed.
  */

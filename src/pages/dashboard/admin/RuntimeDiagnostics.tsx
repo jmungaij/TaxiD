@@ -64,7 +64,7 @@ export default function RuntimeDiagnostics() {
   return (
     <StaffErrorBoundary area="Runtime Diagnostics">
       <Helmet>
-        <title>Runtime Diagnostics | SAFARID Admin</title>
+        <title>Runtime Diagnostics | TaxiD Admin</title>
         <meta
           name="description"
           content="Operator view of the running build, dependency bundle integrity, authentication redirect reasons and the structured runtime event stream."

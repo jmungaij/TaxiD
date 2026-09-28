@@ -1,7 +1,7 @@
 /**
  * Industry reference standards — seeded from named, publicly published sources.
  *
- * SAFARID does not invent logistics semantics. Status milestones, exception
+ * TaxiD does not invent logistics semantics. Status milestones, exception
  * reasons, chain-of-custody steps and parcel identifiers are adapted from
  * ratified public standards used by tier-1 carriers. Every record names its
  * publisher and source document so the provenance is auditable, and carries a
@@ -20,7 +20,7 @@ export interface ReferenceStandard {
   release: string;
   sourceUrl: string;
   verification: StandardVerification;
-  /** What SAFARID adopted from it, and what it deliberately did not adopt. */
+  /** What TaxiD adopted from it, and what it deliberately did not adopt. */
   adopted: string[];
   notAdopted: string[];
 }
@@ -39,7 +39,7 @@ export const REFERENCE_STANDARDS: ReferenceStandard[] = [
       "Appointment/attempt semantics: multiple delivery attempts per stop",
     ],
     notAdopted: [
-      "EDI envelope/segment transport (SAFARID exposes JSON events, not X12 interchanges)",
+      "EDI envelope/segment transport (TaxiD exposes JSON events, not X12 interchanges)",
       "Carrier-proprietary code extensions, which differ per carrier and would create false interoperability claims",
     ],
   },
@@ -52,7 +52,7 @@ export const REFERENCE_STANDARDS: ReferenceStandard[] = [
     verification: "SECONDARY_SOURCE",
     adopted: ["Confirmation that FedEx, UPS and DHL all express status as 214-style milestone + reason events"],
     notAdopted: [
-      "Any specific carrier's proprietary reason-code list — these are secondary sources, so SAFARID's catalogue is its own and is not presented as carrier-compatible",
+      "Any specific carrier's proprietary reason-code list — these are secondary sources, so TaxiD's catalogue is its own and is not presented as carrier-compatible",
     ],
   },
   {
@@ -68,7 +68,7 @@ export const REFERENCE_STANDARDS: ReferenceStandard[] = [
       "Aggregation semantics for packages moving as a unit (loading/unloading a vehicle)",
     ],
     notAdopted: [
-      "EPCIS XML/JSON-LD interchange and EPC URN identifiers — SAFARID uses internal UUIDs plus its own tracking numbers until an external partner requires EPCIS",
+      "EPCIS XML/JSON-LD interchange and EPC URN identifiers — TaxiD uses internal UUIDs plus its own tracking numbers until an external partner requires EPCIS",
     ],
   },
   {
@@ -82,12 +82,12 @@ export const REFERENCE_STANDARDS: ReferenceStandard[] = [
       "Globally unique, non-reused item identifier with a check digit as the customer-facing tracking number pattern",
     ],
     notAdopted: [
-      "The reserved 2-letter service indicator + ISO country suffix format itself: SAFARID is not a UPU designated operator, so emitting S10-shaped numbers would misrepresent postal status",
+      "The reserved 2-letter service indicator + ISO country suffix format itself: TaxiD is not a UPU designated operator, so emitting S10-shaped numbers would misrepresent postal status",
     ],
   },
 ];
 
-/** SAFARID's own tracking-number contract, informed by (not claiming) UPU S10. */
+/** TaxiD's own tracking-number contract, informed by (not claiming) UPU S10. */
 export const TRACKING_NUMBER_CONTRACT = {
   pattern: "^YL[A-Z]{1}[0-9]{9}[0-9]$",
   description: "YL + service letter + 9 digits + 1 check digit (mod-11 weighted, S10-style algorithm).",

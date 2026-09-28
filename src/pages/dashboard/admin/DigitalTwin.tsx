@@ -125,7 +125,7 @@ export default function DigitalTwin() {
 
   return (
     <div className="p-6 max-w-[1400px] mx-auto space-y-6">
-      <SeoHead title="Digital Twin · Admin" description="Seed and validate the SAFARID digital twin dataset." path="/dashboard/admin/digital-twin" />
+      <SeoHead title="Digital Twin · Admin" description="Seed and validate the TaxiD digital twin dataset." path="/dashboard/admin/digital-twin" />
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-bold flex items-center gap-2"><Database className="h-6 w-6" /> Digital Twin Seeder</h1>

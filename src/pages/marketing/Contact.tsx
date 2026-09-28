@@ -25,7 +25,7 @@ const Contact = () => {
     <MarketingPage>
       <PageHero
         eyebrow="Contact"
-        title="Contact SAFARID support and sales"
+        title="Contact TaxiD support and sales"
         subtitle="Talk to Support for general and customer queries, or to Sales for corporate and commercial enquiries."
       />
 

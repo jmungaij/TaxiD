@@ -1,5 +1,5 @@
 /**
- * Phase 10 §10.12 — the SAFARID Liquidity Brain.
+ * Phase 10 §10.12 — the TaxiD Liquidity Brain.
  *
  * Phase 9 measured liquidity. Phase 10 operationalises it: classify the market
  * state, then emit ranked interventions with the economic value each unlocks.
@@ -106,7 +106,7 @@ export function assessLiquidity(cell: LiquidityCell, o: LiquidityObservation): L
         expectedValue: unavailableMeasure("Expected value", "kes", src, "The cell is unmeasured, so no value can be claimed"),
         missionsUnlocked: null,
         requiresApproval: false,
-        rationale: "SAFARID will not intervene in a market it cannot measure — telemetry precedes incentives.",
+        rationale: "TaxiD will not intervene in a market it cannot measure — telemetry precedes incentives.",
       }],
       gaps,
     };
@@ -224,7 +224,7 @@ function recommendInterventions(cell: LiquidityCell, state: LiquidityState, ctx:
       expectedValue: value("Contribution protected by triage", ctx.unservedMissions * 0.2, 30, "20% of unserved missions × contribution per mission"),
       missionsUnlocked: null,
       requiresApproval: true,
-      rationale: "When capacity cannot meet demand, SAFARID protects contracted SLAs before discretionary trips.",
+      rationale: "When capacity cannot meet demand, TaxiD protects contracted SLAs before discretionary trips.",
     });
   }
 

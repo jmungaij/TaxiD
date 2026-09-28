@@ -46,7 +46,7 @@ export function dayPhase(now: Date = new Date(), endHour = 18): DayPhaseView {
 export const MICRO_WINDOWS = [5, 15, 30, 60] as const;
 export type MicroWindow = (typeof MICRO_WINDOWS)[number];
 
-/** Unplanned usable minutes left in the day — the window SAFARID can fill. */
+/** Unplanned usable minutes left in the day — the window TaxiD can fill. */
 export function availableMinutes(plan: DayPlan): number {
   return Math.max(0, plan.capacityMinutes - plan.plannedMinutes);
 }
@@ -441,7 +441,7 @@ export function discretionaryOptions(opts: {
     action: "tomorrow",
   });
   out.push({
-    title: "Ask SAFARID what would create the most value",
+    title: "Ask TaxiD what would create the most value",
     detail: "Answered from your own records — no guessing.",
     action: "ask",
   });

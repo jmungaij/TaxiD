@@ -31,10 +31,10 @@ export default function DriverBenefits() {
   return (
     <MarketingPage>
       <PageHero eyebrow="Driver Benefits" title="A complete benefits platform for drivers"
-        subtitle="Financial, safety, professional and business benefits — built into every SAFARID driver account.">
+        subtitle="Financial, safety, professional and business benefits — built into every TaxiD driver account.">
         <AppButton size="lg" className="bg-ice text-primary hover:bg-ice/90"
           analytics="driver.benefits.join" action="navigate" target="/driver/onboarding">
-          Join SAFARID <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+          Join TaxiD <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
         </AppButton>
       </PageHero>
 

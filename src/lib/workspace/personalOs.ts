@@ -1,5 +1,5 @@
 /**
- * SAFARID PERSONAL OPERATING SYSTEM v2 — pure engine.
+ * TaxiD PERSONAL OPERATING SYSTEM v2 — pure engine.
  *
  * The employee dashboard is not a widget board. It is a personal operating
  * cockpit: one thing to do now, a realistic plan for the day, the promises the

@@ -34,7 +34,7 @@ type Segment = (typeof SEGMENTS)[number];
 const stories: Story[] = [
   {
     quote:
-      "SAFARID replaced three vendors. Approvals, policy limits and monthly reconciliation now happen in one console — our finance team closes mobility spend in a single afternoon.",
+      "TaxiD replaced three vendors. Approvals, policy limits and monthly reconciliation now happen in one console — our finance team closes mobility spend in a single afternoon.",
     name: "Achieng' Otieno",
     role: "Head of Finance",
     org: "Enterprise services group, Nairobi",
@@ -120,7 +120,7 @@ const ROTATE_MS = 7000;
 const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SAFARID",
+  name: "TaxiD",
   url: "https://yalla-africa.lovable.app/",
   aggregateRating: {
     "@type": "AggregateRating",
@@ -134,7 +134,7 @@ const reviewSchema = {
     reviewBody: s.quote,
     name: s.metric,
     author: { "@type": "Person", name: s.name, jobTitle: s.role, worksFor: { "@type": "Organization", name: s.org } },
-    itemReviewed: { "@type": "Service", name: `SAFARID — ${s.service}` },
+    itemReviewed: { "@type": "Service", name: `TaxiD — ${s.service}` },
     reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5", worstRating: "1" },
   })),
 };

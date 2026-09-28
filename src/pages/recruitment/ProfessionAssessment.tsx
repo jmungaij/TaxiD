@@ -129,8 +129,8 @@ export default function ProfessionAssessment() {
   const shell = (children: React.ReactNode) => (
     <main className="min-h-screen bg-background py-12">
       <Helmet>
-        <title>Profession Assessment | SAFARID</title>
-        <meta name="description" content="Complete your SAFARID profession assessment using the secure link issued by our recruitment team." />
+        <title>Profession Assessment | TaxiD</title>
+        <meta name="description" content="Complete your TaxiD profession assessment using the secure link issued by our recruitment team." />
         <meta name="robots" content="noindex" />
       </Helmet>
       <div className="container max-w-3xl space-y-6">{children}</div>

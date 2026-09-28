@@ -288,7 +288,7 @@ export function screeningReportTable(report: ScreeningReport): ReportTable {
     : 0;
   return {
     id: `screening-${report.vacancy.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
-    title: `SAFARID · ${report.vacancy.title} screening report`,
+    title: `TaxiD · ${report.vacancy.title} screening report`,
     subtitle: `Generated ${new Date(report.generated_at).toLocaleString()}${
       report.vacancy.location ? ` · ${report.vacancy.location}` : ""
     }`,
@@ -466,7 +466,7 @@ export function adjudicationTrailTable(
 ): ReportTable {
   return {
     id: "screening-adjudication-trail",
-    title: `SAFARID · ${vacancyTitle} adjudication trail`,
+    title: `TaxiD · ${vacancyTitle} adjudication trail`,
     subtitle: "Append-only record of every human override of AI-extracted evidence",
     meta: [["Adjudications", String(rows.length)]],
     columns: [
@@ -616,7 +616,7 @@ export function discrepancyReportTable(
   const byApp = new Map((report.rows ?? []).map((r) => [r.application_id, r]));
   return {
     id: "screening-discrepancy-report",
-    title: `SAFARID · ${report.vacancy.title} screening discrepancy report`,
+    title: `TaxiD · ${report.vacancy.title} screening discrepancy report`,
     subtitle: `Generated ${new Date(report.generated_at).toLocaleString()}`,
     meta: [["Candidates screened", String((report.rows ?? []).length)], ...counts],
     columns: [
@@ -870,7 +870,7 @@ export function contactRecoveryTable(
   const gaps = rows.filter((r) => !r.email || !r.phone);
   return {
     id: "screening-contact-recovery",
-    title: `SAFARID · ${vacancyTitle} contact recovery register`,
+    title: `TaxiD · ${vacancyTitle} contact recovery register`,
     subtitle: "Candidates with incomplete contact details and the state of each recovery request",
     meta: [
       ["Candidates with a contact gap", String(gaps.length)],

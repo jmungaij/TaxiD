@@ -209,15 +209,15 @@ export default function EmployeeMobility() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Employee Mobility | SAFARID Corporate"
+        title="Employee Mobility | TaxiD Corporate"
         description="Enterprise employee transport in Kenya: staff shuttles, executive chauffeur, airport transfers and event movement — booked, approved and billed on one platform."
         path={PATH}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "SAFARID Employee Mobility",
+          name: "TaxiD Employee Mobility",
           serviceType: "Corporate employee transport",
-          provider: { "@type": "Organization", name: "SAFARID" },
+          provider: { "@type": "Organization", name: "TaxiD" },
           areaServed: "KE",
           description:
             "Managed employee transport: daily staff shuttles, executive chauffeur, airport transfers, corporate events and dedicated fleet contracts.",
@@ -359,7 +359,7 @@ export default function EmployeeMobility() {
                 <div className="aspect-[16/9] overflow-hidden bg-muted">
                   <img
                     src={VEHICLE_IMAGES[s.fleetKey] ?? corporatesImg}
-                    alt={`${s.title} — SAFARID corporate fleet`}
+                    alt={`${s.title} — TaxiD corporate fleet`}
                     loading="lazy"
                     width={640}
                     height={360}
@@ -400,11 +400,11 @@ export default function EmployeeMobility() {
         </ol>
       </section>
 
-      {/* Why SAFARID */}
+      {/* Why TaxiD */}
       <section className="bg-secondary/20 border-y border-border">
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-2xl mb-12">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Why SAFARID</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Why TaxiD</span>
             <h2 className="mt-2 text-3xl font-bold">Built for the people who answer for transport</h2>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -515,7 +515,7 @@ export default function EmployeeMobility() {
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">Business case</span>
             <h2 className="mt-2 text-3xl font-bold">What a managed programme saves you</h2>
             <p className="mt-3 text-muted-foreground">
-              Model your current arrangement against a pooled SAFARID programme — cost, admin time,
+              Model your current arrangement against a pooled TaxiD programme — cost, admin time,
               carbon and payback period, exportable for your board pack.
             </p>
           </div>
@@ -605,7 +605,7 @@ export default function EmployeeMobility() {
         </div>
       </section>
 
-      <CrossLinks heading="Explore SAFARID for business" keys={["corporates", "rentals", "enterprise", "pricing", "security", "support"]} />
+      <CrossLinks heading="Explore TaxiD for business" keys={["corporates", "rentals", "enterprise", "pricing", "security", "support"]} />
 
       {/* Mobile sticky booking CTA */}
       <div className="h-36 md:hidden" aria-hidden />

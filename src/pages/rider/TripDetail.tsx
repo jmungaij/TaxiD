@@ -434,7 +434,7 @@ export default function RiderTripDetailPage() {
               <span data-testid="sos-eta">~{sos.etaMinutes} min</span>
             </div>
             <div className="text-xs text-muted-foreground">
-              SAFARID safety operators have been alerted with your live location. A live share link has been
+              TaxiD safety operators have been alerted with your live location. A live share link has been
               sent to your primary contact.
             </div>
           </Card>

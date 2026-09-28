@@ -1,7 +1,7 @@
 /**
- * SAFARID PARTNERS 360 — single-partner forensic view.
+ * TaxiD PARTNERS 360 — single-partner forensic view.
  *
- * Everything SAFARID knows about one distribution partner: identity and
+ * Everything TaxiD knows about one distribution partner: identity and
  * verification state, commercial terms, order book, customer base, journeys,
  * supply requests and the append-only partner event trail. No figure is
  * projected: if the partner has traded nothing, the page says so.
@@ -103,7 +103,7 @@ export default function Partner360() {
       </Link>
 
       <StaffPageHeader
-        eyebrow="SAFARID Partners 360"
+        eyebrow="TaxiD Partners 360"
         title={partnerName(p)}
         lede={`${PARTNER_TYPE_LABEL[p.partner_type]} · ${COMMERCIAL_MODEL_LABEL[p.commercial_model].split(" — ")[0]} · partner margin ${Number(p.partner_margin_pct)}%`}
         actions={
@@ -132,7 +132,7 @@ export default function Partner360() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Kpi label="Orders" value={String(metrics.orders)} hint={`${metrics.openOrders} in progress`} />
         <Kpi label="Gross booked value" value={kes(metrics.grossValue)} hint="VAT inclusive" />
-        <Kpi label="SAFARID margin" value={kes(metrics.yallaMargin)} hint={`Partner earned ${kes(metrics.partnerEarnings)}`} />
+        <Kpi label="TaxiD margin" value={kes(metrics.yallaMargin)} hint={`Partner earned ${kes(metrics.partnerEarnings)}`} />
         <Kpi label="Customers" value={String((customers.data ?? []).length)} hint={`${(journeys.data ?? []).length} journey(s)`} />
       </div>
 

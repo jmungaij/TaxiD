@@ -4,7 +4,7 @@
  * The step between "a trip has been created" and "the trip is confirmed".
  * The server decides everything: asking for the payment step returns either
  *   • a cash instruction with a payment reference — the trip is NOT confirmed
- *     until SAFARID has verified a real M-Pesa or bank receipt against it, or
+ *     until TaxiD has verified a real M-Pesa or bank receipt against it, or
  *   • an authorisation on guarantee-backed credit, with the receivable and the
  *     invoice already raised.
  * Nothing here can mark a trip paid.
@@ -163,7 +163,7 @@ export function TripPaymentStep({
               </div>
             ) : null}
             <p className="text-muted-foreground">
-              The trip is confirmed only when SAFARID has verified a real receipt for this reference. A screenshot or a
+              The trip is confirmed only when TaxiD has verified a real receipt for this reference. A screenshot or a
               typed transaction number does not confirm payment.
             </p>
             <Button variant="outline" size="sm" onClick={() => void refreshState()}>

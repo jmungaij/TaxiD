@@ -162,7 +162,7 @@ export default function StaffOperations() {
         {/* ------------------------------------------------------- authority */}
         <TabsContent value="authority">
           <StaffSection
-            title="SAFARID Authority Matrix"
+            title="TaxiD Authority Matrix"
             description="✓ permitted · ✓* permitted under a configurable condition · — denied. The UI never offers an action this matrix denies; row-level security and the privileged-update function remain the enforcement boundary."
           >
             <div className="overflow-x-auto rounded-lg border">

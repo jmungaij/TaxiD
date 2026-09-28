@@ -108,7 +108,7 @@ export default function ReportExportSchedules() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Scheduled Report Exports | SAFARID"
+        title="Scheduled Report Exports | TaxiD"
         description="Automate daily, weekly and monthly CSV/PDF delivery of executive and corporate account reports to selected recipients."
         path="/dashboard/admin/report-schedules"
       />

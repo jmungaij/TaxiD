@@ -1,5 +1,5 @@
 /**
- * SAFARID Security Control Plane — Asset Graph.
+ * TaxiD Security Control Plane — Asset Graph.
  *
  * A security finding is never just a finding about one object. Every callable
  * object in the platform belongs to a business chain, and changing its
@@ -229,7 +229,7 @@ export const SECURITY_ASSETS: SecurityAsset[] = [
   A({
     id: "ai_answer_ledger",
     kind: "db_table",
-    label: "Ask SAFARID answer ledger",
+    label: "Ask TaxiD answer ledger",
     domain: "intelligence",
     criticality: 3,
     dataSensitivity: 3,

@@ -122,7 +122,7 @@ export default function AssuranceDashboard() {
 
   return (
     <div className="p-6 space-y-6 max-w-[1400px] mx-auto">
-      <SeoHead title="Platform Assurance — SAFARID" description="Browse security validation runs, KPI trends, deployment certification and flaky scenarios." path="/dashboard/admin/assurance" />
+      <SeoHead title="Platform Assurance — TaxiD" description="Browse security validation runs, KPI trends, deployment certification and flaky scenarios." path="/dashboard/admin/assurance" />
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Platform Assurance</h1>

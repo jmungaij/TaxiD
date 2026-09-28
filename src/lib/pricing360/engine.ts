@@ -1,7 +1,7 @@
 /**
  * Pricing 360 — deterministic pricing engine (client mirror).
  *
- * ONE algorithm governs every SAFARID price:
+ * ONE algorithm governs every TaxiD price:
  *
  *   Base rate (published rate card line × quantity)
  *   ± Surcharges      (multiplier / percentage / fixed, on the BASE)

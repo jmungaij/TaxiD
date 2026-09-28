@@ -1,6 +1,6 @@
 /**
  * FREIGHT, TRUCK, WAREHOUSING & FULFILMENT ENQUIRY — the live journey for the
- * services SAFARID quotes by hand.
+ * services TaxiD quotes by hand.
  *
  * These services are enquiry-only on purpose: freight is priced against a
  * surveyed load and committed capacity. Rather than a dead "contact us" link,
@@ -186,12 +186,12 @@ const FreightEnquiry = () => {
   return (
     <MarketingLayout>
       <Helmet>
-        <title>Freight, Truck & Fulfilment Enquiry | SAFARID</title>
+        <title>Freight, Truck & Fulfilment Enquiry | TaxiD</title>
         <meta
           name="description"
-          content="Tell us about your freight, truck dispatch, warehousing or fulfilment requirement. A SAFARID commercial specialist responds with a costed proposal and a reference you can quote."
+          content="Tell us about your freight, truck dispatch, warehousing or fulfilment requirement. A TaxiD commercial specialist responds with a costed proposal and a reference you can quote."
         />
-        <link rel="canonical" href="https://safarid.org/delivery/enquiry" />
+        <link rel="canonical" href="https://taxid.us/delivery/enquiry" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>

@@ -1386,7 +1386,7 @@ export default function CareerApply() {
                 <div className="flex items-start gap-3">
                   <Checkbox id="consent" checked={consent} onCheckedChange={(c) => setConsent(c === true)} />
                   <Label htmlFor="consent" className="text-sm font-normal leading-relaxed">
-                    I have read the recruitment privacy notice{notice ? ` (v${notice.version})` : ""} and agree to SAFARID
+                    I have read the recruitment privacy notice{notice ? ` (v${notice.version})` : ""} and agree to TaxiD
                     Mobility processing my personal data and documents for this recruitment process.
                   </Label>
                 </div>
@@ -1399,7 +1399,7 @@ export default function CareerApply() {
                 <div className="flex items-start gap-3">
                   <Checkbox id="talent-pool" checked={talentPool} onCheckedChange={(c) => setTalentPool(c === true)} />
                   <Label htmlFor="talent-pool" className="text-sm font-normal leading-relaxed">
-                    Optional: keep my details for future opportunities at SAFARID.
+                    Optional: keep my details for future opportunities at TaxiD.
                   </Label>
                 </div>
               </section>

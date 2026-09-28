@@ -132,7 +132,7 @@ const CharterCategoryPage = () => {
   return (
     <MarketingPage>
       <SeoHead
-        title={`${category.label} — Move People. Impress Everyone. | SAFARID`}
+        title={`${category.label} — Move People. Impress Everyone. | TaxiD`}
         description={`${category.subhead} Executive coaches, premium shuttles, safari vehicles, school transport and corporate fleet solutions — professionally managed from booking to arrival.`}
         path={`/charter/${category.slug}`}
       />
@@ -421,7 +421,7 @@ const CharterCategoryPage = () => {
       {/* ── Luxury journey timeline ────────────────────────────────── */}
       <section className="border-y border-border/60 bg-secondary/30 py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">How a SAFARID charter unfolds</h2>
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">How a TaxiD charter unfolds</h2>
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {JOURNEY_TIMELINE.map((s, i) => (
               <li key={s.t} className="rounded-2xl border border-border/60 bg-card/60 p-5 backdrop-blur-xl">

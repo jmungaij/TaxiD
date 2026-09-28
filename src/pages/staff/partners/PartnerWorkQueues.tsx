@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS — staff work queues.
+ * TaxiD PARTNERS — staff work queues.
  *
  * Work, not master data: every row is a case tied to a partner, MobilityOrder,
  * journey or settlement, carrying its SLA clock, compliance flags, risk score
@@ -146,7 +146,7 @@ export default function PartnerWorkQueues() {
   return (
     <div className="space-y-6">
       <StaffPageHeader
-        eyebrow="SAFARID Partners Operations System"
+        eyebrow="TaxiD Partners Operations System"
         title="Partner work queues"
         lede="Every open partner case with its SLA clock, compliance flags and escalation path. Actions are recorded against the case forever."
       />

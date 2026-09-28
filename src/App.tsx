@@ -358,7 +358,7 @@ const PrivilegedUpdatesAudit = lazyWithRetry(() => import("./pages/dashboard/adm
 const PrivilegedMetricsDashboard = lazyWithRetry(() => import("./pages/dashboard/admin/PrivilegedMetricsDashboard"));
 const BrandGovernance = lazyWithRetry(() => import("./pages/dashboard/admin/BrandGovernance"));
 
-/* Staff 360 — SAFARID staff portal */
+/* Staff 360 — TaxiD staff portal */
 const StaffPortalLanding = lazyWithRetry(() => import("./pages/staff/StaffPortalLanding"));
 const StaffAccessGateway = lazyWithRetry(() => import("./pages/staff/StaffAccessGateway"));
 const StaffSecurityAudit = lazyWithRetry(() => import("./pages/staff/StaffSecurityAudit"));
@@ -1044,7 +1044,7 @@ const App = () => (
           <Route path="/my/yalla/:token" element={<CustomerPortal />} />
           <Route path="/my/partner/:token" element={<PartnerLinkPortal />} />
 
-          {/* SAFARID Staff Portal — Staff 360 */}
+          {/* TaxiD Staff Portal — Staff 360 */}
           <Route path="/staff" element={<StaffPortalLanding />} />
           {/* Authoritative staff authentication gateway (public, noindex). */}
           <Route path="/staff/access" element={<StaffAccessGateway />} />

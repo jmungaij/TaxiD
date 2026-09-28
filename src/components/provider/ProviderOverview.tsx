@@ -17,7 +17,7 @@ import {
   DOC_KIND_LABEL, loadMyDocuments, missingMandatory,
 } from "@/lib/provider/documents";
 
-/** SAFARID service commission retained on each delivered booking. */
+/** TaxiD service commission retained on each delivered booking. */
 const COMMISSION_RATE = 0.15;
 
 const money = (cents: number, currency = "KES") =>

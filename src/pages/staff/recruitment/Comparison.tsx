@@ -19,7 +19,7 @@ const COMPETENCIES: { code: string; label: string }[] = [
   { code: "prospecting", label: "Prospecting" },
   { code: "sales_process", label: "Conversion" },
   { code: "objection_handling", label: "Objections" },
-  { code: "yalla_solution", label: "SAFARID solution" },
+  { code: "yalla_solution", label: "TaxiD solution" },
   { code: "customer_management", label: "Customer" },
   { code: "crm_discipline", label: "Operations" },
   { code: "productivity", label: "Productivity" },

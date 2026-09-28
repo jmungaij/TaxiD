@@ -1,8 +1,8 @@
 /**
  * CONNECT AI ASSISTANTS — public guide for connecting Claude, ChatGPT and
- * other MCP clients to the SAFARID MCP server.
+ * other MCP clients to the TaxiD MCP server.
  *
- * The server is OAuth-protected: callers sign in with their own SAFARID account
+ * The server is OAuth-protected: callers sign in with their own TaxiD account
  * and every tool runs under that user's row-level security context.
  */
 import { useState } from "react";
@@ -19,18 +19,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const MCP_URL = "https://axwgyvhkuzalfqzribtz.supabase.co/functions/v1/mcp";
-const CONNECTOR_NAME = "SAFARID";
+const CONNECTOR_NAME = "TaxiD";
 
 const TOOLS = [
   {
     icon: UserRound,
     name: "whoami",
-    desc: "Confirm which SAFARID account the assistant is acting as.",
+    desc: "Confirm which TaxiD account the assistant is acting as.",
   },
   {
     icon: Wallet,
     name: "wallet_balance",
-    desc: "Read your SAFARID wallet balance and currency (KES).",
+    desc: "Read your TaxiD wallet balance and currency (KES).",
   },
   {
     icon: Receipt,
@@ -91,27 +91,27 @@ export default function ConnectAiAssistants() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Connect AI Assistants — Claude & ChatGPT | SAFARID"
-        description="Connect SAFARID to Claude, ChatGPT or any MCP-compatible AI assistant. Check your wallet, trips and transactions by asking — secured with OAuth sign-in."
+        title="Connect AI Assistants — Claude & ChatGPT | TaxiD"
+        description="Connect TaxiD to Claude, ChatGPT or any MCP-compatible AI assistant. Check your wallet, trips and transactions by asking — secured with OAuth sign-in."
         path="/developers/ai-assistants"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "HowTo",
-          name: "Connect SAFARID to an AI assistant",
+          name: "Connect TaxiD to an AI assistant",
           description:
-            "Add the SAFARID MCP server to Claude, ChatGPT or another MCP client and sign in with your SAFARID account.",
+            "Add the TaxiD MCP server to Claude, ChatGPT or another MCP client and sign in with your TaxiD account.",
           step: [
             { "@type": "HowToStep", name: "Copy the MCP server link" },
             { "@type": "HowToStep", name: "Add the connector in your AI assistant" },
-            { "@type": "HowToStep", name: "Sign in with your SAFARID account to approve access" },
+            { "@type": "HowToStep", name: "Sign in with your TaxiD account to approve access" },
           ],
         }}
       />
 
       <PageHero
         eyebrow="AI assistants"
-        title="Talk to SAFARID from your AI assistant"
-        subtitle="Connect Claude, ChatGPT or any MCP-compatible assistant to SAFARID. Ask about your wallet, trips and transactions — answers come from your own account, under your own permissions."
+        title="Talk to TaxiD from your AI assistant"
+        subtitle="Connect Claude, ChatGPT or any MCP-compatible assistant to TaxiD. Ask about your wallet, trips and transactions — answers come from your own account, under your own permissions."
       />
 
       {/* MCP endpoint */}
@@ -121,7 +121,7 @@ export default function ConnectAiAssistants() {
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">MCP server</span>
             <h2 className="mt-2 mb-3 text-3xl font-bold">One link, every assistant</h2>
             <p className="mb-6 text-muted-foreground">
-              SAFARID exposes a Model Context Protocol (MCP) server. Paste this link into any
+              TaxiD exposes a Model Context Protocol (MCP) server. Paste this link into any
               MCP-compatible client to connect:
             </p>
             <CopyBlock code={MCP_URL} label="MCP server link" />
@@ -175,9 +175,9 @@ export default function ConnectAiAssistants() {
                         If the form is empty, paste the link manually:{" "}
                         <code className="break-all text-xs">{MCP_URL}</code>
                       </Step>
-                      <Step n={4} title="Prompt Claude to use SAFARID">
+                      <Step n={4} title="Prompt Claude to use TaxiD">
                         Enable the connector from the chat composer before using it, then ask
-                        something like “What's my SAFARID wallet balance?”.
+                        something like “What's my TaxiD wallet balance?”.
                       </Step>
                     </ol>
                   </CardContent>
@@ -198,7 +198,7 @@ export default function ConnectAiAssistants() {
                       <Step n={2} title="Open ChatGPT's new plugin dialog" >
                         From Settings, create a new custom app/connector.
                       </Step>
-                      <Step n={3} title="Add SAFARID's details">
+                      <Step n={3} title="Add TaxiD's details">
                         <div className="space-y-2">
                           <p>
                             <strong className="text-foreground">Name:</strong> {CONNECTOR_NAME}
@@ -214,7 +214,7 @@ export default function ConnectAiAssistants() {
                         Check “I understand and want to continue”. ChatGPT shows this warning for
                         every custom MCP server, not just yours.
                       </Step>
-                      <Step n={5} title="Prompt ChatGPT to use SAFARID">
+                      <Step n={5} title="Prompt ChatGPT to use TaxiD">
                         Enable the app from the chat composer before using it.
                       </Step>
                     </ol>
@@ -232,11 +232,11 @@ export default function ConnectAiAssistants() {
                       <Step n={1} title="Open the connectors panel">
                         In any Lovable project, open <strong className="text-foreground">More → Agent integrations</strong>.
                       </Step>
-                      <Step n={2} title="Find “SAFARID” and click “Add”">
+                      <Step n={2} title="Find “TaxiD” and click “Add”">
                         The connector list shows the available tools and their descriptions.
                       </Step>
                       <Step n={3} title="Sign in when prompted">
-                        Approve access with your SAFARID account. The agent can then call the tools
+                        Approve access with your TaxiD account. The agent can then call the tools
                         below as you.
                       </Step>
                     </ol>
@@ -283,7 +283,7 @@ export default function ConnectAiAssistants() {
                 <KeyRound className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
                 <span>
                   <strong className="text-foreground">OAuth sign-in.</strong> The first time an
-                  assistant connects, you approve access with your SAFARID account. No API keys to
+                  assistant connects, you approve access with your TaxiD account. No API keys to
                   copy, nothing to leak.
                 </span>
               </li>

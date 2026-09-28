@@ -156,7 +156,7 @@ export default function InfrastructureDi00() {
   if (denied) {
     return (
       <div className="mx-auto max-w-3xl p-6">
-        <Helmet><title>DI-00 Infrastructure | SAFARID</title></Helmet>
+        <Helmet><title>DI-00 Infrastructure | TaxiD</title></Helmet>
         <Withheld message={denied} />
       </div>
     );
@@ -317,7 +317,7 @@ export default function InfrastructureDi00() {
   return (
     <div className="space-y-6 p-4 md:p-6">
       <Helmet>
-        <title>DI-00 Infrastructure Control Plane | SAFARID</title>
+        <title>DI-00 Infrastructure Control Plane | TaxiD</title>
         <meta name="description" content="Register, verify, back up, restore and certify the isolated logistics staging and restore databases behind control DI-00." />
       </Helmet>
 

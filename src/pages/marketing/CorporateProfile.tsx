@@ -50,10 +50,10 @@ const CorporateProfile = () => {
     <MarketingPage>
       <PageHero
         eyebrow="Company Profile"
-        title="SAFARID — Corporate Company Profile"
+        title="TaxiD — Corporate Company Profile"
         subtitle="Yalla Beena Limited. Our capability statement for corporate, institutional and partner engagements."
         image={corporatesImg}
-        imageAlt="Executive travelling with SAFARID"
+        imageAlt="Executive travelling with TaxiD"
       >
         <Button size="lg" className="bg-ice text-primary hover:bg-ice/90" asChild data-analytics="corporate-profile-hero-download">
           <a href={url} download data-analytics="corporate-profile-hero-download">

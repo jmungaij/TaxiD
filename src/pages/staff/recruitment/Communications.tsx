@@ -68,7 +68,7 @@ export default function RecruitmentCommunications() {
       first_name: (selected?.full_name ?? "").split(" ")[0] ?? "",
       vacancy_title: vacancy?.title ?? "",
       stage: app ? STAGE_LABEL[app.stage] ?? app.stage : "",
-      company: "SAFARID",
+      company: "TaxiD",
     };
     setForm((f) => ({
       ...f,

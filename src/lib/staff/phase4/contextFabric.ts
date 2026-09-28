@@ -1,5 +1,5 @@
 /**
- * Phase 4 — SAFARID Context Fabric.
+ * Phase 4 — TaxiD Context Fabric.
  *
  * An agent must never act on a prompt alone. Before any action it requests a
  * context envelope; the fabric returns only the classes the agent declared and

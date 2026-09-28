@@ -1,5 +1,5 @@
 /**
- * Phase 5 — SAFARID Adaptive Enterprise surface.
+ * Phase 5 — TaxiD Adaptive Enterprise surface.
  *
  * Not another dashboard: the working face of the control loop. Signals are
  * ingested from authorised tables, correlated into named situations, ranked by

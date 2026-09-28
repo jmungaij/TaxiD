@@ -107,13 +107,13 @@ export function Staff360Home() {
     { q: "How am I performing?", a: "Outcome-based goals and KPIs, not activity volume." },
     { q: "What is my team doing?", a: "Team workload, outcomes and collaboration within your scope." },
     { q: "What is my department doing?", a: "Department performance against its operating system." },
-    { q: "How is SAFARID performing?", a: "Authorised enterprise intelligence only." },
-    { q: "What should I do next?", a: "Explained next-best actions from the SAFARID intelligence layer." },
+    { q: "How is TaxiD performing?", a: "Authorised enterprise intelligence only." },
+    { q: "What should I do next?", a: "Explained next-best actions from the TaxiD intelligence layer." },
   ];
   return (
     <>
       <StaffPageHeader
-        eyebrow="SAFARID"
+        eyebrow="TaxiD"
         title="Staff 360"
         lede="The internal operating system of a digital mobility marketplace: people, organisation, customers, marketplace, revenue and intelligence in one connected model."
       />
@@ -124,7 +124,7 @@ export function Staff360Home() {
           ))}
         </div>
       </StaffSection>
-      <StaffSection title="My SAFARID impact" description="Role-appropriate contribution measures — never a crude employee revenue score.">
+      <StaffSection title="My TaxiD impact" description="Role-appropriate contribution measures — never a crude employee revenue score.">
         {seeded && <SeedBatchNotice batch={SEED_BATCH} className="mb-4 rounded-lg border border-info/30 bg-info/5 p-4" />}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {IMPACT_MEASURES.map((m) => (
@@ -156,7 +156,7 @@ export function Staff360Home() {
       <StaffSection title="Your data scope" description="You never see data merely because it exists in the platform.">
         <ChipList items={scopes.length ? scopes : ["self"]} />
       </StaffSection>
-      <StaffSection title="How SAFARID creates value">
+      <StaffSection title="How TaxiD creates value">
         <div className="space-y-4">
           <FlowChain steps={COMMERCIAL_FLOW} />
           <FlowChain steps={PEOPLE_FLOW} />
@@ -171,7 +171,7 @@ export function Staff360Home() {
 export function StaffOrganisation() {
   return (
     <>
-      <StaffPageHeader eyebrow="Organisation management" title="SAFARID Organisation Management System"
+      <StaffPageHeader eyebrow="Organisation management" title="TaxiD Organisation Management System"
         lede="The authoritative organisational structure, and how each position connects to authority, workflow, KPI and capability." />
       <StaffSection title="Structural model">
         <div className="space-y-4">
@@ -243,7 +243,7 @@ export function StaffDepartmentDetail() {
   if (!dept) {
     return (
       <>
-        <StaffPageHeader title="Department not found" lede="This department is not part of the SAFARID organisation model." />
+        <StaffPageHeader title="Department not found" lede="This department is not part of the TaxiD organisation model." />
         <Button asChild variant="outline"><Link to="/staff/departments">Back to departments</Link></Button>
       </>
     );
@@ -264,7 +264,7 @@ export function StaffDepartmentDetail() {
         </div>
       </StaffSection>
       {dept.linkedSurfaces?.length ? (
-        <StaffSection title="Existing SAFARID surfaces" description="Reused, not rebuilt.">
+        <StaffSection title="Existing TaxiD surfaces" description="Reused, not rebuilt.">
           <div className="flex flex-wrap gap-2">
             {dept.linkedSurfaces.map((s) => (
               <Button key={s.to} asChild variant="outline" size="sm"><Link to={s.to}>{s.label}</Link></Button>
@@ -282,7 +282,7 @@ export function StaffRevenue() {
   const { index, seeded } = useIntelligenceData();
   return (
     <>
-      <StaffPageHeader eyebrow="Finance & revenue assurance" title="SAFARID Revenue Intelligence Centre"
+      <StaffPageHeader eyebrow="Finance & revenue assurance" title="TaxiD Revenue Intelligence Centre"
         lede="Revenue architecture, revenue graph and revenue quality. Commercial rules are read from configured platform pricing and settlement definitions — never assumed." />
       {seeded && <SeedBatchNotice batch={SEED_BATCH} />}
       <StaffSection title="Revenue graph"><FlowChain steps={REVENUE_GRAPH} /></StaffSection>
@@ -320,10 +320,10 @@ export function StaffMarketplace() {
   return (
     <>
       <StaffPageHeader eyebrow="Marketplace & partner success" title="Marketplace 360"
-        lede="SAFARID connects demand with independent resource owners and operators. Third-party capacity is marketplace supply — never SAFARID's fleet." />
+        lede="TaxiD connects demand with independent resource owners and operators. Third-party capacity is marketplace supply — never TaxiD's fleet." />
       {seeded && <SeedBatchNotice batch={SEED_BATCH} />}
       <StaffSection title="Marketplace dimensions"><ChipList items={MARKETPLACE_DIMENSIONS} /></StaffSection>
-      <StaffSection title="Marketplace liquidity" description="Can SAFARID match demand to available marketplace supply, across every axis?">
+      <StaffSection title="Marketplace liquidity" description="Can TaxiD match demand to available marketplace supply, across every axis?">
         <ChipList items={LIQUIDITY_AXES} />
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {liquidity.map((m) => (
@@ -334,7 +334,7 @@ export function StaffMarketplace() {
           ))}
         </div>
       </StaffSection>
-      <StaffSection title="Supply participants" description="Resource providers and operators — independent participants, not SAFARID employees or assets.">
+      <StaffSection title="Supply participants" description="Resource providers and operators — independent participants, not TaxiD employees or assets.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {SUPPLY_PARTICIPANTS.map((p) => (
             <Card key={p.label}><CardContent className="pt-5">
@@ -385,17 +385,17 @@ export function StaffPeople() {
       <StaffPageHeader eyebrow="People, culture & organisation" title="Human Capital Operating System"
         lede="Capability, learning and workforce intelligence connected to customer, marketplace and revenue outcomes." />
       <StaffSection title="Modules"><ChipList items={PEOPLE_MODULES} /></StaffSection>
-      <StaffSection title="SAFARID Capability Cloud" description="Organisational capability requirements mapped against employee capability.">
+      <StaffSection title="TaxiD Capability Cloud" description="Organisational capability requirements mapped against employee capability.">
         <ChipList items={CAPABILITY_DOMAINS} />
         <div className="mt-3 text-xs text-muted-foreground">Levels: {CAPABILITY_LEVELS.join(" → ")}</div>
       </StaffSection>
-      <StaffSection title="SAFARID Skill Graph" description="Claimed skills become verified through evidence.">
+      <StaffSection title="TaxiD Skill Graph" description="Claimed skills become verified through evidence.">
         <ChipList items={SKILL_EVIDENCE} />
       </StaffSection>
       <StaffSection title="Strategic workforce planning" description="Scenario models for growth, expansion and capability sourcing.">
         <ChipList items={WORKFORCE_SCENARIOS} />
       </StaffSection>
-      <StaffSection title="SAFARID Academy" description="Learning recommendations derive from measured capability gaps.">
+      <StaffSection title="TaxiD Academy" description="Learning recommendations derive from measured capability gaps.">
         <ChipList items={ACADEMY_TRACKS} />
       </StaffSection>
       <StaffSection title="Internal talent marketplace">
@@ -414,10 +414,10 @@ export function StaffPeople() {
 export function StaffKnowledge() {
   return (
     <>
-      <StaffPageHeader eyebrow="Knowledge operating system" title="SAFARID Knowledge"
+      <StaffPageHeader eyebrow="Knowledge operating system" title="TaxiD Knowledge"
         lede="The authorised internal knowledge base. Staff-facing AI answers only from this corpus, within your data scope." />
       <StaffSection title="Content classes"><ChipList items={KNOWLEDGE_CLASSES} /></StaffSection>
-      <StaffSection title="Decision register" description="SAFARID learns from its own organisational decisions.">
+      <StaffSection title="Decision register" description="TaxiD learns from its own organisational decisions.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {DECISION_REGISTER_FIELDS.map((f) => (
             <Card key={f}><CardContent className="pt-5 text-sm font-medium">{f}</CardContent></Card>
@@ -440,7 +440,7 @@ export function StaffInnovation() {
   ];
   return (
     <>
-      <StaffPageHeader eyebrow="Innovation lab" title="SAFARID Innovation Lab"
+      <StaffPageHeader eyebrow="Innovation lab" title="TaxiD Innovation Lab"
         lede="Ideas move through screening, business case, experiment and pilot — then scale or stop on evidence." />
       {seeded && <SeedBatchNotice batch={SEED_BATCH} />}
       <StaffSection title="Pipeline"><FlowChain steps={INNOVATION_PIPELINE} /></StaffSection>
@@ -465,7 +465,7 @@ export function StaffIntelligence() {
   const byDomain = signalsByDomain(signals);
   return (
     <>
-      <StaffPageHeader eyebrow="SAFARID intelligence layer" title="Enterprise Intelligence"
+      <StaffPageHeader eyebrow="TaxiD intelligence layer" title="Enterprise Intelligence"
         lede="Contextual intelligence, not a generic chatbot. Every recommendation states why, evidence, confidence, expected impact, action and owner. AI never makes sensitive employment decisions autonomously." />
       {seeded && <SeedBatchNotice batch={SEED_BATCH} />}
       <StaffSection title="What requires leadership attention now?" description="Priorities are surfaced only from connected, authorised data.">

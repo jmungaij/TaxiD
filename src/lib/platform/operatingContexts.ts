@@ -1,5 +1,5 @@
 /**
- * Operating contexts — ONE SAFARID identity, one canonical platform, multiple
+ * Operating contexts — ONE TaxiD identity, one canonical platform, multiple
  * authorized operating contexts.
  *
  * A context is never selected through public navigation. It is derived from the

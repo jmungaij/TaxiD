@@ -47,7 +47,7 @@ export default function LegalDocument() {
             name: doc.title,
             description: doc.seoDescription,
             url: `${SITE_URL}${path}`,
-            publisher: { "@type": "Organization", name: "SAFARID" },
+            publisher: { "@type": "Organization", name: "TaxiD" },
           },
         ]}
       />

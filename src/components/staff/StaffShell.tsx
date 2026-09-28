@@ -30,7 +30,7 @@ const SECTION_SCOPE: Record<string, StaffScope> = {
   "Primary": "self",
   "My commercial book": "self",
   "Daily operations": "self",
-  "SAFARID 360": "department",
+  "TaxiD 360": "department",
   "Organisation & people": "department",
   "Commercial engines": "commercial",
   "Automation & analysis": "department",
@@ -80,29 +80,29 @@ const NAV: { to: string; label: string; icon: typeof Compass; section: string }[
   { to: "/staff/stream", label: "Orchestration stream", icon: Workflow, section: "Daily operations" },
   { to: "/staff/search", label: "Universal search", icon: Search, section: "Daily operations" },
 
-  // SAFARID 360 profiles
-  { to: "/staff/360", label: "Staff 360", icon: Compass, section: "SAFARID 360" },
-  { to: "/staff/recruitment", label: "Recruitment 360", icon: UserSearch, section: "SAFARID 360" },
-  { to: "/staff/recruitment/publication-health", label: "Vacancy publication health", icon: Radar, section: "SAFARID 360" },
-  { to: "/staff/customers", label: "Customer 360", icon: Users, section: "SAFARID 360" },
-  { to: "/staff/customers/accounts", label: "Account 360", icon: Building2, section: "SAFARID 360" },
-  { to: "/staff/customers/documents", label: "Document OS", icon: FileText, section: "SAFARID 360" },
-  { to: "/staff/marketplace", label: "Marketplace 360", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners", label: "SAFARID Partners 360", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/work", label: "Partner work queues", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/fleet-owner-conversion", label: "Fleet Owner conversion", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/fleet-owner-queue", label: "Fleet Owner work queue", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/supply", label: "Partner supply tower", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/matching", label: "Partner demand desk", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/risk", label: "Partner risk centre", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/funnel", label: "Partner funnel comparison", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/tasks", label: "Partner lifecycle task queue", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/partners/white-label", label: "White-label ops console", icon: HeartHandshake, section: "SAFARID 360" },
-  { to: "/staff/recruitment/comparison", label: "Candidate comparison", icon: UserSearch, section: "SAFARID 360" },
-  { to: "/staff/recruitment/questions", label: "Assessment question governance", icon: UserSearch, section: "SAFARID 360" },
-  { to: "/staff/recruitment/assessments", label: "Assessment blueprints & papers", icon: UserSearch, section: "SAFARID 360" },
-  { to: "/staff/revenue", label: "Revenue intelligence", icon: TrendingUp, section: "SAFARID 360" },
-  { to: "/staff/intelligence", label: "Enterprise intelligence", icon: Brain, section: "SAFARID 360" },
+  // TaxiD 360 profiles
+  { to: "/staff/360", label: "Staff 360", icon: Compass, section: "TaxiD 360" },
+  { to: "/staff/recruitment", label: "Recruitment 360", icon: UserSearch, section: "TaxiD 360" },
+  { to: "/staff/recruitment/publication-health", label: "Vacancy publication health", icon: Radar, section: "TaxiD 360" },
+  { to: "/staff/customers", label: "Customer 360", icon: Users, section: "TaxiD 360" },
+  { to: "/staff/customers/accounts", label: "Account 360", icon: Building2, section: "TaxiD 360" },
+  { to: "/staff/customers/documents", label: "Document OS", icon: FileText, section: "TaxiD 360" },
+  { to: "/staff/marketplace", label: "Marketplace 360", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners", label: "TaxiD Partners 360", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/work", label: "Partner work queues", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/fleet-owner-conversion", label: "Fleet Owner conversion", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/fleet-owner-queue", label: "Fleet Owner work queue", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/supply", label: "Partner supply tower", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/matching", label: "Partner demand desk", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/risk", label: "Partner risk centre", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/funnel", label: "Partner funnel comparison", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/tasks", label: "Partner lifecycle task queue", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/partners/white-label", label: "White-label ops console", icon: HeartHandshake, section: "TaxiD 360" },
+  { to: "/staff/recruitment/comparison", label: "Candidate comparison", icon: UserSearch, section: "TaxiD 360" },
+  { to: "/staff/recruitment/questions", label: "Assessment question governance", icon: UserSearch, section: "TaxiD 360" },
+  { to: "/staff/recruitment/assessments", label: "Assessment blueprints & papers", icon: UserSearch, section: "TaxiD 360" },
+  { to: "/staff/revenue", label: "Revenue intelligence", icon: TrendingUp, section: "TaxiD 360" },
+  { to: "/staff/intelligence", label: "Enterprise intelligence", icon: Brain, section: "TaxiD 360" },
 
   // Organisation & people
   { to: "/staff/admin", label: "Admin portal", icon: ShieldCheck, section: "Organisation & people" },
@@ -131,7 +131,7 @@ const NAV: { to: string; label: string; icon: typeof Compass; section: string }[
   { to: "/staff/commercial/rate-cards", label: "Rate cards", icon: Receipt, section: "Commercial engines" },
   { to: "/staff/commerce-os", label: "Commerce OS", icon: GitBranch, section: "Commercial engines" },
   { to: "/staff/closure", label: "Closure control tower", icon: Link2, section: "Commercial engines" },
-  { to: "/staff/ask-yalla", label: "Ask SAFARID", icon: Brain, section: "Commercial engines" },
+  { to: "/staff/ask-yalla", label: "Ask TaxiD", icon: Brain, section: "Commercial engines" },
   { to: "/staff/control-tower", label: "Executive control tower", icon: Radar, section: "Commercial engines" },
   { to: "/staff/orchestration", label: "Platform orchestration", icon: Workflow, section: "Commercial engines" },
   { to: "/staff/adaptive-marketplace", label: "Adaptive marketplace", icon: Radar, section: "Commercial engines" },
@@ -142,7 +142,7 @@ const NAV: { to: string; label: string; icon: typeof Compass; section: string }[
   // Legacy operational surfaces & automation
   { to: "/staff/operations", label: "Operations analytics", icon: Activity, section: "Automation & analysis" },
   { to: "/staff/workflow", label: "End-to-end workflow", icon: Workflow, section: "Automation & analysis" },
-  { to: "/staff/agentic", label: "Agentic SAFARID", icon: Bot, section: "Automation & analysis" },
+  { to: "/staff/agentic", label: "Agentic TaxiD", icon: Bot, section: "Automation & analysis" },
   { to: "/staff/adaptive", label: "Adaptive enterprise", icon: Activity, section: "Automation & analysis" },
   { to: "/staff/value", label: "Value & excellence", icon: Layers, section: "Automation & analysis" },
   { to: "/staff/knowledge", label: "Knowledge", icon: BookOpen, section: "Automation & analysis" },
@@ -276,7 +276,7 @@ export function StaffShell({ children }: { children?: ReactNode }) {
               navigate(`/staff/search${q ? `?q=${encodeURIComponent(String(q))}` : ""}`);
             }}
           >
-            <label className="sr-only" htmlFor="yalla-universal-search">SAFARID Universal Search</label>
+            <label className="sr-only" htmlFor="yalla-universal-search">TaxiD Universal Search</label>
             <Search
               className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
               aria-hidden="true"
@@ -287,7 +287,7 @@ export function StaffShell({ children }: { children?: ReactNode }) {
               type="search"
               placeholder="Search people, customers, partners, bookings, knowledge…"
               className="pl-9"
-              aria-label="SAFARID Universal Search"
+              aria-label="TaxiD Universal Search"
             />
           </form>
           <OperatingContextSwitch />

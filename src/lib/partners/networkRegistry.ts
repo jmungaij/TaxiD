@@ -87,7 +87,7 @@ export const ECOSYSTEMS: Ecosystem[] = [
     key: "distribution",
     label: "Distribution partners — demand",
     role: "Organisations with customers to move.",
-    lead: "You already hold the customer relationship. SAFARID supplies the movement, the commercial record and the settlement behind it.",
+    lead: "You already hold the customer relationship. TaxiD supplies the movement, the commercial record and the settlement behind it.",
     cta: "Apply as a distribution partner",
     to: "/partners/apply?track=distribution",
     analyticsEvent: "distribution_application_started",
@@ -193,7 +193,7 @@ export const ECOSYSTEMS: Ecosystem[] = [
     key: "supply",
     label: "Supply partners — capacity",
     role: "Operators with assets and crews to utilise.",
-    lead: "You hold the vehicles, crews and licences. SAFARID brings recorded demand, allocation reasons and reconciled settlement.",
+    lead: "You hold the vehicles, crews and licences. TaxiD brings recorded demand, allocation reasons and reconciled settlement.",
     cta: "Apply as a supply partner",
     to: "/partners/apply?track=supply",
     analyticsEvent: "supply_application_started",
@@ -310,7 +310,7 @@ export const ENGINE_STAGES = [
 export const NETWORK_OUTCOMES = [
   { t: "One execution engine", d: "Ride, charter, delivery, logistics, rental and leasing." },
   { t: "Smart matching", d: "Demand matched to appropriate supply, with the reason recorded." },
-  { t: "Transparent commercials", d: "Supplier cost, SAFARID margin and partner economics per the applicable commercial model." },
+  { t: "Transparent commercials", d: "Supplier cost, TaxiD margin and partner economics per the applicable commercial model." },
   { t: "Reliable settlement", d: "Orders reconcile before settlement." },
 ] as const;
 

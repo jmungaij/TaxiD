@@ -4,7 +4,7 @@
  * A twin projects one market month-by-month: riders acquired, supply recruited,
  * completed trips constrained by whichever side is scarcer, gross bookings,
  * contribution and cash burn. Every twin output is SIMULATED — it is never
- * presented as SAFARID performance, and it refuses to run without the decision
+ * presented as TaxiD performance, and it refuses to run without the decision
  * signals it depends on.
  */
 import { type Measure, clamp, seededMeasure, unavailableMeasure } from "../phase8/provenance";

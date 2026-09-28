@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — risk centre.
+ * TaxiD PARTNERS 360 — risk centre.
  *
  * Flags are raised by the idempotent server sweep (`partner_risk_scan`) from
  * authoritative records: expired compliance documents, expired supply
@@ -71,7 +71,7 @@ export default function PartnerRiskCentre() {
   return (
     <div className="space-y-6">
       <StaffPageHeader
-        eyebrow="SAFARID Partners 360"
+        eyebrow="TaxiD Partners 360"
         title="Partner risk centre"
         lede="Compliance, verification and service-level risk across the partner network — each flag traceable to the record that raised it."
       />

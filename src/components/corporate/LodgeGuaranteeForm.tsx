@@ -4,7 +4,7 @@
  * Uploads the guarantee document into the company's private document store and
  * records it as LODGED. Nothing here grants credit: the lifecycle (document
  * check → bank check → recorded independent bank confirmation → verify →
- * approve → activate) belongs to finance, and the credit limit SAFARID authorises
+ * approve → activate) belongs to finance, and the credit limit TaxiD authorises
  * is a separate decision. The document hash is recorded so the file that was
  * verified can be proven later.
  */
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const ERROR_TEXT: Record<string, string> = {
-  not_authorised: "Only a company manager or SAFARID finance may lodge a guarantee.",
+  not_authorised: "Only a company manager or TaxiD finance may lodge a guarantee.",
   invalid_amount: "Enter the guaranteed amount in shillings.",
   document_required: "The guarantee document is required.",
   expiry_must_be_in_the_future: "The expiry date must be in the future.",
@@ -184,7 +184,7 @@ export function LodgeGuaranteeForm({ corporateId, defaultEntityName, onLodged }:
             Lodge guarantee
           </Button>
           <p className="text-xs text-muted-foreground">
-            Lodging a document does not create credit. SAFARID must verify it with the issuing bank, approve it, activate
+            Lodging a document does not create credit. TaxiD must verify it with the issuing bank, approve it, activate
             it and authorise a credit limit separately.
           </p>
         </div>

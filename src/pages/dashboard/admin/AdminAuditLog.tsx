@@ -168,7 +168,7 @@ export default function AdminAuditLog() {
     const login = logins.filter(inRange);
 
     const doc = new jsPDF();
-    doc.setFontSize(16); doc.text("SAFARID Admin Audit Report", 14, 18);
+    doc.setFontSize(16); doc.text("TaxiD Admin Audit Report", 14, 18);
     doc.setFontSize(10);
     doc.text(`Range: ${from} → ${to}`, 14, 26);
     doc.text(`Generated: ${new Date().toISOString()}`, 14, 32);

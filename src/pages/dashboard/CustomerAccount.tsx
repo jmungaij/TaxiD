@@ -107,7 +107,7 @@ export default function CustomerAccount() {
           <CardHeader>
             <CardTitle>We could not open your account</CardTitle>
             <CardDescription>
-              Please sign in again. If this keeps happening, contact your SAFARID representative.
+              Please sign in again. If this keeps happening, contact your TaxiD representative.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -250,7 +250,7 @@ export default function CustomerAccount() {
             <CardTitle className="flex items-center gap-2 text-base">
               <Handshake className="h-4 w-4 text-primary" aria-hidden /> Agreements
             </CardTitle>
-            <CardDescription>Your contract with SAFARID and what it covers.</CardDescription>
+            <CardDescription>Your contract with TaxiD and what it covers.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {p.contracts.length === 0 ? (

@@ -64,7 +64,7 @@ export default function IncidentDetail() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Incident Detail | SAFARID"
+        title="Incident Detail | TaxiD"
         description="Full alert context: incident chain, affected integration, circuit-breaker state and correlation IDs."
         path={`/dashboard/admin/incidents/${alertId ?? ""}`}
       />

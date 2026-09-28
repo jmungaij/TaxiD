@@ -1,7 +1,7 @@
 {
-  "name": "SAFARID",
-  "short_name": "SAFARID",
-  "description": "SAFARID — Mobility & Travel Platform. Rides, corporate mobility, charter, rentals and deliveries with M-Pesa payment.",
+  "name": "TaxiD",
+  "short_name": "TaxiD",
+  "description": "TaxiD — Mobility & Travel Platform. Rides, corporate mobility, charter, rentals and deliveries with M-Pesa payment.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B1F52",

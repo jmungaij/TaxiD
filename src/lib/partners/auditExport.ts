@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — partner audit log export.
+ * TaxiD PARTNERS 360 — partner audit log export.
  *
  * Exports the lifecycle audit trail, the profile state history and the computed
  * consecutive-stage diffs for one visitor session, as either a spreadsheet (CSV)
@@ -142,7 +142,7 @@ export async function exportPartnerAuditPdf(input: PartnerAuditExportInput): Pro
     y += 12;
   };
 
-  line("SAFARID Partners 360", 16, true);
+  line("TaxiD Partners 360", 16, true);
   line("Partner journey audit log", 12, true);
   y += 4;
   line(`Session ${input.sessionId}`, 9);
@@ -217,7 +217,7 @@ export async function exportPartnerAuditPdf(input: PartnerAuditExportInput): Pro
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(120);
-    doc.text(`SAFARID Partners 360 · audit export · page ${p} of ${pages}`, M, H - 24);
+    doc.text(`TaxiD Partners 360 · audit export · page ${p} of ${pages}`, M, H - 24);
     doc.setTextColor(0);
   }
 

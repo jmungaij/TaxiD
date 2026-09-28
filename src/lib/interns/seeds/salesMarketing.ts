@@ -42,7 +42,7 @@ export const SM_SEED_OUTSTANDING = [
 
 /** The twelve learning domains of the specialist commercial curriculum. */
 export const SM_LEARNING_DOMAINS = [
-  "SAFARID Product Portfolio",
+  "TaxiD Product Portfolio",
   "Customer Segmentation",
   "Prospecting & Lead Generation",
   "Lead Qualification & Discovery",
@@ -126,7 +126,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     location: "Nairobi, Kenya",
     position_id: "",
     position_exception_reason:
-      "SAFARID is establishing a structured professional commercial-talent pipeline to support customer acquisition, corporate-business development, digital marketing and product activation. Production publication requires approval of the corresponding internship position (INT-SM-001) or an authorised exception.",
+      "TaxiD is establishing a structured professional commercial-talent pipeline to support customer acquisition, corporate-business development, digital marketing and product activation. Production publication requires approval of the corresponding internship position (INT-SM-001) or an authorised exception.",
     work_arrangement: "hybrid",
     priority: "critical",
     headcount: 12,
@@ -138,16 +138,16 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     application_deadline: "2026-09-18",
     host_function: "Sales & Marketing",
     department: "Commercial Growth & Marketing",
-    business_unit: "SAFARID",
+    business_unit: "TaxiD",
 
     programme_purpose:
-      "Develop commercially capable sales and marketing professionals who can identify market opportunities, generate qualified demand, acquire customers, develop corporate accounts, market SAFARID products and services, support quotations and bookings, maintain disciplined CRM records and contribute measurable commercial value under supervised operating controls. SAFARID requires a scalable commercial talent pipeline capable of professionally developing markets, generating qualified leads, converting customers, supporting corporate mobility acquisition, activating mobility products and building repeat demand across its ride-hailing, travel, logistics, rental, charter and mobility ecosystem.",
+      "Develop commercially capable sales and marketing professionals who can identify market opportunities, generate qualified demand, acquire customers, develop corporate accounts, market TaxiD products and services, support quotations and bookings, maintain disciplined CRM records and contribute measurable commercial value under supervised operating controls. TaxiD requires a scalable commercial talent pipeline capable of professionally developing markets, generating qualified leads, converting customers, supporting corporate mobility acquisition, activating mobility products and building repeat demand across its ride-hailing, travel, logistics, rental, charter and mobility ecosystem.",
 
     learning_objectives: [
       {
-        competency: "SAFARID product portfolio competence across the seven approved product families",
+        competency: "TaxiD product portfolio competence across the seven approved product families",
         evidence: "Product knowledge pack covering ride-hailing, corporate mobility, airport transfers, charter, rentals & leasing, logistics and marketplace, each with customer, problem, value proposition and commercial objective",
-        assessment: "SAFARID Product Knowledge Assessment (gate at week 4)",
+        assessment: "TaxiD Product Knowledge Assessment (gate at week 4)",
       },
       {
         competency: "Customer segmentation and value-proposition fit",
@@ -207,7 +207,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     ],
 
     learning_outcomes: [
-      { action: "Explain", competency: "Product portfolio competence", context: "Any of the seven approved SAFARID product families", evidence: "Passed product knowledge assessment" },
+      { action: "Explain", competency: "Product portfolio competence", context: "Any of the seven approved TaxiD product families", evidence: "Passed product knowledge assessment" },
       { action: "Segment", competency: "Customer segmentation", context: "A Nairobi target market list", evidence: "Reviewed segmentation map" },
       { action: "Prospect", competency: "Lead generation", context: "Corporate, SME and institutional buyers", evidence: "CRM prospect records" },
       { action: "Qualify", competency: "Lead qualification", context: "Inbound and outbound leads", evidence: "Qualification notes with product match" },
@@ -274,7 +274,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     ],
 
     curriculum_map: [
-      { course: "Marketing and digital marketing units", capability: "Demand generation and campaign design", application: "Product activation campaigns for approved SAFARID products" },
+      { course: "Marketing and digital marketing units", capability: "Demand generation and campaign design", application: "Product activation campaigns for approved TaxiD products" },
       { course: "Sales and customer relationship units", capability: "Prospecting, qualification and closing support", application: "CRM pipeline from prospect to conversion" },
       { course: "Business communication and public relations", capability: "Professional commercial communication", application: "Telesales, corporate outreach and proposal support" },
       { course: "Entrepreneurship and business management", capability: "Commercial judgement and opportunity sizing", application: "Corporate target lists and opportunity estimates" },
@@ -285,7 +285,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     ],
 
     competencies: [
-      { competency: "Product knowledge across the seven SAFARID product families", evidence: "Passed product knowledge assessment", level: "Working" },
+      { competency: "Product knowledge across the seven TaxiD product families", evidence: "Passed product knowledge assessment", level: "Working" },
       { competency: "Prospecting and lead generation", evidence: "CRM prospect records", level: "Working" },
       { competency: "Qualification and discovery", evidence: "Qualification notes", level: "Working" },
       { competency: "Telesales", evidence: "Reviewed call records", level: "Working" },
@@ -325,20 +325,20 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     ],
 
     assessment_design: [
-      { stage: "Assessment 1 — SAFARID product knowledge", instrument: "Product knowledge assessment across the seven approved product families", weight: 15, passing: "Correct customer, problem, value proposition and product path per family" },
+      { stage: "Assessment 1 — TaxiD product knowledge", instrument: "Product knowledge assessment across the seven approved product families", weight: 15, passing: "Correct customer, problem, value proposition and product path per family" },
       { stage: "Assessment 2 — Market and segmentation analysis", instrument: "Target market and segmentation map for Nairobi", weight: 10, passing: "Distinct segments with channel, decision-maker and cycle logic" },
       { stage: "Assessment 3 — Qualified lead generation", instrument: "CRM prospect and qualification set", weight: 15, passing: "Qualified leads accepted by supervisor with complete records" },
       { stage: "Assessment 4 — Telesales call assessment", instrument: "Recorded or observed structured sales call", weight: 10, passing: "Discovery, product match, objection handling, CTA and CRM entry" },
       { stage: "Assessment 5 — Corporate mobility sales scenario", instrument: "Daily employee-transport requirement worked to a quotation pathway", weight: 15, passing: "Fleet, routes, schedule, billing, account structure and service level reasoned" },
       { stage: "Assessment 6 — Marketing campaign execution", instrument: "One supervised campaign, objective through report", weight: 10, passing: "Funnel metrics reported with lead quality, not impressions alone" },
       { stage: "Assessment 7 — Digital and SEO exercise", instrument: "Keyword research, search-intent analysis and landing-page brief", weight: 10, passing: "Demand evidence with an actionable, approval-respecting brief" },
-      { stage: "Assessment 8 — Capstone commercial growth project", instrument: "SAFARID Commercial Growth Project: 15-minute presentation, 15-minute Q&A", weight: 15, passing: "Market, segment, persona, proposition, strategy, pipeline, risks and 90-day plan" },
+      { stage: "Assessment 8 — Capstone commercial growth project", instrument: "TaxiD Commercial Growth Project: 15-minute presentation, 15-minute Q&A", weight: 15, passing: "Market, segment, persona, proposition, strategy, pipeline, risks and 90-day plan" },
     ],
 
     interview_framework: [
-      { question: "SAFARID wants 20 new corporate customers in a market with limited brand awareness. Explain how you would identify prospects, reach decision-makers, qualify them, position SAFARID's products, create follow-up discipline and measure whether your strategy is working.", rubric: "Market understanding, prospecting, segmentation, value proposition, channel selection, sales process, measurement and commercial judgement", max_marks: 5 },
-      { question: "A company needs daily employee transport for 60 staff on three routes. What would you establish before promising anything, and which SAFARID product path fits?", rubric: "Requirement gathering, fleet and route logic, billing, service level and product matching", max_marks: 5 },
-      { question: "A prospect says SAFARID is too expensive. Respond.", rubric: "Objection handling without inventing pricing, value framing and next step", max_marks: 5 },
+      { question: "TaxiD wants 20 new corporate customers in a market with limited brand awareness. Explain how you would identify prospects, reach decision-makers, qualify them, position TaxiD's products, create follow-up discipline and measure whether your strategy is working.", rubric: "Market understanding, prospecting, segmentation, value proposition, channel selection, sales process, measurement and commercial judgement", max_marks: 5 },
+      { question: "A company needs daily employee transport for 60 staff on three routes. What would you establish before promising anything, and which TaxiD product path fits?", rubric: "Requirement gathering, fleet and route logic, billing, service level and product matching", max_marks: 5 },
+      { question: "A prospect says TaxiD is too expensive. Respond.", rubric: "Objection handling without inventing pricing, value framing and next step", max_marks: 5 },
       { question: "How would you generate qualified leads for airport transfers using digital channels on a small budget?", rubric: "Channel choice, search intent, lead capture, qualification and measurement", max_marks: 5 },
       { question: "Describe the difference between an impression, a lead, a qualified lead and an opportunity, and why it matters commercially.", rubric: "Funnel literacy and honest measurement", max_marks: 5 },
       { question: "An SME needs courier and logistics support. What do you qualify before quoting?", rubric: "Volume, frequency, locations, service requirements and delivery expectations", max_marks: 5 },
@@ -379,12 +379,12 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
       measure:
         "LEAD_CREATED, LEAD_QUALIFIED, APPOINTMENT, OPPORTUNITY_CREATED, QUOTE_PREPARED, BOOKING_ASSIST, CUSTOMER_WON, REPEAT_CUSTOMER, CROSS_SELL and UPSELL events, scored alongside lead quality, pipeline discipline, process compliance and campaign performance",
       attribution_source:
-        "Authoritative SAFARID records only (commercial transactions, quotations, bookings). SOURCE RECORD → ATTRIBUTION → VALIDATION → VERIFIED VALUE. An intern's self-reported revenue never becomes verified revenue, and DEMO records never enter live analytics.",
+        "Authoritative TaxiD records only (commercial transactions, quotations, bookings). SOURCE RECORD → ATTRIBUTION → VALIDATION → VERIFIED VALUE. An intern's self-reported revenue never becomes verified revenue, and DEMO records never enter live analytics.",
     },
 
     success_profile: [
       "Builds a qualified pipeline that survives supervisor scrutiny",
-      "Matches a customer problem to the right SAFARID product without overselling",
+      "Matches a customer problem to the right TaxiD product without overselling",
       "Runs a campaign and reports the funnel honestly, including what failed",
       "Develops a corporate account from first contact to proposal support",
       "Keeps CRM records another seller can pick up cleanly",
@@ -392,7 +392,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
     ],
 
     development_plan: [
-      { phase: "Weeks 1–4 · LEARN", focus: "SAFARID orientation, product knowledge, sales and marketing fundamentals, CRM, customer service and commercial ethics", milestone: "Gate: Product Knowledge Certification" },
+      { phase: "Weeks 1–4 · LEARN", focus: "TaxiD orientation, product knowledge, sales and marketing fundamentals, CRM, customer service and commercial ethics", milestone: "Gate: Product Knowledge Certification" },
       { phase: "Weeks 5–8 · PROSPECT", focus: "Market research, lead generation, telesales, field prospecting, digital acquisition and corporate targeting", milestone: "Gate: Qualified Lead Generation Assessment" },
       { phase: "Weeks 9–12 · CONVERT", focus: "Discovery, needs analysis, product matching, quotations, proposals, objection handling and follow-up", milestone: "Gate: Sales Simulation" },
       { phase: "Weeks 13–16 · MARKET", focus: "Campaign design, digital campaigns, content, SEO, social distribution and corporate outreach", milestone: "Gate: Campaign Performance Review" },
@@ -402,7 +402,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
 
     public_preview: {
       summary:
-        "Sales & Marketing Professional Internship — 24 weeks in Nairobi learning to generate demand, acquire customers, develop corporate accounts and market SAFARID's ride-hailing, corporate mobility, airport transfer, charter, rental, logistics and marketplace services. Hybrid and field, 12 places.",
+        "Sales & Marketing Professional Internship — 24 weeks in Nairobi learning to generate demand, acquire customers, develop corporate accounts and market TaxiD's ride-hailing, corporate mobility, airport transfer, charter, rental, logistics and marketplace services. Hybrid and field, 12 places.",
       what_you_will_do:
         "Research markets, build prospect lists, run structured telesales and supervised field visits, qualify leads, support quotations and proposals, run product-activation campaigns, produce approved content, maintain disciplined CRM records and present a capstone commercial growth project.",
       what_you_will_learn:
@@ -413,7 +413,7 @@ export function salesMarketingSeed(): InternshipProgrammeDraft {
 
     application_questions: [
       { question: "Describe something you have sold, promoted or persuaded someone to do. What did you do, and what was the result?", input: "Long text", required: true },
-      { question: "Pick one SAFARID service. Who would you sell it to in Nairobi, and how would you reach the decision-maker?", input: "Long text", required: true },
+      { question: "Pick one TaxiD service. Who would you sell it to in Nairobi, and how would you reach the decision-maker?", input: "Long text", required: true },
       { question: "Which coursework units are closest to sales, marketing or analytics, and what did you actually do in them?", input: "Long text", required: true },
       { question: "A prospect stops replying after you send a quotation. What are your next three actions?", input: "Long text", required: true },
       { question: "Link to any evidence of your work: campaigns, content, portfolios, social accounts you manage, projects or attachment reports.", input: "Short text", required: false },

@@ -160,7 +160,7 @@ export class GlobalErrorBoundary extends React.Component<Props, State> {
             <div>
               <CardTitle className="text-lg">Something went wrong</CardTitle>
               <p className="text-sm text-muted-foreground mt-1">
-                The SAFARID application encountered an unexpected error.
+                The TaxiD application encountered an unexpected error.
                 {staleBundle && " This looks like an out-of-date copy of the app in your browser."}
               </p>
             </div>

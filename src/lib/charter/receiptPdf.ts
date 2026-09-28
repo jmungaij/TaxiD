@@ -1,5 +1,5 @@
 /**
- * Forensic M-Pesa payment receipt (SAFARID Air).
+ * Forensic M-Pesa payment receipt (TaxiD Air).
  *
  * Reuses the exact same security primitives as the itinerary document —
  * guilloche rosettes, lathe bands, void-pantograph hatch, microtext, the
@@ -152,7 +152,7 @@ export async function buildReceiptPdf(input: ReceiptInput): Promise<jsPDF> {
       `Document fingerprint: ${fingerprint}`,
       `Control number: ${control} · Template ${version}`,
       "Guilloche rosettes, lathe bands, void-pantograph hatch and 1.6pt microtext are embedded.",
-      "Any alteration breaks the fingerprint. Verify at safarid.org/verify with the control number.",
+      "Any alteration breaks the fingerprint. Verify at taxid.us/verify with the control number.",
     ],
     M + 5,
     sy + 5,
@@ -164,7 +164,7 @@ export async function buildReceiptPdf(input: ReceiptInput): Promise<jsPDF> {
     M,
     H - 12,
     W - M * 2,
-    `SAFARID AIR RECEIPT ${input.reference} ${control} ${version} AUTHENTIC`,
+    `TaxiD AIR RECEIPT ${input.reference} ${control} ${version} AUTHENTIC`,
   );
 
   return doc;

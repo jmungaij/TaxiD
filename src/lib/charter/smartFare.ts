@@ -1,5 +1,5 @@
 /**
- * SAFARID SmartFare™ v2.0 — mission-centric charter pricing engine.
+ * TaxiD SmartFare™ v2.0 — mission-centric charter pricing engine.
  *
  * Replaces hourly-rate-first quoting with a deterministic, layered mission
  * price. Every layer is exposed to the customer, every saving is explained,
@@ -572,18 +572,18 @@ export function computeMissionFare(input: MissionInput): MissionFare {
   const notes: string[] = [
     priceBasis === "operator_calculated"
       ? "Calculated from the operator's submitted rate card and confirmed availability."
-      : "SAFARID SmartFare™ indicative mission price — not a confirmed operator quotation.",
+      : "TaxiD SmartFare™ indicative mission price — not a confirmed operator quotation.",
   ];
   if (!seatsOk) notes.push(`${aircraft.label} seats ${aircraft.seats}; ${pax} passengers requested.`);
   if (!runwayOk) notes.push(`${to?.name ?? "Destination"} runway is shorter than the ${aircraft.label} requirement.`);
-  if (floorApplied) notes.push("Discounts were capped at the sustainable operating floor — SAFARID never prices below cost.");
+  if (floorApplied) notes.push("Discounts were capped at the sustainable operating floor — TaxiD never prices below cost.");
   if (potentialSavings.length) {
     notes.push(
       `${potentialSavings.length} optimisation${potentialSavings.length === 1 ? "" : "s"} worth ${round(potentialSavingsTotal)} KES are potential only — operator confirmation is required before any of it is deducted.`,
     );
   }
   if (pricingCompleteness === 0) {
-    notes.push("0% of this price is operator-sourced — every layer is a SAFARID estimate or published tariff.");
+    notes.push("0% of this price is operator-sourced — every layer is a TaxiD estimate or published tariff.");
   }
 
 

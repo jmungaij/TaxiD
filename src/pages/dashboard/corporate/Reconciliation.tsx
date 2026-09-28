@@ -77,7 +77,7 @@ export default function CorporateReconciliation({ corporateId }: { corporateId: 
         })
       .on("postgres_changes",
         { event: "INSERT", schema: "public", table: "wallet_freezes", filter: `corporate_id=eq.${corporateId}` },
-        () => toast.warning("Your corporate wallet was frozen pending review. Contact support@safarid.org."))
+        () => toast.warning("Your corporate wallet was frozen pending review. Contact support@taxid.us."))
       .subscribe();
     return () => { supabase.removeChannel(ch); };
   }, [corporateId]);
@@ -175,8 +175,8 @@ export default function CorporateReconciliation({ corporateId }: { corporateId: 
       </Card>
 
       <p className="text-xs text-muted-foreground">
-        Mismatches and fraud alerts are reviewed by SAFARID finance. For questions, contact{" "}
-        <a href="mailto:support@safarid.org" className="text-primary hover:underline">support@safarid.org</a>.
+        Mismatches and fraud alerts are reviewed by TaxiD finance. For questions, contact{" "}
+        <a href="mailto:support@taxid.us" className="text-primary hover:underline">support@taxid.us</a>.
       </p>
     </div>
   );

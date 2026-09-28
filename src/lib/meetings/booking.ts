@@ -5,8 +5,8 @@ export type PublicType = { id: string; slug: string; name: string; description: 
 
 export const BOOKING_ERRORS: Record<string, string> = {
   SLOT_TAKEN: "That time was just taken. Please pick another.",
-  DAILY_LIMIT: "You have reached today's booking limit. Please email sales@safarid.org.",
-  USE_STAFF_CALENDAR: "SAFARID staff should book from the staff Meetings page.",
+  DAILY_LIMIT: "You have reached today's booking limit. Please email sales@taxid.us.",
+  USE_STAFF_CALENDAR: "TaxiD staff should book from the staff Meetings page.",
   CALENDAR_UNAVAILABLE: "Our calendar is unavailable right now. Please try again shortly.",
   NOT_FOUND: "This booking link is not valid.",
   NOT_ACTIVE: "This meeting is no longer active.",

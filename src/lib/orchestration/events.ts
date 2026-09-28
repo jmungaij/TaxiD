@@ -1,10 +1,10 @@
 /**
- * SAFARID orchestration — platform event taxonomy.
+ * TaxiD orchestration — platform event taxonomy.
  *
- * SAFARID is a marketplace: DEMAND (riders, groups, corporates, charter,
+ * TaxiD is a marketplace: DEMAND (riders, groups, corporates, charter,
  * delivery, logistics, rental, leasing customers) is connected to INDEPENDENT
  * SUPPLY (drivers, vehicle/bus/truck/aircraft/equipment owners and operators,
- * rental and leasing providers). SAFARID does not own the supply assets, so every
+ * rental and leasing providers). TaxiD does not own the supply assets, so every
  * event below describes something that happened to a *transaction between two
  * independent parties*, never to "our fleet".
  *

@@ -115,8 +115,8 @@ function jobPostingSchema(v: PublicVacancyDetail, url: string) {
     "@type": "JobPosting",
     title: v.title,
     description,
-    identifier: { "@type": "PropertyValue", name: "SAFARID", value: v.vacancy_no },
-    hiringOrganization: { "@type": "Organization", name: "SAFARID", sameAs: SITE },
+    identifier: { "@type": "PropertyValue", name: "TaxiD", value: v.vacancy_no },
+    hiringOrganization: { "@type": "Organization", name: "TaxiD", sameAs: SITE },
     employmentType,
     url,
     jobLocationType: v.work_arrangement === "remote" ? "TELECOMMUTE" : undefined,
@@ -225,14 +225,14 @@ export default function CareerVacancy() {
   const experience = experienceLabel(v.min_years_experience);
   const prog = internship.data;
   const pageTitle = prog
-    ? `${v.title} Internship Programme | SAFARID`
-    : `${v.title} | SAFARID Careers`;
+    ? `${v.title} Internship Programme | TaxiD`
+    : `${v.title} | TaxiD Careers`;
   const metaDescription = (
     prog
       ? prog.summary
         ?? prog.programme_purpose
-        ?? `Apply for the ${v.title} internship programme at SAFARID${prog.duration_weeks ? ` — ${prog.duration_weeks} weeks` : ""}${v.location ? `, ${v.location}` : ""}.`
-      : v.public_summary ?? v.role_purpose ?? `Apply for the ${v.title} role at SAFARID.`
+        ?? `Apply for the ${v.title} internship programme at TaxiD${prog.duration_weeks ? ` — ${prog.duration_weeks} weeks` : ""}${v.location ? `, ${v.location}` : ""}.`
+      : v.public_summary ?? v.role_purpose ?? `Apply for the ${v.title} role at TaxiD.`
   ).slice(0, 155);
 
   return (
@@ -264,7 +264,7 @@ export default function CareerVacancy() {
           </Link>
 
           <p className="mt-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-            SAFARID · Reference {v.vacancy_no}
+            TaxiD · Reference {v.vacancy_no}
           </p>
           <h1 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight">{v.title}</h1>
           {v.public_summary ? (
@@ -303,7 +303,7 @@ export default function CareerVacancy() {
           >
             <div className="px-5 py-8 sm:px-8 sm:py-10">
               <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-ice">
-                YMEITA · SAFARID internship programme
+                YMEITA · TaxiD internship programme
               </p>
               {/* Identity first: the programme title is never the mission statement. */}
               <h2
@@ -547,7 +547,7 @@ export default function CareerVacancy() {
         <Section id="ready-to-apply" title="Ready to apply?">
           <div className="p-6 rounded-xl bg-card border border-border">
             <p className="text-sm text-muted-foreground mb-4 max-w-xl leading-relaxed">
-              Submit your application through SAFARID's secure recruitment portal. Your application enters
+              Submit your application through TaxiD's secure recruitment portal. Your application enters
               our recruitment system immediately and you will receive an application reference you can quote.
               Your personal data is handled in line with our{" "}
               <Link to="/privacy" className="underline">recruitment privacy notice</Link>, which is shown in full

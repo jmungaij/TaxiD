@@ -191,7 +191,7 @@ export default function StaffOrchestration() {
     <div className="p-6 lg:p-8">
       <StaffPageHeader
         eyebrow="Phase 10 · Platform orchestration"
-        title="How SAFARID orchestrates demand, supply and money across every market and service"
+        title="How TaxiD orchestrates demand, supply and money across every market and service"
         lede="One mission object, one state machine, one matching engine and one economic chain — coordinating independent providers rather than owning assets. Certification is earned on evidence, not presentation."
         actions={
           <Button variant="outline" size="sm" onClick={() => void load()} disabled={loading}>

@@ -1,6 +1,6 @@
 /**
  * CommandWorkspace — the single reusable enterprise command shell instantiated
- * by every SAFARID domain (Admin, Riders, Drivers, Charter & Business, Delivery &
+ * by every TaxiD domain (Admin, Riders, Drivers, Charter & Business, Delivery &
  * Logistics, Leasing & Rentals, Payments & Finance, Settings).
  *
  * Layers: cinematic domain header → KPI intelligence → contextual tabs →

@@ -83,7 +83,7 @@ export default function ScheduledJobHealth() {
     <div className="space-y-6">
       <SeoHead
         path="/dashboard/admin/scheduled-job-health"
-        title="Scheduled Job Health | SAFARID"
+        title="Scheduled Job Health | TaxiD"
         description="pg_cron run status, HTTP outcomes and last errors for eTIMS retry, M-Pesa export and reconciliation alert jobs."
       />
 

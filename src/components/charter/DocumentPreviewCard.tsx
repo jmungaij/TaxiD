@@ -48,7 +48,7 @@ export function DocumentPreviewCard({
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <p className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              <FileText className="h-3.5 w-3.5" aria-hidden /> SAFARID · Executive travel dossier
+              <FileText className="h-3.5 w-3.5" aria-hidden /> TaxiD · Executive travel dossier
             </p>
             <h3 className="mt-1 text-lg font-semibold">{title.title}</h3>
             <p className="text-xs text-muted-foreground">{title.subtitle}</p>

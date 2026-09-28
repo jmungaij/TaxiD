@@ -97,7 +97,7 @@ export function weakestProvenance(items: readonly Provenance[]): Provenance {
   return worst;
 }
 
-/** Only LIVE numbers may be described as actual SAFARID performance. */
+/** Only LIVE numbers may be described as actual TaxiD performance. */
 export function presentableAsPerformance(m: Measure): boolean {
   return m.provenance === "LIVE" && m.value !== null;
 }

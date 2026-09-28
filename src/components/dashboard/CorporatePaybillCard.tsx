@@ -96,7 +96,7 @@ export function CorporatePaybillCard({ corporateId, corporateName, balanceCents 
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2"><Banknote className="h-5 w-5 text-primary" />Cash Top-Up — M-Pesa Paybill</DialogTitle>
           <DialogDescription>
-            SAFARID corporates fund their wallet via <b>M-Pesa Paybill</b>. After paying, submit your M-Pesa confirmation
+            TaxiD corporates fund their wallet via <b>M-Pesa Paybill</b>. After paying, submit your M-Pesa confirmation
             below so an admin can verify and post the top-up into your Cash Ledger.
           </DialogDescription>
         </DialogHeader>

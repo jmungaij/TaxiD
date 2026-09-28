@@ -341,8 +341,8 @@ export default function CorporateLogin() {
     <>
       <SeoHead
         path="/corporate/login"
-        title="Corporate Login | SAFARID Africa"
-        description="Secure sign-in for SAFARID Africa corporate mobility accounts."
+        title="Corporate Login | TaxiD Africa"
+        description="Secure sign-in for TaxiD Africa corporate mobility accounts."
       />
       <main className="min-h-screen bg-background">
         <div className="grid min-h-screen lg:grid-cols-[1.05fr_1fr]">
@@ -742,7 +742,7 @@ export default function CorporateLogin() {
               </div>
 
               <div className="mt-6 pt-6 border-t border-border/60 text-sm text-muted-foreground text-center">
-                New to SAFARID for Business?{" "}
+                New to TaxiD for Business?{" "}
                 <Link
                   to="/corporate/register"
                   className="font-semibold text-primary underline-offset-4 hover:underline"

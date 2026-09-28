@@ -1,7 +1,7 @@
 /**
  * Public receipt / itinerary verification.
  *
- * Every forensic PDF SAFARID Air issues is stamped with a control number, a
+ * Every forensic PDF TaxiD Air issues is stamped with a control number, a
  * document fingerprint and the PDF template version. This page resolves a
  * control number against the issuance registry and confirms that the
  * fingerprint, template version and booking reference printed on the page
@@ -95,19 +95,19 @@ export default function ReceiptVerify() {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-12">
       <Helmet>
-        <title>Verify a SAFARID Air receipt | Document authenticity check</title>
+        <title>Verify a TaxiD Air receipt | Document authenticity check</title>
         <meta
           name="description"
-          content="Enter the control number printed on a SAFARID Air receipt or itinerary to confirm its fingerprint, template version and booking reference are authentic."
+          content="Enter the control number printed on a TaxiD Air receipt or itinerary to confirm its fingerprint, template version and booking reference are authentic."
         />
-        <link rel="canonical" href="https://www.safarid.org/verify" />
+        <link rel="canonical" href="https://www.taxid.us/verify" />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>
 
       <header className="mb-8 space-y-2">
         <Badge variant="outline">Forensic document check</Badge>
-        <h1 className="text-3xl font-bold tracking-tight">Verify a SAFARID Air document</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Verify a TaxiD Air document</h1>
         <p className="text-muted-foreground">
           Every receipt and itinerary carries a control number, a document fingerprint and a template
           version in its forensic footer. Enter them here to confirm the document was genuinely issued
@@ -152,7 +152,7 @@ export default function ReceiptVerify() {
               <div>
                 <p className="text-sm font-semibold">No matching document</p>
                 <p className="text-xs text-muted-foreground">
-                  {result.message ?? "That control number was never issued by SAFARID Air."}
+                  {result.message ?? "That control number was never issued by TaxiD Air."}
                 </p>
               </div>
             </div>

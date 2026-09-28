@@ -11,8 +11,8 @@ const jsonLd = {
   headline: "Corporate Travel Management: The Complete Guide to Mobility Policy in Africa",
   description:
     "How to build a corporate travel and mobility policy that automates governance, controls spend, and works in markets like Kenya with M-Pesa and dual-wallet architectures.",
-  author: { "@type": "Organization", name: "SAFARID" },
-  publisher: { "@type": "Organization", name: "SAFARID" },
+  author: { "@type": "Organization", name: "TaxiD" },
+  publisher: { "@type": "Organization", name: "TaxiD" },
   mainEntityOfPage: `https://yalla-africa.lovable.app${PATH}`,
   datePublished: "2026-06-17",
 };
@@ -31,7 +31,7 @@ const CorporateTravelGuide = () => {
   return (
     <MarketingLayout>
       <SeoHead
-        title="Corporate Travel Management Guide | SAFARID"
+        title="Corporate Travel Management Guide | TaxiD"
         description="A practical guide to corporate travel management and mobility policy — automating governance, controlling spend, and reconciling M-Pesa for African enterprises."
         path={PATH}
         type="article"
@@ -190,7 +190,7 @@ const CorporateTravelGuide = () => {
         <aside className="mt-16 rounded-xl border bg-card p-8 text-center">
           <h2 className="text-2xl font-semibold">See it working on your corporate account</h2>
           <p className="mt-2 text-muted-foreground">
-            SAFARID ships dual wallets, M-Pesa Paybill reconciliation, KRA-ready invoicing,
+            TaxiD ships dual wallets, M-Pesa Paybill reconciliation, KRA-ready invoicing,
             and pre-trip policy controls out of the box.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">

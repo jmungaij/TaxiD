@@ -1,5 +1,5 @@
 /**
- * CANONICAL SAFARID LEGAL PUBLISHING REGISTRY
+ * CANONICAL TaxiD LEGAL PUBLISHING REGISTRY
  * --------------------------------------------------
  * One source of truth for every public legal document rendered at /legal/*.
  *
@@ -60,10 +60,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "privacy",
     title: "Privacy Policy",
     summary:
-      "What personal data SAFARID collects when you ride, drive, book or manage a corporate account, why we collect it, and how you exercise your rights.",
-    seoTitle: "Privacy Policy | SAFARID",
+      "What personal data TaxiD collects when you ride, drive, book or manage a corporate account, why we collect it, and how you exercise your rights.",
+    seoTitle: "Privacy Policy | TaxiD",
     seoDescription:
-      "How SAFARID collects, uses, shares and retains personal data across rides, deliveries, rentals, charter and corporate mobility in Kenya.",
+      "How TaxiD collects, uses, shares and retains personal data across rides, deliveries, rentals, charter and corporate mobility in Kenya.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Office of the Data Protection Officer",
@@ -75,7 +75,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         id: "who-we-are",
         heading: "Who this policy covers",
         body: [
-          "SAFARID operates a mobility platform in Kenya covering ride-hailing, airport transfers, corporate mobility, parcel and courier delivery, vehicle rental and leasing, and road, air and marine charter.",
+          "TaxiD operates a mobility platform in Kenya covering ride-hailing, airport transfers, corporate mobility, parcel and courier delivery, vehicle rental and leasing, and road, air and marine charter.",
           "This policy applies to riders, drivers and courier partners, corporate administrators and employees travelling on a corporate account, fleet and charter operators, and visitors to our website.",
         ],
       },
@@ -154,10 +154,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "terms",
     title: "Terms of Service",
     summary:
-      "The agreement between you and SAFARID when you use the platform as a rider, driver, courier, corporate customer, fleet operator or charter customer.",
-    seoTitle: "Terms of Service | SAFARID",
+      "The agreement between you and TaxiD when you use the platform as a rider, driver, courier, corporate customer, fleet operator or charter customer.",
+    seoTitle: "Terms of Service | TaxiD",
     seoDescription:
-      "The terms governing use of the SAFARID platform for riders, drivers, courier partners, corporate customers, fleet operators and charter customers.",
+      "The terms governing use of the TaxiD platform for riders, drivers, courier partners, corporate customers, fleet operators and charter customers.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Legal & Commercial",
@@ -169,7 +169,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         id: "agreement",
         heading: "The agreement",
         body: [
-          "By creating an account, requesting a trip, submitting a booking or accepting work on the platform, you agree to these terms. If you use SAFARID on behalf of an organisation, you confirm you are authorised to bind that organisation.",
+          "By creating an account, requesting a trip, submitting a booking or accepting work on the platform, you agree to these terms. If you use TaxiD on behalf of an organisation, you confirm you are authorised to bind that organisation.",
           "You must be at least 18 years old to hold an account.",
         ],
       },
@@ -177,7 +177,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         id: "role",
         heading: "Our role",
         body: [
-          "SAFARID operates a technology platform that connects customers with independent transport, delivery, rental and charter providers. Except where we state otherwise in a written contract, we do not ourselves provide the transport service.",
+          "TaxiD operates a technology platform that connects customers with independent transport, delivery, rental and charter providers. Except where we state otherwise in a written contract, we do not ourselves provide the transport service.",
           "Drivers and partners are independent contractors. Fleet, charter and leasing operators contract with customers on their own account, under the standards we require of them to remain on the platform.",
         ],
       },
@@ -237,10 +237,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "cookies",
     title: "Cookie Policy",
     summary:
-      "The cookies and local storage SAFARID uses on this website, what each category does, and how you control the optional ones.",
-    seoTitle: "Cookie Policy | SAFARID",
+      "The cookies and local storage TaxiD uses on this website, what each category does, and how you control the optional ones.",
+    seoTitle: "Cookie Policy | TaxiD",
     seoDescription:
-      "Cookies and browser storage used by SAFARID: strictly necessary session and authentication storage, preferences, and analytics you can control.",
+      "Cookies and browser storage used by TaxiD: strictly necessary session and authentication storage, preferences, and analytics you can control.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Office of the Data Protection Officer",
@@ -294,10 +294,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "data-protection",
     title: "Data Protection",
     summary:
-      "How SAFARID governs personal data: accountability, lawful basis, transfers, retention, security controls and how to lodge a data request or complaint.",
-    seoTitle: "Data Protection | SAFARID",
+      "How TaxiD governs personal data: accountability, lawful basis, transfers, retention, security controls and how to lodge a data request or complaint.",
+    seoTitle: "Data Protection | TaxiD",
     seoDescription:
-      "SAFARID's data protection governance: data controller role, lawful basis, retention, cross-border transfers, breach response and how to lodge a request.",
+      "TaxiD's data protection governance: data controller role, lawful basis, retention, cross-border transfers, breach response and how to lodge a request.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Office of the Data Protection Officer",
@@ -309,7 +309,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         id: "accountability",
         heading: "Accountability",
         body: [
-          "SAFARID acts as data controller for the personal data of riders, drivers, partners and corporate users of the platform, and as processor where a corporate customer instructs us in relation to its own employees' travel data.",
+          "TaxiD acts as data controller for the personal data of riders, drivers, partners and corporate users of the platform, and as processor where a corporate customer instructs us in relation to its own employees' travel data.",
           `Data protection accountability sits with the Office of the Data Protection Officer, reachable at ${SUPPORT}.`,
         ],
       },
@@ -369,10 +369,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "accessibility",
     title: "Accessibility Statement",
     summary:
-      "The accessibility standard SAFARID works to, what we have implemented, what we know is still limited, and how to report a barrier.",
-    seoTitle: "Accessibility Statement | SAFARID",
+      "The accessibility standard TaxiD works to, what we have implemented, what we know is still limited, and how to report a barrier.",
+    seoTitle: "Accessibility Statement | TaxiD",
     seoDescription:
-      "SAFARID's accessibility commitment: WCAG 2.1 AA target, implemented measures, known limitations and how to report an accessibility barrier.",
+      "TaxiD's accessibility commitment: WCAG 2.1 AA target, implemented measures, known limitations and how to report an accessibility barrier.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Design Systems & Front-End Engineering",
@@ -384,7 +384,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         id: "commitment",
         heading: "Our commitment",
         body: [
-          "We are working towards WCAG 2.1 Level AA across the SAFARID website and apps. Accessibility checks run as part of our engineering pipeline for public marketing and booking surfaces, and regressions are treated as defects.",
+          "We are working towards WCAG 2.1 Level AA across the TaxiD website and apps. Accessibility checks run as part of our engineering pipeline for public marketing and booking surfaces, and regressions are treated as defects.",
         ],
       },
       {
@@ -413,13 +413,13 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         id: "report",
         heading: "Report a barrier",
         body: [
-          `If any part of SAFARID is difficult or impossible to use, email ${SUPPORT} or call ${CONTACT.phoneDisplay}. Tell us the page, what you were trying to do and the assistive technology you use. We aim to respond within five business days and will offer an alternative way to complete your task in the meantime.`,
+          `If any part of TaxiD is difficult or impossible to use, email ${SUPPORT} or call ${CONTACT.phoneDisplay}. Tell us the page, what you were trying to do and the assistive technology you use. We aim to respond within five business days and will offer an alternative way to complete your task in the meantime.`,
         ],
       },
     ],
     related: [
       { to: "/support", label: "Help Centre" },
-      { to: "/contact", label: "Contact SAFARID" },
+      { to: "/contact", label: "Contact TaxiD" },
       { to: "/legal/community", label: "Community Guidelines" },
     ],
   },
@@ -428,10 +428,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "community",
     title: "Community Guidelines",
     summary:
-      "The conduct expected of everyone on the SAFARID platform — riders, drivers, courier partners, corporate travellers and operators — and how we enforce it.",
-    seoTitle: "Community Guidelines | SAFARID",
+      "The conduct expected of everyone on the TaxiD platform — riders, drivers, courier partners, corporate travellers and operators — and how we enforce it.",
+    seoTitle: "Community Guidelines | TaxiD",
     seoDescription:
-      "Conduct standards for riders, drivers, courier partners and operators on SAFARID, prohibited behaviour, how to report an issue and how we enforce.",
+      "Conduct standards for riders, drivers, courier partners and operators on TaxiD, prohibited behaviour, how to report an issue and how we enforce.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Trust & Safety",
@@ -508,10 +508,10 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     slug: "compliance",
     title: "Regulatory Compliance",
     summary:
-      "The regulatory obligations SAFARID operates under in Kenya, and the controls that keep the platform compliant.",
-    seoTitle: "Regulatory Compliance | SAFARID",
+      "The regulatory obligations TaxiD operates under in Kenya, and the controls that keep the platform compliant.",
+    seoTitle: "Regulatory Compliance | TaxiD",
     seoDescription:
-      "SAFARID's regulatory posture in Kenya: transport regulation, tax invoicing, data protection registration, payments compliance and internal controls.",
+      "TaxiD's regulatory posture in Kenya: transport regulation, tax invoicing, data protection registration, payments compliance and internal controls.",
     effectiveDate: "1 June 2026",
     lastUpdated: "17 August 2026",
     owner: "Compliance & Risk",

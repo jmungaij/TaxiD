@@ -1,5 +1,5 @@
 /**
- * Ask SAFARID console.
+ * Ask TaxiD console.
  *
  * One question box over the deterministic intelligence layer. Every answer
  * shows its verdict, its claim classes, the records behind it, the cross-checks
@@ -123,18 +123,18 @@ export default function StaffAskYalla() {
   return (
     <div className="space-y-6">
       <Helmet>
-        <title>Ask SAFARID — Enterprise Intelligence Console</title>
+        <title>Ask TaxiD — Enterprise Intelligence Console</title>
         <meta
           name="description"
-          content="Ask SAFARID answers operating questions from authoritative records only, with evidence, freshness and confidence on every claim."
+          content="Ask TaxiD answers operating questions from authoritative records only, with evidence, freshness and confidence on every claim."
         />
       </Helmet>
 
       <header className="space-y-2">
         <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-          <Brain className="h-3.5 w-3.5" aria-hidden /> SAFARID Intelligence
+          <Brain className="h-3.5 w-3.5" aria-hidden /> TaxiD Intelligence
         </div>
-        <h1 className="text-2xl font-semibold tracking-tight">Ask SAFARID</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Ask TaxiD</h1>
         <p className="max-w-3xl text-sm text-muted-foreground">
           Questions are answered from records you are already permitted to read. Every figure states where it came
           from and when it was last observed. When the records cannot support an answer, you are told so instead of

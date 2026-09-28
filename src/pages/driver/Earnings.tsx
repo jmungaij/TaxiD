@@ -17,12 +17,12 @@ export default function DriverEarnings() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Driver Earnings in Kenya | SAFARID"
-        description="See live SAFARID driver earnings by vehicle category, cost of operation and net take-home pay in your city before you start driving."
+        title="Driver Earnings in Kenya | TaxiD"
+        description="See live TaxiD driver earnings by vehicle category, cost of operation and net take-home pay in your city before you start driving."
         path="/driver/earnings"
       />
       <PageHero eyebrow="Driver Income Intelligence" title="Pick your vehicle. See your profit."
-        subtitle="From SAFARID Basic to SAFARID Bus — see live earnings, cost-of-operation and net take-home tailored to your city.">
+        subtitle="From TaxiD Basic to TaxiD Bus — see live earnings, cost-of-operation and net take-home tailored to your city.">
         <AppButton size="lg" className="bg-ice text-primary hover:bg-ice/90"
           analytics="driver.earnings.start_driving" action="navigate" target="/driver/onboarding">
           Start Driving Today <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

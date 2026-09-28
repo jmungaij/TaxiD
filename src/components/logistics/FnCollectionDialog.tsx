@@ -1,7 +1,7 @@
 /**
  * FN-01 COLLECTION EXECUTION DIALOG.
  *
- * FN-01 certifies a real M-Pesa collection, and SAFARID only ever collects from a
+ * FN-01 certifies a real M-Pesa collection, and TaxiD only ever collects from a
  * payer who supplies their own M-Pesa number — the same orchestration as the
  * production checkout: the paying party enters the number, that handset receives
  * the STK prompt. This dialog therefore requires the payer's number on every

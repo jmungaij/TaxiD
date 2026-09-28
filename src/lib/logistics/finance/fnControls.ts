@@ -66,15 +66,15 @@ export const FN_CONTROLS: FnControlDefinition[] = [
   },
   {
     control_id: "FN-07",
-    title: "Partner payable and SAFARID revenue split",
+    title: "Partner payable and TaxiD revenue split",
     target: "STAGING",
     depends_on: ["FN-06"],
     requires: ["STAGING_VERIFIED", "SCHEMA", "FIN_SCHEMA"],
     owner: "finance",
     scope: "versioned commission configuration → payable, revenue and tax components",
     success_condition:
-      "The split is computed from the approved rate-plan version bound to the invoice (never a hard-coded percentage), partner share + SAFARID share reconstruct the invoice net amount, a later plan version does not restate an existing payable, and a refund adjusts the payable.",
-    evidence: "Rate-plan version, gross/net/tax, commission, partner share, SAFARID share, payable after refund.",
+      "The split is computed from the approved rate-plan version bound to the invoice (never a hard-coded percentage), partner share + TaxiD share reconstruct the invoice net amount, a later plan version does not restate an existing payable, and a refund adjusts the payable.",
+    evidence: "Rate-plan version, gross/net/tax, commission, partner share, TaxiD share, payable after refund.",
     provider_execution_required: false,
   },
   {

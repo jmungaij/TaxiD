@@ -40,7 +40,7 @@ export default function RegisterWizardLayout() {
       <main className="min-h-screen bg-background">
         <div className="container mx-auto max-w-5xl px-4 py-10">
           <header className="mb-8 text-center">
-            <h1 className="text-3xl font-semibold tracking-tight">SAFARID Corporate</h1>
+            <h1 className="text-3xl font-semibold tracking-tight">TaxiD Corporate</h1>
             <p className="text-sm text-muted-foreground mt-1">
               Register your organization to manage employee travel, packages, and mobility.
             </p>

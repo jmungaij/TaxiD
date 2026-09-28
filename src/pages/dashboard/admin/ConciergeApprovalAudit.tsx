@@ -33,7 +33,7 @@ const EVENT_TONE: Record<string, string> = {
 function auditReport(rows: ConciergeAuditRow[]): ReportTable {
   return {
     id: "concierge-approval-audit",
-    title: "SAFARID · concierge approval audit trail",
+    title: "TaxiD · concierge approval audit trail",
     subtitle: "Append-only record of AI-drafted approval requests",
     meta: [["Entries", String(rows.length)]],
     columns: ["Timestamp", "Reference", "Event", "From", "To", "Submitter", "Amount KES", "Clauses"],
@@ -78,7 +78,7 @@ export default function ConciergeApprovalAudit() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Concierge Approval Audit | SAFARID"
+        title="Concierge Approval Audit | TaxiD"
         description="Immutable audit trail of AI concierge-generated corporate approval requests, clauses, submitters and workflow transitions."
         path="/dashboard/admin/concierge-approval-audit"
       />

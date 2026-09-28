@@ -241,6 +241,8 @@ const RiderTripDetail = lazyWithRetry(() => import("./pages/rider/TripDetail"));
 const RiderTripShare = lazyWithRetry(() => import("./pages/rider/TripShare"));
 const RiderWallet = lazyWithRetry(() => import("./pages/rider/Wallet"));
 const RiderInbox = lazyWithRetry(() => import("./pages/rider/Inbox"));
+const AgentLogin = lazyWithRetry(() => import("./pages/agent/AgentLogin"));
+const AgentPortal = lazyWithRetry(() => import("./pages/agent/AgentPortal"));
 const RiderSafety = lazyWithRetry(() => import("./pages/rider/Safety"));
 const RiderSchedule = lazyWithRetry(() => import("./pages/rider/Schedule"));
 const RiderAirport = lazyWithRetry(() => import("./pages/rider/Airport"));
@@ -727,6 +729,8 @@ const App = () => (
 
           {/* Auth */}
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/agent/login" element={<AgentLogin />} />
+          <Route path="/agent" element={<AgentPortal />} />
           <Route path="/clients/login" element={<ClientLogin />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/unsubscribe" element={<Unsubscribe />} />

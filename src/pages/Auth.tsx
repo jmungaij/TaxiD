@@ -355,6 +355,15 @@ export default function AuthPage() {
       scoreAuthEvent({ event_type: "login", email, method: "password", user_id: data.user?.id ?? null });
       toast({ title: "Welcome back!" });
       await applyPendingSignupRole();
+      // Support agents sign in only through the agent portal.
+      const { data: roleRows } = await supabase.from("user_roles").select("role").eq("user_id", data.user!.id);
+      const roles = (roleRows ?? []).map((r: { role: string }) => r.role);
+      if (roles.includes("support") && !roles.some((r) => r === "admin" || r === "super_admin")) {
+        await supabase.auth.signOut();
+        navigate(`/agent/login${redirectTarget ? `?next=${encodeURIComponent(redirectTarget)}` : ""}`, { replace: true });
+        return;
+      }
+      if (roles.length === 0 || roles.includes("rider")) await supabase.rpc("ensure_rider_account");
       const dest = await resolvePostLoginDestination(data.user!.id, redirectTarget);
       if (!(await gateOnSecondFactor(dest, data.user?.email ?? email))) return;
       navigate(dest, { replace: true });

@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { AppButton } from "@/components/nav/AppButton";
 import { cn } from "@/lib/utils";
-import boulevard from "@/assets/rider/rider-cinematic-boulevard.jpg";
 import riderDaylight from "@/assets/rider/taxid-rider-daylight.jpg";
 
 type ModeKey = "ride" | "airport" | "charter" | "rental" | "send";
@@ -173,8 +172,8 @@ export function RiderHero() {
       <img
         src={riderDaylight}
         alt="TaxiD rider welcomed by a professional driver beside a car in Nairobi"
-        width={1920}
-        height={1088}
+        width={1600}
+        height={1008}
         loading="eager"
         decoding="sync"
         className={cn("absolute inset-0 h-full w-full object-cover", !reduced && "cine-drift")}

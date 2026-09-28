@@ -96,7 +96,7 @@ export default function BusinessPortal() {
       </div></header>
       <div className="container mx-auto space-y-12 px-4 pt-10">
         {authLoading || loading ? <p role="status">Loading your business account…</p> : !user ?
-          <div className="space-y-4"><p>Sign in to create your organisation and manage requests.</p><Button asChild><Link to="/auth?redirect=%2Fbusiness%2Fportal">Sign in <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><p className="text-sm text-muted-foreground">New to TaxiD? <Link className="text-primary underline" to="/auth?mode=register&redirect=%2Fbusiness%2Fportal">Create an account</Link></p></div> : !organisation ?
+          <div className="space-y-4"><p>Sign in to create your organisation and manage requests.</p><Button asChild><Link to="/auth?redirect=%2Fbusiness%2Fportal">Sign in <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><p className="text-sm text-muted-foreground">New to TaxiD? <Link className="text-primary underline" to="/auth?tab=signup&as=corporate&redirect=%2Fbusiness%2Fportal">Create an account</Link></p></div> : !organisation ?
           <section className="max-w-lg space-y-6"><h2 className="text-2xl font-semibold">Create your organisation</h2>
             <form onSubmit={createOrganisation} className="space-y-4">
               <div><Label htmlFor="org-name">Organisation name</Label><Input id="org-name" required minLength={2} maxLength={180} value={name} onChange={event => setName(event.target.value)} /></div>

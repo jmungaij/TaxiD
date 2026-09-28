@@ -85,8 +85,8 @@ export default function DocumentVerify() {
         <link rel="canonical" href="https://yalla-africa.lovable.app/verify-document" />
         <meta property="og:title" content="Verify a TaxiD travel document" />
         <meta property="og:description" content="Validate a TaxiD charter dossier: one-time token, digital signature, SHA-256 fingerprint and fraud confidence score." />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
       </Helmet>
 
       <header className="mb-8 space-y-2">

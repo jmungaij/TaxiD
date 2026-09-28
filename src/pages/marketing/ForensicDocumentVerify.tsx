@@ -70,8 +70,8 @@ export default function ForensicDocumentVerify() {
           content="Confirm that a TaxiD letter, contract or invoice was genuinely issued, using the printed document number and verification code."
         />
         <link rel="canonical" href="https://taxid.us/verify/document" />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 

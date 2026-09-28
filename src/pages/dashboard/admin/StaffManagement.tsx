@@ -23,6 +23,7 @@ import {
 const ROLES = [
   { value: "super_admin",        title: "Super Admin",         desc: "Full platform control" },
   { value: "admin",              title: "Platform Admin",      desc: "Operate all domains" },
+  { value: "support",            title: "Support Agent",       desc: "Handle assigned rider cases in the agent portal" },
   { value: "finance_admin",      title: "Finance Admin",       desc: "Payments, M-Pesa, payouts, tax" },
   { value: "compliance_admin",   title: "Compliance Admin",    desc: "KYC review, driver compliance" },
   { value: "corporate_admin",    title: "Corporate Admin",     desc: "Corporate accounts, billing" },

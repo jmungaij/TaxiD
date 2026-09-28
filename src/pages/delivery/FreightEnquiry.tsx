@@ -192,8 +192,8 @@ const FreightEnquiry = () => {
           content="Tell us about your freight, truck dispatch, warehousing or fulfilment requirement. A TaxiD commercial specialist responds with a costed proposal and a reference you can quote."
         />
         <link rel="canonical" href="https://taxid.us/delivery/enquiry" />
-        <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
-        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
+        <meta property="og:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
+        <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-taxid-1200x630.png" />
       </Helmet>
 
       <div className="border-b border-border/60 bg-muted/30">

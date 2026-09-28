@@ -26,6 +26,8 @@ export default function AgentLogin() {
     setBusy(true); setError(null);
     const { data, error: err } = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
     if (err || !data.user) { setBusy(false); setError(err?.message ?? "Sign in failed"); return; }
+    const { error: setupError } = await supabase.rpc("ensure_rider_account");
+    if (setupError) { await supabase.auth.signOut(); setBusy(false); setError("Could not verify staff access. Please try again."); return; }
     const { data: rows } = await supabase.from("user_roles").select("role").eq("user_id", data.user.id);
     const isStaff = (rows ?? []).some((r: { role: string }) => STAFF.includes(r.role));
     if (!isStaff) {

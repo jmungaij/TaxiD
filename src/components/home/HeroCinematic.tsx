@@ -26,10 +26,7 @@ import {
   statusChip,
   type MobilityStatus,
 } from "@/lib/marketing/mobilityStatus";
-import daylight1920 from "@/assets/home/executive-daylight-1920.webp";
-import daylight1280 from "@/assets/home/executive-daylight-1280.webp";
-import daylightMobile from "@/assets/home/executive-daylight-mobile.webp";
-import daylightFallback from "@/assets/home/executive-daylight-1920.jpg";
+import taxidHero from "@/assets/home/taxid-network-hero.jpg";
 
 /* Identity v5.0 — daylight Executive Mobility photography is the hero frame.
    The night cinematic loop (HeroVideoLoop) is retained in the library for
@@ -238,43 +235,9 @@ export function HeroCinematic() {
     <section
       ref={sectionRef}
       aria-label="TaxiD — book rides, deliveries, rentals, leasing, charter and corporate mobility"
-      className="relative isolate flex min-h-[92svh] items-end overflow-hidden bg-background"
+      className="relative isolate flex min-h-[min(92svh,860px)] items-end overflow-hidden bg-background"
     >
-      {/* 1 — primary daylight frame (always present, LCP candidate).
-          Deliberate mobile composition (portrait crop) + responsive widths. */}
-      <picture>
-        <source
-          media="(max-width: 767px)"
-          srcSet={daylightMobile}
-          width={912}
-          height={1200}
-          type="image/webp"
-        />
-        <source
-          srcSet={`${daylight1280} 1280w, ${daylight1920} 1920w`}
-          sizes="100vw"
-          type="image/webp"
-        />
-        <img
-          src={daylightFallback}
-          alt="Executive navy sedan ready for a corporate transfer in a modern African business district at midday"
-          width={1920}
-          height={1088}
-          loading="eager"
-          decoding="sync"
-          fetchPriority="high"
-          className={cn("absolute inset-0 h-full w-full object-cover object-[68%_center] md:object-center", tier === "full" && "cine-drift")}
-          style={
-            still
-              ? undefined
-              : {
-                  transform: `translate3d(${px * -14}px, ${py * -10 - scrolled * 46}px, 0) scale(1.04)`,
-                  transition: "transform 1.1s cubic-bezier(0.16,1,0.3,1)",
-                  willChange: "transform",
-                }
-          }
-        />
-      </picture>
+      <img src={taxidHero} alt="TaxiD connects rides, coach travel and delivery at an airport" width={1600} height={1008} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-[55%_center]" />
 
       {/* 2 — readability scrim only: subtle Executive Blue wash + light lift
           behind the editorial column. The photography is never darkened. */}
@@ -283,7 +246,7 @@ export function HeroCinematic() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, hsl(var(--primary) / 0.16), hsl(var(--primary) / 0.08) 45%, hsl(var(--primary) / 0.02))",
+            "linear-gradient(90deg, hsl(var(--background) / 0.90), hsl(var(--background) / 0.65) 48%, hsl(var(--background) / 0.02) 78%)",
         }}
       />
       <div
@@ -291,7 +254,7 @@ export function HeroCinematic() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, hsl(var(--background) / 0.92) 0%, hsl(var(--background) / 0.62) 26%, hsl(var(--background) / 0.10) 58%, transparent 100%)",
+            "linear-gradient(to top, hsl(var(--background) / 0.92) 0%, hsl(var(--background) / 0.20) 24%, transparent 58%)",
         }}
       />
 
@@ -345,9 +308,9 @@ export function HeroCinematic() {
             <Radio className="h-3 w-3 text-[hsl(var(--status-success))]" aria-hidden />
             Ride · Deliver · Rent · Lease · Charter
           </span>
-          <h1 className={cn("mt-7 text-[2.75rem] font-semibold leading-[0.98] tracking-[-0.03em] text-primary md:text-6xl", !still && "cine-rise")}>
-            One platform for mobility,
-            <span className="block text-foreground">transportation and logistics.</span>
+          <h1 className={cn("mt-7 text-[2.75rem] font-semibold leading-[1.05] text-primary md:text-6xl", !still && "cine-rise")}>
+            TaxiD
+            <span className="block text-foreground">Move smarter. Go further.</span>
           </h1>
 
           <p className={cn("mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg", !still && "cine-rise")} style={still ? undefined : { animationDelay: "160ms" }}>

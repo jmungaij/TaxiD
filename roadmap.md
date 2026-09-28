@@ -1,4 +1,7 @@
 # Roadmap
+- [x] Recreate the landing, rider and driver image direction with TaxiD-branded imagery and four-step journey
+- [x] Add an organisation business portal for account creation, fleet and vehicle quote requests, and pending/completed enquiries
+- [x] Add business activity metrics and charts from available owner-scoped trip and request records; broader revenue and agent metrics await authoritative organisation-level data
 - [x] Merge Business and Charter in the public navigation; separate Delivery and Logistics; distribute marketplace discovery across service sections
 - [x] Refresh Delivery, parcel and Logistics pages with TaxiD service photography informed by the uploaded screenshot
 - [ ] Finance/charter orchestration — blocked: current Cloud backend lacks charter bookings and finance reports; uploaded compiled release and original migrations do not define the required services. Need original backend migrations/contracts before enabling transactions.

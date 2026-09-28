@@ -13,6 +13,7 @@ import HomeFaq from "@/components/home/HomeFaq";
 import TrustProof from "@/components/home/TrustProof";
 import TrustedPartners from "@/components/home/TrustedPartners";
 import HomeQuickActions from "@/components/home/HomeQuickActions";
+import { HowTaxiDWorks } from "@/components/home/HowTaxiDWorks";
 
 
 const trust = [
@@ -34,6 +35,8 @@ const Home = () => (
     <TrustedPartners />
 
     <ServiceUniverse />
+
+    <HowTaxiDWorks />
 
     <WhyYalla />
 
@@ -64,13 +67,13 @@ const Home = () => (
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Corporate Mobility</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6">Stay in control of every trip your company pays for.</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6">Move your business with greater control.</h2>
           <p className="text-muted-foreground mb-6">
-            Give finance, operations and HR one clear view of business mobility — from travel policy and
-            approvals through to invoicing and reconciliation.
+            Bring fleet and vehicle enquiries into one place. Track your requests and review
+            the status of trips booked from your own account.
           </p>
           <ul className="space-y-3 mb-8">
-            {["Separate corporate and personal wallets on one account", "Manager approvals before a trip is authorised", "M-Pesa and card settlement with itemised receipts", "Tamper-evident audit trails and finance system exports", "Live spend tracking by department and cost centre"].map((f) => (
+            {["Create an organisation account", "Request fleet and vehicle quotes", "Follow pending and completed requests", "Review your own corporate trip activity"].map((f) => (
               <li key={f} className="flex items-start gap-2">
                 <CheckCircle2 className="h-5 w-5 text-status-success shrink-0 mt-0.5" />
                 <span className="text-sm">{f}</span>
@@ -78,38 +81,18 @@ const Home = () => (
             ))}
           </ul>
           <Button size="lg" asChild>
-            <Link to="/corporates">Explore Corporate Mobility <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link to="/business/portal">Open Power Business <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </Button>
         </div>
-        <div className="rounded-2xl bg-primary p-1 shadow-elegant">
-          <div className="rounded-2xl bg-card p-8">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="text-xs text-muted-foreground">Spend this month</p>
-                <p className="text-3xl font-bold">KSh 2,840,500</p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs text-muted-foreground">Active trips</p>
-                <p className="text-3xl font-bold text-primary">142</p>
-              </div>
+        <div className="rounded-md bg-primary p-1 shadow-elegant">
+          <div className="rounded-sm bg-card p-8 md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Power Business</p>
+            <h3 className="mt-4 text-2xl font-bold">One place for every request.</h3>
+            <p className="mt-3 text-sm text-muted-foreground">Your dashboard reports real activity from your own account. No sample revenue or invented bookings.</p>
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              {["Trip status", "Quote requests", "Completed orders", "Fleet enquiries"].map(item => <div key={item} className="border-t border-border pt-4 text-sm font-semibold">{item}</div>)}
             </div>
-            <div className="space-y-3">
-              {[
-                { dep: "Sales", pct: 78, val: "KSh 980K" },
-                { dep: "Operations", pct: 56, val: "KSh 720K" },
-                { dep: "Engineering", pct: 34, val: "KSh 440K" },
-                { dep: "Executive", pct: 92, val: "KSh 700K" },
-              ].map((d) => (
-                <div key={d.dep}>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="font-medium">{d.dep}</span><span className="text-muted-foreground">{d.val}</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-muted overflow-hidden">
-                    <div className="h-full bg-primary" style={{ width: `${d.pct}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <Link to="/business/portal" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">Explore the dashboard <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </div>
       </div>
@@ -131,7 +114,7 @@ const Home = () => (
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary-foreground/80">
           Ride • Deliver • Charter • Lease
         </p>
-        <h2 className="mt-4 text-3xl font-bold md:text-4xl">One marketplace. Every way to move.</h2>
+        <h2 className="mt-4 text-3xl font-bold md:text-4xl">Move People. Power Business.</h2>
         <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
           TaxiD connects mobility demand with transportation supply, bringing customers and
           professional mobility providers together on one digital platform — for rides, corporate travel,

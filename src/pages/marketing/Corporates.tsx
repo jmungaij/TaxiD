@@ -35,6 +35,8 @@ const Corporates = () => (
       <Button id="demo" size="lg" className="bg-ice text-primary hover:bg-ice/90" asChild><Link to="/contact?subject=enterprise-demo">Request Enterprise Demo <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
     </PageHero>
 
+    <section className="border-b bg-secondary/40 py-14"><div className="container mx-auto flex flex-wrap items-center justify-between gap-6 px-4"><div><p className="text-sm font-semibold text-primary">Power Business</p><h2 className="mt-2 text-3xl font-bold">Your organisation, in motion.</h2><p className="mt-2 max-w-xl text-muted-foreground">Create a business account, request fleet and vehicle quotes, and track your enquiries and orders.</p></div><Button asChild size="lg"><Link to="/business/portal">Open business portal <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></section>
+
     {/* KYC */}
     <section className="container mx-auto px-4 py-20">
       <div className="text-center max-w-2xl mx-auto mb-12">

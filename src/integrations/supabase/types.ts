@@ -73,6 +73,92 @@ export type Database = {
           },
         ]
       }
+      business_organisations: {
+        Row: {
+          contact_email: string
+          created_at: string
+          id: string
+          name: string
+          owner_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          contact_email: string
+          created_at?: string
+          id?: string
+          name: string
+          owner_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          contact_email?: string
+          created_at?: string
+          id?: string
+          name?: string
+          owner_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      business_requests: {
+        Row: {
+          created_at: string
+          destination: string | null
+          details: string
+          id: string
+          organisation_id: string
+          origin: string | null
+          quantity: number
+          requested_by: string
+          requested_date: string | null
+          service_type: string
+          status: string
+          updated_at: string
+          vehicle_type: string
+        }
+        Insert: {
+          created_at?: string
+          destination?: string | null
+          details: string
+          id?: string
+          organisation_id: string
+          origin?: string | null
+          quantity?: number
+          requested_by: string
+          requested_date?: string | null
+          service_type: string
+          status?: string
+          updated_at?: string
+          vehicle_type: string
+        }
+        Update: {
+          created_at?: string
+          destination?: string | null
+          details?: string
+          id?: string
+          organisation_id?: string
+          origin?: string | null
+          quantity?: number
+          requested_by?: string
+          requested_date?: string | null
+          service_type?: string
+          status?: string
+          updated_at?: string
+          vehicle_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "business_requests_organisation_id_fkey"
+            columns: ["organisation_id"]
+            isOneToOne: false
+            referencedRelation: "business_organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       emergency_contacts: {
         Row: {
           created_at: string

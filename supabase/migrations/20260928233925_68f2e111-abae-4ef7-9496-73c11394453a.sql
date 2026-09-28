@@ -1,0 +1,16 @@
+CREATE TABLE public.business_organisations (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), owner_id uuid NOT NULL REFERENCES auth.users(id), name text NOT NULL CHECK (char_length(btrim(name)) BETWEEN 2 AND 180), contact_email text NOT NULL, status text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','approved','declined')), created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now(), UNIQUE(owner_id));
+GRANT SELECT, INSERT, UPDATE ON public.business_organisations TO authenticated;
+GRANT ALL ON public.business_organisations TO service_role;
+ALTER TABLE public.business_organisations ENABLE ROW LEVEL SECURITY;
+CREATE POLICY business_org_owner_read ON public.business_organisations FOR SELECT TO authenticated USING (owner_id = auth.uid());
+CREATE POLICY business_org_owner_create ON public.business_organisations FOR INSERT TO authenticated WITH CHECK (owner_id = auth.uid() AND status = 'pending');
+CREATE POLICY business_org_owner_update ON public.business_organisations FOR UPDATE TO authenticated USING (owner_id = auth.uid()) WITH CHECK (owner_id = auth.uid());
+CREATE OR REPLACE FUNCTION public.business_org_protect_fields() RETURNS trigger LANGUAGE plpgsql SET search_path = public AS $$ BEGIN IF NEW.owner_id <> OLD.owner_id OR NEW.status <> OLD.status THEN RAISE EXCEPTION 'Owner and review status cannot be changed here'; END IF; NEW.updated_at = now(); RETURN NEW; END $$;
+CREATE TRIGGER business_org_guard BEFORE UPDATE ON public.business_organisations FOR EACH ROW EXECUTE FUNCTION public.business_org_protect_fields();
+CREATE TABLE public.business_requests (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), organisation_id uuid NOT NULL REFERENCES public.business_organisations(id) ON DELETE CASCADE, requested_by uuid NOT NULL REFERENCES auth.users(id), service_type text NOT NULL CHECK (service_type IN ('fleet','vehicle','charter','delivery','logistics')), vehicle_type text NOT NULL CHECK (char_length(btrim(vehicle_type)) BETWEEN 2 AND 120), quantity integer NOT NULL DEFAULT 1 CHECK (quantity BETWEEN 1 AND 10000), origin text, destination text, requested_date date, details text NOT NULL CHECK (char_length(btrim(details)) BETWEEN 10 AND 3000), status text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','in_review','completed','cancelled')), created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT ON public.business_requests TO authenticated;
+GRANT ALL ON public.business_requests TO service_role;
+ALTER TABLE public.business_requests ENABLE ROW LEVEL SECURITY;
+CREATE POLICY business_requests_owner_read ON public.business_requests FOR SELECT TO authenticated USING (EXISTS (SELECT 1 FROM public.business_organisations o WHERE o.id = organisation_id AND o.owner_id = auth.uid()));
+CREATE POLICY business_requests_owner_create ON public.business_requests FOR INSERT TO authenticated WITH CHECK (requested_by = auth.uid() AND status = 'pending' AND EXISTS (SELECT 1 FROM public.business_organisations o WHERE o.id = organisation_id AND o.owner_id = auth.uid()));
+CREATE INDEX business_requests_org_created_idx ON public.business_requests(organisation_id, created_at DESC);

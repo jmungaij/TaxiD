@@ -6,6 +6,7 @@
 - `ensure_rider_account` grants verified ustaxid@gmail.com super admin; Amie and Naima use distinct confirmed support accounts, never shared passwords.
 - Code identifiers, database names, env vars, API headers (e.g. `X-Yalla-Tenant`, `YALLA_*` secrets) keep their legacy names — renaming would break integrations.
 - Recover against live TaxiD schema, not compiled Yalla pages. Finance/charter transactions stay enquiries until required tables/RPCs exist. Public navigation lives in `primaryNav.ts` with service-specific discovery links rather than a Marketplace tab.
+- The self-service business portal owns `business_organisations` and `business_requests` records; owner-scoped access is enforced by RLS, while finance totals must not be inferred from enquiry values.
 - Rider Management tables live in `src/components/riders/RiderTables.tsx` with Vitest regression tests (`bun run test`) — catches JSX breakage before publishing.
 - AI rider-support drafts run in the `rider-support-draft` backend function (Lovable AI, admin-only via `has_role`) — keeps the AI key server-side.
 

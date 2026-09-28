@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { DeliveryModulePage } from "@/components/delivery/DeliveryModulePage";
 import { DELIVERY_MODULES } from "@/components/delivery/ModuleShell";
 import { Zap, Clock, MapPin, Bell } from "lucide-react";
+import parcelScene from "@/assets/delivery/taxid-parcel-scene.jpg";
 
 const FEATURES = [
   { icon: Zap, t: "Same-day delivery", d: "Order before noon, delivered today." },
@@ -16,6 +17,7 @@ export default function PackageDeliveryPage() {
       module={DELIVERY_MODULES.package}
       overview={
         <>
+          <img src={parcelScene} width={1200} height={912} loading="lazy" alt="Courier safely handing over a sealed package" className="mb-6 aspect-[16/7] w-full object-cover" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {FEATURES.map((f) => (
               <Card key={f.t} className="p-4">

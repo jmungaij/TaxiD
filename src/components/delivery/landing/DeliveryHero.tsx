@@ -21,6 +21,7 @@ import { buildHandoffUrl, validateHero, type HeroIntent } from "@/lib/logistics/
 import boulevard1920 from "@/assets/delivery/boulevard-1920.webp";
 import boulevard1280 from "@/assets/delivery/boulevard-1280.webp";
 import boulevardMobile from "@/assets/delivery/boulevard-mobile.webp";
+import taxiDDeliveryScene from "@/assets/delivery/taxid-delivery-scene.jpg";
 
 type Field = { id: string; label: string; placeholder: string; type?: string; options?: string[] };
 
@@ -144,9 +145,9 @@ export interface DeliveryHeroProps {
 }
 
 export function DeliveryHero({
-  eyebrow = "Delivery & logistics marketplace",
+  eyebrow = "TaxiD Delivery",
   headline,
-  lead = "Send parcels, documents, freight, business shipments and enterprise logistics through one intelligent delivery marketplace built for individuals and businesses across East Africa.",
+  lead = "Send parcels and documents, arrange a courier or request freight. Choose the right service, tell us where it needs to go, and follow the journey.",
   intents,
   scope = "delivery_hero",
 }: DeliveryHeroProps = {}) {
@@ -230,13 +231,11 @@ export function DeliveryHero({
       className="relative isolate overflow-hidden bg-[hsl(var(--cine-night))]"
     >
       <picture>
-        <source media="(max-width: 640px)" srcSet={boulevardMobile} />
-        <source media="(max-width: 1280px)" srcSet={boulevard1280} />
         <img
-          src={boulevard1920}
-          alt="Delivery vans and a courier motorbike on a rain-lit city boulevard at dusk"
-          width={1920}
-          height={1088}
+          src={taxiDDeliveryScene}
+          alt="A courier motorbike and delivery van on the road in Nairobi"
+          width={1600}
+          height={1008}
           loading="eager"
           decoding="sync"
           fetchPriority="high"
@@ -308,7 +307,7 @@ export function DeliveryHero({
 
           <p aria-live="polite" className="mt-6 flex items-center gap-2 text-xs text-ice/65">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[hsl(var(--status-success))]" aria-hidden />
-            {LIVE[live]}
+             Choose a service and check availability before confirming a shipment.
           </p>
         </div>
 

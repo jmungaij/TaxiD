@@ -58,7 +58,7 @@ export function DriverLandingHero({ resumeAvailable }: { resumeAvailable?: boole
             Driver Experience Platform
           </span>
           <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            Drive Your Business Forward with TaxiD
+            Drive with TaxiD. <span className="text-gold">Move forward with confidence.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-primary-foreground/90 md:text-xl">
             Join a trusted network serving corporate travel, airport transfers, executive mobility,

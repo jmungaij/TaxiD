@@ -310,7 +310,8 @@ export function HeroCinematic() {
           </span>
           <h1 className={cn("mt-7 text-[2.75rem] font-semibold leading-[1.05] text-primary md:text-6xl", !still && "cine-rise")}>
             TaxiD
-            <span className="block text-foreground">Move smarter. Go further.</span>
+            <span className="block text-foreground">Move <span className="text-status-success">people.</span></span>
+            <span className="block text-foreground">Power <span className="text-primary">business.</span></span>
           </h1>
 
           <p className={cn("mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg", !still && "cine-rise")} style={still ? undefined : { animationDelay: "160ms" }}>

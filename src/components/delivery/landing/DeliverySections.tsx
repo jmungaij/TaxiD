@@ -20,9 +20,9 @@ import { AfricaMap } from "@/components/marketing/AfricaMap";
 import { Counter } from "@/components/marketing/Counter";
 import { cn } from "@/lib/utils";
 import { trackBookingHandoff } from "@/lib/marketing/bookingFunnel";
-import warehouseImg from "@/assets/delivery/warehouse.webp";
-import freightImg from "@/assets/delivery/freight.webp";
-import courierImg from "@/assets/delivery/courier.webp";
+import warehouseImg from "@/assets/delivery/taxid-logistics-scene.jpg";
+import freightImg from "@/assets/delivery/taxid-delivery-scene.jpg";
+import courierImg from "@/assets/delivery/taxid-parcel-scene.jpg";
 
 /* ------------------------------------------------------------------ */
 /* Section shell                                                       */
@@ -93,8 +93,8 @@ export function DeliveryMarketplace() {
   return (
     <Section
       id="services"
-      eyebrow="Service marketplace"
-      title="One marketplace, every delivery need"
+       eyebrow="Delivery services"
+       title="The right service for every delivery"
       lead="Choose by what you are sending, not by our internal departments. Every service shares the same tracking, proof of delivery and payment experience."
     >
       <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter services by audience">

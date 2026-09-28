@@ -19,7 +19,7 @@
       {
         "name": "whoami",
         "title": "Who am I",
-        "description": "Return the signed-in SAFARID account's user ID and email.",
+        "description": "Return the signed-in TaxiD account's user ID and email.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,
@@ -36,7 +36,7 @@
       {
         "name": "my_roles",
         "title": "My roles",
-        "description": "List the SAFARID roles (admin, support, rider) assigned to the signed-in account.",
+        "description": "List the TaxiD roles (admin, support, rider) assigned to the signed-in account.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,
@@ -109,7 +109,7 @@
       {
         "name": "reply_to_case",
         "title": "Reply to case",
-        "description": "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their SAFARID inbox.",
+        "description": "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their TaxiD inbox.",
         "annotations": {
           "readOnlyHint": false,
           "destructiveHint": false,

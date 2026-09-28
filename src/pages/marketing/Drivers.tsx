@@ -12,6 +12,7 @@ import { Counter } from "@/components/marketing/Counter";
 import { trackDriverEvent } from "@/lib/driverAnalytics";
 import { supabase } from "@/integrations/supabase/client";
 import driversImg from "@/assets/drivers.jpg";
+import driverDaylight from "@/assets/driver/taxid-driver-daylight.jpg";
 
 /* ============================================================
    TaxiD DRIVER SUCCESS ECOSYSTEM
@@ -213,7 +214,7 @@ export default function Drivers() {
       {/* ---------- HERO ---------- */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 opacity-25" aria-hidden>
-          <img src={driversImg} alt="" className="h-full w-full object-cover" loading="eager" />
+          <img src={driverDaylight} alt="TaxiD driver partner beside his vehicle in Nairobi" className="h-full w-full object-cover object-[65%_center]" loading="eager" />
           <div className="absolute inset-0 bg-primary/80" />
         </div>
         <div className="relative container mx-auto px-4 py-24 md:py-32">

@@ -13,6 +13,7 @@ import HomeFaq from "@/components/home/HomeFaq";
 import TrustProof from "@/components/home/TrustProof";
 import TrustedPartners from "@/components/home/TrustedPartners";
 import HomeQuickActions from "@/components/home/HomeQuickActions";
+import { HowTaxiDWorks } from "@/components/home/HowTaxiDWorks";
 
 
 const trust = [
@@ -34,6 +35,8 @@ const Home = () => (
     <TrustedPartners />
 
     <ServiceUniverse />
+
+    <HowTaxiDWorks />
 
     <WhyYalla />
 
@@ -131,7 +134,7 @@ const Home = () => (
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary-foreground/80">
           Ride • Deliver • Charter • Lease
         </p>
-        <h2 className="mt-4 text-3xl font-bold md:text-4xl">One marketplace. Every way to move.</h2>
+        <h2 className="mt-4 text-3xl font-bold md:text-4xl">Move People. Power Business.</h2>
         <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
           TaxiD connects mobility demand with transportation supply, bringing customers and
           professional mobility providers together on one digital platform — for rides, corporate travel,

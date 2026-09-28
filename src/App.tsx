@@ -31,6 +31,7 @@ const About = lazyWithRetry(() => import("./pages/marketing/About"));
 const Riders = lazyWithRetry(() => import("./pages/marketing/Riders"));
 const Drivers = lazyWithRetry(() => import("./pages/marketing/Drivers"));
 const Corporates = lazyWithRetry(() => import("./pages/marketing/Corporates"));
+const BusinessPortal = lazyWithRetry(() => import("./pages/business/BusinessPortal"));
 const CorporateProfile = lazyWithRetry(() => import("./pages/marketing/CorporateProfile"));
 const EnterpriseDemo = lazyWithRetry(() => import("./pages/marketing/EnterpriseDemo"));
 const EmployeeMobility = lazyWithRetry(() => import("./pages/marketing/EmployeeMobility"));
@@ -548,6 +549,7 @@ const App = () => (
           <Route path="/riders" element={<Riders />} />
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/corporates" element={<Corporates />} />
+          <Route path="/business/portal" element={<BusinessPortal />} />
           <Route path="/partners" element={<YallaPartners />} />
           <Route path="/partners/apply" element={<PartnerApply />} />
           <Route path="/partners/api" element={<ApiPartners />} />

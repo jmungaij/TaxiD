@@ -14,6 +14,7 @@ import {
 import { AppButton } from "@/components/nav/AppButton";
 import { cn } from "@/lib/utils";
 import boulevard from "@/assets/rider/rider-cinematic-boulevard.jpg";
+import riderDaylight from "@/assets/rider/taxid-rider-daylight.jpg";
 
 type ModeKey = "ride" | "airport" | "charter" | "rental" | "send";
 
@@ -167,11 +168,11 @@ export function RiderHero() {
     <section
       ref={sectionRef}
       aria-label="Book rides, airport transfers, charter, rentals and delivery"
-      className="relative isolate flex min-h-[92svh] items-end overflow-hidden bg-[hsl(var(--cine-night))]"
+      className="relative isolate flex min-h-[min(92svh,860px)] items-end overflow-hidden bg-[hsl(var(--cine-night))]"
     >
       <img
-        src={boulevard}
-        alt="Executive sedan on a rain-lit city boulevard at blue hour"
+        src={riderDaylight}
+        alt="TaxiD rider welcomed by a professional driver beside a car in Nairobi"
         width={1920}
         height={1088}
         loading="eager"

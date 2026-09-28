@@ -87,14 +87,14 @@ export default function RiderDashboard() {
         </div>
         <div className="rounded-md border bg-card p-5">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">Completed journeys</span>
+            <span className="text-sm text-muted-foreground">Recent completed trips</span>
             <MapPin className="h-5 w-5 text-primary" />
           </div>
           <p className="text-2xl font-bold mt-2">{loading ? "—" : completed.length}</p>
         </div>
         <div className="rounded-md border bg-card p-5">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">Spent this month</span>
+            <span className="text-sm text-muted-foreground">Recent trip spend this month</span>
             <Clock className="h-5 w-5 text-muted-foreground" />
           </div>
           <p className="text-2xl font-bold mt-2">{loading ? "—" : `KES ${monthSpend.toLocaleString("en-KE")}`}</p>

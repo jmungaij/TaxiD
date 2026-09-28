@@ -757,9 +757,9 @@ const App = () => (
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<RiderDashboard />} />
             <Route path="/dashboard/rider" element={<RiderDashboard />} />
-            <Route path="/dashboard/rider/wallet" element={<RiderDashboard />} />
-            <Route path="/dashboard/rider/trips" element={<RiderDashboard />} />
-            <Route path="/dashboard/rider/support" element={<RiderDashboard />} />
+            <Route path="/dashboard/rider/wallet" element={<Navigate to="/rider/wallet" replace />} />
+            <Route path="/dashboard/rider/trips" element={<Navigate to="/rider/trips" replace />} />
+            <Route path="/dashboard/rider/support" element={<Navigate to="/rider/support" replace />} />
             <Route path="/dashboard/driver" element={<DriverDashboard />} />
             <Route path="/dashboard/driver/profile" element={<DriverProfilePage />} />
             <Route path="/dashboard/driver/wallet" element={<DriverWalletPage />} />

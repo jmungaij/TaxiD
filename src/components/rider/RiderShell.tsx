@@ -3,7 +3,7 @@ import BrandLogo from "@/components/brand/BrandLogo";
 import { Link, NavLink, useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Car, CarFront, MapPin, Wallet, Shield, Heart, Gift, Calendar, Plane, Bell, LogOut, Inbox } from "lucide-react";
+import { Car, CarFront, MapPin, Wallet, Shield, Heart, Gift, Calendar, Plane, Bell, LogOut, Inbox, LifeBuoy } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -18,6 +18,7 @@ const NAV = [
   { to: "/rider/rentals", label: "Rentals", icon: CarFront },
   { to: "/rider/wallet", label: "Wallet", icon: Wallet },
   { to: "/rider/inbox", label: "Support inbox", icon: Inbox },
+  { to: "/rider/support", label: "Get support", icon: LifeBuoy },
   { to: "/rider/favorites", label: "Favorites", icon: Heart },
   { to: "/rider/safety", label: "Safety", icon: Shield },
   { to: "/rider/rewards", label: "Rewards", icon: Gift },

@@ -1,0 +1,1 @@
+CREATE POLICY "Riders open own support threads" ON public.support_threads FOR INSERT TO authenticated WITH CHECK (rider_user_id = auth.uid() AND created_by = auth.uid() AND rider_email = lower(auth.jwt() ->> 'email') AND status = 'open' AND assigned_agent_id IS NULL AND assigned_at IS NULL);

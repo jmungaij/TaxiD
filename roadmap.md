@@ -1,4 +1,6 @@
 # Roadmap
+- [x] Compare the Sept 28 Yalla release's embedded source with TaxiD and transfer compatible rider trip overview and self-service support reporting
+- [ ] Recover other release-only staff, finance, charter and driver modules after their original database contracts and access rules are available — the compiled release does not include deployable migrations
 - [x] Apply uploaded TaxiD logo and its sampled colors across the app
 - [x] Secure verified-email super-admin and support-agent access; keep staff in agent portal
 - [ ] Verify rider booking, wallet and inbox; run a real draft-to-case flow when accounts exist

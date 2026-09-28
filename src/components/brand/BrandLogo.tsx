@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import taxiDLockup from "@/assets/taxid-lockup.png.asset.json";
-import taxiDMark from "@/assets/taxid-mark.png.asset.json";
+const taxiDLockup = "/taxid-lockup.png";
+const taxiDMark = "/taxid-mark.png";
 
 /**
  * BrandLogo — single source of truth for the TaxiD lockup.
@@ -12,8 +12,8 @@ export type BrandLogoTone = "ink" | "light";
 export type BrandLogoVariant = "lockup" | "mark";
 
 const SOURCES: Record<BrandLogoTone, string> = {
-  ink: taxiDLockup.url,
-  light: taxiDLockup.url,
+  ink: taxiDLockup,
+  light: taxiDLockup,
 };
 
 interface BrandLogoProps {
@@ -33,7 +33,7 @@ const BrandLogo = ({
   priority = false,
 }: BrandLogoProps) => (
   <img
-    src={variant === "mark" ? taxiDMark.url : SOURCES[tone]}
+    src={variant === "mark" ? taxiDMark : SOURCES[tone]}
     alt={alt}
     width={variant === "mark" ? 696 : 927}
     height={variant === "mark" ? 840 : 357}

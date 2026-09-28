@@ -1,10 +1,11 @@
 import { useAuth } from "@/hooks/useAuth";
-import { Shield, Users, CreditCard, Wallet } from "lucide-react";
+import { Shield, Users, CreditCard, Wallet, ArrowUpRight, Headphones, Activity, FileSearch } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export default function AdminDashboard() {
-  const { user } = useAuth();
+  const { user, isSuperAdmin } = useAuth();
   const [stats, setStats] = useState({ users: 0, wallets: 0, mpesa: 0, roles: 0 });
   const [statsError, setStatsError] = useState<string | null>(null);
 
@@ -31,8 +32,25 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+        <div><h1 className="text-2xl font-bold">{isSuperAdmin ? "Super Admin Control Centre" : "Admin Dashboard"}</h1>
+          {isSuperAdmin && <p className="text-sm text-muted-foreground">Govern people, operations, payments and platform assurance from one place.</p>}</div>
       </div>
+
+      {isSuperAdmin && <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          { to: "/dashboard/admin/roles", title: "Staff & access", text: "Grant or revoke roles with an audit trail", icon: Shield },
+          { to: "/dashboard/admin/users", title: "Users directory", text: "Find and review rider accounts", icon: Users },
+          { to: "/agent", title: "Assigned cases", text: "Open your own rider conversations", icon: Headphones },
+          { to: "/dashboard/admin/security-audit", title: "Security audit", text: "Investigate access and security activity", icon: FileSearch },
+          { to: "/dashboard/admin/observability", title: "Platform health", text: "Review operational events and alerts", icon: Activity },
+          { to: "/dashboard/admin/mpesa-payments", title: "Payments", text: "Monitor M-Pesa transactions", icon: CreditCard },
+          { to: "/dashboard/admin/role-grant-governance", title: "Role governance", text: "Review privileged execution grants", icon: Shield },
+          { to: "/dashboard/admin/export-audit-trail", title: "Export audit", text: "Review data exports and accountability", icon: FileSearch },
+        ].map(({ to, title, text, icon: Icon }) => <Link key={to} to={to} className="group rounded-xl border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent">
+          <div className="flex items-center justify-between"><Icon className="h-5 w-5 text-primary" /><ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-primary" /></div>
+          <h2 className="mt-3 font-semibold">{title}</h2><p className="mt-1 text-xs text-muted-foreground">{text}</p>
+        </Link>)}
+      </div>}
 
       {statsError && (
         <div className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">

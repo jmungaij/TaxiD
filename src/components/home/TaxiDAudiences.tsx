@@ -2,7 +2,7 @@ import { ArrowUpRight, BriefcaseBusiness, CarFront, UsersRound } from "lucide-re
 import { Link } from "react-router-dom";
 import driverImage from "@/assets/driver/taxid-driver-daylight.jpg";
 import businessImage from "@/assets/corporates.jpg";
-import riderImage from "@/assets/rider/taxid-rider-daylight.jpg";
+import fleetImage from "@/assets/partners/network/fleet-operators.jpg";
 
 const audiences = [
   {
@@ -24,8 +24,8 @@ const audiences = [
     description: "Explore the fleet-owner path and manage your vehicles and partner application.",
     action: "Explore fleet partnership",
     href: "/partner/fleet-owner",
-    image: riderImage,
-    alt: "A TaxiD passenger meeting a transport partner",
+    image: fleetImage,
+    alt: "Fleet vehicles operated by a transport partner",
     accent: "text-status-success",
     line: "bg-status-success",
   },

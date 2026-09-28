@@ -10,7 +10,7 @@ import { defineTool } from "npm:@lovable.dev/mcp-js@3.0.4";
 var whoami_default = defineTool({
   name: "whoami",
   title: "Who am I",
-  description: "Return the signed-in SAFARID account's user ID and email.",
+  description: "Return the signed-in TaxiD account's user ID and email.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: (_args, ctx) => {
@@ -75,7 +75,7 @@ function supabaseForUser(ctx) {
 var my_roles_default = defineTool2({
   name: "my_roles",
   title: "My roles",
-  description: "List the SAFARID roles (admin, support, rider) assigned to the signed-in account.",
+  description: "List the TaxiD roles (admin, support, rider) assigned to the signed-in account.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async (_args, ctx) => {
@@ -157,7 +157,7 @@ import { z as z3 } from "npm:zod@^4.6.5";
 var reply_to_case_default = defineTool5({
   name: "reply_to_case",
   title: "Reply to case",
-  description: "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their SAFARID inbox.",
+  description: "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their TaxiD inbox.",
   inputSchema: {
     case_id: z3.string().uuid().describe("The case ID."),
     message: z3.string().trim().min(1).max(4e3).describe("The reply the rider will read.")
@@ -214,7 +214,7 @@ var mcp_default = defineMcp({
   name: "safarid",
   title: "safarid",
   version: "0.2.0",
-  instructions: "Tools for the SAFARID mobility platform, acting as the signed-in user. Use `whoami` and `my_roles` to confirm the account. Support agents use `my_assigned_cases` to see rider cases assigned to them, `get_case` to read the AI-drafted resolution and rider replies, `reply_to_case` to answer the rider, and `update_case_status` to resolve or close a case. Every action is tracked in the app.",
+  instructions: "Tools for the TaxiD mobility platform, acting as the signed-in user. Use `whoami` and `my_roles` to confirm the account. Support agents use `my_assigned_cases` to see rider cases assigned to them, `get_case` to read the AI-drafted resolution and rider replies, `reply_to_case` to answer the rider, and `update_case_status` to resolve or close a case. Every action is tracked in the app.",
   auth: auth.oauth.issuer({
     issuer: `https://${projectRef}.supabase.co/auth/v1`,
     acceptedAudiences: "authenticated"

@@ -5,7 +5,7 @@ import { supabaseForUser } from "../supabase";
 export default defineTool({
   name: "reply_to_case",
   title: "Reply to case",
-  description: "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their SAFARID inbox.",
+  description: "Send a staff reply to the rider on an open support case assigned to you. The rider sees it in their TaxiD inbox.",
   inputSchema: {
     case_id: z.string().uuid().describe("The case ID."),
     message: z.string().trim().min(1).max(4000).describe("The reply the rider will read."),

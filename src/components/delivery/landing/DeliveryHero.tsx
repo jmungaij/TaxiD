@@ -18,9 +18,7 @@ import { AppButton } from "@/components/nav/AppButton";
 import { cn } from "@/lib/utils";
 import { trackBookingStep, trackBookingHandoff } from "@/lib/marketing/bookingFunnel";
 import { buildHandoffUrl, validateHero, type HeroIntent } from "@/lib/logistics/heroHandoff";
-import boulevard1920 from "@/assets/delivery/boulevard-1920.webp";
-import boulevard1280 from "@/assets/delivery/boulevard-1280.webp";
-import boulevardMobile from "@/assets/delivery/boulevard-mobile.webp";
+import taxiDDeliveryScene from "@/assets/delivery/taxid-delivery-scene.jpg";
 
 type Field = { id: string; label: string; placeholder: string; type?: string; options?: string[] };
 
@@ -111,13 +109,6 @@ const TRUST = [
   { icon: CreditCard, label: "Price agreed up front" },
 ];
 
-const LIVE = [
-  "Same-day courier capacity open · Nairobi CBD",
-  "Freight corridor running on schedule · Mombasa → Nairobi",
-  "Refrigerated vans available today · Westlands hub",
-  "Next-day distribution open · Kisumu & Nakuru",
-];
-
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
@@ -144,9 +135,9 @@ export interface DeliveryHeroProps {
 }
 
 export function DeliveryHero({
-  eyebrow = "Delivery & logistics marketplace",
+  eyebrow = "TaxiD Delivery",
   headline,
-  lead = "Send parcels, documents, freight, business shipments and enterprise logistics through one intelligent delivery marketplace built for individuals and businesses across East Africa.",
+  lead = "Send parcels and documents, arrange a courier or request freight. Choose the right service, tell us where it needs to go, and follow the journey.",
   intents,
   scope = "delivery_hero",
 }: DeliveryHeroProps = {}) {
@@ -162,7 +153,6 @@ export function DeliveryHero({
   );
   const [intent, setIntent] = useState<SendIntent>(tabs[0]?.key ?? "parcel");
   const [values, setValues] = useState<Record<string, string>>({});
-  const [live, setLive] = useState(0);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -171,12 +161,6 @@ export function DeliveryHero({
   useEffect(() => {
     trackBookingStep("booking_started", { serviceCategory: "delivery" });
   }, []);
-
-  useEffect(() => {
-    if (reduced) return;
-    const t = window.setInterval(() => setLive((i) => (i + 1) % LIVE.length), 4600);
-    return () => window.clearInterval(t);
-  }, [reduced]);
 
   const selectIntent = (key: SendIntent) => {
     if (key === intent) return;
@@ -230,13 +214,11 @@ export function DeliveryHero({
       className="relative isolate overflow-hidden bg-[hsl(var(--cine-night))]"
     >
       <picture>
-        <source media="(max-width: 640px)" srcSet={boulevardMobile} />
-        <source media="(max-width: 1280px)" srcSet={boulevard1280} />
         <img
-          src={boulevard1920}
-          alt="Delivery vans and a courier motorbike on a rain-lit city boulevard at dusk"
-          width={1920}
-          height={1088}
+          src={taxiDDeliveryScene}
+          alt="A courier motorbike and delivery van on the road in Nairobi"
+          width={1600}
+          height={1008}
           loading="eager"
           decoding="sync"
           fetchPriority="high"
@@ -252,15 +234,6 @@ export function DeliveryHero({
             "linear-gradient(to top, hsl(var(--cine-night) / 0.97) 0%, hsl(var(--cine-night) / 0.8) 38%, hsl(var(--cine-night) / 0.34) 68%, hsl(var(--cine-night) / 0.62) 100%)",
         }}
       />
-      <div
-        aria-hidden
-        className={cn(
-          "pointer-events-none absolute right-[14%] top-[24%] h-[22rem] w-[22rem] rounded-full blur-3xl",
-          !reduced && "cine-breathe",
-        )}
-        style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.24), transparent 70%)" }}
-      />
-
       <div className="container relative mx-auto grid gap-10 px-4 pb-16 pt-24 md:pt-28 lg:grid-cols-[1.05fr_minmax(0,30rem)] lg:items-end lg:pb-20">
         {/* Editorial column */}
         <div className={cn("text-ice", !reduced && "cine-rise")}>
@@ -270,8 +243,8 @@ export function DeliveryHero({
           <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             {headline ?? (
               <>
-                Deliver Anything.
-                <span className="block text-ice/70">Anywhere. Faster.</span>
+                 TaxiD Delivery.
+                 <span className="block text-ice/70">Send with confidence.</span>
               </>
             )}
           </h1>
@@ -308,7 +281,7 @@ export function DeliveryHero({
 
           <p aria-live="polite" className="mt-6 flex items-center gap-2 text-xs text-ice/65">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[hsl(var(--status-success))]" aria-hidden />
-            {LIVE[live]}
+             Availability is confirmed before a shipment is booked.
           </p>
         </div>
 

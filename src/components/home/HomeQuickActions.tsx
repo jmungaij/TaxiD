@@ -40,11 +40,11 @@ export default function HomeQuickActions() {
             Start here
           </h2>
           <Link
-            to="/marketplace"
+            to="/marketplace?family=charter"
             className="group inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
           >
             <Search className="h-3.5 w-3.5" aria-hidden />
-            Search all capacity by city, date and vehicle
+             Compare charter capacity by city and date
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
           </Link>
         </div>

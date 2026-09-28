@@ -23,6 +23,7 @@ import {
   type PublicOffering,
 } from "@/lib/marketing/publicServiceability";
 import { CONTACT } from "@/config/contact";
+import logisticsScene from "@/assets/delivery/taxid-logistics-scene.jpg";
 
 const ROUTE = "/logistics/solutions";
 
@@ -146,7 +147,7 @@ const LogisticsSolutions = () => {
           "@type": "Service",
           name: "Logistics and delivery services",
           serviceType: "Courier and freight logistics",
-          provider: { "@type": "Organization", name: "TaxiD", url: "https://yalla-africa.lovable.app" },
+           provider: { "@type": "Organization", name: "TaxiD", url: "https://www.taxid.us" },
           areaServed: { "@type": "Country", name: "Kenya" },
           hasOfferCatalog: {
             "@type": "OfferCatalog",
@@ -179,6 +180,7 @@ const LogisticsSolutions = () => {
           </Button>
         </div>
       </PageHero>
+      <section className="border-b border-border bg-background" aria-label="TaxiD logistics network"><div className="container mx-auto grid gap-8 px-4 py-12 md:grid-cols-2 md:items-center"><img src={logisticsScene} width={1600} height={1008} loading="lazy" alt="Trucks loading consignments at a distribution hub" className="aspect-[16/10] w-full object-cover" /><div><h2 className="text-3xl font-semibold">Built for business movements</h2><p className="mt-4 text-muted-foreground">From a single load to a recurring distribution route, share your requirements and the team will confirm capacity, coverage and a quotation before anything moves.</p><Button asChild className="mt-6"><Link to="/logistics/quote">Request a quote <ArrowRight className="ml-2 h-4 w-4" /></Link></Button></div></div></section>
 
       <section className="container mx-auto px-4 py-16">
         {loading ? (

@@ -1,7 +1,9 @@
 # Project rules
 
-- Brand identity comes from `src/config/brand.ts` (SAFARID); contact channels from `src/config/contact.ts` — one place to change names/emails.
-- Legal entity text "Yalla Beena Limited" is kept on purpose (legal documents); only customer-facing brand text says SAFARID.
+- Brand identity comes from `src/config/brand.ts` (TaxiD, "Move Smarter. Go Further."); contact channels from `src/config/contact.ts` — one place to change names/emails.
+- Legal entity text "Yalla Beena Limited" is kept on purpose (legal documents); only customer-facing brand text says TaxiD.
+- The supplied TaxiD artwork is served locally from `public/taxid-*.png` through `BrandLogo` because CDN asset pointers did not render in the Vite preview; favicons and social preview are derived from the same upload.
+- Verified-email bootstrap in `ensure_rider_account` grants `ustaxid@gmail.com` super admin; specific staff mailboxes receive support; never provision a password in code or treat two people sharing `admin@taxid.us` as separate audit identities.
 - Code identifiers, database names, env vars, API headers (e.g. `X-Yalla-Tenant`, `YALLA_*` secrets) keep their legacy names — renaming would break integrations.
 - Files headed "reconstructed after source recovery" are stand-ins for type-only/barrel modules missing from the uploaded bundle; replace them with real originals when available.
 - Rider Management tables live in `src/components/riders/RiderTables.tsx` with Vitest regression tests (`bun run test`) — catches JSX breakage before publishing.

@@ -6,15 +6,15 @@
  * navigation models the CUSTOMER'S mental model, not the feature inventory.
  * Five layers are kept strictly separate:
  *
- *   A. Products / services   → Rides, Business, Charter, Rentals & Leasing, Logistics
- *   B. Marketplace / discovery → Marketplace (search, compare, manage bookings)
+ *   A. Products / services   → Rides, Business & Charter, Rentals & Leasing, Delivery, Logistics
+ *   B. Discovery → included inside its relevant service category
  *   C. Management / operations → surfaced inside product categories as
  *      `requiresAuth` items, never as top-level categories
  *   D. Partner / supply      → Partners (drivers, fleet, charter, logistics)
  *   E. Company / resources   → Resources (help, developers, company, trust)
  *
  * Rules enforced by src/lib/navigation/__tests__/primary-nav.test.ts:
- *   - exactly the eight primary categories, in commercial-priority order
+ *   - primary categories follow customer services, in commercial-priority order
  *   - every destination resolves to a route registered in src/lib/routes.ts
  *   - no destination repeats inside a single category
  *   - no hash deep links whose anchor target does not exist
@@ -130,11 +130,10 @@ export function trackNavClick(section: string, child: NavChild, surface: "deskto
 export const PRIMARY_CATEGORIES = [
   "Rides",
   "Drivers",
-  "Business",
-  "Charter",
+   "Business & Charter",
   "Rentals & Leasing",
+   "Delivery",
   "Logistics",
-  "Marketplace",
   "TaxiD Partners",
   "Resources",
 ] as const;
@@ -230,15 +229,16 @@ export function buildPrimaryNav(appLinks: {
     /* 03 — BUSINESS: move people → control spend → manage → integrate. */
 
     {
-      label: "Business",
-      desc: "Corporate mobility with controlled spending, approvals, centralised booking and reporting.",
-      cols: 3,
+       label: "Business & Charter",
+       desc: "Managed business travel and ground, air and marine charter in one place.",
+       cols: 4,
       featured: { to: "/corporate/register", label: "Open a Business Account", desc: "Complete business verification in one session" },
       groups: [
         {
           heading: "Corporate mobility",
           items: [
             { to: "/riders/corporate", label: "Employee Mobility", desc: "Company-paid staff travel with central booking and spend visibility" },
+             { to: "/marketplace?family=ride", label: "Compare ride capacity", desc: "Search participating operators by city and date" },
             { to: "/rentals/chauffeur", label: "Executive Travel", desc: "Chauffeured travel and protocol support for senior teams and guests" },
             { to: "/corporates", label: "Corporate Programmes", desc: "How managed corporate mobility works with TaxiD" },
             { to: "/riders/corporate#book", label: "Request a Movement", desc: "Arrange a business trip in a few steps" },
@@ -262,45 +262,26 @@ export function buildPrimaryNav(appLinks: {
           ],
         },
         {
-          heading: "Enterprise",
+          heading: "Enterprise & charter",
           items: [
             { to: "/enterprise", label: "Enterprise Solutions", desc: "Tailored mobility programmes with service-level commitments" },
             { to: "/enterprise/demo", label: "Enterprise Walkthrough", desc: "See booking, policy checks, approval and spend control step by step" },
             { to: "/corporate", label: "Company Profile", desc: "Read and download the TaxiD company profile" },
-            { to: "/logistics/solutions", label: "Business Logistics", desc: "Warehousing, line-haul, distribution and third-party logistics" },
             { to: "/corporate-travel-management", label: "Corporate Travel Programmes", desc: "How corporate travel and staff mobility works with TaxiD in Kenya" },
             { to: "/blog/corporate-travel-management-guide", label: "Corporate Travel Guide", desc: "A practical playbook for travel and finance teams" },
           ],
         },
-      ],
-    },
-
-    /* 03 — CHARTER: browse → compare → book → manage. */
-    {
-      label: "Charter",
-      desc: "Ground, air and marine charter for groups, business travel, projects and events.",
-      cols: 3,
-      featured: { to: "/charter/search", label: "Search & Compare", desc: "Compare charter capacity from participating operators" },
-      groups: [
         {
-          heading: "Ground charter",
+           heading: "Charter & bookings",
           items: [
+             { to: "/charter", label: "All Charter Categories", desc: "Browse ground, air and marine charter services" },
+             { to: "/charter/search", label: "Search & Compare Fleet", desc: "Compare participating charter operators" },
+             { to: "/marketplace?family=charter", label: "Compare Available Charter", desc: "Search published capacity by city, date and vehicle" },
             { to: "/charter/bus-charter", label: "Bus, Van & Coach Charter", desc: "Staff, school, tour and VIP group movements" },
             { to: "/charter/smartfare", label: "Charter Fares", desc: "Transparent, per-segment charter pricing" },
-          ],
-        },
-        {
-          heading: "Air & marine charter",
-          items: [
             { to: "/charter/aircraft-charter", label: "Aircraft Charter", desc: "Private aircraft for executive travel, missions and group journeys" },
             { to: "/charter/helicopter-charter", label: "Helicopter Charter", desc: "Transfers, aerial tours and offshore movements" },
             { to: "/charter/marine-charter", label: "Marine Charter", desc: "Boats, yachts, ferries and cargo vessels" },
-          ],
-        },
-        {
-          heading: "Book & manage",
-          items: [
-            { to: "/charter", label: "All Charter Categories", desc: "Browse every charter service in one place" },
             { to: "/charter/booking-status", label: "My Charters", desc: "Charter status, manifests and receipts", requiresAuth: true },
             { to: "/contact", label: "Request a Charter", desc: "Speak to a TaxiD charter consultant" },
           ],
@@ -313,12 +294,13 @@ export function buildPrimaryNav(appLinks: {
       label: "Rentals & Leasing",
       desc: "Flexible vehicle rental and long-term leasing for individuals, businesses and fleet operators.",
       cols: 3,
-      featured: { to: "/rentals/marketplace", label: "Find a Vehicle", desc: "Compare rental operators, rates and availability" },
+       featured: { to: "/marketplace?family=rental", label: "Find a Vehicle", desc: "Compare published rental capacity and rates" },
       groups: [
         {
           heading: "Vehicle rental",
           items: [
             { to: "/rentals/self-drive", label: "Cars & SUVs", desc: "Self-drive vehicles by the day, week or month" },
+             { to: "/marketplace?family=rental", label: "Compare Rental Capacity", desc: "Search available vehicles from participating operators" },
             { to: "/charter/car-rentals", label: "Luxury Cars", desc: "Premium vehicles, self-drive or with a professional driver" },
           ],
         },
@@ -343,20 +325,46 @@ export function buildPrimaryNav(appLinks: {
       ],
     },
 
-    /* 05 — LOGISTICS: send → dispatch → track → manage. */
+    /* 05 — DELIVERY: parcels, documents and city courier. */
     {
-      label: "Logistics",
-      desc: "Move parcels, freight and cargo with delivery, courier and managed logistics solutions.",
-      cols: 3,
+      label: "Delivery",
+      desc: "Send parcels and documents, book a courier and track your delivery.",
+      cols: 2,
       featured: { to: "/delivery/package", label: "Send a Parcel", desc: "Book a same-day collection" },
       groups: [
         {
-          heading: "Delivery",
+           heading: "Send & track",
           items: [
+             { to: "/delivery", label: "Delivery Overview", desc: "Explore parcel, package and courier options" },
             { to: "/delivery/package", label: "Parcel & Express Delivery", desc: "Same-day parcel collection and delivery across the city" },
             { to: "/delivery/courier", label: "Courier", desc: "Documents, legal files and medical consignments handled with care" },
+             { to: "/track", label: "Track a Shipment", desc: "Check the progress of a delivery" },
+             { to: "/marketplace?family=logistics", label: "Compare Delivery Capacity", desc: "See participating delivery operators" },
+           ],
+         },
+         {
+           heading: "Delivery support",
+           items: [
+             { to: "/delivery/enquiry", label: "Ask the Delivery Desk", desc: "Request help with an unusual consignment" },
+             { to: "/delivery/portal", label: "Carrier Portal", desc: "Manage assigned deliveries", requiresAuth: true, audience: "partner" },
+           ],
+         },
+       ],
+     },
+
+     /* 06 — LOGISTICS: freight, fleet and business supply chains. */
+     {
+       label: "Logistics",
+       desc: "Plan freight, dedicated fleet and business distribution with the logistics desk.",
+       cols: 3,
+       featured: { to: "/logistics/quote", label: "Request a Logistics Quote", desc: "Tell us the route, load and schedule" },
+       groups: [
+         {
+           heading: "Freight & fleet",
+           items: [
             { to: "/delivery/logistics", label: "Freight & Cargo", desc: "Regional freight movements through cross-dock hubs" },
             { to: "/delivery/fleet", label: "Truck Dispatch", desc: "Dedicated trucks for repeat and contracted routes" },
+             { to: "/marketplace?family=logistics", label: "Compare Freight Capacity", desc: "Discover approved carrier capacity" },
           ],
         },
         {
@@ -372,34 +380,7 @@ export function buildPrimaryNav(appLinks: {
           items: [
             { to: "/logistics/solutions", label: "Business Logistics", desc: "Warehousing, line-haul, distribution and third-party logistics" },
             { to: "/logistics", label: "Logistics Network", desc: "Coverage, hubs and operating capabilities" },
-            { to: "/delivery", label: "Logistics Overview", desc: "How the TaxiD delivery network works" },
-          ],
-        },
-      ],
-    },
-
-    /* 06 — MARKETPLACE: discovery and booking management only. */
-    {
-      label: "Marketplace",
-      desc: "Discover, compare and book mobility services from participating operators — then manage your bookings in one place.",
-      cols: 2,
-      featured: { to: "/marketplace", label: "Search the Marketplace", desc: "Search rides, charter, rental and logistics by city, date and vehicle" },
-      groups: [
-        {
-          heading: "Discover & compare",
-          items: [
-            { to: "/marketplace", label: "Search All Capacity", desc: "One search by service, city, date and vehicle type" },
-            { to: "/charter/search", label: "Search & Compare Fleet", desc: "Compare available capacity from participating operators" },
-            { to: "/rentals/marketplace", label: "Rental Marketplace", desc: "Rental operators, rates and live availability" },
-            { to: "/charter", label: "Charter Marketplace", desc: "Ground, air and marine charter capacity" },
-          ],
-        },
-        {
-          heading: "Manage bookings",
-          items: [
-            { to: "/rider/trips", label: "My Bookings", desc: "Rides, receipts and travel history", requiresAuth: true, audience: "rider" },
-            { to: "/charter/booking-status", label: "My Charters", desc: "Charter status, manifests and documents", requiresAuth: true },
-            { to: "/dashboard/corporate/completed-rides", label: "Company Bookings", desc: "Completed trips across your organisation", requiresAuth: true, audience: "corporate" },
+             { to: "/logistics/quote", label: "Get a Business Quote", desc: "Request a tailored logistics proposal" },
           ],
         },
       ],

@@ -1,4 +1,7 @@
 # Roadmap
+- [ ] Merge Business and Charter in the public navigation; separate Delivery and Logistics; distribute marketplace discovery across service sections
+- [ ] Refresh Delivery, parcel and Logistics pages with TaxiD service photography informed by the uploaded screenshot
+- [ ] Assess and connect finance/charter orchestration to the actual available backend without inventing payment or charter capabilities
 - [x] Compare the Sept 28 Yalla release's embedded source with TaxiD and transfer compatible rider trip overview and self-service support reporting
 - [ ] Recover other release-only staff, finance, charter and driver modules after their original database contracts and access rules are available — the compiled release does not include deployable migrations
 - [x] Apply uploaded TaxiD logo and its sampled colors across the app

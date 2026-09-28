@@ -1,5 +1,5 @@
 /**
- * SAFARID WHITE-LABEL PARTNERS — enterprise white-label mobility platform.
+ * TaxiD WHITE-LABEL PARTNERS — enterprise white-label mobility platform.
  *
  * Every statement on this page is rendered from the canonical contract in
  * `src/lib/partners/whiteLabel.ts`, so marketing copy cannot claim a surface,
@@ -62,7 +62,7 @@ function StatusBadge({ status }: { status: CapabilityStatus }) {
 
 const OWNER_TONE: Record<Owner, string> = {
   PARTNER: "border-info/30 bg-info/10 text-info",
-  SAFARID: "border-primary/30 bg-primary/10 text-primary",
+  TaxiD: "border-primary/30 bg-primary/10 text-primary",
   SHARED: "border-border bg-muted text-muted-foreground",
 };
 
@@ -140,14 +140,14 @@ function ArchitectureSpine() {
 const JOURNEY = [
   { step: "Discover", owner: "PARTNER" as Owner },
   { step: "Book", owner: "PARTNER" as Owner },
-  { step: "Quote", owner: "SAFARID" as Owner },
+  { step: "Quote", owner: "TaxiD" as Owner },
   { step: "Confirm", owner: "SHARED" as Owner },
-  { step: "Track", owner: "SAFARID" as Owner },
-  { step: "Fulfil", owner: "SAFARID" as Owner },
-  { step: "Pay", owner: "SAFARID" as Owner },
-  { step: "Receive document", owner: "SAFARID" as Owner },
+  { step: "Track", owner: "TaxiD" as Owner },
+  { step: "Fulfil", owner: "TaxiD" as Owner },
+  { step: "Pay", owner: "TaxiD" as Owner },
+  { step: "Receive document", owner: "TaxiD" as Owner },
   { step: "Support", owner: "SHARED" as Owner },
-  { step: "Settle", owner: "SAFARID" as Owner },
+  { step: "Settle", owner: "TaxiD" as Owner },
   { step: "Report", owner: "SHARED" as Owner },
 ];
 
@@ -155,24 +155,24 @@ export default function WhiteLabelPartners() {
   return (
     <MarketingPage>
       <SeoHead
-        title="White-Label Partners | SAFARID"
-        description="Launch and operate a branded mobility experience on SAFARID's mobility infrastructure: multi-tenant architecture, brand configuration, canonical orders, signed APIs, settlement and joint governance."
+        title="White-Label Partners | TaxiD"
+        description="Launch and operate a branded mobility experience on TaxiD's mobility infrastructure: multi-tenant architecture, brand configuration, canonical orders, signed APIs, settlement and joint governance."
         path="/partners/white-label"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "SAFARID White-Label Mobility Platform",
+          name: "TaxiD White-Label Mobility Platform",
           serviceType: "White-label mobility infrastructure",
-          provider: { "@type": "Organization", name: "SAFARID" },
+          provider: { "@type": "Organization", name: "TaxiD" },
           areaServed: "KE",
-          description: "Branded mobility experiences operated on SAFARID's mobility infrastructure, with multi-tenant isolation, API integration, settlement and joint governance.",
+          description: "Branded mobility experiences operated on TaxiD's mobility infrastructure, with multi-tenant isolation, API integration, settlement and joint governance.",
         }}
       />
 
       <PageHero
         eyebrow="White-Label Partners"
-        title="Your brand at the front, SAFARID's execution engine behind it"
-        subtitle="Launch and operate a branded mobility experience without building the mobility infrastructure behind it — your brand, customer journey and commercial relationship, powered by SAFARID's operating platform, supply network and fulfilment capability."
+        title="Your brand at the front, TaxiD's execution engine behind it"
+        subtitle="Launch and operate a branded mobility experience without building the mobility infrastructure behind it — your brand, customer journey and commercial relationship, powered by TaxiD's operating platform, supply network and fulfilment capability."
       >
         <div className="flex flex-wrap gap-3">
           <AppButton size="lg" variant="secondary" analytics="white_label_hero_apply" action="navigate" target="/partners/apply?type=white-label">
@@ -208,7 +208,7 @@ export default function WhiteLabelPartners() {
         id="what"
         eyebrow="Definition"
         title="What white-label means here"
-        lead="The partner owns the brand, the customer and the commercial proposition. SAFARID owns the mobility infrastructure that makes the promise deliverable. This table is the full list of surfaces — nothing outside it is white-labelled."
+        lead="The partner owns the brand, the customer and the commercial proposition. TaxiD owns the mobility infrastructure that makes the promise deliverable. This table is the full list of surfaces — nothing outside it is white-labelled."
       >
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full min-w-[720px] text-sm">
@@ -304,7 +304,7 @@ export default function WhiteLabelPartners() {
       >
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full min-w-[640px] text-sm">
-            <caption className="sr-only">Responsibility matrix between partner and SAFARID</caption>
+            <caption className="sr-only">Responsibility matrix between partner and TaxiD</caption>
             <thead className="bg-muted/40 text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th scope="col" className="px-4 py-3 font-semibold">Area</th>
@@ -554,7 +554,7 @@ export default function WhiteLabelPartners() {
         id="commercial"
         eyebrow="Commercial"
         title="Commercial model"
-        lead="The structure is published; the numbers live in the signed agreement. SAFARID does not publish white-label pricing, because it is sized from scope, services, markets and volume."
+        lead="The structure is published; the numbers live in the signed agreement. TaxiD does not publish white-label pricing, because it is sized from scope, services, markets and volume."
       >
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full min-w-[640px] text-sm">
@@ -801,7 +801,7 @@ export default function WhiteLabelPartners() {
       <section className="border-t border-border bg-primary py-16 text-primary-foreground">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <Building2 className="mx-auto h-8 w-8" aria-hidden />
-          <h2 className="mt-4 text-2xl font-bold md:text-3xl">Take your brand to market on SAFARID's mobility infrastructure</h2>
+          <h2 className="mt-4 text-2xl font-bold md:text-3xl">Take your brand to market on TaxiD's mobility infrastructure</h2>
           <p className="mx-auto mt-3 max-w-2xl text-primary-foreground/85">
             Programmes are qualified before build. Apply with your market, services and expected volume, and the partner
             desk will come back with a feasibility view and the operating model that fits.

@@ -82,7 +82,7 @@ export default function WorkforceLaunchpad() {
   return (
     <>
       <StaffPageHeader
-        eyebrow="SAFARID Workforce Operating System"
+        eyebrow="TaxiD Workforce Operating System"
         title="Workforce launchpad"
         lede="Turn a role blueprint into a working Day-1 plan for a named employee: objectives, KPIs, a 30/60/90 ramp, scheduled standard work and a capacity commitment — reviewed before anything is written."
       />

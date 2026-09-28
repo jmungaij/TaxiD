@@ -1,5 +1,5 @@
 /**
- * Trusted partners strip — organisations SAFARID works with across
+ * Trusted partners strip — organisations TaxiD works with across
  * mobility, technology and logistics. Presentation only: no claims beyond the
  * relationship itself, and no invented metrics.
  */
@@ -25,10 +25,10 @@ export function TrustedPartners() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Trusted partners</p>
           <h2 id="trusted-partners" className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
-            Organisations working with SAFARID.
+            Organisations working with TaxiD.
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Mobility operators, technology providers and logistics businesses connect to SAFARID to
+            Mobility operators, technology providers and logistics businesses connect to TaxiD to
             reach customers, supply capacity and integrate their own systems.
           </p>
         </div>

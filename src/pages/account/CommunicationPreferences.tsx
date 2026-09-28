@@ -67,12 +67,12 @@ export default function CommunicationPreferences() {
   return (
     <main className="container mx-auto max-w-3xl space-y-6 px-4 py-10">
       <Helmet>
-        <title>Email preferences | SAFARID</title>
+        <title>Email preferences | TaxiD</title>
         <meta
           name="description"
-          content="Choose which optional SAFARID emails you receive. Security and booking receipts always remain on."
+          content="Choose which optional TaxiD emails you receive. Security and booking receipts always remain on."
         />
-        <link rel="canonical" href="https://safarid.org/account/communication-preferences" />
+        <link rel="canonical" href="https://taxid.us/account/communication-preferences" />
       </Helmet>
 
       <header className="space-y-2">
@@ -82,7 +82,7 @@ export default function CommunicationPreferences() {
         </div>
         <p className="text-sm text-muted-foreground">
           {email
-            ? `Preferences for ${email}. Changes apply immediately to every SAFARID service.`
+            ? `Preferences for ${email}. Changes apply immediately to every TaxiD service.`
             : "Sign in to manage which optional emails you receive."}
         </p>
       </header>

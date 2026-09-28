@@ -101,7 +101,7 @@ export default function RentalOperations() {
   return (
     <div className="container mx-auto max-w-7xl space-y-6 p-4 md:p-8">
       <Helmet>
-        <title>Rental operations &amp; certification | SAFARID</title>
+        <title>Rental operations &amp; certification | TaxiD</title>
         <meta name="description" content="Live rental control tower, exception handling, fleet readiness, money reconciliation and evidence-backed certification." />
       </Helmet>
 
@@ -451,7 +451,7 @@ export default function RentalOperations() {
               <CardTitle className="text-base">Rental rules, dated and versioned</CardTitle>
               <CardDescription>
                 Every rule is a numbered version with its own start date and approval record. Proposed
-                SAFARID defaults are recorded but do not take effect until you approve them here. Approving
+                TaxiD defaults are recorded but do not take effect until you approve them here. Approving
                 a version retires the one it replaces; past bookings keep the version they were made under.
               </CardDescription>
             </CardHeader>

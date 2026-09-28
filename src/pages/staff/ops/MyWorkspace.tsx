@@ -519,7 +519,7 @@ export default function MyWorkspace() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-3xl">
           <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
-            SAFARID Personal Operating System
+            TaxiD Personal Operating System
           </div>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">
             {greeting ? `${greetingFor()}, ${greeting}` : greetingFor()}

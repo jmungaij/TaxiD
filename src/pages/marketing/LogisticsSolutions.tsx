@@ -138,7 +138,7 @@ const LogisticsSolutions = () => {
   return (
     <MarketingPage>
       <SeoHead
-        title="Logistics & delivery services in Kenya | SAFARID"
+        title="Logistics & delivery services in Kenya | TaxiD"
         description="Parcel delivery, same-day city express, document courier, freight and e-commerce fulfilment in Kenya — with live coverage, collection hours and proof-of-delivery requirements."
         path={ROUTE}
         jsonLd={{
@@ -146,7 +146,7 @@ const LogisticsSolutions = () => {
           "@type": "Service",
           name: "Logistics and delivery services",
           serviceType: "Courier and freight logistics",
-          provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla-africa.lovable.app" },
+          provider: { "@type": "Organization", name: "TaxiD", url: "https://yalla-africa.lovable.app" },
           areaServed: { "@type": "Country", name: "Kenya" },
           hasOfferCatalog: {
             "@type": "OfferCatalog",

@@ -31,7 +31,7 @@ export default function ManageMeeting() {
 
   return (
     <MarketingPage>
-      <PageHero eyebrow="Your meeting" title="Manage your meeting" subtitle="Join, move or cancel your SAFARID meeting." />
+      <PageHero eyebrow="Your meeting" title="Manage your meeting" subtitle="Join, move or cancel your TaxiD meeting." />
       <section className="container mx-auto max-w-3xl px-4 py-12 space-y-4">
         {!b && !err && <Loader2 className="h-6 w-6 animate-spin" />}
         {err && <p className="text-destructive" role="alert">{err}</p>}

@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS — segment landing page.
+ * TaxiD PARTNERS — segment landing page.
  *
  * One page component driven by the Partner Capability Registry
  * (`src/lib/partners/taxonomy.ts`), so a segment can never appear in the
@@ -26,7 +26,7 @@ export default function PartnerSegment() {
   return (
     <MarketingPage>
       <SeoHead
-        title={`${segment.label} | SAFARID Partners`}
+        title={`${segment.label} | TaxiD Partners`}
         description={segment.lead}
         path={`/partners/${segment.slug}`}
         jsonLd={{
@@ -34,7 +34,7 @@ export default function PartnerSegment() {
           "@type": "Service",
           name: segment.label,
           serviceType: SIDE_LABEL[segment.side],
-          provider: { "@type": "Organization", name: "SAFARID" },
+          provider: { "@type": "Organization", name: "TaxiD" },
           areaServed: "KE",
           description: segment.lead,
         }}

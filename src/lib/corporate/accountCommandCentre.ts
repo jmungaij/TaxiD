@@ -417,7 +417,7 @@ export function buildStatementCsv(
 ): string {
   const totals = statementTotals(invoices, now);
   const header = [
-    `SAFARID corporate statement`,
+    `TaxiD corporate statement`,
     `Account,${csvCell(accountName)}`,
     `Generated,${new Date(now).toISOString()}`,
     `Invoiced,${totals.invoicedKes}`,

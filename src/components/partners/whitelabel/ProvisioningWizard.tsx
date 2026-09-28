@@ -201,7 +201,7 @@ export default function ProvisioningWizard({ partnerId, onProvisioned, trigger }
           <div className="space-y-2 rounded-lg border border-primary/40 bg-primary/5 p-4">
             <p className="text-sm font-medium">Sandbox client secret — shown once</p>
             <p className="text-xs text-muted-foreground">
-              Store it in your secret manager now. SAFARID keeps only a hash; it cannot be shown again.
+              Store it in your secret manager now. TaxiD keeps only a hash; it cannot be shown again.
             </p>
             <div className="flex items-center gap-2">
               <code className="min-w-0 flex-1 truncate rounded bg-muted px-2 py-1 text-xs">{secret}</code>

@@ -3,14 +3,14 @@ import { NarrativePage } from "@/components/marketing/NarrativePage";
 export default function Innovation() {
   return (
     <NarrativePage
-      eyebrow="Why SAFARID"
-      title="How SAFARID is engineered"
+      eyebrow="Why TaxiD"
+      title="How TaxiD is engineered"
       subtitle="An event-driven platform where rules are configured rather than coded, and where automated reasoning explains itself instead of deciding on its own."
       path="/innovation"
-      seoTitle="Engineering & Innovation at SAFARID"
-      seoDescription="How SAFARID is built: event-driven operations, configurable business rules, evidence-gated releases and AI used as a reasoning layer, not a decider."
+      seoTitle="Engineering & Innovation at TaxiD"
+      seoDescription="How TaxiD is built: event-driven operations, configurable business rules, evidence-gated releases and AI used as a reasoning layer, not a decider."
       intro={[
-        "SAFARID is being built as an operating platform for African mobility rather than a single booking app: rides, corporate travel, rentals and leasing, delivery and freight all run on the same core.",
+        "TaxiD is being built as an operating platform for African mobility rather than a single booking app: rides, corporate travel, rentals and leasing, delivery and freight all run on the same core.",
         "Three engineering choices shape everything else — events, configurable policy, and evidence before release.",
       ]}
       sections={[
@@ -49,7 +49,7 @@ export default function Innovation() {
         ],
       }}
       cta={{
-        label: "Build on SAFARID",
+        label: "Build on TaxiD",
         to: "/developers",
         note: "Partners and operators can integrate with the platform. The developer pages describe what is available today.",
       }}

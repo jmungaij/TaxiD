@@ -29,12 +29,12 @@ export interface IssuerBranding {
 
 /** Built-in branding — superseded by the active server-side PDF template. */
 export const ISSUER: IssuerBranding = {
-  name: "SAFARID",
-  division: "SAFARID Air · Charter, Leasing & Rentals",
+  name: "TaxiD",
+  division: "TaxiD Air · Charter, Leasing & Rentals",
   address: "Nairobi, Kenya",
   phone: "+254 142 970050",
-  email: "support@safarid.org",
-  web: "safarid.org",
+  email: "support@taxid.us",
+  web: "taxid.us",
 };
 
 
@@ -411,7 +411,7 @@ export async function buildItineraryPdf(input: ItineraryInput): Promise<jsPDF> {
   doc.setFontSize(6);
   doc.setTextColor(29, 78, 216);
   doc.text("SECURED", W - 34, sy + 11, { align: "center" });
-  doc.text("SAFARID AIR", W - 34, sy + 15, { align: "center" });
+  doc.text("TaxiD AIR", W - 34, sy + 15, { align: "center" });
   doc.setFontSize(5);
   doc.text(fingerprint.slice(0, 8), W - 34, sy + 19, { align: "center" });
 
@@ -423,7 +423,7 @@ export async function buildItineraryPdf(input: ItineraryInput): Promise<jsPDF> {
       `Control number: ${control}`,
       `Document fingerprint: ${fingerprint}`,
       `Issued: ${issuedAt.toISOString()}`,
-      "Verify at safarid.org/charter/status using the reference and control number.",
+      "Verify at taxid.us/charter/status using the reference and control number.",
       "Security features: guilloche lathe-work, void-pantograph micro-hatch, microtext,",
       "vector emblem and a deterministic fingerprint bound to this itinerary's contents.",
       "Any alteration invalidates the fingerprint and voids this document.",

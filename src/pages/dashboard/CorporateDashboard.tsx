@@ -612,7 +612,7 @@ function DashboardOverview({
           Configure ride-type restrictions, fare caps, time windows, and approval workflows in the <b>Settings → Policies</b> panel.
         </p>
         <div className="mt-3 rounded-lg bg-primary/5 border border-primary/20 p-3 text-xs">
-          <b>Payment model:</b> SAFARID corporates fund their wallet via M-Pesa Paybill{" "}
+          <b>Payment model:</b> TaxiD corporates fund their wallet via M-Pesa Paybill{" "}
           <span className="font-mono">4148095</span> (Yalla Beena Limited). Rides are debited from your wallet balance in real time.
         </div>
         <div className="mt-4 grid grid-cols-3 gap-3 text-center">

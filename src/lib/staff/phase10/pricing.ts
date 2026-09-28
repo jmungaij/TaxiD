@@ -179,7 +179,7 @@ export interface IncentiveRecommendation {
   context: IncentiveContext;
   /** §10.33 incremental value: additional economically valuable capacity. */
   incrementalSupplyValue: Measure;
-  /** The most SAFARID can rationally pay for that value. */
+  /** The most TaxiD can rationally pay for that value. */
   maxRationalIncentive: Measure;
   perProviderIncentive: Measure;
   requiresApproval: boolean;
@@ -187,7 +187,7 @@ export interface IncentiveRecommendation {
   blockers: string[];
 }
 
-/** SAFARID never pays away more than a defined share of the value unlocked. */
+/** TaxiD never pays away more than a defined share of the value unlocked. */
 export const INCENTIVE_VALUE_SHARE = 0.5;
 
 export function recommendIncentive(ctx: IncentiveContext): IncentiveRecommendation {
@@ -205,7 +205,7 @@ export function recommendIncentive(ctx: IncentiveContext): IncentiveRecommendati
       maxRationalIncentive: unavailableMeasure("Maximum rational incentive", "kes", src, why),
       perProviderIncentive: unavailableMeasure("Incentive per provider", "kes", src, why),
       requiresApproval: true,
-      rationale: "SAFARID does not spend incentive budget against unobserved economics.",
+      rationale: "TaxiD does not spend incentive budget against unobserved economics.",
       blockers,
     };
   }

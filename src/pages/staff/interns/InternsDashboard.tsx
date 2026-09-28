@@ -156,7 +156,7 @@ export default function InternsDashboard() {
     { icon: TrendingUp, label: "Performance index", value: pct(model.performance.index), sub: `${model.performance.scored} scored this period`, show: access.view_performance },
     { icon: Target, label: "Work accepted", value: String(model.totals.acceptedWork), sub: "Reviewer-accepted deliverables", show: access.view_work_queue },
     { icon: Coins, label: "Verified revenue", value: money(model.commercial.verifiedRevenue), sub: "Authoritative sources only", show: access.view_commercial },
-    { icon: Sparkles, label: "SAFARID Talent", value: String(model.totals.talent), sub: "Cleared the 85 evidence bar", show: access.view_talent },
+    { icon: Sparkles, label: "TaxiD Talent", value: String(model.totals.talent), sub: "Cleared the 85 evidence bar", show: access.view_talent },
     { icon: ShieldAlert, label: "Integrity flags", value: String(model.totals.openFlags), sub: "Awaiting human review", show: access.view_integrity },
   ];
   const kpis = allKpis.filter((k) => k.show);
@@ -666,7 +666,7 @@ export default function InternsDashboard() {
                   <Metric label="Avg index" value={pct(c.avg_performance_index)} />
                   <Metric label="Evidence confidence" value={pct(c.avg_evidence_confidence)} />
                   <Metric label="Verified revenue" value={money(c.verified_revenue_kes)} />
-                  <Metric label="SAFARID Talent" value={String(c.yalla_talent)} />
+                  <Metric label="TaxiD Talent" value={String(c.yalla_talent)} />
                 </div>
               </div>
             ))}

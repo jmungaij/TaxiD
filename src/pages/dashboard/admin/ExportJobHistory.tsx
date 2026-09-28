@@ -88,7 +88,7 @@ export default function ExportJobHistory() {
   return (
     <div className="space-y-6">
       <SeoHead
-        title="Export Job History | SAFARID"
+        title="Export Job History | TaxiD"
         description="Scheduled report export runs with artifact downloads, retry status and failure alerts."
         path="/dashboard/admin/export-jobs"
       />

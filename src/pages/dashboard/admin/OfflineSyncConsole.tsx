@@ -210,10 +210,10 @@ export default function OfflineSyncConsole() {
   return (
     <div className="space-y-6 p-4 md:p-6">
       <Helmet>
-        <title>Offline Execution & Sync Control | SAFARID</title>
+        <title>Offline Execution & Sync Control | TaxiD</title>
         <meta
           name="description"
-          content="Monitor driver devices, the offline command journal, conflicts and synchronisation health across SAFARID field operations."
+          content="Monitor driver devices, the offline command journal, conflicts and synchronisation health across TaxiD field operations."
         />
       </Helmet>
 

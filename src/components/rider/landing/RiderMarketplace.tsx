@@ -44,7 +44,7 @@ export function RiderMarketplace() {
           <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">The marketplace</span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Everything you can book</h2>
           <p className="mt-3 text-muted-foreground">
-            One account and one booking experience across every SAFARID service — with verified
+            One account and one booking experience across every TaxiD service — with verified
             operators, transparent pricing and live availability.
           </p>
         </div>

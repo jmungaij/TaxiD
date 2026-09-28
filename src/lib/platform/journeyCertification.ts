@@ -1,5 +1,5 @@
 /**
- * SAFARID — Business Journey Certification
+ * TaxiD — Business Journey Certification
  * ------------------------------------------------
  * Navigation governance certifies *routes*. This module certifies *journeys*:
  * the real sequences a persona walks to produce a business outcome.
@@ -155,7 +155,7 @@ export const BUSINESS_JOURNEYS: BusinessJourney[] = [
     outcome: "Completed, paid ride",
     kpi: "booking_conversion_rate",
     steps: [
-      { path: "/", action: "Discover SAFARID and choose Book SAFARID", outcome: "Booking intent" },
+      { path: "/", action: "Discover TaxiD and choose Book TaxiD", outcome: "Booking intent" },
       { path: "/rider", action: "Review rider experience and pricing", outcome: "Confidence to book" },
       { path: "/app/riders", action: "Book a trip with address autocomplete", outcome: "Trip requested" },
       { path: "/rider/trips", action: "Track and complete the trip", outcome: "Trip completed" },

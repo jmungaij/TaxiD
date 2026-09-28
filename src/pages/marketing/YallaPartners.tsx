@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS — public front door of the mobility distribution platform.
+ * TaxiD PARTNERS — public front door of the mobility distribution platform.
  *
  * Organising principle: three conversion journeys, not one generic partner
  * programme — distribution partners who create demand, supply partners who
@@ -37,8 +37,8 @@ const TRACKS = [
   {
     key: "distribution",
     kicker: "Business partner",
-    title: "I want to sell SAFARID mobility to my customers",
-    body: "Tour operators, DMCs, travel agencies, OTAs, hotels, corporates, retailers and event companies. You own the customer relationship and the sale; SAFARID fulfils the movement.",
+    title: "I want to sell TaxiD mobility to my customers",
+    body: "Tour operators, DMCs, travel agencies, OTAs, hotels, corporates, retailers and event companies. You own the customer relationship and the sale; TaxiD fulfils the movement.",
     bullets: ["Customer register stays yours", "Book across every service line", "Contracted margin per order"],
     cta: "Start a partner application",
     to: "/partners/apply?track=distribution",
@@ -59,8 +59,8 @@ const TRACKS = [
   {
     key: "technology",
     kicker: "Technology & enterprise partner",
-    title: "I want to integrate SAFARID into my platform",
-    body: "Platforms, OTAs, ERPs and enterprises that need programmatic quoting and booking, an embedded surface, or a white-label mobility product operated by SAFARID behind their brand.",
+    title: "I want to integrate TaxiD into my platform",
+    body: "Platforms, OTAs, ERPs and enterprises that need programmatic quoting and booking, an embedded surface, or a white-label mobility product operated by TaxiD behind their brand.",
     bullets: ["API, embed, white label or orchestrate", "Sandbox and certification before production", "Enterprise governance and support"],
     cta: "Open an integration enquiry",
     to: "/partners/apply?track=technology",
@@ -73,7 +73,7 @@ const TRACKS = [
 
 
 const ONBOARDING = [
-  { t: "Apply", d: "Tell us who you are, what you sell or operate, and how you want to work with SAFARID." },
+  { t: "Apply", d: "Tell us who you are, what you sell or operate, and how you want to work with TaxiD." },
   { t: "Qualify", d: "The partner desk reviews your segment, volumes, service lines and commercial fit." },
   { t: "Verify", d: "Company registration, tax identity, contact and compliance documents are verified and recorded." },
   { t: "Configure", d: "Users, roles, approval routes, customers, cost centres and service scope are set up." },
@@ -104,9 +104,9 @@ const JSON_LD = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "SAFARID Partners — mobility distribution platform",
+    name: "TaxiD Partners — mobility distribution platform",
     serviceType: "Mobility distribution and fulfilment infrastructure",
-    provider: { "@type": "Organization", name: "SAFARID", url: "https://safarid.org" },
+    provider: { "@type": "Organization", name: "TaxiD", url: "https://taxid.us" },
     areaServed: "Kenya",
     audience: { "@type": "BusinessAudience", audienceType: "Travel, hospitality, corporate, commerce, logistics and technology partners" },
   },
@@ -116,13 +116,13 @@ const JSON_LD = [
     mainEntity: [
       {
         "@type": "Question",
-        name: "Who can become a SAFARID Partner?",
-        acceptedAnswer: { "@type": "Answer", text: "Distribution partners who sell mobility to their own customers, supply partners who operate vehicles, fleets, logistics, aviation or marine capacity, and technology partners who integrate SAFARID into their own platform." },
+        name: "Who can become a TaxiD Partner?",
+        acceptedAnswer: { "@type": "Answer", text: "Distribution partners who sell mobility to their own customers, supply partners who operate vehicles, fleets, logistics, aviation or marine capacity, and technology partners who integrate TaxiD into their own platform." },
       },
       {
         "@type": "Question",
         name: "How is partner pricing calculated?",
-        acceptedAnswer: { "@type": "Answer", text: "Pricing is computed server-side from the contracted rate card. Supplier cost, SAFARID margin, partner margin and applicable taxes are shown on the order before confirmation, and are versioned at order level." },
+        acceptedAnswer: { "@type": "Answer", text: "Pricing is computed server-side from the contracted rate card. Supplier cost, TaxiD margin, partner margin and applicable taxes are shown on the order before confirmation, and are versioned at order level." },
       },
       {
         "@type": "Question",
@@ -151,8 +151,8 @@ export default function YallaPartners() {
   return (
     <MarketingPage>
       <SeoHead
-        title="SAFARID Partners — mobility distribution platform"
-        description="Sell and fulfil rides, charters, deliveries, rentals and leasing under your own brand. Distribution, supply and API partnerships on SAFARID's mobility infrastructure."
+        title="TaxiD Partners — mobility distribution platform"
+        description="Sell and fulfil rides, charters, deliveries, rentals and leasing under your own brand. Distribution, supply and API partnerships on TaxiD's mobility infrastructure."
         path="/partners"
         jsonLd={JSON_LD}
       />
@@ -174,7 +174,7 @@ export default function YallaPartners() {
           <p className="text-muted-foreground">
             {intent
               ? intent.lead
-              : "SAFARID Partners is a two-sided network plus a distribution platform. Start where you belong — the desk that reviews your application is the one that owns your track."}
+              : "TaxiD Partners is a two-sided network plus a distribution platform. Start where you belong — the desk that reviews your application is the one that owns your track."}
           </p>
           {intent && (
             <Button variant="ghost" size="sm" className="mt-4" onClick={() => setBring("")}>
@@ -266,7 +266,7 @@ export default function YallaPartners() {
               You always see how the money splits
             </h2>
             <p className="mb-6 text-muted-foreground">
-              Every partner order shows the supplier cost, the SAFARID margin, your contracted margin and the
+              Every partner order shows the supplier cost, the TaxiD margin, your contracted margin and the
               applicable taxes before you confirm it. Commercial terms are versioned at order level, and any
               later adjustment — correction, cancellation, refund, tax adjustment or dispute outcome — is
               recorded, authorised and auditable.
@@ -382,7 +382,7 @@ export default function YallaPartners() {
         <div className="container mx-auto grid items-center gap-8 px-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           <div>
             <h2 className="text-[clamp(1.6rem,3vw,2.25rem)] font-bold leading-tight">
-              Your customers. Your brand. Your margin. SAFARID's mobility infrastructure.
+              Your customers. Your brand. Your margin. TaxiD's mobility infrastructure.
             </h2>
             <p className="mt-3 max-w-xl text-primary-foreground/85">
               Tell us whether you sell mobility, supply capacity or integrate platforms — the partner desk
@@ -392,7 +392,7 @@ export default function YallaPartners() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             <Button size="lg" className="bg-ice text-primary hover:bg-ice/90" asChild>
               <Link to="/partners/apply?track=distribution">
-                Become a SAFARID Partner <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
+                Become a TaxiD Partner <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
               </Link>
             </Button>
             <Button
@@ -407,7 +407,7 @@ export default function YallaPartners() {
         </div>
       </section>
 
-      <CrossLinks heading="Related SAFARID capabilities" keys={["corporates", "delivery", "rentals", "enterprise"]} />
+      <CrossLinks heading="Related TaxiD capabilities" keys={["corporates", "delivery", "rentals", "enterprise"]} />
     </MarketingPage>
   );
 }

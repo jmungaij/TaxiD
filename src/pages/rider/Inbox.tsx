@@ -41,7 +41,7 @@ export default function RiderInboxPage() {
           <InboxIcon className="h-5 w-5 text-primary" />
           <h1 className="text-2xl font-semibold">Support inbox</h1>
         </div>
-        <p className="text-sm text-muted-foreground">Replies from SAFARID Support about your trips. You can answer here directly.</p>
+        <p className="text-sm text-muted-foreground">Replies from TaxiD Support about your trips. You can answer here directly.</p>
         {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : error ? (
           <p role="alert" className="text-sm text-destructive">{error}</p>
         ) : threads.length === 0 ? (

@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — lifecycle task queue status.
+ * TaxiD PARTNERS 360 — lifecycle task queue status.
  *
  * Every lifecycle-stage signal either raised a partner-desk task, folded into an
  * open throttle window, or failed to dispatch. This surface shows all three, with
@@ -81,7 +81,7 @@ export default function LifecycleTaskQueue() {
     <div className="space-y-6">
       <StaffPageHeader
         title="Lifecycle task queue"
-        eyebrow="SAFARID Partners 360"
+        eyebrow="TaxiD Partners 360"
         lede="Each lifecycle-stage signal, the partner-desk task it raised, its SLA clock, and why any alert did not go out."
         actions={
           <Button size="sm" variant="outline" onClick={() => void query.refetch()} disabled={query.isFetching}>

@@ -125,7 +125,7 @@ export function FocusNowPanel({
           Mark complete
         </Button>
         <Button variant="ghost" onClick={onAskWhy}>
-          <Sparkles className="mr-2 h-4 w-4" /> Ask SAFARID
+          <Sparkles className="mr-2 h-4 w-4" /> Ask TaxiD
         </Button>
       </div>
       <p className="mt-3 text-xs text-muted-foreground">{confidence.because}</p>

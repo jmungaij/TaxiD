@@ -40,13 +40,13 @@ export default function Unsubscribe() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Email preferences</CardTitle>
-          <CardDescription>Manage notifications from SAFARID Africa</CardDescription>
+          <CardDescription>Manage notifications from TaxiD Africa</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
           {state === "loading" && <div className="flex items-center gap-2 text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />Checking your link…</div>}
           {state === "valid" && (
             <>
-              <p>Click below to unsubscribe this address from SAFARID Africa emails. You'll still receive essential account and trip notifications.</p>
+              <p>Click below to unsubscribe this address from TaxiD Africa emails. You'll still receive essential account and trip notifications.</p>
               <Button onClick={confirm} disabled={busy} className="w-full">{busy ? "Processing…" : "Confirm unsubscribe"}</Button>
             </>
           )}

@@ -162,7 +162,7 @@ export const PartnerEconomics = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/70">
-            Why build on SAFARID
+            Why build on TaxiD
           </span>
           <h2
             id="economics-heading"

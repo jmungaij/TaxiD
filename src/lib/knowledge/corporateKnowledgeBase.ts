@@ -134,7 +134,7 @@ export const KNOWLEDGE_BASE: KnowledgeArticle[] = [
     body: [
       "Each corporate account has a unique paybill reference; funds credited against it are posted to the corporate cash ledger with a full audit trail.",
       "Wallet drawdowns are recorded per trip so the ledger always reconciles to trip and invoice records.",
-      "Low-balance and arrears alerts are raised to your account managers and to the SAFARID operations desk.",
+      "Low-balance and arrears alerts are raised to your account managers and to the TaxiD operations desk.",
       "Accounts on credit terms invoice in arrears instead of drawing down a wallet balance.",
     ],
     keywords: ["wallet", "top up", "paybill", "mpesa", "m-pesa", "balance", "prefunded", "credit limit"],

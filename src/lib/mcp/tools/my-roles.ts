@@ -4,7 +4,7 @@ import { supabaseForUser } from "../supabase";
 export default defineTool({
   name: "my_roles",
   title: "My roles",
-  description: "List the SAFARID roles (admin, support, rider) assigned to the signed-in account.",
+  description: "List the TaxiD roles (admin, support, rider) assigned to the signed-in account.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: async (_args, ctx) => {

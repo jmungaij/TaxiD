@@ -76,7 +76,7 @@ export interface SignalInput {
   source: string;
   /** How the number was obtained; required whenever a value is present. */
   calculation: string;
-  /** LIVE for an observed SAFARID/registry fact, MODELLED for an inference. */
+  /** LIVE for an observed TaxiD/registry fact, MODELLED for an inference. */
   provenance: Extract<Provenance, "LIVE" | "MODELLED">;
   confidence?: number;
   asOf?: string;

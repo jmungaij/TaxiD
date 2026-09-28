@@ -3,7 +3,7 @@
  *
  * Verifies each operator's M-Pesa number and approves withdrawals that operators
  * raise against their OWN wallet balance. Money leaves over the dedicated M-Pesa
- * payouts short code, never the collections paybill; SAFARID's 15% commission and
+ * payouts short code, never the collections paybill; TaxiD's 15% commission and
  * the 5% withdrawal fee are income and are never disbursed.
  */
 import * as React from "react";
@@ -80,7 +80,7 @@ export default function ProviderPayoutDesk() {
             </CardTitle>
             <CardDescription>
               A client's payment holds {100 - Number(rate)}% in the operator's own wallet; once the trip is
-              fulfilled that amount becomes withdrawable and SAFARID's {rate}% is recognised as income into
+              fulfilled that amount becomes withdrawable and TaxiD's {rate}% is recognised as income into
               paybill {data?.settings.platform_paybill}. Operators withdraw strictly against their own wallet
               balance — the collections paybill is never a balance they draw on — and a {fee}% withdrawal fee
               is retained. Smallest payout {settlementMoney(data?.settings.min_payout_cents ?? 1000)}.
@@ -93,7 +93,7 @@ export default function ProviderPayoutDesk() {
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {[
-            { label: `SAFARID ${rate}% commission`, value: s?.commission_cents ?? 0 },
+            { label: `TaxiD ${rate}% commission`, value: s?.commission_cents ?? 0 },
             { label: `Withdrawal fees (${fee}%)`, value: s?.withdrawal_fee_cents ?? 0 },
             { label: "Awaiting customer payment", value: s?.accrued_cents ?? 0 },
             { label: "Held until fulfilment", value: s?.held_cents ?? 0 },

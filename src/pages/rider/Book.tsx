@@ -138,7 +138,7 @@ export default function RiderBookPage() {
             fareEstimate: String(quote[0].total ?? ""),
             currency: "KES",
             tripUrl: `${window.location.origin}/rider/trips/${bookingId}`,
-            siteName: "SAFARID Africa",
+            siteName: "TaxiD Africa",
           },
         },
       }).catch((e) => console.warn("booking email enqueue failed", e));

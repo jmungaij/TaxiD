@@ -198,7 +198,7 @@ export default function OnboardingWizard() {
         {stage === 4 && (
           <div className="space-y-3">
             <Consent label="I consent to background screening (employment + reference checks)." checked={!!data.compliance?.background_consent} onChange={(c) => update("compliance", { background_consent: c })} />
-            <Consent label="I authorise SAFARID to verify my criminal record with relevant authorities." checked={!!data.compliance?.criminal_consent} onChange={(c) => update("compliance", { criminal_consent: c })} />
+            <Consent label="I authorise TaxiD to verify my criminal record with relevant authorities." checked={!!data.compliance?.criminal_consent} onChange={(c) => update("compliance", { criminal_consent: c })} />
             <p className="text-xs text-muted-foreground pt-2">Background and fraud checks typically complete within 48 hours.</p>
           </div>
         )}

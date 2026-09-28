@@ -114,7 +114,7 @@ export default function SecurityScanCenter() {
     if (!visible.length) return toast.error("No findings match the current filters");
     const doc = new jsPDF({ orientation: "landscape" });
     doc.setFontSize(14);
-    doc.text("SAFARID — Security Scan Findings", 14, 14);
+    doc.text("TaxiD — Security Scan Findings", 14, 14);
     doc.setFontSize(9);
     doc.text(
       `Generated ${new Date().toLocaleString()} · severity: ${severity} · category: ${category} · status: ${status} · ${visible.length} row(s)`,

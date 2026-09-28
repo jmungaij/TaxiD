@@ -189,7 +189,7 @@ export function buildAbReport(events: RawCtaEvent[]): AbReport {
 export function abReportTable(report: AbReport, windowLabel: string) {
   return {
     id: "partner-messaging-experiment",
-    title: "SAFARID Partners - messaging experiment report",
+    title: "TaxiD Partners - messaging experiment report",
     subtitle: `Messaging frames A/B, by intent and maturity (${windowLabel})`,
     meta: [
       ["Attributed events", String(report.attributed)],

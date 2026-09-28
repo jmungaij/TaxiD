@@ -1,5 +1,5 @@
 /**
- * SAFARID API PARTNERS — versioned specification & changelog.
+ * TaxiD API PARTNERS — versioned specification & changelog.
  *
  * The OpenAPI document is *generated* from the canonical platform contract
  * (`apiPlatform.ts`) rather than hand-maintained, so a published spec can never
@@ -222,10 +222,10 @@ export function buildOpenApiSpec(version: string = currentRelease().version) {
   return {
     openapi: "3.1.0",
     info: {
-      title: "SAFARID Partner API",
+      title: "TaxiD Partner API",
       version: release.version,
       description: `${release.headline}\n\nStatus: ${release.status}${release.sunsetOn ? ` — sunset ${release.sunsetOn}` : ""}.`,
-      contact: { name: "SAFARID integration desk", url: "https://safarid.org/partners/api" },
+      contact: { name: "TaxiD integration desk", url: "https://taxid.us/partners/api" },
     },
     servers: [
       { url: API_BASE_URL, description: "Production" },

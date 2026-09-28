@@ -162,7 +162,7 @@ export function PartnerWorkspaceLifecycle() {
             The operational bridge between your customer and our network
           </h2>
           <p className="text-pretty text-muted-foreground">
-            My customer. My order. My commercial. SAFARID&apos;s supply. One execution engine.
+            My customer. My order. My commercial. TaxiD&apos;s supply. One execution engine.
             One customer experience.
           </p>
         </div>

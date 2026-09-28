@@ -3,15 +3,15 @@ import { NarrativePage } from "@/components/marketing/NarrativePage";
 export default function Reliability() {
   return (
     <NarrativePage
-      eyebrow="Why SAFARID"
-      title="How SAFARID keeps journeys and payments dependable"
+      eyebrow="Why TaxiD"
+      title="How TaxiD keeps journeys and payments dependable"
       subtitle="What actually happens behind a booking, a payment and a handover — described plainly, without numbers we cannot evidence."
       path="/reliability"
-      seoTitle="Reliability at SAFARID — How Bookings Hold Up"
-      seoDescription="How SAFARID protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation."
+      seoTitle="Reliability at TaxiD — How Bookings Hold Up"
+      seoDescription="How TaxiD protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation."
       intro={[
         "Reliability, for a mobility platform, is not a slogan. It is whether the vehicle you were promised is actually free, whether the money you paid is actually recorded, and whether someone notices when a step fails.",
-        "SAFARID is an early-stage Kenyan company, so instead of publishing service statistics we cannot yet stand behind, this page describes the controls that are built into the platform today.",
+        "TaxiD is an early-stage Kenyan company, so instead of publishing service statistics we cannot yet stand behind, this page describes the controls that are built into the platform today.",
       ]}
       sections={[
         {

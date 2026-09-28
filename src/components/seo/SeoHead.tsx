@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useClaimRouteHead } from "./headClaim";
 
 const SITE_URL = "https://yalla-africa.lovable.app";
-const SITE_NAME = "SAFARID";
+const SITE_NAME = "TaxiD";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-safarid-1200x630.v1.png`;
 
 export interface SeoHeadProps {

@@ -1,5 +1,5 @@
 /**
- * SAFARID — Command Workspace Contract (Command Experience v1).
+ * TaxiD — Command Workspace Contract (Command Experience v1).
  *
  * Every domain command centre composes the SAME architectural layers:
  *

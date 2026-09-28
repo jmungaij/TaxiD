@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — demand desk: matching, quotation and award.
+ * TaxiD PARTNERS 360 — demand desk: matching, quotation and award.
  *
  * Demand (capacity_requests) → explainable partner matching → quote invitation
  * → partner price → commercial decision. Ranking, pricing arithmetic and the
@@ -82,7 +82,7 @@ export default function MatchingConsole() {
   return (
     <div className="space-y-6">
       <StaffPageHeader
-        eyebrow="SAFARID Partners 360"
+        eyebrow="TaxiD Partners 360"
         title="Demand desk"
         lede="Match customer demand to verified partner supply, invite quotes and award work — with the server's reasoning shown in full."
       />
@@ -200,7 +200,7 @@ export default function MatchingConsole() {
                             <div><dt className="text-muted-foreground">Quoted</dt><dd className="tabular-nums">{kes(Number(qt.quoted_amount))}</dd></div>
                             <div><dt className="text-muted-foreground">Commission ({qt.commission_pct ?? 0}%)</dt><dd className="tabular-nums">{kes(Number(qt.commission_amount ?? 0))}</dd></div>
                             <div><dt className="text-muted-foreground">Partner net</dt><dd className="tabular-nums">{kes(Number(qt.partner_net ?? 0))}</dd></div>
-                            <div><dt className="text-muted-foreground">SAFARID margin</dt><dd className="tabular-nums">{kes(Number(qt.yalla_margin ?? 0))}</dd></div>
+                            <div><dt className="text-muted-foreground">TaxiD margin</dt><dd className="tabular-nums">{kes(Number(qt.yalla_margin ?? 0))}</dd></div>
                           </dl>
                         ) : null}
 

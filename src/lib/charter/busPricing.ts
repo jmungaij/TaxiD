@@ -1,8 +1,8 @@
 /**
- * SAFARID — transparent bus/van/coach charter pricing engine.
+ * TaxiD — transparent bus/van/coach charter pricing engine.
  *
  * The Nairobi charter market prices by manual quotation: opaque, inconsistent
- * and slow. SAFARID competes on *instant, explainable* pricing instead of being
+ * and slow. TaxiD competes on *instant, explainable* pricing instead of being
  * the cheapest. Every number this engine produces carries a human-readable
  * reason so the customer never has to ask how the price was calculated.
  *
@@ -47,7 +47,7 @@ export interface BusVehicleClassSpec {
  * rates: 10-seater vans ~KES 8k–15k/day, 14-seater shuttles ~KES 10k–18k,
  * 18–25 minibuses ~KES 15k–25k, 28–33 coaches ~KES 22k–35k, 45–49 executive
  * coaches ~KES 30k–45k, 51–53 ~KES 35k–50k, 62 ~KES 40k–60k and 67–72 double
- * deckers ~KES 55k–85k. SAFARID is the marketplace, not the operator, so base
+ * deckers ~KES 55k–85k. TaxiD is the marketplace, not the operator, so base
  * rates are set for conversion while operators keep margin inside the band.
  */
 export const BUS_VEHICLE_CLASSES: BusVehicleClassSpec[] = [
@@ -362,7 +362,7 @@ export function computeBusPrice(input: BusPricingInput): BusPriceBreakdown {
   const platformFeeKes = round((subtotalKes * PLATFORM_FEE_PCT) / 100);
   lines.push({
     key: "platform_fee",
-    label: "SAFARID platform fee",
+    label: "TaxiD platform fee",
     amountKes: platformFeeKes,
     reason: `${PLATFORM_FEE_PCT}% covers instant pricing, digital contract, payment, tracking and 24/7 support.`,
   });

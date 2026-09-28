@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNERS 360 — profile state history and lifecycle audit trail.
+ * TaxiD PARTNERS 360 — profile state history and lifecycle audit trail.
  *
  * Two staff-only read surfaces over server-written records:
  *   • Profile history — every captured state of a partner intent profile, with

@@ -100,7 +100,7 @@ export function DriverAssistantSection({ status }: { status: DriverApplicationSt
           </p>
         </div>
         <AiAssistantPanel
-          title="SAFARID Driver Assistant"
+          title="TaxiD Driver Assistant"
           subtitle="Recruitment, documents, earnings and support"
           messages={messages}
           suggestions={SUGGESTIONS}

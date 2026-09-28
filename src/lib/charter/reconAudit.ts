@@ -114,7 +114,7 @@ const flat = (o: Record<string, unknown> | null | undefined) =>
 export function reconAuditReport(rows: ReconAuditRow[]): ReportTable {
   return {
     id: "wallet-reconciliation-action-audit",
-    title: "SAFARID · reconciliation action audit",
+    title: "TaxiD · reconciliation action audit",
     subtitle: "Append-only record of exports, reruns, reversals and resolutions",
     meta: [
       ["Entries", String(rows.length)],

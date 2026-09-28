@@ -3,7 +3,7 @@
  *
  * Reads the labelled seed batch (`staff360-intelligence-v1`) from
  * `staff_intelligence_metrics` and `staff_attention_signals`. Every value is
- * surfaced as MODELLED with its batch source declared, never as actual SAFARID
+ * surfaced as MODELLED with its batch source declared, never as actual TaxiD
  * performance. When a row is absent the caller still renders
  * DATA NOT AVAILABLE — the provenance discipline is unchanged.
  */

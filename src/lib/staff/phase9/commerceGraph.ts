@@ -1,7 +1,7 @@
 /**
- * Phase 9 §1-§2 — The SAFARID Commerce Loop and Commerce Graph.
+ * Phase 9 §1-§2 — The TaxiD Commerce Loop and Commerce Graph.
  *
- * Governing idea: SAFARID does not sell vehicles, it sells access to mobility
+ * Governing idea: TaxiD does not sell vehicles, it sells access to mobility
  * capacity. So the commercial spine is NOT lead → CRM → sale. It is
  * demand → capacity → matching → fulfilment → settlement → repeat demand,
  * and sales is one side of that equation rather than the whole of it.
@@ -134,7 +134,7 @@ export const GRAPH_QUESTIONS = [
   "Which booking generated it?",
   "Which operator fulfilled it?",
   "What resource was used?",
-  "What did SAFARID earn?",
+  "What did TaxiD earn?",
   "What did the operator earn?",
   "What went wrong?",
   "What should happen next?",
@@ -154,7 +154,7 @@ const QUESTION_KIND: Record<GraphQuestion, GraphNodeKind | null> = {
   "Which booking generated it?": "booking",
   "Which operator fulfilled it?": "operator",
   "What resource was used?": "resource",
-  "What did SAFARID earn?": "revenue",
+  "What did TaxiD earn?": "revenue",
   "What did the operator earn?": "settlement",
   "What went wrong?": "incident",
   "What should happen next?": null,
@@ -210,7 +210,7 @@ export function attributionGaps(answers: readonly GraphAnswer[]): AttributionGap
     "Which booking generated it?": "Revenue is not traceable to a transaction — settlement cannot be reconciled.",
     "Which operator fulfilled it?": "Supply-side attribution is missing — operator economics cannot be computed.",
     "What resource was used?": "Utilisation and capacity planning cannot be computed.",
-    "What did SAFARID earn?": "Platform take is unknown — contribution cannot be stated.",
+    "What did TaxiD earn?": "Platform take is unknown — contribution cannot be stated.",
     "What did the operator earn?": "Operator payout is unknown — settlement integrity cannot be asserted.",
     "What went wrong?": "No incident linkage — fulfilment quality cannot be assessed.",
     "What should happen next?": "No next action derivable — the loop does not close into repeat demand.",

@@ -1,6 +1,6 @@
 /**
  * Personal Operating System — role adaptation, approvals, change digest and the
- * deterministic Ask SAFARID answering layer.
+ * deterministic Ask TaxiD answering layer.
  *
  * Every function here is PURE and derives its answer from records the employee
  * already owns. Nothing is invented, guessed or fetched from a model.
@@ -266,7 +266,7 @@ export function recommendedNextAction(outcome: WorkOutcome, subject: string): st
   }
 }
 
-/* --------------------------------------------------------------- Ask SAFARID */
+/* --------------------------------------------------------------- Ask TaxiD */
 
 export interface AskYallaContext {
   focus: FocusTarget | null;

@@ -143,7 +143,7 @@ const PAYMENT_METHODS = [
 ];
 
 /**
- * Categories priced by the SAFARID Air dynamic engine rather than the legacy
+ * Categories priced by the TaxiD Air dynamic engine rather than the legacy
  * rate card. Sourced from the shared pricing-governance module so the booking
  * page and the edge function can never disagree about which slugs require a
  * published pricing version.
@@ -269,7 +269,7 @@ const CharterBookingForm = () => {
     { applied_status: string; mpesa_receipt: string | null; result_desc: string | null; created_at: string }[]
   >([]);
 
-  /** Slugs governed by published pricing == slugs priced by the SAFARID Air engine. */
+  /** Slugs governed by published pricing == slugs priced by the TaxiD Air engine. */
   const needsPublishedPricing = requiresPublishedPricing(slug);
   const isAviation = needsPublishedPricing;
 
@@ -1099,7 +1099,7 @@ const CharterBookingForm = () => {
   return (
     <Shell>
       <SeoHead
-        title={`Book ${category.label} | SAFARID`}
+        title={`Book ${category.label} | TaxiD`}
         description={`Request a quote, add passenger details and confirm your ${category.label.toLowerCase()} booking.`}
         path={`/charter/${category.slug}/book`}
       />
@@ -1909,7 +1909,7 @@ const CharterBookingForm = () => {
                     </p>
                     <p className="text-muted-foreground">
                       {pricingBlocked
-                        ? "This category is priced from the governed SAFARID Air pricing version. Confirm unlocks the moment it loads."
+                        ? "This category is priced from the governed TaxiD Air pricing version. Confirm unlocks the moment it loads."
                         : pricingError}
                     </p>
                   </div>
@@ -1985,7 +1985,7 @@ const CharterBookingForm = () => {
           estimatedCost={total}
           extras={conciergeLabels}
           quoteExpiry={`Quote valid until ${new Date(Date.now() + 48 * 60 * 60 * 1000).toLocaleString("en-KE", { dateStyle: "medium", timeStyle: "short" })} (48 hours from issue)`}
-          supportContact="support@safarid.org · +254 142 970050"
+          supportContact="support@taxid.us · +254 142 970050"
         />
         <aside className="rounded-2xl border border-border bg-card p-6 space-y-2 text-sm">
           <h2 className="font-semibold">Quote summary</h2>

@@ -1,7 +1,7 @@
 /**
  * End-to-end marketplace workflow model.
  *
- * SAFARID's value chain is traced as one connected flow:
+ * TaxiD's value chain is traced as one connected flow:
  * Demand → Customer → Marketplace matching → Resource owner/operator →
  * Service fulfilment → Payment → Customer lifetime value.
  *
@@ -64,7 +64,7 @@ export const WORKFLOW_STAGES: readonly WorkflowStage[] = [
   {
     id: "matching",
     label: "Marketplace matching",
-    question: "Can SAFARID match this demand to verified marketplace supply?",
+    question: "Can TaxiD match this demand to verified marketplace supply?",
     description:
       "Dispatch and marketplace matching pair the request with verified independent supply across service, geography, time, vehicle class and compliance state.",
     records: ["Dispatch requests", "Candidate sets", "Offers & acceptances", "Quotations issued"],
@@ -78,7 +78,7 @@ export const WORKFLOW_STAGES: readonly WorkflowStage[] = [
     label: "Resource owner / operator",
     question: "Which independent participant will deliver the service?",
     description:
-      "Drivers, fleet owners, operators and logistics partners are independent marketplace participants — never SAFARID assets or employees. Verification, documents and insurance gate participation.",
+      "Drivers, fleet owners, operators and logistics partners are independent marketplace participants — never TaxiD assets or employees. Verification, documents and insurance gate participation.",
     records: ["Partner & operator records", "Driver onboarding", "Compliance documents", "Assignments"],
     measures: ["Verified supply availability", "Acceptance behaviour", "Compliance expiry exposure"],
     handoff: "A confirmed, compliant assignment ready for fulfilment.",

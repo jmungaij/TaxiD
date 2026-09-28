@@ -1,5 +1,5 @@
 /**
- * Phase 9 — SAFARID Market Expansion & Network Intelligence Engine.
+ * Phase 9 — TaxiD Market Expansion & Network Intelligence Engine.
  *
  * One chain, evidence first:
  *   market signals → attractiveness → digital twin → stressed scenarios →
@@ -8,7 +8,7 @@
  *
  * The engine is allowed to say "not assessable". That is the whole point: a
  * market that cannot evidence its economics defers, and no simulated figure is
- * ever presented as SAFARID performance.
+ * ever presented as TaxiD performance.
  */
 import { scoreAttractiveness, type AttractivenessResult } from "./attractiveness";
 import { buildMarketTwin, type MarketTwin } from "./marketTwin";

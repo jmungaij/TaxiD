@@ -1,5 +1,5 @@
 /**
- * Phase 9 §7-§11 — the SAFARID Matching Engine.
+ * Phase 9 §7-§11 — the TaxiD Matching Engine.
  *
  * "Nearest available provider" is explicitly rejected as the universal
  * algorithm. Matching is a constrained optimisation: hard constraints eliminate
@@ -152,7 +152,7 @@ export interface ScoredCandidate {
   /** 0-100 objective score; null when ineligible. */
   score: number | null;
   terms: { term: ObjectiveTerm; weight: number; normalised: number | null; observed: string }[];
-  /** SAFARID take for this match, KES; null when price or payout unknown. */
+  /** TaxiD take for this match, KES; null when price or payout unknown. */
   expectedTake: number | null;
   explanation: string;
 }
@@ -203,7 +203,7 @@ function normalise(req: MatchRequest, c: MatchCandidate): { term: ObjectiveTerm;
     { term: "cancellation_risk", normalised: c.cancellationRate === null ? null : clamp(100 - c.cancellationRate * 300, 0, 100), observed: c.cancellationRate === null ? "no cancellation history" : `${(c.cancellationRate * 100).toFixed(1)}% cancellation` },
     { term: "strategic_value", normalised: c.strategicValue, observed: c.strategicValue === null ? "not assessed" : `${c.strategicValue}/100 strategic value` },
   ];
-  return rows.map((t) => ({ ...t, observed: t.term === "price" && take !== null ? `${t.observed} · SAFARID take KES ${take.toLocaleString()}` : t.observed }));
+  return rows.map((t) => ({ ...t, observed: t.term === "price" && take !== null ? `${t.observed} · TaxiD take KES ${take.toLocaleString()}` : t.observed }));
 }
 
 export function scoreCandidate(req: MatchRequest, c: MatchCandidate): ScoredCandidate {
@@ -428,7 +428,7 @@ export interface ShipmentState {
   stage: DeliveryStage;
   /** Stages already evidenced by a record. */
   evidenced: DeliveryStage[];
-  /** Physical assets are third-party — SAFARID coordinates, never owns. */
+  /** Physical assets are third-party — TaxiD coordinates, never owns. */
   operatorId: string | null;
   exception: string | null;
 }
@@ -438,7 +438,7 @@ export function deliveryLifecycleGaps(s: ShipmentState): string[] {
   const expected = DELIVERY_STAGES.slice(0, idx);
   const gaps = expected.filter((st) => !s.evidenced.includes(st));
   const out = gaps.map((g) => `Shipment reached ${s.stage} without an evidenced ${g} record.`);
-  if (!s.operatorId) out.push("No fulfilling operator linked — SAFARID does not own the vehicle, so an unlinked shipment has no accountable party.");
+  if (!s.operatorId) out.push("No fulfilling operator linked — TaxiD does not own the vehicle, so an unlinked shipment has no accountable party.");
   if (s.stage === "billing" && !s.evidenced.includes("pod")) out.push("Billing without proof of delivery — revenue is not collectable evidence.");
   return out;
 }

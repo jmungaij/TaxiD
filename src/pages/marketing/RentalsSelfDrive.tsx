@@ -86,7 +86,7 @@ const RentalsSelfDrive = () => {
   return (
     <MarketingPage>
       <SeoHead
-        title="Self-drive car & van rental in Nairobi | SAFARID"
+        title="Self-drive car & van rental in Nairobi | TaxiD"
         description="Self-drive cars, vans and shuttles in Kenya on a published rate card: daily band, included kilometres, metered excess mileage, corporate discount and VAT stated up front."
         path={ROUTE}
         jsonLd={{
@@ -94,7 +94,7 @@ const RentalsSelfDrive = () => {
           "@type": "Service",
           name: "Self-drive vehicle rental",
           serviceType: "Car rental",
-          provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla-africa.lovable.app" },
+          provider: { "@type": "Organization", name: "TaxiD", url: "https://yalla-africa.lovable.app" },
           areaServed: { "@type": "Country", name: "Kenya" },
           ...(cheapest
             ? {

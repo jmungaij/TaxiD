@@ -17,7 +17,7 @@ export function SmartFareBreakdown({ fare }: { fare: MissionFare }) {
       <CardHeader className="bg-gradient-to-br from-primary/10 via-transparent to-transparent">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <CardTitle className="text-lg">Mission price · SAFARID SmartFare™</CardTitle>
+            <CardTitle className="text-lg">Mission price · TaxiD SmartFare™</CardTitle>
             <p className="mt-1 text-sm text-muted-foreground">
               {fare.from?.city ?? "—"} ({fare.from?.code}) → {fare.to?.city ?? "—"} ({fare.to?.code}) ·{" "}
               {fare.aircraft.label} · {fare.sectors === 2 ? "Round trip" : "One way"}
@@ -120,7 +120,7 @@ export function SmartFareBreakdown({ fare }: { fare: MissionFare }) {
             <span className="tabular-nums">{formatKes(fare.operatorMissionCost)}</span>
           </div>
           <div className="flex justify-between">
-            <span>SAFARID platform fee ({fare.platformFeePct}%)</span>
+            <span>TaxiD platform fee ({fare.platformFeePct}%)</span>
             <span className="tabular-nums">{formatKes(fare.platformFee)}</span>
           </div>
           <div className="flex justify-between">
@@ -134,7 +134,7 @@ export function SmartFareBreakdown({ fare }: { fare: MissionFare }) {
           </div>
           <p className="text-xs text-muted-foreground">
             Sustainable operating floor {formatKes(fare.operatingFloor)}
-            {fare.floorApplied ? " — discounts capped at cost, SAFARID never prices below cost." : "."}
+            {fare.floorApplied ? " — discounts capped at cost, TaxiD never prices below cost." : "."}
           </p>
         </section>
 

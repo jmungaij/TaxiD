@@ -147,15 +147,15 @@ export async function submitPortalAcceptance(args: {
 }
 
 export const PORTAL_ERROR_COPY: Record<string, string> = {
-  INVALID_LINK: "This link is not valid. Ask your SAFARID contact to send a new one.",
-  LINK_EXPIRED: "This link has expired. Ask your SAFARID contact to send a new one.",
-  LINK_REVOKED: "This link was withdrawn. Ask your SAFARID contact to send a new one.",
+  INVALID_LINK: "This link is not valid. Ask your TaxiD contact to send a new one.",
+  LINK_EXPIRED: "This link has expired. Ask your TaxiD contact to send a new one.",
+  LINK_REVOKED: "This link was withdrawn. Ask your TaxiD contact to send a new one.",
   ALREADY_SUBMITTED: "Your signed copy and acceptance are already recorded. Nothing further is needed.",
   CONTRACT_ALREADY_ACTIVE: "This contract is already active, so no further acceptance is needed.",
   SIGNATORY_NAME_REQUIRED: "Please enter the full name of the person signing.",
   SIGNED_COPY_REQUIRED: "Please attach your signed copy before confirming.",
   UPLOAD_PATH_REJECTED: "The upload could not be matched to this link. Please try again.",
-  CONTRACT_NOT_FOUND: "This contract is no longer available. Please contact your SAFARID representative.",
+  CONTRACT_NOT_FOUND: "This contract is no longer available. Please contact your TaxiD representative.",
 };
 
 // ---------------------------------------------------------------------------

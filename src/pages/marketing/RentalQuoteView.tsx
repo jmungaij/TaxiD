@@ -5,7 +5,7 @@
  * this page is read back from the stored quotation, so the figure shown is the
  * figure the platform recorded against the published rate card.
  *
- * Payment: the customer pays the full quoted amount to the SAFARID paybill using
+ * Payment: the customer pays the full quoted amount to the TaxiD paybill using
  * the quotation reference. Confirmation is never taken from the browser — the
  * server matches the quotation against the verified M-Pesa ledger, which only
  * Safaricom's signed callback writes.
@@ -84,7 +84,7 @@ export default function RentalQuoteView() {
     return (
       <main className="container mx-auto max-w-2xl px-4 py-20 text-center">
         <Helmet>
-          <title>Quotation not found | SAFARID</title>
+          <title>Quotation not found | TaxiD</title>
           <meta name="robots" content="noindex" />
         </Helmet>
         <h1 className="text-2xl font-semibold">We could not open this quotation</h1>
@@ -108,7 +108,7 @@ export default function RentalQuoteView() {
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
       <Helmet>
-        <title>{`Quotation ${quote.reference} | SAFARID`}</title>
+        <title>{`Quotation ${quote.reference} | TaxiD`}</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 

@@ -241,6 +241,8 @@ const RiderTripDetail = lazyWithRetry(() => import("./pages/rider/TripDetail"));
 const RiderTripShare = lazyWithRetry(() => import("./pages/rider/TripShare"));
 const RiderWallet = lazyWithRetry(() => import("./pages/rider/Wallet"));
 const RiderInbox = lazyWithRetry(() => import("./pages/rider/Inbox"));
+const AgentLogin = lazyWithRetry(() => import("./pages/agent/AgentLogin"));
+const AgentPortal = lazyWithRetry(() => import("./pages/agent/AgentPortal"));
 const RiderSafety = lazyWithRetry(() => import("./pages/rider/Safety"));
 const RiderSchedule = lazyWithRetry(() => import("./pages/rider/Schedule"));
 const RiderAirport = lazyWithRetry(() => import("./pages/rider/Airport"));
@@ -358,7 +360,7 @@ const PrivilegedUpdatesAudit = lazyWithRetry(() => import("./pages/dashboard/adm
 const PrivilegedMetricsDashboard = lazyWithRetry(() => import("./pages/dashboard/admin/PrivilegedMetricsDashboard"));
 const BrandGovernance = lazyWithRetry(() => import("./pages/dashboard/admin/BrandGovernance"));
 
-/* Staff 360 — SAFARID staff portal */
+/* Staff 360 — TaxiD staff portal */
 const StaffPortalLanding = lazyWithRetry(() => import("./pages/staff/StaffPortalLanding"));
 const StaffAccessGateway = lazyWithRetry(() => import("./pages/staff/StaffAccessGateway"));
 const StaffSecurityAudit = lazyWithRetry(() => import("./pages/staff/StaffSecurityAudit"));
@@ -727,6 +729,8 @@ const App = () => (
 
           {/* Auth */}
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/agent/login" element={<AgentLogin />} />
+          <Route path="/agent" element={<AgentPortal />} />
           <Route path="/clients/login" element={<ClientLogin />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/unsubscribe" element={<Unsubscribe />} />
@@ -1044,7 +1048,7 @@ const App = () => (
           <Route path="/my/yalla/:token" element={<CustomerPortal />} />
           <Route path="/my/partner/:token" element={<PartnerLinkPortal />} />
 
-          {/* SAFARID Staff Portal — Staff 360 */}
+          {/* TaxiD Staff Portal — Staff 360 */}
           <Route path="/staff" element={<StaffPortalLanding />} />
           {/* Authoritative staff authentication gateway (public, noindex). */}
           <Route path="/staff/access" element={<StaffAccessGateway />} />

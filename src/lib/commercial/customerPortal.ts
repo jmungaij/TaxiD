@@ -61,10 +61,10 @@ export interface PortalRefusal {
 }
 
 export const PORTAL_REFUSAL_TEXT: Record<string, string> = {
-  INVALID_LINK: "This link is not recognised. Please ask your SAFARID contact for a new one.",
-  LINK_REVOKED: "This link has been withdrawn. Please ask your SAFARID contact for a new one.",
-  LINK_EXPIRED: "This link has expired. Please ask your SAFARID contact for a new one.",
-  ACCOUNT_NOT_FOUND: "Your account record could not be read. Please contact your SAFARID contact.",
+  INVALID_LINK: "This link is not recognised. Please ask your TaxiD contact for a new one.",
+  LINK_REVOKED: "This link has been withdrawn. Please ask your TaxiD contact for a new one.",
+  LINK_EXPIRED: "This link has expired. Please ask your TaxiD contact for a new one.",
+  ACCOUNT_NOT_FOUND: "Your account record could not be read. Please contact your TaxiD contact.",
 };
 
 export async function openCustomerPortal(token: string): Promise<PortalView | PortalRefusal> {

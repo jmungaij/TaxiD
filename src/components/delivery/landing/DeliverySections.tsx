@@ -150,7 +150,7 @@ export function DeliveryMarketplace() {
 }
 
 /* ------------------------------------------------------------------ */
-/* 2 · Why choose SAFARID                                                */
+/* 2 · Why choose TaxiD                                                */
 /* ------------------------------------------------------------------ */
 
 const VALUE = [
@@ -165,7 +165,7 @@ const VALUE = [
 export function DeliveryValue() {
   return (
     <Section
-      eyebrow="Why SAFARID"
+      eyebrow="Why TaxiD"
       title="Built for the customer outcome, not the logistics jargon"
       lead="What matters is that it arrives, on time, provably, at a price you agreed to."
       tone="muted"
@@ -232,7 +232,7 @@ export function DeliveryTracking() {
       id="track"
       eyebrow="Tracking"
       title="Know exactly where it is"
-      lead="Every SAFARID shipment carries a reference. Enter it to open the live status, courier details and proof of delivery."
+      lead="Every TaxiD shipment carries a reference. Enter it to open the live status, courier details and proof of delivery."
       tone="muted"
     >
       <div className="grid gap-6 lg:grid-cols-[minmax(0,26rem)_1fr] lg:items-start">
@@ -305,7 +305,7 @@ export function DeliveryBusiness() {
       id="business"
       eyebrow="Business & enterprise logistics"
       title="Logistics that scales with your business"
-      lead="Retailers, distributors, hospitals, e-commerce brands and corporates run daily volume on SAFARID."
+      lead="Retailers, distributors, hospitals, e-commerce brands and corporates run daily volume on TaxiD."
     >
       <div className="grid gap-6 lg:grid-cols-[1fr_minmax(0,22rem)]">
         <div className="grid gap-5 sm:grid-cols-2">
@@ -409,7 +409,7 @@ export function DeliveryNetwork() {
 
 const STORIES = [
   { quote: "Our pharmacy deliveries used to slip past closing time. Now every drop lands inside the window and we can prove it.", who: "Operations lead, retail pharmacy chain", segment: "Business" },
-  { quote: "We moved 300 orders a week onto SAFARID and our delivery complaints dropped to almost nothing.", who: "Founder, online fashion store", segment: "E-commerce" },
+  { quote: "We moved 300 orders a week onto TaxiD and our delivery complaints dropped to almost nothing.", who: "Founder, online fashion store", segment: "E-commerce" },
   { quote: "Corridor freight from Mombasa arrives on schedule and the invoicing finally matches our cost centres.", who: "Supply chain manager, FMCG distributor", segment: "Enterprise" },
 ];
 
@@ -480,7 +480,7 @@ export function DeliveryAssistant() {
     >
       <div className="grid gap-6 lg:grid-cols-[minmax(0,34rem)_1fr] lg:items-start">
         <AiAssistantPanel
-          title="SAFARID Logistics Assistant"
+          title="TaxiD Logistics Assistant"
           subtitle="Service guidance, pricing basis and tracking help"
           messages={messages}
           onSubmit={onSubmit}
@@ -517,7 +517,7 @@ export function DeliveryAssistant() {
 
 export function DeliveryFinalCta() {
   return (
-    <section aria-label="Start sending with SAFARID" className="border-t bg-primary/5 py-16">
+    <section aria-label="Start sending with TaxiD" className="border-t bg-primary/5 py-16">
       <div className="container mx-auto flex flex-col items-start gap-6 px-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-2xl font-bold md:text-3xl">Ready to send?</h2>

@@ -202,7 +202,7 @@ export default function FleetOwnerPortal() {
                 <CardHeader>
                   <CardTitle className="text-lg">Your evidence register</CardTitle>
                   <CardDescription>
-                    You own these documents. SAFARID verifies them; it never issues or approves them on your behalf.
+                    You own these documents. TaxiD verifies them; it never issues or approves them on your behalf.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">

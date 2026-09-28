@@ -77,14 +77,14 @@ export default function DocumentVerify() {
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
       <Helmet>
-        <title>Verify a SAFARID travel document</title>
+        <title>Verify a TaxiD travel document</title>
         <meta
           name="description"
-          content="Validate a SAFARID charter dossier: one-time token, digital signature, SHA-256 fingerprint and fraud confidence score."
+          content="Validate a TaxiD charter dossier: one-time token, digital signature, SHA-256 fingerprint and fraud confidence score."
         />
         <link rel="canonical" href="https://yalla-africa.lovable.app/verify-document" />
-        <meta property="og:title" content="Verify a SAFARID travel document" />
-        <meta property="og:description" content="Validate a SAFARID charter dossier: one-time token, digital signature, SHA-256 fingerprint and fraud confidence score." />
+        <meta property="og:title" content="Verify a TaxiD travel document" />
+        <meta property="og:description" content="Validate a TaxiD charter dossier: one-time token, digital signature, SHA-256 fingerprint and fraud confidence score." />
         <meta property="og:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
         <meta name="twitter:image" content="https://yalla-africa.lovable.app/og-safarid-1200x630.v1.png" />
       </Helmet>

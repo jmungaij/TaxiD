@@ -50,7 +50,7 @@ export const TALENT_LEVEL_LABEL: Record<TalentLevel, string> = {
   APPRENTICE: "Apprentice",
   OPERATOR: "Operator",
   PRODUCER: "Producer",
-  YALLA_TALENT: "SAFARID Talent",
+  YALLA_TALENT: "TaxiD Talent",
 };
 
 export const CONVERSION_OUTCOMES = [

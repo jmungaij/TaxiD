@@ -65,7 +65,7 @@ export function SupportThreadView({
           return (
             <li key={m.id} className={`max-w-[85%] rounded-lg border p-3 text-sm ${mine ? "self-end bg-primary/10" : "self-start bg-muted/40"}`}>
               <div className="mb-1 text-xs text-muted-foreground">
-                {m.sender_role === "staff" ? "SAFARID Support" : "Rider"} · {formatDistanceToNow(new Date(m.created_at), { addSuffix: true })}
+                {m.sender_role === "staff" ? "TaxiD Support" : "Rider"} · {formatDistanceToNow(new Date(m.created_at), { addSuffix: true })}
               </div>
               <p className="whitespace-pre-wrap">{m.body}</p>
             </li>

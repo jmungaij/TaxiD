@@ -13,7 +13,7 @@ import executiveImg from "@/assets/vehicles/yalla-executive.jpg";
 import shuttleImg from "@/assets/vehicles/executive-shuttle.jpg";
 
 const SLIDES = [
-  { src: driversImg, alt: "Professional SAFARID driver beside a saloon vehicle" },
+  { src: driversImg, alt: "Professional TaxiD driver beside a saloon vehicle" },
   { src: corporatesImg, alt: "Corporate passengers boarding an executive transfer" },
   { src: executiveImg, alt: "Executive class vehicle ready for a premium ride" },
   { src: shuttleImg, alt: "Executive shuttle on a staff transport assignment" },
@@ -58,7 +58,7 @@ export function DriverLandingHero({ resumeAvailable }: { resumeAvailable?: boole
             Driver Experience Platform
           </span>
           <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            Drive Your Business Forward with SAFARID
+            Drive Your Business Forward with TaxiD
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-primary-foreground/90 md:text-xl">
             Join a trusted network serving corporate travel, airport transfers, executive mobility,

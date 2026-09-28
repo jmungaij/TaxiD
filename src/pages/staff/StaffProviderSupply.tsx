@@ -221,7 +221,7 @@ export default function StaffProviderSupply() {
           <TabsTrigger value="driver-clearance">Driver payout approval</TabsTrigger>
           <TabsTrigger value="finance">Finance dashboard</TabsTrigger>
           <TabsTrigger value="operator-invoices">Operator statements</TabsTrigger>
-          <TabsTrigger value="yalla-wallet">SAFARID wallet</TabsTrigger>
+          <TabsTrigger value="yalla-wallet">TaxiD wallet</TabsTrigger>
           <TabsTrigger value="enterprise">Enterprise bookings</TabsTrigger>
           <TabsTrigger value="invoices">Enterprise invoices</TabsTrigger>
         </TabsList>

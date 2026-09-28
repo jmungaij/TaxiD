@@ -120,7 +120,7 @@ const Home = () => (
     <HomeFaq />
 
     <CrossLinks
-      heading="Explore the SAFARID ecosystem"
+      heading="Explore the TaxiD ecosystem"
       keys={["drivers", "corporates", "delivery", "rentals", "careers", "developers"]}
     />
 
@@ -133,7 +133,7 @@ const Home = () => (
         </p>
         <h2 className="mt-4 text-3xl font-bold md:text-4xl">One marketplace. Every way to move.</h2>
         <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
-          SAFARID connects mobility demand with transportation supply, bringing customers and
+          TaxiD connects mobility demand with transportation supply, bringing customers and
           professional mobility providers together on one digital platform — for rides, corporate travel,
           charter, rental, leasing, delivery and logistics.
         </p>
@@ -144,7 +144,7 @@ const Home = () => (
           </AppButton>
           <AppButton size="lg" variant="outline" className="bg-transparent border-ice/70 text-ice hover:bg-ice/20"
             analytics="marketing.talk_to_sales" action="navigate" target="/contact">
-            Talk to SAFARID
+            Talk to TaxiD
           </AppButton>
         </div>
       </div>

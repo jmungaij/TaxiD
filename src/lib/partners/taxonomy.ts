@@ -1,5 +1,5 @@
 /**
- * SAFARID PARTNER CAPABILITY REGISTRY — the canonical partner taxonomy.
+ * TaxiD PARTNER CAPABILITY REGISTRY — the canonical partner taxonomy.
  *
  * Discovered from the real application, not invented for a mega-menu. Every
  * entry below was verified against:
@@ -10,7 +10,7 @@
  *   • the driver, charter-operator and delivery-portal surfaces
  *
  * Classification law:
- *   DISTRIBUTION — brings demand: sells or refers SAFARID mobility to customers
+ *   DISTRIBUTION — brings demand: sells or refers TaxiD mobility to customers
  *   SUPPLY       — brings capacity: drivers, fleets, charter, logistics, rental
  *   INTEGRATION  — brings technical reach: API, white label, platform
  *
@@ -19,7 +19,7 @@
  * deliberately absent from this registry.
  *
  * `capability` is the honesty gate. `operational` = a dedicated end-to-end flow
- * exists today. `application_only` = SAFARID accepts the partner and operates the
+ * exists today. `application_only` = TaxiD accepts the partner and operates the
  * relationship through the partner desk and the shared partner workspace, but
  * there is no self-serve product surface yet — such an entry must never be
  * presented as a live self-service capability.
@@ -47,7 +47,7 @@ export interface PartnerSegment {
   lead: string;
   /** Who this is for, in plain business terms. */
   audience: string;
-  /** What the partner can actually sell or supply through SAFARID. */
+  /** What the partner can actually sell or supply through TaxiD. */
   services: string[];
   /** What the partner does in the platform, in order. */
   workflow: string[];
@@ -79,7 +79,7 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     side: "DISTRIBUTION",
     capability: "operational",
     headline: "Sell ground mobility to the guests you already bring to Kenya",
-    lead: "Sell airport transfers, city rides, excursions, safari charters and vehicle rental to your guests through SAFARID — without building your own transport operation.",
+    lead: "Sell airport transfers, city rides, excursions, safari charters and vehicle rental to your guests through TaxiD — without building your own transport operation.",
     audience: "Tour operators, destination management companies, travel agencies, online travel platforms and destination businesses.",
     services: ["Airport transfers", "City and intercity rides", "Safari and excursion charters", "Vehicle rental for guests", "Multi-leg guest journeys"],
     workflow: ["Register the guest as your customer", "Quote from your contracted rate card", "Confirm the order", "Track execution per leg", "Reconcile and settle"],
@@ -132,7 +132,7 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     workspaceLabel: "Partner Workspace",
     authRoles: ["partner_user"],
     prefill: { partner_type: "CORPORATE", commercial_model: "ORCHESTRATE" },
-    related: [{ to: "/corporates", label: "Corporate mobility (buying for your own staff)" }, { to: "/enterprise", label: "SAFARID Enterprise" }],
+    related: [{ to: "/corporates", label: "Corporate mobility (buying for your own staff)" }, { to: "/enterprise", label: "TaxiD Enterprise" }],
   },
   {
     slug: "commerce-retail",
@@ -142,7 +142,7 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     side: "DISTRIBUTION",
     capability: "operational",
     headline: "Same-day delivery under your own brand",
-    lead: "Offer your customers same-day and scheduled delivery fulfilled by SAFARID's courier and logistics network, with proof of delivery on every drop.",
+    lead: "Offer your customers same-day and scheduled delivery fulfilled by TaxiD's courier and logistics network, with proof of delivery on every drop.",
     audience: "E-commerce brands, retailers, distributors, pharmacies and marketplaces.",
     services: ["Same-day parcel delivery", "Scheduled and batch drops", "Returns collection", "Bulk and freight movement", "Proof of delivery on every order"],
     workflow: ["Create the delivery order", "Quote and confirm", "Courier allocated and dispatched", "Track to proof of delivery", "Reconcile and settle"],
@@ -180,14 +180,14 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     slug: "referral-distribution",
     partnerTypeKey: "referral_partner",
     label: "Referral & Distribution Partners",
-    navDesc: "Businesses that refer SAFARID services to their customers.",
+    navDesc: "Businesses that refer TaxiD services to their customers.",
     side: "DISTRIBUTION",
     capability: "operational",
     headline: "Refer the movement, earn on the completed order",
-    lead: "Send your customers to SAFARID and earn on completed movements, with no operations for you to run and no fulfilment obligation.",
+    lead: "Send your customers to TaxiD and earn on completed movements, with no operations for you to run and no fulfilment obligation.",
     audience: "Agencies, membership bodies, professional services firms, consultants and businesses with a customer base that needs mobility.",
     services: ["Referred rides and transfers", "Referred charter enquiries", "Referred delivery and logistics", "Referred rental and leasing"],
-    workflow: ["Refer the customer or enquiry", "SAFARID quotes and fulfils", "Completion is recorded", "Your earning is reconciled", "Settlement on contracted terms"],
+    workflow: ["Refer the customer or enquiry", "TaxiD quotes and fulfils", "Completion is recorded", "Your earning is reconciled", "Settlement on contracted terms"],
     commercial: "Commission on completed, reconciled orders — no exposure to supplier cost.",
     backendEntities: ["partner_applications", "partners", "partner_ledger_entries", "partner_settlements"],
     applyRoute: "/partners/apply?type=referral-distribution",
@@ -203,11 +203,11 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     slug: "drivers",
     partnerTypeKey: "driver_partner",
     label: "Driver Partners",
-    navDesc: "Drive and deliver with SAFARID.",
+    navDesc: "Drive and deliver with TaxiD.",
     side: "SUPPLY",
     capability: "operational",
-    headline: "Drive and deliver with SAFARID",
-    lead: "Join the SAFARID supply partner network as a driver or courier: register, verify your documents, complete training, activate and start earning.",
+    headline: "Drive and deliver with TaxiD",
+    lead: "Join the TaxiD supply partner network as a driver or courier: register, verify your documents, complete training, activate and start earning.",
     audience: "Professional drivers, chauffeurs, courier riders and owner-drivers.",
     services: ["Rides and airport transfers", "Courier and parcel delivery", "Corporate and executive trips", "Charter and group work through an operator"],
     workflow: ["Register", "Verify documents", "Complete onboarding and training", "Activate", "Drive and earn", "Track performance"],
@@ -217,16 +217,16 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     workspaceRoute: "/dashboard/driver",
     workspaceLabel: "Driver Portal",
     authRoles: ["driver"],
-    related: [{ to: "/drivers", label: "Drive with SAFARID" }, { to: "/driver/earnings", label: "Driver earnings" }, { to: "/driver/training", label: "Driver academy" }],
+    related: [{ to: "/drivers", label: "Drive with TaxiD" }, { to: "/driver/earnings", label: "Driver earnings" }, { to: "/driver/training", label: "Driver academy" }],
   },
   {
     slug: "fleet-operators",
     partnerTypeKey: "fleet_partner",
     label: "Fleet Operators",
-    navDesc: "Put vehicles and drivers to work on SAFARID demand.",
+    navDesc: "Put vehicles and drivers to work on TaxiD demand.",
     side: "SUPPLY",
     capability: "operational",
-    headline: "Put your vehicles and drivers to work on SAFARID demand",
+    headline: "Put your vehicles and drivers to work on TaxiD demand",
     lead: "Register your fleet, verify your vehicles and drivers, publish capacity and receive matched demand — cars, SUVs, vans and utility vehicles.",
     audience: "Fleet owners and operators running cars, SUVs, vans, minibuses and utility vehicles with their own drivers.",
     services: ["Ride and transfer supply", "Corporate and executive supply", "Van and utility capacity", "Standing capacity commitments"],
@@ -268,7 +268,7 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     navDesc: "Courier, carrier, freight and hub capacity.",
     side: "SUPPLY",
     capability: "operational",
-    headline: "Extend your delivery and freight capacity through SAFARID demand",
+    headline: "Extend your delivery and freight capacity through TaxiD demand",
     lead: "Register courier, carrier, freight or hub capacity, define your service area, receive shipments, dispatch, capture proof of delivery and settle on reconciled orders.",
     audience: "Courier companies, carriers, freight and trucking operators, 3PLs and hub or warehousing operators.",
     services: ["Parcel and courier capacity", "Freight and trucking capacity", "Hub and warehousing support", "Scheduled and batch distribution"],
@@ -309,10 +309,10 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     slug: "api",
     partnerTypeKey: "api_partner",
     label: "API Partners",
-    navDesc: "Integrate SAFARID mobility programmatically.",
+    navDesc: "Integrate TaxiD mobility programmatically.",
     side: "INTEGRATION",
     capability: "application_only",
-    headline: "Connect SAFARID mobility into your own technology",
+    headline: "Connect TaxiD mobility into your own technology",
     lead: "API access is granted after technical discovery, scoped credentials and certification in sandbox. Credentials are issued by the integration desk — there is no self-serve key generation.",
     audience: "Platforms, online travel platforms, ERPs, and enterprises with their own product journeys.",
     services: ["Programmatic quoting and booking", "Order status and tracking", "Documents and evidence", "Settlement and reconciliation data"],
@@ -330,13 +330,13 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     slug: "white-label",
     partnerTypeKey: "white_label_partner",
     label: "White-Label Partners",
-    navDesc: "SAFARID-powered mobility under your own brand.",
+    navDesc: "TaxiD-powered mobility under your own brand.",
     side: "INTEGRATION",
     capability: "application_only",
-    headline: "Your brand at the front, SAFARID's execution engine behind it",
+    headline: "Your brand at the front, TaxiD's execution engine behind it",
     lead: "White-label programmes are approved case by case through the partner desk: commercial model, operating model, service scope and governance are contracted before build, and certification precedes go-live.",
     audience: "Established brands, platforms and enterprises that want to operate a mobility product without building the operation.",
-    services: ["Branded booking experience", "SAFARID-operated fulfilment", "Multi-service journeys", "Reconciled settlement reporting"],
+    services: ["Branded booking experience", "TaxiD-operated fulfilment", "Multi-service journeys", "Reconciled settlement reporting"],
     workflow: ["Commercial discussion", "Operating model agreed", "Technical discovery", "Build and certify", "Controlled go-live", "Joint performance review"],
     commercial: "Contracted commercial and operating model, agreed per programme.",
     backendEntities: ["partner_applications", "partners", "commercial_contract_instances"],
@@ -345,7 +345,7 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     workspaceLabel: "Partner Workspace",
     authRoles: ["partner_user"],
     prefill: { partner_type: "TRAVEL_PLATFORM", commercial_model: "WHITE_LABEL" },
-    related: [{ to: "/enterprise", label: "SAFARID Enterprise" }, { to: "/developers", label: "Developer portal" }],
+    related: [{ to: "/enterprise", label: "TaxiD Enterprise" }, { to: "/developers", label: "Developer portal" }],
   },
   {
     slug: "technology",
@@ -354,10 +354,10 @@ export const PARTNER_SEGMENTS: PartnerSegment[] = [
     navDesc: "Connect technology, distribution or operational systems.",
     side: "INTEGRATION",
     capability: "application_only",
-    headline: "Connect your systems to the SAFARID operating stack",
-    lead: "For technology and platform businesses whose systems need to exchange data with SAFARID — distribution platforms, expense and travel systems, telematics, payments and operational tooling. Scope and data flows are agreed with the integration desk.",
+    headline: "Connect your systems to the TaxiD operating stack",
+    lead: "For technology and platform businesses whose systems need to exchange data with TaxiD — distribution platforms, expense and travel systems, telematics, payments and operational tooling. Scope and data flows are agreed with the integration desk.",
     audience: "Software platforms, travel and expense systems, telematics providers, payment platforms and systems integrators.",
-    services: ["Data exchange with SAFARID systems", "Embedded surfaces in your product", "Operational and reporting integrations"],
+    services: ["Data exchange with TaxiD systems", "Embedded surfaces in your product", "Operational and reporting integrations"],
     workflow: ["Partnership discussion", "Technical discovery", "Scope and data flows agreed", "Build and certify", "Controlled go-live"],
     commercial: "Agreed per partnership — referral, revenue share or fee.",
     backendEntities: ["partner_applications", "partners", "certification_workflows"],
@@ -377,9 +377,9 @@ export const SIDE_LABEL: Record<PartnerSide, string> = {
 };
 
 export const SIDE_BLURB: Record<PartnerSide, string> = {
-  DISTRIBUTION: "Organisations that sell, refer or arrange SAFARID mobility for their own customers.",
-  SUPPLY: "Operators and drivers that provide the capacity SAFARID fulfils demand with.",
-  INTEGRATION: "Businesses that connect SAFARID mobility into their own technology or brand.",
+  DISTRIBUTION: "Organisations that sell, refer or arrange TaxiD mobility for their own customers.",
+  SUPPLY: "Operators and drivers that provide the capacity TaxiD fulfils demand with.",
+  INTEGRATION: "Businesses that connect TaxiD mobility into their own technology or brand.",
 };
 
 export function segmentsBySide(side: PartnerSide): PartnerSegment[] {
@@ -394,7 +394,7 @@ export function findSegment(slug: string | null | undefined): PartnerSegment | u
 /** Actors that are explicitly NOT partners — kept so the IA cannot drift. */
 export const NON_PARTNER_ACTORS = [
   { actor: "Rider", route: "/riders", why: "Buys rides for themselves." },
-  { actor: "Corporate customer", route: "/corporates", why: "Buys mobility for its own staff; becomes a partner only when it distributes SAFARID services." },
+  { actor: "Corporate customer", route: "/corporates", why: "Buys mobility for its own staff; becomes a partner only when it distributes TaxiD services." },
   { actor: "Corporate employee", route: "/dashboard/corporate", why: "Travels under an employer policy." },
-  { actor: "SAFARID staff", route: "/staff/access", why: "Internal operator of the platform." },
+  { actor: "TaxiD staff", route: "/staff/access", why: "Internal operator of the platform." },
 ] as const;

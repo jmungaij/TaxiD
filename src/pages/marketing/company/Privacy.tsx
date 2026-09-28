@@ -5,11 +5,11 @@ export default function Privacy() {
   return (
     <NarrativePage
       eyebrow="Trust"
-      title="Your personal data at SAFARID"
+      title="Your personal data at TaxiD"
       subtitle="What we collect to move you or your goods, why we need it, how long we keep it, and how to exercise your rights."
       path="/privacy"
-      seoTitle="Privacy at SAFARID — Your Data and Rights"
-      seoDescription="What personal data SAFARID collects, why it is needed, who can see it, and how to access, correct, export or delete your information."
+      seoTitle="Privacy at TaxiD — Your Data and Rights"
+      seoDescription="What personal data TaxiD collects, why it is needed, who can see it, and how to access, correct, export or delete your information."
       intro={[
         "Moving people and goods requires some personal information: who to collect, where from, how to reach you, and how you paid. We aim to collect what the journey needs and no more.",
         "This page is a plain summary. The full Privacy Policy and Data Protection pages in our legal library are the binding documents.",

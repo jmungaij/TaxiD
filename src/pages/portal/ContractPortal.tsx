@@ -42,7 +42,7 @@ export default function ContractPortal() {
   const [done, setDone] = React.useState(false);
 
   React.useEffect(() => {
-    document.title = "Confirm your contract | SAFARID";
+    document.title = "Confirm your contract | TaxiD";
     let live = true;
     void (async () => {
       const res = (await openPortalContract(token)) as PortalContractView;
@@ -154,8 +154,8 @@ export default function ContractPortal() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Signed for SAFARID by</p>
-                  <p className="text-sm font-semibold">{c.company_signatory ?? "SAFARID"}</p>
+                  <p className="text-xs text-muted-foreground">Signed for TaxiD by</p>
+                  <p className="text-sm font-semibold">{c.company_signatory ?? "TaxiD"}</p>
                 </div>
               </CardContent>
             </Card>
@@ -166,7 +166,7 @@ export default function ContractPortal() {
                   <CheckCircle2 className="mx-auto h-8 w-8 text-primary" />
                   <p className="mt-3 text-base font-semibold">Your signed contract is recorded</p>
                   <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-                    We have your signed copy and your confirmation of acceptance. Your SAFARID account manager now
+                    We have your signed copy and your confirmation of acceptance. Your TaxiD account manager now
                     starts onboarding — you do not need to do anything else here.
                   </p>
                   <Badge variant="outline" className="mt-4">
@@ -231,7 +231,7 @@ export default function ContractPortal() {
                   <p className="flex items-start gap-2 text-xs text-muted-foreground">
                     <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                     By confirming you accept the contract shown above on behalf of your organisation. Your upload is
-                    stored privately and is visible only to the SAFARID team handling your account.
+                    stored privately and is visible only to the TaxiD team handling your account.
                   </p>
 
                   <Button onClick={submit} disabled={busy} className="w-full sm:w-auto">

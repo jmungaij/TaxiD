@@ -75,7 +75,7 @@ export default function DriverRides() {
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Your trips</CardTitle>
           <CardDescription>
-            Trips assigned to you, with what each one pays you after SAFARID's {100 - share}% commission.
+            Trips assigned to you, with what each one pays you after TaxiD's {100 - share}% commission.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -110,7 +110,7 @@ export default function DriverRides() {
 
       {done.length > 0 && (
         <p className="text-xs text-muted-foreground">
-          Completed trips total {rideMoney(summary.gross_cents, currency)}; SAFARID retains{" "}
+          Completed trips total {rideMoney(summary.gross_cents, currency)}; TaxiD retains{" "}
           {rideMoney(summary.commission_cents, currency)} and you keep{" "}
           {rideMoney(summary.net_cents, currency)}. Money reaches your wallet once the customer has paid and
           the trip is fulfilled.
@@ -187,7 +187,7 @@ function TripRow({ t }: { t: DriverTrip }) {
 /**
  * TRIP STATEMENT — what each completed ride puts in the driver's wallet.
  *
- * The trip value and SAFARID's commission come from the recorded booking; the
+ * The trip value and TaxiD's commission come from the recorded booking; the
  * withdrawal fee percentage is the live settlement setting, shown as what the
  * driver would pay if that money is withdrawn to their M-Pesa number. Nothing
  * is charged here — the fee is only taken when a withdrawal succeeds.
@@ -225,7 +225,7 @@ function DriverTripStatement({
       <CardHeader className="pb-3">
         <CardTitle className="text-base">Your statement</CardTitle>
         <CardDescription>
-          Every completed ride, the {commissionPct}% SAFARID commission, what lands in your wallet and the{" "}
+          Every completed ride, the {commissionPct}% TaxiD commission, what lands in your wallet and the{" "}
           {feePct}% fee charged only when you withdraw that money to your M-Pesa number.
         </CardDescription>
       </CardHeader>
@@ -242,7 +242,7 @@ function DriverTripStatement({
                   <th className="py-1 pr-3 text-left">Ride</th>
                   <th className="py-1 pr-3 text-left">Completed</th>
                   <th className="py-1 pr-3 text-right">Ride amount</th>
-                  <th className="py-1 pr-3 text-right">SAFARID {commissionPct}%</th>
+                  <th className="py-1 pr-3 text-right">TaxiD {commissionPct}%</th>
                   <th className="py-1 pr-3 text-right">To your wallet</th>
                   <th className="py-1 pr-3 text-right">Withdrawal fee {feePct}%</th>
                   <th className="py-1 text-right">If withdrawn</th>

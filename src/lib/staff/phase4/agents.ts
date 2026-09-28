@@ -1,5 +1,5 @@
 /**
- * Phase 4 — SAFARID Agent Network.
+ * Phase 4 — TaxiD Agent Network.
  *
  * A controlled network of specialised digital workers, not one super-agent.
  * Every agent declares its purpose, accountable human owner, the events it

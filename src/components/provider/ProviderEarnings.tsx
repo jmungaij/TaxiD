@@ -2,7 +2,7 @@
  * OPERATOR EARNINGS — derived, never invented.
  *
  * Every figure here comes from the operator's own bookings: the agreed rate on
- * each booking is the gross value, SAFARID retains a 15% service commission and
+ * each booking is the gross value, TaxiD retains a 15% service commission and
  * the operator keeps 85%. Only delivered services count as earned; confirmed
  * work ahead is shown separately as expected.
  */
@@ -14,7 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Coins } from "lucide-react";
 import { loadProviderBookings, type ProviderBookingRow } from "@/lib/provider/bookings";
 
-/** SAFARID service commission retained on each completed booking. */
+/** TaxiD service commission retained on each completed booking. */
 export const COMMISSION_RATE = 0.15;
 
 const money = (cents: number, currency = "KES") =>
@@ -47,7 +47,7 @@ export default function ProviderEarnings() {
           <Coins className="h-4 w-4" />Assignments and earnings
         </CardTitle>
         <CardDescription>
-          You keep 85% of every service you deliver; SAFARID retains a 15% service commission. Amounts follow the rate
+          You keep 85% of every service you deliver; TaxiD retains a 15% service commission. Amounts follow the rate
           agreed on each booking.
         </CardDescription>
       </CardHeader>

@@ -90,17 +90,17 @@ export default function InterviewRespond() {
   return (
     <main className="min-h-screen bg-background px-4 py-16">
       <Helmet>
-        <title>Respond to your SAFARID interview invitation</title>
+        <title>Respond to your TaxiD interview invitation</title>
         <meta
           name="description"
-          content="Confirm, reschedule or decline your SAFARID interview invitation using the secure link issued with your letter."
+          content="Confirm, reschedule or decline your TaxiD interview invitation using the secure link issued with your letter."
         />
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
 
       <div className="mx-auto w-full max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-          SAFARID · Recruitment
+          TaxiD · Recruitment
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">Interview response</h1>
 

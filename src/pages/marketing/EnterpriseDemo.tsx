@@ -63,7 +63,7 @@ const EnterpriseDemo = () => {
         title="See a corporate booking move through approval and spend control"
         subtitle="A guided demonstration using sample data. No real booking is created and nothing is charged."
         image={corporatesImg}
-        imageAlt="Corporate traveller booking a SAFARID ride"
+        imageAlt="Corporate traveller booking a TaxiD ride"
       >
         <Button size="lg" className="bg-ice text-primary hover:bg-ice/90" asChild>
           <Link to="/corporate/register" data-analytics="enterprise-demo-open-account">

@@ -14,7 +14,7 @@ import {
 
 const sections = [
   { icon: Briefcase, t: "Open Positions", d: "Every role below is published live from our recruitment system." },
-  { icon: Car, t: "Driver Opportunities", d: "Become a SAFARID driver partner across Africa." },
+  { icon: Car, t: "Driver Opportunities", d: "Become a TaxiD driver partner across Africa." },
   { icon: Handshake, t: "Partner Programs", d: "Fleet partners, corporate resellers, integrators." },
   { icon: GraduationCap, t: "Internship Programs", d: "12-week paid internships across the continent." },
 ];
@@ -36,7 +36,7 @@ const Careers = () => {
       />
 
       <section className="container mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold mb-6">Ways to join SAFARID</h2>
+        <h2 className="text-2xl font-bold mb-6">Ways to join TaxiD</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {sections.map((s) => (
             <div key={s.t} className="p-6 rounded-xl bg-card border border-border">

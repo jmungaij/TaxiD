@@ -122,7 +122,7 @@ const SPECS: DimensionSpec[] = [
   {
     key: "bring",
     label: "Partner intent",
-    question: "What did the visitor say they bring to SAFARID?",
+    question: "What did the visitor say they bring to TaxiD?",
     labels: BRING_LABEL,
     pick: (e) => str(e.metadata?.bring) ?? byName(e, "partner_bring"),
   },
@@ -215,7 +215,7 @@ export function summarisePartnerFunnel(events: RawCtaEvent[]): FunnelSummary {
 export function funnelComparisonTable(summary: FunnelSummary, windowLabel: string) {
   return {
     id: "partner-funnel-comparison",
-    title: "SAFARID Partners - captured funnel comparison",
+    title: "TaxiD Partners - captured funnel comparison",
     subtitle: `View to interact to CTA, by dimension (${windowLabel})`,
     meta: [
       ["Views", String(summary.totals.view)],

@@ -202,7 +202,7 @@ export function draftReply(ctx: DraftContext): string {
       : `I'll keep you updated at every step until this is fully closed.`,
     ``,
     `Warm regards,`,
-    `${ctx.agentName?.trim() || "SAFARID Customer Operations"}`,
+    `${ctx.agentName?.trim() || "TaxiD Customer Operations"}`,
   ].join("\n");
 }
 

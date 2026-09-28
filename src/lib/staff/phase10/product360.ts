@@ -26,7 +26,7 @@ export interface CatalogueEntry {
   principalRisk: string;
 }
 
-/** The canonical taxonomy. SAFARID orchestrates; the asset stays with the provider. */
+/** The canonical taxonomy. TaxiD orchestrates; the asset stays with the provider. */
 export const PRODUCT_CATALOGUE: CatalogueEntry[] = [
   {
     productLine: "individual_mobility",
@@ -72,7 +72,7 @@ export const PRODUCT_CATALOGUE: CatalogueEntry[] = [
   },
   {
     productLine: "yalla_air",
-    label: "SAFARID Air",
+    label: "TaxiD Air",
     services: ["Private charter flights", "Group air charter", "Air ambulance coordination"],
     missionTypes: ["air"],
     supplyKinds: ["aircraft_operator"],
@@ -80,7 +80,7 @@ export const PRODUCT_CATALOGUE: CatalogueEntry[] = [
     revenueModel: "fee",
     operatingModel: "brokered",
     department: "Air Mobility",
-    ownerRole: "Head of SAFARID Air",
+    ownerRole: "Head of TaxiD Air",
     primaryKpi: "Operator compliance and mission completion",
     principalRisk: "Operating an aircraft mission against lapsed AOC or insurance",
   },
@@ -242,9 +242,9 @@ export function buildRevenueTree(products: readonly Product360[]): RevenueNode {
 
   return {
     id: "yalla",
-    label: "SAFARID",
-    revenue: sumMeasures("SAFARID revenue", "kes", children.map((c) => c.revenue)),
-    contribution: sumMeasures("SAFARID contribution", "kes", children.map((c) => c.contribution)),
+    label: "TaxiD",
+    revenue: sumMeasures("TaxiD revenue", "kes", children.map((c) => c.revenue)),
+    contribution: sumMeasures("TaxiD contribution", "kes", children.map((c) => c.contribution)),
     missions: children.some((c) => c.missions !== null)
       ? children.reduce((a, c) => a + (c.missions ?? 0), 0)
       : null,

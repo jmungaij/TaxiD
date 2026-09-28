@@ -1,12 +1,12 @@
 /**
- * Phase 4 — SAFARID Agentic Operating System command surface.
+ * Phase 4 — TaxiD Agentic Operating System command surface.
  *
  * Deliberately not another dashboard: this is a decision environment. Each tab
  * shows a working part of the operating model — the agent network and its
  * authority ceilings, the event fabric and state machines, a live orchestration
  * run (context assembled, peers consulted, gate evaluated), the autonomy ladder
  * with its measurement gate, red-team controls, the AI governance register, and
- * the Command Centre answer to "what requires SAFARID's attention today?".
+ * the Command Centre answer to "what requires TaxiD's attention today?".
  *
  * Nothing here fabricates a figure. Where a measure has no store, it reports
  * DATA NOT AVAILABLE; where evidence is unreadable, the recommendation is
@@ -104,8 +104,8 @@ export default function StaffAgentic() {
     <div>
       <StaffPageHeader
         eyebrow="Phase 4 — Agentic operating system"
-        title="Agentic SAFARID"
-        lede="AI agents operate as controlled digital workers inside SAFARID's real processes — within explicit authority, on assembled context, against explicit object states, with humans retained at every consequential decision. No agent speaks to the business directly; the orchestrator coordinates them."
+        title="Agentic TaxiD"
+        lede="AI agents operate as controlled digital workers inside TaxiD's real processes — within explicit authority, on assembled context, against explicit object states, with humans retained at every consequential decision. No agent speaks to the business directly; the orchestrator coordinates them."
         actions={
           <Button variant="outline" size="sm" onClick={() => setNonce((n) => n + 1)} disabled={loading}>
             {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
@@ -147,7 +147,7 @@ export default function StaffAgentic() {
         {/* -------------------------------------------------- command centre */}
         <TabsContent value="command">
           <StaffSection
-            title="What requires SAFARID's attention today?"
+            title="What requires TaxiD's attention today?"
             description="Each line is established only when every evidencing source is readable for your identity. Unestablished lines name what is missing instead of asserting a finding."
           >
             <div className="space-y-3">
@@ -253,7 +253,7 @@ export default function StaffAgentic() {
         {/* ----------------------------------------------------- agent network */}
         <TabsContent value="network">
           <StaffSection
-            title="SAFARID Agent Network"
+            title="TaxiD Agent Network"
             description="Specialised digital workers with named human owners. No agent may consult outside its declared peers, and no agent may subscribe to more than half the event fabric — that would be a super-agent by another name."
           >
             <div className="grid gap-4 lg:grid-cols-2">

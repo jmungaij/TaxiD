@@ -143,7 +143,7 @@ export function InterviewScheduleDialog({
           starts_at: toIso(when),
           duration_minutes: minutes,
           timezone,
-          attendees: [{ email: "hr@safarid.org" }],
+          attendees: [{ email: "hr@taxid.us" }],
           mint_only: true,
         });
         if (!minted.join_url) throw new Error("The Google Meet link could not be created.");
@@ -292,7 +292,7 @@ export function InterviewScheduleDialog({
               <div className="space-y-1.5">
                 <Label htmlFor="iv-location">Location</Label>
                 <Input id="iv-location" value={location} onChange={(e) => setLocation(e.target.value)}
-                  placeholder="SAFARID HQ, Westlands" />
+                  placeholder="TaxiD HQ, Westlands" />
               </div>
             )}
           </div>

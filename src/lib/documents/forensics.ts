@@ -1,7 +1,7 @@
 /**
  * Document OS — Forensic Document Security, Authenticity & Traceability.
  *
- * Every document SAFARID issues carries a permanent, server-issued
+ * Every document TaxiD issues carries a permanent, server-issued
  * identity. The client never invents any part of it:
  *
  *   issue    → doc_issue_security_mark   (document number, security number, token)
@@ -590,7 +590,7 @@ export function controlLine(mark: Pick<SecurityMark,
   recipientLabel?: string | null,
 ): string {
   const parts = [
-    "SAFARID",
+    "TaxiD",
     "OFFICIAL CONTROLLED DOCUMENT",
     `DOC: ${mark.doc_number}`,
     `SRC: ${mark.source_system}`,
@@ -614,7 +614,7 @@ export function forensicVerdict(state: ForensicState): {
       return {
         label: "Authentic",
         tone: "success",
-        advice: "Registered in the SAFARID document registry with complete provenance.",
+        advice: "Registered in the TaxiD document registry with complete provenance.",
       };
     case "AUTHENTIC_SUPERSEDED":
       return {
@@ -632,13 +632,13 @@ export function forensicVerdict(state: ForensicState): {
       return {
         label: "Authentic — revoked",
         tone: "destructive",
-        advice: "SAFARID revoked this document. It is genuine but carries no authority and must not be acted on.",
+        advice: "TaxiD revoked this document. It is genuine but carries no authority and must not be acted on.",
       };
     case "AUTHENTIC_VOID":
       return {
         label: "Authentic — withdrawn",
         tone: "destructive",
-        advice: "This document was withdrawn by SAFARID and carries no authority.",
+        advice: "This document was withdrawn by TaxiD and carries no authority.",
       };
     case "AUTHENTIC_ARCHIVED":
       return {
@@ -650,7 +650,7 @@ export function forensicVerdict(state: ForensicState): {
       return {
         label: "Signature invalid",
         tone: "destructive",
-        advice: "The cryptographic signature does not verify against the SAFARID authority key. Treat as forged.",
+        advice: "The cryptographic signature does not verify against the TaxiD authority key. Treat as forged.",
       };
     case "UNSIGNED":
       return {
@@ -679,7 +679,7 @@ export function forensicVerdict(state: ForensicState): {
       };
     default:
       return {
-        label: "Not a SAFARID document",
+        label: "Not a TaxiD document",
         tone: "destructive",
         advice: "No document with this identity was ever issued. Treat it as fraudulent.",
       };
@@ -754,7 +754,7 @@ export function authorityAssurance(input: {
       status: input.state === "VERIFICATION_UNAVAILABLE" || input.state === "RATE_LIMITED"
         ? "UNAVAILABLE"
         : identityKnown ? "PASS" : "FAIL",
-      detail: "Document and security number issued by SAFARID",
+      detail: "Document and security number issued by TaxiD",
     },
     {
       label: "Content integrity",

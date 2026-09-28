@@ -10,9 +10,9 @@ import { STAFF_ROLES } from "@/lib/staff/access";
 import { homeForRoles } from "@/lib/staff/rbacMatrix";
 
 
-/** Corporate identity domain for SAFARID staff logins (advisory hint only — the
+/** Corporate identity domain for TaxiD staff logins (advisory hint only — the
  *  authoritative check is account existence + status + role, server-side). */
-export const STAFF_EMAIL_DOMAIN = "safarid.org";
+export const STAFF_EMAIL_DOMAIN = "taxid.us";
 
 export function looksLikeStaffEmail(email: string): boolean {
   return email.trim().toLowerCase().endsWith(`@${STAFF_EMAIL_DOMAIN}`);

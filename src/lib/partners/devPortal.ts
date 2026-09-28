@@ -1,5 +1,5 @@
 /**
- * SAFARID API PARTNERS — developer portal data layer.
+ * TaxiD API PARTNERS — developer portal data layer.
  *
  * Credential secrets are minted server-side by security-definer RPCs and shown
  * exactly once; the client only ever reads metadata (fingerprint, scopes,

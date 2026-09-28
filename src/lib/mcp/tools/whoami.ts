@@ -3,7 +3,7 @@ import { defineTool } from "@lovable.dev/mcp-js";
 export default defineTool({
   name: "whoami",
   title: "Who am I",
-  description: "Return the signed-in SAFARID account's user ID and email.",
+  description: "Return the signed-in TaxiD account's user ID and email.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: (_args, ctx) => {

@@ -161,7 +161,7 @@ export const LIFECYCLES: readonly Lifecycle[] = [
       s("paid", "Payment recorded", ["reconciled"], { gate: "Payment event from verified callback only", audited: true }),
       s("reconciled", "Reconciled", ["settled"], {}),
       s("settled", "Partner settled", ["recognised"], { authority: { subject: "payment", action: "approve" }, audited: true }),
-      s("recognised", "SAFARID revenue recognised", [], { gate: "Configured recognition rule satisfied", audited: true }),
+      s("recognised", "TaxiD revenue recognised", [], { gate: "Configured recognition rule satisfied", audited: true }),
     ],
   },
   {

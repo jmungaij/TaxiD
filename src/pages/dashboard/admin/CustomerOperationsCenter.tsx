@@ -293,7 +293,7 @@ function findDuplicates(target: CaseRow, all: CaseRow[]): CaseRow[] {
 
 const RESPONSE_TEMPLATES: Record<string, string> = {
   payment:
-    "Thank you for contacting SAFARID. We've located your payment and opened a finance review. You'll receive an update within the SLA window, and any approved refund is processed to your original payment method.",
+    "Thank you for contacting TaxiD. We've located your payment and opened a finance review. You'll receive an update within the SLA window, and any approved refund is processed to your original payment method.",
   safety:
     "Your safety report has been escalated to our Trust & Safety rapid-response team. A specialist will contact you shortly. If you are in immediate danger, please contact local emergency services.",
   delivery:
@@ -301,7 +301,7 @@ const RESPONSE_TEMPLATES: Record<string, string> = {
   corporate:
     "Thank you for reaching out. Your corporate success manager has been notified and will review the account activity and respond with a resolution plan.",
   general:
-    "Thanks for getting in touch with SAFARID. We've logged your case and an operations specialist is reviewing it now. We'll follow up with an update shortly.",
+    "Thanks for getting in touch with TaxiD. We've logged your case and an operations specialist is reviewing it now. We'll follow up with an update shortly.",
 };
 
 /* ------------------------------ component -------------------------------- */

@@ -31,7 +31,7 @@ export default function StatusTokens() {
   return (
     <main className="min-h-screen bg-background text-foreground p-8 space-y-8">
       <Helmet>
-        <title>Status Token Gallery | SAFARID Design Governance</title>
+        <title>Status Token Gallery | TaxiD Design Governance</title>
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
 

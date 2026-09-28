@@ -19,7 +19,7 @@ const ApiDocs = () => (
     <PageHero
       eyebrow="Developers"
       title="API Documentation"
-      subtitle="Build mobility, delivery, and corporate-travel products on the SAFARID platform."
+      subtitle="Build mobility, delivery, and corporate-travel products on the TaxiD platform."
     >
       <div className="flex flex-wrap gap-3 justify-center">
         <Button asChild size="lg">
@@ -51,7 +51,7 @@ const ApiDocs = () => (
           <CardTitle>Quick start: create a trip</CardTitle>
         </CardHeader>
         <CardContent>
-          <pre className="bg-muted/50 rounded-lg p-4 text-xs overflow-x-auto">{`POST https://api.safarid.org/v1/trips
+          <pre className="bg-muted/50 rounded-lg p-4 text-xs overflow-x-auto">{`POST https://api.taxid.us/v1/trips
 Authorization: Bearer <token>
 Content-Type: application/json
 

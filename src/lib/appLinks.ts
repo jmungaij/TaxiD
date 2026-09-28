@@ -1,5 +1,5 @@
 /**
- * Canonical SAFARID app store destinations.
+ * Canonical TaxiD app store destinations.
  *
  * Rules enforced here (so no CTA can regress to a generic store homepage):
  *  1. Android links are always built from the real package id.
@@ -13,7 +13,7 @@
 export type AppAudience = "rider" | "driver";
 export type AppPlatform = "android" | "ios";
 
-/** Google Play package ids — verified SAFARID listings. */
+/** Google Play package ids — verified TaxiD listings. */
 const PLAY_PACKAGE_IDS: Record<AppAudience, string> = {
   rider: "com.safariride.rider",
   driver: "com.safariride.driver",

@@ -22,7 +22,7 @@ const MESSAGE: Record<RecoveryOutcome["outcome"], string> = {
   ACCEPTED:
     "If an account exists for that address, a password reset link is on its way. The link expires shortly — request a new one if it does.",
   RATE_LIMITED:
-    "Too many reset requests for that address in the last hour. Wait an hour and try again, or contact support@safarid.org.",
+    "Too many reset requests for that address in the last hour. Wait an hour and try again, or contact support@taxid.us.",
   INVALID_EMAIL: "That does not look like an email address. Check it and try again.",
 };
 

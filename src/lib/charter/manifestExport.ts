@@ -138,7 +138,7 @@ export function buildManifestPdf(booking: CharterBookingRow): jsPDF {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7);
   doc.setTextColor(100, 116, 139);
-  doc.text(`Generated ${new Date().toLocaleString()} · SAFARID operator portal`, M, 288);
+  doc.text(`Generated ${new Date().toLocaleString()} · TaxiD operator portal`, M, 288);
   return doc;
 }
 

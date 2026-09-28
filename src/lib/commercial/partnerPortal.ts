@@ -53,10 +53,10 @@ export interface PartnerPortalRefusal {
 }
 
 export const PARTNER_PORTAL_REFUSAL_TEXT: Record<string, string> = {
-  INVALID_LINK: "This link is not recognised. Please ask your SAFARID contact for a new one.",
-  LINK_REVOKED: "This link has been withdrawn. Please ask your SAFARID contact for a new one.",
-  LINK_EXPIRED: "This link has expired. Please ask your SAFARID contact for a new one.",
-  APPLICATION_NOT_FOUND: "Your partner record could not be read. Please contact your SAFARID contact.",
+  INVALID_LINK: "This link is not recognised. Please ask your TaxiD contact for a new one.",
+  LINK_REVOKED: "This link has been withdrawn. Please ask your TaxiD contact for a new one.",
+  LINK_EXPIRED: "This link has expired. Please ask your TaxiD contact for a new one.",
+  APPLICATION_NOT_FOUND: "Your partner record could not be read. Please contact your TaxiD contact.",
   APPLICATION_NOT_APPROVED:
     "Your partner application is still under review, so this link is not active yet.",
 };

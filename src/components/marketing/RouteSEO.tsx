@@ -11,22 +11,22 @@ const OG_IMAGE = `${BASE_URL}/og-safarid-1200x630.v1.png`;
  * preview.
  */
 const DEFAULT_META = {
-  title: "SAFARID — Transport & Logistics in Kenya",
+  title: "TaxiD — Transport & Logistics in Kenya",
   description:
-    "Browse SAFARID services across Kenya: rides, corporate mobility, charter, vehicle rental and leasing, delivery, freight and logistics.",
+    "Browse TaxiD services across Kenya: rides, corporate mobility, charter, vehicle rental and leasing, delivery, freight and logistics.",
 };
 
 // Per-route head metadata. Titles <60 chars, descriptions 50–160 chars.
 const META: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "SAFARID — Move with confidence.",
+    title: "TaxiD — Move People. Power Business.",
     description:
       "One platform for rides, corporate mobility, charter, vehicle rental and leasing, delivery and freight — with verified providers and M-Pesa payment.",
   },
   "/about": {
-    title: "About SAFARID — Mobility & Transportation Marketplace",
+    title: "About TaxiD — Mobility & Transportation Marketplace",
     description:
-      "Learn how SAFARID connects customers and organisations with transportation, fleet, charter, rental, leasing and logistics providers.",
+      "Learn how TaxiD connects customers and organisations with transportation, fleet, charter, rental, leasing and logistics providers.",
   },
   "/riders": {
     title: "Rides — Everyday, Airport and Scheduled Journeys",
@@ -34,12 +34,12 @@ const META: Record<string, { title: string; description: string }> = {
       "Book everyday rides, airport transfers and scheduled journeys with verified driver partners. Pay by M-Pesa, card or wallet.",
   },
   "/drivers": {
-    title: "Drive with SAFARID — Become a Driver Partner",
+    title: "Drive with TaxiD — Become a Driver Partner",
     description:
-      "Join SAFARID as a driver partner: access more demand, manage your work, get paid, and use training and support.",
+      "Join TaxiD as a driver partner: access more demand, manage your work, get paid, and use training and support.",
   },
   "/corporates": {
-    title: "Corporate Mobility — Manage Business Travel with SAFARID",
+    title: "Corporate Mobility — Manage Business Travel with TaxiD",
     description:
       "Manage employee transportation with centralised booking, controlled spending, approvals, invoicing and reporting.",
   },
@@ -59,109 +59,109 @@ const META: Record<string, { title: string; description: string }> = {
       "Dispatch, fleet management and payment technology for transport operators, logistics businesses and large organisations.",
   },
   "/pricing": {
-    title: "Pricing — Transparent SAFARID & Delivery Fares",
+    title: "Pricing — Transparent TaxiD & Delivery Fares",
     description:
       "See fares, per-kilometre rates, surge limits and business plans for rides, delivery and corporate mobility.",
   },
   "/support": {
-    title: "Help Centre — SAFARID Rider & Driver Support",
+    title: "Help Centre — TaxiD Rider & Driver Support",
     description:
       "Get help with bookings, payments, accounts and safety — support for customers, driver partners and business customers.",
   },
   "/faq": {
-    title: "FAQ — Common Questions About SAFARID",
+    title: "FAQ — Common Questions About TaxiD",
     description:
       "Answers on booking, driver partner onboarding, payments, business accounts, safety and service coverage.",
   },
   "/news": {
-    title: "Newsroom — SAFARID Updates & Press Releases",
+    title: "Newsroom — TaxiD Updates & Press Releases",
     description:
-      "Latest news from SAFARID: launches, partnerships, policy updates and product milestones across African markets.",
+      "Latest news from TaxiD: launches, partnerships, policy updates and product milestones across African markets.",
   },
   "/careers": {
-    title: "Careers at SAFARID — Open Roles and Apply",
+    title: "Careers at TaxiD — Open Roles and Apply",
     description:
       "Open roles in engineering, operations, design, commercial and compliance. Apply and track your application online.",
   },
   "/contact": {
-    title: "Contact SAFARID — Sales, Support & Partnerships",
+    title: "Contact TaxiD — Sales, Support & Partnerships",
     description:
-      "Contact SAFARID for customer support, commercial enquiries, driver partner applications, partnerships and media.",
+      "Contact TaxiD for customer support, commercial enquiries, driver partner applications, partnerships and media.",
   },
   "/developers": {
-    title: "Developers — SAFARID APIs & Integrations",
+    title: "Developers — TaxiD APIs & Integrations",
     description:
-      "Integrate SAFARID booking, dispatch and payment APIs. Documentation, SDKs and sandbox access for developers.",
+      "Integrate TaxiD booking, dispatch and payment APIs. Documentation, SDKs and sandbox access for developers.",
   },
   "/security": {
-    title: "Security at SAFARID — Platform Security Overview",
+    title: "Security at TaxiD — Platform Security Overview",
     description:
-      "How SAFARID secures rider, driver and corporate data: encryption in transit and at rest, MFA, RBAC and SOC-style controls.",
+      "How TaxiD secures rider, driver and corporate data: encryption in transit and at rest, MFA, RBAC and SOC-style controls.",
   },
   "/security-center": {
     title: "Security Centre — Compliance, Disclosure & Reports",
     description:
-      "SAFARID's Security Centre: compliance certifications, audit reports, vulnerability disclosure program and incident response.",
+      "TaxiD's Security Centre: compliance certifications, audit reports, vulnerability disclosure program and incident response.",
   },
   "/rentals/self-drive": {
-    title: "Self-Drive Car Rental in Nairobi — SAFARID",
+    title: "Self-Drive Car Rental in Nairobi — TaxiD",
     description:
       "Hire a self-drive car in Nairobi with published daily rates, included kilometres and transparent excess-kilometre pricing. Book or request a quote.",
   },
   "/rentals/chauffeur": {
-    title: "Chauffeured Car Hire in Nairobi — SAFARID",
+    title: "Chauffeured Car Hire in Nairobi — TaxiD",
     description:
       "Chauffeured vehicles with vetted drivers for business travel, events and airport transfers. Published day rates, clear extras, corporate discount.",
   },
   "/logistics/solutions": {
-    title: "Business Logistics Solutions in Kenya — SAFARID",
+    title: "Business Logistics Solutions in Kenya — TaxiD",
     description:
       "Document courier, express city delivery, standard parcel, freight and e-commerce fulfilment with coverage areas, collection hours and proof of delivery.",
   },
   "/blog/corporate-travel-management-guide": {
-    title: "Corporate Travel Management Guide — SAFARID for Business",
+    title: "Corporate Travel Management Guide — TaxiD for Business",
     description:
       "A practical guide for finance and HR teams: setting travel policies, controlling costs and reporting on corporate mobility.",
   },
   "/reliability": {
-    title: "Reliability at SAFARID — How Bookings Hold Up",
+    title: "Reliability at TaxiD — How Bookings Hold Up",
     description:
-      "How SAFARID protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation.",
+      "How TaxiD protects bookings and payments: verified M-Pesa confirmation, no double charges, recorded handovers and daily reconciliation.",
   },
   "/transparency": {
-    title: "Transparency at SAFARID — Prices and Records",
+    title: "Transparency at TaxiD — Prices and Records",
     description:
-      "See how SAFARID shows prices before payment, issues references and receipts, and reports corporate spending without hidden fees.",
+      "See how TaxiD shows prices before payment, issues references and receipts, and reports corporate spending without hidden fees.",
   },
   "/innovation": {
-    title: "Engineering & Innovation at SAFARID",
+    title: "Engineering & Innovation at TaxiD",
     description:
-      "How SAFARID is built: event-driven operations, configurable business rules, evidence-gated releases and AI used as a reasoning layer.",
+      "How TaxiD is built: event-driven operations, configurable business rules, evidence-gated releases and AI used as a reasoning layer.",
   },
   "/compliance": {
-    title: "Compliance at SAFARID — Kenya Requirements",
+    title: "Compliance at TaxiD — Kenya Requirements",
     description:
-      "How SAFARID handles Kenyan compliance: partner document checks, KRA tax details, data-protection rights and recorded approvals.",
+      "How TaxiD handles Kenyan compliance: partner document checks, KRA tax details, data-protection rights and recorded approvals.",
   },
   "/privacy": {
-    title: "Privacy at SAFARID — Your Data and Rights",
+    title: "Privacy at TaxiD — Your Data and Rights",
     description:
-      "What personal data SAFARID collects, why it is needed, who can see it, and how to access, correct, export or delete your information.",
+      "What personal data TaxiD collects, why it is needed, who can see it, and how to access, correct, export or delete your information.",
   },
   "/leadership": {
-    title: "Leadership at SAFARID — How It Is Run",
+    title: "Leadership at TaxiD — How It Is Run",
     description:
-      "How responsibility is divided at SAFARID, an early-stage founder-led Kenyan mobility company, and how to reach the right team.",
+      "How responsibility is divided at TaxiD, an early-stage founder-led Kenyan mobility company, and how to reach the right team.",
   },
   "/governance": {
-    title: "Governance at SAFARID — Controls and Approvals",
+    title: "Governance at TaxiD — Controls and Approvals",
     description:
-      "How SAFARID governs decisions: role-based access, second-approver rules, recorded audit trails and evidence-based release gates.",
+      "How TaxiD governs decisions: role-based access, second-approver rules, recorded audit trails and evidence-based release gates.",
   },
   "/sustainability": {
-    title: "Sustainability at SAFARID — An Honest Position",
+    title: "Sustainability at TaxiD — An Honest Position",
     description:
-      "SAFARID's honest sustainability position: measurable vehicle utilisation and paperless operations today, no unverified emissions claims.",
+      "TaxiD's honest sustainability position: measurable vehicle utilisation and paperless operations today, no unverified emissions claims.",
   },
 };
 
@@ -169,7 +169,7 @@ const META: Record<string, { title: string; description: string }> = {
 const ARTICLE_ROUTES = new Set(["/blog/corporate-travel-management-guide"]);
 
 // Per-route JSON-LD structured data. Stacks with sitewide Organization/WebSite in index.html.
-const ORG = { "@type": "Organization", name: "SAFARID", url: BASE_URL } as const;
+const ORG = { "@type": "Organization", name: "TaxiD", url: BASE_URL } as const;
 
 function buildRouteJsonLd(pathname: string, title: string, description: string, url: string) {
   const blocks: Record<string, unknown>[] = [];

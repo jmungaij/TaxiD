@@ -31,19 +31,19 @@ export interface PdfTemplate {
 }
 
 export const FALLBACK_BRANDING: PdfBranding = {
-  name: "SAFARID",
-  division: "SAFARID Air · Charter, Leasing & Rentals",
+  name: "TaxiD",
+  division: "TaxiD Air · Charter, Leasing & Rentals",
   address: "Nairobi, Kenya",
   phone: "+254 142 970050",
-  email: "support@safarid.org",
-  web: "safarid.org",
+  email: "support@taxid.us",
+  web: "taxid.us",
   logo_url: null,
 };
 
 export const FALLBACK_TEMPLATE: PdfTemplate = {
   id: "fallback",
   version: "v1",
-  label: "SAFARID Air secure itinerary v1",
+  label: "TaxiD Air secure itinerary v1",
   active: true,
   brand: FALLBACK_BRANDING,
   layout: {},

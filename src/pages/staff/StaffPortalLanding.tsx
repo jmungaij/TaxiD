@@ -8,7 +8,7 @@ import { canEnterStaffPortal } from "@/lib/staff/access";
 import { DEPARTMENTS } from "@/lib/staff/organisation";
 import { STAFF_PORTAL_SECTIONS } from "@/lib/navigation/primaryNav";
 
-/** Public entry point for the SAFARID staff portal. */
+/** Public entry point for the TaxiD staff portal. */
 export default function StaffPortalLanding() {
   const { user, roles } = useAuth();
   const authorised = !!user && canEnterStaffPortal(roles);
@@ -19,9 +19,9 @@ export default function StaffPortalLanding() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:py-24">
           <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ice">Internal</div>
-          <h1 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight">SAFARID Staff Portal</h1>
+          <h1 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight">TaxiD Staff Portal</h1>
           <p className="mt-4 max-w-2xl text-base text-ice">
-            Staff 360 is the internal operating system of SAFARID — people, organisation, customers,
+            Staff 360 is the internal operating system of TaxiD — people, organisation, customers,
             marketplace, revenue and intelligence connected in one model. Access requires an authorised staff role.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -33,7 +33,7 @@ export default function StaffPortalLanding() {
               </Button>
             )}
             <Button asChild size="lg" variant="outline" className="border-ice/70 text-primary-foreground">
-              <Link to="/careers">Careers at SAFARID</Link>
+              <Link to="/careers">Careers at TaxiD</Link>
             </Button>
           </div>
         </div>

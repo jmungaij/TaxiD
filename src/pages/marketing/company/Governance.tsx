@@ -4,11 +4,11 @@ export default function Governance() {
   return (
     <NarrativePage
       eyebrow="Company"
-      title="How SAFARID controls its own decisions"
+      title="How TaxiD controls its own decisions"
       subtitle="Separation of duties, recorded approvals and release gates that cannot be waved through — the controls a small company needs most."
       path="/governance"
-      seoTitle="Governance at SAFARID — Controls and Approvals"
-      seoDescription="How SAFARID governs decisions: role-based access, second-approver rules, recorded audit trails and evidence-based release gates."
+      seoTitle="Governance at TaxiD — Controls and Approvals"
+      seoDescription="How TaxiD governs decisions: role-based access, second-approver rules, recorded audit trails and evidence-based release gates."
       intro={[
         "Governance in an early-stage company is usually the first thing to be skipped. We have taken the opposite approach and put the controls into the platform, where they apply whether or not anyone is watching.",
         "This page describes the controls that exist today, in the systems our own staff use.",

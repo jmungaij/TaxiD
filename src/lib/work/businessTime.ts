@@ -1,5 +1,5 @@
 /**
- * BUSINESS TIME — the one place SAFARID converts wall-clock time into
+ * BUSINESS TIME — the one place TaxiD converts wall-clock time into
  * working time.
  *
  * Why this exists: response clocks and commitment deadlines were previously
@@ -9,7 +9,7 @@
  * "breached" and "customers waiting" disagree with each other and with reality.
  *
  * This module is PURE and configurable. Nothing here is hard-coded to a date;
- * the only fixed assumptions are the published SAFARID operating hours below,
+ * the only fixed assumptions are the published TaxiD operating hours below,
  * which callers may override.
  */
 
@@ -31,7 +31,7 @@ export interface BusinessCalendar {
 const hm = (h: number, m = 0) => h * 60 + m;
 
 /**
- * SAFARID commercial desk hours (East Africa Time).
+ * TaxiD commercial desk hours (East Africa Time).
  * Mon–Fri 08:00–18:00, Sat 09:00–13:00, Sunday closed.
  */
 export const NAIROBI_BUSINESS_CALENDAR: BusinessCalendar = {

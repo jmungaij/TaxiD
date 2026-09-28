@@ -165,7 +165,7 @@ export function PricingExplained({ quote, loading = false, showGovernance = fals
               <Row label="Overhead" value={money(quote.overhead, currency)} />
               <Row label="Risk reserve" value={money(quote.risk_reserve, currency)} />
               <Row label="Operator economic floor" value={money(quote.operator_floor, currency)} />
-              <Row label="SAFARID commission" value={money(quote.commission, currency)} />
+              <Row label="TaxiD commission" value={money(quote.commission, currency)} />
               <Row label="Operator net" value={money(quote.operator_net, currency)} />
               <Row label="Market median" value={money(quote.market?.median ?? null, currency)} />
               <Row label="Market band" value={`${money(quote.market?.low ?? null, currency)} – ${money(quote.market?.high ?? null, currency)}`} />

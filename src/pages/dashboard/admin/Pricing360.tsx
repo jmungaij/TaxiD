@@ -63,7 +63,7 @@ const TAB_KEYS = [
   "asset-bands", "asset-360", "dynamic", "simulator", "snapshots", "health", "audit", "access",
 ] as const;
 
-/** Business lines SAFARID prices. Coverage is proven from configuration, never assumed. */
+/** Business lines TaxiD prices. Coverage is proven from configuration, never assumed. */
 const BUSINESS_LINES: { domain: string; label: string; editor: string; editorLabel: string }[] = [
   { domain: "ride_hailing", label: "Ride Hailing", editor: "/dashboard/admin/smartfare-pricing", editorLabel: "SmartFare settings" },
   { domain: "delivery", label: "Delivery & Parcel", editor: "/dashboard/admin/pricing-360?tab=asset-bands", editorLabel: "Asset pricing bands" },
@@ -732,7 +732,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 /**
- * Products — pricing coverage per SAFARID business line, proven from the governed
+ * Products — pricing coverage per TaxiD business line, proven from the governed
  * configuration. A line with no approved rate card is reported as unconfigured
  * rather than shown with an invented price.
  */
@@ -852,7 +852,7 @@ function MarketPricing({ lines, loading }: { lines: RateLine[]; loading: boolean
 
 /**
  * Pricing intelligence — computed only from frozen quote snapshots, the one
- * real record of prices SAFARID has actually issued. No forecast, elasticity or
+ * real record of prices TaxiD has actually issued. No forecast, elasticity or
  * optimisation model exists yet, so none is displayed.
  */
 function PricingIntelligence({ snapshots, loading }: { snapshots: QuoteSnapshotRow[]; loading: boolean }) {
@@ -914,7 +914,7 @@ function PricingIntelligence({ snapshots, loading }: { snapshots: QuoteSnapshotR
           <CardDescription>Model unavailable</CardDescription>
         </CardHeader>
         <CardContent className="text-sm text-muted-foreground">
-          SAFARID has no calibrated demand-elasticity or conversion model in the pricing control
+          TaxiD has no calibrated demand-elasticity or conversion model in the pricing control
           plane, so expected revenue, GMV, trip-volume and cancellation impacts are not projected
           here. Realised outcomes remain available in Payments &amp; Finance reporting.
         </CardContent>

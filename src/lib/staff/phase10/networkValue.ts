@@ -66,7 +66,7 @@ export function incrementalMarketplaceValue(input: ImvInput): ImvResult {
       returnMultiple: null,
       paybackMonths: null,
       verdict: "not_assessable",
-      reasons: [`${why} — SAFARID will not fund an action whose marketplace value cannot be stated.`],
+      reasons: [`${why} — TaxiD will not fund an action whose marketplace value cannot be stated.`],
     };
   }
 
@@ -271,7 +271,7 @@ export function assessAdaptation(signal: AdaptationSignal): AdaptationVerdict {
     urgency,
     requiresApproval: material && (impact >= 250_000_00 || signal.kind === "regulatory_change" || signal.kind === "pricing_change"),
     rationale: material
-      ? `${signal.kind.replace(/_/g, " ")} is material${signal.deltaPercent !== null ? ` at ${signal.deltaPercent.toFixed(1)}%` : ""}${signal.impactCents !== null ? ` and KES ${Math.round(impact / 100).toLocaleString()} of exposure` : " with unquantified exposure"} — SAFARID should adapt.`
+      ? `${signal.kind.replace(/_/g, " ")} is material${signal.deltaPercent !== null ? ` at ${signal.deltaPercent.toFixed(1)}%` : ""}${signal.impactCents !== null ? ` and KES ${Math.round(impact / 100).toLocaleString()} of exposure` : " with unquantified exposure"} — TaxiD should adapt.`
       : `${signal.kind.replace(/_/g, " ")} is below the materiality threshold; continue observing rather than reacting.`,
   };
 }

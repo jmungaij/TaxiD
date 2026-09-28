@@ -71,7 +71,7 @@ export function RiderAssistant() {
           </ul>
         </div>
         <AiAssistantPanel
-          title="SAFARID Travel Assistant"
+          title="TaxiD Travel Assistant"
           subtitle="Journey planning, fares and service guidance"
           messages={messages}
           suggestions={SUGGESTIONS}

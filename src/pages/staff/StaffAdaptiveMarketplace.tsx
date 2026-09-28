@@ -2,7 +2,7 @@
  * Phase 11 — Executive Adaptive Command Centre (§11.28, §11.29, §11.30, §11.31).
  *
  * Not another KPI dashboard. This surface answers: what is happening, what is
- * about to happen, why, what SAFARID should do, what happens if it does nothing,
+ * about to happen, why, what TaxiD should do, what happens if it does nothing,
  * what the expected value is, who must approve, and what happened after the last
  * decision. Everything the evidence cannot support is shown as an instrumentation
  * gap rather than a plausible number.

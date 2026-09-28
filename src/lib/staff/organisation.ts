@@ -1,5 +1,5 @@
 /**
- * SAFARID Organisation Management System — the authoritative organisational model
+ * TaxiD Organisation Management System — the authoritative organisational model
  * for Staff 360.
  *
  * Company → Division → Department → Team → Position → Employee
@@ -40,7 +40,7 @@ export interface Department {
   /** The departmental operating system surfaced inside Staff 360. */
   operatingSystem: string;
   mandate: string;
-  /** How the department contributes to SAFARID's economic engine. */
+  /** How the department contributes to TaxiD's economic engine. */
   valueContribution: string;
   /** Capability domains this department depends on. */
   capabilities: string[];
@@ -63,9 +63,9 @@ export const DEPARTMENTS: Department[] = [
     slug: "sales-revenue-operations",
     label: "Sales & Revenue Operations",
     division: "commercial",
-    operatingSystem: "SAFARID Sales Operating System",
+    operatingSystem: "TaxiD Sales Operating System",
     mandate: "Revenue acquisition, commercial lifecycle and revenue growth.",
-    valueContribution: "Creates customers and revenue across every SAFARID service category.",
+    valueContribution: "Creates customers and revenue across every TaxiD service category.",
     capabilities: ["Enterprise Sales", "Revenue Operations", "Customer Experience"],
     linkedSurfaces: [{ to: "/staff/revenue", label: "Revenue Intelligence Centre" }],
   },
@@ -180,7 +180,7 @@ export const DEPARTMENTS: Department[] = [
     division: "corporate_services",
     operatingSystem: "Partnership Operations",
     mandate: "External commercial relationships and procurement.",
-    valueContribution: "Secures the external capability and supply SAFARID does not build itself.",
+    valueContribution: "Secures the external capability and supply TaxiD does not build itself.",
     capabilities: ["Marketplace Management", "Legal", "Finance"],
   },
   {
@@ -298,9 +298,9 @@ export const PEOPLE_MODULES = [
   "People Analytics",
 ] as const;
 
-/** SAFARID Academy curriculum tracks, aligned to the capability domains. */
+/** TaxiD Academy curriculum tracks, aligned to the capability domains. */
 export const ACADEMY_TRACKS = [
-  "SAFARID Platform",
+  "TaxiD Platform",
   "Mobility Marketplace",
   "Customer Experience",
   "Sales",
@@ -335,7 +335,7 @@ export const KNOWLEDGE_CLASSES = [
   "Department knowledge",
 ] as const;
 
-/** Decision register fields — how SAFARID learns from its own decisions. */
+/** Decision register fields — how TaxiD learns from its own decisions. */
 export const DECISION_REGISTER_FIELDS = [
   "Decision",
   "Owner",

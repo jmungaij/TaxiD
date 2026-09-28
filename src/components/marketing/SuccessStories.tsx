@@ -39,7 +39,7 @@ export function SuccessStories() {
           <p className="text-sm text-muted-foreground mb-5 flex-1">{s.body}</p>
           <div className="flex items-center justify-between pt-4 border-t border-border">
             <div>
-              <div className="font-semibold">{s.display_name ?? "SAFARID driver"}</div>
+              <div className="font-semibold">{s.display_name ?? "TaxiD driver"}</div>
               <div className="text-xs text-muted-foreground">{s.city}{s.vehicle_type ? ` · ${s.vehicle_type}` : ""}</div>
             </div>
             {s.rating != null && (

@@ -87,7 +87,7 @@ const RentalsChauffeur = () => {
   return (
     <MarketingPage>
       <SeoHead
-        title="Chauffeur service & executive transfers Kenya | SAFARID"
+        title="Chauffeur service & executive transfers Kenya | TaxiD"
         description="Chauffeur-driven cars, vans, shuttles and coaches in Kenya. Verified chauffeurs, a published day-rate band, metered distance and every additional cost line stated up front."
         path={ROUTE}
         jsonLd={{
@@ -95,7 +95,7 @@ const RentalsChauffeur = () => {
           "@type": "Service",
           name: "Chauffeur-driven vehicle hire",
           serviceType: "Chauffeur service",
-          provider: { "@type": "Organization", name: "SAFARID", url: "https://yalla-africa.lovable.app" },
+          provider: { "@type": "Organization", name: "TaxiD", url: "https://yalla-africa.lovable.app" },
           areaServed: { "@type": "Country", name: "Kenya" },
           ...(cheapest
             ? {

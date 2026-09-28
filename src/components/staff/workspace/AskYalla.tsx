@@ -7,7 +7,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import { ASK_YALLA_SUGGESTIONS, type AskYallaAnswer } from "@/lib/workspace";
 
 /**
- * ASK SAFARID — a command bar, not a chatbot.
+ * ASK TaxiD — a command bar, not a chatbot.
  *
  * Answers are computed deterministically from the authorised records already in
  * the employee's cockpit. If the records cannot answer, it says so rather than
@@ -20,7 +20,7 @@ export function AskYalla({
 }: {
   ask: (question: string) => AskYallaAnswer;
   onOpenWork: (workId: string) => void;
-  /** A question pushed in from elsewhere in the cockpit (e.g. "Ask SAFARID" on Focus Now). */
+  /** A question pushed in from elsewhere in the cockpit (e.g. "Ask TaxiD" on Focus Now). */
   seedQuestion?: string | null;
 }) {
   const [value, setValue] = useState("");
@@ -52,7 +52,7 @@ export function AskYalla({
           }}
         >
           <label className="sr-only" htmlFor="ask-yalla">
-            Ask SAFARID
+            Ask TaxiD
           </label>
           <Input
             id="ask-yalla"
@@ -61,7 +61,7 @@ export function AskYalla({
             placeholder="Ask anything — e.g. what should I focus on now?"
             className="h-10 flex-1 min-w-[240px] bg-background"
           />
-          <Button type="submit">Ask SAFARID</Button>
+          <Button type="submit">Ask TaxiD</Button>
         </form>
 
         <div className="flex flex-wrap gap-1.5">

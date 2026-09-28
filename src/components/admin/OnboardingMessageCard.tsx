@@ -71,7 +71,7 @@ export function OnboardingMessageCard() {
             disabled={loading}
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder={"Welcome to **SAFARID**.\n\n- Upload your documents\n- [Read the guide](https://safarid.org/docs)"}
+            placeholder={"Welcome to **TaxiD**.\n\n- Upload your documents\n- [Read the guide](https://taxid.us/docs)"}
           />
           <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
             <span>{value.length} / {MAX}</span>

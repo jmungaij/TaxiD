@@ -41,7 +41,7 @@ export function RiderShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          <Link to="/rider" className="flex items-center" aria-label="SAFARID rider home">
+          <Link to="/rider" className="flex items-center" aria-label="TaxiD rider home">
             <BrandLogo className="h-7 max-w-[150px]" />
           </Link>
           <div className="flex items-center gap-3">

@@ -70,14 +70,14 @@ export default function LegalLibrary() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Legal Library | SAFARID"
-        description="Search every SAFARID policy — privacy, terms, cookies, data protection, accessibility, community guidelines and regulatory compliance."
+        title="Legal Library | TaxiD"
+        description="Search every TaxiD policy — privacy, terms, cookies, data protection, accessibility, community guidelines and regulatory compliance."
         path="/legal"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "SAFARID Legal Library",
+            name: "TaxiD Legal Library",
             url: `${SITE_URL}/legal`,
             hasPart: LEGAL_DOCUMENTS.map((d) => ({
               "@type": "WebPage",
@@ -95,7 +95,7 @@ export default function LegalLibrary() {
           </span>
           <h1 className="mt-3 text-3xl md:text-4xl font-bold">Legal library</h1>
           <p className="mt-4 max-w-3xl text-primary-foreground/90 md:text-lg">
-            Every policy that governs how SAFARID operates — searchable by
+            Every policy that governs how TaxiD operates — searchable by
             topic, term or obligation. {LEGAL_DOCUMENTS.length} published documents.
           </p>
 

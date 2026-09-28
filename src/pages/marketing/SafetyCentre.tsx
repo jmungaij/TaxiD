@@ -81,16 +81,16 @@ export default function SafetyCentre() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Safety Centre | SAFARID"
-        description="How SAFARID protects riders, drivers, couriers and corporate travellers: partner verification, trip monitoring, incident review and how to report a safety concern."
+        title="Safety Centre | TaxiD"
+        description="How TaxiD protects riders, drivers, couriers and corporate travellers: partner verification, trip monitoring, incident review and how to report a safety concern."
         path="/safety"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "SAFARID Safety Centre",
+          name: "TaxiD Safety Centre",
           url: `${SITE_URL}/safety`,
           description:
-            "Partner verification, trip monitoring, incident review and safety reporting across SAFARID services.",
+            "Partner verification, trip monitoring, incident review and safety reporting across TaxiD services.",
         }}
       />
 

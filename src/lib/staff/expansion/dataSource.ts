@@ -29,32 +29,32 @@ export const CANDIDATE_MARKETS: MarketDefinition[] = [
 const REGISTRY: Record<string, Partial<Record<SignalKey, SignalInput>>> = {
   nairobi: {
     urbanPopulation: { value: 4_397_073, source: "KNBS census 2019", calculation: "Nairobi County enumerated population", provenance: "LIVE" },
-    competitorCount: { value: 4, source: "SAFARID competitive register", calculation: "count of licensed e-hailing operators actively serving Nairobi", provenance: "LIVE" },
-    regulatoryFriction: { value: 28, source: "SAFARID regulatory assessment (NTSA)", calculation: "licensed and operating; friction scored on assessed compliance load", provenance: "MODELLED", confidence: 70 },
-    digitalPaymentReadiness: { value: 92, source: "SAFARID settlement mix", calculation: "share of completed trips settling via M-Pesa or card", provenance: "MODELLED", confidence: 65 },
+    competitorCount: { value: 4, source: "TaxiD competitive register", calculation: "count of licensed e-hailing operators actively serving Nairobi", provenance: "LIVE" },
+    regulatoryFriction: { value: 28, source: "TaxiD regulatory assessment (NTSA)", calculation: "licensed and operating; friction scored on assessed compliance load", provenance: "MODELLED", confidence: 70 },
+    digitalPaymentReadiness: { value: 92, source: "TaxiD settlement mix", calculation: "share of completed trips settling via M-Pesa or card", provenance: "MODELLED", confidence: 65 },
   },
   mombasa: {
     urbanPopulation: { value: 1_208_333, source: "KNBS census 2019", calculation: "Mombasa County enumerated population", provenance: "LIVE" },
-    competitorCount: { value: 3, source: "SAFARID competitive register", calculation: "count of operators actively serving Mombasa", provenance: "LIVE" },
-    regulatoryFriction: { value: 30, source: "SAFARID regulatory assessment (NTSA)", calculation: "same national regime as Nairobi with county licensing overhead", provenance: "MODELLED", confidence: 60 },
+    competitorCount: { value: 3, source: "TaxiD competitive register", calculation: "count of operators actively serving Mombasa", provenance: "LIVE" },
+    regulatoryFriction: { value: 30, source: "TaxiD regulatory assessment (NTSA)", calculation: "same national regime as Nairobi with county licensing overhead", provenance: "MODELLED", confidence: 60 },
     digitalPaymentReadiness: { value: 88, source: "National mobile money penetration", calculation: "adult mobile money account penetration as a settlement proxy", provenance: "MODELLED", confidence: 50 },
   },
   kisumu: {
     urbanPopulation: { value: 1_155_574, source: "KNBS census 2019", calculation: "Kisumu County enumerated population", provenance: "LIVE" },
-    competitorCount: { value: 2, source: "SAFARID competitive register", calculation: "count of operators actively serving Kisumu", provenance: "LIVE" },
-    regulatoryFriction: { value: 26, source: "SAFARID regulatory assessment (NTSA)", calculation: "national regime, low county friction", provenance: "MODELLED", confidence: 55 },
+    competitorCount: { value: 2, source: "TaxiD competitive register", calculation: "count of operators actively serving Kisumu", provenance: "LIVE" },
+    regulatoryFriction: { value: 26, source: "TaxiD regulatory assessment (NTSA)", calculation: "national regime, low county friction", provenance: "MODELLED", confidence: 55 },
   },
   kampala: {
     urbanPopulation: { value: 1_680_000, source: "UBOS projection 2024", calculation: "Kampala Capital City Authority projected population", provenance: "MODELLED", confidence: 55 },
-    competitorCount: { value: 5, source: "SAFARID competitive register", calculation: "count of operators actively serving Kampala", provenance: "LIVE" },
+    competitorCount: { value: 5, source: "TaxiD competitive register", calculation: "count of operators actively serving Kampala", provenance: "LIVE" },
   },
   dar_es_salaam: {
     urbanPopulation: { value: 5_383_000, source: "NBS projection 2024", calculation: "Dar es Salaam region projected population", provenance: "MODELLED", confidence: 55 },
-    competitorCount: { value: 5, source: "SAFARID competitive register", calculation: "count of operators actively serving Dar es Salaam", provenance: "LIVE" },
+    competitorCount: { value: 5, source: "TaxiD competitive register", calculation: "count of operators actively serving Dar es Salaam", provenance: "LIVE" },
   },
   kigali: {
     urbanPopulation: { value: 1_242_000, source: "NISR projection 2024", calculation: "Kigali City projected population", provenance: "MODELLED", confidence: 55 },
-    competitorCount: { value: 3, source: "SAFARID competitive register", calculation: "count of operators actively serving Kigali", provenance: "LIVE" },
+    competitorCount: { value: 3, source: "TaxiD competitive register", calculation: "count of operators actively serving Kigali", provenance: "LIVE" },
   },
 };
 
@@ -93,7 +93,7 @@ export async function loadHomeMarketFacts(): Promise<HomeMarketFacts> {
 
   return {
     averageFare: avgFare,
-    /* Cost to serve is what does not remain with SAFARID — the partner side of the fare. */
+    /* Cost to serve is what does not remain with TaxiD — the partner side of the fare. */
     costToServe: avgRevenue === null ? null : Math.max(0, avgFare - avgRevenue),
     transactionCount: charges.length,
     asOf: data.find((r) => r.fulfilled_at)?.fulfilled_at ?? null,

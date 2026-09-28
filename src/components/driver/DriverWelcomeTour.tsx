@@ -29,7 +29,7 @@ const STOPS = [
   {
     id: "earnings",
     title: "What a trip pays",
-    body: "SAFARID keeps 15% of the trip value; the remaining 85% is yours and shows in your wallet.",
+    body: "TaxiD keeps 15% of the trip value; the remaining 85% is yours and shows in your wallet.",
     to: "/driver/earnings",
     cta: "See earnings",
   },

@@ -63,7 +63,7 @@ const cases = [
   {
     eyebrow: "Last-Mile Logistics",
     title: "Jumia — 18,000 daily deliveries",
-    desc: "SAFARID Delivery APIs scaled Jumia's last-mile from pilot to nationwide in under nine months.",
+    desc: "TaxiD Delivery APIs scaled Jumia's last-mile from pilot to nationwide in under nine months.",
     kpis: [
       { v: "18K",  l: "Deliveries/day" },
       { v: "-22%", l: "Cost per drop" },
@@ -75,8 +75,8 @@ const cases = [
 const About = () => (
   <MarketingPage>
     <SeoHead
-      title="About SAFARID — Africa's mobility & logistics OS"
-      description="SAFARID is a national mobility and logistics operating system. Safety, reliability, transparency, innovation and compliance — by design."
+      title="About TaxiD — Africa's mobility & logistics OS"
+      description="TaxiD is a national mobility and logistics operating system. Safety, reliability, transparency, innovation and compliance — by design."
       path="/about"
     />
 
@@ -101,9 +101,9 @@ const About = () => (
         </svg>
       </div>
       <div className="relative container mx-auto px-4 py-24 md:py-32 max-w-5xl">
-        <span className="inline-block px-3 py-1 rounded-full bg-ice/20 text-xs font-semibold mb-5 uppercase tracking-wider">About SAFARID</span>
+        <span className="inline-block px-3 py-1 rounded-full bg-ice/20 text-xs font-semibold mb-5 uppercase tracking-wider">About TaxiD</span>
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-5">
-          SAFARID is Building Africa's<br />
+          TaxiD is Building Africa's<br />
           <span className="bg-gradient-to-r from-ice to-ice/70 bg-clip-text text-transparent">Mobility Operating System</span>
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/90 max-w-3xl mb-8">
@@ -188,7 +188,7 @@ const About = () => (
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Trust & Compliance Center</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Compliance, by design</h2>
           <p className="text-muted-foreground mb-6">
-            SAFARID is built to the highest enterprise security and regulatory standards in every market we operate in.
+            TaxiD is built to the highest enterprise security and regulatory standards in every market we operate in.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
             {compliance.map((c) => (
@@ -232,11 +232,11 @@ const About = () => (
       </div>
     </section>
 
-    {/* ---------------- WHY SAFARID RIDE ---------------- */}
+    {/* ---------------- WHY TaxiD RIDE ---------------- */}
     <section className="bg-secondary/40 py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mb-12">
-          <span className="text-xs font-semibold uppercase tracking-wider text-primary">Why SAFARID</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-primary">Why TaxiD</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">Enterprise capabilities, end to end</h2>
           <p className="text-muted-foreground">Everything an operator, partner or enterprise customer needs to move people and goods at scale.</p>
         </div>
@@ -262,7 +262,7 @@ const About = () => (
     <section className="bg-primary text-primary-foreground py-20">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">SAFARID by the numbers</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">TaxiD by the numbers</h2>
           <p className="text-primary-foreground/85">The scale behind Africa's mobility operating system.</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
@@ -283,7 +283,7 @@ const About = () => (
       <div className="max-w-2xl mb-12">
         <span className="text-xs font-semibold uppercase tracking-wider text-primary">Impact Stories</span>
         <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">Enterprise case studies</h2>
-        <p className="text-muted-foreground">Real businesses delivering real outcomes on SAFARID.</p>
+        <p className="text-muted-foreground">Real businesses delivering real outcomes on TaxiD.</p>
       </div>
       <div className="grid md:grid-cols-2 gap-6">
         {cases.map((c) => (
@@ -343,7 +343,7 @@ const About = () => (
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Africa Expansion</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Live across East Africa. Growing across the continent.</h2>
           <p className="text-muted-foreground mb-6">
-            SAFARID is operational in Kenya, Uganda and Tanzania, with Rwanda, Ethiopia and Nigeria onboarding next.
+            TaxiD is operational in Kenya, Uganda and Tanzania, with Rwanda, Ethiopia and Nigeria onboarding next.
           </p>
           <div className="grid grid-cols-3 gap-4">
             <div><div className="text-2xl font-bold text-primary">3</div><div className="text-xs text-muted-foreground">Live markets</div></div>
@@ -388,7 +388,7 @@ const About = () => (
     <section className="bg-primary text-primary-foreground py-20">
       <div className="container mx-auto px-4 text-center max-w-3xl">
         <Headphones className="h-12 w-12 mx-auto mb-5 opacity-90" />
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Move with SAFARID</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Move with TaxiD</h2>
         <p className="text-lg opacity-90 mb-8">Join the operating system powering Africa's mobility — as a rider, driver, corporate, partner or investor.</p>
         <div className="flex flex-wrap justify-center gap-3">
           <AppButton analytics={AnalyticsEvents.MARKETING_GET_STARTED} action="navigate" target="/auth?mode=register"

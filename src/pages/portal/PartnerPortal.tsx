@@ -54,7 +54,7 @@ export default function PartnerPortal() {
   });
 
   React.useEffect(() => {
-    document.title = "Your SAFARID partnership | SAFARID";
+    document.title = "Your TaxiD partnership | TaxiD";
   }, []);
 
   if (!token) {
@@ -74,13 +74,13 @@ export default function PartnerPortal() {
     <main className="mx-auto max-w-4xl space-y-6 px-4 py-10">
       <header className="space-y-1">
         <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-          <Handshake className="h-3.5 w-3.5" aria-hidden /> SAFARID Partners
+          <Handshake className="h-3.5 w-3.5" aria-hidden /> TaxiD Partners
         </div>
         <h1 className="text-2xl font-semibold tracking-tight">
-          {view ? view.partner.organisation : "Your SAFARID partnership"}
+          {view ? view.partner.organisation : "Your TaxiD partnership"}
         </h1>
         <p className="text-sm text-muted-foreground">
-          Your partnership progress, quotes, contracts and ride bookings, as recorded by SAFARID.
+          Your partnership progress, quotes, contracts and ride bookings, as recorded by TaxiD.
           Questions:{" "}
           <a className="underline" href={`mailto:${CONTACT.salesEmail}`}>
             {CONTACT.salesEmail}
@@ -139,7 +139,7 @@ export default function PartnerPortal() {
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Where your enquiry stands</CardTitle>
-              <CardDescription>Progress recorded by the SAFARID team.</CardDescription>
+              <CardDescription>Progress recorded by the TaxiD team.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               {!view.enquiry && (
@@ -194,7 +194,7 @@ export default function PartnerPortal() {
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Contracts</CardTitle>
-              <CardDescription>Agreements between your organisation and SAFARID.</CardDescription>
+              <CardDescription>Agreements between your organisation and TaxiD.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               {view.contracts.length === 0 && (

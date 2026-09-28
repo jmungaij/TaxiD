@@ -1,7 +1,7 @@
 /**
- * SAFARID AUTHORITATIVE PAYMENT + CREDIT CLIENT.
+ * TaxiD AUTHORITATIVE PAYMENT + CREDIT CLIENT.
  *
- * SAFARID rides are CASH-FIRST. Payment is made to SAFARID's designated M-Pesa
+ * TaxiD rides are CASH-FIRST. Payment is made to TaxiD's designated M-Pesa
  * PayBill or approved bank account, and a ride is never "paid" until the
  * payment has been independently verified.
  *
@@ -108,10 +108,10 @@ export interface BankGuaranteeRow {
 
 export const CREDIT_WARNING =
   "Ride-on-credit is available only against an active, verified and approved bank guarantee. " +
-  "Without one, payment must be made through SAFARID's designated M-Pesa PayBill or bank account.";
+  "Without one, payment must be made through TaxiD's designated M-Pesa PayBill or bank account.";
 
 export const CREDIT_UNAVAILABLE_MESSAGE =
-  "Corporate credit is unavailable. Pay using SAFARID M-Pesa PayBill or bank transfer.";
+  "Corporate credit is unavailable. Pay using TaxiD M-Pesa PayBill or bank transfer.";
 
 export const DECISION_LABEL: Record<PaymentDecision, string> = {
   ALLOW_CASH_PAYMENT: "Pay now by M-Pesa PayBill or bank transfer",
@@ -155,7 +155,7 @@ export function money(cents: number | null | undefined, currency = "KES"): strin
   return `${currency} ${value.toLocaleString("en-KE")}`;
 }
 
-/** SAFARID's designated cash-collection channels. */
+/** TaxiD's designated cash-collection channels. */
 export async function loadPaymentChannels(): Promise<PaymentChannel[]> {
   const { data, error } = await untypedDb
     .from("yalla_payment_channels")

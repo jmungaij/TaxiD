@@ -157,7 +157,7 @@ const MarketingHeader = () => {
     >
 
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center" aria-label="SAFARID home">
+        <Link to="/" className="flex items-center" aria-label="TaxiD home">
           <BrandLogo
             tone="light"
             priority
@@ -391,7 +391,7 @@ const MarketingHeader = () => {
               <div className="absolute right-0 top-full pt-2">
                 <div className="w-[22rem] rounded-2xl border border-border bg-popover/95 backdrop-blur-xl shadow-2xl p-3" role="menu" aria-label="Sign in">
                   <div className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    How do you use SAFARID?
+                    How do you use TaxiD?
                   </div>
                   <div className="space-y-2">
                     {SIGN_IN_GROUPS.map((g) => (

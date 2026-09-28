@@ -96,7 +96,7 @@ export const GOVERNANCE_CONTROLS = [
   "Financial controls",
 ] as const;
 
-/** Entity classes reachable through SAFARID Universal Search, subject to scope. */
+/** Entity classes reachable through TaxiD Universal Search, subject to scope. */
 export const UNIVERSAL_SEARCH_ENTITIES = [
   { label: "Employees", scope: "department" satisfies StaffScope },
   { label: "Departments", scope: "department" satisfies StaffScope },

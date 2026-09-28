@@ -17,7 +17,7 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function SendToRiderInbox({ draft, category }: { draft: string; category: string }) {
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("Update on your SAFARID support request");
+  const [subject, setSubject] = useState("Update on your TaxiD support request");
   const [body, setBody] = useState(() => extractRiderMessage(draft));
   const [busy, setBusy] = useState(false);
 

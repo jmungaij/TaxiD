@@ -1,7 +1,7 @@
 /**
- * Phase 8.4 / 8.10 — Marketplace Liquidity Engine and the SAFARID Liquidity Index.
+ * Phase 8.4 / 8.10 — Marketplace Liquidity Engine and the TaxiD Liquidity Index.
  *
- * SAFARID's growth is matching independent supply to demand, so liquidity is a
+ * TaxiD's growth is matching independent supply to demand, so liquidity is a
  * primary engine, not a dashboard tile. The index is transparent: every
  * component, its weight and its observed value are returned with the score, and
  * any missing component reduces confidence rather than being assumed.
@@ -61,7 +61,7 @@ export interface LiquidityCell {
   cancellationRate: Measure;
   timeToMatch: Measure;
   contribution: Measure;
-  /** SAFARID Liquidity Index 0-100 with its full component breakdown. */
+  /** TaxiD Liquidity Index 0-100 with its full component breakdown. */
   index: Measure;
   components: IndexComponent[];
   capacityDeficit: Measure;
@@ -119,8 +119,8 @@ export function computeLiquidityCell(f: LiquidityCellFacts): LiquidityCell {
   const confidence = Math.round(weightAvailable * 100);
 
   const index: Measure = usable.length === 0
-    ? na("SAFARID Liquidity Index", "score", "No liquidity component is readable for this cell")
-    : modelledMeasure("SAFARID Liquidity Index",
+    ? na("TaxiD Liquidity Index", "score", "No liquidity component is readable for this cell")
+    : modelledMeasure("TaxiD Liquidity Index",
         usable.reduce((a, c) => a + (c.score ?? 0) * c.weight, 0) / weightAvailable,
         "score", src,
         `weighted mean of ${usable.map((c) => c.label).join(", ")} (weights normalised over available components)`,

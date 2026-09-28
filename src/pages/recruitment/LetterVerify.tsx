@@ -1,7 +1,7 @@
 /**
  * Public letter verification — /verify/letter
  *
- * Proves that a SAFARID recruitment letter reference plus its printed
+ * Proves that a TaxiD recruitment letter reference plus its printed
  * verification code was genuinely issued. It deliberately returns no candidate
  * personal data: only issuance facts, the document fingerprint and whether the
  * letter has since been superseded by a later revision.
@@ -62,18 +62,18 @@ export default function LetterVerify() {
   return (
     <main className="min-h-screen bg-background px-4 py-16">
       <Helmet>
-        <title>Verify a SAFARID recruitment letter</title>
+        <title>Verify a TaxiD recruitment letter</title>
         <meta
           name="description"
-          content="Confirm that a SAFARID recruitment letter was officially issued using its reference and printed verification code."
+          content="Confirm that a TaxiD recruitment letter was officially issued using its reference and printed verification code."
         />
-        <link rel="canonical" href="https://safarid.org/verify/letter" />
+        <link rel="canonical" href="https://taxid.us/verify/letter" />
         <meta name="robots" content="noindex,follow" />
       </Helmet>
 
       <div className="mx-auto w-full max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-          SAFARID · Recruitment
+          TaxiD · Recruitment
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">Letter verification</h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -133,7 +133,7 @@ export default function LetterVerify() {
                 <div className="rounded-md border border-success/40 bg-success/5 p-4">
                   <p className="flex items-center gap-2 font-semibold text-success">
                     <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                    Officially issued by SAFARID
+                    Officially issued by TaxiD
                   </p>
                   <dl className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
                     <div>

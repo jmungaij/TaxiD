@@ -1,5 +1,5 @@
 /**
- * SAFARID® — Enterprise Design Contract (Phase 11)
+ * TaxiD® — Enterprise Design Contract (Phase 11)
  * -------------------------------------------------------
  * Single machine-readable source of truth for the Design Intelligence Layer.
  * Consumed by:

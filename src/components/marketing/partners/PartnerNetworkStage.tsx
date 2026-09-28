@@ -180,7 +180,7 @@ export function PartnerNetworkStage() {
             Two ecosystems, one execution engine
           </h2>
           <p className="text-pretty text-muted-foreground">
-            Some partners create demand. Others provide the capacity that fulfils it. SAFARID operates the
+            Some partners create demand. Others provide the capacity that fulfils it. TaxiD operates the
             layer between them.
           </p>
         </div>
@@ -333,7 +333,7 @@ export function PartnerNetworkStage() {
               </span>
               <p className="mt-2 text-sm text-muted-foreground">{ecosystem.lead}</p>
 
-              <h4 className="mt-6 text-sm font-semibold">SAFARID capability</h4>
+              <h4 className="mt-6 text-sm font-semibold">TaxiD capability</h4>
               <ul className="mt-3 space-y-2">
                 {active.capabilities.map((cap) => (
                   <li key={cap} className="flex items-start gap-2 text-sm">
@@ -403,7 +403,7 @@ export function PartnerNetworkStage() {
               </span>
               <span aria-hidden className="h-px w-8 bg-border sm:w-12" />
               <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground">
-                SAFARID execution engine
+                TaxiD execution engine
               </span>
               <span aria-hidden className="h-px w-8 bg-border sm:w-12" />
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">

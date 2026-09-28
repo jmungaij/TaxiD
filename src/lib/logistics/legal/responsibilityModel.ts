@@ -1,7 +1,7 @@
 /**
  * PARTY & RESPONSIBILITY MODEL.
  *
- * SAFARID is a digital technology marketplace. It facilitates discovery,
+ * TaxiD is a digital technology marketplace. It facilitates discovery,
  * matching, booking, payment and settlement. The independent Fleet Owner /
  * Transport Service Provider performs the physical transport service and owns
  * the carrier-side licensing, insurance, vehicle, driver and fulfilment
@@ -35,12 +35,12 @@ export interface ControlResponsibility {
 export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
   {
     control_id: "LG-01",
-    title: "Platform regulatory classification (is SAFARID an intermediary or a carrier?)",
+    title: "Platform regulatory classification (is TaxiD an intermediary or a carrier?)",
     party: "PLATFORM",
     system_of_record: "Legal determination — external counsel opinion + company approval",
     evidence_scope: "SINGLE_DOCUMENT",
     platform_obligation:
-      "Obtain and record a counsel determination on whether the operating model (algorithmic matching, price presentation, payment facilitation, transaction records) causes SAFARID to be regulated as a carrier, agent or marketplace intermediary. Not resolvable by architecture description alone.",
+      "Obtain and record a counsel determination on whether the operating model (algorithmic matching, price presentation, payment facilitation, transaction records) causes TaxiD to be regulated as a carrier, agent or marketplace intermediary. Not resolvable by architecture description alone.",
   },
   {
     control_id: "LG-02",
@@ -49,7 +49,7 @@ export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
     system_of_record: "carrier_compliance_items (FO-CAK-COURIER-LICENCE, FO-TRANSPORT-LICENCE)",
     evidence_scope: "POPULATION",
     platform_obligation:
-      "Require, verify and expiry-track each Fleet Owner's own operating authority before exposing it to clients. SAFARID does not hold this licence.",
+      "Require, verify and expiry-track each Fleet Owner's own operating authority before exposing it to clients. TaxiD does not hold this licence.",
   },
   {
     control_id: "LG-03",
@@ -76,7 +76,7 @@ export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
     system_of_record: "carrier_compliance_items (FO-MOTOR-INSURANCE, VEH-INSURANCE)",
     evidence_scope: "POPULATION",
     platform_obligation:
-      "Require insurer, policy number, cover, limits, effective and expiry dates per Fleet Owner and per vehicle. Any platform-level cover SAFARID holds must never be presented as replacing this.",
+      "Require insurer, policy number, cover, limits, effective and expiry dates per Fleet Owner and per vehicle. Any platform-level cover TaxiD holds must never be presented as replacing this.",
   },
   {
     control_id: "LG-06",
@@ -94,7 +94,7 @@ export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
     system_of_record: "Configurable platform goods rule register + Fleet Owner undertaking",
     evidence_scope: "SINGLE_DOCUMENT",
     platform_obligation:
-      "Maintain the marketplace rule and the declaration/screening/refusal mechanism. The classification list stays configurable — SAFARID does not own an immutable legal catalogue of restricted items.",
+      "Maintain the marketplace rule and the declaration/screening/refusal mechanism. The classification list stays configurable — TaxiD does not own an immutable legal catalogue of restricted items.",
   },
   {
     control_id: "LG-08",
@@ -112,7 +112,7 @@ export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
     system_of_record: "Fleet Owner Agreement + claims workflow",
     evidence_scope: "POPULATION",
     platform_obligation:
-      "Operate the dispute/claims workflow and route the claim to the responsible Fleet Owner. SAFARID is not the carrier and does not underwrite the loss.",
+      "Operate the dispute/claims workflow and route the claim to the responsible Fleet Owner. TaxiD is not the carrier and does not underwrite the loss.",
   },
   {
     control_id: "LG-10",
@@ -130,7 +130,7 @@ export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
     system_of_record: "Platform terms + Fleet Owner Agreement",
     evidence_scope: "SINGLE_DOCUMENT",
     platform_obligation:
-      "State that the transport service agreement is between the client and the Fleet Owner, and that SAFARID facilitates the transaction and, at the client's instruction, the payment.",
+      "State that the transport service agreement is between the client and the Fleet Owner, and that TaxiD facilitates the transaction and, at the client's instruction, the payment.",
   },
   {
     control_id: "LG-12",
@@ -148,7 +148,7 @@ export const CONTROL_RESPONSIBILITY: ControlResponsibility[] = [
     system_of_record: "Platform compliance register — existing active data protection certificate",
     evidence_scope: "SINGLE_DOCUMENT",
     platform_obligation:
-      "SAFARID is the controller for client and consignment data regardless of who drives. Record the existing certificate, its status and renewal date; do not create a duplicate certification workflow.",
+      "TaxiD is the controller for client and consignment data regardless of who drives. Record the existing certificate, its status and renewal date; do not create a duplicate certification workflow.",
   },
   {
     control_id: "LG-14",
@@ -183,16 +183,16 @@ export function populationScopedControls(): ControlResponsibility[] {
  * Authoritative client-facing disclosure. Used wherever the platform's role must
  * be stated before the client commits. Deliberately preserves mandatory law.
  */
-export const FACILITATOR_DISCLOSURE = `SAFARID operates a digital technology platform that facilitates connections and transactions between clients and independent Fleet Owners / Transport Service Providers. SAFARID does not own or operate the Fleet Owner's vehicles or vessels and does not itself perform the underlying transportation service.
+export const FACILITATOR_DISCLOSURE = `TaxiD operates a digital technology platform that facilitates connections and transactions between clients and independent Fleet Owners / Transport Service Providers. TaxiD does not own or operate the Fleet Owner's vehicles or vessels and does not itself perform the underlying transportation service.
 
 The transportation service is provided by the Fleet Owner directly to the client. The Fleet Owner remains responsible for the lawful, safe and proper performance of that service, including its vehicles, vessels, drivers, personnel, licences, permits, insurance, cargo handling, regulatory compliance and delivery obligations.
 
-Where SAFARID facilitates payment at the client's instruction, that facilitation does not, by itself, constitute an assumption by SAFARID of the Fleet Owner's transport obligations.
+Where TaxiD facilitates payment at the client's instruction, that facilitation does not, by itself, constitute an assumption by TaxiD of the Fleet Owner's transport obligations.
 
 Nothing in these terms purports to exclude or limit liability that cannot lawfully be excluded or limited.`;
 
 /** Short attribution line for bookings, invoices, PODs and tracking surfaces. */
 export function serviceAttribution(fleetOwnerName: string | null | undefined): string {
   const provider = fleetOwnerName?.trim() || "the assigned Fleet Owner";
-  return `Transport service provided by ${provider}. Transaction facilitated by SAFARID.`;
+  return `Transport service provided by ${provider}. Transaction facilitated by TaxiD.`;
 }

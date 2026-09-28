@@ -40,7 +40,7 @@ export const CUSTOMER_STATE_LABEL: Record<CustomerState, string> = {
 /** What the customer is told happens next, in plain words. */
 export const CUSTOMER_STATE_MEANING: Record<CustomerState, string> = {
   SUBMITTED: "We have your request and it is queued for review.",
-  UNDER_REVIEW: "Your SAFARID contact is reviewing what you need.",
+  UNDER_REVIEW: "Your TaxiD contact is reviewing what you need.",
   INFORMATION_REQUIRED: "We need something from you before we can continue.",
   QUALIFICATION: "We are confirming the detail of your requirement.",
   COMMERCIAL_REVIEW: "Your pricing and terms are being prepared.",

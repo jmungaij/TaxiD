@@ -35,7 +35,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   "/driver": {
     eyebrow: "Driver Hub",
     title: "Welcome, driver",
-    subtitle: "Everything you need to join, train, earn and grow with SAFARID.",
+    subtitle: "Everything you need to join, train, earn and grow with TaxiD.",
     sections: [{
       heading: "Where to go next",
       items: [
@@ -125,7 +125,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   // ---------- Trust ----------
   "/security": {
     eyebrow: "Trust",
-    title: "Security at SAFARID",
+    title: "Security at TaxiD",
     subtitle: "Defense in depth, from device to ledger.",
     highlights: [
       { value: "AES-256", label: "At rest" },
@@ -237,7 +237,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   "/investors": {
     eyebrow: "Company",
     title: "Investor Relations",
-    subtitle: "SAFARID is building Africa's mobility operating system. Here is the opportunity.",
+    subtitle: "TaxiD is building Africa's mobility operating system. Here is the opportunity.",
     highlights: [
       { value: "$120B", label: "African mobility TAM" },
       { value: "12,400+", label: "Active drivers" },
@@ -260,7 +260,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
       {
         eyebrow: "Talk to us",
         heading: "Contact Investor Relations",
-        body: "For data rooms, briefings and partnership enquiries, contact sales@safarid.org.",
+        body: "For data rooms, briefings and partnership enquiries, contact sales@taxid.us.",
       },
     ],
     ctaTitle: "Partner with the team building Africa's mobility OS",
@@ -293,7 +293,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
 
   // ---------- Newsroom + Developers ----------
   "/developers": {
-    eyebrow: "Build with SAFARID",
+    eyebrow: "Build with TaxiD",
     title: "Developer Platform",
     subtitle: "REST APIs, webhooks and SDKs for delivery, corporate and rental partners.",
     sections: [
@@ -311,10 +311,10 @@ export const STUB_CONTENT: Record<string, StubContent> = {
       {
         eyebrow: "Get access",
         heading: "Request API keys",
-        body: "Email sales@safarid.org with your use case. We onboard partners weekly.",
+        body: "Email sales@taxid.us with your use case. We onboard partners weekly.",
       },
     ],
-    ctaTitle: "Build on SAFARID",
+    ctaTitle: "Build on TaxiD",
     ctaSubtitle: "API access is free for early partners.",
   },
 
@@ -366,7 +366,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
         ],
       },
     ],
-    ctaTitle: "Bring your team on SAFARID",
+    ctaTitle: "Bring your team on TaxiD",
     ctaSubtitle: "Talk to corporate sales about onboarding your employees.",
   },
 
@@ -496,7 +496,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
     sections: [
       { heading: "For fleet owners", bullets: [
         "List vehicles for self-drive, chauffeur or platform use",
-        "SAFARID handles KYC, insurance verification and payouts",
+        "TaxiD handles KYC, insurance verification and payouts",
         "Live utilization and earnings dashboard",
         "Compliance alerts before documents expire",
       ]},

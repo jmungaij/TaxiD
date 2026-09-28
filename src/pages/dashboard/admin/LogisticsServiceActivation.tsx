@@ -176,7 +176,7 @@ export default function LogisticsServiceActivation() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-10">
       <Helmet>
-        <title>Logistics Service Activation | SAFARID Admin</title>
+        <title>Logistics Service Activation | TaxiD Admin</title>
         <meta name="description" content="Configure, validate and activate logistics service offerings from the authoritative dependency engine." />
       </Helmet>
 

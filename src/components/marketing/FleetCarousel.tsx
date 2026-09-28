@@ -95,7 +95,7 @@ export function FleetCarousel({ vehicles, authenticated, passengers }: Props) {
     const url = `${window.location.origin}/riders/corporate#fleet-${v.key}`;
     trackEmStep("vehicle_viewed", { vehicle: v.key, action: "share" });
     try {
-      if (navigator.share) await navigator.share({ title: `${v.name} — SAFARID`, url });
+      if (navigator.share) await navigator.share({ title: `${v.name} — TaxiD`, url });
       else {
         await navigator.clipboard.writeText(url);
         toast({ title: "Link copied", description: `${v.name} link copied to your clipboard.` });
@@ -129,7 +129,7 @@ export function FleetCarousel({ vehicles, authenticated, passengers }: Props) {
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                     <img
                       src={VEHICLE_IMAGES[v.key]}
-                      alt={`${v.name} — ${v.seats}, SAFARID corporate fleet`}
+                      alt={`${v.name} — ${v.seats}, TaxiD corporate fleet`}
                       loading={i < 2 ? "eager" : "lazy"}
                       decoding="async"
                       width={640}

@@ -232,7 +232,7 @@ export default function WhiteLabelWorkspace() {
 
 
               <CardDescription>
-                A tenant is provisioned by the SAFARID partner desk once the agreement is executed.
+                A tenant is provisioned by the TaxiD partner desk once the agreement is executed.
                 When your tenant exists, this workspace shows its brand configuration, credentials,
                 sandbox surface, webhook contracts and the production readiness checklist.
               </CardDescription>
@@ -534,7 +534,7 @@ export default function WhiteLabelWorkspace() {
                     value={body} onChange={(e) => setBody(e.target.value)} />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="wl-header">SAFARID-Signature header</Label>
+                  <Label htmlFor="wl-header">TaxiD-Signature header</Label>
                   <Input id="wl-header" className="font-mono text-xs" placeholder="t=…,v1=…"
                     value={header} onChange={(e) => setHeader(e.target.value)} />
                 </div>

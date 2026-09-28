@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  */
 export type IconTone =
   | "primary"     // Titanium — default, structural
-  | "interactive" // SAFARID Orange — actions, active state
+  | "interactive" // TaxiD Orange — actions, active state
   | "corporate"   // Midnight Sapphire / Executive Navy
   | "executive"   // Champagne Gold — VIP, Charter, Elite
   | "success"     // Emerald

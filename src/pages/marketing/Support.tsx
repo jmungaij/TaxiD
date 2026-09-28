@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/marketing/ContactForm";
 import { SeoHead } from "@/components/seo/SeoHead";
 
 const channels = [
-  { icon: MessageSquare, title: "24/7 in-app chat", desc: "Tap Help inside the SAFARID app. Average first-response under 90 seconds." },
+  { icon: MessageSquare, title: "24/7 in-app chat", desc: "Tap Help inside the TaxiD app. Average first-response under 90 seconds." },
   { icon: Phone, title: "Phone support", desc: "Call our safety line for any active trip or emergency — answered immediately." },
   { icon: Headphones, title: "Enterprise CSM", desc: "Corporate, fleet and partner accounts get a named CSM and shared Slack/Teams channel." },
   { icon: BookOpen, title: "Help center", desc: "Self-serve guides for riders, drivers, corporates, and developers." },
@@ -22,8 +22,8 @@ export default function Support() {
   return (
     <MarketingPage>
       <SeoHead
-        title="Support & help center | SAFARID"
-        description="24/7 in-app chat, phone support for active trips, enterprise CSMs, and a self-serve help center. Contact the SAFARID support team."
+        title="Support & help center | TaxiD"
+        description="24/7 in-app chat, phone support for active trips, enterprise CSMs, and a self-serve help center. Contact the TaxiD support team."
         path="/support"
       />
       <PageHero
@@ -89,7 +89,7 @@ export default function Support() {
             <div className="space-y-3 text-sm text-muted-foreground">
               <p><strong className="text-foreground">Safety emergency:</strong> use SOS inside the app — connected to our safety center in under 60 seconds.</p>
               <p><strong className="text-foreground">Lost item:</strong> message us with the trip ID; we contact the driver on your behalf.</p>
-              <p><strong className="text-foreground">Press & media:</strong> support@safarid.org</p>
+              <p><strong className="text-foreground">Press & media:</strong> support@taxid.us</p>
             </div>
           </div>
           <ContactForm

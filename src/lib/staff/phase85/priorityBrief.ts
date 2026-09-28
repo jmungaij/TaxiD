@@ -183,7 +183,7 @@ function shortDate(iso: string | null): string {
 }
 
 function drillUrl(ref: string | null | undefined): string {
-  const base = typeof window !== "undefined" ? window.location.origin : "https://safarid.org";
+  const base = typeof window !== "undefined" ? window.location.origin : "https://taxid.us";
   return ref ? `${base}/staff/closure?tx=${encodeURIComponent(ref)}` : `${base}/staff/closure`;
 }
 
@@ -203,7 +203,7 @@ export async function downloadBriefPdf(brief: PriorityBrief): Promise<string> {
   doc.rect(0, 0, pageW, 76, "F");
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold").setFontSize(16);
-  doc.text("SAFARID", margin, 32);
+  doc.text("TaxiD", margin, 32);
   doc.setFont("helvetica", "normal").setFontSize(11);
   doc.text(`Commercial Priority Brief — ${meta.label}`, margin, 50);
   doc.setFontSize(8);
@@ -330,7 +330,7 @@ export async function downloadBriefPdf(brief: PriorityBrief): Promise<string> {
   for (let i = 1; i <= pages; i += 1) {
     doc.setPage(i);
     doc.setFontSize(7.5).setTextColor(...INK.muted);
-    doc.text(`SAFARID · ${meta.label} · page ${i} of ${pages}`, margin, doc.internal.pageSize.getHeight() - 20);
+    doc.text(`TaxiD · ${meta.label} · page ${i} of ${pages}`, margin, doc.internal.pageSize.getHeight() - 20);
     doc.textWithLink("Open Control Tower", pageW - margin, doc.internal.pageSize.getHeight() - 20, {
       url: drillUrl(null), align: "right",
     });

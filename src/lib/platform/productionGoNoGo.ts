@@ -223,7 +223,7 @@ export function certifyProductionReadiness(inputs: ReadinessInputs = {}): Produc
 
 export function renderReadinessMarkdown(report: ProductionReadinessReport = certifyProductionReadiness()): string {
   const lines: string[] = [
-    "# SAFARID — Enterprise Production Readiness Report",
+    "# TaxiD — Enterprise Production Readiness Report",
     "",
     `**Decision:** ${report.decision} · **Score:** ${report.score}/100`,
     "",

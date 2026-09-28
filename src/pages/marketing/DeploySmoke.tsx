@@ -47,8 +47,8 @@ export default function DeploySmoke() {
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12">
       <Helmet>
-        <title>Post-Deploy Smoke Test · SAFARID</title>
-        <meta name="description" content="Verify every hashed asset and source map of this SAFARID release resolves correctly from the serving host." />
+        <title>Post-Deploy Smoke Test · TaxiD</title>
+        <meta name="description" content="Verify every hashed asset and source map of this TaxiD release resolves correctly from the serving host." />
         <meta name="robots" content="noindex" />
       </Helmet>
 

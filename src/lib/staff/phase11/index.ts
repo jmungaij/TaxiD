@@ -1,7 +1,7 @@
 /**
- * Phase 11 — SAFARID Autonomous Adaptive Marketplace Engine, public API.
+ * Phase 11 — TaxiD Autonomous Adaptive Marketplace Engine, public API.
  *
- * SAFARID does not own mobility resources. It owns the orchestration layer. Phase
+ * TaxiD does not own mobility resources. It owns the orchestration layer. Phase
  * 11 sits above that layer and closes the loop: sense, understand, predict,
  * simulate, decide, approve, act, observe, measure, learn, adapt — under human
  * governance, on authoritative data, with every unsupported figure reported as an

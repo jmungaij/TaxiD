@@ -81,7 +81,7 @@ export const FOOTER_CONTRACT: Record<string, FooterContractEntry> = {
 
   // ---- Partners
   "/drivers": { classification: "product", capability: "Driver partner proposition" },
-  // ---- SAFARID Partners: one entry per Partner Capability Registry segment
+  // ---- TaxiD Partners: one entry per Partner Capability Registry segment
   "/partners/travel-tourism": { classification: "product", capability: "Travel & tourism partner proposition and application route" },
   "/partners/hospitality": { classification: "product", capability: "Hospitality partner proposition and application route" },
   "/partners/corporate": { classification: "product", capability: "Corporate & institutional distribution partner proposition" },

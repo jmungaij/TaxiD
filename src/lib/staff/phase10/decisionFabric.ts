@@ -1,7 +1,7 @@
 /**
  * Phase 10 §10.23–10.24 — the AI Orchestration Council and the Decision Fabric.
  *
- * There is no generic "SAFARID AI". There are fourteen specialised agents plus an
+ * There is no generic "TaxiD AI". There are fourteen specialised agents plus an
  * orchestrator, and every consequential decision carries the same record:
  *
  *   signal → evidence → recommendation → confidence → economic impact → risk
@@ -218,7 +218,7 @@ export interface CouncilVerdict {
 }
 
 /**
- * The SAFARID Orchestration Agent coordinates the council. It does not overrule
+ * The TaxiD Orchestration Agent coordinates the council. It does not overrule
  * the risk veto, and it will not manufacture a verdict from abstentions.
  */
 export function conveneCouncil(
@@ -259,7 +259,7 @@ export function conveneCouncil(
       conditions: abstain.map((o) => `${AGENT_LABEL[o.agent]} requires evidence: ${o.reasoning}`),
       dissent,
       approvalRequirement,
-      narrative: `Held: ${abstain.length} of ${opinions.length} agents abstained for want of evidence. SAFARID does not decide on a majority of silence.`,
+      narrative: `Held: ${abstain.length} of ${opinions.length} agents abstained for want of evidence. TaxiD does not decide on a majority of silence.`,
     };
   }
 

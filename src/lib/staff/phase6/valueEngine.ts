@@ -1,5 +1,5 @@
 /**
- * Phase 6 — SAFARID Value Engine and the single enterprise objective function.
+ * Phase 6 — TaxiD Value Engine and the single enterprise objective function.
  *
  * The engine answers two questions about any activity: what measurable value is
  * it creating, and what is consuming resources without producing enough value.
@@ -209,7 +209,7 @@ export function northStarDrivers(coverage: Coverage): NorthStarDriver[] {
   }));
 }
 
-/* -------------------------------- SAFARID Enterprise Effectiveness Index (EEI) */
+/* -------------------------------- TaxiD Enterprise Effectiveness Index (EEI) */
 
 export const EEI_DOMAINS = [
   { key: "customer", label: "Customer", measures: "Outcomes & retention", tables: ["corporate_accounts", "client_journey_events"] },

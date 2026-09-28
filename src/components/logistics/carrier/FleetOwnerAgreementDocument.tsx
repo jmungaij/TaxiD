@@ -171,7 +171,7 @@ export default function FleetOwnerAgreementDocument({ fleetOwner, declarations }
             ))}
 
             <p className="text-xs text-muted-foreground">
-              This pack records the instruments accepted on the SAFARID platform and the acceptance
+              This pack records the instruments accepted on the TaxiD platform and the acceptance
               evidence held against them. It is not legal advice.
             </p>
           </div>

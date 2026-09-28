@@ -1,5 +1,5 @@
 /**
- * SAFARID Air route geography — a small, deterministic airport/city registry used
+ * TaxiD Air route geography — a small, deterministic airport/city registry used
  * by the live flight map. Pure data + projection helpers (no React, no fetch)
  * so the map widget stays testable and renders without any maps API key.
  */

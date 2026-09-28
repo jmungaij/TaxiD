@@ -1,10 +1,10 @@
 /**
- * SAFARID business architecture — the economic foundation of Staff 360.
+ * TaxiD business architecture — the economic foundation of Staff 360.
  *
- * SAFARID is a digital mobility marketplace. It connects demand (customers) with
+ * TaxiD is a digital mobility marketplace. It connects demand (customers) with
  * independent resource owners and operators, and provides the technology,
  * commercial orchestration, payment and governance layer around the
- * transaction. Nothing in this module implies SAFARID owns the vehicles, fleets,
+ * transaction. Nothing in this module implies TaxiD owns the vehicles, fleets,
  * aircraft, vessels or equipment offered through the platform.
  *
  * Kept as pure data so the Staff portal, tests and governance gates share one
@@ -108,7 +108,7 @@ export const CUSTOMER_SEGMENTS: CustomerSegment[] = [
 ];
 
 /* ------------------------------------------------------------------ *
- * Supply side — marketplace participants (never "SAFARID's fleet")
+ * Supply side — marketplace participants (never "TaxiD's fleet")
  * ------------------------------------------------------------------ */
 
 export interface SupplyParticipant {
@@ -119,7 +119,7 @@ export interface SupplyParticipant {
 
 /**
  * Supply participants are independent resource providers and operators. They
- * are not SAFARID employees and their resources are not SAFARID assets.
+ * are not TaxiD employees and their resources are not TaxiD assets.
  */
 export const SUPPLY_PARTICIPANTS: SupplyParticipant[] = [
   { label: "Drivers", provides: "Personal driving capacity on the platform" },
@@ -257,7 +257,7 @@ export const REVENUE_GRAPH: string[] = [
   "Marketplace transaction",
   "Resource provider / operator",
   "Gross transaction value",
-  "SAFARID revenue",
+  "TaxiD revenue",
   "Partner / operator settlement",
   "Net revenue",
   "Customer lifetime value",
@@ -278,7 +278,7 @@ export const COMMERCIAL_FLOW: string[] = [
   "Resource owner / operator",
   "Service delivery",
   "Payment",
-  "SAFARID revenue",
+  "TaxiD revenue",
   "Customer success",
   "Retention",
   "Expansion",
@@ -318,7 +318,7 @@ export const REVENUE_FUNNEL: string[] = [
 /** Revenue quality measures — definitions come from configured finance rules. */
 export const REVENUE_QUALITY_MEASURES: string[] = [
   "Gross transaction value",
-  "SAFARID revenue",
+  "TaxiD revenue",
   "Partner / operator settlement",
   "Net revenue",
   "Margin",
@@ -326,7 +326,7 @@ export const REVENUE_QUALITY_MEASURES: string[] = [
   "Revenue leakage",
 ];
 
-/** Enterprise sales lifecycle spanning every SAFARID service category. */
+/** Enterprise sales lifecycle spanning every TaxiD service category. */
 export const SALES_LIFECYCLE: string[] = [
   "Market intelligence",
   "Lead",

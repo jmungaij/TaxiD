@@ -6,7 +6,6 @@ import { AppButton } from "@/components/nav/AppButton";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { MarketingPage } from "@/components/marketing/PageHero";
 import { CrossLinks } from "@/components/marketing/CrossLinks";
-import { appLink } from "@/lib/appLinks";
 import { useTabDeepLink } from "@/hooks/useTabDeepLink";
 import RiderHero from "@/components/rider/landing/RiderHero";
 import RiderMarketplace from "@/components/rider/landing/RiderMarketplace";

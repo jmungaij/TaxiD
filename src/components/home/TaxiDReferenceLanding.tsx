@@ -5,6 +5,8 @@ import {
   Users, ClipboardCheck, Coins, BarChart3, Receipt,
 } from "lucide-react";
 import { appLink } from "@/lib/appLinks";
+import riderApp from "@/assets/apps/taxid-rider-app.png.asset.json";
+import driverApp from "@/assets/apps/taxid-driver-app.png.asset.json";
 import heroImg from "@/assets/home/taxid-ref-hero.jpg";
 import businessImg from "@/assets/home/taxid-ref-business.jpg";
 import bookingImg from "@/assets/home/taxid-ref-booking.jpg";
@@ -81,10 +83,12 @@ function Node({ t, s, img, right }: { t: string; s: string; img: string; right?:
 }
 
 function PlayBadge({ audience, label }: { audience: "rider" | "driver"; label: string }) {
+  const appIcon = audience === "rider" ? riderApp.url : driverApp.url;
   return (
     <a href={appLink({ audience, platform: "android", placement: "home_landing" })} target="_blank" rel="noopener noreferrer"
-      className="inline-flex items-center gap-3 rounded-xl border border-[hsl(var(--tx-cyan)/0.5)] bg-[hsl(var(--tx-ink)/0.8)] px-4 py-2 transition hover:border-[hsl(var(--tx-gold))]">
-      <svg viewBox="0 0 24 24" className="h-7 w-7" aria-hidden><path fill="hsl(var(--tx-cyan))" d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1Z"/><path fill="hsl(var(--tx-gold))" d="m17.2 8.6-3.4 3.4 3.4 3.4 3.8-2.2c.8-.5.8-1.7 0-2.2l-3.8-2.4Z"/><path fill="hsl(var(--tx-electric))" d="M3.6 1.8 13.8 12l3.4-3.4L5 1.6c-.5-.3-1-.2-1.4.2Z"/><path fill="hsl(var(--tx-royal))" d="M3.6 22.2 13.8 12l3.4 3.4L5 22.4c-.5.3-1 .2-1.4-.2Z"/></svg>
+      aria-label={`Download ${label} from Google Play`}
+      className="inline-flex items-center gap-3 rounded-xl border border-[hsl(var(--tx-cyan)/0.5)] bg-[hsl(var(--tx-ink)/0.8)] p-2 pr-4 transition hover:border-[hsl(var(--tx-gold))]">
+      <img src={appIcon} alt="" width={256} height={256} className="h-11 w-11 rounded-lg object-cover" />
       <span className="leading-tight"><span className="block text-[10px] uppercase tracking-wide text-[hsl(var(--tx-ice)/0.75)]">Get it on Google Play</span><span className="block text-sm font-bold">{label}</span></span>
     </a>
   );

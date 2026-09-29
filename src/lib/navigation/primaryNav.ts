@@ -181,7 +181,6 @@ export function buildPrimaryNav(appLinks: {
           items: [
             { to: "/auth?mode=register&role=rider", label: "Create a Rider Account", desc: "Register in under a minute" },
             { to: appLinks.riderAndroid, label: "Download for Android", desc: "Available on Google Play", external: true },
-            { to: appLinks.riderIos, label: "Download for iOS", desc: "Available on the App Store", external: true },
             { to: "/support", label: "Rider Support", desc: "Help centre, safety and trip assistance" },
           ],
         },
@@ -220,7 +219,6 @@ export function buildPrimaryNav(appLinks: {
             { to: "/driver/support", label: "Driver Support", desc: "Round-the-clock help centre" },
             { to: "/driver/earnings", label: "Earnings & Incentives", desc: "Understand fares, bonuses and payout timing" },
             { to: appLinks.driverAndroid, label: "Get the Driver App — Android", desc: "Available on Google Play", external: true },
-            { to: appLinks.driverIos, label: "Get the Driver App — iOS", desc: "Available on the App Store", external: true },
           ],
         },
       ],

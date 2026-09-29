@@ -35,8 +35,8 @@ const BrandLogo = ({
   <img
     src={variant === "mark" ? taxiDMark : SOURCES[tone]}
     alt={alt}
-    width={variant === "mark" ? 696 : 927}
-    height={variant === "mark" ? 840 : 357}
+    width={variant === "mark" ? 440 : 1310}
+    height={variant === "mark" ? 525 : 330}
     decoding="async"
     loading={priority ? "eager" : "lazy"}
     // React 18 does not map the camelCase prop; emit the DOM attribute directly.

@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          id: string
+          metadata: Json
+          resource_id: string | null
+          resource_type: string
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json
+          resource_id?: string | null
+          resource_type: string
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json
+          resource_id?: string | null
+          resource_type?: string
+        }
+        Relationships: []
+      }
       airport_bookings: {
         Row: {
           airport_code: string
@@ -73,9 +106,69 @@ export type Database = {
           },
         ]
       }
+      app_download_clicks: {
+        Row: {
+          audience: string
+          created_at: string
+          id: string
+          placement: string
+          platform: string
+        }
+        Insert: {
+          audience: string
+          created_at?: string
+          id?: string
+          placement: string
+          platform: string
+        }
+        Update: {
+          audience?: string
+          created_at?: string
+          id?: string
+          placement?: string
+          platform?: string
+        }
+        Relationships: []
+      }
+      business_organisation_members: {
+        Row: {
+          created_at: string
+          id: string
+          member_role: string
+          organisation_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          member_role?: string
+          organisation_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          member_role?: string
+          organisation_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "business_organisation_members_organisation_id_fkey"
+            columns: ["organisation_id"]
+            isOneToOne: false
+            referencedRelation: "business_organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       business_organisations: {
         Row: {
           contact_email: string
+          contact_phone: string | null
           created_at: string
           id: string
           name: string
@@ -85,6 +178,7 @@ export type Database = {
         }
         Insert: {
           contact_email: string
+          contact_phone?: string | null
           created_at?: string
           id?: string
           name: string
@@ -94,6 +188,7 @@ export type Database = {
         }
         Update: {
           contact_email?: string
+          contact_phone?: string | null
           created_at?: string
           id?: string
           name?: string
@@ -105,6 +200,7 @@ export type Database = {
       }
       business_requests: {
         Row: {
+          admin_notes: string | null
           created_at: string
           destination: string | null
           details: string
@@ -114,12 +210,15 @@ export type Database = {
           quantity: number
           requested_by: string
           requested_date: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
           service_type: string
           status: string
           updated_at: string
           vehicle_type: string
         }
         Insert: {
+          admin_notes?: string | null
           created_at?: string
           destination?: string | null
           details: string
@@ -129,12 +228,15 @@ export type Database = {
           quantity?: number
           requested_by: string
           requested_date?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
           service_type: string
           status?: string
           updated_at?: string
           vehicle_type: string
         }
         Update: {
+          admin_notes?: string | null
           created_at?: string
           destination?: string | null
           details?: string
@@ -144,6 +246,8 @@ export type Database = {
           quantity?: number
           requested_by?: string
           requested_date?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
           service_type?: string
           status?: string
           updated_at?: string
@@ -1743,6 +1847,28 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_assign_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _target_user_id: string
+        }
+        Returns: undefined
+      }
+      admin_review_business_organisation: {
+        Args: { _organisation_id: string; _status: string }
+        Returns: undefined
+      }
+      admin_revoke_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _target_user_id: string
+        }
+        Returns: undefined
+      }
+      admin_update_business_request: {
+        Args: { _admin_notes?: string; _request_id: string; _status: string }
+        Returns: undefined
+      }
       credit_wallet: {
         Args: { _amount_cents: number; _wallet_id: string }
         Returns: undefined

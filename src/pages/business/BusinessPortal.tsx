@@ -27,6 +27,7 @@ export default function BusinessPortal() {
   const [organisation, setOrganisation] = useState<Organisation | null>(null);
   const [requests, setRequests] = useState<Request[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [bookingError, setBookingError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -57,7 +58,8 @@ export default function BusinessPortal() {
       if (requestResult.error) setError(requestResult.error.message);
       else setRequests((requestResult.data ?? []) as Request[]);
       // Personal corporate bookings only; never infer organisation-wide totals from another account.
-      setBookings(bookingResult.error ? [] : (bookingResult.data ?? []) as Booking[]);
+       setBookingError(Boolean(bookingResult.error));
+       setBookings(bookingResult.error ? [] : (bookingResult.data ?? []) as Booking[]);
     }
     setLoading(false);
   };
@@ -75,6 +77,20 @@ export default function BusinessPortal() {
     return [...new Set([...statuses, ...observed])].map(status => ({
       name: status.replaceAll("_", " "), count: bookings.filter(booking => booking.status === status).length,
     }));
+  }, [bookings]);
+  const valueChart = useMemo(() => {
+    const months = Array.from({ length: 6 }, (_, index) => {
+      const date = new Date();
+      date.setDate(1);
+      date.setMonth(date.getMonth() - (5 - index));
+      return { key: `${date.getFullYear()}-${date.getMonth()}`, name: date.toLocaleDateString("en-KE", { month: "short", year: "2-digit" }), value: 0 };
+    });
+    for (const booking of completed) {
+      const date = new Date(booking.created_at);
+      const month = months.find(item => item.key === `${date.getFullYear()}-${date.getMonth()}`);
+      if (month) month.value += Number(booking.total_fare) || 0;
+    }
+    return months;
   }, [bookings]);
 
   const createOrganisation = async (event: FormEvent) => {
@@ -128,9 +144,11 @@ export default function BusinessPortal() {
               ].map(metric => <div key={metric.label} className="rounded-md border bg-card p-5"><metric.icon className="mb-4 h-5 w-5 text-primary"/><p className="text-sm text-muted-foreground">{metric.label}</p><p className="mt-1 text-2xl font-semibold">{metric.value}</p></div>)}
             </div>
              <p className="text-xs text-muted-foreground">Bookings and trip value reflect only trips booked by this account, not organisation-wide revenue. Trip value is not payment settlement. Agent performance needs organisation-assigned trip data and is not yet available.</p>
+             {bookingError && <p role="alert" className="text-sm text-destructive">Trip activity is temporarily unavailable. Request figures are still shown.</p>}
             <div className="grid gap-6 lg:grid-cols-2">
               <div className="border-t pt-6"><h3 className="mb-6 font-semibold">Request status</h3><div className="h-56" role="img" aria-label="Business requests by status"><ResponsiveContainer width="100%" height="100%"><BarChart data={chart}><CartesianGrid stroke="hsl(var(--chart-grid))" vertical={false}/><XAxis dataKey="name"/><YAxis allowDecimals={false}/><Tooltip/><Bar dataKey="count" fill="hsl(var(--chart-1))" radius={[4,4,0,0]}/></BarChart></ResponsiveContainer></div></div>
                <div className="border-t pt-6"><h3 className="mb-6 font-semibold">Your trip status</h3>{bookings.length ? <div className="h-56" role="img" aria-label="Your corporate bookings by trip status"><ResponsiveContainer width="100%" height="100%"><BarChart data={tripChart} layout="vertical" margin={{ left: 16, right: 16 }}><CartesianGrid stroke="hsl(var(--chart-grid))" horizontal={false}/><XAxis type="number" allowDecimals={false}/><YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }}/><Tooltip/><Bar dataKey="count" fill="hsl(var(--chart-2))" radius={[0,4,4,0]}/></BarChart></ResponsiveContainer></div> : <p className="text-sm text-muted-foreground">No corporate trips booked from this account yet.</p>}</div>
+               <div className="border-t pt-6 lg:col-span-2"><h3 className="mb-1 font-semibold">Completed trip value · last six months</h3><p className="mb-5 text-xs text-muted-foreground">Based on the booking date for completed trips from your account; not settled revenue.</p><div className="h-56" role="img" aria-label="Completed corporate trip value by booking month"><ResponsiveContainer width="100%" height="100%"><BarChart data={valueChart}><CartesianGrid stroke="hsl(var(--chart-grid))" vertical={false}/><XAxis dataKey="name"/><YAxis tickFormatter={value => `${Math.round(value / 1000)}k`}/><Tooltip formatter={value => `KES ${Number(value).toLocaleString("en-KE")}`}/><Bar dataKey="value" name="Trip value" fill="hsl(var(--chart-1))" radius={[4,4,0,0]}/></BarChart></ResponsiveContainer></div></div>
                <div className="border-t pt-6 lg:col-span-2"><h3 className="font-semibold">Agent performance</h3><p className="mt-2 text-sm text-muted-foreground">No agent performance chart yet. This account does not have access to organisation-assigned agents or their completed trips, so no results are estimated.</p></div>
             </div>
           </section>

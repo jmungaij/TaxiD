@@ -9,5 +9,7 @@ export function trackAppDownload(audience: AppAudience, placement: string) {
     audience,
     platform: "android",
     placement: safePlacement,
+  }).then(({ error }) => {
+    if (error && import.meta.env.DEV) console.warn("App download click was not recorded");
   });
 }

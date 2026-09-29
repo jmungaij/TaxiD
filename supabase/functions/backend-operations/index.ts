@@ -68,6 +68,9 @@ Deno.serve(async (req) => {
     recentMessages,
     walletTransactions,
     businessRequests,
+    appDownloadTotal,
+    appDownloadRider,
+    appDownloadDriver,
     appDownloadRows,
     bucketsResult,
   ] = await Promise.all([
@@ -80,6 +83,9 @@ Deno.serve(async (req) => {
     count("support_messages", (query) => query.gte("created_at", since)),
     count("wallet_transactions", (query) => query.gte("created_at", since)),
     count("business_requests", (query) => query.gte("created_at", since)),
+    count("app_download_clicks", (query) => query.gte("created_at", since)),
+    count("app_download_clicks", (query) => query.gte("created_at", since).eq("audience", "rider")),
+    count("app_download_clicks", (query) => query.gte("created_at", since).eq("audience", "driver")),
     service.from("app_download_clicks").select("audience,placement").gte("created_at", since).limit(10000),
     service.storage.listBuckets(),
   ]);
@@ -123,9 +129,9 @@ Deno.serve(async (req) => {
       businessRequests: businessRequests.value,
     },
     appDownloads: {
-      total: downloadRows.length,
-      rider: downloadRows.filter((row) => row.audience === "rider").length,
-      driver: downloadRows.filter((row) => row.audience === "driver").length,
+      total: appDownloadTotal.value ?? 0,
+      rider: appDownloadRider.value ?? 0,
+      driver: appDownloadDriver.value ?? 0,
       placements: Object.entries(placementCounts).map(([key, clicks]) => {
         const [audience, ...placement] = key.split(":");
         return { audience, placement: placement.join(":"), clicks };

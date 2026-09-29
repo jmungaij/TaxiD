@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Plane } from "lucide-react";
 import { toast } from "sonner";
+import { useSearchParams } from "react-router-dom";
 
 interface AB {
   id: string;
@@ -26,12 +27,15 @@ interface AB {
 
 export default function RiderAirportPage() {
   const { user } = useAuth();
+  const [searchParams] = useSearchParams();
   const [items, setItems] = useState<AB[]>([]);
   const [direction, setDirection] = useState("arrival");
   const [code, setCode] = useState("NBO");
   const [terminal, setTerminal] = useState("");
   const [flight, setFlight] = useState("");
-  const [when, setWhen] = useState("");
+  const [when, setWhen] = useState(searchParams.get("when") ?? "");
+  const [pickup, setPickup] = useState(searchParams.get("pickup") ?? "");
+  const [destination, setDestination] = useState(searchParams.get("destination") ?? "");
   const [pax, setPax] = useState(1);
   const [lug, setLug] = useState(0);
   const [mg, setMg] = useState(false);
@@ -71,6 +75,7 @@ export default function RiderAirportPage() {
       luggage_count: lug,
       meet_and_greet: mg,
       vip,
+      notes: [pickup && `Pickup: ${pickup}`, destination && `Destination: ${destination}`].filter(Boolean).join(" · ") || null,
     });
     if (error) toast.error(error.message);
     else {
@@ -123,6 +128,14 @@ export default function RiderAirportPage() {
           <div>
             <Label className="text-xs">Flight time</Label>
             <Input type="datetime-local" value={when} onChange={(e) => setWhen(e.target.value)} />
+          </div>
+          <div>
+            <Label className="text-xs">Pickup location</Label>
+            <Input value={pickup} onChange={(e) => setPickup(e.target.value)} maxLength={240} />
+          </div>
+          <div>
+            <Label className="text-xs">Destination</Label>
+            <Input value={destination} onChange={(e) => setDestination(e.target.value)} maxLength={240} />
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>

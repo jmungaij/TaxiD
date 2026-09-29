@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { RiderShell } from "@/components/rider/RiderShell";
 import { ErrorState } from "@/components/rider/ErrorState";
 import { MapBooking } from "@/components/rider/MapBooking";
@@ -12,6 +12,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Users } from "lucide-react";
 import { toast } from "sonner";
+import { loadGoogleMaps } from "@/lib/googleMaps";
 
 interface RideType {
   id: string;
@@ -29,6 +30,7 @@ interface RideType {
 export default function RiderBookPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [pickup, setPickup] = useState<BookingPoint | null>(null);
   const [dropoff, setDropoff] = useState<BookingPoint | null>(null);
   const [estimate, setEstimate] = useState<{ distanceKm: number; durationMin: number } | null>(null);
@@ -60,6 +62,26 @@ export default function RiderBookPage() {
   useEffect(() => {
     loadRideTypes();
   }, []);
+
+  useEffect(() => {
+    const pickupAddress = searchParams.get("pickup")?.trim();
+    const dropoffAddress = searchParams.get("destination")?.trim();
+    if (!pickupAddress && !dropoffAddress) return;
+    let cancelled = false;
+    loadGoogleMaps().then((google) => {
+      const geocoder = new google.maps.Geocoder();
+      const resolve = (address: string, setter: (point: BookingPoint) => void) => {
+        geocoder.geocode({ address }, (results, status) => {
+          const result = results?.[0];
+          if (cancelled || status !== "OK" || !result) return;
+          setter({ address: result.formatted_address || address, lat: result.geometry.location.lat(), lng: result.geometry.location.lng() });
+        });
+      };
+      if (pickupAddress && !pickup) resolve(pickupAddress, setPickup);
+      if (dropoffAddress && !dropoff) resolve(dropoffAddress, setDropoff);
+    }).catch(() => undefined);
+    return () => { cancelled = true; };
+  }, [searchParams]);
 
   function fareFor(rt: RideType): number {
     if (!estimate) return rt.minimum_fare;
@@ -104,7 +126,7 @@ export default function RiderBookPage() {
       const { data: bookingId, error: e3 } = await supabase.rpc("trip_confirm_booking", {
         _quote_id: quote[0].quote_id,
         _payment_method: "wallet",
-        _scheduled_for: null,
+        _scheduled_for: searchParams.get("when"),
       });
       if (e3 || !bookingId) throw e3 ?? new Error("Could not confirm booking");
 

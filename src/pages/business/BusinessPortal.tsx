@@ -75,7 +75,7 @@ export default function BusinessPortal() {
     const statuses = ["pending", "confirmed", "assigned", "arriving", "in_progress", "completed", "cancelled"];
     const observed = Array.from(new Set(bookings.map(booking => booking.status)));
     return [...new Set([...statuses, ...observed])].map(status => ({
-      name: status.replaceAll("_", " "), count: bookings.filter(booking => booking.status === status).length,
+      name: status.replace(/_/g, " "), count: bookings.filter(booking => booking.status === status).length,
     }));
   }, [bookings]);
   const valueChart = useMemo(() => {

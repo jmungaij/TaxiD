@@ -14,6 +14,7 @@ import { AsyncState } from "@/components/dashboard/AsyncState";
 import { toast } from "sonner";
 import { Link2, ShieldCheck } from "lucide-react";
 import { runStaffLinkBackfill, type StaffBackfillRow } from "@/lib/workspace/api";
+import { AdminOnly } from "@/components/auth/AdminOnly";
 
 export default function StaffLinkBackfill() {
   const [rows, setRows] = useState<StaffBackfillRow[] | null>(null);
@@ -45,7 +46,8 @@ export default function StaffLinkBackfill() {
   const linkable = rows?.filter((r) => r.action === "would_link").length ?? 0;
 
   return (
-    <div className="space-y-6">
+    <AdminOnly roles={["admin", "super_admin"]}>
+      <div className="space-y-6">
       <header className="max-w-3xl">
         <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
           Staff identity administration
@@ -130,6 +132,7 @@ export default function StaffLinkBackfill() {
           </Card>
         </AsyncState>
       )}
-    </div>
+      </div>
+    </AdminOnly>
   );
 }

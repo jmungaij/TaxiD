@@ -32,6 +32,7 @@ export const STAFF_ROUTE_SCOPE: { prefix: string; scope: StaffScope }[] = [
   { prefix: "/staff/sales", scope: "self" },
 
   // Organisation & people
+  { prefix: "/staff/admin", scope: "people_sensitive" },
   { prefix: "/staff/team", scope: "team" },
   { prefix: "/staff/dashboard", scope: "self" },
   { prefix: "/staff/org", scope: "department" },

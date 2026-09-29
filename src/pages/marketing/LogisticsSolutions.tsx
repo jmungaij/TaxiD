@@ -162,8 +162,10 @@ const LogisticsSolutions = () => {
 
       <PageHero
         eyebrow="Logistics"
-        title="Delivery and freight, only where we can actually serve you."
+        title="TaxiD Logistics"
         subtitle="This page shows what our operations desk has activated right now — what you can book yourself, what we quote per load, and the coverage, hours and delivery evidence that apply to each."
+        image={logisticsScene}
+        imageAlt="Freight trucks and parcels at a TaxiD distribution hub"
       >
         <div className="flex flex-wrap gap-3">
           <Button size="lg" asChild className="bg-ice text-primary hover:bg-ice/90">
@@ -177,6 +179,9 @@ const LogisticsSolutions = () => {
           </Button>
           <Button size="lg" variant="outline" asChild className="border-2 border-ice text-ice bg-primary/40 hover:bg-ice/20">
             <Link to="/delivery/enquiry">Talk to the freight desk</Link>
+          </Button>
+          <Button size="lg" variant="outline" asChild className="border-2 border-ice text-ice bg-primary/40 hover:bg-ice/20">
+            <Link to="/business/portal?service=logistics">Request organisation logistics</Link>
           </Button>
         </div>
       </PageHero>

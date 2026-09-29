@@ -91,7 +91,7 @@ export const SEND_INTENTS: IntentDef[] = [
     ],
   },
   {
-    key: "business", tab: "Business", icon: Building2, cta: "Open Business Logistics", to: "/corporates",
+     key: "business", tab: "Business", icon: Building2, cta: "Open Business Logistics", to: "/business/portal?service=logistics",
     note: "Retail fulfilment, recurring routes, corporate billing and department reporting.",
     fields: [
       { id: "company", label: "Company", placeholder: "Registered business name" },
@@ -262,7 +262,7 @@ export function DeliveryHero({
             <AppButton
               analytics="delivery_hero_business"
               action="navigate"
-              target="/corporates"
+               target="/business/portal?service=logistics"
               variant="outline"
               size="lg"
               className="border-ice/70 bg-ice/10 text-ice hover:bg-ice/20"

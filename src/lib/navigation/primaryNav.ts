@@ -338,6 +338,7 @@ export function buildPrimaryNav(appLinks: {
           items: [
              { to: "/delivery", label: "Delivery Overview", desc: "Explore parcel, package and courier options" },
             { to: "/delivery/package", label: "Parcel & Express Delivery", desc: "Same-day parcel collection and delivery across the city" },
+             { to: "/business/portal?service=delivery", label: "Request Business Parcels", desc: "Organisations can request parcel and package services" },
             { to: "/delivery/courier", label: "Courier", desc: "Documents, legal files and medical consignments handled with care" },
              { to: "/track", label: "Track a Shipment", desc: "Check the progress of a delivery" },
              { to: "/marketplace?family=logistics", label: "Compare Delivery Capacity", desc: "See participating delivery operators" },
@@ -382,6 +383,7 @@ export function buildPrimaryNav(appLinks: {
             { to: "/logistics/solutions", label: "Business Logistics", desc: "Warehousing, line-haul, distribution and third-party logistics" },
             { to: "/logistics", label: "Logistics Network", desc: "Coverage, hubs and operating capabilities" },
              { to: "/logistics/quote", label: "Get a Business Quote", desc: "Request a tailored logistics proposal" },
+             { to: "/business/portal?service=logistics", label: "Request Organisation Logistics", desc: "Submit a freight or distribution enquiry from your account" },
           ],
         },
       ],

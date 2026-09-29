@@ -1,4 +1,6 @@
 # Roadmap
+- [x] Link Delivery and Logistics from the header to organisation parcel/package and freight enquiries; show branded service imagery
+- [x] Expand Power Business charts for account-scoped trips, completed trip value and request status; label unavailable settled revenue and agent performance honestly
 - [x] Compare the older TaxiD site's multicolour messaging and driver/partner/business paths; bring verified presentation and links into the current site without copying unverified claims
 - [x] Recreate the landing, rider and driver image direction with TaxiD-branded imagery and four-step journey
 - [x] Add an organisation business portal for account creation, fleet and vehicle quote requests, and pending/completed enquiries

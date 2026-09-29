@@ -353,8 +353,8 @@ export function DeliveryBusiness() {
             <AppButton analytics="delivery_business_contact" action="navigate" target="/contact">
               Request a proposal
             </AppButton>
-            <AppButton analytics="delivery_business_portal" action="navigate" target="/corporates" variant="outline">
-              Corporate logistics portal
+            <AppButton analytics="delivery_business_portal" action="navigate" target="/business/portal?service=logistics" variant="outline">
+              Request organisation logistics
             </AppButton>
           </div>
         </Card>

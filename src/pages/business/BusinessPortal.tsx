@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { BarChart3, Building2, Car, ClipboardList, Package, Plus, ArrowRight } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useAuth } from "@/hooks/useAuth";
@@ -23,9 +23,11 @@ const services = [
 
 export default function BusinessPortal() {
   const { user, loading: authLoading } = useAuth();
+  const [searchParams] = useSearchParams();
   const [organisation, setOrganisation] = useState<Organisation | null>(null);
   const [requests, setRequests] = useState<Request[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [bookingError, setBookingError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +37,12 @@ export default function BusinessPortal() {
   const [vehicle, setVehicle] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [details, setDetails] = useState("");
+  const returnPath = `/business/portal${searchParams.get("service") && services.some(item => item.value === searchParams.get("service")) ? `?service=${searchParams.get("service")}` : ""}`;
+
+  useEffect(() => {
+    const requested = searchParams.get("service");
+    if (services.some(item => item.value === requested)) setService(requested as string);
+  }, [searchParams]);
 
   const refresh = async (userId: string) => {
     setLoading(true);
@@ -51,7 +59,8 @@ export default function BusinessPortal() {
       if (requestResult.error) setError(requestResult.error.message);
       else setRequests((requestResult.data ?? []) as Request[]);
       // Personal corporate bookings only; never infer organisation-wide totals from another account.
-      setBookings(bookingResult.error ? [] : (bookingResult.data ?? []) as Booking[]);
+       setBookingError(Boolean(bookingResult.error));
+       setBookings(bookingResult.error ? [] : (bookingResult.data ?? []) as Booking[]);
     }
     setLoading(false);
   };
@@ -63,6 +72,27 @@ export default function BusinessPortal() {
   })), [requests]);
   const completed = bookings.filter(booking => booking.status === "completed");
   const completedValue = completed.reduce((sum, booking) => sum + (Number(booking.total_fare) || 0), 0);
+  const tripChart = useMemo(() => {
+    const statuses = ["pending", "confirmed", "assigned", "arriving", "in_progress", "completed", "cancelled"];
+    const observed = Array.from(new Set(bookings.map(booking => booking.status)));
+    return [...new Set([...statuses, ...observed])].map(status => ({
+      name: status.replace(/_/g, " "), count: bookings.filter(booking => booking.status === status).length,
+    }));
+  }, [bookings]);
+  const valueChart = useMemo(() => {
+    const months = Array.from({ length: 6 }, (_, index) => {
+      const date = new Date();
+      date.setDate(1);
+      date.setMonth(date.getMonth() - (5 - index));
+      return { key: `${date.getFullYear()}-${date.getMonth()}`, name: date.toLocaleDateString("en-KE", { month: "short", year: "2-digit" }), value: 0 };
+    });
+    for (const booking of completed) {
+      const date = new Date(booking.created_at);
+      const month = months.find(item => item.key === `${date.getFullYear()}-${date.getMonth()}`);
+      if (month) month.value += Number(booking.total_fare) || 0;
+    }
+    return months;
+  }, [bookings]);
 
   const createOrganisation = async (event: FormEvent) => {
     event.preventDefault();
@@ -96,7 +126,7 @@ export default function BusinessPortal() {
       </div></header>
       <div className="container mx-auto space-y-12 px-4 pt-10">
         {authLoading || loading ? <p role="status">Loading your business account…</p> : !user ?
-          <div className="space-y-4"><p>Sign in to create your organisation and manage requests.</p><Button asChild><Link to="/auth?redirect=%2Fbusiness%2Fportal">Sign in <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><p className="text-sm text-muted-foreground">New to TaxiD? <Link className="text-primary underline" to="/auth?tab=signup&as=corporate&redirect=%2Fbusiness%2Fportal">Create an account</Link></p></div> : !organisation ?
+           <div className="space-y-4"><p>Sign in to create your organisation and manage requests.</p><Button asChild><Link to={`/auth?redirect=${encodeURIComponent(returnPath)}`}>Sign in <ArrowRight className="ml-2 h-4 w-4" /></Link></Button><p className="text-sm text-muted-foreground">New to TaxiD? <Link className="text-primary underline" to={`/auth?tab=signup&as=corporate&redirect=${encodeURIComponent(returnPath)}`}>Create an account</Link></p></div> : !organisation ?
           <section className="max-w-lg space-y-6"><h2 className="text-2xl font-semibold">Create your organisation</h2>
             <form onSubmit={createOrganisation} className="space-y-4">
               <div><Label htmlFor="org-name">Organisation name</Label><Input id="org-name" required minLength={2} maxLength={180} value={name} onChange={event => setName(event.target.value)} /></div>
@@ -109,24 +139,27 @@ export default function BusinessPortal() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 { icon: Car, label: "Your corporate bookings", value: bookings.length.toLocaleString() },
-                { icon: BarChart3, label: "Completed trip value", value: `KES ${completedValue.toLocaleString("en-KE")}` },
+                 { icon: BarChart3, label: "Completed trip value (not settled revenue)", value: `KES ${completedValue.toLocaleString("en-KE")}` },
                 { icon: ClipboardList, label: "Pending requests", value: requests.filter(request => request.status === "pending" || request.status === "in_review").length.toLocaleString() },
                 { icon: Building2, label: "Agent performance", value: "Not tracked" },
               ].map(metric => <div key={metric.label} className="rounded-md border bg-card p-5"><metric.icon className="mb-4 h-5 w-5 text-primary"/><p className="text-sm text-muted-foreground">{metric.label}</p><p className="mt-1 text-2xl font-semibold">{metric.value}</p></div>)}
             </div>
-            <p className="text-xs text-muted-foreground">Bookings and trip value reflect only trips booked by this account, not organisation-wide revenue. Trip value is not payment settlement.</p>
+             <p className="text-xs text-muted-foreground">Bookings and trip value reflect only trips booked by this account, not organisation-wide revenue. Trip value is not payment settlement. Agent performance needs organisation-assigned trip data and is not yet available.</p>
+             {bookingError && <p role="alert" className="text-sm text-destructive">Trip activity is temporarily unavailable. Request figures are still shown.</p>}
             <div className="grid gap-6 lg:grid-cols-2">
               <div className="border-t pt-6"><h3 className="mb-6 font-semibold">Request status</h3><div className="h-56" role="img" aria-label="Business requests by status"><ResponsiveContainer width="100%" height="100%"><BarChart data={chart}><CartesianGrid stroke="hsl(var(--chart-grid))" vertical={false}/><XAxis dataKey="name"/><YAxis allowDecimals={false}/><Tooltip/><Bar dataKey="count" fill="hsl(var(--chart-1))" radius={[4,4,0,0]}/></BarChart></ResponsiveContainer></div></div>
-              <div className="border-t pt-6"><h3 className="mb-6 font-semibold">Trip status</h3><div className="space-y-4">{["pending","in_progress","completed","cancelled"].map(status => <div key={status} className="flex justify-between border-b pb-3 text-sm"><span className="capitalize">{status.replace("_", " ")}</span><strong>{bookings.filter(booking => booking.status === status).length}</strong></div>)}</div></div>
+               <div className="border-t pt-6"><h3 className="mb-6 font-semibold">Your trip status</h3>{bookings.length ? <div className="h-56" role="img" aria-label="Your corporate bookings by trip status"><ResponsiveContainer width="100%" height="100%"><BarChart data={tripChart} layout="vertical" margin={{ left: 16, right: 16 }}><CartesianGrid stroke="hsl(var(--chart-grid))" horizontal={false}/><XAxis type="number" allowDecimals={false}/><YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }}/><Tooltip/><Bar dataKey="count" fill="hsl(var(--chart-2))" radius={[0,4,4,0]}/></BarChart></ResponsiveContainer></div> : <p className="text-sm text-muted-foreground">No corporate trips booked from this account yet.</p>}</div>
+               <div className="border-t pt-6 lg:col-span-2"><h3 className="mb-1 font-semibold">Completed trip value · last six months</h3><p className="mb-5 text-xs text-muted-foreground">Based on the booking date for completed trips from your account; not settled revenue.</p><div className="h-56" role="img" aria-label="Completed corporate trip value by booking month"><ResponsiveContainer width="100%" height="100%"><BarChart data={valueChart}><CartesianGrid stroke="hsl(var(--chart-grid))" vertical={false}/><XAxis dataKey="name"/><YAxis tickFormatter={value => `${Math.round(value / 1000)}k`}/><Tooltip formatter={value => `KES ${Number(value).toLocaleString("en-KE")}`}/><Bar dataKey="value" name="Trip value" fill="hsl(var(--chart-1))" radius={[4,4,0,0]}/></BarChart></ResponsiveContainer></div></div>
+               <div className="border-t pt-6 lg:col-span-2"><h3 className="font-semibold">Agent performance</h3><p className="mt-2 text-sm text-muted-foreground">No agent performance chart yet. This account does not have access to organisation-assigned agents or their completed trips, so no results are estimated.</p></div>
             </div>
           </section>
           <section className="grid gap-10 border-t pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
             <div><div className="mb-6 flex items-center gap-2"><Plus className="h-5 w-5 text-primary"/><h2 className="text-2xl font-bold">Request a quote</h2></div><p className="mb-6 text-sm text-muted-foreground">Tell us what you need. A request is an enquiry, not a confirmed booking or price.</p>
               <form onSubmit={createRequest} className="space-y-4">
                 <div><Label htmlFor="service">Service</Label><Select value={service} onValueChange={setService}><SelectTrigger id="service"><SelectValue/></SelectTrigger><SelectContent>{services.map(item => <SelectItem key={item.value} value={item.value}>{item.label}</SelectItem>)}</SelectContent></Select></div>
-                <div><Label htmlFor="vehicle">Vehicle or fleet type</Label><Input id="vehicle" required minLength={2} maxLength={120} value={vehicle} onChange={event => setVehicle(event.target.value)} placeholder="e.g. 25-seat minibus" /></div>
+                 <div><Label htmlFor="vehicle">{service === "delivery" || service === "logistics" ? "Parcel, package or vehicle type" : "Vehicle or fleet type"}</Label><Input id="vehicle" required minLength={2} maxLength={120} value={vehicle} onChange={event => setVehicle(event.target.value)} placeholder={service === "delivery" || service === "logistics" ? "e.g. boxed parcels, 10 kg each" : "e.g. 25-seat minibus"} /></div>
                 <div><Label htmlFor="quantity">Quantity</Label><Input id="quantity" required type="number" min={1} max={10000} value={quantity} onChange={event => setQuantity(Number(event.target.value))} /></div>
-                <div><Label htmlFor="details">Journey and requirements</Label><Textarea id="details" required minLength={10} maxLength={3000} rows={5} value={details} onChange={event => setDetails(event.target.value)} placeholder="Route, dates, passengers or cargo, and any special requirements" /></div>
+                 <div><Label htmlFor="details">Journey and requirements</Label><Textarea id="details" required minLength={10} maxLength={3000} rows={5} value={details} onChange={event => setDetails(event.target.value)} placeholder={service === "delivery" || service === "logistics" ? "Collection and delivery locations, dates, package dimensions, weight and handling requirements" : "Route, dates, passengers or cargo, and any special requirements"} /></div>
                 <Button type="submit" disabled={saving}>{saving ? "Sending…" : "Send quote request"}</Button>
               </form>
             </div>

@@ -45,7 +45,7 @@ const Delivery = () => (
           <p className="text-sm font-semibold text-primary">TaxiD Delivery</p>
           <h2 className="mt-2 text-3xl font-bold">From your door to theirs.</h2>
           <p className="mt-4 max-w-xl text-muted-foreground">Packages, important documents and time-sensitive collections. Tell us what you are sending, compare your options and keep track of the handoff.</p>
-          <div className="mt-6 flex flex-wrap gap-3"><Button asChild><Link to="/delivery/package">Send a package</Link></Button><Button variant="outline" asChild><Link to="/track">Track a shipment</Link></Button></div>
+           <div className="mt-6 flex flex-wrap gap-3"><Button asChild><Link to="/delivery/package">Send a package</Link></Button><Button variant="outline" asChild><Link to="/business/portal?service=delivery">Request business parcel services</Link></Button><Button variant="outline" asChild><Link to="/track">Track a shipment</Link></Button></div>
         </div>
         <img src={parcelScene} width={1200} height={912} loading="lazy" alt="A courier hands a sealed parcel to its recipient" className="aspect-[4/3] w-full object-cover" />
       </div>

@@ -1,6 +1,7 @@
 import { Download } from "lucide-react";
 import { AppButton } from "@/components/nav/AppButton";
 import { appLink, type AppAudience } from "@/lib/appLinks";
+import { trackAppDownload } from "@/lib/appDownloadTracking";
 
 const apps = {
   rider: {
@@ -35,6 +36,7 @@ export function AppDownloadCard({ audience, placement }: { audience: AppAudience
           analytics={`${audience}_google_play_download`}
           action="external"
           target={appLink({ audience, platform: "android", placement })}
+          onClick={() => trackAppDownload(audience, placement)}
           size="sm"
           className="mt-3 gap-2"
         >

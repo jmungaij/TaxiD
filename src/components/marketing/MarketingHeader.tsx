@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Smartphone, LogIn, Arr
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { appLink } from "@/lib/appLinks";
+import { trackAppDownload } from "@/lib/appDownloadTracking";
 import BrandLogo from "@/components/brand/BrandLogo";
 import {
   buildPrimaryNav,
@@ -442,7 +443,7 @@ const MarketingHeader = () => {
                       Book rides, rentals and deliveries.
                     </div>
                     <div className="flex gap-2">
-                      <a href={HEADER_RIDER_ANDROID} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
+                       <a href={HEADER_RIDER_ANDROID} target="_blank" rel="noreferrer" onClick={() => trackAppDownload("rider", "header")} className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
                         <Smartphone className="h-3.5 w-3.5" /> Get Rider on Google Play
                       </a>
                     </div>
@@ -453,7 +454,7 @@ const MarketingHeader = () => {
                       Drive, deliver and earn.
                     </div>
                     <div className="flex gap-2">
-                      <a href={HEADER_DRIVER_ANDROID} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
+                       <a href={HEADER_DRIVER_ANDROID} target="_blank" rel="noreferrer" onClick={() => trackAppDownload("driver", "header")} className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
                         <Smartphone className="h-3.5 w-3.5" /> Get Driver on Google Play
                       </a>
                     </div>

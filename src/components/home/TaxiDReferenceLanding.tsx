@@ -5,6 +5,7 @@ import {
   Users, ClipboardCheck, Coins, BarChart3, Receipt,
 } from "lucide-react";
 import { appLink } from "@/lib/appLinks";
+import { trackAppDownload } from "@/lib/appDownloadTracking";
 import heroImg from "@/assets/home/taxid-ref-hero.jpg";
 import businessImg from "@/assets/home/taxid-ref-business.jpg";
 import bookingImg from "@/assets/home/taxid-ref-booking.jpg";
@@ -84,6 +85,7 @@ function PlayBadge({ audience, label }: { audience: "rider" | "driver"; label: s
   const appIcon = audience === "rider" ? "/apps/taxid-rider-app.png" : "/apps/taxid-driver-app.png";
   return (
     <a href={appLink({ audience, platform: "android", placement: "home_landing" })} target="_blank" rel="noopener noreferrer"
+      onClick={() => trackAppDownload(audience, "home_landing")}
       aria-label={`Download ${label} from Google Play`}
       className="inline-flex items-center gap-3 rounded-xl border border-[hsl(var(--tx-cyan)/0.5)] bg-[hsl(var(--tx-ink)/0.8)] p-2 pr-4 transition hover:border-[hsl(var(--tx-gold))]">
       <img src={appIcon} alt="" width={256} height={256} className="h-11 w-11 rounded-lg object-cover" />
@@ -97,11 +99,16 @@ export function TaxiDReferenceLanding() {
   const [tab, setTab] = useState("Rides");
   const [pickup, setPickup] = useState("");
   const [dest, setDest] = useState("");
+  const [when, setWhen] = useState("");
 
   const book = (e: React.FormEvent) => {
     e.preventDefault();
     const q = new URLSearchParams({ pickup, destination: dest, mode: tab.toLowerCase() });
-    navigate(tab === "Business" ? "/business/portal" : tab === "Charter" ? "/charter" : `/rider?${q}`);
+    if (when) q.set("when", new Date(when).toISOString());
+    if (tab === "Business") navigate(`/business/portal?service=fleet&origin=${encodeURIComponent(pickup)}&destination=${encodeURIComponent(dest)}${when ? `&date=${encodeURIComponent(when.slice(0, 10))}` : ""}`);
+    else if (tab === "Charter") navigate(`/business/portal?service=charter&origin=${encodeURIComponent(pickup)}&destination=${encodeURIComponent(dest)}${when ? `&date=${encodeURIComponent(when.slice(0, 10))}` : ""}`);
+    else if (tab === "Airport") navigate(`/rider/airport?pickup=${encodeURIComponent(pickup)}&destination=${encodeURIComponent(dest)}${when ? `&when=${encodeURIComponent(when)}` : ""}`);
+    else navigate(`/rider?${q}`);
   };
 
   return (
@@ -222,8 +229,8 @@ export function TaxiDReferenceLanding() {
                 <Navigation className="h-4 w-4 text-[hsl(var(--tx-electric))]" />
                 <span className="flex-1"><span className="block text-[10px] font-semibold">Destination</span><input value={dest} onChange={(e) => setDest(e.target.value)} placeholder="Enter destination" className="w-full bg-transparent text-sm outline-none" /></span>
               </label>
-              <div className="flex items-center gap-2 rounded-lg border border-[hsl(var(--tx-electric)/0.2)] px-3 py-2 text-sm shadow-sm"><Clock className="h-4 w-4 text-[hsl(var(--tx-electric))]" /><span><span className="block text-[10px] font-semibold">When</span>Now</span></div>
-              <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[hsl(var(--tx-electric))] px-6 py-3 text-sm font-bold text-[hsl(var(--tx-ice))] hover:bg-[hsl(var(--tx-royal))] sm:col-span-3 sm:justify-self-start">Book a Ride <ArrowRight className="h-4 w-4" /></button>
+              <label className="flex items-center gap-2 rounded-lg border border-[hsl(var(--tx-electric)/0.2)] px-3 py-2 text-sm shadow-sm"><Clock className="h-4 w-4 text-[hsl(var(--tx-electric))]" /><span className="flex-1"><span className="block text-[10px] font-semibold">When</span><input type="datetime-local" value={when} onChange={event => setWhen(event.target.value)} className="w-full bg-transparent text-sm outline-none" /></span></label>
+              <button type="submit" disabled={!pickup.trim() || !dest.trim()} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[hsl(var(--tx-electric))] px-6 py-3 text-sm font-bold text-[hsl(var(--tx-ice))] hover:bg-[hsl(var(--tx-royal))] disabled:cursor-not-allowed disabled:opacity-50 sm:col-span-3 sm:justify-self-start">{tab === "Business" || tab === "Charter" ? "Request a quote" : tab === "Airport" ? "Book airport transfer" : "Book a ride"} <ArrowRight className="h-4 w-4" /></button>
             </form>
           </div>
           <img src={bookingImg} alt="Traveller booking a TaxiD ride beside an SUV at the airport" loading="lazy" width={1280} height={1024} className="h-full max-h-[480px] w-full self-end rounded-t-3xl object-cover" />

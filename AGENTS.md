@@ -12,3 +12,4 @@
 
 - The Supabase client is typed with `LooseDatabase` (`src/integrations/supabase/loose-types.ts`), not the generated `types.ts`: the Cloud backend only has Cloud-created tables while the app queries a much larger schema. Switch back to generated types once the full schema is recreated. `types.ts` is platform-locked (write tool rejects edits).
 - MCP server lives in `src/lib/mcp/` (OAuth via the Cloud auth server; tools run as the signed-in user under RLS) — `supabase/functions/mcp` is generated, never hand-edit.
+- `src/index.css` is precompiled CSS (no Tailwind directives); `src/tw-utilities.css` (`@tailwind utilities`) generates classes for new components — keep it imported after index.css.

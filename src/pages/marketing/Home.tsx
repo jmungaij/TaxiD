@@ -15,6 +15,7 @@ import TrustedPartners from "@/components/home/TrustedPartners";
 import HomeQuickActions from "@/components/home/HomeQuickActions";
 import { HowTaxiDWorks } from "@/components/home/HowTaxiDWorks";
 import { TaxiDAudiences } from "@/components/home/TaxiDAudiences";
+import { TaxiDReferenceLanding } from "@/components/home/TaxiDReferenceLanding";
 
 
 const trust = [
@@ -26,11 +27,7 @@ const trust = [
 
 const Home = () => (
   <MarketingLayout>
-    <HeroCinematic />
-
-    <HomeQuickActions />
-
-    <TaxiDAudiences />
+    <TaxiDReferenceLanding />
 
     {/* VERIFIED TRUST PROOF (real platform data, no invented metrics) */}
     <TrustProof />

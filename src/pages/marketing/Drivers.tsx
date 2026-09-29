@@ -13,6 +13,7 @@ import { trackDriverEvent } from "@/lib/driverAnalytics";
 import { supabase } from "@/integrations/supabase/client";
 import driversImg from "@/assets/drivers.jpg";
 import driverDaylight from "@/assets/driver/taxid-driver-daylight.jpg";
+import { AppDownloadCard } from "@/components/apps/AppDownloadCard";
 
 /* ============================================================
    TaxiD DRIVER SUCCESS ECOSYSTEM
@@ -255,6 +256,17 @@ export default function Drivers() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-10" aria-labelledby="driver-app-heading">
+        <div className="grid items-center gap-6 rounded-lg border border-border bg-muted/40 p-6 md:grid-cols-[1fr_1.15fr]">
+          <div>
+            <p className="text-sm font-semibold text-primary">Official Android app</p>
+            <h2 id="driver-app-heading" className="mt-2 text-2xl font-bold">Take TaxiD Driver with you</h2>
+            <p className="mt-2 text-muted-foreground">Download the official driver app to manage trips and your driving activity.</p>
+          </div>
+          <AppDownloadCard audience="driver" placement="drivers_page" />
         </div>
       </section>
 

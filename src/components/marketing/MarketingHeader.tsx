@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Smartphone, Apple, LogIn, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronLeft, ChevronRight, Smartphone, LogIn, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { appLink } from "@/lib/appLinks";
@@ -26,9 +26,7 @@ const DRIVER_IOS_URL = appLink({ audience: "driver", platform: "ios", placement:
 
 // Header "Get the App" dropdown placements.
 const HEADER_RIDER_ANDROID = appLink({ audience: "rider", platform: "android", placement: "header" });
-const HEADER_RIDER_IOS = appLink({ audience: "rider", platform: "ios", placement: "header" });
 const HEADER_DRIVER_ANDROID = appLink({ audience: "driver", platform: "android", placement: "header" });
-const HEADER_DRIVER_IOS = appLink({ audience: "driver", platform: "ios", placement: "header" });
 
 const nav = buildPrimaryNav({
   riderAndroid: RIDER_ANDROID_URL,
@@ -445,10 +443,7 @@ const MarketingHeader = () => {
                     </div>
                     <div className="flex gap-2">
                       <a href={HEADER_RIDER_ANDROID} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
-                        <Smartphone className="h-3.5 w-3.5" /> Google Play
-                      </a>
-                      <a href={HEADER_RIDER_IOS} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
-                        <Apple className="h-3.5 w-3.5" /> App Store
+                        <Smartphone className="h-3.5 w-3.5" /> Get Rider on Google Play
                       </a>
                     </div>
                   </div>
@@ -459,10 +454,7 @@ const MarketingHeader = () => {
                     </div>
                     <div className="flex gap-2">
                       <a href={HEADER_DRIVER_ANDROID} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
-                        <Smartphone className="h-3.5 w-3.5" /> Google Play
-                      </a>
-                      <a href={HEADER_DRIVER_IOS} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-border hover:bg-muted">
-                        <Apple className="h-3.5 w-3.5" /> App Store
+                        <Smartphone className="h-3.5 w-3.5" /> Get Driver on Google Play
                       </a>
                     </div>
                   </div>

@@ -6,7 +6,6 @@ import { AppButton } from "@/components/nav/AppButton";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { MarketingPage } from "@/components/marketing/PageHero";
 import { CrossLinks } from "@/components/marketing/CrossLinks";
-import { appLink } from "@/lib/appLinks";
 import { useTabDeepLink } from "@/hooks/useTabDeepLink";
 import RiderHero from "@/components/rider/landing/RiderHero";
 import RiderMarketplace from "@/components/rider/landing/RiderMarketplace";
@@ -15,6 +14,7 @@ import RiderTrustSafety from "@/components/rider/landing/RiderTrustSafety";
 import RiderCorporatePreview from "@/components/rider/landing/RiderCorporatePreview";
 import RiderAssistant from "@/components/rider/landing/RiderAssistant";
 import RiderSupport from "@/components/rider/landing/RiderSupport";
+import { AppDownloadCard } from "@/components/apps/AppDownloadCard";
 
 const TABS = ["individual", "corporate"] as const;
 
@@ -132,27 +132,13 @@ const Riders = () => {
               </div>
             </div>
 
-            <div id="get-the-app" className="scroll-mt-28 focus:outline-none rounded-2xl bg-primary p-10 text-center text-primary-foreground">
-
-              <h3 className="text-2xl font-bold mb-3">Get the TaxiD app</h3>
-              <p className="text-primary-foreground/90 mb-6">Affordable fares · Safe drivers · Fast pickups · Transparent pricing</p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <AppButton
-                  analytics="rider_app_install_ios"
-                  action="external"
-                  target={appLink({ audience: "rider", platform: "ios", placement: "riders_page" })}
-                  className="bg-ice text-primary hover:bg-ice/90"
-                >
-                  App Store
-                </AppButton>
-                <AppButton
-                  analytics="rider_app_install_android"
-                  action="external"
-                  target={appLink({ audience: "rider", platform: "android", placement: "riders_page" })}
-                  className="bg-ice text-primary hover:bg-ice/90"
-                >
-                  Google Play
-                </AppButton>
+            <div id="get-the-app" className="scroll-mt-28 focus:outline-none rounded-2xl bg-primary p-6 text-primary-foreground sm:p-10">
+              <div className="mx-auto grid max-w-3xl items-center gap-6 md:grid-cols-[1fr_1.2fr]">
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">Get TaxiD Rider</h3>
+                  <p className="text-primary-foreground/90">Book and manage TaxiD rides with the official Android app.</p>
+                </div>
+                <AppDownloadCard audience="rider" placement="riders_page" />
               </div>
             </div>
           </TabsContent>

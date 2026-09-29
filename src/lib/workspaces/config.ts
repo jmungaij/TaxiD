@@ -381,6 +381,11 @@ export const WORKSPACES: WorkspaceDefinition[] = [
     kpis: ["system_health", "jobs_running", "queue_depth"],
     items: [
       { path: "/dashboard/admin/system", label: "System Hub", section: "Overview" },
+      { path: "/dashboard/admin/backend", label: "Backend Operations", section: "Overview" },
+      { path: "/dashboard/admin/users", label: "Users", section: "Access" },
+      { path: "/dashboard/admin/email-delivery", label: "Emails", section: "Operations" },
+      { path: "/dashboard/admin/scheduled-job-health", label: "Jobs", section: "Reliability" },
+      { path: "/dashboard/admin/audit-log", label: "Logs", section: "Reliability" },
       { path: "/dashboard/admin/settings", label: "Platform Settings", section: "Configuration" },
       { path: "/dashboard/admin/alert-rules", label: "Alert Rules", section: "Configuration" },
       { path: "/dashboard/admin/alert-preferences", label: "Alert Preferences", section: "Configuration" },
@@ -403,7 +408,12 @@ export const WORKSPACES: WorkspaceDefinition[] = [
     overviewPath: "/dashboard/admin/super",
     kpis: ["tenants", "environments", "critical_flags"],
     items: [
-      { path: "/dashboard/admin/super", label: "Super Admin Console", section: "Overview" },
+      { path: "/dashboard/admin/super", label: "Backend Operations Centre", section: "Overview" },
+      { path: "/dashboard/admin/backend", label: "Database, Functions & Usage", section: "Platform" },
+      { path: "/dashboard/admin/users", label: "Users", section: "Access" },
+      { path: "/dashboard/admin/email-delivery", label: "Emails", section: "Operations" },
+      { path: "/dashboard/admin/scheduled-job-health", label: "Jobs", section: "Operations" },
+      { path: "/dashboard/admin/audit-log", label: "Logs", section: "Assurance" },
     ],
   },
 ];

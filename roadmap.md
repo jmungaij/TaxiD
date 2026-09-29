@@ -1,4 +1,5 @@
 # Roadmap
+- [x] Add a super-admin Backend Operations Centre for database, users, storage, emails, secrets status, jobs, edge functions, restricted SQL diagnostics, logs and usage
 - [x] Link the official TaxiD Rider and TaxiD Driver Google Play listings throughout the public website and use the supplied app artwork
 - [x] Link Delivery and Logistics from the header to organisation parcel/package and freight enquiries; show branded service imagery
 - [x] Expand Power Business charts for account-scoped trips, completed trip value and request status; label unavailable settled revenue and agent performance honestly

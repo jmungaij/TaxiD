@@ -14,6 +14,7 @@ import { AsyncState } from "@/components/dashboard/AsyncState";
 import { toast } from "sonner";
 import { Link2, ShieldCheck } from "lucide-react";
 import { runStaffLinkBackfill, type StaffBackfillRow } from "@/lib/workspace/api";
+import { AdminOnly } from "@/components/auth/AdminOnly";
 
 export default function StaffLinkBackfill() {
   const [rows, setRows] = useState<StaffBackfillRow[] | null>(null);
@@ -45,20 +46,21 @@ export default function StaffLinkBackfill() {
   const linkable = rows?.filter((r) => r.action === "would_link").length ?? 0;
 
   return (
-    <div className="space-y-6">
-      <header className="max-w-3xl">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
-          Staff identity administration
-        </div>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">
-          Staff link backfill
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Connects existing staff register records to platform logins using a verified email match,
-          so ordinary employees reach My Workspace immediately. Nothing is invented: records without
-          an email, without a verified account, or with an ambiguous match are skipped and reported.
-        </p>
-      </header>
+    <AdminOnly roles={["admin", "super_admin"]}>
+      <div className="space-y-6">
+        <header className="max-w-3xl">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+            Staff identity administration
+          </div>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Staff link backfill
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Connects existing staff register records to platform logins using a verified email match,
+            so ordinary employees reach My Workspace immediately. Nothing is invented: records without
+            an email, without a verified account, or with an ambiguous match are skipped and reported.
+          </p>
+        </header>
 
       <Card>
         <CardHeader className="pb-2">
@@ -78,58 +80,59 @@ export default function StaffLinkBackfill() {
         </CardContent>
       </Card>
 
-      {(rows !== null || loading || error) && (
-        <AsyncState
-          loading={loading && rows === null}
-          error={error}
-          isEmpty={!!rows && rows.length === 0}
-          emptyTitle="Every staff record is already linked"
-          emptyMessage="No unlinked staff register records remain."
-          onRetry={() => run(true)}
-        >
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">
-                Result
-                <span className="ml-2 text-xs font-normal text-muted-foreground">
-                  {rows?.length ?? 0} unlinked record{(rows?.length ?? 0) === 1 ? "" : "s"} examined
-                </span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Employee</TableHead>
-                    <TableHead>Staff no.</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Outcome</TableHead>
-                    <TableHead>Detail</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {rows?.map((r) => (
-                    <TableRow key={r.staffId}>
-                      <TableCell className="font-medium">{r.fullName ?? "—"}</TableCell>
-                      <TableCell className="font-mono text-xs">{r.staffNo ?? "—"}</TableCell>
-                      <TableCell className="text-xs">{r.email ?? "—"}</TableCell>
-                      <TableCell>
-                        <Badge
-                          variant={r.action === "skipped" ? "outline" : "default"}
-                          className="text-[10px] uppercase"
-                        >
-                          {r.action.replace("_", " ")}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-xs text-muted-foreground">{r.detail}</TableCell>
+        {(rows !== null || loading || error) && (
+          <AsyncState
+            loading={loading && rows === null}
+            error={error}
+            isEmpty={!!rows && rows.length === 0}
+            emptyTitle="Every staff record is already linked"
+            emptyMessage="No unlinked staff register records remain."
+            onRetry={() => run(true)}
+          >
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">
+                  Result
+                  <span className="ml-2 text-xs font-normal text-muted-foreground">
+                    {rows?.length ?? 0} unlinked record{(rows?.length ?? 0) === 1 ? "" : "s"} examined
+                  </span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Employee</TableHead>
+                      <TableHead>Staff no.</TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead>Outcome</TableHead>
+                      <TableHead>Detail</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </AsyncState>
-      )}
-    </div>
+                  </TableHeader>
+                  <TableBody>
+                    {rows?.map((r) => (
+                      <TableRow key={r.staffId}>
+                        <TableCell className="font-medium">{r.fullName ?? "—"}</TableCell>
+                        <TableCell className="font-mono text-xs">{r.staffNo ?? "—"}</TableCell>
+                        <TableCell className="text-xs">{r.email ?? "—"}</TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={r.action === "skipped" ? "outline" : "default"}
+                            className="text-[10px] uppercase"
+                          >
+                            {r.action.replace("_", " ")}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-xs text-muted-foreground">{r.detail}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </AsyncState>
+        )}
+      </div>
+    </AdminOnly>
   );
 }

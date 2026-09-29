@@ -349,17 +349,15 @@ const MarketingHeader = () => {
         </nav>
 
         <div className="hidden md:flex min-w-0 shrink items-center gap-2">
-          {/* Resources → Staff Access → Sign In. The formal gateway into the
-              authenticated staff environment; authority is resolved server-side.
-              Held back until 2xl so the action cluster never pushes the brand
-              bar past the viewport at 1024–1440. */}
+          {/* Public gateway into the authenticated staff environment. This link
+              grants no authority; roles are resolved server-side after sign-in. */}
           <NavLink
             to={STAFF_ACCESS.to}
             data-analytics="header_staff_access"
             onClick={() => trackNavClick("Staff Access", STAFF_ACCESS, "desktop")}
             className={({ isActive }) =>
               cn(
-                "hidden 2xl:inline-flex px-2.5 py-2 text-[13px] font-medium rounded-md transition-colors",
+                "inline-flex px-2.5 py-2 text-[13px] font-medium rounded-md transition-colors",
                 isActive
                   ? "text-nav-foreground bg-nav-foreground/15"
                   : "text-nav-foreground/80 hover:text-nav-foreground hover:bg-nav-foreground/10",

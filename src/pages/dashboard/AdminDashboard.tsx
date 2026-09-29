@@ -38,7 +38,7 @@ export default function AdminDashboard() {
 
       {isSuperAdmin && <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         {[
-          { to: "/dashboard/admin/roles", title: "Staff & access", text: "Grant or revoke roles with an audit trail", icon: Shield },
+          { to: "/dashboard/admin/staff", title: "Staff & access", text: "Grant or revoke roles with an audit trail", icon: Shield },
           { to: "/dashboard/admin/users", title: "Users directory", text: "Find and review rider accounts", icon: Users },
           { to: "/agent", title: "Assigned cases", text: "Open your own rider conversations", icon: Headphones },
           { to: "/dashboard/admin/security-audit", title: "Security audit", text: "Investigate access and security activity", icon: FileSearch },
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
         <h2 className="font-semibold mb-4">System Overview</h2>
         <p className="text-sm text-muted-foreground">
           Manage accounts in the <a className="underline" href="/dashboard/admin/users">Users Directory</a>, titles in
-          {" "}<a className="underline" href="/dashboard/admin/roles">Staff &amp; Roles</a>, and payments from the Finance workspace.
+          {" "}<a className="underline" href="/dashboard/admin/staff">Staff &amp; Roles</a>, and payments from the Finance workspace.
         </p>
       </div>
     </div>

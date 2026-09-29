@@ -64,7 +64,11 @@ export default function BackendOperations() {
     setLoading(false);
   }, [windowHours]);
 
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    void load();
+    const timer = window.setInterval(() => void load(), 30_000);
+    return () => window.clearInterval(timer);
+  }, [load]);
 
   return (
     <div className="space-y-6">
@@ -116,7 +120,7 @@ export default function BackendOperations() {
           <TabsContent value="usage" className="space-y-4"><div className="flex flex-wrap gap-2">{[6,24,72,168].map((hours) => <Button key={hours} size="sm" variant={windowHours === hours ? "default" : "outline"} onClick={() => setWindowHours(hours)}><Clock3 className="mr-2 h-4 w-4" />{hours}h</Button>)}</div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"><Metric label="Cases created" value={value(snapshot.activity.casesCreated)} icon={<FileClock className="h-5 w-5" />} /><Metric label="Support messages" value={value(snapshot.activity.supportMessages)} icon={<Mail className="h-5 w-5" />} /><Metric label="Wallet transactions" value={value(snapshot.activity.walletTransactions)} icon={<WalletCards className="h-5 w-5" />} /><Metric label="Business requests" value={value(snapshot.activity.businessRequests)} icon={<Gauge className="h-5 w-5" />} /></div><OpenPage to={links.usage}>Open service observability</OpenPage></TabsContent>
         </Tabs>
       )}
-      {snapshot && <p className="text-xs text-muted-foreground">Last refreshed {new Date(snapshot.generatedAt).toLocaleString("en-KE")}. <CheckCircle2 className="ml-1 inline h-3.5 w-3.5 text-primary" /> Live backend response.</p>}
+      {snapshot && <p className="text-xs text-muted-foreground">Last refreshed {new Date(snapshot.generatedAt).toLocaleString("en-KE")}. <CheckCircle2 className="ml-1 inline h-3.5 w-3.5 text-primary" /> Live backend response · refreshes every 30 seconds.</p>}
     </div>
   );
 }

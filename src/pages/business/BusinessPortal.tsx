@@ -40,7 +40,7 @@ export default function BusinessPortal() {
   const [origin, setOrigin] = useState(searchParams.get("origin") ?? "");
   const [destination, setDestination] = useState(searchParams.get("destination") ?? "");
   const [requestedDate, setRequestedDate] = useState(searchParams.get("date") ?? "");
-  const returnPath = `/business/portal${searchParams.get("service") && services.some(item => item.value === searchParams.get("service")) ? `?service=${searchParams.get("service")}` : ""}`;
+  const returnPath = `/business/portal${searchParams.toString() ? `?${searchParams.toString()}` : ""}`;
 
   useEffect(() => {
     const requested = searchParams.get("service");

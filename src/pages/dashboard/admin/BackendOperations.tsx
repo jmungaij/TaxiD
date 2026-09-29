@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Activity, Boxes, BriefcaseBusiness, CheckCircle2, Clock3, Code2, Database,
+  Activity, Boxes, BriefcaseBusiness, Car, CheckCircle2, Clock3, Code2, Database,
   ExternalLink, FileClock, Gauge, HardDrive, KeyRound, Mail, RefreshCw,
   ServerCog, ShieldCheck, Users, WalletCards,
 } from "lucide-react";
@@ -20,6 +20,7 @@ type BackendSnapshot = {
   overview: { databaseTables: number; protectedTables: number; users: number | null; roleAssignments: number | null; storageBuckets: number | null; deployedFunctions: number };
   database: { tables: string[]; rlsEnabled: boolean };
   activity: { riders: number | null; trips: number | null; openCases: number | null; casesCreated: number | null; supportMessages: number | null; walletTransactions: number | null; businessRequests: number | null };
+  appDownloads: { total: number; rider: number; driver: number; placements: { audience: string; placement: string; clicks: number }[] };
   storage: { buckets: string[] };
   functions: { name: string; purpose: string; access: string }[];
   secrets: { name: string; configured: boolean }[];
@@ -106,6 +107,7 @@ export default function BackendOperations() {
               <Metric label="Recent wallet transactions" value={value(snapshot.activity.walletTransactions)} icon={<WalletCards className="h-5 w-5" />} />
               <Metric label="Recent business requests" value={value(snapshot.activity.businessRequests)} icon={<BriefcaseBusiness className="h-5 w-5" />} />
             </CardContent></Card>
+            <Card><CardHeader><CardTitle>Google Play downloads</CardTitle><CardDescription>Button clicks recorded during the selected {snapshot.windowHours}-hour window. No visitor identity is stored.</CardDescription></CardHeader><CardContent className="space-y-4"><div className="grid gap-3 sm:grid-cols-3"><Metric label="All app clicks" value={snapshot.appDownloads.total} icon={<Activity className="h-5 w-5" />} /><Metric label="Rider app clicks" value={snapshot.appDownloads.rider} icon={<Users className="h-5 w-5" />} /><Metric label="Driver app clicks" value={snapshot.appDownloads.driver} icon={<Car className="h-5 w-5" />} /></div>{snapshot.appDownloads.placements.length > 0 && <div className="divide-y border-y">{snapshot.appDownloads.placements.map(item => <div key={`${item.audience}:${item.placement}`} className="flex items-center justify-between gap-4 py-2 text-sm"><span className="capitalize">{item.audience} · {item.placement.replace(/_/g, " ")}</span><Badge variant="secondary">{item.clicks.toLocaleString("en-KE")}</Badge></div>)}</div>}</CardContent></Card>
           </TabsContent>
 
           <TabsContent value="database"><Card><CardHeader><CardTitle className="flex items-center gap-2"><Database className="h-5 w-5" />Database</CardTitle><CardDescription>{snapshot.database.tables.length} live application tables; row-level protection is enabled across the current public schema.</CardDescription></CardHeader><CardContent><div className="flex flex-wrap gap-2">{snapshot.database.tables.map((table) => <Badge key={table} variant="secondary" className="font-mono font-normal">{table}</Badge>)}</div></CardContent></Card></TabsContent>

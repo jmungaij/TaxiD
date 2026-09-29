@@ -68,6 +68,7 @@ Deno.serve(async (req) => {
     recentMessages,
     walletTransactions,
     businessRequests,
+    appDownloadRows,
     bucketsResult,
   ] = await Promise.all([
     service.auth.admin.listUsers({ page: 1, perPage: 1 }),
@@ -79,11 +80,12 @@ Deno.serve(async (req) => {
     count("support_messages", (query) => query.gte("created_at", since)),
     count("wallet_transactions", (query) => query.gte("created_at", since)),
     count("business_requests", (query) => query.gte("created_at", since)),
+    service.from("app_download_clicks").select("audience,placement").gte("created_at", since).limit(10000),
     service.storage.listBuckets(),
   ]);
 
   const tableNames = [
-    "airport_bookings", "business_organisations", "business_requests", "emergency_contacts",
+    "airport_bookings", "app_download_clicks", "business_organisation_members", "business_organisations", "business_requests", "emergency_contacts",
     "family_accounts", "family_members", "favorite_locations", "mpesa_transactions", "profiles",
     "ride_types", "rider_devices", "rider_kyc", "rider_notifications", "rider_payment_methods",
     "rider_profiles", "rider_promotions", "rider_reward_events", "rider_rewards",
@@ -92,6 +94,12 @@ Deno.serve(async (req) => {
     "trip_incidents", "trip_quotes", "trip_ratings", "trip_requests", "trip_share_links",
     "trip_status_history", "trip_tracking", "trip_waypoints", "user_roles", "wallet_transactions", "wallets",
   ];
+  const downloadRows = appDownloadRows.error ? [] : appDownloadRows.data;
+  const placementCounts = downloadRows.reduce<Record<string, number>>((counts, row) => {
+    const key = `${row.audience}:${row.placement}`;
+    counts[key] = (counts[key] ?? 0) + 1;
+    return counts;
+  }, {});
 
   return response({
     generatedAt: new Date().toISOString(),
@@ -113,6 +121,15 @@ Deno.serve(async (req) => {
       supportMessages: recentMessages.value,
       walletTransactions: walletTransactions.value,
       businessRequests: businessRequests.value,
+    },
+    appDownloads: {
+      total: downloadRows.length,
+      rider: downloadRows.filter((row) => row.audience === "rider").length,
+      driver: downloadRows.filter((row) => row.audience === "driver").length,
+      placements: Object.entries(placementCounts).map(([key, clicks]) => {
+        const [audience, ...placement] = key.split(":");
+        return { audience, placement: placement.join(":"), clicks };
+      }).sort((a, b) => b.clicks - a.clicks),
     },
     storage: { buckets: bucketsResult.error ? [] : bucketsResult.data.map((bucket) => bucket.name) },
     functions: deployedFunctions,

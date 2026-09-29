@@ -293,6 +293,7 @@ const FinanceCenter = lazyWithRetry(() => import("./pages/dashboard/admin/Financ
 const RefundsCenter = lazyWithRetry(() => import("./pages/dashboard/admin/RefundsCenter"));
 const CustomerOperationsCenter = lazyWithRetry(() => import("./pages/dashboard/admin/CustomerOperationsCenter"));
 const PlatformCenter = lazyWithRetry(() => import("./pages/dashboard/admin/PlatformCenter"));
+const BackendOperations = lazyWithRetry(() => import("./pages/dashboard/admin/BackendOperations"));
 const TrustSafetyCenter = lazyWithRetry(() => import("./pages/dashboard/admin/TrustSafetyCenter"));
 const PeoplePartnersCenter = lazyWithRetry(() => import("./pages/dashboard/admin/PeoplePartnersCenter"));
 const MarketplaceCenter = lazyWithRetry(() => import("./pages/dashboard/admin/MarketplaceCenter"));
@@ -1020,7 +1021,8 @@ const App = () => (
             <Route path="/dashboard/admin/system" element={<RequireRole roles={["admin","super_admin"]}><PlatformCenter /></RequireRole>} />
             <Route path="/dashboard/admin/home" element={<RequireRole roles={["admin","super_admin","finance_admin","compliance_admin"]}><CenterHub center="home" title="Home" description="Your personalized landing page across every dashboard you can access." /></RequireRole>} />
             <Route path="/dashboard/admin/marketplace" element={<RequireRole roles={["admin","super_admin"]}><MarketplaceCenter /></RequireRole>} />
-            <Route path="/dashboard/admin/super" element={<RequireRole roles={["super_admin"]}><CenterHub center="super_admin" title="Super Admin" description="Unrestricted access to every dashboard, module, report and platform control." /></RequireRole>} />
+            <Route path="/dashboard/admin/super" element={<RequireRole roles={["super_admin"]}><BackendOperations /></RequireRole>} />
+            <Route path="/dashboard/admin/backend" element={<RequireRole roles={["super_admin"]}><BackendOperations /></RequireRole>} />
             <Route path="/dashboard/admin/audit-log" element={<RequireRole roles={["admin","super_admin"]}><AdminAuditLog /></RequireRole>} />
             <Route path="/dashboard/admin/access-denials" element={<RequireRole roles={["admin","super_admin"]}><AccessDenials /></RequireRole>} />
             <Route path="/dashboard/admin/alert-rules" element={<RequireRole roles={["admin","super_admin"]}><AlertRules /></RequireRole>} />

@@ -20,13 +20,13 @@ const json = (body: unknown, status = 200, extra?: Headers) => {
   return new Response(JSON.stringify(body), { status, headers: h });
 };
 
-const SYSTEM = `You are a senior SAFARID rider-support specialist in Kenya.
+const SYSTEM = `You are a senior TaxiD rider-support specialist in Kenya.
 Draft a resolution for a support admin to review before sending.
 Use ONLY the facts provided; never invent refunds, amounts or policies not given.
 Output in Markdown with these sections:
 **Summary** (1-2 sentences), **Likely cause**, **Recommended actions** (numbered, for the admin),
 **Compensation** (only if justified by the facts, else "None recommended"),
-**Message to rider** (warm, concise, under 150 words, signed "SAFARID Support").`;
+**Message to rider** (warm, concise, under 150 words, signed "TaxiD Support").`;
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });

@@ -7,6 +7,7 @@ import { GlobalErrorBoundary, attemptStaleBundleRecovery, classifyRuntimeError }
 import { recordDiagnostic, supportReference, newCorrelationId } from './lib/runtime/diagnostics'
 import { buildManifest, hasMixedDependencyBundles } from './lib/runtime/buildManifest'
 import './index.css'
+import './tw-utilities.css'
 
 // First-party attribution capture. First touch is written once and never
 // overwritten, so a later campaign visit cannot rewrite how a customer was

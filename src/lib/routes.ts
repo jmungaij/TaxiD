@@ -630,7 +630,7 @@ export const ROUTES: RouteRegistry = defineRoutes([
   // ---------- Admin · System Administration ----------
   { path: "/dashboard/admin/system",            title: "System Hub",             group: "admin", icon: "Settings",        rolesAllowed: ["admin","super_admin"], showInSidebar: true, sortOrder: 830, center: "system" },
   { path: "/dashboard/admin/backend",           title: "Backend Operations",     group: "admin", icon: "Database",        rolesAllowed: ["super_admin"], showInSidebar: true, sortOrder: 830.5, center: "super_admin", hideFromSitemap: true },
-  { path: "/dashboard/admin/business-operations", title: "Business Operations", group: "admin", icon: "Building2", rolesAllowed: ["admin","super_admin","support"], showInSidebar: true, sortOrder: 830.7, center: "system", hideFromSitemap: true },
+  { path: "/dashboard/admin/business-operations", title: "Business Operations", group: "admin", icon: "Building2", rolesAllowed: ["admin","super_admin"], showInSidebar: true, sortOrder: 830.7, center: "system", hideFromSitemap: true },
   { path: "/dashboard/admin/staff",             title: "Staff & Roles",          group: "admin", icon: "Shield",          rolesAllowed: ["super_admin"], showInSidebar: true, sortOrder: 831, center: "system" },
   { path: "/dashboard/admin/users",             title: "Users",                  group: "admin", icon: "Users",           rolesAllowed: ["admin","super_admin"], showInSidebar: true, sortOrder: 832, center: "system" },
   { path: "/dashboard/admin/roles",             title: "Roles",                  group: "admin", icon: "Shield",          rolesAllowed: ["admin","super_admin"], showInSidebar: true, sortOrder: 833, center: "system" },

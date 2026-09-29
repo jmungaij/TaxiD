@@ -14,6 +14,7 @@ import TrustProof from "@/components/home/TrustProof";
 import TrustedPartners from "@/components/home/TrustedPartners";
 import HomeQuickActions from "@/components/home/HomeQuickActions";
 import { HowTaxiDWorks } from "@/components/home/HowTaxiDWorks";
+import { TaxiDAudiences } from "@/components/home/TaxiDAudiences";
 
 
 const trust = [
@@ -28,6 +29,8 @@ const Home = () => (
     <HeroCinematic />
 
     <HomeQuickActions />
+
+    <TaxiDAudiences />
 
     {/* VERIFIED TRUST PROOF (real platform data, no invented metrics) */}
     <TrustProof />

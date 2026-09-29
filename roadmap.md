@@ -1,4 +1,5 @@
 # Roadmap
+- [x] Compare the older TaxiD site's multicolour messaging and driver/partner/business paths; bring verified presentation and links into the current site without copying unverified claims
 - [x] Recreate the landing, rider and driver image direction with TaxiD-branded imagery and four-step journey
 - [x] Add an organisation business portal for account creation, fleet and vehicle quote requests, and pending/completed enquiries
 - [x] Add business activity metrics and charts from available owner-scoped trip and request records; broader revenue and agent metrics await authoritative organisation-level data

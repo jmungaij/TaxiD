@@ -3,7 +3,7 @@
 - [x] Connect homepage Rides, Business, Airport and Charter tabs to secure booking and enquiry workflows
 - [x] Add governed organisation, quote and corporate-trip administration with role-protected status actions
 - [x] Track Rider and Driver Google Play button clicks and surface aggregate counts in Backend Operations
-- [ ] Create and verify a real organisation and fleet quote — waiting for the user to select the account and organisation identity
+- [ ] Create and verify a real organisation and fleet quote with the selected current account
 - [x] Add a super-admin Backend Operations Centre for database, users, storage, emails, secrets status, jobs, edge functions, restricted SQL diagnostics, logs and usage
 - [x] Link the official TaxiD Rider and TaxiD Driver Google Play listings throughout the public website and use the supplied app artwork
 - [x] Link Delivery and Logistics from the header to organisation parcel/package and freight enquiries; show branded service imagery

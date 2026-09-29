@@ -1,18 +1,16 @@
 import { Download } from "lucide-react";
 import { AppButton } from "@/components/nav/AppButton";
 import { appLink, type AppAudience } from "@/lib/appLinks";
-import riderApp from "@/assets/apps/taxid-rider-app.png.asset.json";
-import driverApp from "@/assets/apps/taxid-driver-app.png.asset.json";
 
 const apps = {
   rider: {
     name: "TaxiD Rider",
-    image: riderApp.url,
+    image: "/apps/taxid-rider-app.png",
     description: "Book rides and manage your journeys from your Android phone.",
   },
   driver: {
     name: "TaxiD Driver",
-    image: driverApp.url,
+    image: "/apps/taxid-driver-app.png",
     description: "Accept trips and manage your driving activity from your Android phone.",
   },
 } as const;

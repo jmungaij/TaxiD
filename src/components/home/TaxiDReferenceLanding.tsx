@@ -5,8 +5,6 @@ import {
   Users, ClipboardCheck, Coins, BarChart3, Receipt,
 } from "lucide-react";
 import { appLink } from "@/lib/appLinks";
-import riderApp from "@/assets/apps/taxid-rider-app.png.asset.json";
-import driverApp from "@/assets/apps/taxid-driver-app.png.asset.json";
 import heroImg from "@/assets/home/taxid-ref-hero.jpg";
 import businessImg from "@/assets/home/taxid-ref-business.jpg";
 import bookingImg from "@/assets/home/taxid-ref-booking.jpg";
@@ -83,7 +81,7 @@ function Node({ t, s, img, right }: { t: string; s: string; img: string; right?:
 }
 
 function PlayBadge({ audience, label }: { audience: "rider" | "driver"; label: string }) {
-  const appIcon = audience === "rider" ? riderApp.url : driverApp.url;
+  const appIcon = audience === "rider" ? "/apps/taxid-rider-app.png" : "/apps/taxid-driver-app.png";
   return (
     <a href={appLink({ audience, platform: "android", placement: "home_landing" })} target="_blank" rel="noopener noreferrer"
       aria-label={`Download ${label} from Google Play`}

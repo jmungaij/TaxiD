@@ -77,7 +77,7 @@ export function appLink({ audience, platform, placement }: AppLinkOptions): stri
   const base = platform === "android" ? playUrl(audience) : (appStoreUrl(audience) ?? BRANDED_FALLBACKS[audience]);
   const isStore = isExternalAppLink(base);
   const params = new URLSearchParams({
-    utm_source: "yalla_web",
+    utm_source: "taxid_web",
     utm_medium: placement,
     utm_campaign: `${audience}_app_install`,
     utm_content: platform,

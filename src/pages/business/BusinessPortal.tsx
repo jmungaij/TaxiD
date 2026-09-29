@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import MarketingLayout from "@/components/marketing/MarketingLayout";
 
 type Organisation = { id: string; name: string; contact_email: string; status: string };
-type Request = { id: string; service_type: string; vehicle_type: string; quantity: number; status: string; created_at: string; details: string };
+type Request = { id: string; service_type: string; vehicle_type: string; quantity: number; status: string; created_at: string; details: string; origin: string | null; destination: string | null; requested_date: string | null };
 type Booking = { id: string; status: string; total_fare: number | null; created_at: string };
 
 const services = [
@@ -37,7 +37,10 @@ export default function BusinessPortal() {
   const [vehicle, setVehicle] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [details, setDetails] = useState("");
-  const returnPath = `/business/portal${searchParams.get("service") && services.some(item => item.value === searchParams.get("service")) ? `?service=${searchParams.get("service")}` : ""}`;
+  const [origin, setOrigin] = useState(searchParams.get("origin") ?? "");
+  const [destination, setDestination] = useState(searchParams.get("destination") ?? "");
+  const [requestedDate, setRequestedDate] = useState(searchParams.get("date") ?? "");
+  const returnPath = `/business/portal${searchParams.toString() ? `?${searchParams.toString()}` : ""}`;
 
   useEffect(() => {
     const requested = searchParams.get("service");
@@ -53,7 +56,7 @@ export default function BusinessPortal() {
     setOrganisation(org as Organisation | null);
     if (org) {
       const [requestResult, bookingResult] = await Promise.all([
-        supabase.from("business_requests").select("id,service_type,vehicle_type,quantity,status,created_at,details").eq("organisation_id", org.id).order("created_at", { ascending: false }),
+        supabase.from("business_requests").select("id,service_type,vehicle_type,quantity,status,created_at,details,origin,destination,requested_date").eq("organisation_id", org.id).order("created_at", { ascending: false }),
         supabase.from("trip_bookings").select("id,status,total_fare,created_at").eq("rider_user_id", userId).eq("intent", "corporate").order("created_at", { ascending: false }).limit(500),
       ]);
       if (requestResult.error) setError(requestResult.error.message);
@@ -110,10 +113,11 @@ export default function BusinessPortal() {
     setSaving(true); setError("");
     const { error: saveError } = await supabase.from("business_requests").insert({
       organisation_id: organisation.id, requested_by: user.id, service_type: service,
-      vehicle_type: vehicle.trim(), quantity, details: details.trim(),
+       vehicle_type: vehicle.trim(), quantity, details: details.trim(), origin: origin.trim() || null,
+       destination: destination.trim() || null, requested_date: requestedDate || null,
     });
     if (saveError) setError(saveError.message);
-    else { setVehicle(""); setQuantity(1); setDetails(""); await refresh(user.id); }
+    else { setVehicle(""); setQuantity(1); setDetails(""); setOrigin(""); setDestination(""); setRequestedDate(""); await refresh(user.id); }
     setSaving(false);
   };
 
@@ -159,13 +163,15 @@ export default function BusinessPortal() {
                 <div><Label htmlFor="service">Service</Label><Select value={service} onValueChange={setService}><SelectTrigger id="service"><SelectValue/></SelectTrigger><SelectContent>{services.map(item => <SelectItem key={item.value} value={item.value}>{item.label}</SelectItem>)}</SelectContent></Select></div>
                  <div><Label htmlFor="vehicle">{service === "delivery" || service === "logistics" ? "Parcel, package or vehicle type" : "Vehicle or fleet type"}</Label><Input id="vehicle" required minLength={2} maxLength={120} value={vehicle} onChange={event => setVehicle(event.target.value)} placeholder={service === "delivery" || service === "logistics" ? "e.g. boxed parcels, 10 kg each" : "e.g. 25-seat minibus"} /></div>
                 <div><Label htmlFor="quantity">Quantity</Label><Input id="quantity" required type="number" min={1} max={10000} value={quantity} onChange={event => setQuantity(Number(event.target.value))} /></div>
+                 <div className="grid gap-4 sm:grid-cols-2"><div><Label htmlFor="origin">Origin</Label><Input id="origin" maxLength={240} value={origin} onChange={event => setOrigin(event.target.value)} placeholder="Pickup or collection location" /></div><div><Label htmlFor="destination">Destination</Label><Input id="destination" maxLength={240} value={destination} onChange={event => setDestination(event.target.value)} placeholder="Destination" /></div></div>
+                 <div><Label htmlFor="requested-date">Requested date</Label><Input id="requested-date" type="date" value={requestedDate} onChange={event => setRequestedDate(event.target.value)} /></div>
                  <div><Label htmlFor="details">Journey and requirements</Label><Textarea id="details" required minLength={10} maxLength={3000} rows={5} value={details} onChange={event => setDetails(event.target.value)} placeholder={service === "delivery" || service === "logistics" ? "Collection and delivery locations, dates, package dimensions, weight and handling requirements" : "Route, dates, passengers or cargo, and any special requirements"} /></div>
                 <Button type="submit" disabled={saving}>{saving ? "Sending…" : "Send quote request"}</Button>
               </form>
             </div>
             <div><div className="mb-6 flex items-center gap-2"><Package className="h-5 w-5 text-primary"/><h2 className="text-2xl font-bold">Requests & orders</h2></div>
-              {requests.length === 0 ? <p className="text-sm text-muted-foreground">No requests yet. Your first enquiry will appear here.</p> : <div className="divide-y border-y">{requests.map(request => <article key={request.id} className="flex flex-wrap justify-between gap-3 py-5"><div><h3 className="font-semibold capitalize">{request.service_type} · {request.vehicle_type}</h3><p className="mt-1 text-sm text-muted-foreground">{request.quantity} requested · {new Date(request.created_at).toLocaleDateString("en-KE")}</p><p className="mt-2 max-w-lg text-sm">{request.details}</p></div><span className="h-fit rounded-sm bg-secondary px-2 py-1 text-xs font-medium capitalize">{request.status.replace("_", " ")}</span></article>)}</div>}
-              <div className="mt-8 flex flex-wrap gap-3"><Button variant="outline" asChild><Link to="/marketplace?family=charter">Explore charter</Link></Button><Button variant="outline" asChild><Link to="/marketplace?family=rental">Explore vehicles</Link></Button><Button variant="outline" asChild><Link to="/marketplace?family=logistics">Explore logistics</Link></Button></div>
+              {requests.length === 0 ? <p className="text-sm text-muted-foreground">No requests yet. Your first enquiry will appear here.</p> : <div className="divide-y border-y">{requests.map(request => <article key={request.id} className="flex flex-wrap justify-between gap-3 py-5"><div><h3 className="font-semibold capitalize">{request.service_type} · {request.vehicle_type}</h3><p className="mt-1 text-sm text-muted-foreground">{request.quantity} requested · {new Date(request.created_at).toLocaleDateString("en-KE")}</p>{(request.origin || request.destination) && <p className="mt-1 text-sm text-muted-foreground">{request.origin || "Origin not supplied"} → {request.destination || "Destination not supplied"}</p>}{request.requested_date && <p className="mt-1 text-xs text-muted-foreground">Requested for {new Date(request.requested_date).toLocaleDateString("en-KE")}</p>}<p className="mt-2 max-w-lg text-sm">{request.details}</p></div><span className="h-fit rounded-sm bg-secondary px-2 py-1 text-xs font-medium capitalize">{request.status.replace("_", " ")}</span></article>)}</div>}
+              <div className="mt-8 flex flex-wrap gap-3"><Button variant="outline" asChild><Link to="/charter">Explore charter</Link></Button><Button variant="outline" asChild><Link to="/rentals">Explore vehicles</Link></Button><Button variant="outline" asChild><Link to="/logistics">Explore logistics</Link></Button></div>
             </div>
           </section>
         </>}

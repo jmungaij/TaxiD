@@ -369,6 +369,7 @@ export const WORKSPACES: WorkspaceDefinition[] = [
       { path: "/dashboard/admin/users", label: "Users", section: "Access" },
       { path: "/dashboard/admin/roles", label: "Roles", section: "Access" },
       { path: "/dashboard/admin/staff", label: "Staff & Permissions", section: "Access" },
+      { path: "/dashboard/admin/business-operations", label: "Business Operations", section: "Operations" },
     ],
   },
   {

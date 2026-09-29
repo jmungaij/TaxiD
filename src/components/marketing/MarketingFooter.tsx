@@ -7,6 +7,7 @@ import SocialLinks from "@/components/marketing/SocialLinks";
 import SocialSameAs from "@/components/seo/SocialSameAs";
 import { CONTACT, CONTACT_A11Y, PHONE_TEL, SALES_MAILTO, SUPPORT_MAILTO } from "@/config/contact";
 import { appLink } from "@/lib/appLinks";
+import { trackAppDownload } from "@/lib/appDownloadTracking";
 import { buildFooterColumns, buildPrimaryNav, isNavItemActive, navHref, STAFF_ACCESS } from "@/lib/navigation/primaryNav";
 import { cn } from "@/lib/utils";
 
@@ -92,6 +93,10 @@ const MarketingFooter = () => {
                       <li key={link.to + link.label}>
                         <Link
                           to={navHref(link)}
+                          onClick={() => {
+                            if (/Rider App.*Android/i.test(link.label)) trackAppDownload("rider", "footer");
+                            if (/Driver App.*Android/i.test(link.label)) trackAppDownload("driver", "footer");
+                          }}
                           aria-current={isActive ? "page" : undefined}
                           className={cn(
                             "block text-sm transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",

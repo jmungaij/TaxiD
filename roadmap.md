@@ -1,4 +1,9 @@
 # Roadmap
+- [x] Remediate the homepage into one continuous TaxiD reference composition without duplicate legacy sections
+- [x] Connect homepage Rides, Business, Airport and Charter tabs to secure booking and enquiry workflows
+- [x] Add governed organisation, quote and corporate-trip administration with role-protected status actions
+- [x] Track Rider and Driver Google Play button clicks and surface aggregate counts in Backend Operations
+- [ ] Create and verify a real organisation and fleet quote — waiting for the user to select the account and organisation identity
 - [x] Add a super-admin Backend Operations Centre for database, users, storage, emails, secrets status, jobs, edge functions, restricted SQL diagnostics, logs and usage
 - [x] Link the official TaxiD Rider and TaxiD Driver Google Play listings throughout the public website and use the supplied app artwork
 - [x] Link Delivery and Logistics from the header to organisation parcel/package and freight enquiries; show branded service imagery
@@ -15,7 +20,7 @@
 - [x] Apply uploaded TaxiD logo and its sampled colors across the app
 - [x] Secure verified-email super-admin and support-agent access; keep staff in agent portal
 - [ ] Verify rider booking, wallet and inbox; run a real draft-to-case flow when accounts exist
-- [ ] Publish updated app and MCP agent experience — publish needs a successful deployment
+- [ ] Publish updated app and MCP agent experience — publish when explicitly requested
 - [x] Individual audit identities for Amie and Naima — Amie uses admin@taxid.us; Naima uses naima@taxid.us, each after email confirmation
 - [x] Rider support inbox (AI draft -> rider, in-app replies)
 - [ ] Receiving mailboxes for safarid.org — blocked: needs an email hosting provider chosen by the user

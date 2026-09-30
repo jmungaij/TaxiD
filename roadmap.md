@@ -47,5 +47,5 @@
 - [x] Phase 7: support & safety (29 tables)
 - [x] Phase 8: academy & HR (52 tables)
 - [x] Signed-in error sweep: restored 29 missing tables + 10 original actions pages called; fixed menu duplicate keys, breadcrumb and image warnings
-- [ ] Staff 360 workspace for owner: needs a staff register entry for ustaxid@gmail.com (awaiting user)
+- [x] Staff 360 workspace for owner: John Mungai (TXD-0001) linked to ustaxid@gmail.com
 - [x] Harden 18 protected backend actions (role lookups, SOS, driver accept, fare limits, revoke internal routines)

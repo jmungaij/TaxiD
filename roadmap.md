@@ -39,4 +39,5 @@
 - [ ] Driver duty/payouts, corporate/fleet, finance/ops — ~560 backend actions missing; originals in Yalla_Mobility.zip cover only ~28 and ~214 tables, and they conflict with the current schema. Needs area-by-area restoration.
 
 - [x] Phase 1 restore: core accounts, roles & staff organisation (51 tables)
-- [ ] Phase 2: finance, wallets & payouts (201 tables)
+- [x] Phase 2: finance, wallets & payouts (260 tables incl. dependencies)
+- [ ] Phase 3: drivers, vehicles & fleet

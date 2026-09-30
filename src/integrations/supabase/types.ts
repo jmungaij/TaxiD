@@ -167,6 +167,169 @@ export type Database = {
         }
         Relationships: []
       }
+      air_aircraft_classes: {
+        Row: {
+          benchmark_hourly_usd: number
+          bush_strip_ok: boolean
+          code: string
+          cruise_kts: number
+          example_models: string
+          label: string
+          min_block_hours: number
+          seats: number
+          sort: number
+        }
+        Insert: {
+          benchmark_hourly_usd: number
+          bush_strip_ok?: boolean
+          code: string
+          cruise_kts: number
+          example_models: string
+          label: string
+          min_block_hours?: number
+          seats: number
+          sort?: number
+        }
+        Update: {
+          benchmark_hourly_usd?: number
+          bush_strip_ok?: boolean
+          code?: string
+          cruise_kts?: number
+          example_models?: string
+          label?: string
+          min_block_hours?: number
+          seats?: number
+          sort?: number
+        }
+        Relationships: []
+      }
+      air_airfields: {
+        Row: {
+          active: boolean
+          city: string
+          code: string
+          country: string
+          kind: string
+          landing_fee_kes: number
+          lat: number
+          lng: number
+          name: string
+          sort: number
+        }
+        Insert: {
+          active?: boolean
+          city: string
+          code: string
+          country?: string
+          kind?: string
+          landing_fee_kes?: number
+          lat: number
+          lng: number
+          name: string
+          sort?: number
+        }
+        Update: {
+          active?: boolean
+          city?: string
+          code?: string
+          country?: string
+          kind?: string
+          landing_fee_kes?: number
+          lat?: number
+          lng?: number
+          name?: string
+          sort?: number
+        }
+        Relationships: []
+      }
+      air_fleet: {
+        Row: {
+          amenities: string | null
+          application_id: string
+          class_code: string
+          created_at: string
+          home_base: string
+          hourly_rate_kes: number
+          icao24: string | null
+          id: string
+          model: string
+          operator_name: string
+          owner_id: string
+          registration: string
+          review_note: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          seats: number
+          status: string
+          updated_at: string
+          year_built: number | null
+        }
+        Insert: {
+          amenities?: string | null
+          application_id: string
+          class_code: string
+          created_at?: string
+          home_base: string
+          hourly_rate_kes: number
+          icao24?: string | null
+          id?: string
+          model: string
+          operator_name: string
+          owner_id?: string
+          registration: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          seats: number
+          status?: string
+          updated_at?: string
+          year_built?: number | null
+        }
+        Update: {
+          amenities?: string | null
+          application_id?: string
+          class_code?: string
+          created_at?: string
+          home_base?: string
+          hourly_rate_kes?: number
+          icao24?: string | null
+          id?: string
+          model?: string
+          operator_name?: string
+          owner_id?: string
+          registration?: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          seats?: number
+          status?: string
+          updated_at?: string
+          year_built?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "air_fleet_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "charter_partner_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "air_fleet_class_code_fkey"
+            columns: ["class_code"]
+            isOneToOne: false
+            referencedRelation: "air_aircraft_classes"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "air_fleet_home_base_fkey"
+            columns: ["home_base"]
+            isOneToOne: false
+            referencedRelation: "air_airfields"
+            referencedColumns: ["code"]
+          },
+        ]
+      }
       airport_bookings: {
         Row: {
           airport_code: string
@@ -1012,6 +1175,68 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      capacity_enquiries: {
+        Row: {
+          acknowledged_at: string | null
+          capacity_id: string
+          closed_at: string | null
+          contact_name: string | null
+          created_at: string
+          id: string
+          lead_ref: string | null
+          organisation_name: string | null
+          passengers: number | null
+          provider_note: string | null
+          requester_user_id: string | null
+          requirement: string | null
+          service_date: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          capacity_id: string
+          closed_at?: string | null
+          contact_name?: string | null
+          created_at?: string
+          id?: string
+          lead_ref?: string | null
+          organisation_name?: string | null
+          passengers?: number | null
+          provider_note?: string | null
+          requester_user_id?: string | null
+          requirement?: string | null
+          service_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          capacity_id?: string
+          closed_at?: string | null
+          contact_name?: string | null
+          created_at?: string
+          id?: string
+          lead_ref?: string | null
+          organisation_name?: string | null
+          passengers?: number | null
+          provider_note?: string | null
+          requester_user_id?: string | null
+          requirement?: string | null
+          service_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "capacity_enquiries_capacity_id_fkey"
+            columns: ["capacity_id"]
+            isOneToOne: false
+            referencedRelation: "provider_capacity"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       capacity_reservations: {
         Row: {
@@ -2245,6 +2470,75 @@ export type Database = {
         }
         Relationships: []
       }
+      charter_partner_applications: {
+        Row: {
+          aircraft_types: string | null
+          aoc_number: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string | null
+          country: string | null
+          created_at: string
+          documents: Json
+          fleet_size: number
+          home_base: string | null
+          id: string
+          insurance_expiry: string | null
+          notes: string | null
+          operator_name: string
+          review_note: string | null
+          reviewed_at: string | null
+          reviewer_id: string | null
+          status: string
+          submitted_by: string | null
+          updated_at: string
+        }
+        Insert: {
+          aircraft_types?: string | null
+          aoc_number?: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone?: string | null
+          country?: string | null
+          created_at?: string
+          documents?: Json
+          fleet_size?: number
+          home_base?: string | null
+          id?: string
+          insurance_expiry?: string | null
+          notes?: string | null
+          operator_name: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: string
+          submitted_by?: string | null
+          updated_at?: string
+        }
+        Update: {
+          aircraft_types?: string | null
+          aoc_number?: string | null
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string | null
+          country?: string | null
+          created_at?: string
+          documents?: Json
+          fleet_size?: number
+          home_base?: string | null
+          id?: string
+          insurance_expiry?: string | null
+          notes?: string | null
+          operator_name?: string
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: string
+          submitted_by?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       charter_payment_events: {
         Row: {
           amount_kes: number | null
@@ -3133,6 +3427,243 @@ export type Database = {
         }
         Relationships: []
       }
+      commercial_contract_instances: {
+        Row: {
+          account_id: string
+          activated_at: string | null
+          activated_by: string | null
+          activation_version: number
+          billing_frequency: string | null
+          company_signatory: string | null
+          company_signatory_email: string | null
+          contract_number: string | null
+          contract_term: string | null
+          contract_type: string
+          created_at: string
+          currency: string
+          customer_legal_name: string
+          customer_signatory: string | null
+          customer_signatory_email: string | null
+          customer_variables: Json
+          document_id: string | null
+          effective_date: string | null
+          execution_date: string | null
+          id: string
+          is_test: boolean
+          lead_id: string | null
+          opportunity_id: string | null
+          owner_staff_id: string | null
+          payment_terms: string | null
+          rate_card_id: string | null
+          renewal_terms: string | null
+          revenue_period: string | null
+          revenue_treatment: string
+          risk_level: string
+          selected_services: string[]
+          signature_date: string | null
+          signature_method: string
+          status: string
+          template_id: string
+          term_end: string | null
+          term_start: string | null
+          title: string | null
+          updated_at: string
+          value_amount: number | null
+          value_type: string
+          variance_reason: string | null
+        }
+        Insert: {
+          account_id: string
+          activated_at?: string | null
+          activated_by?: string | null
+          activation_version?: number
+          billing_frequency?: string | null
+          company_signatory?: string | null
+          company_signatory_email?: string | null
+          contract_number?: string | null
+          contract_term?: string | null
+          contract_type?: string
+          created_at?: string
+          currency?: string
+          customer_legal_name: string
+          customer_signatory?: string | null
+          customer_signatory_email?: string | null
+          customer_variables?: Json
+          document_id?: string | null
+          effective_date?: string | null
+          execution_date?: string | null
+          id?: string
+          is_test?: boolean
+          lead_id?: string | null
+          opportunity_id?: string | null
+          owner_staff_id?: string | null
+          payment_terms?: string | null
+          rate_card_id?: string | null
+          renewal_terms?: string | null
+          revenue_period?: string | null
+          revenue_treatment?: string
+          risk_level?: string
+          selected_services?: string[]
+          signature_date?: string | null
+          signature_method?: string
+          status?: string
+          template_id: string
+          term_end?: string | null
+          term_start?: string | null
+          title?: string | null
+          updated_at?: string
+          value_amount?: number | null
+          value_type?: string
+          variance_reason?: string | null
+        }
+        Update: {
+          account_id?: string
+          activated_at?: string | null
+          activated_by?: string | null
+          activation_version?: number
+          billing_frequency?: string | null
+          company_signatory?: string | null
+          company_signatory_email?: string | null
+          contract_number?: string | null
+          contract_term?: string | null
+          contract_type?: string
+          created_at?: string
+          currency?: string
+          customer_legal_name?: string
+          customer_signatory?: string | null
+          customer_signatory_email?: string | null
+          customer_variables?: Json
+          document_id?: string | null
+          effective_date?: string | null
+          execution_date?: string | null
+          id?: string
+          is_test?: boolean
+          lead_id?: string | null
+          opportunity_id?: string | null
+          owner_staff_id?: string | null
+          payment_terms?: string | null
+          rate_card_id?: string | null
+          renewal_terms?: string | null
+          revenue_period?: string | null
+          revenue_treatment?: string
+          risk_level?: string
+          selected_services?: string[]
+          signature_date?: string | null
+          signature_method?: string
+          status?: string
+          template_id?: string
+          term_end?: string | null
+          term_start?: string | null
+          title?: string | null
+          updated_at?: string
+          value_amount?: number | null
+          value_type?: string
+          variance_reason?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_contract_instances_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_contract_instances_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_contract_instances_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_contract_instances_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_contract_instances_rate_card_id_fkey"
+            columns: ["rate_card_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_rate_cards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_contract_instances_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_contract_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commercial_contract_templates: {
+        Row: {
+          classification: string
+          code: string
+          created_at: string
+          id: string
+          jurisdiction: string
+          name: string
+          scope_services: string[]
+          service_provider_legal_name: string
+          source_document_id: string | null
+          source_reference: string | null
+          status: string
+          updated_at: string
+          variables: Json
+          version: string
+        }
+        Insert: {
+          classification?: string
+          code: string
+          created_at?: string
+          id?: string
+          jurisdiction?: string
+          name: string
+          scope_services?: string[]
+          service_provider_legal_name: string
+          source_document_id?: string | null
+          source_reference?: string | null
+          status?: string
+          updated_at?: string
+          variables?: Json
+          version: string
+        }
+        Update: {
+          classification?: string
+          code?: string
+          created_at?: string
+          id?: string
+          jurisdiction?: string
+          name?: string
+          scope_services?: string[]
+          service_provider_legal_name?: string
+          source_document_id?: string | null
+          source_reference?: string | null
+          status?: string
+          updated_at?: string
+          variables?: Json
+          version?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_contract_templates_source_document_id_fkey"
+            columns: ["source_document_id"]
+            isOneToOne: false
+            referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       commercial_opportunities: {
         Row: {
           corporate_id: string | null
@@ -3196,6 +3727,271 @@ export type Database = {
           stage?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      commercial_rate_cards: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          change_reason: string | null
+          change_summary: string | null
+          code: string
+          created_at: string
+          created_by: string | null
+          currency: string
+          effective_from: string | null
+          effective_to: string | null
+          id: string
+          name: string
+          owner_staff_id: string | null
+          product_domain: string
+          provenance: string
+          retired_at: string | null
+          review_at: string | null
+          source_note: string | null
+          source_reference: string | null
+          status: string
+          supersedes_id: string | null
+          updated_at: string
+          version: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          change_reason?: string | null
+          change_summary?: string | null
+          code: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          effective_from?: string | null
+          effective_to?: string | null
+          id?: string
+          name: string
+          owner_staff_id?: string | null
+          product_domain: string
+          provenance?: string
+          retired_at?: string | null
+          review_at?: string | null
+          source_note?: string | null
+          source_reference?: string | null
+          status?: string
+          supersedes_id?: string | null
+          updated_at?: string
+          version: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          change_reason?: string | null
+          change_summary?: string | null
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          effective_from?: string | null
+          effective_to?: string | null
+          id?: string
+          name?: string
+          owner_staff_id?: string | null
+          product_domain?: string
+          provenance?: string
+          retired_at?: string | null
+          review_at?: string | null
+          source_note?: string | null
+          source_reference?: string | null
+          status?: string
+          supersedes_id?: string | null
+          updated_at?: string
+          version?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_rate_cards_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_rate_cards_supersedes_id_fkey"
+            columns: ["supersedes_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_rate_cards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commercial_service_executions: {
+        Row: {
+          account_id: string
+          completed_at: string | null
+          contract_id: string | null
+          created_at: string
+          destination: string | null
+          driver_label: string | null
+          exception_reason: string | null
+          execution_ref: string
+          external_reference: string | null
+          id: string
+          origin: string | null
+          owner_staff_id: string | null
+          passenger_or_recipient: string | null
+          recorded_by: string | null
+          scheduled_at: string
+          service_type: string
+          started_at: string | null
+          status: string
+          updated_at: string
+          value_kes: number | null
+          vehicle_label: string | null
+        }
+        Insert: {
+          account_id: string
+          completed_at?: string | null
+          contract_id?: string | null
+          created_at?: string
+          destination?: string | null
+          driver_label?: string | null
+          exception_reason?: string | null
+          execution_ref: string
+          external_reference?: string | null
+          id?: string
+          origin?: string | null
+          owner_staff_id?: string | null
+          passenger_or_recipient?: string | null
+          recorded_by?: string | null
+          scheduled_at: string
+          service_type: string
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+          value_kes?: number | null
+          vehicle_label?: string | null
+        }
+        Update: {
+          account_id?: string
+          completed_at?: string | null
+          contract_id?: string | null
+          created_at?: string
+          destination?: string | null
+          driver_label?: string | null
+          exception_reason?: string | null
+          execution_ref?: string
+          external_reference?: string | null
+          id?: string
+          origin?: string | null
+          owner_staff_id?: string | null
+          passenger_or_recipient?: string | null
+          recorded_by?: string | null
+          scheduled_at?: string
+          service_type?: string
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+          value_kes?: number | null
+          vehicle_label?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_service_executions_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_service_executions_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_contract_instances"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_service_executions_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commercial_signals: {
+        Row: {
+          account_id: string | null
+          commercial_impact_cents: number | null
+          created_at: string
+          customer_impact: string | null
+          customer_label: string | null
+          entity_id: string | null
+          entity_type: string
+          evidence: Json
+          expires_at: string | null
+          headline: string
+          id: string
+          owner_user_id: string | null
+          recommended_action: string | null
+          severity: string
+          signal_key: string
+          signal_type: string
+          source: string
+          status: string
+          status_at: string | null
+          status_by: string | null
+          status_note: string | null
+          updated_at: string
+          urgency: string
+        }
+        Insert: {
+          account_id?: string | null
+          commercial_impact_cents?: number | null
+          created_at?: string
+          customer_impact?: string | null
+          customer_label?: string | null
+          entity_id?: string | null
+          entity_type: string
+          evidence?: Json
+          expires_at?: string | null
+          headline: string
+          id?: string
+          owner_user_id?: string | null
+          recommended_action?: string | null
+          severity?: string
+          signal_key: string
+          signal_type: string
+          source: string
+          status?: string
+          status_at?: string | null
+          status_by?: string | null
+          status_note?: string | null
+          updated_at?: string
+          urgency?: string
+        }
+        Update: {
+          account_id?: string | null
+          commercial_impact_cents?: number | null
+          created_at?: string
+          customer_impact?: string | null
+          customer_label?: string | null
+          entity_id?: string | null
+          entity_type?: string
+          evidence?: Json
+          expires_at?: string | null
+          headline?: string
+          id?: string
+          owner_user_id?: string | null
+          recommended_action?: string | null
+          severity?: string
+          signal_key?: string
+          signal_type?: string
+          source?: string
+          status?: string
+          status_at?: string | null
+          status_by?: string | null
+          status_note?: string | null
+          updated_at?: string
+          urgency?: string
         }
         Relationships: []
       }
@@ -3423,6 +4219,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      commercial_vehicle_categories: {
+        Row: {
+          accessibility: boolean
+          code: string
+          created_at: string
+          example_models: string[]
+          id: string
+          label: string
+          notes: string | null
+          product_domain: string
+        }
+        Insert: {
+          accessibility?: boolean
+          code: string
+          created_at?: string
+          example_models?: string[]
+          id?: string
+          label: string
+          notes?: string | null
+          product_domain?: string
+        }
+        Update: {
+          accessibility?: boolean
+          code?: string
+          created_at?: string
+          example_models?: string[]
+          id?: string
+          label?: string
+          notes?: string | null
+          product_domain?: string
+        }
+        Relationships: []
       }
       corporate_accounts: {
         Row: {
@@ -4471,6 +5300,252 @@ export type Database = {
           },
         ]
       }
+      countries: {
+        Row: {
+          created_at: string
+          currency: string
+          id: string
+          is_active: boolean
+          iso2: string
+          iso3: string
+          launched_at: string | null
+          name: string
+          phone_code: string | null
+          timezone: string | null
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          id?: string
+          is_active?: boolean
+          iso2: string
+          iso3: string
+          launched_at?: string | null
+          name: string
+          phone_code?: string | null
+          timezone?: string | null
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          id?: string
+          is_active?: boolean
+          iso2?: string
+          iso3?: string
+          launched_at?: string | null
+          name?: string
+          phone_code?: string | null
+          timezone?: string | null
+        }
+        Relationships: []
+      }
+      crm_accounts: {
+        Row: {
+          account_ref: string
+          city: string | null
+          corporate_id: string | null
+          country: string
+          created_at: string
+          created_by: string | null
+          email_domain: string | null
+          id: string
+          importance_tier: string
+          industry: string | null
+          is_test: boolean
+          legal_name: string | null
+          lifecycle_stage: string
+          name: string
+          notes: string | null
+          owner_staff_id: string | null
+          phone: string | null
+          provenance: string
+          registration_number: string | null
+          seed_batch: string | null
+          size_band: string
+          source: string
+          strategic_owner_staff_id: string | null
+          tax_identifier: string | null
+          territory: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          account_ref?: string
+          city?: string | null
+          corporate_id?: string | null
+          country?: string
+          created_at?: string
+          created_by?: string | null
+          email_domain?: string | null
+          id?: string
+          importance_tier?: string
+          industry?: string | null
+          is_test?: boolean
+          legal_name?: string | null
+          lifecycle_stage?: string
+          name: string
+          notes?: string | null
+          owner_staff_id?: string | null
+          phone?: string | null
+          provenance?: string
+          registration_number?: string | null
+          seed_batch?: string | null
+          size_band?: string
+          source?: string
+          strategic_owner_staff_id?: string | null
+          tax_identifier?: string | null
+          territory?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          account_ref?: string
+          city?: string | null
+          corporate_id?: string | null
+          country?: string
+          created_at?: string
+          created_by?: string | null
+          email_domain?: string | null
+          id?: string
+          importance_tier?: string
+          industry?: string | null
+          is_test?: boolean
+          legal_name?: string | null
+          lifecycle_stage?: string
+          name?: string
+          notes?: string | null
+          owner_staff_id?: string | null
+          phone?: string | null
+          provenance?: string
+          registration_number?: string | null
+          seed_batch?: string | null
+          size_band?: string
+          source?: string
+          strategic_owner_staff_id?: string | null
+          tax_identifier?: string | null
+          territory?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_accounts_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_accounts_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_accounts_strategic_owner_staff_id_fkey"
+            columns: ["strategic_owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_documents: {
+        Row: {
+          account_id: string | null
+          confidentiality: string
+          created_at: string
+          created_by: string | null
+          current_version_id: string | null
+          description: string | null
+          doc_class: Database["public"]["Enums"]["crm_doc_class"]
+          doc_type: string
+          external_state:
+            | Database["public"]["Enums"]["crm_doc_external_state"]
+            | null
+          id: string
+          internal_state: Database["public"]["Enums"]["crm_doc_internal_state"]
+          opportunity_id: string | null
+          owner_staff_id: string | null
+          parent_document_id: string | null
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          account_id?: string | null
+          confidentiality?: string
+          created_at?: string
+          created_by?: string | null
+          current_version_id?: string | null
+          description?: string | null
+          doc_class: Database["public"]["Enums"]["crm_doc_class"]
+          doc_type: string
+          external_state?:
+            | Database["public"]["Enums"]["crm_doc_external_state"]
+            | null
+          id?: string
+          internal_state?: Database["public"]["Enums"]["crm_doc_internal_state"]
+          opportunity_id?: string | null
+          owner_staff_id?: string | null
+          parent_document_id?: string | null
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          account_id?: string | null
+          confidentiality?: string
+          created_at?: string
+          created_by?: string | null
+          current_version_id?: string | null
+          description?: string | null
+          doc_class?: Database["public"]["Enums"]["crm_doc_class"]
+          doc_type?: string
+          external_state?:
+            | Database["public"]["Enums"]["crm_doc_external_state"]
+            | null
+          id?: string
+          internal_state?: Database["public"]["Enums"]["crm_doc_internal_state"]
+          opportunity_id?: string | null
+          owner_staff_id?: string | null
+          parent_document_id?: string | null
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_documents_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_documents_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_documents_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_documents_parent_document_id_fkey"
+            columns: ["parent_document_id"]
+            isOneToOne: false
+            referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       currencies: {
         Row: {
           active: boolean
@@ -4498,6 +5573,173 @@ export type Database = {
           is_base?: boolean
           name?: string
           symbol?: string | null
+        }
+        Relationships: []
+      }
+      delivery_dispatch_jobs: {
+        Row: {
+          assigned_driver_id: string | null
+          attempts: number
+          created_at: string
+          destination_lat: number | null
+          destination_lng: number | null
+          id: string
+          last_attempt_at: string | null
+          metadata: Json
+          module: string
+          order_id: string | null
+          origin_lat: number | null
+          origin_lng: number | null
+          package_id: string | null
+          priority: number
+          required_capacity_kg: number | null
+          required_vehicle_type: string | null
+          sla_deadline: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_driver_id?: string | null
+          attempts?: number
+          created_at?: string
+          destination_lat?: number | null
+          destination_lng?: number | null
+          id?: string
+          last_attempt_at?: string | null
+          metadata?: Json
+          module: string
+          order_id?: string | null
+          origin_lat?: number | null
+          origin_lng?: number | null
+          package_id?: string | null
+          priority?: number
+          required_capacity_kg?: number | null
+          required_vehicle_type?: string | null
+          sla_deadline?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_driver_id?: string | null
+          attempts?: number
+          created_at?: string
+          destination_lat?: number | null
+          destination_lng?: number | null
+          id?: string
+          last_attempt_at?: string | null
+          metadata?: Json
+          module?: string
+          order_id?: string | null
+          origin_lat?: number | null
+          origin_lng?: number | null
+          package_id?: string | null
+          priority?: number
+          required_capacity_kg?: number | null
+          required_vehicle_type?: string | null
+          sla_deadline?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "delivery_dispatch_jobs_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "delivery_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "delivery_dispatch_jobs_package_id_fkey"
+            columns: ["package_id"]
+            isOneToOne: false
+            referencedRelation: "packages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      delivery_driver_candidates: {
+        Row: {
+          created_at: string
+          distance_km: number | null
+          driver_id: string
+          eta_seconds: number | null
+          features: Json
+          id: string
+          job_id: string
+          score: number
+        }
+        Insert: {
+          created_at?: string
+          distance_km?: number | null
+          driver_id: string
+          eta_seconds?: number | null
+          features?: Json
+          id?: string
+          job_id: string
+          score?: number
+        }
+        Update: {
+          created_at?: string
+          distance_km?: number | null
+          driver_id?: string
+          eta_seconds?: number | null
+          features?: Json
+          id?: string
+          job_id?: string
+          score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "delivery_driver_candidates_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "delivery_dispatch_jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      delivery_driver_scores: {
+        Row: {
+          acceptance_rate: number | null
+          cancel_rate: number | null
+          completed_deliveries: number
+          created_at: string
+          driver_id: string
+          id: string
+          metadata: Json
+          module: string
+          on_time_rate: number | null
+          rating: number | null
+          window_end: string
+          window_start: string
+        }
+        Insert: {
+          acceptance_rate?: number | null
+          cancel_rate?: number | null
+          completed_deliveries?: number
+          created_at?: string
+          driver_id: string
+          id?: string
+          metadata?: Json
+          module: string
+          on_time_rate?: number | null
+          rating?: number | null
+          window_end: string
+          window_start: string
+        }
+        Update: {
+          acceptance_rate?: number | null
+          cancel_rate?: number | null
+          completed_deliveries?: number
+          created_at?: string
+          driver_id?: string
+          id?: string
+          metadata?: Json
+          module?: string
+          on_time_rate?: number | null
+          rating?: number | null
+          window_end?: string
+          window_start?: string
         }
         Relationships: []
       }
@@ -4569,6 +5811,244 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      driver_achievement_progress: {
+        Row: {
+          acceptance_30d: number
+          cancellation_30d: number
+          created_at: string
+          current_tier: string
+          driver_id: string
+          id: string
+          last_unlock_at: string | null
+          points: number
+          rating_30d: number
+          trips_30d: number
+          updated_at: string
+        }
+        Insert: {
+          acceptance_30d?: number
+          cancellation_30d?: number
+          created_at?: string
+          current_tier?: string
+          driver_id: string
+          id?: string
+          last_unlock_at?: string | null
+          points?: number
+          rating_30d?: number
+          trips_30d?: number
+          updated_at?: string
+        }
+        Update: {
+          acceptance_30d?: number
+          cancellation_30d?: number
+          created_at?: string
+          current_tier?: string
+          driver_id?: string
+          id?: string
+          last_unlock_at?: string | null
+          points?: number
+          rating_30d?: number
+          trips_30d?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_achievement_tiers: {
+        Row: {
+          badge_color: string
+          commission_discount_pct: number
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          max_cancellation_rate: number
+          min_acceptance_rate: number
+          min_rating: number
+          min_trips: number
+          perks: Json
+          sort_order: number
+          tier: string
+          updated_at: string
+          weekly_bonus_kes: number
+        }
+        Insert: {
+          badge_color?: string
+          commission_discount_pct?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          max_cancellation_rate?: number
+          min_acceptance_rate?: number
+          min_rating?: number
+          min_trips?: number
+          perks?: Json
+          sort_order: number
+          tier: string
+          updated_at?: string
+          weekly_bonus_kes?: number
+        }
+        Update: {
+          badge_color?: string
+          commission_discount_pct?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          max_cancellation_rate?: number
+          min_acceptance_rate?: number
+          min_rating?: number
+          min_trips?: number
+          perks?: Json
+          sort_order?: number
+          tier?: string
+          updated_at?: string
+          weekly_bonus_kes?: number
+        }
+        Relationships: []
+      }
+      driver_analytics_events: {
+        Row: {
+          created_at: string
+          event_name: string
+          funnel_stage: string | null
+          id: string
+          metadata: Json
+          page_route: string | null
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_name: string
+          funnel_stage?: string | null
+          id?: string
+          metadata?: Json
+          page_route?: string | null
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_name?: string
+          funnel_stage?: string | null
+          id?: string
+          metadata?: Json
+          page_route?: string | null
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      driver_application_documents: {
+        Row: {
+          application_id: string
+          created_at: string
+          doc_code: string
+          doc_label: string
+          document_number: string | null
+          expires_on: string | null
+          id: string
+          is_mandatory: boolean
+          issued_on: string | null
+          issuing_authority: string | null
+          review_notes: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          state: string
+          storage_path: string | null
+          submitted_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          application_id: string
+          created_at?: string
+          doc_code: string
+          doc_label: string
+          document_number?: string | null
+          expires_on?: string | null
+          id?: string
+          is_mandatory?: boolean
+          issued_on?: string | null
+          issuing_authority?: string | null
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          state?: string
+          storage_path?: string | null
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          application_id?: string
+          created_at?: string
+          doc_code?: string
+          doc_label?: string
+          document_number?: string | null
+          expires_on?: string | null
+          id?: string
+          is_mandatory?: boolean
+          issued_on?: string | null
+          issuing_authority?: string | null
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          state?: string
+          storage_path?: string | null
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_application_documents_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "driver_applications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_application_events: {
+        Row: {
+          action: string
+          actor_user_id: string | null
+          application_id: string
+          created_at: string
+          id: string
+          note: string | null
+          status_from: string | null
+          status_to: string | null
+        }
+        Insert: {
+          action: string
+          actor_user_id?: string | null
+          application_id: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          status_from?: string | null
+          status_to?: string | null
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string | null
+          application_id?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          status_from?: string | null
+          status_to?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_application_events_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "driver_applications"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       driver_applications: {
         Row: {
@@ -4690,6 +6170,374 @@ export type Database = {
         }
         Relationships: []
       }
+      driver_benefits: {
+        Row: {
+          amount_cents: number | null
+          benefit_type: string
+          created_at: string
+          driver_id: string
+          end_date: string | null
+          id: string
+          metadata: Json
+          provider: string | null
+          start_date: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_cents?: number | null
+          benefit_type: string
+          created_at?: string
+          driver_id: string
+          end_date?: string | null
+          id?: string
+          metadata?: Json
+          provider?: string | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number | null
+          benefit_type?: string
+          created_at?: string
+          driver_id?: string
+          end_date?: string | null
+          id?: string
+          metadata?: Json
+          provider?: string | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_certifications: {
+        Row: {
+          certificate_code: string
+          course_id: string | null
+          created_at: string
+          driver_id: string
+          expires_at: string | null
+          id: string
+          issued_at: string
+          updated_at: string
+        }
+        Insert: {
+          certificate_code: string
+          course_id?: string | null
+          created_at?: string
+          driver_id: string
+          expires_at?: string | null
+          id?: string
+          issued_at?: string
+          updated_at?: string
+        }
+        Update: {
+          certificate_code?: string
+          course_id?: string | null
+          created_at?: string
+          driver_id?: string
+          expires_at?: string | null
+          id?: string
+          issued_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_certifications_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "driver_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_compliance: {
+        Row: {
+          background_check_valid: boolean | null
+          badge_valid: boolean | null
+          compliance_score: number | null
+          driver_id: string | null
+          id: string
+          inspection_valid: boolean | null
+          insurance_valid: boolean | null
+          license_valid: boolean | null
+          next_review_date: string | null
+          overall_status: string | null
+          updated_at: string
+        }
+        Insert: {
+          background_check_valid?: boolean | null
+          badge_valid?: boolean | null
+          compliance_score?: number | null
+          driver_id?: string | null
+          id?: string
+          inspection_valid?: boolean | null
+          insurance_valid?: boolean | null
+          license_valid?: boolean | null
+          next_review_date?: string | null
+          overall_status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          background_check_valid?: boolean | null
+          badge_valid?: boolean | null
+          compliance_score?: number | null
+          driver_id?: string | null
+          id?: string
+          inspection_valid?: boolean | null
+          insurance_valid?: boolean | null
+          license_valid?: boolean | null
+          next_review_date?: string | null
+          overall_status?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_compliance_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: true
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_compliance_scores: {
+        Row: {
+          band: string | null
+          computed_at: string
+          created_at: string
+          documents_score: number | null
+          driver_id: string
+          driver_user_id: string | null
+          freshness_score: number | null
+          id: string
+          incident_score: number | null
+          overall_score: number
+          rating_score: number | null
+          training_score: number | null
+          updated_at: string
+          verification_score: number | null
+        }
+        Insert: {
+          band?: string | null
+          computed_at?: string
+          created_at?: string
+          documents_score?: number | null
+          driver_id: string
+          driver_user_id?: string | null
+          freshness_score?: number | null
+          id?: string
+          incident_score?: number | null
+          overall_score?: number
+          rating_score?: number | null
+          training_score?: number | null
+          updated_at?: string
+          verification_score?: number | null
+        }
+        Update: {
+          band?: string | null
+          computed_at?: string
+          created_at?: string
+          documents_score?: number | null
+          driver_id?: string
+          driver_user_id?: string | null
+          freshness_score?: number | null
+          id?: string
+          incident_score?: number | null
+          overall_score?: number
+          rating_score?: number | null
+          training_score?: number | null
+          updated_at?: string
+          verification_score?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_compliance_scores_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: true
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_courses: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          duration_minutes: number
+          id: string
+          is_certification: boolean
+          is_published: boolean
+          is_required: boolean
+          slug: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description: string
+          duration_minutes?: number
+          id?: string
+          is_certification?: boolean
+          is_published?: boolean
+          is_required?: boolean
+          slug: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          duration_minutes?: number
+          id?: string
+          is_certification?: boolean
+          is_published?: boolean
+          is_required?: boolean
+          slug?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_daily_metrics: {
+        Row: {
+          acceptance_rate: number | null
+          cancellation_rate: number | null
+          created_at: string
+          driver_id: string
+          gross_cents: number | null
+          id: string
+          incidents_count: number | null
+          metadata: Json | null
+          metric_date: string
+          net_cents: number | null
+          online_minutes: number | null
+          rating_avg: number | null
+          trips_count: number | null
+        }
+        Insert: {
+          acceptance_rate?: number | null
+          cancellation_rate?: number | null
+          created_at?: string
+          driver_id: string
+          gross_cents?: number | null
+          id?: string
+          incidents_count?: number | null
+          metadata?: Json | null
+          metric_date: string
+          net_cents?: number | null
+          online_minutes?: number | null
+          rating_avg?: number | null
+          trips_count?: number | null
+        }
+        Update: {
+          acceptance_rate?: number | null
+          cancellation_rate?: number | null
+          created_at?: string
+          driver_id?: string
+          gross_cents?: number | null
+          id?: string
+          incidents_count?: number | null
+          metadata?: Json | null
+          metric_date?: string
+          net_cents?: number | null
+          online_minutes?: number | null
+          rating_avg?: number | null
+          trips_count?: number | null
+        }
+        Relationships: []
+      }
+      driver_documents: {
+        Row: {
+          created_at: string
+          doc_label: string | null
+          doc_type: string
+          document_number: string | null
+          document_type_id: string | null
+          driver_id: string
+          expires_at: string | null
+          expiry_date: string | null
+          file_hash: string | null
+          file_name: string | null
+          file_size: number | null
+          file_url: string
+          id: string
+          issue_date: string | null
+          module: string | null
+          ocr_data: Json | null
+          rejection_reason: string | null
+          status: string
+          updated_at: string
+          verification_notes: string | null
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          doc_label?: string | null
+          doc_type: string
+          document_number?: string | null
+          document_type_id?: string | null
+          driver_id: string
+          expires_at?: string | null
+          expiry_date?: string | null
+          file_hash?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_url: string
+          id?: string
+          issue_date?: string | null
+          module?: string | null
+          ocr_data?: Json | null
+          rejection_reason?: string | null
+          status?: string
+          updated_at?: string
+          verification_notes?: string | null
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          doc_label?: string | null
+          doc_type?: string
+          document_number?: string | null
+          document_type_id?: string | null
+          driver_id?: string
+          expires_at?: string | null
+          expiry_date?: string | null
+          file_hash?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          issue_date?: string | null
+          module?: string | null
+          ocr_data?: Json | null
+          rejection_reason?: string | null
+          status?: string
+          updated_at?: string
+          verification_notes?: string | null
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_documents_document_type_id_fkey"
+            columns: ["document_type_id"]
+            isOneToOne: false
+            referencedRelation: "kyc_document_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       driver_earnings: {
         Row: {
           amount: number
@@ -4728,6 +6576,80 @@ export type Database = {
             columns: ["trip_booking_id"]
             isOneToOne: true
             referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_earnings_models: {
+        Row: {
+          city: string
+          created_at: string
+          currency: string
+          hourly_average_cents: number
+          id: string
+          incentive_per_week_cents: number
+          is_active: boolean
+          surge_multiplier: number
+          updated_at: string
+          vehicle_type: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          currency?: string
+          hourly_average_cents: number
+          id?: string
+          incentive_per_week_cents?: number
+          is_active?: boolean
+          surge_multiplier?: number
+          updated_at?: string
+          vehicle_type: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          currency?: string
+          hourly_average_cents?: number
+          id?: string
+          incentive_per_week_cents?: number
+          is_active?: boolean
+          surge_multiplier?: number
+          updated_at?: string
+          vehicle_type?: string
+        }
+        Relationships: []
+      }
+      driver_etims_failures: {
+        Row: {
+          error_code: string | null
+          error_message: string
+          id: string
+          invoice_id: string
+          occurred_at: string
+          payload: Json | null
+        }
+        Insert: {
+          error_code?: string | null
+          error_message: string
+          id?: string
+          invoice_id: string
+          occurred_at?: string
+          payload?: Json | null
+        }
+        Update: {
+          error_code?: string | null
+          error_message?: string
+          id?: string
+          invoice_id?: string
+          occurred_at?: string
+          payload?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_etims_failures_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "driver_etims_invoices"
             referencedColumns: ["id"]
           },
         ]
@@ -4812,6 +6734,165 @@ export type Database = {
             columns: ["revenue_event_id"]
             isOneToOne: false
             referencedRelation: "revenue_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_etims_profiles: {
+        Row: {
+          consent_given_at: string | null
+          consent_revoked_at: string | null
+          created_at: string
+          device_serial: string | null
+          driver_id: string
+          etims_branch_id: string | null
+          id: string
+          kra_pin: string
+          metadata: Json
+          registered: boolean
+          registered_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          consent_given_at?: string | null
+          consent_revoked_at?: string | null
+          created_at?: string
+          device_serial?: string | null
+          driver_id: string
+          etims_branch_id?: string | null
+          id?: string
+          kra_pin: string
+          metadata?: Json
+          registered?: boolean
+          registered_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          consent_given_at?: string | null
+          consent_revoked_at?: string | null
+          created_at?: string
+          device_serial?: string | null
+          driver_id?: string
+          etims_branch_id?: string | null
+          id?: string
+          kra_pin?: string
+          metadata?: Json
+          registered?: boolean
+          registered_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_etims_retries: {
+        Row: {
+          attempt_count: number
+          created_at: string
+          id: string
+          invoice_id: string
+          last_error: string | null
+          next_attempt_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempt_count?: number
+          created_at?: string
+          id?: string
+          invoice_id: string
+          last_error?: string | null
+          next_attempt_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempt_count?: number
+          created_at?: string
+          id?: string
+          invoice_id?: string
+          last_error?: string | null
+          next_attempt_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_etims_retries_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "driver_etims_invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_etims_submissions: {
+        Row: {
+          attempt_no: number
+          http_status: number | null
+          id: string
+          invoice_id: string
+          request_payload: Json | null
+          response_payload: Json | null
+          submitted_at: string
+          succeeded: boolean
+        }
+        Insert: {
+          attempt_no: number
+          http_status?: number | null
+          id?: string
+          invoice_id: string
+          request_payload?: Json | null
+          response_payload?: Json | null
+          submitted_at?: string
+          succeeded?: boolean
+        }
+        Update: {
+          attempt_no?: number
+          http_status?: number | null
+          id?: string
+          invoice_id?: string
+          request_payload?: Json | null
+          response_payload?: Json | null
+          submitted_at?: string
+          succeeded?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_etims_submissions_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "driver_etims_invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_etims_sync_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          invoice_id: string
+          payload: Json
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          invoice_id: string
+          payload?: Json
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          invoice_id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_etims_sync_events_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "driver_etims_invoices"
             referencedColumns: ["id"]
           },
         ]
@@ -4910,6 +6991,437 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      driver_financial_scores: {
+        Row: {
+          computed_at: string
+          credit_score: number | null
+          driver_id: string
+          id: string
+          income_stability: number | null
+          loan_repayment: number | null
+          overall: number | null
+          savings_score: number | null
+        }
+        Insert: {
+          computed_at?: string
+          credit_score?: number | null
+          driver_id: string
+          id?: string
+          income_stability?: number | null
+          loan_repayment?: number | null
+          overall?: number | null
+          savings_score?: number | null
+        }
+        Update: {
+          computed_at?: string
+          credit_score?: number | null
+          driver_id?: string
+          id?: string
+          income_stability?: number | null
+          loan_repayment?: number | null
+          overall?: number | null
+          savings_score?: number | null
+        }
+        Relationships: []
+      }
+      driver_housing_levy: {
+        Row: {
+          created_at: string
+          driver_id: string
+          employee_levy_cents: number
+          employer_levy_cents: number
+          gross_cents: number
+          id: string
+          liability_id: string | null
+          period_end: string
+          period_start: string
+          status: Database["public"]["Enums"]["driver_tax_liability_status"]
+          total_levy_cents: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          driver_id: string
+          employee_levy_cents?: number
+          employer_levy_cents?: number
+          gross_cents?: number
+          id?: string
+          liability_id?: string | null
+          period_end: string
+          period_start: string
+          status?: Database["public"]["Enums"]["driver_tax_liability_status"]
+          total_levy_cents?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          driver_id?: string
+          employee_levy_cents?: number
+          employer_levy_cents?: number
+          gross_cents?: number
+          id?: string
+          liability_id?: string | null
+          period_end?: string
+          period_start?: string
+          status?: Database["public"]["Enums"]["driver_tax_liability_status"]
+          total_levy_cents?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_housing_levy_liability_id_fkey"
+            columns: ["liability_id"]
+            isOneToOne: false
+            referencedRelation: "driver_tax_liabilities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_incidents: {
+        Row: {
+          created_at: string
+          description: string | null
+          driver_id: string | null
+          id: string
+          incident_type: string
+          metadata: Json | null
+          occurred_at: string
+          reported_by: string | null
+          resolution: string | null
+          resolved_at: string | null
+          severity: Database["public"]["Enums"]["incident_severity"]
+          status: string
+          vehicle_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          driver_id?: string | null
+          id?: string
+          incident_type: string
+          metadata?: Json | null
+          occurred_at?: string
+          reported_by?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          severity?: Database["public"]["Enums"]["incident_severity"]
+          status?: string
+          vehicle_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          driver_id?: string | null
+          id?: string
+          incident_type?: string
+          metadata?: Json | null
+          occurred_at?: string
+          reported_by?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          severity?: Database["public"]["Enums"]["incident_severity"]
+          status?: string
+          vehicle_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_incidents_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_incidents_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_insurance: {
+        Row: {
+          coverage_cents: number | null
+          created_at: string
+          driver_id: string
+          ends_at: string | null
+          id: string
+          metadata: Json | null
+          policy_number: string | null
+          premium_cents: number | null
+          product: string
+          provider: string | null
+          starts_at: string | null
+          status: Database["public"]["Enums"]["insurance_status"]
+          updated_at: string
+        }
+        Insert: {
+          coverage_cents?: number | null
+          created_at?: string
+          driver_id: string
+          ends_at?: string | null
+          id?: string
+          metadata?: Json | null
+          policy_number?: string | null
+          premium_cents?: number | null
+          product: string
+          provider?: string | null
+          starts_at?: string | null
+          status?: Database["public"]["Enums"]["insurance_status"]
+          updated_at?: string
+        }
+        Update: {
+          coverage_cents?: number | null
+          created_at?: string
+          driver_id?: string
+          ends_at?: string | null
+          id?: string
+          metadata?: Json | null
+          policy_number?: string | null
+          premium_cents?: number | null
+          product?: string
+          provider?: string | null
+          starts_at?: string | null
+          status?: Database["public"]["Enums"]["insurance_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_lifecycle_actions: {
+        Row: {
+          action: Database["public"]["Enums"]["compliance_action_type"]
+          actor_id: string | null
+          created_at: string
+          driver_id: string
+          effective_from: string
+          effective_until: string | null
+          id: string
+          metadata: Json | null
+          reason: string | null
+        }
+        Insert: {
+          action: Database["public"]["Enums"]["compliance_action_type"]
+          actor_id?: string | null
+          created_at?: string
+          driver_id: string
+          effective_from?: string
+          effective_until?: string | null
+          id?: string
+          metadata?: Json | null
+          reason?: string | null
+        }
+        Update: {
+          action?: Database["public"]["Enums"]["compliance_action_type"]
+          actor_id?: string | null
+          created_at?: string
+          driver_id?: string
+          effective_from?: string
+          effective_until?: string | null
+          id?: string
+          metadata?: Json | null
+          reason?: string | null
+        }
+        Relationships: []
+      }
+      driver_lifecycle_history: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          driver_id: string
+          from_stage: Database["public"]["Enums"]["lifecycle_stage"] | null
+          id: string
+          metadata: Json | null
+          reason: string | null
+          to_stage: Database["public"]["Enums"]["lifecycle_stage"]
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          driver_id: string
+          from_stage?: Database["public"]["Enums"]["lifecycle_stage"] | null
+          id?: string
+          metadata?: Json | null
+          reason?: string | null
+          to_stage: Database["public"]["Enums"]["lifecycle_stage"]
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          driver_id?: string
+          from_stage?: Database["public"]["Enums"]["lifecycle_stage"] | null
+          id?: string
+          metadata?: Json | null
+          reason?: string | null
+          to_stage?: Database["public"]["Enums"]["lifecycle_stage"]
+        }
+        Relationships: []
+      }
+      driver_lifecycle_stages: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          is_terminal: boolean
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_terminal?: boolean
+          name: string
+          sort_order: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_terminal?: boolean
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      driver_loans: {
+        Row: {
+          created_at: string
+          currency: string
+          disbursed_at: string | null
+          driver_id: string
+          due_at: string | null
+          id: string
+          interest_rate_bps: number
+          metadata: Json | null
+          outstanding_cents: number
+          principal_cents: number
+          purpose: string | null
+          status: Database["public"]["Enums"]["loan_status"]
+          term_months: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          disbursed_at?: string | null
+          driver_id: string
+          due_at?: string | null
+          id?: string
+          interest_rate_bps?: number
+          metadata?: Json | null
+          outstanding_cents: number
+          principal_cents: number
+          purpose?: string | null
+          status?: Database["public"]["Enums"]["loan_status"]
+          term_months: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          disbursed_at?: string | null
+          driver_id?: string
+          due_at?: string | null
+          id?: string
+          interest_rate_bps?: number
+          metadata?: Json | null
+          outstanding_cents?: number
+          principal_cents?: number
+          purpose?: string | null
+          status?: Database["public"]["Enums"]["loan_status"]
+          term_months?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_locations: {
+        Row: {
+          accuracy_m: number | null
+          battery_pct: number | null
+          driver_id: string
+          heading: number | null
+          is_available: boolean
+          is_online: boolean
+          lat: number
+          lng: number
+          speed_kph: number | null
+          updated_at: string
+          vehicle_id: string | null
+        }
+        Insert: {
+          accuracy_m?: number | null
+          battery_pct?: number | null
+          driver_id: string
+          heading?: number | null
+          is_available?: boolean
+          is_online?: boolean
+          lat: number
+          lng: number
+          speed_kph?: number | null
+          updated_at?: string
+          vehicle_id?: string | null
+        }
+        Update: {
+          accuracy_m?: number | null
+          battery_pct?: number | null
+          driver_id?: string
+          heading?: number | null
+          is_available?: boolean
+          is_online?: boolean
+          lat?: number
+          lng?: number
+          speed_kph?: number | null
+          updated_at?: string
+          vehicle_id?: string | null
+        }
+        Relationships: []
+      }
+      driver_onboarding_drafts: {
+        Row: {
+          created_at: string
+          current_stage: number
+          data: Json
+          driver_id: string
+          id: string
+          review_notes: string | null
+          reviewed_at: string | null
+          reviewer_id: string | null
+          status: string
+          submitted_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_stage?: number
+          data?: Json
+          driver_id: string
+          id?: string
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: string
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_stage?: number
+          data?: Json
+          driver_id?: string
+          id?: string
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          status?: string
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       driver_payout_batches: {
         Row: {
@@ -5232,6 +7744,457 @@ export type Database = {
           },
         ]
       }
+      driver_photos: {
+        Row: {
+          driver_id: string | null
+          face_match_score: number | null
+          id: string
+          photo_type: string
+          storage_url: string
+          uploaded_at: string
+          verification_status: Database["public"]["Enums"]["doc_verification_status"]
+        }
+        Insert: {
+          driver_id?: string | null
+          face_match_score?: number | null
+          id?: string
+          photo_type: string
+          storage_url: string
+          uploaded_at?: string
+          verification_status?: Database["public"]["Enums"]["doc_verification_status"]
+        }
+        Update: {
+          driver_id?: string | null
+          face_match_score?: number | null
+          id?: string
+          photo_type?: string
+          storage_url?: string
+          uploaded_at?: string
+          verification_status?: Database["public"]["Enums"]["doc_verification_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_photos_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_profiles_extended: {
+        Row: {
+          country_id: string | null
+          created_at: string
+          current_stage: Database["public"]["Enums"]["lifecycle_stage"]
+          driver_id: string
+          fleet_branch_id: string | null
+          fleet_company_id: string | null
+          metadata: Json | null
+          preferences: Json | null
+          preferred_language: string | null
+          primary_vehicle_id: string | null
+          region_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          country_id?: string | null
+          created_at?: string
+          current_stage?: Database["public"]["Enums"]["lifecycle_stage"]
+          driver_id: string
+          fleet_branch_id?: string | null
+          fleet_company_id?: string | null
+          metadata?: Json | null
+          preferences?: Json | null
+          preferred_language?: string | null
+          primary_vehicle_id?: string | null
+          region_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          country_id?: string | null
+          created_at?: string
+          current_stage?: Database["public"]["Enums"]["lifecycle_stage"]
+          driver_id?: string
+          fleet_branch_id?: string | null
+          fleet_company_id?: string | null
+          metadata?: Json | null
+          preferences?: Json | null
+          preferred_language?: string | null
+          primary_vehicle_id?: string | null
+          region_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_profiles_extended_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_profiles_extended_fleet_branch_id_fkey"
+            columns: ["fleet_branch_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_branches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_profiles_extended_fleet_company_id_fkey"
+            columns: ["fleet_company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_profiles_extended_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_reputation: {
+        Row: {
+          achievements: Json | null
+          badges: Json | null
+          driver_id: string
+          rating: number | null
+          reviews_count: number | null
+          trips_total: number | null
+          updated_at: string
+        }
+        Insert: {
+          achievements?: Json | null
+          badges?: Json | null
+          driver_id: string
+          rating?: number | null
+          reviews_count?: number | null
+          trips_total?: number | null
+          updated_at?: string
+        }
+        Update: {
+          achievements?: Json | null
+          badges?: Json | null
+          driver_id?: string
+          rating?: number | null
+          reviews_count?: number | null
+          trips_total?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_risk_events: {
+        Row: {
+          created_at: string
+          details: Json | null
+          dimension: string
+          driver_id: string
+          id: string
+          rule_code: string
+          score_delta: number
+          severity: Database["public"]["Enums"]["risk_severity"]
+        }
+        Insert: {
+          created_at?: string
+          details?: Json | null
+          dimension: string
+          driver_id: string
+          id?: string
+          rule_code: string
+          score_delta?: number
+          severity: Database["public"]["Enums"]["risk_severity"]
+        }
+        Update: {
+          created_at?: string
+          details?: Json | null
+          dimension?: string
+          driver_id?: string
+          id?: string
+          rule_code?: string
+          score_delta?: number
+          severity?: Database["public"]["Enums"]["risk_severity"]
+        }
+        Relationships: []
+      }
+      driver_risk_profiles: {
+        Row: {
+          compliance_score: number | null
+          created_at: string
+          driver_id: string
+          financial_score: number | null
+          fraud_score: number | null
+          id: string
+          last_evaluated_at: string | null
+          metadata: Json | null
+          operational_score: number | null
+          overall_risk: Database["public"]["Enums"]["risk_severity"]
+          safety_score: number | null
+          updated_at: string
+        }
+        Insert: {
+          compliance_score?: number | null
+          created_at?: string
+          driver_id: string
+          financial_score?: number | null
+          fraud_score?: number | null
+          id?: string
+          last_evaluated_at?: string | null
+          metadata?: Json | null
+          operational_score?: number | null
+          overall_risk?: Database["public"]["Enums"]["risk_severity"]
+          safety_score?: number | null
+          updated_at?: string
+        }
+        Update: {
+          compliance_score?: number | null
+          created_at?: string
+          driver_id?: string
+          financial_score?: number | null
+          fraud_score?: number | null
+          id?: string
+          last_evaluated_at?: string | null
+          metadata?: Json | null
+          operational_score?: number | null
+          overall_risk?: Database["public"]["Enums"]["risk_severity"]
+          safety_score?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_risk_rules: {
+        Row: {
+          active: boolean
+          code: string
+          config: Json | null
+          created_at: string
+          dimension: string
+          id: string
+          name: string
+          score_delta: number
+          severity: Database["public"]["Enums"]["risk_severity"]
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          code: string
+          config?: Json | null
+          created_at?: string
+          dimension: string
+          id?: string
+          name: string
+          score_delta: number
+          severity: Database["public"]["Enums"]["risk_severity"]
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          code?: string
+          config?: Json | null
+          created_at?: string
+          dimension?: string
+          id?: string
+          name?: string
+          score_delta?: number
+          severity?: Database["public"]["Enums"]["risk_severity"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_savings: {
+        Row: {
+          balance_cents: number
+          created_at: string
+          currency: string
+          driver_id: string
+          goal_cents: number | null
+          goal_label: string | null
+          id: string
+          interest_rate_bps: number | null
+          metadata: Json | null
+          updated_at: string
+        }
+        Insert: {
+          balance_cents?: number
+          created_at?: string
+          currency?: string
+          driver_id: string
+          goal_cents?: number | null
+          goal_label?: string | null
+          id?: string
+          interest_rate_bps?: number | null
+          metadata?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          balance_cents?: number
+          created_at?: string
+          currency?: string
+          driver_id?: string
+          goal_cents?: number | null
+          goal_label?: string | null
+          id?: string
+          interest_rate_bps?: number | null
+          metadata?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_scores: {
+        Row: {
+          compliance: number | null
+          computed_at: string
+          driver_id: string
+          financial: number | null
+          fraud: number | null
+          overall: number | null
+          performance: number | null
+          safety: number | null
+          training: number | null
+        }
+        Insert: {
+          compliance?: number | null
+          computed_at?: string
+          driver_id: string
+          financial?: number | null
+          fraud?: number | null
+          overall?: number | null
+          performance?: number | null
+          safety?: number | null
+          training?: number | null
+        }
+        Update: {
+          compliance?: number | null
+          computed_at?: string
+          driver_id?: string
+          financial?: number | null
+          fraud?: number | null
+          overall?: number | null
+          performance?: number | null
+          safety?: number | null
+          training?: number | null
+        }
+        Relationships: []
+      }
+      driver_self_reports: {
+        Row: {
+          amount: number
+          audience: string
+          category: string
+          created_at: string
+          entry_date: string
+          id: string
+          kind: string
+          note: string | null
+          rejection_reason: string | null
+          updated_at: string
+          user_id: string
+          verification_status: string
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          amount: number
+          audience?: string
+          category?: string
+          created_at?: string
+          entry_date: string
+          id?: string
+          kind: string
+          note?: string | null
+          rejection_reason?: string | null
+          updated_at?: string
+          user_id?: string
+          verification_status?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          amount?: number
+          audience?: string
+          category?: string
+          created_at?: string
+          entry_date?: string
+          id?: string
+          kind?: string
+          note?: string | null
+          rejection_reason?: string | null
+          updated_at?: string
+          user_id?: string
+          verification_status?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: []
+      }
+      driver_success_stories: {
+        Row: {
+          avatar_url: string | null
+          body: string
+          city: string
+          consent_evidence_url: string | null
+          consent_recorded_at: string | null
+          consent_reference: string | null
+          created_at: string
+          display_name: string | null
+          driver_name: string
+          headline: string
+          id: string
+          is_published: boolean
+          monthly_earnings_cents: number | null
+          published_at: string
+          rating: number | null
+          trips_completed: number | null
+          updated_at: string
+          vehicle_type: string | null
+          years_on_platform: number | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          body: string
+          city: string
+          consent_evidence_url?: string | null
+          consent_recorded_at?: string | null
+          consent_reference?: string | null
+          created_at?: string
+          display_name?: string | null
+          driver_name: string
+          headline: string
+          id?: string
+          is_published?: boolean
+          monthly_earnings_cents?: number | null
+          published_at?: string
+          rating?: number | null
+          trips_completed?: number | null
+          updated_at?: string
+          vehicle_type?: string | null
+          years_on_platform?: number | null
+        }
+        Update: {
+          avatar_url?: string | null
+          body?: string
+          city?: string
+          consent_evidence_url?: string | null
+          consent_recorded_at?: string | null
+          consent_reference?: string | null
+          created_at?: string
+          display_name?: string | null
+          driver_name?: string
+          headline?: string
+          id?: string
+          is_published?: boolean
+          monthly_earnings_cents?: number | null
+          published_at?: string
+          rating?: number | null
+          trips_completed?: number | null
+          updated_at?: string
+          vehicle_type?: string | null
+          years_on_platform?: number | null
+        }
+        Relationships: []
+      }
       driver_tax_elections: {
         Row: {
           created_at: string
@@ -5522,6 +8485,282 @@ export type Database = {
           tax_due_cents?: number
           taxable_cents?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_training_records: {
+        Row: {
+          completed_at: string | null
+          course_id: string
+          created_at: string
+          driver_id: string
+          id: string
+          progress_pct: number
+          score: number | null
+          started_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          course_id: string
+          created_at?: string
+          driver_id: string
+          id?: string
+          progress_pct?: number
+          score?: number | null
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          course_id?: string
+          created_at?: string
+          driver_id?: string
+          id?: string
+          progress_pct?: number
+          score?: number | null
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_training_records_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "driver_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_trip_earnings: {
+        Row: {
+          accrued_at: string
+          booking_id: string
+          carrier_id: string | null
+          commission_bps: number
+          commission_cents: number
+          created_at: string
+          currency: string
+          data_class: string
+          deductions_cents: number
+          driver_id: string
+          driver_user_id: string | null
+          earning_reference: string
+          gross_cents: number
+          id: string
+          journal_id: string | null
+          net_cents: number
+          payout_id: string | null
+          released_at: string | null
+          service_line: string
+          state: string
+          terms_snapshot: Json
+          updated_at: string
+          wallet_transaction_id: string | null
+        }
+        Insert: {
+          accrued_at?: string
+          booking_id: string
+          carrier_id?: string | null
+          commission_bps: number
+          commission_cents: number
+          created_at?: string
+          currency?: string
+          data_class?: string
+          deductions_cents?: number
+          driver_id: string
+          driver_user_id?: string | null
+          earning_reference: string
+          gross_cents: number
+          id?: string
+          journal_id?: string | null
+          net_cents: number
+          payout_id?: string | null
+          released_at?: string | null
+          service_line: string
+          state?: string
+          terms_snapshot?: Json
+          updated_at?: string
+          wallet_transaction_id?: string | null
+        }
+        Update: {
+          accrued_at?: string
+          booking_id?: string
+          carrier_id?: string | null
+          commission_bps?: number
+          commission_cents?: number
+          created_at?: string
+          currency?: string
+          data_class?: string
+          deductions_cents?: number
+          driver_id?: string
+          driver_user_id?: string | null
+          earning_reference?: string
+          gross_cents?: number
+          id?: string
+          journal_id?: string | null
+          net_cents?: number
+          payout_id?: string | null
+          released_at?: string | null
+          service_line?: string
+          state?: string
+          terms_snapshot?: Json
+          updated_at?: string
+          wallet_transaction_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_trip_earnings_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: true
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_trip_earnings_carrier_id_fkey"
+            columns: ["carrier_id"]
+            isOneToOne: false
+            referencedRelation: "carrier_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_trip_earnings_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_vehicle_assignments: {
+        Row: {
+          assignment_type: string
+          created_at: string
+          driver_id: string
+          end_date: string | null
+          id: string
+          start_date: string
+          status: Database["public"]["Enums"]["assignment_status"]
+          vehicle_id: string
+        }
+        Insert: {
+          assignment_type?: string
+          created_at?: string
+          driver_id: string
+          end_date?: string | null
+          id?: string
+          start_date?: string
+          status?: Database["public"]["Enums"]["assignment_status"]
+          vehicle_id: string
+        }
+        Update: {
+          assignment_type?: string
+          created_at?: string
+          driver_id?: string
+          end_date?: string | null
+          id?: string
+          start_date?: string
+          status?: Database["public"]["Enums"]["assignment_status"]
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_vehicle_assignments_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_vehicle_assignments_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      driver_verifications: {
+        Row: {
+          check_type: string
+          created_at: string
+          details: Json
+          driver_id: string
+          id: string
+          performed_at: string
+          performed_by: string | null
+          provider: string | null
+          provider_reference: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          check_type: string
+          created_at?: string
+          details?: Json
+          driver_id: string
+          id?: string
+          performed_at?: string
+          performed_by?: string | null
+          provider?: string | null
+          provider_reference?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          check_type?: string
+          created_at?: string
+          details?: Json
+          driver_id?: string
+          id?: string
+          performed_at?: string
+          performed_by?: string | null
+          provider?: string | null
+          provider_reference?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      driver_withdrawal_certifications: {
+        Row: {
+          chain: Json
+          correlation_id: string | null
+          created_at: string
+          driver_user_id: string | null
+          failures: Json
+          id: string
+          passed: boolean
+          payout_id: string
+          reconciliation: Json
+          score: number
+        }
+        Insert: {
+          chain?: Json
+          correlation_id?: string | null
+          created_at?: string
+          driver_user_id?: string | null
+          failures?: Json
+          id?: string
+          passed: boolean
+          payout_id: string
+          reconciliation?: Json
+          score: number
+        }
+        Update: {
+          chain?: Json
+          correlation_id?: string | null
+          created_at?: string
+          driver_user_id?: string | null
+          failures?: Json
+          id?: string
+          passed?: boolean
+          payout_id?: string
+          reconciliation?: Json
+          score?: number
         }
         Relationships: []
       }
@@ -5835,6 +9074,48 @@ export type Database = {
             referencedColumns: ["code"]
           },
         ]
+      }
+      fact_drivers: {
+        Row: {
+          acceptance_rate: number | null
+          cancellation_rate: number | null
+          compliance_score: number | null
+          created_at: string
+          driver_id: string
+          earnings_cents: number
+          id: string
+          online_hours: number | null
+          rating: number | null
+          snapshot_date: string
+          trips: number
+        }
+        Insert: {
+          acceptance_rate?: number | null
+          cancellation_rate?: number | null
+          compliance_score?: number | null
+          created_at?: string
+          driver_id: string
+          earnings_cents?: number
+          id?: string
+          online_hours?: number | null
+          rating?: number | null
+          snapshot_date: string
+          trips?: number
+        }
+        Update: {
+          acceptance_rate?: number | null
+          cancellation_rate?: number | null
+          compliance_score?: number | null
+          created_at?: string
+          driver_id?: string
+          earnings_cents?: number
+          id?: string
+          online_hours?: number | null
+          rating?: number | null
+          snapshot_date?: string
+          trips?: number
+        }
+        Relationships: []
       }
       fact_payments: {
         Row: {
@@ -6193,6 +9474,540 @@ export type Database = {
           id?: string
           role?: string | null
           severity_threshold?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      fleet_branches: {
+        Row: {
+          address: string | null
+          company_id: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          name: string
+          phone: string | null
+          region_id: string | null
+          status: string
+        }
+        Insert: {
+          address?: string | null
+          company_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          name: string
+          phone?: string | null
+          region_id?: string | null
+          status?: string
+        }
+        Update: {
+          address?: string | null
+          company_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          name?: string
+          phone?: string | null
+          region_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_branches_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fleet_branches_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_companies: {
+        Row: {
+          country_id: string | null
+          created_at: string
+          entity_type: Database["public"]["Enums"]["fleet_entity_type"]
+          id: string
+          legal_name: string
+          metadata: Json | null
+          owner_user_id: string | null
+          parent_id: string | null
+          registration_number: string | null
+          status: string
+          tax_id: string | null
+          trading_name: string | null
+          updated_at: string
+        }
+        Insert: {
+          country_id?: string | null
+          created_at?: string
+          entity_type?: Database["public"]["Enums"]["fleet_entity_type"]
+          id?: string
+          legal_name: string
+          metadata?: Json | null
+          owner_user_id?: string | null
+          parent_id?: string | null
+          registration_number?: string | null
+          status?: string
+          tax_id?: string | null
+          trading_name?: string | null
+          updated_at?: string
+        }
+        Update: {
+          country_id?: string | null
+          created_at?: string
+          entity_type?: Database["public"]["Enums"]["fleet_entity_type"]
+          id?: string
+          legal_name?: string
+          metadata?: Json | null
+          owner_user_id?: string | null
+          parent_id?: string | null
+          registration_number?: string | null
+          status?: string
+          tax_id?: string | null
+          trading_name?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_companies_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fleet_companies_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_compliance: {
+        Row: {
+          compliance_score: number | null
+          created_at: string
+          expired_documents: number
+          fleet_company_id: string
+          id: string
+          last_audit_at: string | null
+          metadata: Json
+          open_incidents: number
+          updated_at: string
+        }
+        Insert: {
+          compliance_score?: number | null
+          created_at?: string
+          expired_documents?: number
+          fleet_company_id: string
+          id?: string
+          last_audit_at?: string | null
+          metadata?: Json
+          open_incidents?: number
+          updated_at?: string
+        }
+        Update: {
+          compliance_score?: number | null
+          created_at?: string
+          expired_documents?: number
+          fleet_company_id?: string
+          id?: string
+          last_audit_at?: string | null
+          metadata?: Json
+          open_incidents?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_compliance_fleet_company_id_fkey"
+            columns: ["fleet_company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_daily_metrics: {
+        Row: {
+          active_drivers: number | null
+          active_vehicles: number | null
+          company_id: string | null
+          created_at: string
+          gross_cents: number | null
+          id: string
+          incidents_count: number | null
+          metadata: Json | null
+          metric_date: string
+          trips_count: number | null
+        }
+        Insert: {
+          active_drivers?: number | null
+          active_vehicles?: number | null
+          company_id?: string | null
+          created_at?: string
+          gross_cents?: number | null
+          id?: string
+          incidents_count?: number | null
+          metadata?: Json | null
+          metric_date: string
+          trips_count?: number | null
+        }
+        Update: {
+          active_drivers?: number | null
+          active_vehicles?: number | null
+          company_id?: string | null
+          created_at?: string
+          gross_cents?: number | null
+          id?: string
+          incidents_count?: number | null
+          metadata?: Json | null
+          metric_date?: string
+          trips_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_daily_metrics_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_driver_licences: {
+        Row: {
+          created_at: string
+          driver_id: string
+          expiry_date: string | null
+          file_name: string | null
+          file_url: string | null
+          id: string
+          issue_date: string | null
+          licence_number: string
+          recorded_by: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          driver_id: string
+          expiry_date?: string | null
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          issue_date?: string | null
+          licence_number: string
+          recorded_by?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          driver_id?: string
+          expiry_date?: string | null
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          issue_date?: string | null
+          licence_number?: string
+          recorded_by?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_driver_licences_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_drivers: {
+        Row: {
+          added_at: string
+          driver_id: string
+          fleet_id: string
+          id: string
+        }
+        Insert: {
+          added_at?: string
+          driver_id: string
+          fleet_id: string
+          id?: string
+        }
+        Update: {
+          added_at?: string
+          driver_id?: string
+          fleet_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_drivers_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fleet_drivers_fleet_id_fkey"
+            columns: ["fleet_id"]
+            isOneToOne: false
+            referencedRelation: "fleets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_managers: {
+        Row: {
+          branch_id: string | null
+          company_id: string
+          created_at: string
+          id: string
+          permissions: Json | null
+          role: string
+          user_id: string
+        }
+        Insert: {
+          branch_id?: string | null
+          company_id: string
+          created_at?: string
+          id?: string
+          permissions?: Json | null
+          role?: string
+          user_id: string
+        }
+        Update: {
+          branch_id?: string | null
+          company_id?: string
+          created_at?: string
+          id?: string
+          permissions?: Json | null
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_managers_branch_id_fkey"
+            columns: ["branch_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_branches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fleet_managers_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_performance: {
+        Row: {
+          active_drivers: number
+          active_vehicles: number
+          avg_rating: number | null
+          created_at: string
+          fleet_company_id: string
+          id: string
+          metric_date: string
+          total_revenue_cents: number
+          total_trips: number
+          utilization_pct: number | null
+        }
+        Insert: {
+          active_drivers?: number
+          active_vehicles?: number
+          avg_rating?: number | null
+          created_at?: string
+          fleet_company_id: string
+          id?: string
+          metric_date: string
+          total_revenue_cents?: number
+          total_trips?: number
+          utilization_pct?: number | null
+        }
+        Update: {
+          active_drivers?: number
+          active_vehicles?: number
+          avg_rating?: number | null
+          created_at?: string
+          fleet_company_id?: string
+          id?: string
+          metric_date?: string
+          total_revenue_cents?: number
+          total_trips?: number
+          utilization_pct?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_performance_fleet_company_id_fkey"
+            columns: ["fleet_company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_regions: {
+        Row: {
+          country_code: string | null
+          created_at: string
+          fleet_company_id: string | null
+          id: string
+          region_code: string | null
+          region_name: string
+        }
+        Insert: {
+          country_code?: string | null
+          created_at?: string
+          fleet_company_id?: string | null
+          id?: string
+          region_code?: string | null
+          region_name: string
+        }
+        Update: {
+          country_code?: string | null
+          created_at?: string
+          fleet_company_id?: string | null
+          id?: string
+          region_code?: string | null
+          region_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_regions_fleet_company_id_fkey"
+            columns: ["fleet_company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_revenue: {
+        Row: {
+          commission_cents: number
+          created_at: string
+          currency: string
+          fleet_company_id: string
+          gross_revenue_cents: number
+          id: string
+          net_payout_cents: number
+          period_end: string
+          period_start: string
+        }
+        Insert: {
+          commission_cents?: number
+          created_at?: string
+          currency?: string
+          fleet_company_id: string
+          gross_revenue_cents?: number
+          id?: string
+          net_payout_cents?: number
+          period_end: string
+          period_start: string
+        }
+        Update: {
+          commission_cents?: number
+          created_at?: string
+          currency?: string
+          fleet_company_id?: string
+          gross_revenue_cents?: number
+          id?: string
+          net_payout_cents?: number
+          period_end?: string
+          period_start?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_revenue_fleet_company_id_fkey"
+            columns: ["fleet_company_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleet_vehicles: {
+        Row: {
+          added_at: string
+          fleet_id: string
+          id: string
+          vehicle_id: string
+        }
+        Insert: {
+          added_at?: string
+          fleet_id: string
+          id?: string
+          vehicle_id: string
+        }
+        Update: {
+          added_at?: string
+          fleet_id?: string
+          id?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fleet_vehicles_fleet_id_fkey"
+            columns: ["fleet_id"]
+            isOneToOne: false
+            referencedRelation: "fleets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fleet_vehicles_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      fleets: {
+        Row: {
+          city: string | null
+          country: string | null
+          created_at: string
+          fleet_code: string
+          id: string
+          name: string
+          owner_user_id: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          fleet_code?: string
+          id?: string
+          name: string
+          owner_user_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          fleet_code?: string
+          id?: string
+          name?: string
+          owner_user_id?: string | null
+          status?: string
           updated_at?: string
         }
         Relationships: []
@@ -7894,6 +11709,695 @@ export type Database = {
           },
         ]
       }
+      infra_provider_actions: {
+        Row: {
+          action_key: string
+          category: string
+          configuration: Json
+          created_at: string
+          dependent_controls: string[]
+          environment_key: string | null
+          expected_evidence: string
+          id: string
+          owner_role: string
+          provider: string | null
+          register_where: string
+          required_action: string
+          required_output: string
+          required_permission: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          resource: string
+          state: Database["public"]["Enums"]["infra_job_state"]
+          submitted_result: Json | null
+          updated_at: string
+          validation_detail: string | null
+          validation_result: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Insert: {
+          action_key: string
+          category: string
+          configuration?: Json
+          created_at?: string
+          dependent_controls?: string[]
+          environment_key?: string | null
+          expected_evidence: string
+          id?: string
+          owner_role?: string
+          provider?: string | null
+          register_where: string
+          required_action: string
+          required_output: string
+          required_permission?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          resource: string
+          state?: Database["public"]["Enums"]["infra_job_state"]
+          submitted_result?: Json | null
+          updated_at?: string
+          validation_detail?: string | null
+          validation_result?: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Update: {
+          action_key?: string
+          category?: string
+          configuration?: Json
+          created_at?: string
+          dependent_controls?: string[]
+          environment_key?: string | null
+          expected_evidence?: string
+          id?: string
+          owner_role?: string
+          provider?: string | null
+          register_where?: string
+          required_action?: string
+          required_output?: string
+          required_permission?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          resource?: string
+          state?: Database["public"]["Enums"]["infra_job_state"]
+          submitted_result?: Json | null
+          updated_at?: string
+          validation_detail?: string | null
+          validation_result?: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Relationships: []
+      }
+      intern_cohorts: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          duration_weeks: number | null
+          end_date: string | null
+          id: string
+          intake_size: number | null
+          name: string
+          programme_id: string
+          start_date: string | null
+          status: string
+          supervisor_staff_id: string | null
+          target_outcomes: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          duration_weeks?: number | null
+          end_date?: string | null
+          id?: string
+          intake_size?: number | null
+          name: string
+          programme_id: string
+          start_date?: string | null
+          status?: string
+          supervisor_staff_id?: string | null
+          target_outcomes?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          duration_weeks?: number | null
+          end_date?: string | null
+          id?: string
+          intake_size?: number | null
+          name?: string
+          programme_id?: string
+          start_date?: string | null
+          status?: string
+          supervisor_staff_id?: string | null
+          target_outcomes?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_cohorts_programme_id_fkey"
+            columns: ["programme_id"]
+            isOneToOne: false
+            referencedRelation: "intern_programmes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_cohorts_supervisor_staff_id_fkey"
+            columns: ["supervisor_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_profiles: {
+        Row: {
+          actual_end_date: string | null
+          application_id: string | null
+          attachment_requirement: string | null
+          availability: string | null
+          candidate_id: string | null
+          cohort_id: string | null
+          conversion_status: string
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          expected_end_date: string | null
+          full_name: string
+          graduation_date: string | null
+          id: string
+          institution: string | null
+          location: string | null
+          mentor_staff_id: string | null
+          programme_of_study: string | null
+          qualification: string | null
+          qualification_level: string | null
+          secondary_track_ids: string[]
+          staff_id: string | null
+          start_date: string | null
+          status: string
+          supervisor_staff_id: string | null
+          talent_level: string
+          track_id: string | null
+          updated_at: string
+          user_id: string | null
+          work_arrangement: string | null
+          work_email: string | null
+          year_of_study: string | null
+        }
+        Insert: {
+          actual_end_date?: string | null
+          application_id?: string | null
+          attachment_requirement?: string | null
+          availability?: string | null
+          candidate_id?: string | null
+          cohort_id?: string | null
+          conversion_status?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          expected_end_date?: string | null
+          full_name: string
+          graduation_date?: string | null
+          id?: string
+          institution?: string | null
+          location?: string | null
+          mentor_staff_id?: string | null
+          programme_of_study?: string | null
+          qualification?: string | null
+          qualification_level?: string | null
+          secondary_track_ids?: string[]
+          staff_id?: string | null
+          start_date?: string | null
+          status?: string
+          supervisor_staff_id?: string | null
+          talent_level?: string
+          track_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+          work_arrangement?: string | null
+          work_email?: string | null
+          year_of_study?: string | null
+        }
+        Update: {
+          actual_end_date?: string | null
+          application_id?: string | null
+          attachment_requirement?: string | null
+          availability?: string | null
+          candidate_id?: string | null
+          cohort_id?: string | null
+          conversion_status?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          expected_end_date?: string | null
+          full_name?: string
+          graduation_date?: string | null
+          id?: string
+          institution?: string | null
+          location?: string | null
+          mentor_staff_id?: string | null
+          programme_of_study?: string | null
+          qualification?: string | null
+          qualification_level?: string | null
+          secondary_track_ids?: string[]
+          staff_id?: string | null
+          start_date?: string | null
+          status?: string
+          supervisor_staff_id?: string | null
+          talent_level?: string
+          track_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+          work_arrangement?: string | null
+          work_email?: string | null
+          year_of_study?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_profiles_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_profiles_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_profiles_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "intern_cohorts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_profiles_mentor_staff_id_fkey"
+            columns: ["mentor_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_profiles_staff_id_fkey"
+            columns: ["staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_profiles_supervisor_staff_id_fkey"
+            columns: ["supervisor_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_profiles_track_id_fkey"
+            columns: ["track_id"]
+            isOneToOne: false
+            referencedRelation: "intern_tracks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_programmes: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          status: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          status?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      intern_supply_driver_prospects: {
+        Row: {
+          activated_at: string | null
+          availability: string | null
+          cohort_id: string | null
+          created_at: string
+          created_by: string | null
+          data_quality_score: number | null
+          documents_status: string
+          driver_record_id: string | null
+          evidence_url: string | null
+          full_name: string
+          id: string
+          intern_id: string
+          is_demo: boolean
+          location: string | null
+          notes: string | null
+          operating_area: string | null
+          phone: string
+          phone_norm: string | null
+          review_status: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          service_category: string | null
+          stage: string
+          updated_at: string
+          vehicle_category: string | null
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          activated_at?: string | null
+          availability?: string | null
+          cohort_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          data_quality_score?: number | null
+          documents_status?: string
+          driver_record_id?: string | null
+          evidence_url?: string | null
+          full_name: string
+          id?: string
+          intern_id: string
+          is_demo?: boolean
+          location?: string | null
+          notes?: string | null
+          operating_area?: string | null
+          phone: string
+          phone_norm?: string | null
+          review_status?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          service_category?: string | null
+          stage?: string
+          updated_at?: string
+          vehicle_category?: string | null
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          activated_at?: string | null
+          availability?: string | null
+          cohort_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          data_quality_score?: number | null
+          documents_status?: string
+          driver_record_id?: string | null
+          evidence_url?: string | null
+          full_name?: string
+          id?: string
+          intern_id?: string
+          is_demo?: boolean
+          location?: string | null
+          notes?: string | null
+          operating_area?: string | null
+          phone?: string
+          phone_norm?: string | null
+          review_status?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          service_category?: string | null
+          stage?: string
+          updated_at?: string
+          vehicle_category?: string | null
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_supply_driver_prospects_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "intern_cohorts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_supply_driver_prospects_intern_id_fkey"
+            columns: ["intern_id"]
+            isOneToOne: false
+            referencedRelation: "intern_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_supply_fleet_suppliers: {
+        Row: {
+          activation_status: string
+          availability: string | null
+          capacity_seats: number | null
+          cohort_id: string | null
+          commercial_terms: string | null
+          contact_phone: string | null
+          contact_phone_norm: string | null
+          created_at: string
+          created_by: string | null
+          data_quality_score: number | null
+          documentation_status: string
+          driver_availability: string | null
+          evidence_url: string | null
+          fleet_record_id: string | null
+          fleet_type: string | null
+          id: string
+          inspection_status: string
+          insurance_status: string
+          intern_id: string
+          is_demo: boolean
+          location: string | null
+          notes: string | null
+          operating_area: string | null
+          owner_name: string | null
+          review_status: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          service_category: string | null
+          supplier_name: string
+          supplier_status: string
+          updated_at: string
+          vehicle_count: number
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          activation_status?: string
+          availability?: string | null
+          capacity_seats?: number | null
+          cohort_id?: string | null
+          commercial_terms?: string | null
+          contact_phone?: string | null
+          contact_phone_norm?: string | null
+          created_at?: string
+          created_by?: string | null
+          data_quality_score?: number | null
+          documentation_status?: string
+          driver_availability?: string | null
+          evidence_url?: string | null
+          fleet_record_id?: string | null
+          fleet_type?: string | null
+          id?: string
+          inspection_status?: string
+          insurance_status?: string
+          intern_id: string
+          is_demo?: boolean
+          location?: string | null
+          notes?: string | null
+          operating_area?: string | null
+          owner_name?: string | null
+          review_status?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          service_category?: string | null
+          supplier_name: string
+          supplier_status?: string
+          updated_at?: string
+          vehicle_count?: number
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          activation_status?: string
+          availability?: string | null
+          capacity_seats?: number | null
+          cohort_id?: string | null
+          commercial_terms?: string | null
+          contact_phone?: string | null
+          contact_phone_norm?: string | null
+          created_at?: string
+          created_by?: string | null
+          data_quality_score?: number | null
+          documentation_status?: string
+          driver_availability?: string | null
+          evidence_url?: string | null
+          fleet_record_id?: string | null
+          fleet_type?: string | null
+          id?: string
+          inspection_status?: string
+          insurance_status?: string
+          intern_id?: string
+          is_demo?: boolean
+          location?: string | null
+          notes?: string | null
+          operating_area?: string | null
+          owner_name?: string | null
+          review_status?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          service_category?: string | null
+          supplier_name?: string
+          supplier_status?: string
+          updated_at?: string
+          vehicle_count?: number
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_supply_fleet_suppliers_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "intern_cohorts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_supply_fleet_suppliers_intern_id_fkey"
+            columns: ["intern_id"]
+            isOneToOne: false
+            referencedRelation: "intern_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_supply_vehicles: {
+        Row: {
+          availability: string | null
+          capacity: number | null
+          cohort_id: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          inspection_status: string
+          insurance_status: string
+          intern_id: string
+          is_demo: boolean
+          location: string | null
+          registration: string | null
+          registration_norm: string | null
+          review_status: string
+          service_category: string | null
+          supplier_id: string | null
+          vehicle_record_id: string | null
+          vehicle_type: string
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          availability?: string | null
+          capacity?: number | null
+          cohort_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          inspection_status?: string
+          insurance_status?: string
+          intern_id: string
+          is_demo?: boolean
+          location?: string | null
+          registration?: string | null
+          registration_norm?: string | null
+          review_status?: string
+          service_category?: string | null
+          supplier_id?: string | null
+          vehicle_record_id?: string | null
+          vehicle_type: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          availability?: string | null
+          capacity?: number | null
+          cohort_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          inspection_status?: string
+          insurance_status?: string
+          intern_id?: string
+          is_demo?: boolean
+          location?: string | null
+          registration?: string | null
+          registration_norm?: string | null
+          review_status?: string
+          service_category?: string | null
+          supplier_id?: string | null
+          vehicle_record_id?: string | null
+          vehicle_type?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_supply_vehicles_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "intern_cohorts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_supply_vehicles_intern_id_fkey"
+            columns: ["intern_id"]
+            isOneToOne: false
+            referencedRelation: "intern_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_supply_vehicles_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "intern_supply_fleet_suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_tracks: {
+        Row: {
+          code: string
+          created_at: string
+          focus: string | null
+          id: string
+          kpis: Json
+          matching_weights: Json
+          name: string
+          performance_weights: Json
+          programme_id: string
+          sequence: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          focus?: string | null
+          id?: string
+          kpis?: Json
+          matching_weights?: Json
+          name: string
+          performance_weights?: Json
+          programme_id: string
+          sequence?: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          focus?: string | null
+          id?: string
+          kpis?: Json
+          matching_weights?: Json
+          name?: string
+          performance_weights?: Json
+          programme_id?: string
+          sequence?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_tracks_programme_id_fkey"
+            columns: ["programme_id"]
+            isOneToOne: false
+            referencedRelation: "intern_programmes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       invoice_collection_actions: {
         Row: {
           action_type: string
@@ -8090,6 +12594,57 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      kyc_document_types: {
+        Row: {
+          applies_to: string
+          country: string | null
+          created_at: string
+          description: string | null
+          display_order: number
+          document_code: string
+          document_name: string
+          driver_type: Database["public"]["Enums"]["driver_type"] | null
+          expiry_required: boolean
+          id: string
+          is_active: boolean
+          required: boolean
+          updated_at: string
+          verification_required: boolean
+        }
+        Insert: {
+          applies_to?: string
+          country?: string | null
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          document_code: string
+          document_name: string
+          driver_type?: Database["public"]["Enums"]["driver_type"] | null
+          expiry_required?: boolean
+          id?: string
+          is_active?: boolean
+          required?: boolean
+          updated_at?: string
+          verification_required?: boolean
+        }
+        Update: {
+          applies_to?: string
+          country?: string | null
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          document_code?: string
+          document_name?: string
+          driver_type?: Database["public"]["Enums"]["driver_type"] | null
+          expiry_required?: boolean
+          id?: string
+          is_active?: boolean
+          required?: boolean
+          updated_at?: string
+          verification_required?: boolean
+        }
+        Relationships: []
       }
       ledger_accounts: {
         Row: {
@@ -8538,6 +13093,77 @@ export type Database = {
         }
         Relationships: []
       }
+      logistics_fleet_capacity: {
+        Row: {
+          base_label: string
+          base_lat: number | null
+          base_lng: number | null
+          capability_status: string
+          carrier_id: string | null
+          compliance_valid_until: string | null
+          created_at: string
+          hazardous_certified: boolean
+          id: string
+          notes: string | null
+          operating_radius_km: number
+          payload_capacity_kg: number
+          registered_by: string | null
+          temperature_controlled: boolean
+          updated_at: string
+          vehicle_class: string
+          vehicle_id: string
+          volume_capacity_cbm: number
+        }
+        Insert: {
+          base_label: string
+          base_lat?: number | null
+          base_lng?: number | null
+          capability_status?: string
+          carrier_id?: string | null
+          compliance_valid_until?: string | null
+          created_at?: string
+          hazardous_certified?: boolean
+          id?: string
+          notes?: string | null
+          operating_radius_km?: number
+          payload_capacity_kg: number
+          registered_by?: string | null
+          temperature_controlled?: boolean
+          updated_at?: string
+          vehicle_class: string
+          vehicle_id: string
+          volume_capacity_cbm?: number
+        }
+        Update: {
+          base_label?: string
+          base_lat?: number | null
+          base_lng?: number | null
+          capability_status?: string
+          carrier_id?: string | null
+          compliance_valid_until?: string | null
+          created_at?: string
+          hazardous_certified?: boolean
+          id?: string
+          notes?: string | null
+          operating_radius_km?: number
+          payload_capacity_kg?: number
+          registered_by?: string | null
+          temperature_controlled?: boolean
+          updated_at?: string
+          vehicle_class?: string
+          vehicle_id?: string
+          volume_capacity_cbm?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "logistics_fleet_capacity_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: true
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       logistics_hubs: {
         Row: {
           activated_at: string | null
@@ -8727,6 +13353,66 @@ export type Database = {
           },
         ]
       }
+      logistics_message_providers: {
+        Row: {
+          channel: string
+          created_at: string
+          credentials_secret_name: string | null
+          enabled: boolean
+          environment: string
+          health_checked_at: string | null
+          health_detail: string | null
+          health_status: string
+          id: string
+          notes: string | null
+          provider: string
+          retry_backoff_seconds: number
+          retry_max_attempts: number
+          sender_identity: string | null
+          timeout_ms: number
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          channel?: string
+          created_at?: string
+          credentials_secret_name?: string | null
+          enabled?: boolean
+          environment?: string
+          health_checked_at?: string | null
+          health_detail?: string | null
+          health_status?: string
+          id?: string
+          notes?: string | null
+          provider: string
+          retry_backoff_seconds?: number
+          retry_max_attempts?: number
+          sender_identity?: string | null
+          timeout_ms?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          channel?: string
+          created_at?: string
+          credentials_secret_name?: string | null
+          enabled?: boolean
+          environment?: string
+          health_checked_at?: string | null
+          health_detail?: string | null
+          health_status?: string
+          id?: string
+          notes?: string | null
+          provider?: string
+          retry_backoff_seconds?: number
+          retry_max_attempts?: number
+          sender_identity?: string | null
+          timeout_ms?: number
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       logistics_order_legs: {
         Row: {
           actual_arrival: string | null
@@ -8854,6 +13540,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      logistics_route_providers: {
+        Row: {
+          base_url: string | null
+          config: Json
+          created_at: string
+          credential_secret_name: string | null
+          display_name: string
+          enabled: boolean
+          health_detail: string | null
+          health_status: string
+          id: string
+          last_checked_at: string | null
+          provider_key: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          base_url?: string | null
+          config?: Json
+          created_at?: string
+          credential_secret_name?: string | null
+          display_name: string
+          enabled?: boolean
+          health_detail?: string | null
+          health_status?: string
+          id?: string
+          last_checked_at?: string | null
+          provider_key: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          base_url?: string | null
+          config?: Json
+          created_at?: string
+          credential_secret_name?: string | null
+          display_name?: string
+          enabled?: boolean
+          health_detail?: string | null
+          health_status?: string
+          id?: string
+          last_checked_at?: string | null
+          provider_key?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
       }
       logistics_route_versions: {
         Row: {
@@ -15260,6 +19994,584 @@ export type Database = {
         }
         Relationships: []
       }
+      provider_booking_events: {
+        Row: {
+          action: string
+          actor_user_id: string | null
+          booking_id: string
+          created_at: string
+          detail: Json
+          id: string
+          note: string | null
+          status_from: string | null
+          status_to: string | null
+        }
+        Insert: {
+          action: string
+          actor_user_id?: string | null
+          booking_id: string
+          created_at?: string
+          detail?: Json
+          id?: string
+          note?: string | null
+          status_from?: string | null
+          status_to?: string | null
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string | null
+          booking_id?: string
+          created_at?: string
+          detail?: Json
+          id?: string
+          note?: string | null
+          status_from?: string | null
+          status_to?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_booking_events_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "provider_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      provider_bookings: {
+        Row: {
+          amount_cents: number
+          booking_reference: string
+          capacity_id: string
+          created_at: string
+          created_by: string | null
+          currency: string
+          customer_company: string | null
+          customer_contact_name: string | null
+          customer_email: string | null
+          customer_phone: string | null
+          customer_user_id: string | null
+          enquiry_id: string | null
+          id: string
+          invoice_id: string | null
+          invoice_reference: string | null
+          is_test: boolean
+          lead_id: string | null
+          notes: string | null
+          proforma_id: string | null
+          proforma_reference: string | null
+          provider_user_id: string
+          qty: number
+          service_from: string | null
+          service_to: string | null
+          status: string
+          unit_rate_cents: number
+          updated_at: string
+        }
+        Insert: {
+          amount_cents?: number
+          booking_reference: string
+          capacity_id: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          customer_company?: string | null
+          customer_contact_name?: string | null
+          customer_email?: string | null
+          customer_phone?: string | null
+          customer_user_id?: string | null
+          enquiry_id?: string | null
+          id?: string
+          invoice_id?: string | null
+          invoice_reference?: string | null
+          is_test?: boolean
+          lead_id?: string | null
+          notes?: string | null
+          proforma_id?: string | null
+          proforma_reference?: string | null
+          provider_user_id: string
+          qty?: number
+          service_from?: string | null
+          service_to?: string | null
+          status?: string
+          unit_rate_cents?: number
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          booking_reference?: string
+          capacity_id?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          customer_company?: string | null
+          customer_contact_name?: string | null
+          customer_email?: string | null
+          customer_phone?: string | null
+          customer_user_id?: string | null
+          enquiry_id?: string | null
+          id?: string
+          invoice_id?: string | null
+          invoice_reference?: string | null
+          is_test?: boolean
+          lead_id?: string | null
+          notes?: string | null
+          proforma_id?: string | null
+          proforma_reference?: string | null
+          provider_user_id?: string
+          qty?: number
+          service_from?: string | null
+          service_to?: string | null
+          status?: string
+          unit_rate_cents?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_bookings_capacity_id_fkey"
+            columns: ["capacity_id"]
+            isOneToOne: false
+            referencedRelation: "provider_capacity"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "provider_bookings_enquiry_id_fkey"
+            columns: ["enquiry_id"]
+            isOneToOne: false
+            referencedRelation: "capacity_enquiries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      provider_capacity: {
+        Row: {
+          available_from: string | null
+          available_to: string | null
+          base_city: string
+          coverage_area: string | null
+          created_at: string
+          currency: string
+          decided_at: string | null
+          decided_by: string | null
+          decision_reason: string | null
+          family: string
+          id: string
+          is_test: boolean
+          notes: string | null
+          photo_paths: string[]
+          provider_kind: string
+          provider_name: string
+          provider_user_id: string
+          published_at: string | null
+          rate_amount: number | null
+          rate_basis: string
+          registration_ref: string | null
+          retired_at: string | null
+          seats: number | null
+          source_application_id: string | null
+          source_driver_id: string | null
+          spec: string | null
+          status: string
+          submitted_at: string | null
+          submitted_by: string | null
+          title: string
+          units: number
+          updated_at: string
+          vehicle_type: string
+        }
+        Insert: {
+          available_from?: string | null
+          available_to?: string | null
+          base_city: string
+          coverage_area?: string | null
+          created_at?: string
+          currency?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          decision_reason?: string | null
+          family: string
+          id?: string
+          is_test?: boolean
+          notes?: string | null
+          photo_paths?: string[]
+          provider_kind: string
+          provider_name: string
+          provider_user_id: string
+          published_at?: string | null
+          rate_amount?: number | null
+          rate_basis?: string
+          registration_ref?: string | null
+          retired_at?: string | null
+          seats?: number | null
+          source_application_id?: string | null
+          source_driver_id?: string | null
+          spec?: string | null
+          status?: string
+          submitted_at?: string | null
+          submitted_by?: string | null
+          title: string
+          units?: number
+          updated_at?: string
+          vehicle_type: string
+        }
+        Update: {
+          available_from?: string | null
+          available_to?: string | null
+          base_city?: string
+          coverage_area?: string | null
+          created_at?: string
+          currency?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          decision_reason?: string | null
+          family?: string
+          id?: string
+          is_test?: boolean
+          notes?: string | null
+          photo_paths?: string[]
+          provider_kind?: string
+          provider_name?: string
+          provider_user_id?: string
+          published_at?: string | null
+          rate_amount?: number | null
+          rate_basis?: string
+          registration_ref?: string | null
+          retired_at?: string | null
+          seats?: number | null
+          source_application_id?: string | null
+          source_driver_id?: string | null
+          spec?: string | null
+          status?: string
+          submitted_at?: string | null
+          submitted_by?: string | null
+          title?: string
+          units?: number
+          updated_at?: string
+          vehicle_type?: string
+        }
+        Relationships: []
+      }
+      provider_capacity_events: {
+        Row: {
+          action: string
+          actor_id: string | null
+          capacity_id: string
+          created_at: string
+          detail: Json
+          id: string
+          reason: string | null
+          status_from: string | null
+          status_to: string | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          capacity_id: string
+          created_at?: string
+          detail?: Json
+          id?: string
+          reason?: string | null
+          status_from?: string | null
+          status_to?: string | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          capacity_id?: string
+          created_at?: string
+          detail?: Json
+          id?: string
+          reason?: string | null
+          status_from?: string | null
+          status_to?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_capacity_events_capacity_id_fkey"
+            columns: ["capacity_id"]
+            isOneToOne: false
+            referencedRelation: "provider_capacity"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      provider_documents: {
+        Row: {
+          created_at: string
+          doc_kind: string
+          expires_on: string | null
+          file_name: string | null
+          id: string
+          mime_type: string | null
+          object_path: string
+          provider_user_id: string
+          reference_no: string | null
+          review_note: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          size_bytes: number | null
+          status: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          doc_kind: string
+          expires_on?: string | null
+          file_name?: string | null
+          id?: string
+          mime_type?: string | null
+          object_path: string
+          provider_user_id: string
+          reference_no?: string | null
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          size_bytes?: number | null
+          status?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          doc_kind?: string
+          expires_on?: string | null
+          file_name?: string | null
+          id?: string
+          mime_type?: string | null
+          object_path?: string
+          provider_user_id?: string
+          reference_no?: string | null
+          review_note?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          size_bytes?: number | null
+          status?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      provider_earnings: {
+        Row: {
+          booking_id: string
+          booking_reference: string
+          commission_bps: number
+          commission_cents: number
+          created_at: string
+          credited_at: string | null
+          currency: string
+          customer_paid_at: string | null
+          fulfilled_at: string | null
+          gross_cents: number
+          held_at: string | null
+          id: string
+          net_cents: number
+          paid_at: string | null
+          payout_request_id: string | null
+          provider_user_id: string
+          state: string
+          trip_booking_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          booking_id: string
+          booking_reference: string
+          commission_bps: number
+          commission_cents: number
+          created_at?: string
+          credited_at?: string | null
+          currency?: string
+          customer_paid_at?: string | null
+          fulfilled_at?: string | null
+          gross_cents: number
+          held_at?: string | null
+          id?: string
+          net_cents: number
+          paid_at?: string | null
+          payout_request_id?: string | null
+          provider_user_id: string
+          state?: string
+          trip_booking_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          booking_id?: string
+          booking_reference?: string
+          commission_bps?: number
+          commission_cents?: number
+          created_at?: string
+          credited_at?: string | null
+          currency?: string
+          customer_paid_at?: string | null
+          fulfilled_at?: string | null
+          gross_cents?: number
+          held_at?: string | null
+          id?: string
+          net_cents?: number
+          paid_at?: string | null
+          payout_request_id?: string | null
+          provider_user_id?: string
+          state?: string
+          trip_booking_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_earnings_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: true
+            referencedRelation: "provider_bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "provider_earnings_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: false
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      provider_escalation_routes: {
+        Row: {
+          blocks_booking: boolean
+          category: string
+          code: string
+          created_at: string
+          guidance: string | null
+          id: string
+          is_active: boolean
+          label: string
+          response_minutes: number
+          responsible_team: string
+          updated_at: string
+        }
+        Insert: {
+          blocks_booking?: boolean
+          category: string
+          code: string
+          created_at?: string
+          guidance?: string | null
+          id?: string
+          is_active?: boolean
+          label: string
+          response_minutes?: number
+          responsible_team: string
+          updated_at?: string
+        }
+        Update: {
+          blocks_booking?: boolean
+          category?: string
+          code?: string
+          created_at?: string
+          guidance?: string | null
+          id?: string
+          is_active?: boolean
+          label?: string
+          response_minutes?: number
+          responsible_team?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      provider_escalations: {
+        Row: {
+          account_id: string | null
+          acknowledged_at: string | null
+          acknowledged_by: string | null
+          assigned_team: string
+          blocks_booking: boolean
+          created_at: string
+          due_at: string
+          escalation_ref: string
+          execution_id: string | null
+          id: string
+          provider_label: string | null
+          raised_by: string | null
+          raised_by_staff_id: string | null
+          resolution_note: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          route_id: string
+          severity: string
+          signal_id: string | null
+          status: string
+          summary: string
+          updated_at: string
+        }
+        Insert: {
+          account_id?: string | null
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          assigned_team: string
+          blocks_booking?: boolean
+          created_at?: string
+          due_at: string
+          escalation_ref: string
+          execution_id?: string | null
+          id?: string
+          provider_label?: string | null
+          raised_by?: string | null
+          raised_by_staff_id?: string | null
+          resolution_note?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          route_id: string
+          severity?: string
+          signal_id?: string | null
+          status?: string
+          summary: string
+          updated_at?: string
+        }
+        Update: {
+          account_id?: string | null
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          assigned_team?: string
+          blocks_booking?: boolean
+          created_at?: string
+          due_at?: string
+          escalation_ref?: string
+          execution_id?: string | null
+          id?: string
+          provider_label?: string | null
+          raised_by?: string | null
+          raised_by_staff_id?: string | null
+          resolution_note?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          route_id?: string
+          severity?: string
+          signal_id?: string | null
+          status?: string
+          summary?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "provider_escalations_execution_id_fkey"
+            columns: ["execution_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_service_executions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "provider_escalations_route_id_fkey"
+            columns: ["route_id"]
+            isOneToOne: false
+            referencedRelation: "provider_escalation_routes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "provider_escalations_signal_id_fkey"
+            columns: ["signal_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_signals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       provider_invoice_lines: {
         Row: {
           booking_reference: string
@@ -15706,6 +21018,51 @@ export type Database = {
           },
         ]
       }
+      provider_platform_postings: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          currency: string
+          detail: Json
+          id: string
+          paybill: string
+          posting_type: string
+          provider_user_id: string
+          rate_bps: number
+          reference: string
+          source_id: string | null
+          source_kind: string
+        }
+        Insert: {
+          amount_cents: number
+          created_at?: string
+          currency?: string
+          detail?: Json
+          id?: string
+          paybill: string
+          posting_type: string
+          provider_user_id: string
+          rate_bps: number
+          reference: string
+          source_id?: string | null
+          source_kind: string
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          detail?: Json
+          id?: string
+          paybill?: string
+          posting_type?: string
+          provider_user_id?: string
+          rate_bps?: number
+          reference?: string
+          source_id?: string | null
+          source_kind?: string
+        }
+        Relationships: []
+      }
       provider_settlement_settings: {
         Row: {
           auto_prepare: boolean
@@ -15751,6 +21108,66 @@ export type Database = {
           updated_at?: string
           updated_by?: string | null
           withdrawal_fee_bps?: number
+        }
+        Relationships: []
+      }
+      provider_verification: {
+        Row: {
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          provider_user_id: string
+          reason: string | null
+          state: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          provider_user_id: string
+          reason?: string | null
+          state?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          provider_user_id?: string
+          reason?: string | null
+          state?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      provider_verification_events: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          from_state: string | null
+          id: string
+          provider_user_id: string
+          reason: string | null
+          to_state: string
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          from_state?: string | null
+          id?: string
+          provider_user_id: string
+          reason?: string | null
+          to_state: string
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          from_state?: string | null
+          id?: string
+          provider_user_id?: string
+          reason?: string | null
+          to_state?: string
         }
         Relationships: []
       }
@@ -15843,6 +21260,1206 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      rec_applications: {
+        Row: {
+          ai_match_score: number | null
+          application_no: string
+          applied_at: string
+          blueprint_id: string | null
+          blueprint_version: number | null
+          candidate_id: string
+          completed_years: number | null
+          consolidated_transcript: boolean
+          cover_letter: string | null
+          created_at: string
+          created_by_migration: boolean
+          document_requirement_set_id: string | null
+          document_requirement_universal_set_id: string | null
+          document_requirement_version: number | null
+          education_status: string | null
+          hiring_manager_staff_id: string | null
+          id: string
+          knockout_flagged: boolean
+          last_activity_at: string
+          migration_batch_id: string | null
+          next_action: string | null
+          next_action_due: string | null
+          priority: string
+          privacy_notice_version: string | null
+          qualification_level: string | null
+          recruiter_staff_id: string | null
+          rejection_reason: string | null
+          review_flag_reason: string | null
+          review_flagged: boolean
+          score: number | null
+          source: string
+          source_application_ref: string | null
+          source_applied_at: string | null
+          source_detail: string | null
+          source_platform: string | null
+          source_status: string | null
+          source_vacancy_ref: string | null
+          stage: string
+          stage_entered_at: string
+          status: string
+          updated_at: string
+          vacancy_id: string
+          vacancy_version: number | null
+        }
+        Insert: {
+          ai_match_score?: number | null
+          application_no: string
+          applied_at?: string
+          blueprint_id?: string | null
+          blueprint_version?: number | null
+          candidate_id: string
+          completed_years?: number | null
+          consolidated_transcript?: boolean
+          cover_letter?: string | null
+          created_at?: string
+          created_by_migration?: boolean
+          document_requirement_set_id?: string | null
+          document_requirement_universal_set_id?: string | null
+          document_requirement_version?: number | null
+          education_status?: string | null
+          hiring_manager_staff_id?: string | null
+          id?: string
+          knockout_flagged?: boolean
+          last_activity_at?: string
+          migration_batch_id?: string | null
+          next_action?: string | null
+          next_action_due?: string | null
+          priority?: string
+          privacy_notice_version?: string | null
+          qualification_level?: string | null
+          recruiter_staff_id?: string | null
+          rejection_reason?: string | null
+          review_flag_reason?: string | null
+          review_flagged?: boolean
+          score?: number | null
+          source?: string
+          source_application_ref?: string | null
+          source_applied_at?: string | null
+          source_detail?: string | null
+          source_platform?: string | null
+          source_status?: string | null
+          source_vacancy_ref?: string | null
+          stage?: string
+          stage_entered_at?: string
+          status?: string
+          updated_at?: string
+          vacancy_id: string
+          vacancy_version?: number | null
+        }
+        Update: {
+          ai_match_score?: number | null
+          application_no?: string
+          applied_at?: string
+          blueprint_id?: string | null
+          blueprint_version?: number | null
+          candidate_id?: string
+          completed_years?: number | null
+          consolidated_transcript?: boolean
+          cover_letter?: string | null
+          created_at?: string
+          created_by_migration?: boolean
+          document_requirement_set_id?: string | null
+          document_requirement_universal_set_id?: string | null
+          document_requirement_version?: number | null
+          education_status?: string | null
+          hiring_manager_staff_id?: string | null
+          id?: string
+          knockout_flagged?: boolean
+          last_activity_at?: string
+          migration_batch_id?: string | null
+          next_action?: string | null
+          next_action_due?: string | null
+          priority?: string
+          privacy_notice_version?: string | null
+          qualification_level?: string | null
+          recruiter_staff_id?: string | null
+          rejection_reason?: string | null
+          review_flag_reason?: string | null
+          review_flagged?: boolean
+          score?: number | null
+          source?: string
+          source_application_ref?: string | null
+          source_applied_at?: string | null
+          source_detail?: string | null
+          source_platform?: string | null
+          source_status?: string | null
+          source_vacancy_ref?: string | null
+          stage?: string
+          stage_entered_at?: string
+          status?: string
+          updated_at?: string
+          vacancy_id?: string
+          vacancy_version?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_applications_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_applications_hiring_manager_staff_id_fkey"
+            columns: ["hiring_manager_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_applications_recruiter_staff_id_fkey"
+            columns: ["recruiter_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_applications_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_candidates: {
+        Row: {
+          candidate_no: string
+          consent_at: string | null
+          consent_given: boolean
+          created_at: string
+          created_by_migration: boolean
+          current_employer: string | null
+          current_title: string | null
+          email: string | null
+          engagement_status: string
+          enrichment_verified_at: string | null
+          full_name: string
+          headline: string | null
+          id: string
+          last_contact_at: string | null
+          linkedin_url: string | null
+          location: string | null
+          migration_batch_id: string | null
+          next_action: string | null
+          next_action_due: string | null
+          owner_recruiter_staff_id: string | null
+          phone: string | null
+          portfolio_url: string | null
+          record_state: string
+          source: string
+          source_candidate_ref: string | null
+          source_platform: string | null
+          summary: string | null
+          updated_at: string
+          user_id: string | null
+          years_experience: number | null
+        }
+        Insert: {
+          candidate_no: string
+          consent_at?: string | null
+          consent_given?: boolean
+          created_at?: string
+          created_by_migration?: boolean
+          current_employer?: string | null
+          current_title?: string | null
+          email?: string | null
+          engagement_status?: string
+          enrichment_verified_at?: string | null
+          full_name: string
+          headline?: string | null
+          id?: string
+          last_contact_at?: string | null
+          linkedin_url?: string | null
+          location?: string | null
+          migration_batch_id?: string | null
+          next_action?: string | null
+          next_action_due?: string | null
+          owner_recruiter_staff_id?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          record_state?: string
+          source?: string
+          source_candidate_ref?: string | null
+          source_platform?: string | null
+          summary?: string | null
+          updated_at?: string
+          user_id?: string | null
+          years_experience?: number | null
+        }
+        Update: {
+          candidate_no?: string
+          consent_at?: string | null
+          consent_given?: boolean
+          created_at?: string
+          created_by_migration?: boolean
+          current_employer?: string | null
+          current_title?: string | null
+          email?: string | null
+          engagement_status?: string
+          enrichment_verified_at?: string | null
+          full_name?: string
+          headline?: string | null
+          id?: string
+          last_contact_at?: string | null
+          linkedin_url?: string | null
+          location?: string | null
+          migration_batch_id?: string | null
+          next_action?: string | null
+          next_action_due?: string | null
+          owner_recruiter_staff_id?: string | null
+          phone?: string | null
+          portfolio_url?: string | null
+          record_state?: string
+          source?: string
+          source_candidate_ref?: string | null
+          source_platform?: string | null
+          summary?: string | null
+          updated_at?: string
+          user_id?: string | null
+          years_experience?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_candidates_owner_recruiter_staff_id_fkey"
+            columns: ["owner_recruiter_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_comm_provider_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          occurred_at: string
+          payload: Json
+          provider: string
+          provider_event_id: string
+          provider_message_id: string | null
+          request_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          occurred_at?: string
+          payload?: Json
+          provider: string
+          provider_event_id: string
+          provider_message_id?: string | null
+          request_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          occurred_at?: string
+          payload?: Json
+          provider?: string
+          provider_event_id?: string
+          provider_message_id?: string | null
+          request_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_comm_provider_events_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "rec_comm_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_comm_requests: {
+        Row: {
+          application_id: string | null
+          approval_note: string | null
+          approved_at: string | null
+          approved_by: string | null
+          attempts: number
+          business_key: string
+          cancelled_at: string | null
+          candidate_id: string
+          claimed_at: string | null
+          comm_type: string
+          created_at: string
+          delivered_at: string | null
+          document_ref: string
+          event_at: string | null
+          event_timezone: string
+          failed_at: string | null
+          id: string
+          idempotency_key: string
+          interview_id: string | null
+          last_error: string | null
+          offer_id: string | null
+          onboarding_case_id: string | null
+          provider_accepted_at: string | null
+          queued_at: string | null
+          recipient_email: string
+          recipient_name: string
+          requested_by: string | null
+          requires_approval: boolean
+          revision: number
+          state: string
+          state_reason: string | null
+          superseded_by_id: string | null
+          supersedes_id: string | null
+          template_id: string
+          template_key: string
+          template_version: number
+          updated_at: string
+        }
+        Insert: {
+          application_id?: string | null
+          approval_note?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          attempts?: number
+          business_key: string
+          cancelled_at?: string | null
+          candidate_id: string
+          claimed_at?: string | null
+          comm_type: string
+          created_at?: string
+          delivered_at?: string | null
+          document_ref: string
+          event_at?: string | null
+          event_timezone?: string
+          failed_at?: string | null
+          id?: string
+          idempotency_key: string
+          interview_id?: string | null
+          last_error?: string | null
+          offer_id?: string | null
+          onboarding_case_id?: string | null
+          provider_accepted_at?: string | null
+          queued_at?: string | null
+          recipient_email: string
+          recipient_name: string
+          requested_by?: string | null
+          requires_approval?: boolean
+          revision?: number
+          state?: string
+          state_reason?: string | null
+          superseded_by_id?: string | null
+          supersedes_id?: string | null
+          template_id: string
+          template_key: string
+          template_version: number
+          updated_at?: string
+        }
+        Update: {
+          application_id?: string | null
+          approval_note?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          attempts?: number
+          business_key?: string
+          cancelled_at?: string | null
+          candidate_id?: string
+          claimed_at?: string | null
+          comm_type?: string
+          created_at?: string
+          delivered_at?: string | null
+          document_ref?: string
+          event_at?: string | null
+          event_timezone?: string
+          failed_at?: string | null
+          id?: string
+          idempotency_key?: string
+          interview_id?: string | null
+          last_error?: string | null
+          offer_id?: string | null
+          onboarding_case_id?: string | null
+          provider_accepted_at?: string | null
+          queued_at?: string | null
+          recipient_email?: string
+          recipient_name?: string
+          requested_by?: string | null
+          requires_approval?: boolean
+          revision?: number
+          state?: string
+          state_reason?: string | null
+          superseded_by_id?: string | null
+          supersedes_id?: string | null
+          template_id?: string
+          template_key?: string
+          template_version?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_comm_requests_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_interview_id_fkey"
+            columns: ["interview_id"]
+            isOneToOne: false
+            referencedRelation: "rec_interviews"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_offer_id_fkey"
+            columns: ["offer_id"]
+            isOneToOne: false
+            referencedRelation: "rec_offers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_onboarding_case_id_fkey"
+            columns: ["onboarding_case_id"]
+            isOneToOne: false
+            referencedRelation: "rec_onboarding_cases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_superseded_by_id_fkey"
+            columns: ["superseded_by_id"]
+            isOneToOne: false
+            referencedRelation: "rec_comm_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_supersedes_id_fkey"
+            columns: ["supersedes_id"]
+            isOneToOne: false
+            referencedRelation: "rec_comm_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_comm_requests_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "rec_letter_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_interviews: {
+        Row: {
+          application_id: string
+          cancellation_reason: string | null
+          candidate_responded_at: string | null
+          candidate_response: string | null
+          candidate_response_note: string | null
+          conflict_override_reason: string | null
+          created_at: string
+          created_by: string | null
+          duration_minutes: number
+          feedback_due_at: string | null
+          id: string
+          instructions: string | null
+          interview_stage: string
+          interview_type: string
+          location: string | null
+          meeting_link: string | null
+          mode: string
+          objectives: string[]
+          previous_scheduled_at: string | null
+          reschedule_count: number
+          scheduled_at: string | null
+          status: string
+          suggested_questions: string[]
+          timezone: string
+          updated_at: string
+          vacancy_id: string
+        }
+        Insert: {
+          application_id: string
+          cancellation_reason?: string | null
+          candidate_responded_at?: string | null
+          candidate_response?: string | null
+          candidate_response_note?: string | null
+          conflict_override_reason?: string | null
+          created_at?: string
+          created_by?: string | null
+          duration_minutes?: number
+          feedback_due_at?: string | null
+          id?: string
+          instructions?: string | null
+          interview_stage?: string
+          interview_type?: string
+          location?: string | null
+          meeting_link?: string | null
+          mode?: string
+          objectives?: string[]
+          previous_scheduled_at?: string | null
+          reschedule_count?: number
+          scheduled_at?: string | null
+          status?: string
+          suggested_questions?: string[]
+          timezone?: string
+          updated_at?: string
+          vacancy_id: string
+        }
+        Update: {
+          application_id?: string
+          cancellation_reason?: string | null
+          candidate_responded_at?: string | null
+          candidate_response?: string | null
+          candidate_response_note?: string | null
+          conflict_override_reason?: string | null
+          created_at?: string
+          created_by?: string | null
+          duration_minutes?: number
+          feedback_due_at?: string | null
+          id?: string
+          instructions?: string | null
+          interview_stage?: string
+          interview_type?: string
+          location?: string | null
+          meeting_link?: string | null
+          mode?: string
+          objectives?: string[]
+          previous_scheduled_at?: string | null
+          reschedule_count?: number
+          scheduled_at?: string | null
+          status?: string
+          suggested_questions?: string[]
+          timezone?: string
+          updated_at?: string
+          vacancy_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_interviews_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_interviews_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_letter_templates: {
+        Row: {
+          activated_at: string | null
+          approver_roles: string[]
+          body_markdown: string
+          classification: string
+          comm_type: string
+          content_hash: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          requires_approval: boolean
+          status: string
+          subject: string
+          template_key: string
+          title: string
+          updated_at: string
+          variables: string[]
+          version: number
+          watermark_text: string
+        }
+        Insert: {
+          activated_at?: string | null
+          approver_roles?: string[]
+          body_markdown: string
+          classification?: string
+          comm_type: string
+          content_hash?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          requires_approval?: boolean
+          status?: string
+          subject: string
+          template_key: string
+          title: string
+          updated_at?: string
+          variables?: string[]
+          version?: number
+          watermark_text?: string
+        }
+        Update: {
+          activated_at?: string | null
+          approver_roles?: string[]
+          body_markdown?: string
+          classification?: string
+          comm_type?: string
+          content_hash?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          requires_approval?: boolean
+          status?: string
+          subject?: string
+          template_key?: string
+          title?: string
+          updated_at?: string
+          variables?: string[]
+          version?: number
+          watermark_text?: string
+        }
+        Relationships: []
+      }
+      rec_offers: {
+        Row: {
+          allowances_cents: number | null
+          application_id: string
+          base_salary_cents: number | null
+          benefits: string[]
+          candidate_id: string
+          created_at: string
+          created_by: string | null
+          currency: string
+          decline_reason: string | null
+          document_path: string | null
+          employment_type: string
+          expiry_date: string | null
+          id: string
+          offer_no: string
+          responded_at: string | null
+          sent_at: string | null
+          start_date: string | null
+          status: string
+          terms: string | null
+          updated_at: string
+          vacancy_id: string
+          version: number
+          viewed_at: string | null
+        }
+        Insert: {
+          allowances_cents?: number | null
+          application_id: string
+          base_salary_cents?: number | null
+          benefits?: string[]
+          candidate_id: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          decline_reason?: string | null
+          document_path?: string | null
+          employment_type?: string
+          expiry_date?: string | null
+          id?: string
+          offer_no: string
+          responded_at?: string | null
+          sent_at?: string | null
+          start_date?: string | null
+          status?: string
+          terms?: string | null
+          updated_at?: string
+          vacancy_id: string
+          version?: number
+          viewed_at?: string | null
+        }
+        Update: {
+          allowances_cents?: number | null
+          application_id?: string
+          base_salary_cents?: number | null
+          benefits?: string[]
+          candidate_id?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          decline_reason?: string | null
+          document_path?: string | null
+          employment_type?: string
+          expiry_date?: string | null
+          id?: string
+          offer_no?: string
+          responded_at?: string | null
+          sent_at?: string | null
+          start_date?: string | null
+          status?: string
+          terms?: string | null
+          updated_at?: string
+          vacancy_id?: string
+          version?: number
+          viewed_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_offers_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_offers_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_offers_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_onboarding_cases: {
+        Row: {
+          application_id: string
+          candidate_id: string
+          case_no: string
+          created_at: string
+          handover_completed_at: string | null
+          id: string
+          manager_staff_id: string | null
+          offer_id: string
+          staff_member_id: string | null
+          start_date: string | null
+          status: string
+          unit_id: string | null
+          updated_at: string
+          vacancy_id: string | null
+        }
+        Insert: {
+          application_id: string
+          candidate_id: string
+          case_no: string
+          created_at?: string
+          handover_completed_at?: string | null
+          id?: string
+          manager_staff_id?: string | null
+          offer_id: string
+          staff_member_id?: string | null
+          start_date?: string | null
+          status?: string
+          unit_id?: string | null
+          updated_at?: string
+          vacancy_id?: string | null
+        }
+        Update: {
+          application_id?: string
+          candidate_id?: string
+          case_no?: string
+          created_at?: string
+          handover_completed_at?: string | null
+          id?: string
+          manager_staff_id?: string | null
+          offer_id?: string
+          staff_member_id?: string | null
+          start_date?: string | null
+          status?: string
+          unit_id?: string | null
+          updated_at?: string
+          vacancy_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_onboarding_cases_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_cases_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_cases_manager_staff_id_fkey"
+            columns: ["manager_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_cases_offer_id_fkey"
+            columns: ["offer_id"]
+            isOneToOne: true
+            referencedRelation: "rec_offers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_cases_staff_member_id_fkey"
+            columns: ["staff_member_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_cases_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_cases_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_requisitions: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          budget_max_cents: number | null
+          budget_min_cents: number | null
+          created_at: string
+          created_by: string | null
+          currency: string
+          decision_notes: string | null
+          employment_type: string
+          headcount: number
+          hiring_manager_staff_id: string | null
+          id: string
+          is_replacement: boolean
+          justification: string | null
+          location: string | null
+          position_id: string | null
+          priority: string
+          requested_by_staff_id: string | null
+          requisition_no: string
+          status: string
+          submitted_at: string | null
+          target_hire_date: string | null
+          title: string
+          unit_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          budget_max_cents?: number | null
+          budget_min_cents?: number | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          decision_notes?: string | null
+          employment_type?: string
+          headcount?: number
+          hiring_manager_staff_id?: string | null
+          id?: string
+          is_replacement?: boolean
+          justification?: string | null
+          location?: string | null
+          position_id?: string | null
+          priority?: string
+          requested_by_staff_id?: string | null
+          requisition_no: string
+          status?: string
+          submitted_at?: string | null
+          target_hire_date?: string | null
+          title: string
+          unit_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          budget_max_cents?: number | null
+          budget_min_cents?: number | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          decision_notes?: string | null
+          employment_type?: string
+          headcount?: number
+          hiring_manager_staff_id?: string | null
+          id?: string
+          is_replacement?: boolean
+          justification?: string | null
+          location?: string | null
+          position_id?: string | null
+          priority?: string
+          requested_by_staff_id?: string | null
+          requisition_no?: string
+          status?: string
+          submitted_at?: string | null
+          target_hire_date?: string | null
+          title?: string
+          unit_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_requisitions_hiring_manager_staff_id_fkey"
+            columns: ["hiring_manager_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_requisitions_position_id_fkey"
+            columns: ["position_id"]
+            isOneToOne: false
+            referencedRelation: "org_positions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_requisitions_requested_by_staff_id_fkey"
+            columns: ["requested_by_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_requisitions_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_vacancies: {
+        Row: {
+          accountability_groups: Json
+          application_deadline: string | null
+          approval_status: string
+          blueprint_key: string | null
+          channels: string[]
+          closed_at: string | null
+          compensation_config: Json | null
+          competencies: string[]
+          content_hash: string | null
+          content_version: number
+          created_at: string
+          created_by: string | null
+          currency: string
+          employment_type: string
+          equivalent_experience_accepted: boolean
+          experience_statement: string | null
+          headcount: number
+          hiring_manager_staff_id: string | null
+          id: string
+          is_historical: boolean
+          is_replacement: boolean
+          kpis: string[]
+          location: string | null
+          migration_batch_id: string | null
+          min_years_experience: number | null
+          opened_at: string
+          position_exception_reason: string | null
+          position_id: string | null
+          preferred_skills: string[]
+          priority: string
+          public_slug: string | null
+          public_summary: string | null
+          publication_status: string
+          published_at: string | null
+          published_by: string | null
+          qualification_level: string | null
+          qualifications: string[]
+          recruiter_staff_id: string | null
+          recruitment_process: Json
+          reports_to_position_id: string | null
+          required_skills: string[]
+          requisition_id: string | null
+          responsibilities: string[]
+          role_purpose: string | null
+          salary_max_cents: number | null
+          salary_min_cents: number | null
+          sla_days: number
+          source_vacancy_ref: string | null
+          status: string
+          success_outcomes: string[]
+          suitability: string[]
+          target_hire_date: string | null
+          technical_tools: string[]
+          title: string
+          unit_id: string | null
+          updated_at: string
+          vacancy_no: string
+          work_arrangement: string
+        }
+        Insert: {
+          accountability_groups?: Json
+          application_deadline?: string | null
+          approval_status?: string
+          blueprint_key?: string | null
+          channels?: string[]
+          closed_at?: string | null
+          compensation_config?: Json | null
+          competencies?: string[]
+          content_hash?: string | null
+          content_version?: number
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          employment_type?: string
+          equivalent_experience_accepted?: boolean
+          experience_statement?: string | null
+          headcount?: number
+          hiring_manager_staff_id?: string | null
+          id?: string
+          is_historical?: boolean
+          is_replacement?: boolean
+          kpis?: string[]
+          location?: string | null
+          migration_batch_id?: string | null
+          min_years_experience?: number | null
+          opened_at?: string
+          position_exception_reason?: string | null
+          position_id?: string | null
+          preferred_skills?: string[]
+          priority?: string
+          public_slug?: string | null
+          public_summary?: string | null
+          publication_status?: string
+          published_at?: string | null
+          published_by?: string | null
+          qualification_level?: string | null
+          qualifications?: string[]
+          recruiter_staff_id?: string | null
+          recruitment_process?: Json
+          reports_to_position_id?: string | null
+          required_skills?: string[]
+          requisition_id?: string | null
+          responsibilities?: string[]
+          role_purpose?: string | null
+          salary_max_cents?: number | null
+          salary_min_cents?: number | null
+          sla_days?: number
+          source_vacancy_ref?: string | null
+          status?: string
+          success_outcomes?: string[]
+          suitability?: string[]
+          target_hire_date?: string | null
+          technical_tools?: string[]
+          title: string
+          unit_id?: string | null
+          updated_at?: string
+          vacancy_no: string
+          work_arrangement?: string
+        }
+        Update: {
+          accountability_groups?: Json
+          application_deadline?: string | null
+          approval_status?: string
+          blueprint_key?: string | null
+          channels?: string[]
+          closed_at?: string | null
+          compensation_config?: Json | null
+          competencies?: string[]
+          content_hash?: string | null
+          content_version?: number
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          employment_type?: string
+          equivalent_experience_accepted?: boolean
+          experience_statement?: string | null
+          headcount?: number
+          hiring_manager_staff_id?: string | null
+          id?: string
+          is_historical?: boolean
+          is_replacement?: boolean
+          kpis?: string[]
+          location?: string | null
+          migration_batch_id?: string | null
+          min_years_experience?: number | null
+          opened_at?: string
+          position_exception_reason?: string | null
+          position_id?: string | null
+          preferred_skills?: string[]
+          priority?: string
+          public_slug?: string | null
+          public_summary?: string | null
+          publication_status?: string
+          published_at?: string | null
+          published_by?: string | null
+          qualification_level?: string | null
+          qualifications?: string[]
+          recruiter_staff_id?: string | null
+          recruitment_process?: Json
+          reports_to_position_id?: string | null
+          required_skills?: string[]
+          requisition_id?: string | null
+          responsibilities?: string[]
+          role_purpose?: string | null
+          salary_max_cents?: number | null
+          salary_min_cents?: number | null
+          sla_days?: number
+          source_vacancy_ref?: string | null
+          status?: string
+          success_outcomes?: string[]
+          suitability?: string[]
+          target_hire_date?: string | null
+          technical_tools?: string[]
+          title?: string
+          unit_id?: string | null
+          updated_at?: string
+          vacancy_no?: string
+          work_arrangement?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_vacancies_hiring_manager_staff_id_fkey"
+            columns: ["hiring_manager_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_vacancies_position_id_fkey"
+            columns: ["position_id"]
+            isOneToOne: false
+            referencedRelation: "org_positions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_vacancies_recruiter_staff_id_fkey"
+            columns: ["recruiter_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_vacancies_reports_to_position_id_fkey"
+            columns: ["reports_to_position_id"]
+            isOneToOne: false
+            referencedRelation: "org_positions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_vacancies_requisition_id_fkey"
+            columns: ["requisition_id"]
+            isOneToOne: false
+            referencedRelation: "rec_requisitions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_vacancies_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       reconciliation_cases: {
         Row: {
@@ -16042,6 +22659,48 @@ export type Database = {
             columns: ["dispute_id"]
             isOneToOne: false
             referencedRelation: "payment_disputes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      regions: {
+        Row: {
+          code: string
+          country_id: string
+          created_at: string
+          id: string
+          name: string
+          parent_id: string | null
+        }
+        Insert: {
+          code: string
+          country_id: string
+          created_at?: string
+          id?: string
+          name: string
+          parent_id?: string | null
+        }
+        Update: {
+          code?: string
+          country_id?: string
+          created_at?: string
+          id?: string
+          name?: string
+          parent_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "regions_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "regions_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
             referencedColumns: ["id"]
           },
         ]
@@ -16353,6 +23012,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      rental_providers: {
+        Row: {
+          commission_pct: number | null
+          compliance_state: string
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string
+          id: string
+          kra_pin: string | null
+          name: string
+          notes: string | null
+          provider_type: string
+          settlement_terms: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          commission_pct?: number | null
+          compliance_state?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          kra_pin?: string | null
+          name: string
+          notes?: string | null
+          provider_type?: string
+          settlement_terms?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          commission_pct?: number | null
+          compliance_state?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          kra_pin?: string | null
+          name?: string
+          notes?: string | null
+          provider_type?: string
+          settlement_terms?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       rental_quote_requests: {
         Row: {
@@ -17666,6 +24373,50 @@ export type Database = {
           },
         ]
       }
+      service_provider_claim_events: {
+        Row: {
+          action: string
+          actor_user_id: string | null
+          claim_id: string
+          created_at: string
+          detail: Json
+          id: string
+          note: string | null
+          state_from: string | null
+          state_to: string | null
+        }
+        Insert: {
+          action: string
+          actor_user_id?: string | null
+          claim_id: string
+          created_at?: string
+          detail?: Json
+          id?: string
+          note?: string | null
+          state_from?: string | null
+          state_to?: string | null
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string | null
+          claim_id?: string
+          created_at?: string
+          detail?: Json
+          id?: string
+          note?: string | null
+          state_from?: string | null
+          state_to?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_provider_claim_events_claim_id_fkey"
+            columns: ["claim_id"]
+            isOneToOne: false
+            referencedRelation: "service_provider_claims"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       service_provider_claims: {
         Row: {
           agreed_amount_kes: number | null
@@ -18296,6 +25047,119 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "mpesa_transactions"
             referencedColumns: ["id"]
+          },
+        ]
+      }
+      social_platforms: {
+        Row: {
+          channel_kind: string
+          created_at: string
+          enabled: boolean
+          hostnames: string[]
+          icon_key: string
+          name: string
+          purpose: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          channel_kind?: string
+          created_at?: string
+          enabled?: boolean
+          hostnames: string[]
+          icon_key: string
+          name: string
+          purpose: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          channel_kind?: string
+          created_at?: string
+          enabled?: boolean
+          hostnames?: string[]
+          icon_key?: string
+          name?: string
+          purpose?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_provider_capabilities: {
+        Row: {
+          api_version: string | null
+          auth_kind: string
+          caption_max: number | null
+          cost_model: string
+          direct_publish: string
+          docs_url: string | null
+          media_max_mb: number | null
+          notes: string | null
+          platform_slug: string
+          requires_audit: boolean
+          scheduling_owner: string
+          supports_analytics: boolean
+          supports_carousel: boolean
+          supports_delete: boolean
+          supports_document: boolean
+          supports_image: boolean
+          supports_text: boolean
+          supports_video: boolean
+          updated_at: string
+        }
+        Insert: {
+          api_version?: string | null
+          auth_kind?: string
+          caption_max?: number | null
+          cost_model?: string
+          direct_publish?: string
+          docs_url?: string | null
+          media_max_mb?: number | null
+          notes?: string | null
+          platform_slug: string
+          requires_audit?: boolean
+          scheduling_owner?: string
+          supports_analytics?: boolean
+          supports_carousel?: boolean
+          supports_delete?: boolean
+          supports_document?: boolean
+          supports_image?: boolean
+          supports_text?: boolean
+          supports_video?: boolean
+          updated_at?: string
+        }
+        Update: {
+          api_version?: string | null
+          auth_kind?: string
+          caption_max?: number | null
+          cost_model?: string
+          direct_publish?: string
+          docs_url?: string | null
+          media_max_mb?: number | null
+          notes?: string | null
+          platform_slug?: string
+          requires_audit?: boolean
+          scheduling_owner?: string
+          supports_analytics?: boolean
+          supports_carousel?: boolean
+          supports_delete?: boolean
+          supports_document?: boolean
+          supports_image?: boolean
+          supports_text?: boolean
+          supports_video?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "social_provider_capabilities_platform_slug_fkey"
+            columns: ["platform_slug"]
+            isOneToOne: true
+            referencedRelation: "social_platforms"
+            referencedColumns: ["slug"]
           },
         ]
       }
@@ -21990,6 +28854,517 @@ export type Database = {
         }
         Relationships: []
       }
+      vehicle_accidents: {
+        Row: {
+          created_at: string
+          description: string | null
+          driver_id: string | null
+          estimated_cost_cents: number | null
+          id: string
+          insurance_claim_no: string | null
+          latitude: number | null
+          location: string | null
+          longitude: number | null
+          metadata: Json | null
+          occurred_at: string
+          police_report_no: string | null
+          severity: Database["public"]["Enums"]["risk_severity"]
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          driver_id?: string | null
+          estimated_cost_cents?: number | null
+          id?: string
+          insurance_claim_no?: string | null
+          latitude?: number | null
+          location?: string | null
+          longitude?: number | null
+          metadata?: Json | null
+          occurred_at: string
+          police_report_no?: string | null
+          severity?: Database["public"]["Enums"]["risk_severity"]
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          driver_id?: string | null
+          estimated_cost_cents?: number | null
+          id?: string
+          insurance_claim_no?: string | null
+          latitude?: number | null
+          location?: string | null
+          longitude?: number | null
+          metadata?: Json | null
+          occurred_at?: string
+          police_report_no?: string | null
+          severity?: Database["public"]["Enums"]["risk_severity"]
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_assets: {
+        Row: {
+          asset_tag: string | null
+          created_at: string
+          current_value_cents: number | null
+          depreciation_pct_annual: number | null
+          finance_partner: string | null
+          id: string
+          loan_balance_cents: number | null
+          metadata: Json
+          purchase_price_cents: number | null
+          status: string
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          asset_tag?: string | null
+          created_at?: string
+          current_value_cents?: number | null
+          depreciation_pct_annual?: number | null
+          finance_partner?: string | null
+          id?: string
+          loan_balance_cents?: number | null
+          metadata?: Json
+          purchase_price_cents?: number | null
+          status?: string
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          asset_tag?: string | null
+          created_at?: string
+          current_value_cents?: number | null
+          depreciation_pct_annual?: number | null
+          finance_partner?: string | null
+          id?: string
+          loan_balance_cents?: number | null
+          metadata?: Json
+          purchase_price_cents?: number | null
+          status?: string
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_compliance: {
+        Row: {
+          compliance_score: number | null
+          created_at: string
+          id: string
+          inspection_score: number | null
+          insurance_score: number | null
+          last_evaluated_at: string | null
+          metadata: Json | null
+          overall_risk: Database["public"]["Enums"]["risk_severity"]
+          roadworthiness_score: number | null
+          updated_at: string
+          vehicle_id: string
+        }
+        Insert: {
+          compliance_score?: number | null
+          created_at?: string
+          id?: string
+          inspection_score?: number | null
+          insurance_score?: number | null
+          last_evaluated_at?: string | null
+          metadata?: Json | null
+          overall_risk?: Database["public"]["Enums"]["risk_severity"]
+          roadworthiness_score?: number | null
+          updated_at?: string
+          vehicle_id: string
+        }
+        Update: {
+          compliance_score?: number | null
+          created_at?: string
+          id?: string
+          inspection_score?: number | null
+          insurance_score?: number | null
+          last_evaluated_at?: string | null
+          metadata?: Json | null
+          overall_risk?: Database["public"]["Enums"]["risk_severity"]
+          roadworthiness_score?: number | null
+          updated_at?: string
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_compliance_events: {
+        Row: {
+          created_at: string
+          details: Json | null
+          dimension: string
+          id: string
+          rule_code: string
+          score_delta: number
+          severity: Database["public"]["Enums"]["risk_severity"]
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json | null
+          dimension: string
+          id?: string
+          rule_code: string
+          score_delta?: number
+          severity: Database["public"]["Enums"]["risk_severity"]
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json | null
+          dimension?: string
+          id?: string
+          rule_code?: string
+          score_delta?: number
+          severity?: Database["public"]["Enums"]["risk_severity"]
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_costs: {
+        Row: {
+          amount_cents: number
+          cost_type: string
+          created_at: string
+          currency: string
+          id: string
+          incurred_at: string
+          metadata: Json | null
+          reference_id: string | null
+          vehicle_id: string
+        }
+        Insert: {
+          amount_cents: number
+          cost_type: string
+          created_at?: string
+          currency?: string
+          id?: string
+          incurred_at?: string
+          metadata?: Json | null
+          reference_id?: string | null
+          vehicle_id: string
+        }
+        Update: {
+          amount_cents?: number
+          cost_type?: string
+          created_at?: string
+          currency?: string
+          id?: string
+          incurred_at?: string
+          metadata?: Json | null
+          reference_id?: string | null
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_documents: {
+        Row: {
+          created_at: string
+          document_number: string | null
+          document_type_id: string | null
+          expiry_date: string | null
+          file_hash: string | null
+          file_name: string | null
+          file_size: number | null
+          file_url: string | null
+          id: string
+          issue_date: string | null
+          ocr_data: Json | null
+          rejection_reason: string | null
+          updated_at: string
+          vehicle_id: string
+          verification_status: Database["public"]["Enums"]["doc_verification_status"]
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          document_number?: string | null
+          document_type_id?: string | null
+          expiry_date?: string | null
+          file_hash?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          issue_date?: string | null
+          ocr_data?: Json | null
+          rejection_reason?: string | null
+          updated_at?: string
+          vehicle_id: string
+          verification_status?: Database["public"]["Enums"]["doc_verification_status"]
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          document_number?: string | null
+          document_type_id?: string | null
+          expiry_date?: string | null
+          file_hash?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          issue_date?: string | null
+          ocr_data?: Json | null
+          rejection_reason?: string | null
+          updated_at?: string
+          vehicle_id?: string
+          verification_status?: Database["public"]["Enums"]["doc_verification_status"]
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vehicle_documents_document_type_id_fkey"
+            columns: ["document_type_id"]
+            isOneToOne: false
+            referencedRelation: "kyc_document_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vehicle_documents_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vehicle_inspections: {
+        Row: {
+          brakes_status: string | null
+          cleanliness_score: number | null
+          created_at: string
+          engine_status: string | null
+          id: string
+          inspection_center: string | null
+          inspection_date: string
+          inspector_name: string | null
+          interior_status: string | null
+          lights_status: string | null
+          next_inspection_date: string | null
+          report_url: string | null
+          result: Database["public"]["Enums"]["inspection_result"]
+          tires_status: string | null
+          vehicle_id: string
+        }
+        Insert: {
+          brakes_status?: string | null
+          cleanliness_score?: number | null
+          created_at?: string
+          engine_status?: string | null
+          id?: string
+          inspection_center?: string | null
+          inspection_date: string
+          inspector_name?: string | null
+          interior_status?: string | null
+          lights_status?: string | null
+          next_inspection_date?: string | null
+          report_url?: string | null
+          result?: Database["public"]["Enums"]["inspection_result"]
+          tires_status?: string | null
+          vehicle_id: string
+        }
+        Update: {
+          brakes_status?: string | null
+          cleanliness_score?: number | null
+          created_at?: string
+          engine_status?: string | null
+          id?: string
+          inspection_center?: string | null
+          inspection_date?: string
+          inspector_name?: string | null
+          interior_status?: string | null
+          lights_status?: string | null
+          next_inspection_date?: string | null
+          report_url?: string | null
+          result?: Database["public"]["Enums"]["inspection_result"]
+          tires_status?: string | null
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vehicle_inspections_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vehicle_maintenance: {
+        Row: {
+          category: string
+          cost_cents: number | null
+          created_at: string
+          currency: string | null
+          description: string | null
+          id: string
+          metadata: Json | null
+          next_due_at: string | null
+          odometer_km: number | null
+          performed_at: string
+          vehicle_id: string
+          vendor: string | null
+        }
+        Insert: {
+          category: string
+          cost_cents?: number | null
+          created_at?: string
+          currency?: string | null
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          next_due_at?: string | null
+          odometer_km?: number | null
+          performed_at?: string
+          vehicle_id: string
+          vendor?: string | null
+        }
+        Update: {
+          category?: string
+          cost_cents?: number | null
+          created_at?: string
+          currency?: string | null
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          next_due_at?: string | null
+          odometer_km?: number | null
+          performed_at?: string
+          vehicle_id?: string
+          vendor?: string | null
+        }
+        Relationships: []
+      }
+      vehicle_ownership_history: {
+        Row: {
+          created_at: string
+          from_date: string
+          id: string
+          owner_id: string | null
+          owner_name: string | null
+          owner_type: string
+          to_date: string | null
+          transfer_reason: string | null
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          from_date: string
+          id?: string
+          owner_id?: string | null
+          owner_name?: string | null
+          owner_type: string
+          to_date?: string | null
+          transfer_reason?: string | null
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          from_date?: string
+          id?: string
+          owner_id?: string | null
+          owner_name?: string | null
+          owner_type?: string
+          to_date?: string | null
+          transfer_reason?: string | null
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
+      vehicle_repairs: {
+        Row: {
+          accident_id: string | null
+          completed_at: string | null
+          cost_cents: number | null
+          created_at: string
+          description: string
+          id: string
+          metadata: Json | null
+          started_at: string | null
+          status: string
+          vehicle_id: string
+          vendor: string | null
+        }
+        Insert: {
+          accident_id?: string | null
+          completed_at?: string | null
+          cost_cents?: number | null
+          created_at?: string
+          description: string
+          id?: string
+          metadata?: Json | null
+          started_at?: string | null
+          status?: string
+          vehicle_id: string
+          vendor?: string | null
+        }
+        Update: {
+          accident_id?: string | null
+          completed_at?: string | null
+          cost_cents?: number | null
+          created_at?: string
+          description?: string
+          id?: string
+          metadata?: Json | null
+          started_at?: string | null
+          status?: string
+          vehicle_id?: string
+          vendor?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vehicle_repairs_accident_id_fkey"
+            columns: ["accident_id"]
+            isOneToOne: false
+            referencedRelation: "vehicle_accidents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vehicle_service_records: {
+        Row: {
+          attachments: Json | null
+          cost_cents: number | null
+          created_at: string
+          id: string
+          notes: string | null
+          odometer_km: number | null
+          performed_at: string
+          service_type: string
+          vehicle_id: string
+        }
+        Insert: {
+          attachments?: Json | null
+          cost_cents?: number | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          odometer_km?: number | null
+          performed_at?: string
+          service_type: string
+          vehicle_id: string
+        }
+        Update: {
+          attachments?: Json | null
+          cost_cents?: number | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          odometer_km?: number | null
+          performed_at?: string
+          service_type?: string
+          vehicle_id?: string
+        }
+        Relationships: []
+      }
       vehicles: {
         Row: {
           color: string | null
@@ -22502,6 +29877,7 @@ export type Database = {
         | "CANCELLED"
         | "EXPIRED"
         | "ESCALATED"
+      assignment_status: "active" | "pending" | "ended" | "cancelled"
       bank_guarantee_state:
         | "UPLOADED"
         | "VALIDATING"
@@ -22553,6 +29929,13 @@ export type Database = {
         | "REJECTED"
         | "WITHDRAWN"
         | "EXPIRED"
+      compliance_action_type:
+        | "WARN"
+        | "RESTRICT"
+        | "SUSPEND"
+        | "DEACTIVATE"
+        | "REINSTATE"
+        | "NOTIFY"
       corp_ledger_entry_type:
         | "top_up"
         | "ride_charge"
@@ -22581,6 +29964,24 @@ export type Database = {
         | "EXPIRED"
         | "CLOSED"
       credit_reservation_state: "ACTIVE" | "UTILIZED" | "RELEASED" | "EXPIRED"
+      crm_doc_class: "master" | "customer_instance"
+      crm_doc_external_state:
+        | "draft"
+        | "approved"
+        | "shared"
+        | "customer_review"
+        | "customer_revision_requested"
+        | "revised"
+        | "accepted"
+        | "executed"
+      crm_doc_internal_state:
+        | "draft"
+        | "internal_review"
+        | "approval_pending"
+        | "approved"
+        | "active"
+        | "superseded"
+        | "archived"
       dispute_reason:
         | "FRAUD"
         | "DUPLICATE"
@@ -22595,6 +29996,14 @@ export type Database = {
         | "RESOLVED"
         | "REJECTED"
         | "ESCALATED"
+      doc_verification_status:
+        | "not_submitted"
+        | "pending"
+        | "in_review"
+        | "approved"
+        | "rejected"
+        | "resubmission_required"
+        | "expired"
       driver_etims_invoice_status:
         | "PENDING"
         | "SUBMITTED"
@@ -22655,6 +30064,7 @@ export type Database = {
         | "CREDIT_UTILISATION"
         | "RECONCILIATION"
         | "ADJUSTMENT"
+      fleet_entity_type: "HOLDING" | "COMPANY" | "BRANCH"
       fraud_review_status:
         | "open"
         | "reviewing"
@@ -22726,6 +30136,23 @@ export type Database = {
         | "PAID"
         | "REVERSED"
       fx_rate_type: "SPOT" | "DAILY" | "HISTORICAL" | "CLOSING"
+      health_status: "HEALTHY" | "DEGRADED" | "DOWN" | "UNKNOWN"
+      incident_severity: "low" | "medium" | "high" | "critical"
+      infra_check_result:
+        | "PASS"
+        | "FAIL"
+        | "BLOCKED"
+        | "UNKNOWN"
+        | "NOT_CONFIGURED"
+      infra_job_state:
+        | "REQUESTED"
+        | "RUNNING"
+        | "SUCCEEDED"
+        | "FAILED"
+        | "BLOCKED"
+        | "CANCELLED"
+      inspection_result: "pass" | "conditional" | "fail" | "pending"
+      insurance_status: "ACTIVE" | "EXPIRED" | "CANCELLED" | "PENDING" | "CLAIM"
       journal_source:
         | "MPESA_SETTLEMENT"
         | "MPESA_REVERSAL"
@@ -22746,6 +30173,31 @@ export type Database = {
         | "CLEARING"
         | "WALLET"
       ledger_direction: "DEBIT" | "CREDIT"
+      lifecycle_stage:
+        | "APPLICANT"
+        | "SCREENING"
+        | "KYC"
+        | "TRAINING"
+        | "VEHICLE_ASSIGNMENT"
+        | "ACTIVATION"
+        | "ACTIVE"
+        | "PERFORMANCE_REVIEW"
+        | "REWARDED"
+        | "WARNED"
+        | "RESTRICTED"
+        | "SUSPENDED"
+        | "REACTIVATED"
+        | "RETIRED"
+        | "REJECTED"
+      loan_status:
+        | "REQUESTED"
+        | "APPROVED"
+        | "DISBURSED"
+        | "REPAYING"
+        | "COMPLETED"
+        | "DEFAULTED"
+        | "REJECTED"
+        | "CANCELLED"
       mobility_order_status:
         | "DRAFT"
         | "QUOTE_REQUESTED"
@@ -23142,6 +30594,7 @@ export const Constants = {
         "EXPIRED",
         "ESCALATED",
       ],
+      assignment_status: ["active", "pending", "ended", "cancelled"],
       bank_guarantee_state: [
         "UPLOADED",
         "VALIDATING",
@@ -23200,6 +30653,14 @@ export const Constants = {
         "WITHDRAWN",
         "EXPIRED",
       ],
+      compliance_action_type: [
+        "WARN",
+        "RESTRICT",
+        "SUSPEND",
+        "DEACTIVATE",
+        "REINSTATE",
+        "NOTIFY",
+      ],
       corp_ledger_entry_type: [
         "top_up",
         "ride_charge",
@@ -23232,6 +30693,26 @@ export const Constants = {
         "CLOSED",
       ],
       credit_reservation_state: ["ACTIVE", "UTILIZED", "RELEASED", "EXPIRED"],
+      crm_doc_class: ["master", "customer_instance"],
+      crm_doc_external_state: [
+        "draft",
+        "approved",
+        "shared",
+        "customer_review",
+        "customer_revision_requested",
+        "revised",
+        "accepted",
+        "executed",
+      ],
+      crm_doc_internal_state: [
+        "draft",
+        "internal_review",
+        "approval_pending",
+        "approved",
+        "active",
+        "superseded",
+        "archived",
+      ],
       dispute_reason: [
         "FRAUD",
         "DUPLICATE",
@@ -23247,6 +30728,15 @@ export const Constants = {
         "RESOLVED",
         "REJECTED",
         "ESCALATED",
+      ],
+      doc_verification_status: [
+        "not_submitted",
+        "pending",
+        "in_review",
+        "approved",
+        "rejected",
+        "resubmission_required",
+        "expired",
       ],
       driver_etims_invoice_status: [
         "PENDING",
@@ -23316,6 +30806,7 @@ export const Constants = {
         "RECONCILIATION",
         "ADJUSTMENT",
       ],
+      fleet_entity_type: ["HOLDING", "COMPANY", "BRANCH"],
       fraud_review_status: [
         "open",
         "reviewing",
@@ -23396,6 +30887,25 @@ export const Constants = {
         "REVERSED",
       ],
       fx_rate_type: ["SPOT", "DAILY", "HISTORICAL", "CLOSING"],
+      health_status: ["HEALTHY", "DEGRADED", "DOWN", "UNKNOWN"],
+      incident_severity: ["low", "medium", "high", "critical"],
+      infra_check_result: [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "UNKNOWN",
+        "NOT_CONFIGURED",
+      ],
+      infra_job_state: [
+        "REQUESTED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "BLOCKED",
+        "CANCELLED",
+      ],
+      inspection_result: ["pass", "conditional", "fail", "pending"],
+      insurance_status: ["ACTIVE", "EXPIRED", "CANCELLED", "PENDING", "CLAIM"],
       journal_source: [
         "MPESA_SETTLEMENT",
         "MPESA_REVERSAL",
@@ -23418,6 +30928,33 @@ export const Constants = {
         "WALLET",
       ],
       ledger_direction: ["DEBIT", "CREDIT"],
+      lifecycle_stage: [
+        "APPLICANT",
+        "SCREENING",
+        "KYC",
+        "TRAINING",
+        "VEHICLE_ASSIGNMENT",
+        "ACTIVATION",
+        "ACTIVE",
+        "PERFORMANCE_REVIEW",
+        "REWARDED",
+        "WARNED",
+        "RESTRICTED",
+        "SUSPENDED",
+        "REACTIVATED",
+        "RETIRED",
+        "REJECTED",
+      ],
+      loan_status: [
+        "REQUESTED",
+        "APPROVED",
+        "DISBURSED",
+        "REPAYING",
+        "COMPLETED",
+        "DEFAULTED",
+        "REJECTED",
+        "CANCELLED",
+      ],
       mobility_order_status: [
         "DRAFT",
         "QUOTE_REQUESTED",

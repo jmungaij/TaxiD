@@ -85251,6 +85251,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      yp_is_finance: { Args: never; Returns: boolean }
     }
     Enums: {
       ai_action_class:

@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { ChevronRight, Home } from "lucide-react";
 import { AppLink } from "@/components/nav/AppLink";
@@ -81,7 +81,7 @@ export function Breadcrumbs({ className, hideOnRoot = true }: BreadcrumbsProps) 
         const isLast = idx === chain.length - 1;
         const isHome = route.path === "/";
         return (
-          <Fragment key={route.path}>
+          <span key={route.path} className="inline-flex items-center gap-1.5">
             {idx > 0 && <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />}
             {isLast ? (
               <span
@@ -102,7 +102,7 @@ export function Breadcrumbs({ className, hideOnRoot = true }: BreadcrumbsProps) 
                 {isHome ? <span className="sr-only">Home</span> : route.title}
               </AppLink>
             )}
-          </Fragment>
+          </span>
         );
       })}
     </nav>

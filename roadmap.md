@@ -59,8 +59,12 @@
 ## Phase 10 — Operational validation
 - [x] Step 1: compared live database to original description (74 tables: 1 missing `journal_lines`, never created by original setup files; 1 missing column added; 14 original backend actions missing)
 - [x] Batch 1 server tasks restored: cta-event (click saving), dispatch-engine, dispatch-supply-refresh, notification-worker
-- [ ] Restore the 14 missing driver/withdrawal/document backend actions
+- [x] Restore the 14 missing driver/withdrawal/document backend actions (+ ledger lines)
 - [ ] Unused-table report (only 14 of 1,451 tables hold records)
-- [ ] Test driver + vehicle, golden-path booking
+- [x] Test driver + vehicle, golden-path booking (request → quote → match → arrive → start → complete → earning)
 - [ ] Finance tests in test mode; cross-company test; Staff 360 sample staff
-- [ ] Classify 43 security warnings; readiness scorecard
+- [x] Security warnings reduced 61 → 0 (privileged actions moved to private schema behind invoker wrappers)
+- [x] Company billing identity saved (Taxid Limited, KRA PIN, TCC, PayBill 4573823)
+- [x] Staff 360 SAMPLE staff, documents, qualifications, training, calendar, reviews
+- [ ] Live M-Pesa/eTIMS: needs Daraja consumer key/secret/passkey + eTIMS device serial
+- [ ] Readiness scorecard

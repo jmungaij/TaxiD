@@ -25970,6 +25970,8 @@ export type Database = {
       }
       drivers: {
         Row: {
+          activation_date: string | null
+          application_status: string
           carrier_id: string | null
           created_at: string
           driver_code: string
@@ -25985,6 +25987,8 @@ export type Database = {
           verification_status: string
         }
         Insert: {
+          activation_date?: string | null
+          application_status?: string
           carrier_id?: string | null
           created_at?: string
           driver_code?: string
@@ -26000,6 +26004,8 @@ export type Database = {
           verification_status?: string
         }
         Update: {
+          activation_date?: string | null
+          application_status?: string
           carrier_id?: string | null
           created_at?: string
           driver_code?: string
@@ -37997,6 +38003,57 @@ export type Database = {
           },
         ]
       }
+      journal_lines: {
+        Row: {
+          account_id: string
+          amount_cents: number
+          created_at: string
+          currency: string
+          direction: string
+          id: string
+          journal_id: string
+          memo: string | null
+          posted_by: string | null
+        }
+        Insert: {
+          account_id: string
+          amount_cents: number
+          created_at?: string
+          currency?: string
+          direction: string
+          id?: string
+          journal_id: string
+          memo?: string | null
+          posted_by?: string | null
+        }
+        Update: {
+          account_id?: string
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          direction?: string
+          id?: string
+          journal_id?: string
+          memo?: string | null
+          posted_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "journal_lines_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "ledger_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "journal_lines_journal_id_fkey"
+            columns: ["journal_id"]
+            isOneToOne: false
+            referencedRelation: "journals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       journals: {
         Row: {
           batch_id: string | null
@@ -38232,6 +38289,7 @@ export type Database = {
       }
       ledger_accounts: {
         Row: {
+          active: boolean | null
           coa_code: string | null
           code: string
           created_at: string
@@ -38245,6 +38303,7 @@ export type Database = {
           wallet_id: string | null
         }
         Insert: {
+          active?: boolean | null
           coa_code?: string | null
           code: string
           created_at?: string
@@ -38258,6 +38317,7 @@ export type Database = {
           wallet_id?: string | null
         }
         Update: {
+          active?: boolean | null
           coa_code?: string | null
           code?: string
           created_at?: string
@@ -58162,6 +58222,51 @@ export type Database = {
           stage_key?: string
           updated_at?: string
           win_probability_pct?: number
+        }
+        Relationships: []
+      }
+      platform_billing_identity: {
+        Row: {
+          created_at: string
+          etims_environment: string
+          id: boolean
+          kra_pin: string
+          legal_name: string
+          mpesa_environment: string
+          mpesa_paybill: string
+          physical_address: string | null
+          postal_address: string | null
+          tcc_number: string | null
+          tcc_valid_until: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          etims_environment?: string
+          id?: boolean
+          kra_pin: string
+          legal_name: string
+          mpesa_environment?: string
+          mpesa_paybill: string
+          physical_address?: string | null
+          postal_address?: string | null
+          tcc_number?: string | null
+          tcc_valid_until?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          etims_environment?: string
+          id?: boolean
+          kra_pin?: string
+          legal_name?: string
+          mpesa_environment?: string
+          mpesa_paybill?: string
+          physical_address?: string | null
+          postal_address?: string | null
+          tcc_number?: string | null
+          tcc_valid_until?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -85303,6 +85408,8 @@ export type Database = {
       }
     }
     Functions: {
+      _driver_application_staff: { Args: never; Returns: boolean }
+      _driver_finance_staff: { Args: never; Returns: boolean }
       _fin_apply_verified: { Args: { _booking: string }; Returns: undefined }
       _fin_is_team: { Args: never; Returns: boolean }
       _fin_is_verifier: { Args: never; Returns: boolean }
@@ -85398,6 +85505,19 @@ export type Database = {
         Returns: boolean
       }
       driver_accept_trip: { Args: { _booking_id: string }; Returns: undefined }
+      driver_advance_trip: {
+        Args: { _booking_id: string; _reason?: string; _to_status: string }
+        Returns: Json
+      }
+      driver_application_decide: { Args: { p: Json }; Returns: Json }
+      driver_application_status: {
+        Args: { _reference: string; _token: string }
+        Returns: Json
+      }
+      driver_application_submit: { Args: { p: Json }; Returns: Json }
+      driver_duty_state: { Args: never; Returns: Json }
+      driver_earning_accrue: { Args: { _booking_id: string }; Returns: Json }
+      driver_earning_release: { Args: { _earning_id: string }; Returns: Json }
       driver_payout_create: {
         Args: {
           _amount_cents: number
@@ -85408,6 +85528,19 @@ export type Database = {
         }
         Returns: string
       }
+      driver_payout_recipients: { Args: never; Returns: Json }
+      driver_portal_summary: { Args: never; Returns: Json }
+      driver_rides_self: { Args: never; Returns: Json }
+      driver_set_availability: {
+        Args: {
+          _accuracy_m?: number
+          _available?: boolean
+          _lat?: number
+          _lng?: number
+          _online: boolean
+        }
+        Returns: Json
+      }
       driver_set_vehicle_status: {
         Args: { _status: string; _vehicle_id: string }
         Returns: undefined
@@ -85416,6 +85549,8 @@ export type Database = {
         Args: { _booking_id: string; _status: string }
         Returns: undefined
       }
+      driver_withdrawal_decide: { Args: { p: Json }; Returns: Json }
+      driver_withdrawal_request: { Args: { p: Json }; Returns: Json }
       ensure_rider_account: { Args: never; Returns: undefined }
       etims_invoice_from_revenue: {
         Args: {
@@ -85480,6 +85615,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      has_staff_permission: { Args: { _perm: string }; Returns: boolean }
       identity_discover: { Args: { _email: string }; Returns: Json }
       identity_risk_evaluate: {
         Args: { _country?: string; _fingerprint_hash?: string }
@@ -85532,6 +85668,10 @@ export type Database = {
         Returns: string
       }
       posting_engine_post: { Args: { _journal_id: string }; Returns: string }
+      provider_document_decide: {
+        Args: { _decision: string; _document_id: string; _note?: string }
+        Returns: Json
+      }
       recon_permission_roles: {
         Args: { _perm: string }
         Returns: Database["public"]["Enums"]["app_role"][]
@@ -86221,6 +86361,7 @@ export type Database = {
         | "FX_REVALUATION"
         | "SETTLEMENT_BATCH"
         | "OTHER"
+        | "DRIVER_EARNING"
       journal_status: "DRAFT" | "POSTED" | "REVERSED"
       ledger_account_kind:
         | "ASSET"
@@ -87527,6 +87668,7 @@ export const Constants = {
         "FX_REVALUATION",
         "SETTLEMENT_BATCH",
         "OTHER",
+        "DRIVER_EARNING",
       ],
       journal_status: ["DRAFT", "POSTED", "REVERSED"],
       ledger_account_kind: [

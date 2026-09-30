@@ -14,3 +14,5 @@
 - MCP server lives in `src/lib/mcp/` (OAuth via the Cloud auth server; tools run as the signed-in user under RLS) — `supabase/functions/mcp` is generated, never hand-edit.
 - `src/index.css` is precompiled; import `src/tw-utilities.css` after it.
 - Staff Access uses one public gateway; below 1600px categories use the existing drawer. Staff 360 scopes govern visibility; backend authorization remains authoritative.
+
+- Legacy DB restores replay scripts kept in `legacy/restore/phaseN.sql`, applied area-by-area in dependency order with admin-only RLS until original helper functions return — avoids partial, unsafe domains.

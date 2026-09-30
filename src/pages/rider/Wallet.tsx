@@ -35,12 +35,19 @@ export default function RiderWalletPage() {
   const refresh = useCallback(async () => {
     if (!user) return;
     setLoadError(false);
-    const walletRes = await supabase
-      .from("wallets")
-      .select("id,balance_cents,currency,lifecycle_status")
-      .eq("user_id", user.id)
-      .eq("wallet_type", "personal")
-      .maybeSingle();
+    const loadWallet = () =>
+      supabase
+        .from("wallets")
+        .select("id,balance_cents,currency,lifecycle_status")
+        .eq("user_id", user.id)
+        .eq("wallet_type", "personal")
+        .maybeSingle();
+    let walletRes = await loadWallet();
+    if (!walletRes.error && !walletRes.data) {
+      // Accounts created before wallet setup existed get their wallet now.
+      await supabase.rpc("ensure_rider_account");
+      walletRes = await loadWallet();
+    }
     if (walletRes.error) {
       setLoadError(true);
       return;

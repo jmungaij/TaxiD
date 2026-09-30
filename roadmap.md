@@ -25,3 +25,5 @@
 - [x] Rider support inbox (AI draft -> rider, in-app replies)
 - [ ] Receiving mailboxes for safarid.org — blocked: needs an email hosting provider chosen by the user
 - [ ] Recreate full database schema — blocked: original table definitions not in the uploaded bundle
+- [x] Expose Staff Access on desktop and mobile; audit hidden staff surfaces and align admin navigation with authorised roles
+- [ ] Activate ustaxid@gmail.com as the verified super-admin identity — blocked: no account exists; owner must complete the existing email-confirmation signup flow; no password is stored in code

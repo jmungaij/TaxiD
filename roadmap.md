@@ -55,3 +55,12 @@
 - [x] Bookings feed dispatch queue, events and assignments
 - [ ] Live M-Pesa / KRA eTIMS submission (needs Daraja and eTIMS credentials)
 - [ ] End-to-end booking test (needs a verified driver with an available vehicle)
+
+## Phase 10 — Operational validation
+- [x] Step 1: compared live database to original description (74 tables: 1 missing `journal_lines`, never created by original setup files; 1 missing column added; 14 original backend actions missing)
+- [x] Batch 1 server tasks restored: cta-event (click saving), dispatch-engine, dispatch-supply-refresh, notification-worker
+- [ ] Restore the 14 missing driver/withdrawal/document backend actions
+- [ ] Unused-table report (only 14 of 1,451 tables hold records)
+- [ ] Test driver + vehicle, golden-path booking
+- [ ] Finance tests in test mode; cross-company test; Staff 360 sample staff
+- [ ] Classify 43 security warnings; readiness scorecard

@@ -549,6 +549,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
           <Route path="/about" element={<About />} />
+          <Route path="/connect" element={<ConnectAgent />} />
           <Route path="/riders" element={<Riders />} />
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/corporates" element={<Corporates />} />

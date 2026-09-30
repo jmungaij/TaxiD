@@ -1,0 +1,1 @@
+ALTER VIEW public.driver_digital_twin SET (security_invoker = true);

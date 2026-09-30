@@ -1,0 +1,1 @@
+ALTER FUNCTION public.compute_entry_hash() SET search_path = public, extensions;

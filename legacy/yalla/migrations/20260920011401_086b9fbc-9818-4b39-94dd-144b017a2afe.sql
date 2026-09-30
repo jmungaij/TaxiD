@@ -1,0 +1,1 @@
+COMMENT ON EXTENSION pg_net IS 'Platform-managed, non-relocatable extension (extrelocatable=false). Remains in public because ALTER EXTENSION SET SCHEMA is unsupported; application roles receive no direct authority through this comment. Reviewed 2026-09-20.';

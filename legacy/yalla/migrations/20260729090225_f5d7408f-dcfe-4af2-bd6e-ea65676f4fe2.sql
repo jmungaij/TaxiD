@@ -1,0 +1,2 @@
+ALTER TABLE public.charter_partner_application_events REPLICA IDENTITY FULL;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.charter_partner_application_events;

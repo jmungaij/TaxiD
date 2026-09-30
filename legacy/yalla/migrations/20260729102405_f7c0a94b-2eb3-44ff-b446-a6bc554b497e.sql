@@ -1,0 +1,2 @@
+ALTER TABLE public.charter_quotes
+ADD COLUMN IF NOT EXISTS pricing_version INTEGER NOT NULL DEFAULT 0;

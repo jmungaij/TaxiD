@@ -1,0 +1,1 @@
+ALTER FUNCTION public._golive_events_append_only() SET search_path = public;

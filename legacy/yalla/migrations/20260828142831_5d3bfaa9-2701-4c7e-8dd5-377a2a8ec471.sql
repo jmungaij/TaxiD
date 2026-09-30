@@ -1,0 +1,1 @@
+ALTER TYPE public.trust_subject_type ADD VALUE IF NOT EXISTS 'staff';

@@ -1,0 +1,1 @@
+ALTER VIEW public.v_trial_balance SET (security_invoker = on);

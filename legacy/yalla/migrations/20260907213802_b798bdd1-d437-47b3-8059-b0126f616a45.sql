@@ -1,0 +1,3 @@
+ALTER TABLE public.commercial_lifecycle_evidence DISABLE TRIGGER trg_commercial_lifecycle_evidence_append_only;
+DELETE FROM public.commercial_lifecycle_evidence WHERE reference = 'ACCEPT-TEST-1';
+ALTER TABLE public.commercial_lifecycle_evidence ENABLE TRIGGER trg_commercial_lifecycle_evidence_append_only;

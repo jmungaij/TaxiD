@@ -1,0 +1,1 @@
+ALTER VIEW public.rec_requirement_version_history SET (security_invoker = on);

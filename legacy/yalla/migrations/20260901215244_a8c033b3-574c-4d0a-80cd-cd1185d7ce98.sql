@@ -1,0 +1,2 @@
+ALTER TABLE public.rec_requirement_lifecycle_events
+  DROP CONSTRAINT IF EXISTS rec_requirement_lifecycle_events_set_id_fkey;

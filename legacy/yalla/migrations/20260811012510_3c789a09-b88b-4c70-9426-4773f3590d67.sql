@@ -1,0 +1,15 @@
+REVOKE EXECUTE ON FUNCTION public.capture_trip_financials(uuid, text) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.capture_charter_financials(uuid, text) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.link_transaction_payment(text, uuid, text, text, text, timestamptz, uuid, text) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.check_revenue_eligibility(uuid, text) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.backfill_commercial_financials(boolean, integer) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.review_transaction_financials(uuid, text, text) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.approve_recognition_rule(text, boolean, text) FROM anon, PUBLIC;
+REVOKE EXECUTE ON FUNCTION public.deny_eligibility_check_mutation() FROM anon, PUBLIC;
+GRANT EXECUTE ON FUNCTION public.capture_trip_financials(uuid, text) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.capture_charter_financials(uuid, text) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.link_transaction_payment(text, uuid, text, text, text, timestamptz, uuid, text) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.check_revenue_eligibility(uuid, text) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.backfill_commercial_financials(boolean, integer) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.review_transaction_financials(uuid, text, text) TO authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.approve_recognition_rule(text, boolean, text) TO authenticated, service_role;

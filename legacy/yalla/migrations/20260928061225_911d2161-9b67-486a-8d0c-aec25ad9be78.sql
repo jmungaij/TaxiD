@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public._fin_email_to_report(), public._fin_mpesa_to_report() FROM PUBLIC, anon, authenticated;

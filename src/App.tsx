@@ -139,7 +139,6 @@ const Leadership = lazyWithRetry(() => import("./pages/marketing/company/Leaders
 const Governance = lazyWithRetry(() => import("./pages/marketing/company/Governance"));
 const Sustainability = lazyWithRetry(() => import("./pages/marketing/company/Sustainability"));
 const DriverApply = lazyWithRetry(() => import("./pages/driver/Apply"));
-const DriverPortal = lazyWithRetry(() => import("./pages/driver/Portal"));
 const DriverWorkspace = lazyWithRetry(() => import("./pages/driver/Workspace"));
 
 const DriverOnboarding = lazyWithRetry(() => import("./pages/driver/Onboarding"));
@@ -730,7 +729,7 @@ const App = () => (
           <Route path="/driver/safety" element={<DriverSafety />} />
           <Route path="/driver/support" element={<DriverSupport />} />
           <Route path="/driver/dashboard" element={<DriverDashboardReal />} />
-          <Route path="/driver/portal" element={<DriverPortal />} />
+          <Route path="/driver/portal" element={<DriverWorkspace />} />
           <Route path="/driver/workspace" element={<DriverWorkspace />} />
 
 

@@ -27,3 +27,4 @@
 - [ ] Recreate full database schema — blocked: original table definitions not in the uploaded bundle
 - [x] Expose Staff Access on desktop and mobile; audit hidden staff surfaces and align admin navigation with authorised roles
 - [ ] Activate ustaxid@gmail.com as the verified super-admin identity — blocked: no account exists; owner must complete the existing email-confirmation signup flow; no password is stored in code
+- [x] Expose the super-admin's own Rider, Driver, Power Business and Staff 360 portals from the admin overview; preserve account-scoped data checks

@@ -20,7 +20,8 @@ export function AdminOnly({ children, roles: allowed = ["admin", "super_admin"] 
 
   if (loading) return null;
 
-  const authorized = !!user && roles.some((r) => allowed.includes(r));
+  // Match RequireRole's platform-authority rule; data remains server-scoped.
+  const authorized = !!user && (roles.includes("super_admin") || roles.some((r) => allowed.includes(r)));
   if (!authorized) {
     return (
       <div className="p-6">

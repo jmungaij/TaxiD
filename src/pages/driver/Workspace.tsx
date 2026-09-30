@@ -93,7 +93,7 @@ export default function DriverWorkspace() {
     <div className="mx-auto max-w-6xl space-y-6 p-4 md:p-8">
       <header className="flex flex-wrap items-end justify-between gap-3 border-b pb-5">
         <div><p className="text-sm font-semibold text-primary">Driver workspace · {driver.driver_code}</p><h1 className="text-3xl font-bold">Hello, {driver.first_name || "driver"}</h1></div>
-        <div className="flex gap-2"><Badge variant="outline">Verification: {driver.verification_status}</Badge><Button variant="outline" asChild><Link to="/business/dashboard">Power Business</Link></Button></div>
+        <div className="flex gap-2"><Badge variant="outline">Verification: {driver.verification_status}</Badge><Button variant="outline" asChild><Link to="/business/portal">Power Business</Link></Button></div>
       </header>
 
       <div className="grid gap-3 sm:grid-cols-3">

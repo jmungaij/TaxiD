@@ -164,7 +164,7 @@ const MarketingHeader = () => {
           />
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-0.5" aria-label="Primary">
+        <nav className="hidden min-[1600px]:flex items-center gap-0.5" aria-label="Primary">
           {nav.map((item, navIndex) => {
             if (item.groups) {
               const isOpen = active === item.label;
@@ -348,7 +348,7 @@ const MarketingHeader = () => {
           })}
         </nav>
 
-        <div className="hidden md:flex min-w-0 shrink items-center gap-2">
+        <div className="hidden md:flex min-w-0 items-center gap-2 min-[1600px]:shrink">
           {/* Public gateway into the authenticated staff environment. This link
               grants no authority; roles are resolved server-side after sign-in. */}
           <NavLink
@@ -465,7 +465,7 @@ const MarketingHeader = () => {
 
         <button
           type="button"
-          className="xl:hidden rounded-md p-2 text-nav-foreground hover:bg-nav-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="min-[1600px]:hidden rounded-md p-2 text-nav-foreground hover:bg-nav-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           onClick={() => { setOpen(!open); setMobileCategory(null); }}
           aria-expanded={open}
           aria-controls="mobile-nav-drawer"
@@ -477,7 +477,7 @@ const MarketingHeader = () => {
       </div>
 
       {open && (
-        <div id="mobile-nav-drawer" className="xl:hidden border-t border-nav-border/60 bg-nav-strong max-h-[80vh] overflow-y-auto">
+        <div id="mobile-nav-drawer" className="min-[1600px]:hidden border-t border-nav-border/60 bg-nav-strong max-h-[80vh] overflow-y-auto">
 
           {/* Two-level drill-down: Category → destinations, with explicit back. */}
           {mobileCategory ? (

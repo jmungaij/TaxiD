@@ -826,7 +826,7 @@ const App = () => (
             <Route path="/dashboard/corporate/reconciliation" element={<RequireCorporate><CorporateDashboard /></RequireCorporate>} />
             <Route path="/dashboard/admin" element={<RequireRole roles={["admin","super_admin","finance_admin","compliance_admin","operations_admin"]}><AdminDashboard /></RequireRole>} />
             <Route path="/dashboard/admin/users" element={<RequireRole roles={["admin","super_admin","compliance_admin"]}><UsersDirectory /></RequireRole>} />
-            <Route path="/dashboard/admin/roles" element={<Navigate to="/dashboard/admin/staff" replace />} />
+            <Route path="/dashboard/admin/roles" element={<RequireRole roles={["admin","super_admin"]}><StaffManagement /></RequireRole>} />
             <Route path="/dashboard/admin/mpesa" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><MpesaDiagnostics /></RequireRole>} />
             <Route path="/dashboard/admin/payment-journey" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><PaymentJourney /></RequireRole>} />
             <Route path="/dashboard/admin/payment-certification" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><PaymentCertification /></RequireRole>} />

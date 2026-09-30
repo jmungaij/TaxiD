@@ -348,7 +348,7 @@ const MarketingHeader = () => {
           })}
         </nav>
 
-        <div className="hidden md:flex min-w-0 shrink items-center gap-2">
+        <div className="hidden md:flex min-w-0 items-center gap-2 min-[1600px]:shrink">
           {/* Public gateway into the authenticated staff environment. This link
               grants no authority; roles are resolved server-side after sign-in. */}
           <NavLink

@@ -5,7 +5,7 @@
 /**
  * The MSISDN used by the M-Pesa Diagnostics screen for STK dry-runs.
  * Backed by VITE_MPESA_TEST_MSISDN so ops can rotate it without a code change;
- * defaults to the number connected to the live Paybill (4148095).
+ * defaults to the number connected to the live Paybill (4573823).
  */
 export const DEFAULT_MPESA_TEST_MSISDN: string =
   (import.meta.env.VITE_MPESA_TEST_MSISDN as string | undefined)?.trim() ||

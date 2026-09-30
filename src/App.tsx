@@ -28,6 +28,7 @@ import { StaffErrorBoundary } from "@/components/staff/StaffErrorBoundary";
 /* Route-level code splitting — keeps the initial marketing bundle small. */
 const Home = lazyWithRetry(() => import("./pages/marketing/Home"));
 const About = lazyWithRetry(() => import("./pages/marketing/About"));
+const ConnectAgent = lazyWithRetry(() => import("./pages/marketing/ConnectAgent"));
 const Riders = lazyWithRetry(() => import("./pages/marketing/Riders"));
 const Drivers = lazyWithRetry(() => import("./pages/marketing/Drivers"));
 const Corporates = lazyWithRetry(() => import("./pages/marketing/Corporates"));

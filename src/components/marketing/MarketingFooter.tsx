@@ -151,6 +151,13 @@ const MarketingFooter = () => {
             >
               {STAFF_ACCESS.label} →
             </Link>
+            <Link
+              to="/connect"
+              data-analytics="footer_connect_agent"
+              className="hover:text-nav-accent transition-colors"
+            >
+              Connect an AI assistant →
+            </Link>
           </div>
           <div className="flex gap-4">
             <select aria-label="Language" className="bg-nav/60 border border-nav-border/60 rounded px-2 py-1 text-xs">

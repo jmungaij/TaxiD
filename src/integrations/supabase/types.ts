@@ -85780,6 +85780,15 @@ export type Database = {
       staff_claim_self: { Args: never; Returns: string }
       staff_link_diagnostics: { Args: never; Returns: Json }
       staff_self_id: { Args: never; Returns: string }
+      switch_operating_context: {
+        Args: {
+          _correlation_id?: string
+          _new_context: string
+          _previous_context?: string
+          _session_id?: string
+        }
+        Returns: Json
+      }
       tax_engine_calculate: {
         Args: {
           _amount_cents: number

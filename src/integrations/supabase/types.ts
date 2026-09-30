@@ -85278,6 +85278,14 @@ export type Database = {
         | "corporate_employee"
         | "finance_admin"
         | "super_admin"
+        | "compliance_admin"
+        | "corporate_manager"
+        | "director"
+        | "dispatch_manager"
+        | "fleet_owner"
+        | "general_manager"
+        | "operations_admin"
+        | "pricing_manager"
       approval_decision_type:
         | "APPROVED"
         | "REJECTED"
@@ -86513,6 +86521,14 @@ export const Constants = {
         "corporate_employee",
         "finance_admin",
         "super_admin",
+        "compliance_admin",
+        "corporate_manager",
+        "director",
+        "dispatch_manager",
+        "fleet_owner",
+        "general_manager",
+        "operations_admin",
+        "pricing_manager",
       ],
       approval_decision_type: [
         "APPROVED",

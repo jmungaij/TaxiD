@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
-import { Shield, Users, CreditCard, Wallet, ArrowUpRight, Headphones, Activity, FileSearch } from "lucide-react";
+import { Shield, Users, CreditCard, Wallet, ArrowUpRight, Headphones, Activity, FileSearch, Car, Building2, UserRound } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -51,6 +51,27 @@ export default function AdminDashboard() {
           <h2 className="mt-3 font-semibold">{title}</h2><p className="mt-1 text-xs text-muted-foreground">{text}</p>
         </Link>)}
       </div>}
+
+      {isSuperAdmin && (
+        <section aria-label="Your TaxiD portals" className="space-y-3">
+          <h2 className="text-lg font-semibold">Your TaxiD portals</h2>
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {[
+              { to: "/rider", title: "Rider", icon: UserRound },
+              { to: "/driver/portal", title: "Driver", icon: Car },
+              { to: "/business/portal", title: "Power Business", icon: Building2 },
+              { to: "/staff/workspace", title: "Staff 360", icon: Shield },
+            ].map(({ to, title, icon: Icon }) => (
+              <Link key={to} to={to} className="flex items-center gap-3 rounded-md border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent">
+                <Icon className="h-5 w-5 text-primary" aria-hidden />
+                <span className="font-medium">{title}</span>
+                <ArrowUpRight className="ml-auto h-4 w-4 text-muted-foreground" aria-hidden />
+              </Link>
+            ))}
+          </div>
+          <p className="text-sm text-muted-foreground">Each portal shows records linked to your own account. Driver and business features require the corresponding account setup.</p>
+        </section>
+      )}
 
       {statsError && (
         <div className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">

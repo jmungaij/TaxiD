@@ -41,3 +41,4 @@
 - [x] Phase 1 restore: core accounts, roles & staff organisation (51 tables)
 - [x] Phase 2: finance, wallets & payouts (260 tables incl. dependencies)
 - [x] Phase 3: drivers, vehicles & fleet (122 tables incl. dependencies)
+- [x] Phase 4: dispatch, trips & pricing (122 tables incl. dependencies)

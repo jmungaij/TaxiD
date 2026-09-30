@@ -14,6 +14,202 @@ export type Database = {
   }
   public: {
     Tables: {
+      academy_courses: {
+        Row: {
+          audience_roles: string[]
+          changelog: string
+          code: string
+          created_at: string
+          created_by: string | null
+          estimated_minutes: number
+          id: string
+          is_mandatory: boolean
+          level: string
+          published_at: string | null
+          sort_order: number
+          status: string
+          summary: string
+          title: string
+          track: string
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          audience_roles?: string[]
+          changelog?: string
+          code: string
+          created_at?: string
+          created_by?: string | null
+          estimated_minutes?: number
+          id?: string
+          is_mandatory?: boolean
+          level?: string
+          published_at?: string | null
+          sort_order?: number
+          status?: string
+          summary?: string
+          title: string
+          track?: string
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          audience_roles?: string[]
+          changelog?: string
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          estimated_minutes?: number
+          id?: string
+          is_mandatory?: boolean
+          level?: string
+          published_at?: string | null
+          sort_order?: number
+          status?: string
+          summary?: string
+          title?: string
+          track?: string
+          updated_at?: string
+          version?: number
+        }
+        Relationships: []
+      }
+      academy_feedback: {
+        Row: {
+          comment: string
+          course_id: string | null
+          created_at: string
+          id: string
+          lesson_id: string | null
+          rating: number | null
+          user_id: string
+        }
+        Insert: {
+          comment?: string
+          course_id?: string | null
+          created_at?: string
+          id?: string
+          lesson_id?: string | null
+          rating?: number | null
+          user_id: string
+        }
+        Update: {
+          comment?: string
+          course_id?: string | null
+          created_at?: string
+          id?: string
+          lesson_id?: string | null
+          rating?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_feedback_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "academy_courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "academy_feedback_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "academy_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_lessons: {
+        Row: {
+          body_md: string
+          code: string
+          created_at: string
+          id: string
+          minutes: number
+          module_id: string
+          resources: Json
+          route_path: string | null
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body_md?: string
+          code: string
+          created_at?: string
+          id?: string
+          minutes?: number
+          module_id: string
+          resources?: Json
+          route_path?: string | null
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body_md?: string
+          code?: string
+          created_at?: string
+          id?: string
+          minutes?: number
+          module_id?: string
+          resources?: Json
+          route_path?: string | null
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_lessons_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "academy_modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_modules: {
+        Row: {
+          code: string
+          course_id: string
+          created_at: string
+          id: string
+          sort_order: number
+          summary: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          course_id: string
+          created_at?: string
+          id?: string
+          sort_order?: number
+          summary?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          course_id?: string
+          created_at?: string
+          id?: string
+          sort_order?: number
+          summary?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_modules_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "academy_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       admin_audit_log: {
         Row: {
           action: string
@@ -20584,6 +20780,176 @@ export type Database = {
         }
         Relationships: []
       }
+      incident_nocs: {
+        Row: {
+          acknowledged_at: string | null
+          affected_countries: string[] | null
+          affected_services: string[] | null
+          blast_radius_pct: number | null
+          comms_lead: string | null
+          created_at: string
+          detected_at: string
+          id: string
+          incident_code: string
+          incident_commander: string | null
+          metadata: Json
+          mitigated_at: string | null
+          resolved_at: string | null
+          severity: string
+          status: string
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          affected_countries?: string[] | null
+          affected_services?: string[] | null
+          blast_radius_pct?: number | null
+          comms_lead?: string | null
+          created_at?: string
+          detected_at?: string
+          id?: string
+          incident_code: string
+          incident_commander?: string | null
+          metadata?: Json
+          mitigated_at?: string | null
+          resolved_at?: string | null
+          severity: string
+          status?: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          affected_countries?: string[] | null
+          affected_services?: string[] | null
+          blast_radius_pct?: number | null
+          comms_lead?: string | null
+          created_at?: string
+          detected_at?: string
+          id?: string
+          incident_code?: string
+          incident_commander?: string | null
+          metadata?: Json
+          mitigated_at?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      incident_postmortems: {
+        Row: {
+          action_items: Json
+          authored_by: string | null
+          contributing_factors: string[] | null
+          created_at: string
+          customer_impact: string | null
+          id: string
+          incident_id: string
+          metadata: Json
+          published_at: string | null
+          reviewed_by: string | null
+          root_cause: string | null
+          summary: string
+          updated_at: string
+          what_went_poorly: string | null
+          what_went_well: string | null
+        }
+        Insert: {
+          action_items?: Json
+          authored_by?: string | null
+          contributing_factors?: string[] | null
+          created_at?: string
+          customer_impact?: string | null
+          id?: string
+          incident_id: string
+          metadata?: Json
+          published_at?: string | null
+          reviewed_by?: string | null
+          root_cause?: string | null
+          summary: string
+          updated_at?: string
+          what_went_poorly?: string | null
+          what_went_well?: string | null
+        }
+        Update: {
+          action_items?: Json
+          authored_by?: string | null
+          contributing_factors?: string[] | null
+          created_at?: string
+          customer_impact?: string | null
+          id?: string
+          incident_id?: string
+          metadata?: Json
+          published_at?: string | null
+          reviewed_by?: string | null
+          root_cause?: string | null
+          summary?: string
+          updated_at?: string
+          what_went_poorly?: string | null
+          what_went_well?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "incident_postmortems_incident_id_fkey"
+            columns: ["incident_id"]
+            isOneToOne: false
+            referencedRelation: "incident_nocs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      incident_runbooks: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          is_active: boolean
+          last_validated_at: string | null
+          metadata: Json
+          owner: string | null
+          runbook_key: string
+          steps: Json
+          title: string
+          trigger_conditions: Json | null
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_validated_at?: string | null
+          metadata?: Json
+          owner?: string | null
+          runbook_key: string
+          steps: Json
+          title: string
+          trigger_conditions?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_validated_at?: string | null
+          metadata?: Json
+          owner?: string | null
+          runbook_key?: string
+          steps?: Json
+          title?: string
+          trigger_conditions?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       infra_provider_actions: {
         Row: {
           action_key: string
@@ -21803,6 +22169,461 @@ export type Database = {
           version?: string
         }
         Relationships: []
+      }
+      legal_evidence: {
+        Row: {
+          collected_by: string | null
+          content_hash: string | null
+          created_at: string
+          description: string | null
+          evidence_type: string
+          id: string
+          issued_at: string | null
+          requirement_id: string | null
+          status: Database["public"]["Enums"]["legal_status"]
+          storage_bucket: string | null
+          storage_path: string | null
+          subject_id: string | null
+          subject_type: string
+          title: string
+          updated_at: string
+          valid_until: string | null
+          verification_status: Database["public"]["Enums"]["legal_review_outcome"]
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          collected_by?: string | null
+          content_hash?: string | null
+          created_at?: string
+          description?: string | null
+          evidence_type: string
+          id?: string
+          issued_at?: string | null
+          requirement_id?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          storage_bucket?: string | null
+          storage_path?: string | null
+          subject_id?: string | null
+          subject_type: string
+          title: string
+          updated_at?: string
+          valid_until?: string | null
+          verification_status?: Database["public"]["Enums"]["legal_review_outcome"]
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          collected_by?: string | null
+          content_hash?: string | null
+          created_at?: string
+          description?: string | null
+          evidence_type?: string
+          id?: string
+          issued_at?: string | null
+          requirement_id?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          storage_bucket?: string | null
+          storage_path?: string | null
+          subject_id?: string | null
+          subject_type?: string
+          title?: string
+          updated_at?: string
+          valid_until?: string | null
+          verification_status?: Database["public"]["Enums"]["legal_review_outcome"]
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_evidence_requirement_id_fkey"
+            columns: ["requirement_id"]
+            isOneToOne: false
+            referencedRelation: "legal_requirements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_frameworks: {
+        Row: {
+          code: string
+          created_at: string
+          effective_from: string | null
+          effective_until: string | null
+          id: string
+          jurisdiction_id: string | null
+          legal_source: string | null
+          regulator_id: string | null
+          source_url: string | null
+          status: Database["public"]["Enums"]["legal_status"]
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          effective_from?: string | null
+          effective_until?: string | null
+          id?: string
+          jurisdiction_id?: string | null
+          legal_source?: string | null
+          regulator_id?: string | null
+          source_url?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          effective_from?: string | null
+          effective_until?: string | null
+          id?: string
+          jurisdiction_id?: string | null
+          legal_source?: string | null
+          regulator_id?: string | null
+          source_url?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_frameworks_jurisdiction_id_fkey"
+            columns: ["jurisdiction_id"]
+            isOneToOne: false
+            referencedRelation: "legal_jurisdictions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "legal_frameworks_regulator_id_fkey"
+            columns: ["regulator_id"]
+            isOneToOne: false
+            referencedRelation: "legal_regulators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_incidents: {
+        Row: {
+          affected_customer_id: string | null
+          affected_partner_id: string | null
+          affected_shipment_ref: string | null
+          category: string
+          created_at: string
+          deadline_at: string | null
+          description: string | null
+          evidence_id: string | null
+          id: string
+          incident_code: string
+          legal_basis: string | null
+          owner_role: string | null
+          owner_user_id: string | null
+          regulator_id: string | null
+          reported_at: string
+          reported_by: string | null
+          requirement_id: string | null
+          resolution: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          severity: string
+          status: Database["public"]["Enums"]["legal_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          affected_customer_id?: string | null
+          affected_partner_id?: string | null
+          affected_shipment_ref?: string | null
+          category: string
+          created_at?: string
+          deadline_at?: string | null
+          description?: string | null
+          evidence_id?: string | null
+          id?: string
+          incident_code: string
+          legal_basis?: string | null
+          owner_role?: string | null
+          owner_user_id?: string | null
+          regulator_id?: string | null
+          reported_at?: string
+          reported_by?: string | null
+          requirement_id?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity?: string
+          status?: Database["public"]["Enums"]["legal_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          affected_customer_id?: string | null
+          affected_partner_id?: string | null
+          affected_shipment_ref?: string | null
+          category?: string
+          created_at?: string
+          deadline_at?: string | null
+          description?: string | null
+          evidence_id?: string | null
+          id?: string
+          incident_code?: string
+          legal_basis?: string | null
+          owner_role?: string | null
+          owner_user_id?: string | null
+          regulator_id?: string | null
+          reported_at?: string
+          reported_by?: string | null
+          requirement_id?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          severity?: string
+          status?: Database["public"]["Enums"]["legal_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_incidents_evidence_id_fkey"
+            columns: ["evidence_id"]
+            isOneToOne: false
+            referencedRelation: "legal_evidence"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "legal_incidents_regulator_id_fkey"
+            columns: ["regulator_id"]
+            isOneToOne: false
+            referencedRelation: "legal_regulators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "legal_incidents_requirement_id_fkey"
+            columns: ["requirement_id"]
+            isOneToOne: false
+            referencedRelation: "legal_requirements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_jurisdictions: {
+        Row: {
+          code: string
+          country_code: string
+          created_at: string
+          id: string
+          name: string
+          notes: string | null
+          parent_id: string | null
+          status: Database["public"]["Enums"]["legal_status"]
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          country_code: string
+          created_at?: string
+          id?: string
+          name: string
+          notes?: string | null
+          parent_id?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          country_code?: string
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          parent_id?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_jurisdictions_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "legal_jurisdictions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_regulators: {
+        Row: {
+          code: string
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string
+          domain: string | null
+          id: string
+          jurisdiction_id: string | null
+          name: string
+          notes: string | null
+          status: Database["public"]["Enums"]["legal_status"]
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          code: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          domain?: string | null
+          id?: string
+          jurisdiction_id?: string | null
+          name: string
+          notes?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          code?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          domain?: string | null
+          id?: string
+          jurisdiction_id?: string | null
+          name?: string
+          notes?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_regulators_jurisdiction_id_fkey"
+            columns: ["jurisdiction_id"]
+            isOneToOne: false
+            referencedRelation: "legal_jurisdictions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_requirements: {
+        Row: {
+          applies_to: string
+          approval_authority: string | null
+          asset_types: string[]
+          blocking_stages: Database["public"]["Enums"]["legal_gate_stage"][]
+          code: string
+          created_at: string
+          description: string | null
+          effective_from: string | null
+          effective_until: string | null
+          evidence_type: string | null
+          failure_action: Database["public"]["Enums"]["legal_failure_action"]
+          framework_id: string | null
+          geographies: string[]
+          goods_classes: Database["public"]["Enums"]["legal_goods_class"][]
+          id: string
+          jurisdiction_id: string | null
+          legal_source: string | null
+          mandatory: boolean
+          owner_role: string | null
+          owner_user_id: string | null
+          partner_types: string[]
+          regulator_id: string | null
+          renewal_period_days: number | null
+          requirement_type: string
+          service_families: string[]
+          status: Database["public"]["Enums"]["legal_status"]
+          title: string
+          updated_at: string
+          verification_method: string | null
+        }
+        Insert: {
+          applies_to?: string
+          approval_authority?: string | null
+          asset_types?: string[]
+          blocking_stages?: Database["public"]["Enums"]["legal_gate_stage"][]
+          code: string
+          created_at?: string
+          description?: string | null
+          effective_from?: string | null
+          effective_until?: string | null
+          evidence_type?: string | null
+          failure_action?: Database["public"]["Enums"]["legal_failure_action"]
+          framework_id?: string | null
+          geographies?: string[]
+          goods_classes?: Database["public"]["Enums"]["legal_goods_class"][]
+          id?: string
+          jurisdiction_id?: string | null
+          legal_source?: string | null
+          mandatory?: boolean
+          owner_role?: string | null
+          owner_user_id?: string | null
+          partner_types?: string[]
+          regulator_id?: string | null
+          renewal_period_days?: number | null
+          requirement_type: string
+          service_families?: string[]
+          status?: Database["public"]["Enums"]["legal_status"]
+          title: string
+          updated_at?: string
+          verification_method?: string | null
+        }
+        Update: {
+          applies_to?: string
+          approval_authority?: string | null
+          asset_types?: string[]
+          blocking_stages?: Database["public"]["Enums"]["legal_gate_stage"][]
+          code?: string
+          created_at?: string
+          description?: string | null
+          effective_from?: string | null
+          effective_until?: string | null
+          evidence_type?: string | null
+          failure_action?: Database["public"]["Enums"]["legal_failure_action"]
+          framework_id?: string | null
+          geographies?: string[]
+          goods_classes?: Database["public"]["Enums"]["legal_goods_class"][]
+          id?: string
+          jurisdiction_id?: string | null
+          legal_source?: string | null
+          mandatory?: boolean
+          owner_role?: string | null
+          owner_user_id?: string | null
+          partner_types?: string[]
+          regulator_id?: string | null
+          renewal_period_days?: number | null
+          requirement_type?: string
+          service_families?: string[]
+          status?: Database["public"]["Enums"]["legal_status"]
+          title?: string
+          updated_at?: string
+          verification_method?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_requirements_framework_id_fkey"
+            columns: ["framework_id"]
+            isOneToOne: false
+            referencedRelation: "legal_frameworks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "legal_requirements_jurisdiction_id_fkey"
+            columns: ["jurisdiction_id"]
+            isOneToOne: false
+            referencedRelation: "legal_jurisdictions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "legal_requirements_regulator_id_fkey"
+            columns: ["regulator_id"]
+            isOneToOne: false
+            referencedRelation: "legal_regulators"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       logistics_api_idempotency: {
         Row: {
@@ -27716,6 +28537,166 @@ export type Database = {
           },
         ]
       }
+      ml_model_registry: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          artifact_uri: string | null
+          created_at: string
+          framework: string | null
+          id: string
+          input_schema: Json | null
+          metadata: Json
+          model_name: string
+          notes: string | null
+          output_schema: Json | null
+          registered_by: string | null
+          status: string
+          training_metrics: Json
+          updated_at: string
+          use_case: string
+          validation_metrics: Json
+          version: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          artifact_uri?: string | null
+          created_at?: string
+          framework?: string | null
+          id?: string
+          input_schema?: Json | null
+          metadata?: Json
+          model_name: string
+          notes?: string | null
+          output_schema?: Json | null
+          registered_by?: string | null
+          status?: string
+          training_metrics?: Json
+          updated_at?: string
+          use_case: string
+          validation_metrics?: Json
+          version: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          artifact_uri?: string | null
+          created_at?: string
+          framework?: string | null
+          id?: string
+          input_schema?: Json | null
+          metadata?: Json
+          model_name?: string
+          notes?: string | null
+          output_schema?: Json | null
+          registered_by?: string | null
+          status?: string
+          training_metrics?: Json
+          updated_at?: string
+          use_case?: string
+          validation_metrics?: Json
+          version?: string
+        }
+        Relationships: []
+      }
+      ml_prediction_feedback: {
+        Row: {
+          id: string
+          is_correct: boolean | null
+          metadata: Json
+          outcome: Json
+          prediction_id: string | null
+          recorded_at: string
+          reward: number | null
+          source: string | null
+        }
+        Insert: {
+          id?: string
+          is_correct?: boolean | null
+          metadata?: Json
+          outcome: Json
+          prediction_id?: string | null
+          recorded_at?: string
+          reward?: number | null
+          source?: string | null
+        }
+        Update: {
+          id?: string
+          is_correct?: boolean | null
+          metadata?: Json
+          outcome?: Json
+          prediction_id?: string | null
+          recorded_at?: string
+          reward?: number | null
+          source?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_prediction_feedback_prediction_id_fkey"
+            columns: ["prediction_id"]
+            isOneToOne: false
+            referencedRelation: "ml_predictions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_predictions: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+          input_hash: string | null
+          input_payload: Json | null
+          latency_ms: number | null
+          model_id: string | null
+          output: Json | null
+          request_id: string | null
+          served_environment: string | null
+          use_case: string
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          input_hash?: string | null
+          input_payload?: Json | null
+          latency_ms?: number | null
+          model_id?: string | null
+          output?: Json | null
+          request_id?: string | null
+          served_environment?: string | null
+          use_case: string
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          input_hash?: string | null
+          input_payload?: Json | null
+          latency_ms?: number | null
+          model_id?: string | null
+          output?: Json | null
+          request_id?: string | null
+          served_environment?: string | null
+          use_case?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_predictions_model_id_fkey"
+            columns: ["model_id"]
+            isOneToOne: false
+            referencedRelation: "ml_model_registry"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       mobility_orders: {
         Row: {
           created_at: string
@@ -27827,6 +28808,62 @@ export type Database = {
             columns: ["partner_id"]
             isOneToOne: false
             referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      moc_incident_events: {
+        Row: {
+          actor: string | null
+          channel: string | null
+          created_at: string
+          event_type: string
+          id: string
+          incident_code: string | null
+          incident_id: string | null
+          latency_ms: number | null
+          occurred_at: string
+          payload: Json
+          runbook_key: string | null
+          succeeded: boolean | null
+          target: string | null
+        }
+        Insert: {
+          actor?: string | null
+          channel?: string | null
+          created_at?: string
+          event_type: string
+          id?: string
+          incident_code?: string | null
+          incident_id?: string | null
+          latency_ms?: number | null
+          occurred_at?: string
+          payload?: Json
+          runbook_key?: string | null
+          succeeded?: boolean | null
+          target?: string | null
+        }
+        Update: {
+          actor?: string | null
+          channel?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          incident_code?: string | null
+          incident_id?: string | null
+          latency_ms?: number | null
+          occurred_at?: string
+          payload?: Json
+          runbook_key?: string | null
+          succeeded?: boolean | null
+          target?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "moc_incident_events_incident_id_fkey"
+            columns: ["incident_id"]
+            isOneToOne: false
+            referencedRelation: "incident_nocs"
             referencedColumns: ["id"]
           },
         ]
@@ -30171,6 +31208,117 @@ export type Database = {
           },
         ]
       }
+      partner_support_kb_articles: {
+        Row: {
+          body: string
+          category: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          slug: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          category?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      partner_support_tickets: {
+        Row: {
+          assigned_to: string | null
+          category: string
+          created_at: string
+          description: string | null
+          escalated_to: string | null
+          escalation_level: string
+          id: string
+          kb_article_id: string | null
+          partner_category: string | null
+          partner_id: string | null
+          partner_name: string | null
+          portal: string | null
+          priority: string
+          reported_by: string | null
+          resolution: string | null
+          resolved_at: string | null
+          severity: string
+          status: string
+          subject: string
+          ticket_no: string
+          troubleshooting_notes: string | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          escalated_to?: string | null
+          escalation_level?: string
+          id?: string
+          kb_article_id?: string | null
+          partner_category?: string | null
+          partner_id?: string | null
+          partner_name?: string | null
+          portal?: string | null
+          priority?: string
+          reported_by?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          subject: string
+          ticket_no?: string
+          troubleshooting_notes?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          escalated_to?: string | null
+          escalation_level?: string
+          id?: string
+          kb_article_id?: string | null
+          partner_category?: string | null
+          partner_id?: string | null
+          partner_name?: string | null
+          portal?: string | null
+          priority?: string
+          reported_by?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          subject?: string
+          ticket_no?: string
+          troubleshooting_notes?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       partner_wallets: {
         Row: {
           balance: number
@@ -30213,6 +31361,137 @@ export type Database = {
             foreignKeyName: "partner_wallets_partner_id_fkey"
             columns: ["partner_id"]
             isOneToOne: true
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      partner_wl_incidents: {
+        Row: {
+          acknowledged_at: string | null
+          assigned_at: string | null
+          assigned_to: string | null
+          correlation_id: string | null
+          created_at: string
+          created_by: string | null
+          detail: string | null
+          id: string
+          opened_at: string
+          partner_id: string
+          reference: string
+          resolution: string | null
+          resolved_at: string | null
+          severity: string
+          status: Database["public"]["Enums"]["partner_wl_incident_status"]
+          tenant_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          assigned_at?: string | null
+          assigned_to?: string | null
+          correlation_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          detail?: string | null
+          id?: string
+          opened_at?: string
+          partner_id: string
+          reference: string
+          resolution?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: Database["public"]["Enums"]["partner_wl_incident_status"]
+          tenant_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          assigned_at?: string | null
+          assigned_to?: string | null
+          correlation_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          detail?: string | null
+          id?: string
+          opened_at?: string
+          partner_id?: string
+          reference?: string
+          resolution?: string | null
+          resolved_at?: string | null
+          severity?: string
+          status?: Database["public"]["Enums"]["partner_wl_incident_status"]
+          tenant_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partner_wl_incidents_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partner_wl_incidents_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "partner_wl_tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      partner_wl_tenants: {
+        Row: {
+          certified_at: string | null
+          created_at: string
+          created_by: string | null
+          display_name: string
+          environment: Database["public"]["Enums"]["partner_api_environment"]
+          id: string
+          markets: string[]
+          partner_id: string
+          services: string[]
+          status: Database["public"]["Enums"]["partner_wl_tenant_status"]
+          tenant_code: string
+          updated_at: string
+        }
+        Insert: {
+          certified_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          display_name: string
+          environment?: Database["public"]["Enums"]["partner_api_environment"]
+          id?: string
+          markets?: string[]
+          partner_id: string
+          services?: string[]
+          status?: Database["public"]["Enums"]["partner_wl_tenant_status"]
+          tenant_code: string
+          updated_at?: string
+        }
+        Update: {
+          certified_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          display_name?: string
+          environment?: Database["public"]["Enums"]["partner_api_environment"]
+          id?: string
+          markets?: string[]
+          partner_id?: string
+          services?: string[]
+          status?: Database["public"]["Enums"]["partner_wl_tenant_status"]
+          tenant_code?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partner_wl_tenants_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
             referencedRelation: "partners"
             referencedColumns: ["id"]
           },
@@ -41087,6 +42366,51 @@ export type Database = {
           },
         ]
       }
+      safety_events: {
+        Row: {
+          created_at: string
+          details: Json
+          driver_id: string | null
+          event_type: string
+          id: string
+          location_lat: number | null
+          location_lng: number | null
+          resolved_at: string | null
+          rider_id: string | null
+          severity: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          driver_id?: string | null
+          event_type: string
+          id?: string
+          location_lat?: number | null
+          location_lng?: number | null
+          resolved_at?: string | null
+          rider_id?: string | null
+          severity?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          driver_id?: string | null
+          event_type?: string
+          id?: string
+          location_lat?: number | null
+          location_lng?: number | null
+          resolved_at?: string | null
+          rider_id?: string | null
+          severity?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       sales_leads: {
         Row: {
           account_id: string | null
@@ -41325,6 +42649,99 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      security_incidents: {
+        Row: {
+          created_at: string
+          description: string
+          detected_at: string
+          id: string
+          incident_type: string
+          metadata: Json
+          resolved_at: string | null
+          severity: Database["public"]["Enums"]["security_severity"]
+          status: string
+          subject_user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          detected_at?: string
+          id?: string
+          incident_type: string
+          metadata?: Json
+          resolved_at?: string | null
+          severity?: Database["public"]["Enums"]["security_severity"]
+          status?: string
+          subject_user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          detected_at?: string
+          id?: string
+          incident_type?: string
+          metadata?: Json
+          resolved_at?: string | null
+          severity?: Database["public"]["Enums"]["security_severity"]
+          status?: string
+          subject_user_id?: string | null
+        }
+        Relationships: []
+      }
+      service_incidents: {
+        Row: {
+          acknowledged_at: string | null
+          commander: string | null
+          created_at: string
+          detected_at: string
+          id: string
+          impact_summary: string | null
+          incident_number: string
+          metadata: Json
+          postmortem_url: string | null
+          resolved_at: string | null
+          service_name: string
+          severity: Database["public"]["Enums"]["noc_severity"]
+          status: Database["public"]["Enums"]["noc_incident_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          commander?: string | null
+          created_at?: string
+          detected_at?: string
+          id?: string
+          impact_summary?: string | null
+          incident_number?: string
+          metadata?: Json
+          postmortem_url?: string | null
+          resolved_at?: string | null
+          service_name: string
+          severity?: Database["public"]["Enums"]["noc_severity"]
+          status?: Database["public"]["Enums"]["noc_incident_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          commander?: string | null
+          created_at?: string
+          detected_at?: string
+          id?: string
+          impact_summary?: string | null
+          incident_number?: string
+          metadata?: Json
+          postmortem_url?: string | null
+          resolved_at?: string | null
+          service_name?: string
+          severity?: Database["public"]["Enums"]["noc_severity"]
+          status?: Database["public"]["Enums"]["noc_incident_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       service_provider_claim_events: {
         Row: {
@@ -43987,6 +45404,217 @@ export type Database = {
           },
         ]
       }
+      support_case_events: {
+        Row: {
+          action: string
+          actor_user_id: string | null
+          case_id: string
+          created_at: string
+          from_value: string | null
+          id: string
+          metadata: Json
+          note: string | null
+          to_value: string | null
+        }
+        Insert: {
+          action: string
+          actor_user_id?: string | null
+          case_id: string
+          created_at?: string
+          from_value?: string | null
+          id?: string
+          metadata?: Json
+          note?: string | null
+          to_value?: string | null
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string | null
+          case_id?: string
+          created_at?: string
+          from_value?: string | null
+          id?: string
+          metadata?: Json
+          note?: string | null
+          to_value?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_case_events_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "support_cases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      support_case_notes: {
+        Row: {
+          author_user_id: string | null
+          body: string
+          case_id: string
+          created_at: string
+          id: string
+          updated_at: string
+          visibility: string
+        }
+        Insert: {
+          author_user_id?: string | null
+          body: string
+          case_id: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          visibility?: string
+        }
+        Update: {
+          author_user_id?: string | null
+          body?: string
+          case_id?: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_case_notes_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "support_cases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      support_cases: {
+        Row: {
+          assigned_team: string | null
+          assigned_to: string | null
+          case_number: string
+          category: string
+          channel: string
+          closed_at: string | null
+          corporate_account_id: string | null
+          created_at: string
+          created_by: string | null
+          delivery_id: string | null
+          description: string | null
+          driver_id: string | null
+          escalation_level: number
+          first_response_at: string | null
+          fraud_risk_score: number
+          id: string
+          payment_reference: string | null
+          priority: string
+          refund_request_id: string | null
+          requester_email: string | null
+          requester_name: string | null
+          requester_phone: string | null
+          requester_user_id: string | null
+          resolution_notes: string | null
+          resolved_at: string | null
+          rider_id: string | null
+          satisfaction_score: number | null
+          sentiment: string | null
+          severity: string
+          sla_resolution_breached: boolean
+          sla_resolution_due_at: string | null
+          sla_response_breached: boolean
+          sla_response_due_at: string | null
+          source_reference: string | null
+          status: string
+          subcategory: string | null
+          subject: string
+          tags: string[]
+          trip_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_team?: string | null
+          assigned_to?: string | null
+          case_number?: string
+          category?: string
+          channel?: string
+          closed_at?: string | null
+          corporate_account_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          delivery_id?: string | null
+          description?: string | null
+          driver_id?: string | null
+          escalation_level?: number
+          first_response_at?: string | null
+          fraud_risk_score?: number
+          id?: string
+          payment_reference?: string | null
+          priority?: string
+          refund_request_id?: string | null
+          requester_email?: string | null
+          requester_name?: string | null
+          requester_phone?: string | null
+          requester_user_id?: string | null
+          resolution_notes?: string | null
+          resolved_at?: string | null
+          rider_id?: string | null
+          satisfaction_score?: number | null
+          sentiment?: string | null
+          severity?: string
+          sla_resolution_breached?: boolean
+          sla_resolution_due_at?: string | null
+          sla_response_breached?: boolean
+          sla_response_due_at?: string | null
+          source_reference?: string | null
+          status?: string
+          subcategory?: string | null
+          subject: string
+          tags?: string[]
+          trip_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_team?: string | null
+          assigned_to?: string | null
+          case_number?: string
+          category?: string
+          channel?: string
+          closed_at?: string | null
+          corporate_account_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          delivery_id?: string | null
+          description?: string | null
+          driver_id?: string | null
+          escalation_level?: number
+          first_response_at?: string | null
+          fraud_risk_score?: number
+          id?: string
+          payment_reference?: string | null
+          priority?: string
+          refund_request_id?: string | null
+          requester_email?: string | null
+          requester_name?: string | null
+          requester_phone?: string | null
+          requester_user_id?: string | null
+          resolution_notes?: string | null
+          resolved_at?: string | null
+          rider_id?: string | null
+          satisfaction_score?: number | null
+          sentiment?: string | null
+          severity?: string
+          sla_resolution_breached?: boolean
+          sla_resolution_due_at?: string | null
+          sla_response_breached?: boolean
+          sla_response_due_at?: string | null
+          source_reference?: string | null
+          status?: string
+          subcategory?: string | null
+          subject?: string
+          tags?: string[]
+          trip_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       support_messages: {
         Row: {
           body: string
@@ -44021,6 +45649,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      support_sla_policies: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          is_active: boolean
+          priority: string
+          resolution_minutes: number
+          response_minutes: number
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          priority: string
+          resolution_minutes?: number
+          response_minutes?: number
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          priority?: string
+          resolution_minutes?: number
+          response_minutes?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       support_threads: {
         Row: {
@@ -45909,6 +47570,68 @@ export type Database = {
         }
         Relationships: []
       }
+      trust_incidents: {
+        Row: {
+          case_id: string | null
+          category: Database["public"]["Enums"]["trust_case_category"]
+          created_at: string
+          description: string | null
+          evidence_refs: Json
+          id: string
+          metadata: Json
+          occurred_at: string
+          reported_by: string | null
+          routed_at: string | null
+          severity: Database["public"]["Enums"]["trust_case_severity"]
+          source: string
+          source_ref: string | null
+          subject_id: string | null
+          subject_type: Database["public"]["Enums"]["trust_subject_type"]
+        }
+        Insert: {
+          case_id?: string | null
+          category: Database["public"]["Enums"]["trust_case_category"]
+          created_at?: string
+          description?: string | null
+          evidence_refs?: Json
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          reported_by?: string | null
+          routed_at?: string | null
+          severity?: Database["public"]["Enums"]["trust_case_severity"]
+          source: string
+          source_ref?: string | null
+          subject_id?: string | null
+          subject_type: Database["public"]["Enums"]["trust_subject_type"]
+        }
+        Update: {
+          case_id?: string | null
+          category?: Database["public"]["Enums"]["trust_case_category"]
+          created_at?: string
+          description?: string | null
+          evidence_refs?: Json
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          reported_by?: string | null
+          routed_at?: string | null
+          severity?: Database["public"]["Enums"]["trust_case_severity"]
+          source?: string
+          source_ref?: string | null
+          subject_id?: string | null
+          subject_type?: Database["public"]["Enums"]["trust_subject_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trust_incidents_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "trust_cases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_alert_prefs: {
         Row: {
           circuit_email: boolean
@@ -47479,6 +49202,40 @@ export type Database = {
         | "CLEARING"
         | "WALLET"
       ledger_direction: "DEBIT" | "CREDIT"
+      legal_failure_action:
+        | "block_booking"
+        | "block_dispatch"
+        | "block_settlement"
+        | "block_processing"
+        | "block_activation"
+        | "manual_review"
+        | "warn_only"
+      legal_gate_stage:
+        | "serviceability"
+        | "quote"
+        | "booking"
+        | "dispatch"
+        | "custody"
+        | "delivery"
+        | "claims"
+        | "settlement"
+        | "processing"
+        | "activation"
+        | "invoicing"
+      legal_goods_class:
+        | "standard"
+        | "restricted"
+        | "conditional"
+        | "prohibited"
+        | "unknown"
+      legal_review_outcome:
+        | "pending"
+        | "legal_review_required"
+        | "evidence_required"
+        | "approved"
+        | "approved_with_conditions"
+        | "rejected"
+        | "not_applicable"
       legal_status:
         | "not_applicable"
         | "unknown"
@@ -47549,6 +49306,14 @@ export type Database = {
         | "LEASING"
         | "MULTI_SERVICE"
       mpesa_status: "pending" | "success" | "failed"
+      noc_incident_status:
+        | "open"
+        | "investigating"
+        | "identified"
+        | "monitoring"
+        | "resolved"
+        | "postmortem"
+      noc_severity: "SEV1" | "SEV2" | "SEV3" | "SEV4" | "SEV5"
       offline_command_state:
         | "QUEUED"
         | "SYNCING"
@@ -47637,6 +49402,18 @@ export type Database = {
         | "verified"
         | "rejected"
         | "expired"
+      partner_wl_incident_status:
+        | "open"
+        | "mitigating"
+        | "monitoring"
+        | "resolved"
+        | "closed"
+      partner_wl_tenant_status:
+        | "draft"
+        | "provisioning"
+        | "certifying"
+        | "live"
+        | "suspended"
       paybill_proof_status: "pending" | "approved" | "rejected"
       payment_audit_event:
         | "INSERT"
@@ -47754,6 +49531,7 @@ export type Database = {
         | "payment_method"
       risk_event_severity: "low" | "medium" | "high" | "critical"
       risk_severity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
+      security_severity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
       settlement_batch_status:
         | "OPEN"
         | "SUBMITTED"
@@ -48414,6 +50192,44 @@ export const Constants = {
         "WALLET",
       ],
       ledger_direction: ["DEBIT", "CREDIT"],
+      legal_failure_action: [
+        "block_booking",
+        "block_dispatch",
+        "block_settlement",
+        "block_processing",
+        "block_activation",
+        "manual_review",
+        "warn_only",
+      ],
+      legal_gate_stage: [
+        "serviceability",
+        "quote",
+        "booking",
+        "dispatch",
+        "custody",
+        "delivery",
+        "claims",
+        "settlement",
+        "processing",
+        "activation",
+        "invoicing",
+      ],
+      legal_goods_class: [
+        "standard",
+        "restricted",
+        "conditional",
+        "prohibited",
+        "unknown",
+      ],
+      legal_review_outcome: [
+        "pending",
+        "legal_review_required",
+        "evidence_required",
+        "approved",
+        "approved_with_conditions",
+        "rejected",
+        "not_applicable",
+      ],
       legal_status: [
         "not_applicable",
         "unknown",
@@ -48489,6 +50305,15 @@ export const Constants = {
         "MULTI_SERVICE",
       ],
       mpesa_status: ["pending", "success", "failed"],
+      noc_incident_status: [
+        "open",
+        "investigating",
+        "identified",
+        "monitoring",
+        "resolved",
+        "postmortem",
+      ],
+      noc_severity: ["SEV1", "SEV2", "SEV3", "SEV4", "SEV5"],
       offline_command_state: [
         "QUEUED",
         "SYNCING",
@@ -48579,6 +50404,20 @@ export const Constants = {
         "verified",
         "rejected",
         "expired",
+      ],
+      partner_wl_incident_status: [
+        "open",
+        "mitigating",
+        "monitoring",
+        "resolved",
+        "closed",
+      ],
+      partner_wl_tenant_status: [
+        "draft",
+        "provisioning",
+        "certifying",
+        "live",
+        "suspended",
       ],
       paybill_proof_status: ["pending", "approved", "rejected"],
       payment_audit_event: [
@@ -48710,6 +50549,7 @@ export const Constants = {
       ],
       risk_event_severity: ["low", "medium", "high", "critical"],
       risk_severity: ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+      security_severity: ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
       settlement_batch_status: [
         "OPEN",
         "SUBMITTED",

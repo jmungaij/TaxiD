@@ -44,3 +44,5 @@
 - [x] Phase 4: dispatch, trips & pricing (122 tables incl. dependencies)
 - [x] Phase 5: corporate & charter (54 tables)
 - [x] Phase 6: delivery & logistics (106 tables)
+- [x] Phase 7: support & safety (29 tables)
+- [x] Harden 18 protected backend actions (role lookups, SOS, driver accept, fare limits, revoke internal routines)

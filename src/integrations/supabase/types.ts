@@ -10733,6 +10733,130 @@ export type Database = {
         }
         Relationships: []
       }
+      crm_account_access_grants: {
+        Row: {
+          access_level: string
+          account_id: string
+          created_at: string
+          expires_at: string
+          granted_by: string
+          grantee_staff_id: string
+          id: string
+          reason: string
+          revoked_at: string | null
+          revoked_by: string | null
+          updated_at: string
+        }
+        Insert: {
+          access_level: string
+          account_id: string
+          created_at?: string
+          expires_at: string
+          granted_by: string
+          grantee_staff_id: string
+          id?: string
+          reason: string
+          revoked_at?: string | null
+          revoked_by?: string | null
+          updated_at?: string
+        }
+        Update: {
+          access_level?: string
+          account_id?: string
+          created_at?: string
+          expires_at?: string
+          granted_by?: string
+          grantee_staff_id?: string
+          id?: string
+          reason?: string
+          revoked_at?: string | null
+          revoked_by?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_account_access_grants_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_account_access_grants_grantee_staff_id_fkey"
+            columns: ["grantee_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_account_access_requests: {
+        Row: {
+          access_level: string
+          account_id: string
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          decision_note: string | null
+          grant_id: string | null
+          id: string
+          reason: string
+          requester_staff_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          access_level: string
+          account_id: string
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          decision_note?: string | null
+          grant_id?: string | null
+          id?: string
+          reason: string
+          requester_staff_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          access_level?: string
+          account_id?: string
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          decision_note?: string | null
+          grant_id?: string | null
+          id?: string
+          reason?: string
+          requester_staff_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_account_access_requests_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_account_access_requests_grant_id_fkey"
+            columns: ["grant_id"]
+            isOneToOne: false
+            referencedRelation: "crm_account_access_grants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_account_access_requests_requester_staff_id_fkey"
+            columns: ["requester_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       crm_accounts: {
         Row: {
           account_ref: string
@@ -10845,6 +10969,416 @@ export type Database = {
           },
         ]
       }
+      crm_contacts: {
+        Row: {
+          account_id: string
+          contact_role: string
+          created_at: string
+          created_by: string | null
+          email: string | null
+          full_name: string
+          id: string
+          influence_level: string
+          is_active: boolean
+          job_title: string | null
+          notes: string | null
+          phone: string | null
+          seed_batch: string | null
+          updated_at: string
+        }
+        Insert: {
+          account_id: string
+          contact_role?: string
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name: string
+          id?: string
+          influence_level?: string
+          is_active?: boolean
+          job_title?: string | null
+          notes?: string | null
+          phone?: string | null
+          seed_batch?: string | null
+          updated_at?: string
+        }
+        Update: {
+          account_id?: string
+          contact_role?: string
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          influence_level?: string
+          is_active?: boolean
+          job_title?: string | null
+          notes?: string | null
+          phone?: string | null
+          seed_batch?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_contacts_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_customer_commitments: {
+        Row: {
+          account_id: string
+          commitment: string
+          contact_id: string | null
+          created_at: string
+          direction: string
+          due_at: string | null
+          evidence_kind: string | null
+          evidence_ref: string | null
+          expected_outcome: string | null
+          fulfilled_at: string | null
+          id: string
+          interaction_id: string | null
+          notes: string | null
+          opportunity_id: string | null
+          owner_staff_id: string | null
+          status: string
+          updated_at: string
+          work_item_id: string | null
+        }
+        Insert: {
+          account_id: string
+          commitment: string
+          contact_id?: string | null
+          created_at?: string
+          direction?: string
+          due_at?: string | null
+          evidence_kind?: string | null
+          evidence_ref?: string | null
+          expected_outcome?: string | null
+          fulfilled_at?: string | null
+          id?: string
+          interaction_id?: string | null
+          notes?: string | null
+          opportunity_id?: string | null
+          owner_staff_id?: string | null
+          status?: string
+          updated_at?: string
+          work_item_id?: string | null
+        }
+        Update: {
+          account_id?: string
+          commitment?: string
+          contact_id?: string | null
+          created_at?: string
+          direction?: string
+          due_at?: string | null
+          evidence_kind?: string | null
+          evidence_ref?: string | null
+          expected_outcome?: string | null
+          fulfilled_at?: string | null
+          id?: string
+          interaction_id?: string | null
+          notes?: string | null
+          opportunity_id?: string | null
+          owner_staff_id?: string | null
+          status?: string
+          updated_at?: string
+          work_item_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_customer_commitments_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_customer_commitments_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "crm_contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_customer_commitments_interaction_id_fkey"
+            columns: ["interaction_id"]
+            isOneToOne: false
+            referencedRelation: "crm_interactions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_customer_commitments_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_customer_commitments_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_customer_commitments_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_document_approvals: {
+        Row: {
+          created_at: string
+          decided_by: string | null
+          decided_staff_id: string | null
+          decision: string
+          id: string
+          rationale: string
+          version_id: string
+        }
+        Insert: {
+          created_at?: string
+          decided_by?: string | null
+          decided_staff_id?: string | null
+          decision: string
+          id?: string
+          rationale: string
+          version_id: string
+        }
+        Update: {
+          created_at?: string
+          decided_by?: string | null
+          decided_staff_id?: string | null
+          decision?: string
+          id?: string
+          rationale?: string
+          version_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_document_approvals_decided_staff_id_fkey"
+            columns: ["decided_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_document_approvals_version_id_fkey"
+            columns: ["version_id"]
+            isOneToOne: false
+            referencedRelation: "crm_document_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_document_links: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          document_id: string
+          id: string
+          target_id: string
+          target_type: string
+          version_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          document_id: string
+          id?: string
+          target_id: string
+          target_type: string
+          version_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          document_id?: string
+          id?: string
+          target_id?: string
+          target_type?: string
+          version_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_document_links_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_document_links_version_id_fkey"
+            columns: ["version_id"]
+            isOneToOne: false
+            referencedRelation: "crm_document_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_document_permissions: {
+        Row: {
+          allowed: boolean
+          created_at: string
+          doc_class: Database["public"]["Enums"]["crm_doc_class"] | null
+          doc_type: string | null
+          document_id: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"] | null
+          verb: Database["public"]["Enums"]["crm_doc_verb"]
+        }
+        Insert: {
+          allowed?: boolean
+          created_at?: string
+          doc_class?: Database["public"]["Enums"]["crm_doc_class"] | null
+          doc_type?: string | null
+          document_id?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"] | null
+          verb: Database["public"]["Enums"]["crm_doc_verb"]
+        }
+        Update: {
+          allowed?: boolean
+          created_at?: string
+          doc_class?: Database["public"]["Enums"]["crm_doc_class"] | null
+          doc_type?: string | null
+          document_id?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"] | null
+          verb?: Database["public"]["Enums"]["crm_doc_verb"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_document_permissions_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_document_shares: {
+        Row: {
+          channel: string
+          contact_id: string | null
+          id: string
+          note: string | null
+          recipient_email: string | null
+          shared_at: string
+          shared_by: string | null
+          version_id: string
+        }
+        Insert: {
+          channel?: string
+          contact_id?: string | null
+          id?: string
+          note?: string | null
+          recipient_email?: string | null
+          shared_at?: string
+          shared_by?: string | null
+          version_id: string
+        }
+        Update: {
+          channel?: string
+          contact_id?: string | null
+          id?: string
+          note?: string | null
+          recipient_email?: string | null
+          shared_at?: string
+          shared_by?: string | null
+          version_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_document_shares_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "crm_contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_document_shares_version_id_fkey"
+            columns: ["version_id"]
+            isOneToOne: false
+            referencedRelation: "crm_document_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_document_versions: {
+        Row: {
+          approval_state: string
+          authored_by: string | null
+          authored_staff_id: string | null
+          byte_size: number | null
+          change_note: string | null
+          checksum: string | null
+          created_at: string
+          document_id: string
+          file_name: string | null
+          id: string
+          mime_type: string | null
+          storage_path: string | null
+          version_label: string
+          version_seq: number
+        }
+        Insert: {
+          approval_state?: string
+          authored_by?: string | null
+          authored_staff_id?: string | null
+          byte_size?: number | null
+          change_note?: string | null
+          checksum?: string | null
+          created_at?: string
+          document_id: string
+          file_name?: string | null
+          id?: string
+          mime_type?: string | null
+          storage_path?: string | null
+          version_label: string
+          version_seq: number
+        }
+        Update: {
+          approval_state?: string
+          authored_by?: string | null
+          authored_staff_id?: string | null
+          byte_size?: number | null
+          change_note?: string | null
+          checksum?: string | null
+          created_at?: string
+          document_id?: string
+          file_name?: string | null
+          id?: string
+          mime_type?: string | null
+          storage_path?: string | null
+          version_label?: string
+          version_seq?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_document_versions_authored_staff_id_fkey"
+            columns: ["authored_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_document_versions_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       crm_documents: {
         Row: {
           account_id: string | null
@@ -10936,6 +11470,333 @@ export type Database = {
             columns: ["parent_document_id"]
             isOneToOne: false
             referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_interactions: {
+        Row: {
+          account_id: string
+          contact_id: string | null
+          created_at: string
+          created_by: string | null
+          direction: string
+          email_message_id: string | null
+          id: string
+          interaction_type: string
+          occurred_at: string
+          opportunity_id: string | null
+          outcome: string | null
+          provenance: string
+          seed_batch: string | null
+          sentiment: string | null
+          staff_id: string | null
+          subject: string
+          summary: string | null
+          updated_at: string
+          work_item_id: string | null
+        }
+        Insert: {
+          account_id: string
+          contact_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          direction?: string
+          email_message_id?: string | null
+          id?: string
+          interaction_type: string
+          occurred_at?: string
+          opportunity_id?: string | null
+          outcome?: string | null
+          provenance?: string
+          seed_batch?: string | null
+          sentiment?: string | null
+          staff_id?: string | null
+          subject: string
+          summary?: string | null
+          updated_at?: string
+          work_item_id?: string | null
+        }
+        Update: {
+          account_id?: string
+          contact_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          direction?: string
+          email_message_id?: string | null
+          id?: string
+          interaction_type?: string
+          occurred_at?: string
+          opportunity_id?: string | null
+          outcome?: string | null
+          provenance?: string
+          seed_batch?: string | null
+          sentiment?: string | null
+          staff_id?: string | null
+          subject?: string
+          summary?: string | null
+          updated_at?: string
+          work_item_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_interactions_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_interactions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "crm_contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_interactions_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_interactions_staff_id_fkey"
+            columns: ["staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_interactions_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_meeting_outcomes: {
+        Row: {
+          account_id: string
+          agreed_next_steps: string | null
+          capture_completeness_pct: number
+          commercial_position: string | null
+          competition: string | null
+          created_at: string
+          created_by: string | null
+          decision_process: string | null
+          decision_timeline: string | null
+          id: string
+          interaction_id: string
+          needs: string | null
+          operational_requirements: string | null
+          opportunity_id: string | null
+          risks: string | null
+          updated_at: string
+        }
+        Insert: {
+          account_id: string
+          agreed_next_steps?: string | null
+          capture_completeness_pct?: number
+          commercial_position?: string | null
+          competition?: string | null
+          created_at?: string
+          created_by?: string | null
+          decision_process?: string | null
+          decision_timeline?: string | null
+          id?: string
+          interaction_id: string
+          needs?: string | null
+          operational_requirements?: string | null
+          opportunity_id?: string | null
+          risks?: string | null
+          updated_at?: string
+        }
+        Update: {
+          account_id?: string
+          agreed_next_steps?: string | null
+          capture_completeness_pct?: number
+          commercial_position?: string | null
+          competition?: string | null
+          created_at?: string
+          created_by?: string | null
+          decision_process?: string | null
+          decision_timeline?: string | null
+          id?: string
+          interaction_id?: string
+          needs?: string | null
+          operational_requirements?: string | null
+          opportunity_id?: string | null
+          risks?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_meeting_outcomes_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_meeting_outcomes_interaction_id_fkey"
+            columns: ["interaction_id"]
+            isOneToOne: true
+            referencedRelation: "crm_interactions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_meeting_outcomes_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_next_actions: {
+        Row: {
+          account_id: string
+          created_at: string
+          created_by: string | null
+          due_at: string | null
+          id: string
+          interaction_id: string | null
+          opportunity_id: string | null
+          priority: string
+          staff_id: string | null
+          status: string
+          title: string
+          updated_at: string
+          work_item_id: string
+        }
+        Insert: {
+          account_id: string
+          created_at?: string
+          created_by?: string | null
+          due_at?: string | null
+          id?: string
+          interaction_id?: string | null
+          opportunity_id?: string | null
+          priority?: string
+          staff_id?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          work_item_id: string
+        }
+        Update: {
+          account_id?: string
+          created_at?: string
+          created_by?: string | null
+          due_at?: string | null
+          id?: string
+          interaction_id?: string | null
+          opportunity_id?: string | null
+          priority?: string
+          staff_id?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          work_item_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_next_actions_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_next_actions_interaction_id_fkey"
+            columns: ["interaction_id"]
+            isOneToOne: false
+            referencedRelation: "crm_interactions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_next_actions_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_next_actions_staff_id_fkey"
+            columns: ["staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_next_actions_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_opportunity_links: {
+        Row: {
+          account_id: string
+          created_at: string
+          created_by: string | null
+          id: string
+          opportunity_id: string
+          owner_staff_id: string | null
+          primary_contact_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          account_id: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          opportunity_id: string
+          owner_staff_id?: string | null
+          primary_contact_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          account_id?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          opportunity_id?: string
+          owner_staff_id?: string | null
+          primary_contact_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_opportunity_links_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "crm_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_opportunity_links_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: true
+            referencedRelation: "commercial_opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_opportunity_links_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_opportunity_links_primary_contact_id_fkey"
+            columns: ["primary_contact_id"]
+            isOneToOne: false
+            referencedRelation: "crm_contacts"
             referencedColumns: ["id"]
           },
         ]
@@ -11571,6 +12432,87 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      device_fingerprints: {
+        Row: {
+          app_version: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          fingerprint_hash: string
+          first_seen: string
+          has_mock_location: boolean | null
+          id: string
+          ip_address: unknown
+          is_emulator: boolean | null
+          is_jailbroken: boolean | null
+          is_rooted: boolean | null
+          language: string | null
+          last_seen: string
+          metadata: Json
+          os: string | null
+          os_version: string | null
+          platform: string | null
+          risk_score: number | null
+          screen: string | null
+          timezone: string | null
+          updated_at: string
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          app_version?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          fingerprint_hash: string
+          first_seen?: string
+          has_mock_location?: boolean | null
+          id?: string
+          ip_address?: unknown
+          is_emulator?: boolean | null
+          is_jailbroken?: boolean | null
+          is_rooted?: boolean | null
+          language?: string | null
+          last_seen?: string
+          metadata?: Json
+          os?: string | null
+          os_version?: string | null
+          platform?: string | null
+          risk_score?: number | null
+          screen?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          app_version?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          fingerprint_hash?: string
+          first_seen?: string
+          has_mock_location?: boolean | null
+          id?: string
+          ip_address?: unknown
+          is_emulator?: boolean | null
+          is_jailbroken?: boolean | null
+          is_rooted?: boolean | null
+          language?: string | null
+          last_seen?: string
+          metadata?: Json
+          os?: string | null
+          os_version?: string | null
+          platform?: string | null
+          risk_score?: number | null
+          screen?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       dispatch_acceptance_stats: {
         Row: {
@@ -21405,6 +22347,274 @@ export type Database = {
         }
         Relationships: []
       }
+      identity_auth_policies: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          corporate_id: string | null
+          created_at: string
+          email_domains: string[]
+          google_enabled: boolean
+          id: string
+          label: string
+          mfa_required: boolean
+          note: string | null
+          password_enabled: boolean
+          passwordless_enabled: boolean
+          scope: string
+          session_absolute_hours: number
+          session_idle_minutes: number
+          sso_enabled: boolean
+          sso_provider: string | null
+          state: string
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          corporate_id?: string | null
+          created_at?: string
+          email_domains?: string[]
+          google_enabled?: boolean
+          id?: string
+          label: string
+          mfa_required?: boolean
+          note?: string | null
+          password_enabled?: boolean
+          passwordless_enabled?: boolean
+          scope: string
+          session_absolute_hours?: number
+          session_idle_minutes?: number
+          sso_enabled?: boolean
+          sso_provider?: string | null
+          state?: string
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          corporate_id?: string | null
+          created_at?: string
+          email_domains?: string[]
+          google_enabled?: boolean
+          id?: string
+          label?: string
+          mfa_required?: boolean
+          note?: string | null
+          password_enabled?: boolean
+          passwordless_enabled?: boolean
+          scope?: string
+          session_absolute_hours?: number
+          session_idle_minutes?: number
+          sso_enabled?: boolean
+          sso_provider?: string | null
+          state?: string
+          updated_at?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "identity_auth_policies_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      identity_discovery_events: {
+        Row: {
+          corporate_id: string | null
+          correlation_id: string
+          email_domain: string | null
+          email_hash: string
+          id: string
+          metadata: Json
+          occurred_at: string
+          outcome: string
+          policy_id: string | null
+        }
+        Insert: {
+          corporate_id?: string | null
+          correlation_id?: string
+          email_domain?: string | null
+          email_hash: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          outcome: string
+          policy_id?: string | null
+        }
+        Update: {
+          corporate_id?: string | null
+          correlation_id?: string
+          email_domain?: string | null
+          email_hash?: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          outcome?: string
+          policy_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "identity_discovery_events_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "identity_discovery_events_policy_id_fkey"
+            columns: ["policy_id"]
+            isOneToOne: false
+            referencedRelation: "identity_auth_policies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      identity_discovery_rate: {
+        Row: {
+          bucket: string
+          hits: number
+          window_start: string
+        }
+        Insert: {
+          bucket: string
+          hits?: number
+          window_start?: string
+        }
+        Update: {
+          bucket?: string
+          hits?: number
+          window_start?: string
+        }
+        Relationships: []
+      }
+      identity_risk_assessments: {
+        Row: {
+          correlation_id: string
+          country: string | null
+          decision: string
+          fingerprint_hash: string | null
+          id: string
+          occurred_at: string
+          policy_id: string | null
+          policy_version: number | null
+          reasons: Json
+          score: number
+          signals: Json
+          user_id: string | null
+        }
+        Insert: {
+          correlation_id?: string
+          country?: string | null
+          decision: string
+          fingerprint_hash?: string | null
+          id?: string
+          occurred_at?: string
+          policy_id?: string | null
+          policy_version?: number | null
+          reasons?: Json
+          score: number
+          signals?: Json
+          user_id?: string | null
+        }
+        Update: {
+          correlation_id?: string
+          country?: string | null
+          decision?: string
+          fingerprint_hash?: string | null
+          id?: string
+          occurred_at?: string
+          policy_id?: string | null
+          policy_version?: number | null
+          reasons?: Json
+          score?: number
+          signals?: Json
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "identity_risk_assessments_policy_id_fkey"
+            columns: ["policy_id"]
+            isOneToOne: false
+            referencedRelation: "identity_risk_policies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      identity_risk_policies: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          business_approval: string
+          created_at: string
+          dormant_days: number
+          failure_threshold: number
+          failure_window_minutes: number
+          id: string
+          label: string
+          state: string
+          step_up_threshold: number
+          travel_window_hours: number
+          updated_at: string
+          version: number
+          w_dormant: number
+          w_impossible_travel: number
+          w_new_country: number
+          w_new_device: number
+          w_privileged_access: number
+          w_recent_failures: number
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          business_approval?: string
+          created_at?: string
+          dormant_days?: number
+          failure_threshold?: number
+          failure_window_minutes?: number
+          id?: string
+          label: string
+          state?: string
+          step_up_threshold?: number
+          travel_window_hours?: number
+          updated_at?: string
+          version: number
+          w_dormant?: number
+          w_impossible_travel?: number
+          w_new_country?: number
+          w_new_device?: number
+          w_privileged_access?: number
+          w_recent_failures?: number
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          business_approval?: string
+          created_at?: string
+          dormant_days?: number
+          failure_threshold?: number
+          failure_window_minutes?: number
+          id?: string
+          label?: string
+          state?: string
+          step_up_threshold?: number
+          travel_window_hours?: number
+          updated_at?: string
+          version?: number
+          w_dormant?: number
+          w_impossible_travel?: number
+          w_new_country?: number
+          w_new_device?: number
+          w_privileged_access?: number
+          w_recent_failures?: number
+        }
+        Relationships: []
+      }
       incident_nocs: {
         Row: {
           acknowledged_at: string | null
@@ -30973,6 +32183,45 @@ export type Database = {
           },
         ]
       }
+      navigation_logs: {
+        Row: {
+          created_at: string
+          duration_ms: number | null
+          error_message: string | null
+          from_route: string | null
+          id: string
+          route: string
+          session_id: string | null
+          success: boolean
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          from_route?: string | null
+          id?: string
+          route: string
+          session_id?: string | null
+          success?: boolean
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          from_route?: string | null
+          id?: string
+          route?: string
+          session_id?: string | null
+          success?: boolean
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       offline_payment_attestations: {
         Row: {
           amount_cents: number
@@ -37416,6 +38665,63 @@ export type Database = {
         }
         Relationships: []
       }
+      platform_settings: {
+        Row: {
+          brand_name: string
+          created_at: string
+          default_currency: string
+          default_locale: string
+          default_timezone: string
+          email_from_address: string | null
+          email_from_name: string | null
+          email_reply_to: string | null
+          feature_flags: Json
+          id: string
+          maintenance_message: string | null
+          maintenance_mode: boolean
+          onboarding_welcome_message: string | null
+          support_email: string | null
+          support_phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          brand_name?: string
+          created_at?: string
+          default_currency?: string
+          default_locale?: string
+          default_timezone?: string
+          email_from_address?: string | null
+          email_from_name?: string | null
+          email_reply_to?: string | null
+          feature_flags?: Json
+          id?: string
+          maintenance_message?: string | null
+          maintenance_mode?: boolean
+          onboarding_welcome_message?: string | null
+          support_email?: string | null
+          support_phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          brand_name?: string
+          created_at?: string
+          default_currency?: string
+          default_locale?: string
+          default_timezone?: string
+          email_from_address?: string | null
+          email_from_name?: string | null
+          email_reply_to?: string | null
+          feature_flags?: Json
+          id?: string
+          maintenance_message?: string | null
+          maintenance_mode?: boolean
+          onboarding_welcome_message?: string | null
+          support_email?: string | null
+          support_phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       platform_wallet: {
         Row: {
           created_at: string
@@ -37527,6 +38833,51 @@ export type Database = {
           reference?: string
           source_id?: string | null
           source_kind?: string
+        }
+        Relationships: []
+      }
+      portal_transition_audit: {
+        Row: {
+          actor_email: string | null
+          created_at: string
+          id: string
+          kind: string
+          new_context: string | null
+          new_route: string
+          previous_context: string | null
+          previous_route: string | null
+          remembered: boolean
+          roles: string[]
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          actor_email?: string | null
+          created_at?: string
+          id?: string
+          kind: string
+          new_context?: string | null
+          new_route: string
+          previous_context?: string | null
+          previous_route?: string | null
+          remembered?: boolean
+          roles?: string[]
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          actor_email?: string | null
+          created_at?: string
+          id?: string
+          kind?: string
+          new_context?: string | null
+          new_route?: string
+          previous_context?: string | null
+          previous_route?: string | null
+          remembered?: boolean
+          roles?: string[]
+          user_agent?: string | null
+          user_id?: string
         }
         Relationships: []
       }
@@ -42330,6 +43681,45 @@ export type Database = {
         }
         Relationships: []
       }
+      rename_feature_flag: {
+        Row: {
+          allowed_country_codes: string[]
+          allowed_tenant_ids: string[]
+          enabled: boolean
+          id: string
+          kill_switch: boolean
+          notes: string | null
+          ramp_percent: number
+          singleton: boolean
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          allowed_country_codes?: string[]
+          allowed_tenant_ids?: string[]
+          enabled?: boolean
+          id?: string
+          kill_switch?: boolean
+          notes?: string | null
+          ramp_percent?: number
+          singleton?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          allowed_country_codes?: string[]
+          allowed_tenant_ids?: string[]
+          enabled?: boolean
+          id?: string
+          kill_switch?: boolean
+          notes?: string | null
+          ramp_percent?: number
+          singleton?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       rental_booking_events: {
         Row: {
           actor_id: string | null
@@ -45718,6 +47108,95 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "mpesa_transactions"
             referencedColumns: ["id"]
+          },
+        ]
+      }
+      social_accounts: {
+        Row: {
+          activated_at: string | null
+          activated_by: string | null
+          approved_at: string | null
+          approved_by: string | null
+          archived_at: string | null
+          aria_label: string | null
+          campaign_source: string | null
+          created_at: string
+          display_name: string
+          handle: string | null
+          id: string
+          is_active: boolean
+          is_public: boolean
+          market: string
+          ownership_evidence: string | null
+          platform_slug: string
+          profile_url: string | null
+          sort_order: number
+          status: string
+          tracking_enabled: boolean
+          updated_at: string
+          verification_status: string
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          activated_at?: string | null
+          activated_by?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          archived_at?: string | null
+          aria_label?: string | null
+          campaign_source?: string | null
+          created_at?: string
+          display_name: string
+          handle?: string | null
+          id?: string
+          is_active?: boolean
+          is_public?: boolean
+          market?: string
+          ownership_evidence?: string | null
+          platform_slug: string
+          profile_url?: string | null
+          sort_order?: number
+          status?: string
+          tracking_enabled?: boolean
+          updated_at?: string
+          verification_status?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          activated_at?: string | null
+          activated_by?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          archived_at?: string | null
+          aria_label?: string | null
+          campaign_source?: string | null
+          created_at?: string
+          display_name?: string
+          handle?: string | null
+          id?: string
+          is_active?: boolean
+          is_public?: boolean
+          market?: string
+          ownership_evidence?: string | null
+          platform_slug?: string
+          profile_url?: string | null
+          sort_order?: number
+          status?: string
+          tracking_enabled?: boolean
+          updated_at?: string
+          verification_status?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "social_accounts_platform_slug_fkey"
+            columns: ["platform_slug"]
+            isOneToOne: false
+            referencedRelation: "social_platforms"
+            referencedColumns: ["slug"]
           },
         ]
       }
@@ -50636,6 +52115,48 @@ export type Database = {
           },
         ]
       }
+      ui_events: {
+        Row: {
+          action: string
+          created_at: string
+          element_id: string
+          element_label: string | null
+          error_message: string | null
+          id: string
+          page_route: string | null
+          payload: Json | null
+          session_id: string | null
+          success: boolean
+          user_id: string | null
+        }
+        Insert: {
+          action?: string
+          created_at?: string
+          element_id: string
+          element_label?: string | null
+          error_message?: string | null
+          id?: string
+          page_route?: string | null
+          payload?: Json | null
+          session_id?: string | null
+          success?: boolean
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          element_id?: string
+          element_label?: string | null
+          error_message?: string | null
+          id?: string
+          page_route?: string | null
+          payload?: Json | null
+          session_id?: string | null
+          success?: boolean
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       user_alert_prefs: {
         Row: {
           circuit_email: boolean
@@ -51655,6 +53176,51 @@ export type Database = {
         }
         Relationships: []
       }
+      work_capacity_profiles: {
+        Row: {
+          admin_reserve_minutes: number
+          break_reserve_minutes: number
+          created_at: string
+          focus_block_minutes: number
+          id: string
+          is_active: boolean
+          label: string
+          meeting_reserve_minutes: number
+          productive_minutes: number | null
+          role_key: string
+          updated_at: string
+          working_minutes: number
+        }
+        Insert: {
+          admin_reserve_minutes?: number
+          break_reserve_minutes?: number
+          created_at?: string
+          focus_block_minutes?: number
+          id?: string
+          is_active?: boolean
+          label: string
+          meeting_reserve_minutes?: number
+          productive_minutes?: number | null
+          role_key: string
+          updated_at?: string
+          working_minutes?: number
+        }
+        Update: {
+          admin_reserve_minutes?: number
+          break_reserve_minutes?: number
+          created_at?: string
+          focus_block_minutes?: number
+          id?: string
+          is_active?: boolean
+          label?: string
+          meeting_reserve_minutes?: number
+          productive_minutes?: number | null
+          role_key?: string
+          updated_at?: string
+          working_minutes?: number
+        }
+        Relationships: []
+      }
       yalla_payment_channels: {
         Row: {
           account_name: string | null
@@ -51980,6 +53546,16 @@ export type Database = {
         | "active"
         | "superseded"
         | "archived"
+      crm_doc_verb:
+        | "view"
+        | "download"
+        | "use_template"
+        | "create_version"
+        | "edit"
+        | "submit"
+        | "approve"
+        | "share"
+        | "archive"
       custody_event_type:
         | "pickup"
         | "handover"
@@ -53003,6 +54579,17 @@ export const Constants = {
         "active",
         "superseded",
         "archived",
+      ],
+      crm_doc_verb: [
+        "view",
+        "download",
+        "use_template",
+        "create_version",
+        "edit",
+        "submit",
+        "approve",
+        "share",
+        "archive",
       ],
       custody_event_type: [
         "pickup",

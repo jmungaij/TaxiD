@@ -11203,6 +11203,13 @@ export type Database = {
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "commercial_lifecycle_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: true
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
+          },
         ]
       }
       commercial_lifecycle_events: {
@@ -13367,6 +13374,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comms_email_tasks_sales_lead_id_fkey"
+            columns: ["sales_lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
           },
           {
             foreignKeyName: "comms_email_tasks_staff_id_fkey"
@@ -18891,6 +18905,13 @@ export type Database = {
             referencedRelation: "staff_work_items"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "crm_customer_commitments_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
+            referencedColumns: ["id"]
+          },
         ]
       }
       crm_document_approvals: {
@@ -19333,6 +19354,13 @@ export type Database = {
             referencedRelation: "staff_work_items"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "crm_interactions_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
+            referencedColumns: ["id"]
+          },
         ]
       }
       crm_meeting_outcomes: {
@@ -19494,6 +19522,13 @@ export type Database = {
             columns: ["work_item_id"]
             isOneToOne: false
             referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "crm_next_actions_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
             referencedColumns: ["id"]
           },
         ]
@@ -25932,6 +25967,7 @@ export type Database = {
       }
       drivers: {
         Row: {
+          carrier_id: string | null
           created_at: string
           driver_code: string
           driver_rating: number | null
@@ -25946,6 +25982,7 @@ export type Database = {
           verification_status: string
         }
         Insert: {
+          carrier_id?: string | null
           created_at?: string
           driver_code?: string
           driver_rating?: number | null
@@ -25960,6 +25997,7 @@ export type Database = {
           verification_status?: string
         }
         Update: {
+          carrier_id?: string | null
           created_at?: string
           driver_code?: string
           driver_rating?: number | null
@@ -25973,7 +26011,15 @@ export type Database = {
           user_id?: string
           verification_status?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "drivers_carrier_id_fkey"
+            columns: ["carrier_id"]
+            isOneToOne: false
+            referencedRelation: "carrier_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       edge_function_invocations: {
         Row: {
@@ -48823,6 +48869,13 @@ export type Database = {
             referencedRelation: "staff_work_items"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "ops_propagation_outbox_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
+            referencedColumns: ["id"]
+          },
         ]
       }
       ops_work_audit: {
@@ -48877,6 +48930,13 @@ export type Database = {
             columns: ["work_item_id"]
             isOneToOne: false
             referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ops_work_audit_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
             referencedColumns: ["id"]
           },
         ]
@@ -61560,6 +61620,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "public_meeting_bookings_followup_work_item_id_fkey"
+            columns: ["followup_work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "public_meeting_bookings_host_staff_id_fkey"
             columns: ["host_staff_id"]
             isOneToOne: false
@@ -61574,10 +61641,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "public_meeting_bookings_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
+          },
+          {
             foreignKeyName: "public_meeting_bookings_prep_work_item_id_fkey"
             columns: ["prep_work_item_id"]
             isOneToOne: false
             referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_meeting_bookings_prep_work_item_id_fkey"
+            columns: ["prep_work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
             referencedColumns: ["id"]
           },
         ]
@@ -73957,6 +74038,13 @@ export type Database = {
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "sales_assignment_events_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
+          },
         ]
       }
       sales_commission_event_audit: {
@@ -74399,6 +74487,13 @@ export type Database = {
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "sales_lead_changes_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
+          },
         ]
       }
       sales_lead_events: {
@@ -74442,6 +74537,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sales_lead_events_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
           },
         ]
       }
@@ -74501,6 +74603,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sales_lead_followups_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
           },
         ]
       }
@@ -74597,6 +74706,13 @@ export type Database = {
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "sales_lead_messages_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
+          },
         ]
       }
       sales_lead_reminder_state: {
@@ -74640,6 +74756,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sales_lead_reminder_state_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
           },
         ]
       }
@@ -74800,6 +74923,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sales_lead_service_requests_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
           },
         ]
       }
@@ -76388,6 +76518,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "sales_leads"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_provider_claims_sales_lead_id_fkey"
+            columns: ["sales_lead_id"]
+            isOneToOne: false
+            referencedRelation: "v_sales_lead_reminders"
+            referencedColumns: ["lead_id"]
           },
           {
             foreignKeyName: "service_provider_claims_sales_staff_id_fkey"
@@ -78370,6 +78507,13 @@ export type Database = {
             referencedRelation: "staff_work_items"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "staff_corrective_actions_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
+            referencedColumns: ["id"]
+          },
         ]
       }
       staff_decision_audit: {
@@ -78685,6 +78829,13 @@ export type Database = {
             columns: ["work_item_id"]
             isOneToOne: false
             referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "staff_focus_sessions_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
             referencedColumns: ["id"]
           },
         ]
@@ -79272,6 +79423,13 @@ export type Database = {
             referencedRelation: "staff_work_items"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "staff_notifications_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
+            referencedColumns: ["id"]
+          },
         ]
       }
       staff_permission_grants: {
@@ -79819,6 +79977,13 @@ export type Database = {
             columns: ["work_item_id"]
             isOneToOne: false
             referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "staff_work_reviews_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
             referencedColumns: ["id"]
           },
         ]
@@ -84517,6 +84682,7 @@ export type Database = {
           created_at: string
           currency: string
           id: string
+          lifecycle_status: Database["public"]["Enums"]["wallet_lifecycle_status"]
           updated_at: string
           user_id: string
           wallet_type: Database["public"]["Enums"]["wallet_type"]
@@ -84526,6 +84692,7 @@ export type Database = {
           created_at?: string
           currency?: string
           id?: string
+          lifecycle_status?: Database["public"]["Enums"]["wallet_lifecycle_status"]
           updated_at?: string
           user_id: string
           wallet_type?: Database["public"]["Enums"]["wallet_type"]
@@ -84535,6 +84702,7 @@ export type Database = {
           created_at?: string
           currency?: string
           id?: string
+          lifecycle_status?: Database["public"]["Enums"]["wallet_lifecycle_status"]
           updated_at?: string
           user_id?: string
           wallet_type?: Database["public"]["Enums"]["wallet_type"]
@@ -84668,6 +84836,13 @@ export type Database = {
             columns: ["work_item_id"]
             isOneToOne: false
             referencedRelation: "staff_work_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "work_disposition_events_work_item_id_fkey"
+            columns: ["work_item_id"]
+            isOneToOne: false
+            referencedRelation: "v_ops_work_sla"
             referencedColumns: ["id"]
           },
         ]
@@ -84955,6 +85130,152 @@ export type Database = {
       }
     }
     Views: {
+      v_ops_work_sla: {
+        Row: {
+          approval_decided_at: string | null
+          approval_decided_by: string | null
+          approval_decision_note: string | null
+          approval_reason: string | null
+          approval_requested_at: string | null
+          approval_requested_by: string | null
+          approval_state: string | null
+          closed_at: string | null
+          completed_at: string | null
+          created_at: string | null
+          entity_id: string | null
+          entity_ref: string | null
+          entity_type: string | null
+          escalation_level: number | null
+          id: string | null
+          lifecycle_state: string | null
+          needs_approval: boolean | null
+          ops_queue: string | null
+          priority: string | null
+          remaining_minutes: number | null
+          required_action: string | null
+          resolution: string | null
+          service_line: string | null
+          sla_breached_at: string | null
+          sla_due_at: string | null
+          sla_minutes: number | null
+          sla_started_at: string | null
+          sla_status: string | null
+          source_event_id: string | null
+          staff_id: string | null
+          title: string | null
+          work_kind: string | null
+          writeback_applied_at: string | null
+          writeback_outcome: string | null
+        }
+        Insert: {
+          approval_decided_at?: string | null
+          approval_decided_by?: string | null
+          approval_decision_note?: string | null
+          approval_reason?: string | null
+          approval_requested_at?: string | null
+          approval_requested_by?: string | null
+          approval_state?: string | null
+          closed_at?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          entity_id?: string | null
+          entity_ref?: string | null
+          entity_type?: string | null
+          escalation_level?: number | null
+          id?: string | null
+          lifecycle_state?: string | null
+          needs_approval?: boolean | null
+          ops_queue?: string | null
+          priority?: string | null
+          remaining_minutes?: never
+          required_action?: string | null
+          resolution?: string | null
+          service_line?: string | null
+          sla_breached_at?: string | null
+          sla_due_at?: string | null
+          sla_minutes?: number | null
+          sla_started_at?: string | null
+          sla_status?: never
+          source_event_id?: string | null
+          staff_id?: string | null
+          title?: string | null
+          work_kind?: string | null
+          writeback_applied_at?: string | null
+          writeback_outcome?: string | null
+        }
+        Update: {
+          approval_decided_at?: string | null
+          approval_decided_by?: string | null
+          approval_decision_note?: string | null
+          approval_reason?: string | null
+          approval_requested_at?: string | null
+          approval_requested_by?: string | null
+          approval_state?: string | null
+          closed_at?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          entity_id?: string | null
+          entity_ref?: string | null
+          entity_type?: string | null
+          escalation_level?: number | null
+          id?: string | null
+          lifecycle_state?: string | null
+          needs_approval?: boolean | null
+          ops_queue?: string | null
+          priority?: string | null
+          remaining_minutes?: never
+          required_action?: string | null
+          resolution?: string | null
+          service_line?: string | null
+          sla_breached_at?: string | null
+          sla_due_at?: string | null
+          sla_minutes?: number | null
+          sla_started_at?: string | null
+          sla_status?: never
+          source_event_id?: string | null
+          staff_id?: string | null
+          title?: string | null
+          work_kind?: string | null
+          writeback_applied_at?: string | null
+          writeback_outcome?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "staff_work_items_staff_id_fkey"
+            columns: ["staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_sales_lead_reminders: {
+        Row: {
+          awaiting_due_date: string | null
+          awaiting_item: string | null
+          contact_name: string | null
+          days_overdue: number | null
+          dismissed_at: string | null
+          lead_id: string | null
+          lead_ref: string | null
+          organisation_name: string | null
+          reminder_kind: string | null
+          sales_staff_id: string | null
+          snoozed_until: string | null
+          staff_name: string | null
+          stage: string | null
+          waiting_on: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_leads_sales_staff_id_fkey"
+            columns: ["sales_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       v_security_claims: {
         Row: {
           audience: string | null
@@ -84986,6 +85307,44 @@ export type Database = {
         Args: { _body: string; _meta: Json; _subject: string; _to: string }
         Returns: undefined
       }
+      _my_staff_member_id: { Args: never; Returns: string }
+      _sales_day_contracts: {
+        Args: {
+          _day_end: string
+          _day_start: string
+          _month_start: string
+          _staff: string
+        }
+        Returns: Json
+      }
+      _sales_day_movements: {
+        Args: { _from: string; _staff: string; _to: string }
+        Returns: Json
+      }
+      _sales_person_figures: {
+        Args: {
+          _from: string
+          _include_test?: boolean
+          _staff: string
+          _to: string
+        }
+        Returns: Json
+      }
+      _sales_stage_probability: { Args: { _stage: string }; Returns: number }
+      _sales_work_ensure: {
+        Args: {
+          _description: string
+          _entity_ref: string
+          _kind: string
+          _priority: string
+          _sla_minutes: number
+          _source_id: string
+          _source_table: string
+          _staff: string
+          _title: string
+        }
+        Returns: string
+      }
       admin_assign_business_request: {
         Args: { _driver_id: string; _fare?: number; _request_id: string }
         Returns: string
@@ -85011,6 +85370,15 @@ export type Database = {
       admin_update_business_request: {
         Args: { _admin_notes?: string; _request_id: string; _status: string }
         Returns: undefined
+      }
+      commercial_qualifying_revenue: {
+        Args: {
+          _from: string
+          _include_test?: boolean
+          _staff: string
+          _to: string
+        }
+        Returns: number
       }
       comms_is_unified_reader: { Args: never; Returns: boolean }
       comms_my_staff_id: { Args: never; Returns: string }
@@ -85098,6 +85466,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      has_recon_permission: {
+        Args: { _perm: string; _user_id: string }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -85127,6 +85499,7 @@ export type Database = {
           user_id: string
         }[]
       }
+      manages_staff_record: { Args: { _staff_id: string }; Returns: boolean }
       next_commercial_action_id: { Args: never; Returns: string }
       next_commercial_transaction_id: { Args: never; Returns: string }
       next_driver_payout_batch_number: { Args: never; Returns: string }
@@ -85156,6 +85529,10 @@ export type Database = {
         Returns: string
       }
       posting_engine_post: { Args: { _journal_id: string }; Returns: string }
+      recon_permission_roles: {
+        Args: { _perm: string }
+        Returns: Database["public"]["Enums"]["app_role"][]
+      }
       record_portal_transition: {
         Args: {
           _kind: string
@@ -85177,6 +85554,14 @@ export type Database = {
           _message?: string
         }
         Returns: string
+      }
+      sales_day_close: {
+        Args: { _materialise?: boolean; _staff?: string }
+        Returns: Json
+      }
+      sales_target_for: {
+        Args: { _period_start?: string; _staff: string }
+        Returns: Json
       }
       security_claims_public: {
         Args: never
@@ -85240,6 +85625,16 @@ export type Database = {
         Returns: {
           quote_id: string
           total: number
+        }[]
+      }
+      work_dispositions_outstanding: {
+        Args: { _business_date?: string }
+        Returns: {
+          effort_minutes: number
+          priority_band: string
+          title: string
+          work_item_id: string
+          work_kind: string
         }[]
       }
       yp_audit: {
@@ -86366,6 +86761,7 @@ export type Database = {
       txn_direction: "credit" | "debit"
       txn_kind: "topup" | "payout" | "trip_charge" | "refund" | "adjustment"
       txn_status: "pending" | "completed" | "failed"
+      wallet_lifecycle_status: "ACTIVE" | "CLOSED"
       wallet_type: "personal" | "driver" | "corporate"
       yalla_payment_mode: "CASH" | "CREDIT"
     }
@@ -87725,6 +88121,7 @@ export const Constants = {
       txn_direction: ["credit", "debit"],
       txn_kind: ["topup", "payout", "trip_charge", "refund", "adjustment"],
       txn_status: ["pending", "completed", "failed"],
+      wallet_lifecycle_status: ["ACTIVE", "CLOSED"],
       wallet_type: ["personal", "driver", "corporate"],
       yalla_payment_mode: ["CASH", "CREDIT"],
     },

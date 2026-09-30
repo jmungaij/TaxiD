@@ -55655,6 +55655,54 @@ export type Database = {
         }
         Relationships: []
       }
+      payment_gateway_settings: {
+        Row: {
+          b2c_initiator_name: string | null
+          b2c_security_credential: string | null
+          consumer_key: string | null
+          consumer_secret: string | null
+          created_at: string
+          environment: string
+          etims_device_serial: string | null
+          gateway: string
+          id: string
+          passkey: string | null
+          short_code: string | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          b2c_initiator_name?: string | null
+          b2c_security_credential?: string | null
+          consumer_key?: string | null
+          consumer_secret?: string | null
+          created_at?: string
+          environment?: string
+          etims_device_serial?: string | null
+          gateway?: string
+          id?: string
+          passkey?: string | null
+          short_code?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          b2c_initiator_name?: string | null
+          b2c_security_credential?: string | null
+          consumer_key?: string | null
+          consumer_secret?: string | null
+          created_at?: string
+          environment?: string
+          etims_device_serial?: string | null
+          gateway?: string
+          id?: string
+          passkey?: string | null
+          short_code?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       payment_incident_group_members: {
         Row: {
           added_at: string

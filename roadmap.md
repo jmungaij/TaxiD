@@ -42,3 +42,4 @@
 - [x] Phase 2: finance, wallets & payouts (260 tables incl. dependencies)
 - [x] Phase 3: drivers, vehicles & fleet (122 tables incl. dependencies)
 - [x] Phase 4: dispatch, trips & pricing (122 tables incl. dependencies)
+- [x] Phase 5: corporate & charter (54 tables)

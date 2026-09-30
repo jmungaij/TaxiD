@@ -46341,6 +46341,135 @@ export type Database = {
           },
         ]
       }
+      security_claim_controls: {
+        Row: {
+          claim_code: string
+          control_kind: string
+          control_ref: string
+          description: string
+        }
+        Insert: {
+          claim_code: string
+          control_kind: string
+          control_ref: string
+          description: string
+        }
+        Update: {
+          claim_code?: string
+          control_kind?: string
+          control_ref?: string
+          description?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "security_claim_controls_claim_code_fkey"
+            columns: ["claim_code"]
+            isOneToOne: false
+            referencedRelation: "security_claims"
+            referencedColumns: ["claim_code"]
+          },
+          {
+            foreignKeyName: "security_claim_controls_claim_code_fkey"
+            columns: ["claim_code"]
+            isOneToOne: false
+            referencedRelation: "v_security_claims"
+            referencedColumns: ["claim_code"]
+          },
+        ]
+      }
+      security_claim_evidence: {
+        Row: {
+          claim_code: string
+          digest: string | null
+          environment: string
+          evidence: Json
+          executed_at: string
+          executed_by: string | null
+          id: string
+          observation: string
+          verdict: string
+        }
+        Insert: {
+          claim_code: string
+          digest?: string | null
+          environment: string
+          evidence?: Json
+          executed_at?: string
+          executed_by?: string | null
+          id?: string
+          observation: string
+          verdict: string
+        }
+        Update: {
+          claim_code?: string
+          digest?: string | null
+          environment?: string
+          evidence?: Json
+          executed_at?: string
+          executed_by?: string | null
+          id?: string
+          observation?: string
+          verdict?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "security_claim_evidence_claim_code_fkey"
+            columns: ["claim_code"]
+            isOneToOne: false
+            referencedRelation: "security_claims"
+            referencedColumns: ["claim_code"]
+          },
+          {
+            foreignKeyName: "security_claim_evidence_claim_code_fkey"
+            columns: ["claim_code"]
+            isOneToOne: false
+            referencedRelation: "v_security_claims"
+            referencedColumns: ["claim_code"]
+          },
+        ]
+      }
+      security_claims: {
+        Row: {
+          audience: string
+          claim_code: string
+          created_at: string
+          implementation: string
+          owner: string
+          requested_display: boolean
+          review_interval_days: number
+          surface: string
+          updated_at: string
+          withheld_reason: string | null
+          wording: string | null
+        }
+        Insert: {
+          audience?: string
+          claim_code: string
+          created_at?: string
+          implementation: string
+          owner: string
+          requested_display?: boolean
+          review_interval_days?: number
+          surface: string
+          updated_at?: string
+          withheld_reason?: string | null
+          wording?: string | null
+        }
+        Update: {
+          audience?: string
+          claim_code?: string
+          created_at?: string
+          implementation?: string
+          owner?: string
+          requested_display?: boolean
+          review_interval_days?: number
+          surface?: string
+          updated_at?: string
+          withheld_reason?: string | null
+          wording?: string | null
+        }
+        Relationships: []
+      }
       security_incidents: {
         Row: {
           created_at: string
@@ -53274,7 +53403,28 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_security_claims: {
+        Row: {
+          audience: string | null
+          claim_code: string | null
+          controls: number | null
+          display_state: string | null
+          environment: string | null
+          implementation: string | null
+          latest_observation: string | null
+          latest_verdict: string | null
+          owner: string | null
+          requested_display: boolean | null
+          review_due: string | null
+          review_interval_days: number | null
+          safe_to_display: boolean | null
+          surface: string | null
+          verified_at: string | null
+          withheld_reason: string | null
+          wording: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       admin_assign_business_request: {
@@ -53335,6 +53485,12 @@ export type Database = {
         }
         Returns: boolean
       }
+      identity_discover: { Args: { _email: string }; Returns: Json }
+      identity_risk_evaluate: {
+        Args: { _country?: string; _fingerprint_hash?: string }
+        Returns: Json
+      }
+      is_stabilization_mode: { Args: never; Returns: boolean }
       list_support_agents: {
         Args: never
         Returns: {
@@ -53345,6 +53501,19 @@ export type Database = {
       }
       next_commercial_action_id: { Args: never; Returns: string }
       next_commercial_transaction_id: { Args: never; Returns: string }
+      record_portal_transition: {
+        Args: {
+          _kind: string
+          _new_context?: string
+          _new_route: string
+          _previous_context?: string
+          _previous_route?: string
+          _remembered?: boolean
+          _user_agent?: string
+        }
+        Returns: string
+      }
+      resolve_operating_contexts: { Args: never; Returns: Json }
       safety_raise_sos: {
         Args: {
           _booking_id: string
@@ -53354,6 +53523,32 @@ export type Database = {
         }
         Returns: string
       }
+      security_claims_public: {
+        Args: never
+        Returns: {
+          claim_code: string
+          surface: string
+          wording: string
+        }[]
+      }
+      staff_available_actions: {
+        Args: { p_limit?: number }
+        Returns: {
+          account_id: string
+          account_name: string
+          kind: string
+          opportunity_id: string
+          priority: string
+          reason: string
+          reference_id: string
+          suggested_minutes: number
+          title: string
+          value_score: number
+        }[]
+      }
+      staff_claim_self: { Args: never; Returns: string }
+      staff_link_diagnostics: { Args: never; Returns: Json }
+      staff_self_id: { Args: never; Returns: string }
       trip_assign_driver: { Args: { _booking_id: string }; Returns: Json }
       trip_cancel_booking: {
         Args: { _booking_id: string; _reason?: string }

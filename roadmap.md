@@ -33,3 +33,7 @@
 - [x] Fleet request -> assign driver -> booked trip
 - [x] Google Play clicks with device/OS/browser/time in Backend Operations
 - [ ] Legacy driver compliance/documents/payouts screens: need original backend definitions (not in uploads)
+
+## Legacy restoration (Yalla_Mobility.zip originals)
+- [x] Rider booking & trips: restored driver auto-assignment and driver card
+- [ ] Driver duty/payouts, corporate/fleet, finance/ops — ~560 backend actions missing; originals in Yalla_Mobility.zip cover only ~28 and ~214 tables, and they conflict with the current schema. Needs area-by-area restoration.

@@ -2082,6 +2082,7 @@ export type Database = {
         }
         Returns: string
       }
+      trip_assign_driver: { Args: { _booking_id: string }; Returns: Json }
       trip_cancel_booking: {
         Args: { _booking_id: string; _reason?: string }
         Returns: undefined
@@ -2094,6 +2095,7 @@ export type Database = {
         }
         Returns: string
       }
+      trip_driver_card: { Args: { _booking_id: string }; Returns: Json }
       trip_quote_fare: {
         Args: {
           _distance_km: number

@@ -1,0 +1,3 @@
+INSERT INTO public.payment_receiving_accounts (provider, channel, account_number, status, verification_status, approved_by, note)
+SELECT 'safaricom_mpesa','paybill','4573823','active','verified','bf4f63a4-63ff-4c61-8e5f-3644bbcb3422','TaxiD PayBill confirmed by owner (John Mungai)'
+WHERE NOT EXISTS (SELECT 1 FROM public.payment_receiving_accounts WHERE provider='safaricom_mpesa' AND channel='paybill' AND status='active');

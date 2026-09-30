@@ -58,7 +58,7 @@ export default function AdminDashboard() {
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {[
               { to: "/rider", title: "Rider", icon: UserRound },
-              { to: "/driver/portal", title: "Driver", icon: Car },
+              { to: "/driver/workspace", title: "Driver", icon: Car },
               { to: "/business/portal", title: "Power Business", icon: Building2 },
               { to: "/staff/workspace", title: "Staff 360", icon: Shield },
             ].map(({ to, title, icon: Icon }) => (

@@ -28,3 +28,8 @@
 - [x] Expose Staff Access on desktop and mobile; audit hidden staff surfaces and align admin navigation with authorised roles
 - [ ] Activate ustaxid@gmail.com as the verified super-admin identity — blocked: no account exists; owner must complete the existing email-confirmation signup flow; no password is stored in code
 - [x] Expose the super-admin's own Rider, Driver, Power Business and Staff 360 portals from the admin overview; preserve account-scoped data checks
+- [x] ustaxid@gmail.com account created & verified sign-in (admin, corporate, Staff 360, driver)
+- [x] Driver workspace: accept trips, vehicle status, earnings (/driver/portal)
+- [x] Fleet request -> assign driver -> booked trip
+- [x] Google Play clicks with device/OS/browser/time in Backend Operations
+- [ ] Legacy driver compliance/documents/payouts screens: need original backend definitions (not in uploads)

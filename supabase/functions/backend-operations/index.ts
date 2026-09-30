@@ -86,7 +86,7 @@ Deno.serve(async (req) => {
     count("app_download_clicks", (query) => query.gte("created_at", since)),
     count("app_download_clicks", (query) => query.gte("created_at", since).eq("audience", "rider")),
     count("app_download_clicks", (query) => query.gte("created_at", since).eq("audience", "driver")),
-    service.from("app_download_clicks").select("audience,placement").gte("created_at", since).limit(10000),
+    service.from("app_download_clicks").select("audience,placement,device_type,os,browser,created_at").gte("created_at", since).order("created_at",{ascending:false}).limit(10000),
     service.storage.listBuckets(),
   ]);
 
@@ -136,6 +136,7 @@ Deno.serve(async (req) => {
         const [audience, ...placement] = key.split(":");
         return { audience, placement: placement.join(":"), clicks };
       }).sort((a, b) => b.clicks - a.clicks),
+      recent: downloadRows.slice(0, 50),
     },
     storage: { buckets: bucketsResult.error ? [] : bucketsResult.data.map((bucket) => bucket.name) },
     functions: deployedFunctions,

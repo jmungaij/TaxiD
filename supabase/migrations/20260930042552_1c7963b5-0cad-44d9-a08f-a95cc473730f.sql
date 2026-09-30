@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS payment_attempts_idempotency_key_uidx ON public.payment_attempts (idempotency_key);

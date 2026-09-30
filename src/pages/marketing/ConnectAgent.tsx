@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Check, Copy, MessageSquare, RefreshCw, Terminal } from "lucide-react";
 import { BRAND } from "@/config/brand";
+import { MarketingPage } from "@/components/marketing/PageHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -90,6 +91,7 @@ export default function ConnectAgent() {
   )}&connectorUrl=${encodeURIComponent(mcpUrl)}`;
 
   return (
+    <MarketingPage>
     <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
       <header className="mb-10 text-center">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -328,5 +330,6 @@ export default function ConnectAgent() {
         reply to riders, and update case status — always acting as your signed-in account.
       </p>
     </main>
+    </MarketingPage>
   );
 }

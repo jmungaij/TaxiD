@@ -109,22 +109,31 @@ export type Database = {
       app_download_clicks: {
         Row: {
           audience: string
+          browser: string | null
           created_at: string
+          device_type: string | null
           id: string
+          os: string | null
           placement: string
           platform: string
         }
         Insert: {
           audience: string
+          browser?: string | null
           created_at?: string
+          device_type?: string | null
           id?: string
+          os?: string | null
           placement: string
           platform: string
         }
         Update: {
           audience?: string
+          browser?: string | null
           created_at?: string
+          device_type?: string | null
           id?: string
+          os?: string | null
           placement?: string
           platform?: string
         }
@@ -262,6 +271,93 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      driver_earnings: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string
+          driver_id: string
+          id: string
+          trip_booking_id: string | null
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          driver_id: string
+          id?: string
+          trip_booking_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          driver_id?: string
+          id?: string
+          trip_booking_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_earnings_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "driver_earnings_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: true
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      drivers: {
+        Row: {
+          created_at: string
+          driver_code: string
+          driver_rating: number | null
+          first_name: string
+          id: string
+          last_name: string
+          phone: string | null
+          risk_score: number | null
+          status: string
+          updated_at: string
+          user_id: string
+          verification_status: string
+        }
+        Insert: {
+          created_at?: string
+          driver_code?: string
+          driver_rating?: number | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string | null
+          risk_score?: number | null
+          status?: string
+          updated_at?: string
+          user_id: string
+          verification_status?: string
+        }
+        Update: {
+          created_at?: string
+          driver_code?: string
+          driver_rating?: number | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string | null
+          risk_score?: number | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+          verification_status?: string
+        }
+        Relationships: []
       }
       emergency_contacts: {
         Row: {
@@ -1228,6 +1324,7 @@ export type Database = {
       trip_bookings: {
         Row: {
           booking_number: string
+          business_request_id: string | null
           cancellation_reason: string | null
           cancelled_at: string | null
           cancelled_by: string | null
@@ -1259,6 +1356,7 @@ export type Database = {
         }
         Insert: {
           booking_number?: string
+          business_request_id?: string | null
           cancellation_reason?: string | null
           cancelled_at?: string | null
           cancelled_by?: string | null
@@ -1290,6 +1388,7 @@ export type Database = {
         }
         Update: {
           booking_number?: string
+          business_request_id?: string | null
           cancellation_reason?: string | null
           cancelled_at?: string | null
           cancelled_by?: string | null
@@ -1320,6 +1419,13 @@ export type Database = {
           vehicle_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "trip_bookings_business_request_id_fkey"
+            columns: ["business_request_id"]
+            isOneToOne: false
+            referencedRelation: "business_requests"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "trip_bookings_ride_type_id_fkey"
             columns: ["ride_type_id"]
@@ -1759,6 +1865,60 @@ export type Database = {
         }
         Relationships: []
       }
+      vehicles: {
+        Row: {
+          color: string | null
+          created_at: string
+          driver_id: string
+          id: string
+          make: string | null
+          model: string | null
+          plate_number: string
+          ride_type_id: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          driver_id: string
+          id?: string
+          make?: string | null
+          model?: string | null
+          plate_number: string
+          ride_type_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          driver_id?: string
+          id?: string
+          make?: string | null
+          model?: string | null
+          plate_number?: string
+          ride_type_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vehicles_driver_id_fkey"
+            columns: ["driver_id"]
+            isOneToOne: false
+            referencedRelation: "drivers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vehicles_ride_type_id_fkey"
+            columns: ["ride_type_id"]
+            isOneToOne: false
+            referencedRelation: "ride_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       wallet_transactions: {
         Row: {
           amount_cents: number
@@ -1847,6 +2007,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_assign_business_request: {
+        Args: { _driver_id: string; _fare?: number; _request_id: string }
+        Returns: string
+      }
       admin_assign_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1876,6 +2040,15 @@ export type Database = {
       debit_wallet: {
         Args: { _amount_cents: number; _wallet_id: string }
         Returns: boolean
+      }
+      driver_accept_trip: { Args: { _booking_id: string }; Returns: undefined }
+      driver_set_vehicle_status: {
+        Args: { _status: string; _vehicle_id: string }
+        Returns: undefined
+      }
+      driver_update_trip_status: {
+        Args: { _booking_id: string; _status: string }
+        Returns: undefined
       }
       ensure_rider_account: { Args: never; Returns: undefined }
       has_any_role: {

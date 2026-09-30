@@ -74,6 +74,71 @@ export type Database = {
         }
         Relationships: []
       }
+      academy_enrollments: {
+        Row: {
+          completed_at: string | null
+          course_id: string
+          id: string
+          started_at: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          course_id: string
+          id?: string
+          started_at?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          course_id?: string
+          id?: string
+          started_at?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "academy_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_events: {
+        Row: {
+          actor: string | null
+          created_at: string
+          detail: Json
+          entity: string
+          entity_id: string | null
+          event_type: string
+          id: string
+        }
+        Insert: {
+          actor?: string | null
+          created_at?: string
+          detail?: Json
+          entity: string
+          entity_id?: string | null
+          event_type: string
+          id?: string
+        }
+        Update: {
+          actor?: string | null
+          created_at?: string
+          detail?: Json
+          entity?: string
+          entity_id?: string | null
+          event_type?: string
+          id?: string
+        }
+        Relationships: []
+      }
       academy_feedback: {
         Row: {
           comment: string
@@ -112,6 +177,45 @@ export type Database = {
           },
           {
             foreignKeyName: "academy_feedback_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "academy_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      academy_lesson_progress: {
+        Row: {
+          completed_at: string
+          course_id: string
+          id: string
+          lesson_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          course_id: string
+          id?: string
+          lesson_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          course_id?: string
+          id?: string
+          lesson_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "academy_lesson_progress_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "academy_courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "academy_lesson_progress_lesson_id_fkey"
             columns: ["lesson_id"]
             isOneToOne: false
             referencedRelation: "academy_lessons"
@@ -168,6 +272,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      academy_manual_versions: {
+        Row: {
+          changelog: string
+          created_at: string
+          created_by: string | null
+          document_path: string
+          id: string
+          page_count: number | null
+          published_at: string
+          status: string
+          summary: string
+          title: string
+          version: string
+        }
+        Insert: {
+          changelog?: string
+          created_at?: string
+          created_by?: string | null
+          document_path: string
+          id?: string
+          page_count?: number | null
+          published_at?: string
+          status?: string
+          summary?: string
+          title: string
+          version: string
+        }
+        Update: {
+          changelog?: string
+          created_at?: string
+          created_by?: string | null
+          document_path?: string
+          id?: string
+          page_count?: number | null
+          published_at?: string
+          status?: string
+          summary?: string
+          title?: string
+          version?: string
+        }
+        Relationships: []
       }
       academy_modules: {
         Row: {
@@ -2146,6 +2292,66 @@ export type Database = {
           },
         ]
       }
+      callback_endpoint_registry: {
+        Row: {
+          avg_latency_ms: number | null
+          callback_url: string
+          created_at: string
+          deployment_reachable: boolean | null
+          dns_status: string | null
+          environment: string
+          health_score: number | null
+          https_status: string | null
+          id: string
+          is_active: boolean
+          last_certification_result: string | null
+          last_certified_at: string | null
+          metadata: Json
+          provider: string
+          secret_valid: boolean | null
+          tls_status: string | null
+          updated_at: string
+        }
+        Insert: {
+          avg_latency_ms?: number | null
+          callback_url: string
+          created_at?: string
+          deployment_reachable?: boolean | null
+          dns_status?: string | null
+          environment: string
+          health_score?: number | null
+          https_status?: string | null
+          id?: string
+          is_active?: boolean
+          last_certification_result?: string | null
+          last_certified_at?: string | null
+          metadata?: Json
+          provider: string
+          secret_valid?: boolean | null
+          tls_status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avg_latency_ms?: number | null
+          callback_url?: string
+          created_at?: string
+          deployment_reachable?: boolean | null
+          dns_status?: string | null
+          environment?: string
+          health_score?: number | null
+          https_status?: string | null
+          id?: string
+          is_active?: boolean
+          last_certification_result?: string | null
+          last_certified_at?: string | null
+          metadata?: Json
+          provider?: string
+          secret_valid?: boolean | null
+          tls_status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       capabilities: {
         Row: {
           category: string
@@ -3218,6 +3424,114 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      certification_scenarios_registry: {
+        Row: {
+          created_at: string
+          description: string | null
+          enabled: boolean
+          expected_outcome: string
+          id: string
+          last_run_at: string | null
+          last_run_id: string | null
+          last_run_status: string | null
+          retry_policy: Json
+          scenario_key: string
+          scenario_name: string
+          severity: string
+          simulation_kind: string
+          simulation_params: Json
+          timeout_ms: number
+          updated_at: string
+          workflow_key: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          enabled?: boolean
+          expected_outcome: string
+          id?: string
+          last_run_at?: string | null
+          last_run_id?: string | null
+          last_run_status?: string | null
+          retry_policy?: Json
+          scenario_key: string
+          scenario_name: string
+          severity?: string
+          simulation_kind: string
+          simulation_params?: Json
+          timeout_ms?: number
+          updated_at?: string
+          workflow_key: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          enabled?: boolean
+          expected_outcome?: string
+          id?: string
+          last_run_at?: string | null
+          last_run_id?: string | null
+          last_run_status?: string | null
+          retry_policy?: Json
+          scenario_key?: string
+          scenario_name?: string
+          severity?: string
+          simulation_kind?: string
+          simulation_params?: Json
+          timeout_ms?: number
+          updated_at?: string
+          workflow_key?: string
+        }
+        Relationships: []
+      }
+      certification_workflows: {
+        Row: {
+          created_at: string
+          criticality: string
+          description: string | null
+          enabled: boolean
+          id: string
+          last_certified_at: string | null
+          last_run_id: string | null
+          owner: string | null
+          score: number | null
+          status: string
+          updated_at: string
+          workflow_key: string
+          workflow_name: string
+        }
+        Insert: {
+          created_at?: string
+          criticality?: string
+          description?: string | null
+          enabled?: boolean
+          id?: string
+          last_certified_at?: string | null
+          last_run_id?: string | null
+          owner?: string | null
+          score?: number | null
+          status?: string
+          updated_at?: string
+          workflow_key: string
+          workflow_name: string
+        }
+        Update: {
+          created_at?: string
+          criticality?: string
+          description?: string | null
+          enabled?: boolean
+          id?: string
+          last_certified_at?: string | null
+          last_run_id?: string | null
+          owner?: string | null
+          score?: number | null
+          status?: string
+          updated_at?: string
+          workflow_key?: string
+          workflow_name?: string
+        }
+        Relationships: []
       }
       chargebacks: {
         Row: {
@@ -5129,6 +5443,95 @@ export type Database = {
         }
         Relationships: []
       }
+      commercial_certification_gaps: {
+        Row: {
+          blockers: string[]
+          case_kind: string
+          created_at: string
+          detail: string | null
+          exposure_cents: number
+          failed_gate: string
+          id: string
+          missing_fields: string[]
+          missing_stages: string[]
+          run_id: string
+          service_line: string | null
+          transaction_id: string | null
+          transaction_ref: string | null
+        }
+        Insert: {
+          blockers?: string[]
+          case_kind: string
+          created_at?: string
+          detail?: string | null
+          exposure_cents?: number
+          failed_gate: string
+          id?: string
+          missing_fields?: string[]
+          missing_stages?: string[]
+          run_id: string
+          service_line?: string | null
+          transaction_id?: string | null
+          transaction_ref?: string | null
+        }
+        Update: {
+          blockers?: string[]
+          case_kind?: string
+          created_at?: string
+          detail?: string | null
+          exposure_cents?: number
+          failed_gate?: string
+          id?: string
+          missing_fields?: string[]
+          missing_stages?: string[]
+          run_id?: string
+          service_line?: string | null
+          transaction_id?: string | null
+          transaction_ref?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_certification_gaps_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_certification_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commercial_certification_runs: {
+        Row: {
+          created_at: string
+          criteria: Json
+          evidence: Json
+          id: string
+          phase: string
+          run_by: string | null
+          score: number
+          verdict: string
+        }
+        Insert: {
+          created_at?: string
+          criteria: Json
+          evidence?: Json
+          id?: string
+          phase?: string
+          run_by?: string | null
+          score: number
+          verdict: string
+        }
+        Update: {
+          created_at?: string
+          criteria?: Json
+          evidence?: Json
+          id?: string
+          phase?: string
+          run_by?: string | null
+          score?: number
+          verdict?: string
+        }
+        Relationships: []
+      }
       commercial_contract_instances: {
         Row: {
           account_id: string
@@ -5362,6 +5765,88 @@ export type Database = {
             columns: ["source_document_id"]
             isOneToOne: false
             referencedRelation: "crm_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commercial_decision_learning: {
+        Row: {
+          action_id: string | null
+          action_taken: string | null
+          cause: string | null
+          confidence_pct: number | null
+          created_at: string
+          decision: string
+          evidence: Json
+          exception_id: string | null
+          hypothesis: string | null
+          id: string
+          learning: string
+          recorded_by: string | null
+          result: string | null
+          rule_or_model: string | null
+          rule_update_applied: boolean
+          transaction_id: string | null
+          variance_pct: number | null
+        }
+        Insert: {
+          action_id?: string | null
+          action_taken?: string | null
+          cause?: string | null
+          confidence_pct?: number | null
+          created_at?: string
+          decision: string
+          evidence?: Json
+          exception_id?: string | null
+          hypothesis?: string | null
+          id?: string
+          learning: string
+          recorded_by?: string | null
+          result?: string | null
+          rule_or_model?: string | null
+          rule_update_applied?: boolean
+          transaction_id?: string | null
+          variance_pct?: number | null
+        }
+        Update: {
+          action_id?: string | null
+          action_taken?: string | null
+          cause?: string | null
+          confidence_pct?: number | null
+          created_at?: string
+          decision?: string
+          evidence?: Json
+          exception_id?: string | null
+          hypothesis?: string | null
+          id?: string
+          learning?: string
+          recorded_by?: string | null
+          result?: string | null
+          rule_or_model?: string | null
+          rule_update_applied?: boolean
+          transaction_id?: string | null
+          variance_pct?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_decision_learning_action_id_fkey"
+            columns: ["action_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_actions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_decision_learning_exception_id_fkey"
+            columns: ["exception_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_exceptions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commercial_decision_learning_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_transactions"
             referencedColumns: ["id"]
           },
         ]
@@ -5605,6 +6090,146 @@ export type Database = {
           },
           {
             foreignKeyName: "commercial_documents_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "commercial_transactions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      commercial_exceptions: {
+        Row: {
+          acknowledged_at: string | null
+          acknowledged_by: string | null
+          assigned_at: string | null
+          assigned_by: string | null
+          assigned_to: string | null
+          created_at: string
+          currency: string
+          customer_impact: string
+          escalation_level: number
+          evidence: Json
+          exception_ref: string
+          financial_impact_cents: number | null
+          id: string
+          kind: string
+          learning_outcome: string | null
+          loss_probability_pct: number
+          notification_status: string
+          notified_at: string | null
+          operational_impact: string
+          owner_team: string
+          owner_user_id: string | null
+          priority_score: number | null
+          recommended_action: string | null
+          resolution: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          root_cause: string | null
+          severity: string
+          sla_breached_at: string | null
+          sla_due_at: string | null
+          sla_hours: number
+          stage: string
+          status: string
+          strategic_weight: number
+          transaction_id: string | null
+          transaction_ref: string | null
+          triage_notes: string | null
+          triaged_at: string | null
+          triaged_by: string | null
+          updated_at: string
+          value_at_risk_cents: number
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          assigned_at?: string | null
+          assigned_by?: string | null
+          assigned_to?: string | null
+          created_at?: string
+          currency?: string
+          customer_impact?: string
+          escalation_level?: number
+          evidence?: Json
+          exception_ref?: string
+          financial_impact_cents?: number | null
+          id?: string
+          kind: string
+          learning_outcome?: string | null
+          loss_probability_pct?: number
+          notification_status?: string
+          notified_at?: string | null
+          operational_impact?: string
+          owner_team?: string
+          owner_user_id?: string | null
+          priority_score?: number | null
+          recommended_action?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          root_cause?: string | null
+          severity?: string
+          sla_breached_at?: string | null
+          sla_due_at?: string | null
+          sla_hours?: number
+          stage: string
+          status?: string
+          strategic_weight?: number
+          transaction_id?: string | null
+          transaction_ref?: string | null
+          triage_notes?: string | null
+          triaged_at?: string | null
+          triaged_by?: string | null
+          updated_at?: string
+          value_at_risk_cents?: number
+        }
+        Update: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          assigned_at?: string | null
+          assigned_by?: string | null
+          assigned_to?: string | null
+          created_at?: string
+          currency?: string
+          customer_impact?: string
+          escalation_level?: number
+          evidence?: Json
+          exception_ref?: string
+          financial_impact_cents?: number | null
+          id?: string
+          kind?: string
+          learning_outcome?: string | null
+          loss_probability_pct?: number
+          notification_status?: string
+          notified_at?: string | null
+          operational_impact?: string
+          owner_team?: string
+          owner_user_id?: string | null
+          priority_score?: number | null
+          recommended_action?: string | null
+          resolution?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          root_cause?: string | null
+          severity?: string
+          sla_breached_at?: string | null
+          sla_due_at?: string | null
+          sla_hours?: number
+          stage?: string
+          status?: string
+          strategic_weight?: number
+          transaction_id?: string | null
+          transaction_ref?: string | null
+          triage_notes?: string | null
+          triaged_at?: string | null
+          triaged_by?: string | null
+          updated_at?: string
+          value_at_risk_cents?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commercial_exceptions_transaction_id_fkey"
             columns: ["transaction_id"]
             isOneToOne: false
             referencedRelation: "commercial_transactions"
@@ -20950,6 +21575,274 @@ export type Database = {
         }
         Relationships: []
       }
+      infra_backups: {
+        Row: {
+          backup_reference: string
+          backup_type: string
+          checksum_sha256: string | null
+          completed_at: string | null
+          correlation_id: string
+          created_at: string
+          database_identity: string | null
+          detail: Json
+          duration_ms: number | null
+          error_code: string | null
+          error_message: string | null
+          id: string
+          idempotency_key: string
+          integrity_result: Database["public"]["Enums"]["infra_check_result"]
+          object_count: number | null
+          provider_reference: string | null
+          request_id: string
+          requested_by: string | null
+          row_count: number | null
+          schema_version: string | null
+          size_bytes: number | null
+          source_environment_id: string
+          started_at: string
+          state: Database["public"]["Enums"]["infra_job_state"]
+          storage_path: string | null
+        }
+        Insert: {
+          backup_reference?: string
+          backup_type?: string
+          checksum_sha256?: string | null
+          completed_at?: string | null
+          correlation_id?: string
+          created_at?: string
+          database_identity?: string | null
+          detail?: Json
+          duration_ms?: number | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          idempotency_key: string
+          integrity_result?: Database["public"]["Enums"]["infra_check_result"]
+          object_count?: number | null
+          provider_reference?: string | null
+          request_id?: string
+          requested_by?: string | null
+          row_count?: number | null
+          schema_version?: string | null
+          size_bytes?: number | null
+          source_environment_id: string
+          started_at?: string
+          state?: Database["public"]["Enums"]["infra_job_state"]
+          storage_path?: string | null
+        }
+        Update: {
+          backup_reference?: string
+          backup_type?: string
+          checksum_sha256?: string | null
+          completed_at?: string | null
+          correlation_id?: string
+          created_at?: string
+          database_identity?: string | null
+          detail?: Json
+          duration_ms?: number | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          idempotency_key?: string
+          integrity_result?: Database["public"]["Enums"]["infra_check_result"]
+          object_count?: number | null
+          provider_reference?: string | null
+          request_id?: string
+          requested_by?: string | null
+          row_count?: number | null
+          schema_version?: string | null
+          size_bytes?: number | null
+          source_environment_id?: string
+          started_at?: string
+          state?: Database["public"]["Enums"]["infra_job_state"]
+          storage_path?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "infra_backups_source_environment_id_fkey"
+            columns: ["source_environment_id"]
+            isOneToOne: false
+            referencedRelation: "infra_environments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      infra_certifications: {
+        Row: {
+          backup_id: string | null
+          blockers: Json
+          certification_reference: string
+          control_id: string
+          correlation_id: string
+          criteria: Json
+          di00_state: Database["public"]["Enums"]["infra_di00_state"]
+          executed_at: string
+          executed_by: string | null
+          id: string
+          outcome: Database["public"]["Enums"]["infra_check_result"]
+          request_id: string
+          restore_environment_id: string | null
+          restore_id: string | null
+          staging_environment_id: string | null
+        }
+        Insert: {
+          backup_id?: string | null
+          blockers?: Json
+          certification_reference?: string
+          control_id?: string
+          correlation_id?: string
+          criteria: Json
+          di00_state: Database["public"]["Enums"]["infra_di00_state"]
+          executed_at?: string
+          executed_by?: string | null
+          id?: string
+          outcome: Database["public"]["Enums"]["infra_check_result"]
+          request_id?: string
+          restore_environment_id?: string | null
+          restore_id?: string | null
+          staging_environment_id?: string | null
+        }
+        Update: {
+          backup_id?: string | null
+          blockers?: Json
+          certification_reference?: string
+          control_id?: string
+          correlation_id?: string
+          criteria?: Json
+          di00_state?: Database["public"]["Enums"]["infra_di00_state"]
+          executed_at?: string
+          executed_by?: string | null
+          id?: string
+          outcome?: Database["public"]["Enums"]["infra_check_result"]
+          request_id?: string
+          restore_environment_id?: string | null
+          restore_id?: string | null
+          staging_environment_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "infra_certifications_backup_id_fkey"
+            columns: ["backup_id"]
+            isOneToOne: false
+            referencedRelation: "infra_backups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "infra_certifications_restore_environment_id_fkey"
+            columns: ["restore_environment_id"]
+            isOneToOne: false
+            referencedRelation: "infra_environments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "infra_certifications_restore_id_fkey"
+            columns: ["restore_id"]
+            isOneToOne: false
+            referencedRelation: "infra_restores"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "infra_certifications_staging_environment_id_fkey"
+            columns: ["staging_environment_id"]
+            isOneToOne: false
+            referencedRelation: "infra_environments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      infra_environments: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          credential_secret_name: string | null
+          database_engine: string
+          database_reference: string | null
+          database_version: string | null
+          deployment_reference: string | null
+          di00_state: Database["public"]["Enums"]["infra_di00_state"]
+          di00_state_reason: string | null
+          environment_fingerprint: string | null
+          environment_key: string
+          environment_name: string
+          environment_type: Database["public"]["Enums"]["infra_environment_type"]
+          host_ref: string | null
+          id: string
+          last_verified_at: string | null
+          migration_version: string | null
+          notes: string | null
+          production_flag: boolean
+          provider: string | null
+          provider_project_ref: string | null
+          region: string | null
+          schema_version: string | null
+          status: string
+          synthetic_data_flag: boolean
+          updated_at: string
+          updated_by: string | null
+          verification_status: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          credential_secret_name?: string | null
+          database_engine?: string
+          database_reference?: string | null
+          database_version?: string | null
+          deployment_reference?: string | null
+          di00_state?: Database["public"]["Enums"]["infra_di00_state"]
+          di00_state_reason?: string | null
+          environment_fingerprint?: string | null
+          environment_key: string
+          environment_name: string
+          environment_type: Database["public"]["Enums"]["infra_environment_type"]
+          host_ref?: string | null
+          id?: string
+          last_verified_at?: string | null
+          migration_version?: string | null
+          notes?: string | null
+          production_flag?: boolean
+          provider?: string | null
+          provider_project_ref?: string | null
+          region?: string | null
+          schema_version?: string | null
+          status?: string
+          synthetic_data_flag?: boolean
+          updated_at?: string
+          updated_by?: string | null
+          verification_status?: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          credential_secret_name?: string | null
+          database_engine?: string
+          database_reference?: string | null
+          database_version?: string | null
+          deployment_reference?: string | null
+          di00_state?: Database["public"]["Enums"]["infra_di00_state"]
+          di00_state_reason?: string | null
+          environment_fingerprint?: string | null
+          environment_key?: string
+          environment_name?: string
+          environment_type?: Database["public"]["Enums"]["infra_environment_type"]
+          host_ref?: string | null
+          id?: string
+          last_verified_at?: string | null
+          migration_version?: string | null
+          notes?: string | null
+          production_flag?: boolean
+          provider?: string | null
+          provider_project_ref?: string | null
+          region?: string | null
+          schema_version?: string | null
+          status?: string
+          synthetic_data_flag?: boolean
+          updated_at?: string
+          updated_by?: string | null
+          verification_status?: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Relationships: []
+      }
       infra_provider_actions: {
         Row: {
           action_key: string
@@ -21025,6 +21918,185 @@ export type Database = {
         }
         Relationships: []
       }
+      infra_restores: {
+        Row: {
+          backup_id: string
+          completed_at: string | null
+          correlation_id: string
+          created_at: string
+          duration_ms: number | null
+          error_code: string | null
+          error_message: string | null
+          id: string
+          idempotency_key: string
+          request_id: string
+          requested_by: string | null
+          restore_reference: string
+          restored_object_count: number | null
+          restored_row_count: number | null
+          started_at: string
+          state: Database["public"]["Enums"]["infra_job_state"]
+          target_environment_id: string
+          target_identity: string | null
+          verification_detail: Json
+          verification_result: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Insert: {
+          backup_id: string
+          completed_at?: string | null
+          correlation_id?: string
+          created_at?: string
+          duration_ms?: number | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          idempotency_key: string
+          request_id?: string
+          requested_by?: string | null
+          restore_reference?: string
+          restored_object_count?: number | null
+          restored_row_count?: number | null
+          started_at?: string
+          state?: Database["public"]["Enums"]["infra_job_state"]
+          target_environment_id: string
+          target_identity?: string | null
+          verification_detail?: Json
+          verification_result?: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Update: {
+          backup_id?: string
+          completed_at?: string | null
+          correlation_id?: string
+          created_at?: string
+          duration_ms?: number | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          idempotency_key?: string
+          request_id?: string
+          requested_by?: string | null
+          restore_reference?: string
+          restored_object_count?: number | null
+          restored_row_count?: number | null
+          started_at?: string
+          state?: Database["public"]["Enums"]["infra_job_state"]
+          target_environment_id?: string
+          target_identity?: string | null
+          verification_detail?: Json
+          verification_result?: Database["public"]["Enums"]["infra_check_result"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "infra_restores_backup_id_fkey"
+            columns: ["backup_id"]
+            isOneToOne: false
+            referencedRelation: "infra_backups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "infra_restores_target_environment_id_fkey"
+            columns: ["target_environment_id"]
+            isOneToOne: false
+            referencedRelation: "infra_environments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      infrastructure_certification_runs: {
+        Row: {
+          callback_url: string
+          cert_valid: boolean | null
+          deployment_ok: boolean | null
+          dns_ok: boolean | null
+          endpoint_id: string | null
+          failure_reason: string | null
+          http_status: number | null
+          https_ok: boolean | null
+          id: string
+          latency_ms: number | null
+          overall_ok: boolean | null
+          ran_at: string
+          raw_evidence: Json
+          secret_ok: boolean | null
+          tls_ok: boolean | null
+        }
+        Insert: {
+          callback_url: string
+          cert_valid?: boolean | null
+          deployment_ok?: boolean | null
+          dns_ok?: boolean | null
+          endpoint_id?: string | null
+          failure_reason?: string | null
+          http_status?: number | null
+          https_ok?: boolean | null
+          id?: string
+          latency_ms?: number | null
+          overall_ok?: boolean | null
+          ran_at?: string
+          raw_evidence?: Json
+          secret_ok?: boolean | null
+          tls_ok?: boolean | null
+        }
+        Update: {
+          callback_url?: string
+          cert_valid?: boolean | null
+          deployment_ok?: boolean | null
+          dns_ok?: boolean | null
+          endpoint_id?: string | null
+          failure_reason?: string | null
+          http_status?: number | null
+          https_ok?: boolean | null
+          id?: string
+          latency_ms?: number | null
+          overall_ok?: boolean | null
+          ran_at?: string
+          raw_evidence?: Json
+          secret_ok?: boolean | null
+          tls_ok?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "infrastructure_certification_runs_endpoint_id_fkey"
+            columns: ["endpoint_id"]
+            isOneToOne: false
+            referencedRelation: "callback_endpoint_registry"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_certification_runs: {
+        Row: {
+          created_at: string
+          gaps: number
+          id: string
+          ran_by: string | null
+          result: Json
+          role_context: string | null
+          total_checks: number
+          verdict: string
+        }
+        Insert: {
+          created_at?: string
+          gaps?: number
+          id?: string
+          ran_by?: string | null
+          result?: Json
+          role_context?: string | null
+          total_checks?: number
+          verdict: string
+        }
+        Update: {
+          created_at?: string
+          gaps?: number
+          id?: string
+          ran_by?: string | null
+          result?: Json
+          role_context?: string | null
+          total_checks?: number
+          verdict?: string
+        }
+        Relationships: []
+      }
       intern_cohorts: {
         Row: {
           created_at: string
@@ -21081,6 +22153,217 @@ export type Database = {
             columns: ["supervisor_staff_id"]
             isOneToOne: false
             referencedRelation: "staff_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_course_competencies: {
+        Row: {
+          competency: string
+          competency_category: string | null
+          course: string
+          created_at: string
+          curriculum_version: string
+          id: string
+          match_kind: string
+          proficiency_signal: string
+          source_id: string | null
+          track_code: string | null
+          yalla_capability: string
+        }
+        Insert: {
+          competency: string
+          competency_category?: string | null
+          course: string
+          created_at?: string
+          curriculum_version?: string
+          id?: string
+          match_kind?: string
+          proficiency_signal?: string
+          source_id?: string | null
+          track_code?: string | null
+          yalla_capability: string
+        }
+        Update: {
+          competency?: string
+          competency_category?: string | null
+          course?: string
+          created_at?: string
+          curriculum_version?: string
+          id?: string
+          match_kind?: string
+          proficiency_signal?: string
+          source_id?: string | null
+          track_code?: string | null
+          yalla_capability?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_course_competencies_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "intern_curriculum_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_curriculum_sources: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          curriculum_version: string
+          id: string
+          institution: string
+          institution_type: string | null
+          programme: string
+          qualification_level: string
+          retrieved_at: string
+          review_due: string | null
+          source: string | null
+          source_date: string | null
+          source_url: string | null
+          specialisation: string | null
+          verification_status: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          curriculum_version?: string
+          id?: string
+          institution: string
+          institution_type?: string | null
+          programme: string
+          qualification_level: string
+          retrieved_at?: string
+          review_due?: string | null
+          source?: string | null
+          source_date?: string | null
+          source_url?: string | null
+          specialisation?: string | null
+          verification_status?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          curriculum_version?: string
+          id?: string
+          institution?: string
+          institution_type?: string | null
+          programme?: string
+          qualification_level?: string
+          retrieved_at?: string
+          review_due?: string | null
+          source?: string | null
+          source_date?: string | null
+          source_url?: string | null
+          specialisation?: string | null
+          verification_status?: string
+        }
+        Relationships: []
+      }
+      intern_learning_modules: {
+        Row: {
+          code: string
+          competency: string
+          created_at: string
+          hours: number
+          id: string
+          requires_practical: boolean
+          resource_url: string | null
+          sequence: number
+          title: string
+          track_id: string
+        }
+        Insert: {
+          code: string
+          competency: string
+          created_at?: string
+          hours?: number
+          id?: string
+          requires_practical?: boolean
+          resource_url?: string | null
+          sequence?: number
+          title: string
+          track_id: string
+        }
+        Update: {
+          code?: string
+          competency?: string
+          created_at?: string
+          hours?: number
+          id?: string
+          requires_practical?: boolean
+          resource_url?: string | null
+          sequence?: number
+          title?: string
+          track_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_learning_modules_track_id_fkey"
+            columns: ["track_id"]
+            isOneToOne: false
+            referencedRelation: "intern_tracks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_learning_progress: {
+        Row: {
+          application_evidence: string | null
+          assessment_score: number | null
+          attempts: number
+          completed_at: string | null
+          created_at: string
+          id: string
+          intern_id: string
+          module_id: string
+          started_at: string | null
+          status: string
+          validated_at: string | null
+          validated_by: string | null
+        }
+        Insert: {
+          application_evidence?: string | null
+          assessment_score?: number | null
+          attempts?: number
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          intern_id: string
+          module_id: string
+          started_at?: string | null
+          status?: string
+          validated_at?: string | null
+          validated_by?: string | null
+        }
+        Update: {
+          application_evidence?: string | null
+          assessment_score?: number | null
+          attempts?: number
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          intern_id?: string
+          module_id?: string
+          started_at?: string | null
+          status?: string
+          validated_at?: string | null
+          validated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_learning_progress_intern_id_fkey"
+            columns: ["intern_id"]
+            isOneToOne: false
+            referencedRelation: "intern_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_learning_progress_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "intern_learning_modules"
             referencedColumns: ["id"]
           },
         ]
@@ -21269,6 +22552,306 @@ export type Database = {
           status?: string
         }
         Relationships: []
+      }
+      intern_recruitment_certification_runs: {
+        Row: {
+          created_at: string
+          gaps: Json
+          id: string
+          passed_checks: number
+          ran_by: string | null
+          result: Json
+          total_checks: number
+          verdict: string
+        }
+        Insert: {
+          created_at?: string
+          gaps?: Json
+          id?: string
+          passed_checks: number
+          ran_by?: string | null
+          result?: Json
+          total_checks: number
+          verdict: string
+        }
+        Update: {
+          created_at?: string
+          gaps?: Json
+          id?: string
+          passed_checks?: number
+          ran_by?: string | null
+          result?: Json
+          total_checks?: number
+          verdict?: string
+        }
+        Relationships: []
+      }
+      intern_recruitment_pipeline: {
+        Row: {
+          application_id: string
+          assessment_score: number | null
+          candidate_id: string | null
+          cohort_id: string | null
+          created_at: string
+          created_by: string | null
+          curriculum_score: number | null
+          decided_at: string | null
+          decided_by: string | null
+          development_track_id: string | null
+          eligibility_reasons: Json
+          eligibility_status: string
+          evidence_score: number | null
+          id: string
+          intern_id: string | null
+          interview_score: number | null
+          last_action_at: string
+          match_score: number | null
+          owner_staff_id: string | null
+          primary_track_id: string | null
+          programme_id: string | null
+          risk_flags: Json
+          score_breakdown: Json
+          scoring_weight_set_id: string | null
+          screening_recommendation: string | null
+          secondary_track_id: string | null
+          selection_decision: string | null
+          selection_reason: string | null
+          sla_target_hours: number
+          stage: Database["public"]["Enums"]["intern_pipeline_stage"]
+          stage_entered_at: string
+          vacancy_id: string | null
+        }
+        Insert: {
+          application_id: string
+          assessment_score?: number | null
+          candidate_id?: string | null
+          cohort_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          curriculum_score?: number | null
+          decided_at?: string | null
+          decided_by?: string | null
+          development_track_id?: string | null
+          eligibility_reasons?: Json
+          eligibility_status?: string
+          evidence_score?: number | null
+          id?: string
+          intern_id?: string | null
+          interview_score?: number | null
+          last_action_at?: string
+          match_score?: number | null
+          owner_staff_id?: string | null
+          primary_track_id?: string | null
+          programme_id?: string | null
+          risk_flags?: Json
+          score_breakdown?: Json
+          scoring_weight_set_id?: string | null
+          screening_recommendation?: string | null
+          secondary_track_id?: string | null
+          selection_decision?: string | null
+          selection_reason?: string | null
+          sla_target_hours?: number
+          stage?: Database["public"]["Enums"]["intern_pipeline_stage"]
+          stage_entered_at?: string
+          vacancy_id?: string | null
+        }
+        Update: {
+          application_id?: string
+          assessment_score?: number | null
+          candidate_id?: string | null
+          cohort_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          curriculum_score?: number | null
+          decided_at?: string | null
+          decided_by?: string | null
+          development_track_id?: string | null
+          eligibility_reasons?: Json
+          eligibility_status?: string
+          evidence_score?: number | null
+          id?: string
+          intern_id?: string | null
+          interview_score?: number | null
+          last_action_at?: string
+          match_score?: number | null
+          owner_staff_id?: string | null
+          primary_track_id?: string | null
+          programme_id?: string | null
+          risk_flags?: Json
+          score_breakdown?: Json
+          scoring_weight_set_id?: string | null
+          screening_recommendation?: string | null
+          secondary_track_id?: string | null
+          selection_decision?: string | null
+          selection_reason?: string | null
+          sla_target_hours?: number
+          stage?: Database["public"]["Enums"]["intern_pipeline_stage"]
+          stage_entered_at?: string
+          vacancy_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_recruitment_pipeline_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: true
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "intern_cohorts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_development_track_id_fkey"
+            columns: ["development_track_id"]
+            isOneToOne: false
+            referencedRelation: "intern_tracks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_intern_id_fkey"
+            columns: ["intern_id"]
+            isOneToOne: false
+            referencedRelation: "intern_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_primary_track_id_fkey"
+            columns: ["primary_track_id"]
+            isOneToOne: false
+            referencedRelation: "intern_tracks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_programme_id_fkey"
+            columns: ["programme_id"]
+            isOneToOne: false
+            referencedRelation: "intern_programmes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_scoring_weight_set_id_fkey"
+            columns: ["scoring_weight_set_id"]
+            isOneToOne: false
+            referencedRelation: "intern_recruitment_weight_sets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_secondary_track_id_fkey"
+            columns: ["secondary_track_id"]
+            isOneToOne: false
+            referencedRelation: "intern_tracks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intern_recruitment_pipeline_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_recruitment_transitions: {
+        Row: {
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          evidence: Json
+          from_stage:
+            | Database["public"]["Enums"]["intern_pipeline_stage"]
+            | null
+          id: string
+          idempotency_key: string | null
+          pipeline_id: string
+          reason: string | null
+          to_stage: Database["public"]["Enums"]["intern_pipeline_stage"]
+        }
+        Insert: {
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          evidence?: Json
+          from_stage?:
+            | Database["public"]["Enums"]["intern_pipeline_stage"]
+            | null
+          id?: string
+          idempotency_key?: string | null
+          pipeline_id: string
+          reason?: string | null
+          to_stage: Database["public"]["Enums"]["intern_pipeline_stage"]
+        }
+        Update: {
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          evidence?: Json
+          from_stage?:
+            | Database["public"]["Enums"]["intern_pipeline_stage"]
+            | null
+          id?: string
+          idempotency_key?: string | null
+          pipeline_id?: string
+          reason?: string | null
+          to_stage?: Database["public"]["Enums"]["intern_pipeline_stage"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_recruitment_transitions_pipeline_id_fkey"
+            columns: ["pipeline_id"]
+            isOneToOne: false
+            referencedRelation: "intern_recruitment_pipeline"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      intern_recruitment_weight_sets: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          status: string
+          vacancy_id: string | null
+          version: number
+          weights: Json
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          status?: string
+          vacancy_id?: string | null
+          version?: number
+          weights: Json
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          status?: string
+          vacancy_id?: string | null
+          version?: number
+          weights?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_recruitment_weight_sets_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       intern_supply_driver_prospects: {
         Row: {
@@ -22091,6 +23674,77 @@ export type Database = {
             columns: ["account_id"]
             isOneToOne: false
             referencedRelation: "ledger_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legal_certifications: {
+        Row: {
+          certificate_number: string | null
+          certification_type: string
+          created_at: string
+          document_path: string | null
+          effective_from: string | null
+          effective_until: string | null
+          holder_id: string | null
+          holder_name: string | null
+          holder_type: string
+          id: string
+          issue_date: string | null
+          issuer: string | null
+          notes: string | null
+          owner_user_id: string | null
+          requirement_id: string | null
+          status: Database["public"]["Enums"]["legal_status"]
+          updated_at: string
+          verification_status: Database["public"]["Enums"]["legal_review_outcome"]
+        }
+        Insert: {
+          certificate_number?: string | null
+          certification_type: string
+          created_at?: string
+          document_path?: string | null
+          effective_from?: string | null
+          effective_until?: string | null
+          holder_id?: string | null
+          holder_name?: string | null
+          holder_type?: string
+          id?: string
+          issue_date?: string | null
+          issuer?: string | null
+          notes?: string | null
+          owner_user_id?: string | null
+          requirement_id?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          updated_at?: string
+          verification_status?: Database["public"]["Enums"]["legal_review_outcome"]
+        }
+        Update: {
+          certificate_number?: string | null
+          certification_type?: string
+          created_at?: string
+          document_path?: string | null
+          effective_from?: string | null
+          effective_until?: string | null
+          holder_id?: string | null
+          holder_name?: string | null
+          holder_type?: string
+          id?: string
+          issue_date?: string | null
+          issuer?: string | null
+          notes?: string | null
+          owner_user_id?: string | null
+          requirement_id?: string | null
+          status?: Database["public"]["Enums"]["legal_status"]
+          updated_at?: string
+          verification_status?: Database["public"]["Enums"]["legal_review_outcome"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_certifications_requirement_id_fkey"
+            columns: ["requirement_id"]
+            isOneToOne: false
+            referencedRelation: "legal_requirements"
             referencedColumns: ["id"]
           },
         ]
@@ -28697,6 +30351,57 @@ export type Database = {
           },
         ]
       }
+      ml_training_runs: {
+        Row: {
+          artifact_uri: string | null
+          created_at: string
+          dataset_ref: string | null
+          duration_seconds: number | null
+          error_message: string | null
+          finished_at: string | null
+          hyperparameters: Json
+          id: string
+          metrics: Json
+          model_name: string
+          run_name: string | null
+          started_at: string | null
+          status: string
+          triggered_by: string | null
+        }
+        Insert: {
+          artifact_uri?: string | null
+          created_at?: string
+          dataset_ref?: string | null
+          duration_seconds?: number | null
+          error_message?: string | null
+          finished_at?: string | null
+          hyperparameters?: Json
+          id?: string
+          metrics?: Json
+          model_name: string
+          run_name?: string | null
+          started_at?: string | null
+          status?: string
+          triggered_by?: string | null
+        }
+        Update: {
+          artifact_uri?: string | null
+          created_at?: string
+          dataset_ref?: string | null
+          duration_seconds?: number | null
+          error_message?: string | null
+          finished_at?: string | null
+          hyperparameters?: Json
+          id?: string
+          metrics?: Json
+          model_name?: string
+          run_name?: string | null
+          started_at?: string | null
+          status?: string
+          triggered_by?: string | null
+        }
+        Relationships: []
+      }
       mobility_orders: {
         Row: {
           created_at: string
@@ -30865,6 +32570,132 @@ export type Database = {
           },
         ]
       }
+      partner_applications: {
+        Row: {
+          ab_variant: string | null
+          carrier_application_id: string | null
+          carrier_id: string | null
+          category: string | null
+          city: string | null
+          client_fingerprint: string | null
+          commercial_model: Database["public"]["Enums"]["partner_commercial_model"]
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          converted_at: string | null
+          converted_by: string | null
+          country: string
+          created_at: string
+          id: string
+          intent_bring: string | null
+          lifecycle_stage: string | null
+          maturity_level: string | null
+          monthly_volume_estimate: number | null
+          network_category: string | null
+          organisation_name: string
+          partner_id: string | null
+          partner_type: Database["public"]["Enums"]["partner_type"]
+          reference: string
+          requirements: string | null
+          review_notes: string | null
+          review_status: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          session_id: string | null
+          status: string
+          submitted_by: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          ab_variant?: string | null
+          carrier_application_id?: string | null
+          carrier_id?: string | null
+          category?: string | null
+          city?: string | null
+          client_fingerprint?: string | null
+          commercial_model?: Database["public"]["Enums"]["partner_commercial_model"]
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          converted_at?: string | null
+          converted_by?: string | null
+          country?: string
+          created_at?: string
+          id?: string
+          intent_bring?: string | null
+          lifecycle_stage?: string | null
+          maturity_level?: string | null
+          monthly_volume_estimate?: number | null
+          network_category?: string | null
+          organisation_name: string
+          partner_id?: string | null
+          partner_type?: Database["public"]["Enums"]["partner_type"]
+          reference?: string
+          requirements?: string | null
+          review_notes?: string | null
+          review_status?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          session_id?: string | null
+          status?: string
+          submitted_by?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          ab_variant?: string | null
+          carrier_application_id?: string | null
+          carrier_id?: string | null
+          category?: string | null
+          city?: string | null
+          client_fingerprint?: string | null
+          commercial_model?: Database["public"]["Enums"]["partner_commercial_model"]
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string
+          converted_at?: string | null
+          converted_by?: string | null
+          country?: string
+          created_at?: string
+          id?: string
+          intent_bring?: string | null
+          lifecycle_stage?: string | null
+          maturity_level?: string | null
+          monthly_volume_estimate?: number | null
+          network_category?: string | null
+          organisation_name?: string
+          partner_id?: string | null
+          partner_type?: Database["public"]["Enums"]["partner_type"]
+          reference?: string
+          requirements?: string | null
+          review_notes?: string | null
+          review_status?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          session_id?: string | null
+          status?: string
+          submitted_by?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partner_applications_carrier_id_fkey"
+            columns: ["carrier_id"]
+            isOneToOne: false
+            referencedRelation: "carrier_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partner_applications_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       partner_customers: {
         Row: {
           accessibility_needs: string | null
@@ -31054,6 +32885,116 @@ export type Database = {
           window_started_at?: string
         }
         Relationships: []
+      }
+      partner_onboarding_requirements: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          is_mandatory: boolean
+          label: string
+          partner_types: Database["public"]["Enums"]["partner_type"][]
+          sort_order: number
+          validity_months: number | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_mandatory?: boolean
+          label: string
+          partner_types?: Database["public"]["Enums"]["partner_type"][]
+          sort_order?: number
+          validity_months?: number | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_mandatory?: boolean
+          label?: string
+          partner_types?: Database["public"]["Enums"]["partner_type"][]
+          sort_order?: number
+          validity_months?: number | null
+        }
+        Relationships: []
+      }
+      partner_recruitment_links: {
+        Row: {
+          application_id: string | null
+          candidate_id: string
+          created_at: string
+          id: string
+          linked_at: string
+          linked_by: string | null
+          notes: string | null
+          partner_application_id: string
+          state: string
+          updated_at: string
+          vacancy_id: string | null
+        }
+        Insert: {
+          application_id?: string | null
+          candidate_id: string
+          created_at?: string
+          id?: string
+          linked_at?: string
+          linked_by?: string | null
+          notes?: string | null
+          partner_application_id: string
+          state?: string
+          updated_at?: string
+          vacancy_id?: string | null
+        }
+        Update: {
+          application_id?: string | null
+          candidate_id?: string
+          created_at?: string
+          id?: string
+          linked_at?: string
+          linked_by?: string | null
+          notes?: string | null
+          partner_application_id?: string
+          state?: string
+          updated_at?: string
+          vacancy_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partner_recruitment_links_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "rec_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partner_recruitment_links_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "rec_candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partner_recruitment_links_partner_application_id_fkey"
+            columns: ["partner_application_id"]
+            isOneToOne: true
+            referencedRelation: "partner_applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partner_recruitment_links_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       partner_settlement_lines: {
         Row: {
@@ -35442,6 +37383,39 @@ export type Database = {
         }
         Relationships: []
       }
+      platform_certification_snapshots: {
+        Row: {
+          created_at: string
+          generated_at: string
+          id: string
+          maturity_score: number
+          refreshed_at: string
+          release_approved: boolean
+          snapshot: Json
+          snapshot_id: string
+        }
+        Insert: {
+          created_at?: string
+          generated_at?: string
+          id?: string
+          maturity_score: number
+          refreshed_at?: string
+          release_approved?: boolean
+          snapshot: Json
+          snapshot_id: string
+        }
+        Update: {
+          created_at?: string
+          generated_at?: string
+          id?: string
+          maturity_score?: number
+          refreshed_at?: string
+          release_approved?: boolean
+          snapshot?: Json
+          snapshot_id?: string
+        }
+        Relationships: []
+      }
       platform_wallet: {
         Row: {
           created_at: string
@@ -36685,6 +38659,54 @@ export type Database = {
           vat_inclusive?: boolean
           vat_rate?: number
           void_reason?: string | null
+        }
+        Relationships: []
+      }
+      projection_replay_certifications: {
+        Row: {
+          after_hash: string
+          after_snapshot: Json
+          before_hash: string
+          before_snapshot: Json
+          correlation_id: string | null
+          created_at: string
+          duration_ms: number | null
+          equal: boolean
+          expected_delta: Json
+          id: string
+          passed: boolean
+          payment_attempt_id: string
+          replay_result: Json
+        }
+        Insert: {
+          after_hash: string
+          after_snapshot?: Json
+          before_hash: string
+          before_snapshot?: Json
+          correlation_id?: string | null
+          created_at?: string
+          duration_ms?: number | null
+          equal: boolean
+          expected_delta?: Json
+          id?: string
+          passed: boolean
+          payment_attempt_id: string
+          replay_result?: Json
+        }
+        Update: {
+          after_hash?: string
+          after_snapshot?: Json
+          before_hash?: string
+          before_snapshot?: Json
+          correlation_id?: string | null
+          created_at?: string
+          duration_ms?: number | null
+          equal?: boolean
+          expected_delta?: Json
+          id?: string
+          passed?: boolean
+          payment_attempt_id?: string
+          replay_result?: Json
         }
         Relationships: []
       }
@@ -38943,6 +40965,139 @@ export type Database = {
           },
         ]
       }
+      rec_import_job_steps: {
+        Row: {
+          attempts: number
+          completed_at: string | null
+          created_at: string
+          handler: string
+          id: string
+          label: string
+          last_error: string | null
+          max_attempts: number
+          next_attempt_at: string | null
+          payload: Json
+          result: Json | null
+          run_id: string
+          started_at: string | null
+          status: string
+          step_key: string
+          step_no: number
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          completed_at?: string | null
+          created_at?: string
+          handler: string
+          id?: string
+          label: string
+          last_error?: string | null
+          max_attempts?: number
+          next_attempt_at?: string | null
+          payload?: Json
+          result?: Json | null
+          run_id: string
+          started_at?: string | null
+          status?: string
+          step_key: string
+          step_no: number
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          completed_at?: string | null
+          created_at?: string
+          handler?: string
+          id?: string
+          label?: string
+          last_error?: string | null
+          max_attempts?: number
+          next_attempt_at?: string | null
+          payload?: Json
+          result?: Json | null
+          run_id?: string
+          started_at?: string | null
+          status?: string
+          step_key?: string
+          step_no?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_import_job_steps_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "rec_import_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_import_runs: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          initiated_by: string | null
+          initiated_by_label: string
+          kind: string
+          label: string
+          locked_until: string | null
+          paused_reason: string | null
+          run_no: string
+          source_description: string | null
+          started_at: string
+          stats: Json
+          status: string
+          updated_at: string
+          vacancy_id: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          initiated_by?: string | null
+          initiated_by_label?: string
+          kind?: string
+          label: string
+          locked_until?: string | null
+          paused_reason?: string | null
+          run_no: string
+          source_description?: string | null
+          started_at?: string
+          stats?: Json
+          status?: string
+          updated_at?: string
+          vacancy_id?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          initiated_by?: string | null
+          initiated_by_label?: string
+          kind?: string
+          label?: string
+          locked_until?: string | null
+          paused_reason?: string | null
+          run_no?: string
+          source_description?: string | null
+          started_at?: string
+          stats?: Json
+          status?: string
+          updated_at?: string
+          vacancy_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_import_runs_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       rec_interviews: {
         Row: {
           application_id: string
@@ -39038,6 +41193,71 @@ export type Database = {
           },
           {
             foreignKeyName: "rec_interviews_vacancy_id_fkey"
+            columns: ["vacancy_id"]
+            isOneToOne: false
+            referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_job_descriptions: {
+        Row: {
+          ai_model: string | null
+          approved_at: string | null
+          approved_by: string | null
+          benefits: string[]
+          body: string
+          created_at: string
+          created_by: string | null
+          id: string
+          origin: string
+          requirements: string[]
+          responsibilities: string[]
+          status: string
+          summary: string | null
+          updated_at: string
+          vacancy_id: string
+          version: number
+        }
+        Insert: {
+          ai_model?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          benefits?: string[]
+          body?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          origin?: string
+          requirements?: string[]
+          responsibilities?: string[]
+          status?: string
+          summary?: string | null
+          updated_at?: string
+          vacancy_id: string
+          version?: number
+        }
+        Update: {
+          ai_model?: string | null
+          approved_at?: string | null
+          approved_by?: string | null
+          benefits?: string[]
+          body?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          origin?: string
+          requirements?: string[]
+          responsibilities?: string[]
+          status?: string
+          summary?: string | null
+          updated_at?: string
+          vacancy_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_job_descriptions_vacancy_id_fkey"
             columns: ["vacancy_id"]
             isOneToOne: false
             referencedRelation: "rec_vacancies"
@@ -39427,6 +41647,63 @@ export type Database = {
             columns: ["vacancy_id"]
             isOneToOne: false
             referencedRelation: "rec_vacancies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rec_onboarding_tasks: {
+        Row: {
+          case_id: string
+          category: string
+          completed_at: string | null
+          created_at: string
+          due_date: string | null
+          id: string
+          notes: string | null
+          owner_staff_id: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          case_id: string
+          category?: string
+          completed_at?: string | null
+          created_at?: string
+          due_date?: string | null
+          id?: string
+          notes?: string | null
+          owner_staff_id?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          case_id?: string
+          category?: string
+          completed_at?: string | null
+          created_at?: string
+          due_date?: string | null
+          id?: string
+          notes?: string | null
+          owner_staff_id?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rec_onboarding_tasks_case_id_fkey"
+            columns: ["case_id"]
+            isOneToOne: false
+            referencedRelation: "rec_onboarding_cases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rec_onboarding_tasks_owner_staff_id_fkey"
+            columns: ["owner_staff_id"]
+            isOneToOne: false
+            referencedRelation: "staff_members"
             referencedColumns: ["id"]
           },
         ]
@@ -42588,6 +44865,30 @@ export type Database = {
           },
         ]
       }
+      scheduled_job_invocations: {
+        Row: {
+          function_slug: string
+          id: string
+          invoked_at: string
+          job_name: string
+          request_id: number | null
+        }
+        Insert: {
+          function_slug: string
+          id?: string
+          invoked_at?: string
+          job_name: string
+          request_id?: number | null
+        }
+        Update: {
+          function_slug?: string
+          id?: string
+          invoked_at?: string
+          job_name?: string
+          request_id?: number | null
+        }
+        Relationships: []
+      }
       scheduled_trips: {
         Row: {
           created_at: string
@@ -43532,6 +45833,54 @@ export type Database = {
             referencedColumns: ["slug"]
           },
         ]
+      }
+      st_certification_runs: {
+        Row: {
+          actor: string
+          correlation_id: string
+          created_at: string
+          duration_ms: number | null
+          finished_at: string | null
+          id: string
+          requested_by: string | null
+          run_key: string
+          started_at: string
+          state: Database["public"]["Enums"]["st_exec_state"]
+          summary: Json
+          trigger_source: string
+          updated_at: string
+        }
+        Insert: {
+          actor?: string
+          correlation_id?: string
+          created_at?: string
+          duration_ms?: number | null
+          finished_at?: string | null
+          id?: string
+          requested_by?: string | null
+          run_key: string
+          started_at?: string
+          state?: Database["public"]["Enums"]["st_exec_state"]
+          summary?: Json
+          trigger_source?: string
+          updated_at?: string
+        }
+        Update: {
+          actor?: string
+          correlation_id?: string
+          created_at?: string
+          duration_ms?: number | null
+          finished_at?: string | null
+          id?: string
+          requested_by?: string | null
+          run_key?: string
+          started_at?: string
+          state?: Database["public"]["Enums"]["st_exec_state"]
+          summary?: Json
+          trigger_source?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       staff_action_outcomes: {
         Row: {
@@ -46733,6 +49082,661 @@ export type Database = {
           },
         ]
       }
+      training_answers: {
+        Row: {
+          created_at: string
+          id: string
+          is_correct: boolean
+          label: string
+          question_id: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_correct?: boolean
+          label: string
+          question_id: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_correct?: boolean
+          label?: string
+          question_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "training_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_assessments: {
+        Row: {
+          course_id: string
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          kind: string
+          max_attempts: number
+          module_id: string | null
+          pass_mark: number
+          randomize: boolean
+          time_limit_min: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          course_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          kind?: string
+          max_attempts?: number
+          module_id?: string | null
+          pass_mark?: number
+          randomize?: boolean
+          time_limit_min?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          course_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          kind?: string
+          max_attempts?: number
+          module_id?: string | null
+          pass_mark?: number
+          randomize?: boolean
+          time_limit_min?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_assessments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "training_courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "training_assessments_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "training_modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_attempts: {
+        Row: {
+          answers: Json
+          assessment_id: string
+          course_id: string
+          created_at: string
+          driver_id: string
+          id: string
+          passed: boolean | null
+          score: number | null
+          started_at: string
+          submitted_at: string | null
+        }
+        Insert: {
+          answers?: Json
+          assessment_id: string
+          course_id: string
+          created_at?: string
+          driver_id: string
+          id?: string
+          passed?: boolean | null
+          score?: number | null
+          started_at?: string
+          submitted_at?: string | null
+        }
+        Update: {
+          answers?: Json
+          assessment_id?: string
+          course_id?: string
+          created_at?: string
+          driver_id?: string
+          id?: string
+          passed?: boolean | null
+          score?: number | null
+          started_at?: string
+          submitted_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_attempts_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "training_assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_categories: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      training_certificates: {
+        Row: {
+          certificate_number: string
+          course_id: string
+          created_at: string
+          driver_id: string
+          expires_at: string | null
+          id: string
+          issued_at: string
+          kind: string
+          metadata: Json
+          qr_payload: string
+          revoked_at: string | null
+          score: number | null
+          signature_hash: string
+          title: string
+        }
+        Insert: {
+          certificate_number: string
+          course_id: string
+          created_at?: string
+          driver_id: string
+          expires_at?: string | null
+          id?: string
+          issued_at?: string
+          kind: string
+          metadata?: Json
+          qr_payload: string
+          revoked_at?: string | null
+          score?: number | null
+          signature_hash: string
+          title: string
+        }
+        Update: {
+          certificate_number?: string
+          course_id?: string
+          created_at?: string
+          driver_id?: string
+          expires_at?: string | null
+          id?: string
+          issued_at?: string
+          kind?: string
+          metadata?: Json
+          qr_payload?: string
+          revoked_at?: string | null
+          score?: number | null
+          signature_hash?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_certificates_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "training_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_courses: {
+        Row: {
+          category_id: string | null
+          certification_kind: string | null
+          code: string
+          cpd_points: number
+          created_at: string
+          description: string | null
+          duration_minutes: number
+          id: string
+          is_published: boolean
+          level: number
+          metadata: Json
+          pass_mark: number
+          required_for_activation: boolean
+          slug: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category_id?: string | null
+          certification_kind?: string | null
+          code: string
+          cpd_points?: number
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_published?: boolean
+          level?: number
+          metadata?: Json
+          pass_mark?: number
+          required_for_activation?: boolean
+          slug: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category_id?: string | null
+          certification_kind?: string | null
+          code?: string
+          cpd_points?: number
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_published?: boolean
+          level?: number
+          metadata?: Json
+          pass_mark?: number
+          required_for_activation?: boolean
+          slug?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_courses_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "training_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_cpd_points: {
+        Row: {
+          awarded_at: string
+          driver_id: string
+          id: string
+          points: number
+          source_id: string | null
+          source_type: string
+          year: number
+        }
+        Insert: {
+          awarded_at?: string
+          driver_id: string
+          id?: string
+          points: number
+          source_id?: string | null
+          source_type: string
+          year?: number
+        }
+        Update: {
+          awarded_at?: string
+          driver_id?: string
+          id?: string
+          points?: number
+          source_id?: string | null
+          source_type?: string
+          year?: number
+        }
+        Relationships: []
+      }
+      training_documents: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          lesson_id: string
+          title: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind?: string
+          lesson_id: string
+          title: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          lesson_id?: string
+          title?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_documents_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "training_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_enrollments: {
+        Row: {
+          completed_at: string | null
+          course_id: string
+          driver_id: string
+          enrolled_at: string
+          id: string
+          progress_pct: number
+          status: string
+        }
+        Insert: {
+          completed_at?: string | null
+          course_id: string
+          driver_id: string
+          enrolled_at?: string
+          id?: string
+          progress_pct?: number
+          status?: string
+        }
+        Update: {
+          completed_at?: string | null
+          course_id?: string
+          driver_id?: string
+          enrolled_at?: string
+          id?: string
+          progress_pct?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "training_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_lessons: {
+        Row: {
+          content_md: string | null
+          created_at: string
+          duration_minutes: number
+          id: string
+          is_required: boolean
+          lesson_type: string
+          module_id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content_md?: string | null
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          is_required?: boolean
+          lesson_type?: string
+          module_id: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content_md?: string | null
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          is_required?: boolean
+          lesson_type?: string
+          module_id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_lessons_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "training_modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_modules: {
+        Row: {
+          code: string | null
+          course_id: string
+          created_at: string
+          description: string | null
+          duration_minutes: number
+          id: string
+          is_required: boolean
+          pass_mark: number | null
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          code?: string | null
+          course_id: string
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_required?: boolean
+          pass_mark?: number | null
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string | null
+          course_id?: string
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_required?: boolean
+          pass_mark?: number | null
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_modules_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "training_courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_progress: {
+        Row: {
+          completed_at: string | null
+          course_id: string
+          driver_id: string
+          id: string
+          last_position_seconds: number
+          lesson_id: string
+          progress_pct: number
+          started_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          course_id: string
+          driver_id: string
+          id?: string
+          last_position_seconds?: number
+          lesson_id: string
+          progress_pct?: number
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          course_id?: string
+          driver_id?: string
+          id?: string
+          last_position_seconds?: number
+          lesson_id?: string
+          progress_pct?: number
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "training_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_questions: {
+        Row: {
+          assessment_id: string
+          created_at: string
+          explanation: string | null
+          id: string
+          image_url: string | null
+          kind: string
+          points: number
+          prompt: string
+          sort_order: number
+          video_url: string | null
+        }
+        Insert: {
+          assessment_id: string
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          image_url?: string | null
+          kind?: string
+          points?: number
+          prompt: string
+          sort_order?: number
+          video_url?: string | null
+        }
+        Update: {
+          assessment_id?: string
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          image_url?: string | null
+          kind?: string
+          points?: number
+          prompt?: string
+          sort_order?: number
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_questions_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "training_assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      training_videos: {
+        Row: {
+          checkpoint_count: number
+          checkpoints: Json
+          created_at: string
+          duration_seconds: number
+          external_code: string | null
+          id: string
+          is_mandatory: boolean
+          lesson_id: string
+          min_watch_percent: number
+          provider: string
+          sort_order: number
+          title: string | null
+          url: string
+        }
+        Insert: {
+          checkpoint_count?: number
+          checkpoints?: Json
+          created_at?: string
+          duration_seconds?: number
+          external_code?: string | null
+          id?: string
+          is_mandatory?: boolean
+          lesson_id: string
+          min_watch_percent?: number
+          provider?: string
+          sort_order?: number
+          title?: string | null
+          url: string
+        }
+        Update: {
+          checkpoint_count?: number
+          checkpoints?: Json
+          created_at?: string
+          duration_seconds?: number
+          external_code?: string | null
+          id?: string
+          is_mandatory?: boolean
+          lesson_id?: string
+          min_watch_percent?: number
+          provider?: string
+          sort_order?: number
+          title?: string | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "training_videos_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "training_lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       transaction_taxes: {
         Row: {
           calculation_id: string
@@ -49173,6 +52177,37 @@ export type Database = {
         | "BLOCKED"
         | "UNKNOWN"
         | "NOT_CONFIGURED"
+      infra_di00_state:
+        | "DESIGN"
+        | "CONFIGURATION_REQUIRED"
+        | "CONFIGURED"
+        | "PROVISIONING"
+        | "PROVISIONED"
+        | "CONNECTED"
+        | "IDENTITY_VERIFIED"
+        | "SCHEMA_READY"
+        | "SECURITY_READY"
+        | "BACKUP_READY"
+        | "RESTORE_READY"
+        | "CERTIFICATION_READY"
+        | "CERTIFICATION_IN_PROGRESS"
+        | "CERTIFIED"
+        | "CLEARED"
+        | "CONFIGURATION_FAILED"
+        | "PROVISIONING_FAILED"
+        | "CONNECTION_FAILED"
+        | "IDENTITY_FAILED"
+        | "SCHEMA_FAILED"
+        | "SECURITY_FAILED"
+        | "BACKUP_FAILED"
+        | "RESTORE_FAILED"
+        | "CERTIFICATION_FAILED"
+      infra_environment_type:
+        | "DEVELOPMENT"
+        | "TEST"
+        | "STAGING"
+        | "RESTORE"
+        | "PRODUCTION"
       infra_job_state:
         | "REQUESTED"
         | "RUNNING"
@@ -49182,6 +52217,36 @@ export type Database = {
         | "CANCELLED"
       inspection_result: "pass" | "conditional" | "fail" | "pending"
       insurance_status: "ACTIVE" | "EXPIRED" | "CANCELLED" | "PENDING" | "CLAIM"
+      intern_pipeline_stage:
+        | "DRAFT"
+        | "PUBLISHED"
+        | "APPLICATION_OPEN"
+        | "APPLICATION_RECEIVED"
+        | "ELIGIBILITY_SCREENING"
+        | "ACADEMIC_PROFILE_VALIDATION"
+        | "CURRICULUM_MATCH"
+        | "EVIDENCE_REVIEW"
+        | "CAPABILITY_ASSESSMENT"
+        | "SHORTLIST_REVIEW"
+        | "INTERVIEW_INVITED"
+        | "INTERVIEW_SCHEDULED"
+        | "INTERVIEW_COMPLETED"
+        | "SELECTION_REVIEW"
+        | "SELECTED"
+        | "OFFER_GENERATED"
+        | "OFFER_SENT"
+        | "OFFER_ACCEPTED"
+        | "DOCUMENT_COLLECTION"
+        | "ONBOARDING"
+        | "INTERN_ACTIVATED"
+        | "INTERNS_360"
+        | "REJECTED"
+        | "WITHDRAWN"
+        | "DECLINED"
+        | "EXPIRED"
+        | "NO_SHOW"
+        | "INELIGIBLE"
+        | "POSITION_FILLED"
       journal_source:
         | "MPESA_SETTLEMENT"
         | "MPESA_REVERSAL"
@@ -49545,6 +52610,7 @@ export type Database = {
         | "MISMATCHED"
         | "MISSING"
         | "REVERSED"
+      st_exec_state: "REQUESTED" | "RUNNING" | "COMPLETED" | "FAILED"
       surge_approval_status:
         | "PENDING"
         | "APPROVED"
@@ -50160,6 +53226,39 @@ export const Constants = {
         "UNKNOWN",
         "NOT_CONFIGURED",
       ],
+      infra_di00_state: [
+        "DESIGN",
+        "CONFIGURATION_REQUIRED",
+        "CONFIGURED",
+        "PROVISIONING",
+        "PROVISIONED",
+        "CONNECTED",
+        "IDENTITY_VERIFIED",
+        "SCHEMA_READY",
+        "SECURITY_READY",
+        "BACKUP_READY",
+        "RESTORE_READY",
+        "CERTIFICATION_READY",
+        "CERTIFICATION_IN_PROGRESS",
+        "CERTIFIED",
+        "CLEARED",
+        "CONFIGURATION_FAILED",
+        "PROVISIONING_FAILED",
+        "CONNECTION_FAILED",
+        "IDENTITY_FAILED",
+        "SCHEMA_FAILED",
+        "SECURITY_FAILED",
+        "BACKUP_FAILED",
+        "RESTORE_FAILED",
+        "CERTIFICATION_FAILED",
+      ],
+      infra_environment_type: [
+        "DEVELOPMENT",
+        "TEST",
+        "STAGING",
+        "RESTORE",
+        "PRODUCTION",
+      ],
       infra_job_state: [
         "REQUESTED",
         "RUNNING",
@@ -50170,6 +53269,37 @@ export const Constants = {
       ],
       inspection_result: ["pass", "conditional", "fail", "pending"],
       insurance_status: ["ACTIVE", "EXPIRED", "CANCELLED", "PENDING", "CLAIM"],
+      intern_pipeline_stage: [
+        "DRAFT",
+        "PUBLISHED",
+        "APPLICATION_OPEN",
+        "APPLICATION_RECEIVED",
+        "ELIGIBILITY_SCREENING",
+        "ACADEMIC_PROFILE_VALIDATION",
+        "CURRICULUM_MATCH",
+        "EVIDENCE_REVIEW",
+        "CAPABILITY_ASSESSMENT",
+        "SHORTLIST_REVIEW",
+        "INTERVIEW_INVITED",
+        "INTERVIEW_SCHEDULED",
+        "INTERVIEW_COMPLETED",
+        "SELECTION_REVIEW",
+        "SELECTED",
+        "OFFER_GENERATED",
+        "OFFER_SENT",
+        "OFFER_ACCEPTED",
+        "DOCUMENT_COLLECTION",
+        "ONBOARDING",
+        "INTERN_ACTIVATED",
+        "INTERNS_360",
+        "REJECTED",
+        "WITHDRAWN",
+        "DECLINED",
+        "EXPIRED",
+        "NO_SHOW",
+        "INELIGIBLE",
+        "POSITION_FILLED",
+      ],
       journal_source: [
         "MPESA_SETTLEMENT",
         "MPESA_REVERSAL",
@@ -50565,6 +53695,7 @@ export const Constants = {
         "MISSING",
         "REVERSED",
       ],
+      st_exec_state: ["REQUESTED", "RUNNING", "COMPLETED", "FAILED"],
       surge_approval_status: [
         "PENDING",
         "APPROVED",

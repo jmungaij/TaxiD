@@ -85466,6 +85466,23 @@ export type Database = {
         Returns: undefined
       }
       _my_staff_member_id: { Args: never; Returns: string }
+      _payments_may_review: { Args: never; Returns: boolean }
+      _platform_wallet_post: {
+        Args: {
+          _amount: number
+          _custody: number
+          _detail?: Json
+          _float: number
+          _income: number
+          _liability: number
+          _provider?: string
+          _reference: string
+          _source_id?: string
+          _source_kind: string
+          _type: string
+        }
+        Returns: boolean
+      }
       _sales_day_contracts: {
         Args: {
           _day_end: string
@@ -85503,6 +85520,10 @@ export type Database = {
         }
         Returns: string
       }
+      acquire_mpesa_token: {
+        Args: { p_capacity?: number; p_refill?: number; p_shortcode: string }
+        Returns: boolean
+      }
       admin_assign_business_request: {
         Args: { _driver_id: string; _fare?: number; _request_id: string }
         Returns: string
@@ -85529,6 +85550,22 @@ export type Database = {
         Args: { _admin_notes?: string; _request_id: string; _status: string }
         Returns: undefined
       }
+      capacity_can_approve: { Args: { _user_id: string }; Returns: boolean }
+      charter_wallet_apply_funding_callback: {
+        Args: {
+          p_amount_kes: number
+          p_checkout_request_id: string
+          p_merchant_request_id: string
+          p_receipt: string
+          p_result_code: number
+          p_result_desc?: string
+        }
+        Returns: Json
+      }
+      check_revenue_eligibility: {
+        Args: { _source?: string; _transaction_id: string }
+        Returns: Json
+      }
       commercial_qualifying_revenue: {
         Args: {
           _from: string
@@ -85544,9 +85581,65 @@ export type Database = {
         Args: { _corporate_id: string }
         Returns: number
       }
+      create_payment_attempt: {
+        Args: {
+          p_account_reference: string
+          p_amount_cents: number
+          p_correlation_id?: string
+          p_idempotency_key: string
+          p_ip?: unknown
+          p_phone: string
+          p_request_id?: string
+          p_user_agent?: string
+          p_user_id: string
+          p_wallet_id: string
+        }
+        Returns: {
+          accepted_at: string | null
+          account_reference: string
+          amount_cents: number
+          checkout_request_id: string | null
+          completed_at: string | null
+          correlation_id: string | null
+          created_at: string
+          currency: string
+          failure_reason: string | null
+          id: string
+          idempotency_key: string
+          initiated_at: string
+          ip_address: unknown
+          merchant_request_id: string | null
+          metadata: Json
+          mpesa_receipt_number: string | null
+          phone: string
+          provider: string
+          receiving_account: string | null
+          request_id: string | null
+          state: Database["public"]["Enums"]["payment_state"]
+          updated_at: string
+          user_agent: string | null
+          user_id: string
+          wallet_id: string
+          wallet_posted: boolean
+        }
+        SetofOptions: {
+          from: "*"
+          to: "payment_attempts"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       credit_wallet: {
         Args: { _amount_cents: number; _wallet_id: string }
         Returns: undefined
+      }
+      credit_wallet_exactly_once: {
+        Args: {
+          p_amount_cents: number
+          p_checkout_request_id: string
+          p_receipt: string
+        }
+        Returns: Json
       }
       debit_wallet: {
         Args: { _amount_cents: number; _wallet_id: string }
@@ -85599,6 +85692,24 @@ export type Database = {
       }
       driver_withdrawal_decide: { Args: { p: Json }; Returns: Json }
       driver_withdrawal_request: { Args: { p: Json }; Returns: Json }
+      emit_payment_event: {
+        Args: {
+          _payload?: Json
+          _txn_id: string
+          _type: Database["public"]["Enums"]["payment_event_type"]
+        }
+        Returns: string
+      }
+      enqueue_event: {
+        Args: {
+          _aggregate: string
+          _aggregate_id: string
+          _dedupe_key?: string
+          _event_type: string
+          _payload: Json
+        }
+        Returns: string
+      }
       ensure_rider_account: { Args: never; Returns: undefined }
       etims_invoice_from_revenue: {
         Args: {
@@ -85645,6 +85756,10 @@ export type Database = {
         }
         Returns: Json
       }
+      get_or_create_wallet_account: {
+        Args: { _wallet_id: string }
+        Returns: string
+      }
       has_any_role: {
         Args: {
           _roles: Database["public"]["Enums"]["app_role"][]
@@ -85678,6 +85793,19 @@ export type Database = {
         Returns: boolean
       }
       is_stabilization_mode: { Args: never; Returns: boolean }
+      link_transaction_payment: {
+        Args: {
+          _booking_id: string
+          _booking_table: string
+          _paid_at?: string
+          _payment_id?: string
+          _payment_provider?: string
+          _payment_ref: string
+          _payment_status: string
+          _payment_table?: string
+        }
+        Returns: Json
+      }
       list_support_agents: {
         Args: never
         Returns: {
@@ -85715,10 +85843,31 @@ export type Database = {
         }
         Returns: string
       }
+      payment_dispute_record: {
+        Args: { p_action: string; p_attempt_id: string; p_reason: string }
+        Returns: string
+      }
+      payments_board: { Args: { p_limit?: number }; Returns: Json }
+      platform_wallet_console: { Args: never; Returns: Json }
+      platform_wallet_fund_apply_mpesa: {
+        Args: { _checkout_request_id: string }
+        Returns: Json
+      }
+      post_mpesa_settlement: { Args: { _txn_id: string }; Returns: string }
       posting_engine_post: { Args: { _journal_id: string }; Returns: string }
       provider_document_decide: {
         Args: { _decision: string; _document_id: string; _note?: string }
         Returns: Json
+      }
+      recognize_revenue_from_payment: {
+        Args: {
+          _customer_kra_pin?: string
+          _customer_name?: string
+          _description?: string
+          _scheme_code?: string
+          _txn_id: string
+        }
+        Returns: string
       }
       recon_permission_roles: {
         Args: { _perm: string }
@@ -85801,6 +85950,52 @@ export type Database = {
           _subject_user_id?: string
         }
         Returns: string
+      }
+      transition_payment_state: {
+        Args: {
+          p_actor: string
+          p_attempt_id: string
+          p_checkout_request_id?: string
+          p_failure_reason?: string
+          p_merchant_request_id?: string
+          p_payload?: Json
+          p_receipt?: string
+          p_to: Database["public"]["Enums"]["payment_state"]
+        }
+        Returns: {
+          accepted_at: string | null
+          account_reference: string
+          amount_cents: number
+          checkout_request_id: string | null
+          completed_at: string | null
+          correlation_id: string | null
+          created_at: string
+          currency: string
+          failure_reason: string | null
+          id: string
+          idempotency_key: string
+          initiated_at: string
+          ip_address: unknown
+          merchant_request_id: string | null
+          metadata: Json
+          mpesa_receipt_number: string | null
+          phone: string
+          provider: string
+          receiving_account: string | null
+          request_id: string | null
+          state: Database["public"]["Enums"]["payment_state"]
+          updated_at: string
+          user_agent: string | null
+          user_id: string
+          wallet_id: string
+          wallet_posted: boolean
+        }
+        SetofOptions: {
+          from: "*"
+          to: "payment_attempts"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       trip_assign_driver: { Args: { _booking_id: string }; Returns: Json }
       trip_cancel_booking: {

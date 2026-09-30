@@ -1,3 +1,4 @@
+SET LOCAL check_function_bodies = off;
 ALTER TYPE public.journal_source ADD VALUE IF NOT EXISTS 'DRIVER_EARNING';
 CREATE TABLE IF NOT EXISTS public.journal_lines (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),

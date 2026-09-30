@@ -36,7 +36,7 @@ export function PartnersHero() {
           height={1088}
           loading="eager"
           decoding="sync"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
           className="h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-primary/70" />

@@ -57,7 +57,7 @@ export const ResponsiveImage = ({
         sizes={sizes}
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
-        fetchPriority={priority ? "high" : "auto"}
+        {...({ fetchpriority: priority ? "high" : "auto" } as Record<string, string>)}
         className={className}
       />
     </picture>

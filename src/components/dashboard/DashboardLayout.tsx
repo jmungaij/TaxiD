@@ -373,7 +373,7 @@ function DomainsNav({
                     {items.map((item, idx) => {
                       const showSection = item.section !== items[idx - 1]?.section;
                       return (
-                        <div key={item.path}>
+                        <div key={`${item.section ?? ""}:${item.path}:${idx}`}>
                           {showSection && (
                             <div className="px-6 pt-2.5 pb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/50">
                               {item.section}

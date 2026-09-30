@@ -221,7 +221,7 @@ export function DeliveryHero({
           height={1008}
           loading="eager"
           decoding="sync"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
           className={cn("absolute inset-0 h-full w-full object-cover", !reduced && "cine-drift")}
         />
       </picture>

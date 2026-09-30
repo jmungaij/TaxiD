@@ -237,7 +237,7 @@ export function HeroCinematic() {
       aria-label="TaxiD — book rides, deliveries, rentals, leasing, charter and corporate mobility"
       className="relative isolate flex min-h-[min(92svh,860px)] items-end overflow-hidden bg-background"
     >
-      <img src={taxidHero} alt="TaxiD connects rides, coach travel and delivery at an airport" width={1600} height={1008} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-[55%_center]" />
+      <img src={taxidHero} alt="TaxiD connects rides, coach travel and delivery at an airport" width={1600} height={1008} {...({ fetchpriority: "high" } as Record<string, string>)} className="absolute inset-0 h-full w-full object-cover object-[55%_center]" />
 
       {/* 2 — readability scrim only: subtle Executive Blue wash + light lift
           behind the editorial column. The photography is never darkened. */}

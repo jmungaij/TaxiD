@@ -45,7 +45,7 @@ export const PageHero = ({ eyebrow, title, subtitle, children, image, imageAlt, 
             height={1080}
             loading="eager"
             decoding="sync"
-            fetchPriority="high"
+            {...({ fetchpriority: "high" } as Record<string, string>)}
             className="h-full w-full object-cover object-center"
           />
         )}

@@ -4673,6 +4673,7 @@ export type Database = {
           actor_user_id: string | null
           after_data: Json | null
           before_data: Json | null
+          correlation_id: string | null
           created_at: string
           entity_id: string | null
           entity_type: string
@@ -4686,6 +4687,7 @@ export type Database = {
           actor_user_id?: string | null
           after_data?: Json | null
           before_data?: Json | null
+          correlation_id?: string | null
           created_at?: string
           entity_id?: string | null
           entity_type: string
@@ -4699,6 +4701,7 @@ export type Database = {
           actor_user_id?: string | null
           after_data?: Json | null
           before_data?: Json | null
+          correlation_id?: string | null
           created_at?: string
           entity_id?: string | null
           entity_type?: string

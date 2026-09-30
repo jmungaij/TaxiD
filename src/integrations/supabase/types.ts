@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      _restore_log: {
+        Row: {
+          at: string | null
+          err: string | null
+          fn: string
+          ok: boolean | null
+        }
+        Insert: {
+          at?: string | null
+          err?: string | null
+          fn: string
+          ok?: boolean | null
+        }
+        Update: {
+          at?: string | null
+          err?: string | null
+          fn?: string
+          ok?: boolean | null
+        }
+        Relationships: []
+      }
       academy_courses: {
         Row: {
           audience_roles: string[]
@@ -84958,6 +84979,13 @@ export type Database = {
       }
     }
     Functions: {
+      _fin_apply_verified: { Args: { _booking: string }; Returns: undefined }
+      _fin_is_team: { Args: never; Returns: boolean }
+      _fin_is_verifier: { Args: never; Returns: boolean }
+      _fin_post_finance_record: {
+        Args: { _body: string; _meta: Json; _subject: string; _to: string }
+        Returns: undefined
+      }
       admin_assign_business_request: {
         Args: { _driver_id: string; _fare?: number; _request_id: string }
         Returns: string
@@ -84984,6 +85012,12 @@ export type Database = {
         Args: { _admin_notes?: string; _request_id: string; _status: string }
         Returns: undefined
       }
+      comms_is_unified_reader: { Args: never; Returns: boolean }
+      comms_my_staff_id: { Args: never; Returns: string }
+      corporate_wallet_balance_cents: {
+        Args: { _corporate_id: string }
+        Returns: number
+      }
       credit_wallet: {
         Args: { _amount_cents: number; _wallet_id: string }
         Returns: undefined
@@ -84993,6 +85027,16 @@ export type Database = {
         Returns: boolean
       }
       driver_accept_trip: { Args: { _booking_id: string }; Returns: undefined }
+      driver_payout_create: {
+        Args: {
+          _amount_cents: number
+          _batch_id?: string
+          _driver_id: string
+          _memo?: string
+          _method_id: string
+        }
+        Returns: string
+      }
       driver_set_vehicle_status: {
         Args: { _status: string; _vehicle_id: string }
         Returns: undefined
@@ -85002,6 +85046,51 @@ export type Database = {
         Returns: undefined
       }
       ensure_rider_account: { Args: never; Returns: undefined }
+      etims_invoice_from_revenue: {
+        Args: {
+          _customer_email?: string
+          _customer_kra_pin?: string
+          _customer_name?: string
+          _customer_phone?: string
+          _customer_user_id?: string
+          _description?: string
+          _mpesa_txn_id?: string
+          _revenue_event_id: string
+          _scheme_code?: string
+        }
+        Returns: string
+      }
+      etims_invoice_void: {
+        Args: { _invoice_id: string; _reason: string }
+        Returns: string
+      }
+      fin_dashboard: { Args: { _from: string; _to: string }; Returns: Json }
+      fin_ledger_post: {
+        Args: {
+          _corporate_id: string
+          _correlation_id?: string
+          _intent_id: string
+          _kind: Database["public"]["Enums"]["fin_ledger_entry_kind"]
+          _legs: Json
+          _memo: string
+          _reference: string
+        }
+        Returns: string
+      }
+      fin_pay_booking_from_wallet: {
+        Args: { _amount: number; _booking_ref: string }
+        Returns: Json
+      }
+      fin_record_mpesa: {
+        Args: {
+          _amount: number
+          _booking_ref: string
+          _payer: string
+          _receipt: string
+          _verified: boolean
+        }
+        Returns: Json
+      }
       has_any_role: {
         Args: {
           _roles: Database["public"]["Enums"]["app_role"][]
@@ -85021,6 +85110,14 @@ export type Database = {
         Args: { _country?: string; _fingerprint_hash?: string }
         Returns: Json
       }
+      is_corporate_manager_or_admin: {
+        Args: { _corporate_id: string; _user_id: string }
+        Returns: boolean
+      }
+      is_corporate_member: {
+        Args: { _corporate_id: string; _user_id: string }
+        Returns: boolean
+      }
       is_stabilization_mode: { Args: never; Returns: boolean }
       list_support_agents: {
         Args: never
@@ -85032,6 +85129,33 @@ export type Database = {
       }
       next_commercial_action_id: { Args: never; Returns: string }
       next_commercial_transaction_id: { Args: never; Returns: string }
+      next_driver_payout_batch_number: { Args: never; Returns: string }
+      next_etims_invoice_number: { Args: never; Returns: string }
+      partner_ledger_post: {
+        Args: {
+          _amount: number
+          _direction: Database["public"]["Enums"]["ledger_direction"]
+          _idempotency_key?: string
+          _kind: Database["public"]["Enums"]["partner_ledger_kind"]
+          _memo: string
+          _move_balance?: boolean
+          _order_id?: string
+          _partner_id: string
+          _reference?: string
+          _settlement_id?: string
+        }
+        Returns: string
+      }
+      partner_wallet_topup: {
+        Args: {
+          _amount: number
+          _memo?: string
+          _partner_id: string
+          _reference: string
+        }
+        Returns: string
+      }
+      posting_engine_post: { Args: { _journal_id: string }; Returns: string }
       record_portal_transition: {
         Args: {
           _kind: string
@@ -85080,6 +85204,19 @@ export type Database = {
       staff_claim_self: { Args: never; Returns: string }
       staff_link_diagnostics: { Args: never; Returns: Json }
       staff_self_id: { Args: never; Returns: string }
+      tax_engine_calculate: {
+        Args: {
+          _amount_cents: number
+          _currency?: string
+          _inputs?: Json
+          _on_date?: string
+          _scheme_code: string
+          _source_id: string
+          _source_kind: string
+          _subject_user_id?: string
+        }
+        Returns: string
+      }
       trip_assign_driver: { Args: { _booking_id: string }; Returns: Json }
       trip_cancel_booking: {
         Args: { _booking_id: string; _reason?: string }
@@ -85104,6 +85241,15 @@ export type Database = {
           quote_id: string
           total: number
         }[]
+      }
+      yp_audit: {
+        Args: {
+          _action: string
+          _after: Json
+          _entity: string
+          _entity_id: string
+        }
+        Returns: undefined
       }
     }
     Enums: {

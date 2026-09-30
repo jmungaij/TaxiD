@@ -10,8 +10,9 @@
 import { untypedDb } from "@/integrations/supabase/untyped";
 import { classifyStatus, makeLiveAdapter, type LiveMetrics } from "./live";
 
-const INFLIGHT_STATES = ["initiated", "pending", "processing", "awaiting_callback"];
-const TERMINAL_OK = ["succeeded", "success", "completed"];
+// Must match the payment_state list stored in the database (uppercase).
+const INFLIGHT_STATES = ["INITIATED", "ACCEPTED", "PROCESSING", "CALLBACK_RECEIVED", "RECONCILING"];
+const TERMINAL_OK = ["COMPLETED", "RECONCILED"];
 
 
 async function compute(): Promise<LiveMetrics | null> {

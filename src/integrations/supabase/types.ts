@@ -58225,6 +58225,51 @@ export type Database = {
         }
         Relationships: []
       }
+      platform_billing_identity: {
+        Row: {
+          created_at: string
+          etims_environment: string
+          id: boolean
+          kra_pin: string
+          legal_name: string
+          mpesa_environment: string
+          mpesa_paybill: string
+          physical_address: string | null
+          postal_address: string | null
+          tcc_number: string | null
+          tcc_valid_until: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          etims_environment?: string
+          id?: boolean
+          kra_pin: string
+          legal_name: string
+          mpesa_environment?: string
+          mpesa_paybill: string
+          physical_address?: string | null
+          postal_address?: string | null
+          tcc_number?: string | null
+          tcc_valid_until?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          etims_environment?: string
+          id?: boolean
+          kra_pin?: string
+          legal_name?: string
+          mpesa_environment?: string
+          mpesa_paybill?: string
+          physical_address?: string | null
+          postal_address?: string | null
+          tcc_number?: string | null
+          tcc_valid_until?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       platform_certification_snapshots: {
         Row: {
           created_at: string

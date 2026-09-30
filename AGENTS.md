@@ -16,3 +16,4 @@
 - Staff Access uses one public gateway; below 1600px categories use the existing drawer. Staff 360 scopes govern visibility; backend authorization remains authoritative.
 
 - Legacy DB restores replay scripts kept in `legacy/restore/phaseN.sql`, applied area-by-area in dependency order with admin-only RLS until original helper functions return — avoids partial, unsafe domains.
+- Privileged (SECURITY DEFINER) routines live in the `private` schema; `public` keeps same-named SECURITY INVOKER wrappers — keeps the Data API free of elevated functions while RPC names stay stable.

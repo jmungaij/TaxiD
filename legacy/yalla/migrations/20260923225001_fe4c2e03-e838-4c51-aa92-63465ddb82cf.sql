@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public._payments_may_review(), public._mpesa_payment_flags_append_only() FROM authenticated;

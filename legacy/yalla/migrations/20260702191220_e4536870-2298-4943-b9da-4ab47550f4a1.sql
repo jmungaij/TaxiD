@@ -1,0 +1,2 @@
+ALTER TABLE public.corporate_registration_reviews DROP CONSTRAINT corporate_registration_reviews_decision_check;
+ALTER TABLE public.corporate_registration_reviews ADD CONSTRAINT corporate_registration_reviews_decision_check CHECK (decision = ANY (ARRAY['approved','rejected','requested_changes','changes_requested']));

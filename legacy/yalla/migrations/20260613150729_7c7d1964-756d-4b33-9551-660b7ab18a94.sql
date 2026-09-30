@@ -1,0 +1,1 @@
+ALTER VIEW public.v_chart_of_accounts_tree SET (security_invoker = true);

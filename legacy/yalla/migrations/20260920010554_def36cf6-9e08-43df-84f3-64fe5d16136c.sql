@@ -1,0 +1,1 @@
+ALTER FUNCTION public._cse_event_append_only() SET search_path = public;

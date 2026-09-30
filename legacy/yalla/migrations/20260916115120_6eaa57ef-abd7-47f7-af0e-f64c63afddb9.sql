@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.sales_lead_update_details(jsonb) FROM anon;

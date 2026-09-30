@@ -1,0 +1,1 @@
+alter view public.v_intern_supply_metrics set (security_invoker = on);

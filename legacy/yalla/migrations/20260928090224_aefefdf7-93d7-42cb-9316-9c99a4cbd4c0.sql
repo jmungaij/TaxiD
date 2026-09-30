@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public._air_fleet_guard() FROM PUBLIC, anon, authenticated;

@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public._invoice_events_append_only() FROM PUBLIC, anon, authenticated;

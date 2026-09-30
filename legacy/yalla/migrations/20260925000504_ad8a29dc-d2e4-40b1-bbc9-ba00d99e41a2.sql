@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS pmb_one_live_slot ON public.public_meeting_bookings(starts_at) WHERE status IN ('pending','confirmed');

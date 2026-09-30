@@ -1,0 +1,10 @@
+revoke execute on function public.partner_supply_register(uuid,text,text,text[],uuid,uuid,text,text,integer,date) from anon;
+revoke execute on function public.partner_supply_set_status(uuid,text,text) from anon;
+revoke execute on function public.partner_match_demand(uuid) from anon;
+revoke execute on function public.partner_quote_request(uuid,uuid) from anon;
+revoke execute on function public.partner_quote_submit(uuid,numeric,numeric,numeric,integer,text,text,text) from anon;
+revoke execute on function public.partner_quote_decide(uuid,boolean,text) from anon;
+revoke execute on function public.partner_score_recompute(uuid,integer) from anon;
+revoke execute on function public.partner_risk_scan() from anon;
+revoke execute on function public.partner_risk_resolve(uuid,text,text) from anon;
+revoke execute on function public.partner_supply_coverage() from anon;

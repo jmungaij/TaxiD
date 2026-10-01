@@ -204,7 +204,7 @@ DECLARE
   v_ref text;
   v_id uuid;
 BEGIN
-  IF current_user <> 'service_role'
+  IF coalesce(auth.role(),'') <> 'service_role'
      AND NOT public.has_staff_permission('staff.finance.settlement.manage') THEN
     RETURN jsonb_build_object('error', true, 'code','AUTHORIZATION_ERROR');
   END IF;
@@ -276,7 +276,7 @@ RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 DECLARE
   v_run jsonb;
 BEGIN
-  IF current_user <> 'service_role'
+  IF coalesce(auth.role(),'') <> 'service_role'
      AND NOT (public.capacity_can_approve(auth.uid())
               OR public.has_staff_permission('staff.finance.settlement.manage')) THEN
     RAISE EXCEPTION 'NOT_AUTHORISED';
@@ -293,7 +293,7 @@ END $$;
 CREATE OR REPLACE FUNCTION public.provider_earnings_sync()
 RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 BEGIN
-  IF current_user <> 'service_role'
+  IF coalesce(auth.role(),'') <> 'service_role'
      AND NOT (public.capacity_can_approve(auth.uid())
               OR public.has_staff_permission('staff.finance.settlement.manage')) THEN
     RAISE EXCEPTION 'NOT_AUTHORISED';
@@ -308,7 +308,7 @@ DECLARE
   v_id uuid := (p->>'disbursement_id')::uuid;
   v_row public.payout_disbursements;
 BEGIN
-  IF current_user <> 'service_role' THEN
+  IF coalesce(auth.role(),'') <> 'service_role' THEN
     RETURN jsonb_build_object('error', true, 'code','AUTHORIZATION_ERROR');
   END IF;
   SELECT * INTO v_row FROM public.payout_disbursements WHERE id = v_id FOR UPDATE;
@@ -341,7 +341,7 @@ RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 DECLARE
   v_id uuid := (p->>'disbursement_id')::uuid;
 BEGIN
-  IF current_user <> 'service_role' THEN
+  IF coalesce(auth.role(),'') <> 'service_role' THEN
     RETURN jsonb_build_object('error', true, 'code','AUTHORIZATION_ERROR');
   END IF;
   UPDATE public.payout_disbursements
@@ -366,7 +366,7 @@ DECLARE
   v_recon text;
   v_evidence jsonb;
 BEGIN
-  IF current_user <> 'service_role' THEN
+  IF coalesce(auth.role(),'') <> 'service_role' THEN
     RETURN jsonb_build_object('error', true, 'code','AUTHORIZATION_ERROR');
   END IF;
 

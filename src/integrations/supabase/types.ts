@@ -55659,16 +55659,11 @@ export type Database = {
         Row: {
           b2c_initiator_name: string | null
           b2c_security_credential: string | null
-          b2c_short_code: string | null
           consumer_key: string | null
           consumer_secret: string | null
           created_at: string
           environment: string
-          etims_api_key: string | null
-          etims_base_url: string | null
-          etims_device_mode: string | null
           etims_device_serial: string | null
-          etims_webhook_secret: string | null
           gateway: string
           id: string
           passkey: string | null
@@ -55679,16 +55674,11 @@ export type Database = {
         Insert: {
           b2c_initiator_name?: string | null
           b2c_security_credential?: string | null
-          b2c_short_code?: string | null
           consumer_key?: string | null
           consumer_secret?: string | null
           created_at?: string
           environment?: string
-          etims_api_key?: string | null
-          etims_base_url?: string | null
-          etims_device_mode?: string | null
           etims_device_serial?: string | null
-          etims_webhook_secret?: string | null
           gateway?: string
           id?: string
           passkey?: string | null
@@ -55699,16 +55689,11 @@ export type Database = {
         Update: {
           b2c_initiator_name?: string | null
           b2c_security_credential?: string | null
-          b2c_short_code?: string | null
           consumer_key?: string | null
           consumer_secret?: string | null
           created_at?: string
           environment?: string
-          etims_api_key?: string | null
-          etims_base_url?: string | null
-          etims_device_mode?: string | null
           etims_device_serial?: string | null
-          etims_webhook_secret?: string | null
           gateway?: string
           id?: string
           passkey?: string | null
@@ -85498,19 +85483,6 @@ export type Database = {
         }
         Returns: boolean
       }
-      _provider_wallet_post: {
-        Args: {
-          _amount: number
-          _avail: number
-          _detail?: Json
-          _held: number
-          _reference: string
-          _reserved: number
-          _type: string
-          _uid: string
-        }
-        Returns: boolean
-      }
       _sales_day_contracts: {
         Args: {
           _day_end: string
@@ -85876,9 +85848,6 @@ export type Database = {
         Returns: string
       }
       payments_board: { Args: { p_limit?: number }; Returns: Json }
-      payout_disbursement_apply_result: { Args: { p: Json }; Returns: Json }
-      payout_disbursement_mark_submitted: { Args: { p: Json }; Returns: Json }
-      payout_disbursement_mark_unknown: { Args: { p: Json }; Returns: Json }
       platform_wallet_console: { Args: never; Returns: Json }
       platform_wallet_fund_apply_mpesa: {
         Args: { _checkout_request_id: string }
@@ -85890,10 +85859,6 @@ export type Database = {
         Args: { _decision: string; _document_id: string; _note?: string }
         Returns: Json
       }
-      provider_earnings_sync: { Args: never; Returns: Json }
-      provider_payout_claim: { Args: { p: Json }; Returns: Json }
-      provider_payout_prepare: { Args: never; Returns: Json }
-      provider_settlement_run: { Args: never; Returns: Json }
       recognize_revenue_from_payment: {
         Args: {
           _customer_kra_pin?: string

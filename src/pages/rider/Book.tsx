@@ -1,3 +1,4 @@
+import { BookingProfilePicker, type BookingContext } from "@/components/rider/BookingProfilePicker";
 import { MeetingPointPicker, type PickupPoint } from "@/components/rider/MeetingPointPicker";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -40,6 +41,7 @@ export default function RiderBookPage() {
   const [selectedRide, setSelectedRide] = useState<string | null>(null);
   const [passengers, setPassengers] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [ctx, setCtx] = useState<BookingContext>({ context: "personal", payment: "mpesa" });
   const [loadError, setLoadError] = useState(false);
 
   function loadRideTypes() {
@@ -125,12 +127,36 @@ export default function RiderBookPage() {
       });
       if (e2 || !quote?.[0]) throw e2 ?? new Error("Could not quote fare");
 
-      const { data: bookingId, error: e3 } = await supabase.rpc("trip_confirm_booking", {
+      if (ctx.context === "business" && ctx.purpose.trim().length < 3) {
+        throw new Error("Add a trip purpose for business trips.");
+      }
+      const { data: conf, error: e3 } = await supabase.rpc("trip_confirm_booking_ctx", {
         _quote_id: quote[0].quote_id,
-        _payment_method: "wallet",
+        _context: ctx.context,
+        _payment_method: ctx.context === "personal" ? ctx.payment : "corporate",
+        _corporate_id: ctx.context === "business" ? ctx.profile.corporate_id : null,
+        _purpose: ctx.context === "business" ? ctx.purpose : null,
+        _cost_center: ctx.context === "business" ? ctx.costCenter : null,
         _scheduled_for: searchParams.get("when"),
       });
-      if (e3 || !bookingId) throw e3 ?? new Error("Could not confirm booking");
+      const c = conf as { ok?: boolean; error?: string; booking_id?: string; state?: string } | null;
+      if (e3 || !c?.ok || !c.booking_id) {
+        const map: Record<string, string> = {
+          NOT_AN_ACTIVE_EMPLOYEE: "You're not an active member of that company.",
+          COMPANY_NOT_ACTIVE: "That company account isn't active.",
+          PURPOSE_REQUIRED: "Add a trip purpose for business trips.",
+          COMPANY_WALLET_INSUFFICIENT: "Your company's TaxiD wallet doesn't have enough for this trip. Ask your company admin to top up.",
+          INVALID_PAYMENT_METHOD: "Choose M-Pesa, cash or wallet.",
+        };
+        throw new Error((c?.error && map[c.error]) || e3?.message || "Could not confirm booking");
+      }
+      const bookingId = c.booking_id;
+      if (c.state === "awaiting_approval") {
+        if (meetingPoint) await supabase.rpc("trip_set_meeting_point", { _booking_id: bookingId, _point_id: meetingPoint.id });
+        toast.success("Sent to your company for approval. We'll find a driver once it's approved.");
+        navigate(`/rider/trips/${bookingId}`);
+        return;
+      }
 
       if (meetingPoint) {
         const { error: eMp } = await supabase.rpc("trip_set_meeting_point", { _booking_id: bookingId as string, _point_id: meetingPoint.id });
@@ -274,6 +300,11 @@ export default function RiderBookPage() {
                 +
               </Button>
             </div>
+          </Card>
+
+          <Card className="p-4">
+            <BookingProfilePicker value={ctx} onChange={setCtx}
+              fareCents={selectedRide && estimate ? fareFor(rideTypes.find((r) => r.id === selectedRide)!) * 100 : null} />
           </Card>
 
           <Button className="w-full" size="lg" onClick={bookNow} disabled={submitting || !pickup || !dropoff || !selectedRide}>

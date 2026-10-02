@@ -85498,6 +85498,19 @@ export type Database = {
         }
         Returns: boolean
       }
+      _provider_wallet_post: {
+        Args: {
+          _amount: number
+          _avail: number
+          _detail?: Json
+          _held: number
+          _reference: string
+          _reserved: number
+          _type: string
+          _uid: string
+        }
+        Returns: boolean
+      }
       _sales_day_contracts: {
         Args: {
           _day_end: string
@@ -85877,6 +85890,7 @@ export type Database = {
         Args: { _decision: string; _document_id: string; _note?: string }
         Returns: Json
       }
+      provider_payout_claim: { Args: { p: Json }; Returns: Json }
       recognize_revenue_from_payment: {
         Args: {
           _customer_kra_pin?: string

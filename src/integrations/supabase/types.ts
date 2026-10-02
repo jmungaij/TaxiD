@@ -15204,6 +15204,191 @@ export type Database = {
         }
         Relationships: []
       }
+      corporate_approval_chain_steps: {
+        Row: {
+          approver_employee_id: string | null
+          chain_id: string
+          corporate_id: string
+          created_at: string
+          deadline_minutes: number
+          id: string
+          stand_in_employee_id: string | null
+          step_no: number
+          updated_at: string
+        }
+        Insert: {
+          approver_employee_id?: string | null
+          chain_id: string
+          corporate_id: string
+          created_at?: string
+          deadline_minutes?: number
+          id?: string
+          stand_in_employee_id?: string | null
+          step_no: number
+          updated_at?: string
+        }
+        Update: {
+          approver_employee_id?: string | null
+          chain_id?: string
+          corporate_id?: string
+          created_at?: string
+          deadline_minutes?: number
+          id?: string
+          stand_in_employee_id?: string | null
+          step_no?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_approval_chain_steps_approver_employee_id_fkey"
+            columns: ["approver_employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_approval_chain_steps_chain_id_fkey"
+            columns: ["chain_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_approval_chains"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_approval_chain_steps_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_approval_chain_steps_stand_in_employee_id_fkey"
+            columns: ["stand_in_employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_approval_chains: {
+        Row: {
+          active: boolean
+          corporate_id: string
+          created_at: string
+          id: string
+          min_fare_cents: number
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          corporate_id: string
+          created_at?: string
+          id?: string
+          min_fare_cents?: number
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          corporate_id?: string
+          created_at?: string
+          id?: string
+          min_fare_cents?: number
+          name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_approval_chains_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_approval_steps: {
+        Row: {
+          approver_employee_id: string | null
+          corporate_id: string
+          created_at: string
+          deadline_minutes: number
+          decided_at: string | null
+          decided_by: string | null
+          due_at: string | null
+          escalated: boolean
+          escalated_at: string | null
+          id: string
+          note: string | null
+          stand_in_employee_id: string | null
+          status: string
+          step_no: number
+          subject_id: string
+          subject_type: string
+          updated_at: string
+        }
+        Insert: {
+          approver_employee_id?: string | null
+          corporate_id: string
+          created_at?: string
+          deadline_minutes: number
+          decided_at?: string | null
+          decided_by?: string | null
+          due_at?: string | null
+          escalated?: boolean
+          escalated_at?: string | null
+          id?: string
+          note?: string | null
+          stand_in_employee_id?: string | null
+          status: string
+          step_no: number
+          subject_id: string
+          subject_type: string
+          updated_at?: string
+        }
+        Update: {
+          approver_employee_id?: string | null
+          corporate_id?: string
+          created_at?: string
+          deadline_minutes?: number
+          decided_at?: string | null
+          decided_by?: string | null
+          due_at?: string | null
+          escalated?: boolean
+          escalated_at?: string | null
+          id?: string
+          note?: string | null
+          stand_in_employee_id?: string | null
+          status?: string
+          step_no?: number
+          subject_id?: string
+          subject_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_approval_steps_approver_employee_id_fkey"
+            columns: ["approver_employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_approval_steps_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_approval_steps_stand_in_employee_id_fkey"
+            columns: ["stand_in_employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_bank_guarantee_events: {
         Row: {
           actor_id: string | null
@@ -15474,6 +15659,44 @@ export type Database = {
             foreignKeyName: "corporate_billing_periods_corporate_id_fkey"
             columns: ["corporate_id"]
             isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_booking_requirements: {
+        Row: {
+          corporate_id: string
+          created_at: string
+          require_accounting: boolean
+          require_client: boolean
+          require_po: boolean
+          require_project: boolean
+          updated_at: string
+        }
+        Insert: {
+          corporate_id: string
+          created_at?: string
+          require_accounting?: boolean
+          require_client?: boolean
+          require_po?: boolean
+          require_project?: boolean
+          updated_at?: string
+        }
+        Update: {
+          corporate_id?: string
+          created_at?: string
+          require_accounting?: boolean
+          require_client?: boolean
+          require_po?: boolean
+          require_project?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_booking_requirements_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: true
             referencedRelation: "corporate_accounts"
             referencedColumns: ["id"]
           },
@@ -16563,6 +16786,123 @@ export type Database = {
           },
         ]
       }
+      corporate_guest_bookings: {
+        Row: {
+          accounting_code: string | null
+          booked_by: string
+          booking_kind: string
+          client_code: string | null
+          corporate_id: string
+          created_at: string
+          distance_km: number
+          dropoff_address: string
+          dropoff_lat: number
+          dropoff_lng: number
+          estimated_fare_cents: number
+          flight_number: string | null
+          hotel_room: string | null
+          id: string
+          luggage: number
+          notes: string | null
+          passenger_email: string | null
+          passenger_name: string
+          passenger_phone: string | null
+          passengers: number
+          pickup_address: string
+          pickup_lat: number
+          pickup_lng: number
+          po_code: string | null
+          policy: Json
+          project_code: string | null
+          reference: string
+          ride_type_id: string
+          scheduled_for: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          accounting_code?: string | null
+          booked_by: string
+          booking_kind: string
+          client_code?: string | null
+          corporate_id: string
+          created_at?: string
+          distance_km: number
+          dropoff_address: string
+          dropoff_lat: number
+          dropoff_lng: number
+          estimated_fare_cents: number
+          flight_number?: string | null
+          hotel_room?: string | null
+          id?: string
+          luggage?: number
+          notes?: string | null
+          passenger_email?: string | null
+          passenger_name: string
+          passenger_phone?: string | null
+          passengers?: number
+          pickup_address: string
+          pickup_lat: number
+          pickup_lng: number
+          po_code?: string | null
+          policy?: Json
+          project_code?: string | null
+          reference?: string
+          ride_type_id: string
+          scheduled_for?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          accounting_code?: string | null
+          booked_by?: string
+          booking_kind?: string
+          client_code?: string | null
+          corporate_id?: string
+          created_at?: string
+          distance_km?: number
+          dropoff_address?: string
+          dropoff_lat?: number
+          dropoff_lng?: number
+          estimated_fare_cents?: number
+          flight_number?: string | null
+          hotel_room?: string | null
+          id?: string
+          luggage?: number
+          notes?: string | null
+          passenger_email?: string | null
+          passenger_name?: string
+          passenger_phone?: string | null
+          passengers?: number
+          pickup_address?: string
+          pickup_lat?: number
+          pickup_lng?: number
+          po_code?: string | null
+          policy?: Json
+          project_code?: string | null
+          reference?: string
+          ride_type_id?: string
+          scheduled_for?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_guest_bookings_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_guest_bookings_ride_type_id_fkey"
+            columns: ["ride_type_id"]
+            isOneToOne: false
+            referencedRelation: "ride_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_holidays: {
         Row: {
           corporate_id: string
@@ -17069,6 +17409,56 @@ export type Database = {
           window_started_at?: string
         }
         Relationships: []
+      }
+      corporate_locations: {
+        Row: {
+          active: boolean
+          address: string | null
+          corporate_id: string
+          created_at: string
+          id: string
+          kind: string
+          lat: number
+          lng: number
+          name: string
+          radius_m: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          address?: string | null
+          corporate_id: string
+          created_at?: string
+          id?: string
+          kind: string
+          lat: number
+          lng: number
+          name: string
+          radius_m?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          address?: string | null
+          corporate_id?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          lat?: number
+          lng?: number
+          name?: string
+          radius_m?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_locations_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       corporate_ops_alert_events: {
         Row: {
@@ -86400,6 +86790,11 @@ export type Database = {
       }
       comms_is_unified_reader: { Args: never; Returns: boolean }
       comms_my_staff_id: { Args: never; Returns: string }
+      corporate_approval_step_decide: {
+        Args: { _approve: boolean; _note?: string; _step_id: string }
+        Returns: Json
+      }
+      corporate_approvals_escalate: { Args: { _corp: string }; Returns: number }
       corporate_billing_overview: {
         Args: { _corporate_id: string }
         Returns: Json
@@ -86415,6 +86810,25 @@ export type Database = {
         Returns: Json
       }
       corporate_credit_invoices_issue: { Args: never; Returns: Json }
+      corporate_guest_book: {
+        Args: {
+          _corporate_id: string
+          _details?: Json
+          _dlat: number
+          _dlng: number
+          _dropoff_address: string
+          _kind: string
+          _passenger_name: string
+          _passenger_phone: string
+          _pickup_address: string
+          _plat: number
+          _plng: number
+          _ride_type_id: string
+          _scheduled_for?: string
+        }
+        Returns: Json
+      }
+      corporate_guest_cancel: { Args: { _id: string }; Returns: Json }
       corporate_invoice_confirm_payment: {
         Args: { _amount_cents: number; _invoice_id: string; _reference: string }
         Returns: Json

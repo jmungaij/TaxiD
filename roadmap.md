@@ -75,3 +75,5 @@
 - [ ] Live eTIMS: needs eTIMS connection address, access key, confirmation secret
 - [x] Cloud enabled (already on, healthy)
 - [x] Rider trip screen: progress steps, cancel reasons, compliments, receipt
+- [x] Verify My Ride: pickup PIN required to start trip; plate/car on rider card
+- [ ] Meet-me quick messages, pickup meeting points, delay alerts, tipping (from rider upgrade proposal)

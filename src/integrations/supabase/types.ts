@@ -82890,6 +82890,38 @@ export type Database = {
         }
         Relationships: []
       }
+      trip_pickup_pins: {
+        Row: {
+          created_at: string
+          failed_attempts: number
+          pin: string
+          trip_booking_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          failed_attempts?: number
+          pin?: string
+          trip_booking_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          failed_attempts?: number
+          pin?: string
+          trip_booking_id?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_pickup_pins_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: true
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       trip_quotes: {
         Row: {
           base_fare: number | null
@@ -85718,6 +85750,10 @@ export type Database = {
         Args: { _booking_id: string; _status: string }
         Returns: undefined
       }
+      driver_verify_pickup: {
+        Args: { _booking_id: string; _pin: string }
+        Returns: boolean
+      }
       driver_withdrawal_decide: { Args: { p: Json }; Returns: Json }
       driver_withdrawal_request: { Args: { p: Json }; Returns: Json }
       emit_payment_event: {
@@ -86046,6 +86082,7 @@ export type Database = {
         Returns: string
       }
       trip_driver_card: { Args: { _booking_id: string }; Returns: Json }
+      trip_pickup_pin: { Args: { _booking_id: string }; Returns: Json }
       trip_quote_fare: {
         Args: {
           _distance_km: number

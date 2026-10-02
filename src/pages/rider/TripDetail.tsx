@@ -51,6 +51,10 @@ interface DriverCard {
   rating: number | null;
   driver_code: string | null;
   pickup_eta: string | null;
+  vehicle_make?: string | null;
+  vehicle_model?: string | null;
+  vehicle_color?: string | null;
+  plate_number?: string | null;
 }
 
 const SEARCHING_STATUSES = ["pending", "searching", "scheduled"];
@@ -69,6 +73,7 @@ export default function RiderTripDetailPage() {
   const [cancelReason, setCancelReason] = useState(CANCEL_REASONS[0]);
   const [ratingSaved, setRatingSaved] = useState(false);
   const [savingRating, setSavingRating] = useState(false);
+  const [pickupPin, setPickupPin] = useState<{ pin: string; verified: boolean } | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [sos, setSos] = useState<SosConfirmation | null>(null);
   const mapEl = useRef<HTMLDivElement | null>(null);
@@ -109,6 +114,14 @@ export default function RiderTripDetailPage() {
       if (data) setDriver(data as unknown as DriverCard);
     });
   }, [booking?.driver_id, booking?.id, booking?.pickup_eta]);
+
+  // Pickup PIN — shown to the rider only; the driver must enter it to start.
+  useEffect(() => {
+    if (!booking?.driver_id || ["completed", "cancelled"].includes(booking.status)) return;
+    supabase.rpc("trip_pickup_pin", { _booking_id: booking.id }).then(({ data }) => {
+      if (data) setPickupPin(data as unknown as { pin: string; verified: boolean });
+    });
+  }, [booking?.id, booking?.driver_id, booking?.status]);
 
   // Existing rating (a rider may only rate a trip once).
   useEffect(() => {
@@ -348,6 +361,23 @@ export default function RiderTripDetailPage() {
                 </Badge>
               )}
             </div>
+            {driver.plate_number && (
+              <div className="mt-2 rounded-md border bg-muted/40 p-3" data-testid="vehicle-details">
+                <div className="font-mono text-2xl font-bold tracking-widest">{driver.plate_number}</div>
+                <div className="text-muted-foreground">
+                  {[driver.vehicle_color, driver.vehicle_make, driver.vehicle_model].filter(Boolean).join(" ") || "Vehicle"}
+                </div>
+              </div>
+            )}
+            {pickupPin && !["in_progress", "completed", "cancelled"].includes(booking.status) && (
+              <div className="mt-2 rounded-md border border-primary/40 bg-primary/5 p-3" data-testid="pickup-pin">
+                <div className="text-xs font-semibold uppercase tracking-wide text-primary">Verify your ride</div>
+                <div className="font-mono text-3xl font-bold tracking-[0.4em]">{pickupPin.pin}</div>
+                <p className="text-xs text-muted-foreground">
+                  Check the plate matches, then give this PIN to your driver. The trip can only start once they enter it.
+                </p>
+              </div>
+            )}
             {driver.driver_code && (
               <div className="text-xs text-muted-foreground">Driver ID {driver.driver_code}</div>
             )}

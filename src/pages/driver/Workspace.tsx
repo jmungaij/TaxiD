@@ -31,6 +31,20 @@ export default function DriverWorkspace() {
   const [earnings, setEarnings] = useState<Earning[]>([]);
   const [form, setForm] = useState({ first_name: "", last_name: "", phone: "", plate: "", make: "", model: "" });
   const [busy, setBusy] = useState(false);
+  const [pins, setPins] = useState<Record<string, string>>({});
+
+  async function verifyAndStart(id: string) {
+    const pin = (pins[id] ?? "").trim();
+    if (!/^\d{4}$/.test(pin)) return toast.error("Ask the rider for their 4-digit TaxiD PIN.");
+    setBusy(true);
+    const { data: ok, error } = await supabase.rpc("driver_verify_pickup", { _booking_id: id, _pin: pin });
+    if (error || !ok) { setBusy(false); return toast.error(error?.message ?? "That PIN is wrong. Check you have the right rider."); }
+    const { error: e2 } = await supabase.rpc("driver_update_trip_status", { _booking_id: id, _status: "in_progress" });
+    setBusy(false);
+    if (e2) return toast.error(e2.message);
+    toast.success("Rider verified — trip started");
+    void load();
+  }
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -117,7 +131,7 @@ export default function DriverWorkspace() {
         <CardContent className="space-y-3">{mine.length ? mine.map(t =>
           <div key={t.id} className="flex flex-wrap items-center justify-between gap-3 border-t pt-3"><div><p className="font-medium">{t.pickup_address} → {t.dropoff_address}</p><p className="text-xs text-muted-foreground">{t.booking_number}{t.business_request_id ? " · Business fleet" : ""}</p></div>
             <div className="flex items-center gap-2"><Badge variant="outline" className="capitalize">{t.status.replace("_", " ")}</Badge>
-              {NEXT[t.status] ? <Button size="sm" disabled={busy} onClick={() => void call("driver_update_trip_status", { _booking_id: t.id, _status: NEXT[t.status].to }, "Trip updated")}>{NEXT[t.status].label}</Button> : t.status === "completed" && <CheckCircle2 className="h-5 w-5 text-primary" />}</div></div>) : <p className="text-sm text-muted-foreground">You have no trips yet.</p>}</CardContent></Card>
+              {t.status === "arrived" ? <div className="flex items-center gap-2"><Input aria-label="Rider PIN" inputMode="numeric" maxLength={4} placeholder="PIN" className="w-20 h-9" value={pins[t.id] ?? ""} onChange={(e) => setPins((p) => ({ ...p, [t.id]: e.target.value.replace(/\D/g, "") }))} /><Button size="sm" disabled={busy} onClick={() => void verifyAndStart(t.id)}>Verify &amp; start</Button></div> : NEXT[t.status] ? <Button size="sm" disabled={busy} onClick={() => void call("driver_update_trip_status", { _booking_id: t.id, _status: NEXT[t.status].to }, "Trip updated")}>{NEXT[t.status].label}</Button> : t.status === "completed" && <CheckCircle2 className="h-5 w-5 text-primary" />}</div></div>) : <p className="text-sm text-muted-foreground">You have no trips yet.</p>}</CardContent></Card>
     </div>
   );
 }

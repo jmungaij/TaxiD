@@ -40,13 +40,6 @@ interface Booking {
   meeting_point_id?: string | null;
 }
 
-interface SosConfirmation {
-  sentAt: Date;
-  contactName: string | null;
-  contactPhone: string | null;
-  contactRelationship: string | null;
-  etaMinutes: number;
-}
 
 interface DriverCard {
   driver_id: string;

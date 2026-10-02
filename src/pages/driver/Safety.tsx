@@ -1,3 +1,4 @@
+import { SafetyCenter } from "@/components/safety/SafetyCenter";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -86,30 +87,10 @@ export default function DriverSafety() {
               </div>
               <div>
                 <h2 className="text-xl font-bold">Emergency SOS</h2>
-                <p className="text-sm text-muted-foreground">Logs an immediate alert to the TaxiD safety ops team.</p>
+                <p className="text-sm text-muted-foreground">Opens a tracked incident with the TaxiD safety team and shares your live location.</p>
               </div>
             </div>
-            <Label htmlFor="sos-details">What's happening? (optional)</Label>
-            <Textarea
-              id="sos-details"
-              value={details}
-              onChange={(e) => setDetails(e.target.value)}
-              placeholder="Brief description so responders can help faster…"
-              maxLength={1000}
-              rows={4}
-              className="mt-1.5 mb-4"
-            />
-            <Button
-              onClick={triggerSOS}
-              disabled={submitting}
-              className="w-full bg-status-danger hover:bg-status-danger text-ice"
-              size="lg"
-            >
-              <Siren className="h-5 w-5 mr-2" /> {submitting ? "Sending…" : "Trigger SOS now"}
-            </Button>
-            <p className="text-xs text-muted-foreground mt-3 text-center">
-              For life-threatening emergencies always also call <a className="underline" href="tel:999">999</a> or local emergency services.
-            </p>
+            <SafetyCenter role="driver" source="driver_safety_page" />
           </div>
         </div>
       </section>

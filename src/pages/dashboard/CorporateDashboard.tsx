@@ -30,6 +30,8 @@ import CorporateRequestRide from "./corporate/RequestRide";
 
 import CorporateCompletedRides from "./corporate/CompletedRides";
 import CorporatePolicies from "./corporate/Policies";
+import { GuestRides } from "@/components/corporate/GuestRides";
+import { MultiStepApprovals } from "@/components/corporate/MultiStepApprovals";
 import CorporateApprovals from "./corporate/Approvals";
 import { PendingTripDecisions } from "@/components/corporate/PendingTripDecisions";
 import { CreditStatusCard } from "@/components/corporate/CreditStatusCard";
@@ -86,6 +88,7 @@ const TOP_TABS: TopTab[] = [
     sub: [
       // Audit #5 — rename inner "Trips › Trips" to "Completed" (mounts CorporateCompletedRides).
       { key: "request",     label: "Request a Ride",  icon: Send },
+      { key: "guests",      label: "Guest & Hotel Rides", icon: Send },
       { key: "trips",       label: "Completed",       icon: Car },
 
       { key: "tickets",     label: "Tickets",         icon: Ticket },
@@ -485,7 +488,8 @@ function SectionPanel({
   // Trips
   if (top === "trips") {
     if (sub === "request")    return <CorporateRequestRide corporateId={corporateId} />;
-    if (sub === "approvals")  return <CorporateApprovals corporateId={corporateId} />;
+    if (sub === "guests")     return corporateId ? <GuestRides corporateId={corporateId} /> : null;
+    if (sub === "approvals")  return <div className="space-y-4">{corporateId && <MultiStepApprovals corporateId={corporateId} />}<CorporateApprovals corporateId={corporateId} /></div>;
 
     if (sub === "dispatch")   return <CorporateManualDispatch corporateId={corporateId} />;
     if (sub === "statistics") return <EmptyPanel note="Spend analytics coming next — pulls from settled trips and wallet transactions." />;

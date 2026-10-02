@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Plus, Shield, Trash2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { CompanyPlacesPanel } from "@/components/corporate/CompanyPlacesPanel";
 import { EmployeeGroupsPanel, type EmployeeGroup } from "@/components/corporate/EmployeeGroupsPanel";
 
 interface Policy {
@@ -45,6 +46,10 @@ const RULE_KINDS = [
   { v: "rides_per_month_cap", label: "Max rides per month" },
   { v: "no_weekends", label: "No trips on weekends" },
   { v: "no_holidays", label: "No trips on company holidays" },
+  { v: "pickup_approved_only", label: "Pickup must be an approved place" },
+  { v: "dropoff_approved_only", label: "Destination must be approved" },
+  { v: "airport_zone_block", label: "Block airport trips" },
+  { v: "airport_zone_only", label: "Airport trips only" },
 ];
 const RIDE_CAPS = ["rides_per_day_cap", "rides_per_week_cap", "rides_per_month_cap"];
 
@@ -149,6 +154,10 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
       case "rides_per_month_cap": return `Max ${r.max_trips} rides/month`;
       case "no_weekends": return "No weekend trips";
       case "no_holidays": return "No trips on company holidays";
+      case "pickup_approved_only": return "Pickup must be an approved place";
+      case "dropoff_approved_only": return "Destination must be approved";
+      case "airport_zone_block": return "No airport trips";
+      case "airport_zone_only": return "Airport trips only";
       default: return r.rule_kind;
     }
   };
@@ -190,6 +199,7 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
         </Dialog>
       </div>
 
+      {corporateId && <CompanyPlacesPanel corporateId={corporateId} />}
       {corporateId && <EmployeeGroupsPanel corporateId={corporateId} onGroupsChange={setGroups} />}
 
       <div className="space-y-3">

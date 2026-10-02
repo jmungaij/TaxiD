@@ -1,6 +1,7 @@
 import { BookingProfilePicker, type BookingContext } from "@/components/rider/BookingProfilePicker";
 import { MeetingPointPicker, type PickupPoint } from "@/components/rider/MeetingPointPicker";
 import { useEffect, useState } from "react";
+import { PolicyCheck } from "@/components/rider/PolicyCheck";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { RiderShell } from "@/components/rider/RiderShell";
 import { ErrorState } from "@/components/rider/ErrorState";
@@ -42,6 +43,7 @@ export default function RiderBookPage() {
   const [passengers, setPassengers] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [ctx, setCtx] = useState<BookingContext>({ context: "personal", payment: "mpesa" });
+  const [policyBlocked, setPolicyBlocked] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
   function loadRideTypes() {

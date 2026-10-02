@@ -79,11 +79,11 @@
 - [x] Meet-me messages, meeting points (admin list), driver live location + ETA, delay alerts, 9-step trip stages, wallet tips
 ## Business rides — enterprise build (in order)
 - [x] 1. Employee groups sharing one set of rules
-- [ ] 2. Guest and client rides booked by a company for non-employees
-- [ ] 3. Multi-step approvals with deadlines, auto-escalation and stand-in approver
-- [ ] 4. Location rules: approved pickup places, destinations, airport zones
+- [x] 2. Guest and client rides booked by a company for non-employees
+- [x] 3. Multi-step approvals with deadlines, auto-escalation and stand-in approver
+- [x] 4. Location rules: approved pickup places, destinations, airport zones
 - [x] 5. Ride-count limits (day/week/month) plus weekend and holiday rules
-- [ ] 6. Project, client and PO codes required at booking, with accounting codes
+- [x] 6. Project, client and PO codes required at booking, with accounting codes
 - [ ] 7. Travel desk for company admins to book/manage staff trips
 - [ ] 8. Company KRA eTIMS invoices — needs eTIMS connection details
 - [ ] 9. Reports, exports and expense-system connections

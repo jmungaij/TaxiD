@@ -1,3 +1,4 @@
+import { GuestBookingsTable } from "@/components/corporate/GuestRides";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import CorporateBillingPanel from "@/components/corporate/CorporateBillingPanel";
@@ -54,6 +55,13 @@ export default function CorporateCashLedger({ corporateId }: { corporateId: stri
   return (
     <div className="space-y-4">
       <CorporateBillingPanel corporateId={corporateId} />
+      {corporateId && (
+        <div className="rounded-xl border bg-card p-4 space-y-2">
+          <h3 className="font-semibold">Guest, client & hotel bookings</h3>
+          <p className="text-xs text-muted-foreground">Estimated fares charged to the company, with project, client, PO and accounting codes.</p>
+          <GuestBookingsTable corporateId={corporateId} />
+        </div>
+      )}
       <div className="rounded-xl border bg-card p-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="font-semibold flex items-center gap-2"><BookOpen className="h-4 w-4 text-primary" />Cash Ledger</h3>

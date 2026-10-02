@@ -16632,6 +16632,60 @@ export type Database = {
           },
         ]
       }
+      corporate_invoice_events: {
+        Row: {
+          actor: string | null
+          amount_cents: number | null
+          corporate_id: string
+          created_at: string
+          event: string
+          id: string
+          invoice_id: string
+          note: string | null
+          recipients: Json | null
+          reference: string | null
+        }
+        Insert: {
+          actor?: string | null
+          amount_cents?: number | null
+          corporate_id: string
+          created_at?: string
+          event: string
+          id?: string
+          invoice_id: string
+          note?: string | null
+          recipients?: Json | null
+          reference?: string | null
+        }
+        Update: {
+          actor?: string | null
+          amount_cents?: number | null
+          corporate_id?: string
+          created_at?: string
+          event?: string
+          id?: string
+          invoice_id?: string
+          note?: string | null
+          recipients?: Json | null
+          reference?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_invoice_events_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_invoice_events_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_invoice_items: {
         Row: {
           cost_center: string | null
@@ -86265,6 +86319,19 @@ export type Database = {
         Returns: Json
       }
       corporate_credit_invoices_issue: { Args: never; Returns: Json }
+      corporate_invoice_confirm_payment: {
+        Args: { _amount_cents: number; _invoice_id: string; _reference: string }
+        Returns: Json
+      }
+      corporate_invoice_issue: { Args: { _invoice_id: string }; Returns: Json }
+      corporate_invoice_report_payment: {
+        Args: { _amount_cents: number; _invoice_id: string; _reference: string }
+        Returns: Json
+      }
+      corporate_invoices_board: {
+        Args: { _corporate_id: string }
+        Returns: Json
+      }
       corporate_settlement_retry: {
         Args: { _booking_id: string }
         Returns: Json

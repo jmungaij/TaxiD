@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Landmark, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
+import CorporateInvoices from "./CorporateInvoices";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db = supabase as any;
@@ -129,18 +130,7 @@ export default function CorporateBillingPanel({ corporateId }: { corporateId: st
         </div>
       )}
 
-      {o.open_invoices.length > 0 && (
-        <div className="space-y-1">
-          <p className="text-xs font-semibold">Credit invoices</p>
-          {o.open_invoices.map((i) => (
-            <div key={i.invoice_number} className="flex justify-between rounded-md border px-2 py-1 text-xs">
-              <span className="font-mono">{i.invoice_number}</span>
-              <span>{i.status === "DRAFT" ? "Building this cycle" : i.status}</span>
-              <span>{kes(i.balance_cents)}</span><span>Due {new Date(i.due_at).toLocaleDateString()}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <CorporateInvoices corporateId={corporateId} isFinance={isFinance} onChange={load} />
 
       {o.recent.length > 0 && (
         <div className="space-y-1">

@@ -1,0 +1,1 @@
+ALTER TABLE public.corporate_invoice_events ALTER COLUMN created_at SET DEFAULT clock_timestamp();

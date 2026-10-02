@@ -306,9 +306,17 @@ export default function RiderBookPage() {
           <Card className="p-4">
             <BookingProfilePicker value={ctx} onChange={setCtx}
               fareCents={selectedRide && estimate ? fareFor(rideTypes.find((r) => r.id === selectedRide)!) * 100 : null} />
+            {ctx.context === "business" && (
+              <div className="mt-2">
+                <PolicyCheck corporateId={ctx.profile.corporate_id} rideTypeId={selectedRide}
+                  fareCents={selectedRide && estimate ? fareFor(rideTypes.find((r) => r.id === selectedRide)!) * 100 : null}
+                  distanceKm={estimate?.distanceKm ?? null} scheduledFor={searchParams.get("when")}
+                  onResult={(r) => setPolicyBlocked(r?.decision === "BLOCKED")} />
+              </div>
+            )}
           </Card>
 
-          <Button className="w-full" size="lg" onClick={bookNow} disabled={submitting || !pickup || !dropoff || !selectedRide}>
+          <Button className="w-full" size="lg" onClick={bookNow} disabled={submitting || !pickup || !dropoff || !selectedRide || (ctx.context === "business" && policyBlocked)}>
             {submitting && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
             Confirm booking
           </Button>

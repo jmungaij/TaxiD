@@ -86359,6 +86359,7 @@ export type Database = {
         Returns: undefined
       }
       safety_is_operator: { Args: never; Returns: boolean }
+      safety_is_trip_driver: { Args: { _driver_id: string }; Returns: boolean }
       safety_raise_sos: {
         Args: {
           _booking_id: string

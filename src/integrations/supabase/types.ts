@@ -55659,11 +55659,16 @@ export type Database = {
         Row: {
           b2c_initiator_name: string | null
           b2c_security_credential: string | null
+          b2c_short_code: string | null
           consumer_key: string | null
           consumer_secret: string | null
           created_at: string
           environment: string
+          etims_api_key: string | null
+          etims_base_url: string | null
+          etims_device_mode: string | null
           etims_device_serial: string | null
+          etims_webhook_secret: string | null
           gateway: string
           id: string
           passkey: string | null
@@ -55674,11 +55679,16 @@ export type Database = {
         Insert: {
           b2c_initiator_name?: string | null
           b2c_security_credential?: string | null
+          b2c_short_code?: string | null
           consumer_key?: string | null
           consumer_secret?: string | null
           created_at?: string
           environment?: string
+          etims_api_key?: string | null
+          etims_base_url?: string | null
+          etims_device_mode?: string | null
           etims_device_serial?: string | null
+          etims_webhook_secret?: string | null
           gateway?: string
           id?: string
           passkey?: string | null
@@ -55689,11 +55699,16 @@ export type Database = {
         Update: {
           b2c_initiator_name?: string | null
           b2c_security_credential?: string | null
+          b2c_short_code?: string | null
           consumer_key?: string | null
           consumer_secret?: string | null
           created_at?: string
           environment?: string
+          etims_api_key?: string | null
+          etims_base_url?: string | null
+          etims_device_mode?: string | null
           etims_device_serial?: string | null
+          etims_webhook_secret?: string | null
           gateway?: string
           id?: string
           passkey?: string | null

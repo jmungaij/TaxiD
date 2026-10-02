@@ -74,3 +74,4 @@
 - [ ] Live B2C payouts: needs B2C payout short code
 - [ ] Live eTIMS: needs eTIMS connection address, access key, confirmation secret
 - [x] Cloud enabled (already on, healthy)
+- [x] Rider trip screen: progress steps, cancel reasons, compliments, receipt

@@ -9,7 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, AlertTriangle, Share2, X, Copy, UserRound, Star, Phone, Receipt } from "lucide-react";
-import { TripProgress, statusLabel } from "@/components/rider/TripProgress";
+import { TripProgress, deriveStage, stageLabel, haversineM } from "@/components/rider/TripProgress";
+import { TripMessages } from "@/components/rider/TripMessages";
+import { MeetingPointPicker, type PickupPoint } from "@/components/rider/MeetingPointPicker";
 import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
   AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
@@ -33,7 +35,7 @@ interface Booking {
   driver_id: string | null;
   payment_method: string;
   pickup_eta: string | null;
-
+  meeting_point_id?: string | null;
 }
 
 interface SosConfirmation {
@@ -64,6 +66,12 @@ export default function RiderTripDetailPage() {
   const { user } = useAuth();
   const [booking, setBooking] = useState<Booking | null>(null);
   const [driverPos, setDriverPos] = useState<{ lat: number; lng: number } | null>(null);
+  const [fix, setFix] = useState<{ at: number; eta: number | null } | null>(null);
+  const [now, setNow] = useState(Date.now());
+  const [meetingPoint, setMeetingPoint] = useState<PickupPoint | null>(null);
+  const [tip, setTip] = useState<number | null>(null);
+  const [tipAmount, setTipAmount] = useState(100);
+  const [tipping, setTipping] = useState(false);
   const [driver, setDriver] = useState<DriverCard | null>(null);
   const [assigning, setAssigning] = useState(false);
   const [rating, setRating] = useState(0);
@@ -95,13 +103,50 @@ export default function RiderTripDetailPage() {
       .on(
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "trip_tracking", filter: `trip_booking_id=eq.${id}` },
-        (p) => setDriverPos({ lat: Number((p.new as any).lat), lng: Number((p.new as any).lng) })
+        (p) => {
+          const n = p.new as any;
+          setDriverPos({ lat: Number(n.lat), lng: Number(n.lng) });
+          setFix({ at: new Date(n.recorded_at).getTime(), eta: n.eta_seconds ?? null });
+        }
       )
       .subscribe();
+    supabase.from("trip_tracking").select("lat,lng,eta_seconds,recorded_at").eq("trip_booking_id", id)
+      .order("recorded_at", { ascending: false }).limit(1).maybeSingle().then(({ data }) => {
+        if (data) {
+          setDriverPos({ lat: Number(data.lat), lng: Number(data.lng) });
+          setFix({ at: new Date(data.recorded_at).getTime(), eta: data.eta_seconds ?? null });
+        }
+      });
+    const t = setInterval(() => setNow(Date.now()), 15000);
     return () => {
+      clearInterval(t);
       supabase.removeChannel(ch);
     };
   }, [id, user]);
+
+  useEffect(() => {
+    if (!id || booking?.status !== "completed") return;
+    supabase.from("trip_tips").select("amount").eq("trip_booking_id", id).maybeSingle()
+      .then(({ data }) => data && setTip(Number(data.amount)));
+  }, [id, booking?.status]);
+
+  async function sendTip() {
+    if (!booking) return;
+    setTipping(true);
+    const { data, error } = await supabase.rpc("trip_tip_driver", { _booking_id: booking.id, _amount: tipAmount });
+    setTipping(false);
+    const r = data as any;
+    if (error || !r?.ok) {
+      const code = r?.error;
+      return toast.error(
+        code === "INSUFFICIENT_FUNDS" ? `Not enough in your wallet (KES ${r.balance}). Top up with M-Pesa first.`
+        : code === "NO_WALLET" ? "Open your Wallet page first to set it up."
+        : code === "ALREADY_TIPPED" ? "You've already tipped on this trip."
+        : "Tip not sent. Try again.");
+    }
+    setTip(tipAmount);
+    toast.success(`Thanks! KES ${tipAmount} tip sent to your driver.`);
+  }
 
   // Resolve the assigned driver through the definer RPC — riders cannot read
   // public.drivers directly, which is why this card used to show a raw UUID.
@@ -315,6 +360,30 @@ export default function RiderTripDetailPage() {
   }
 
   const cancellable = !["completed", "cancelled"].includes(booking.status);
+  const onTrip = ["in_progress", "started"].includes(booking.status);
+  const target = onTrip ? { lat: booking.dropoff_lat, lng: booking.dropoff_lng } : { lat: booking.pickup_lat, lng: booking.pickup_lng };
+  const liveFresh = !!fix && now - fix.at < 2 * 60_000;
+  const distance = driverPos ? haversineM(driverPos, target) : null;
+  const stage = deriveStage({
+    status: booking.status, hasDriver: !!booking.driver_id, pinVerified: !!pickupPin?.verified,
+    distanceToTargetM: liveFresh ? distance : null, hasLivePosition: liveFresh,
+  });
+  const predicted = fix?.eta != null ? fix.at + fix.eta * 1000 : null;
+  const promised = booking.pickup_eta ? new Date(booking.pickup_eta).getTime() : null;
+  const delayed = ["en_route", "arriving"].includes(stage) && predicted && promised && predicted - promised > 3 * 60_000;
+  const stale = ["assigned", "en_route", "arriving", "on_trip", "approaching"].includes(stage) && fix && !liveFresh;
+  const fmt = (t: number) => new Date(t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const nextAction: Record<string, string> = {
+    booked: "We're finding you a driver.",
+    assigned: "Your driver is getting ready. Check the plate below.",
+    en_route: "Head to your pickup point.",
+    arriving: "Your driver is almost there — be ready at the pickup point.",
+    arrived: "Check the plate, then give your driver the PIN.",
+    verified: "You're verified — get in and buckle up.",
+    on_trip: "Enjoy your ride. Share your trip with someone if you like.",
+    approaching: "Almost there — get ready to leave the car.",
+    completed: "Rate your driver, add a tip, or get your receipt.",
+  };
 
   return (
     <RiderShell>
@@ -322,7 +391,7 @@ export default function RiderTripDetailPage() {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h1 className="text-xl font-bold">{booking.booking_number}</h1>
-            <Badge>{statusLabel(booking.status)}</Badge>
+            <Badge>{stageLabel(stage)}</Badge>
           </div>
           <div className="flex gap-2">
             <Button size="sm" variant="outline" onClick={shareTrip}>
@@ -339,7 +408,39 @@ export default function RiderTripDetailPage() {
           </div>
         </div>
 
-        <Card className="p-4"><TripProgress status={booking.status} /></Card>
+        <Card className="p-4 space-y-3">
+          <TripProgress stage={stage} />
+          {stage !== "cancelled" && <p className="text-sm font-medium" data-testid="next-action">{nextAction[stage]}</p>}
+          {liveFresh && distance != null && stage !== "completed" && (
+            <p className="text-xs text-muted-foreground">
+              Driver is {distance < 1000 ? `${Math.round(distance)} m` : `${(distance / 1000).toFixed(1)} km`} from your {onTrip ? "destination" : "pickup"}
+              {predicted ? ` · arriving around ${fmt(predicted)}` : ""}
+            </p>
+          )}
+          {delayed && (
+            <div role="status" className="rounded-md border border-warning/50 bg-warning/10 p-2 text-sm" data-testid="delay-alert">
+              Your driver is running late. Updated arrival: <strong>{fmt(predicted!)}</strong>
+            </div>
+          )}
+          {stale && (
+            <div role="status" className="rounded-md border p-2 text-xs text-muted-foreground" data-testid="stale-alert">
+              Driver location hasn't updated for a few minutes. Use Meet me or call your driver.
+            </div>
+          )}
+        </Card>
+
+        {booking.driver_id && (
+          <Card className="p-4 space-y-4">
+            <MeetingPointPicker
+              bookingId={booking.id}
+              pickup={{ lat: booking.pickup_lat, lng: booking.pickup_lng }}
+              selectedId={booking.meeting_point_id ?? null}
+              editable={!onTrip && cancellable}
+              onChange={(p) => { setMeetingPoint(p); if (p && p.id !== booking.meeting_point_id) setBooking({ ...booking, meeting_point_id: p.id }); }}
+            />
+            <TripMessages bookingId={booking.id} role="rider" active={cancellable} />
+          </Card>
+        )}
 
         <Card className="overflow-hidden">
           <div ref={mapEl} className="w-full h-[420px]" />
@@ -471,6 +572,30 @@ export default function RiderTripDetailPage() {
               <span className="text-muted-foreground">Paid with</span><span className="capitalize">{booking.payment_method}</span>
               <span className="text-muted-foreground font-medium">Total</span><span className="font-semibold">KES {Number(booking.total_fare ?? 0).toLocaleString()}</span>
             </div>
+          </Card>
+        )}
+
+        {booking.status === "completed" && booking.driver_id && (
+          <Card className="p-4 space-y-2 text-sm" data-testid="tip-card">
+            <div className="font-semibold">Tip your driver</div>
+            {tip != null ? (
+              <p className="text-muted-foreground">You tipped KES {tip.toLocaleString()}. Thank you!</p>
+            ) : (
+              <>
+                <div className="flex flex-wrap gap-2">
+                  {[50, 100, 200, 500].map((a) => (
+                    <Button key={a} size="sm" variant={tipAmount === a ? "default" : "outline"} onClick={() => setTipAmount(a)}>KES {a}</Button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground">Paid from your TaxiD wallet, which you top up with M-Pesa.</p>
+                <div className="flex gap-2">
+                  <Button size="sm" onClick={sendTip} disabled={tipping} aria-busy={tipping}>
+                    {tipping && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}Send KES {tipAmount} tip
+                  </Button>
+                  <Button size="sm" variant="ghost" asChild><Link to="/rider/wallet">Top up wallet</Link></Button>
+                </div>
+              </>
+            )}
           </Card>
         )}
 

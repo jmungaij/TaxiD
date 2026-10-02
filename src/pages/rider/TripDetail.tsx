@@ -8,7 +8,15 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, AlertTriangle, Share2, X, Copy, UserRound, Star, Phone } from "lucide-react";
+import { Loader2, AlertTriangle, Share2, X, Copy, UserRound, Star, Phone, Receipt } from "lucide-react";
+import { TripProgress, statusLabel } from "@/components/rider/TripProgress";
+import {
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
+  AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
+const CANCEL_REASONS = ["Driver is taking too long", "I changed my plans", "Wrong pickup location", "Booked by mistake", "Found another ride"];
+const COMPLIMENTS = ["Safe driving", "Clean car", "Friendly", "Good route", "On time"];
 import { toast } from "sonner";
 
 interface Booking {
@@ -56,6 +64,9 @@ export default function RiderTripDetailPage() {
   const [assigning, setAssigning] = useState(false);
   const [rating, setRating] = useState(0);
   const [ratingComment, setRatingComment] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [cancelOpen, setCancelOpen] = useState(false);
+  const [cancelReason, setCancelReason] = useState(CANCEL_REASONS[0]);
   const [ratingSaved, setRatingSaved] = useState(false);
   const [savingRating, setSavingRating] = useState(false);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
@@ -144,7 +155,7 @@ export default function RiderTripDetailPage() {
       rater_user_id: user.id,
       ratee_kind: "driver",
       overall: rating,
-      comment: ratingComment.trim() || null,
+      comment: [tags.join(", "), ratingComment.trim()].filter(Boolean).join(" — ") || null,
     });
     setSavingRating(false);
     if (error) {
@@ -259,7 +270,8 @@ export default function RiderTripDetailPage() {
 
   async function cancelTrip() {
     if (!booking) return;
-    const { error } = await supabase.rpc("trip_cancel_booking", { _booking_id: booking.id, _reason: "Cancelled by rider" });
+    const { error } = await supabase.rpc("trip_cancel_booking", { _booking_id: booking.id, _reason: `Rider: ${cancelReason}` });
+    setCancelOpen(false);
     if (error) toast.error(error.message);
     else toast.success("Trip cancelled");
   }
@@ -297,7 +309,7 @@ export default function RiderTripDetailPage() {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h1 className="text-xl font-bold">{booking.booking_number}</h1>
-            <Badge>{booking.status}</Badge>
+            <Badge>{statusLabel(booking.status)}</Badge>
           </div>
           <div className="flex gap-2">
             <Button size="sm" variant="outline" onClick={shareTrip}>
@@ -307,12 +319,14 @@ export default function RiderTripDetailPage() {
               <AlertTriangle className="h-4 w-4 mr-1" /> SOS
             </Button>
             {cancellable && (
-              <Button size="sm" variant="ghost" onClick={cancelTrip}>
+              <Button size="sm" variant="ghost" onClick={() => setCancelOpen(true)}>
                 <X className="h-4 w-4 mr-1" /> Cancel
               </Button>
             )}
           </div>
         </div>
+
+        <Card className="p-4"><TripProgress status={booking.status} /></Card>
 
         <Card className="overflow-hidden">
           <div ref={mapEl} className="w-full h-[420px]" />
@@ -391,6 +405,15 @@ export default function RiderTripDetailPage() {
               <p className="text-xs text-muted-foreground">Thanks — your rating has been recorded.</p>
             ) : (
               <>
+                <div className="flex flex-wrap gap-2" aria-label="Compliments">
+                  {COMPLIMENTS.map((c) => (
+                    <Button key={c} type="button" size="sm" variant={tags.includes(c) ? "default" : "outline"} className="h-7 text-xs"
+                      aria-pressed={tags.includes(c)}
+                      onClick={() => setTags((t) => (t.includes(c) ? t.filter((x) => x !== c) : [...t, c]))}>
+                      {c}
+                    </Button>
+                  ))}
+                </div>
                 <Input
                   value={ratingComment}
                   onChange={(e) => setRatingComment(e.target.value)}
@@ -405,6 +428,42 @@ export default function RiderTripDetailPage() {
           </Card>
         )}
 
+
+        {booking.status === "completed" && (
+          <Card className="p-4 text-sm space-y-2 print:shadow-none" data-testid="trip-receipt">
+            <div className="flex items-center justify-between">
+              <div className="font-semibold flex items-center gap-2"><Receipt className="h-4 w-4 text-primary" /> Receipt</div>
+              <Button size="sm" variant="outline" onClick={() => window.print()}>Print / save PDF</Button>
+            </div>
+            <div className="grid grid-cols-2 gap-1">
+              <span className="text-muted-foreground">Trip</span><span>{booking.booking_number}</span>
+              <span className="text-muted-foreground">Driver</span><span>{driver?.name ?? "—"}</span>
+              <span className="text-muted-foreground">Paid with</span><span className="capitalize">{booking.payment_method}</span>
+              <span className="text-muted-foreground font-medium">Total</span><span className="font-semibold">KES {Number(booking.total_fare ?? 0).toLocaleString()}</span>
+            </div>
+          </Card>
+        )}
+
+        <AlertDialog open={cancelOpen} onOpenChange={setCancelOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Cancel this trip?</AlertDialogTitle>
+              <AlertDialogDescription>Tell us why, so we can improve matching.</AlertDialogDescription>
+            </AlertDialogHeader>
+            <div className="space-y-2" role="radiogroup" aria-label="Cancellation reason">
+              {CANCEL_REASONS.map((r) => (
+                <label key={r} className="flex items-center gap-2 text-sm cursor-pointer">
+                  <input type="radio" name="cancel-reason" checked={cancelReason === r} onChange={() => setCancelReason(r)} className="accent-primary" />
+                  {r}
+                </label>
+              ))}
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Keep trip</AlertDialogCancel>
+              <AlertDialogAction onClick={cancelTrip} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Cancel trip</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
 
         {sos && (
           <Card
@@ -434,8 +493,8 @@ export default function RiderTripDetailPage() {
               <span data-testid="sos-eta">~{sos.etaMinutes} min</span>
             </div>
             <div className="text-xs text-muted-foreground">
-              TaxiD safety operators have been alerted with your live location. A live share link has been
-              sent to your primary contact.
+              TaxiD safety operators have been alerted with your location. Use “Share trip” to send your
+              emergency contact a live link, or call them directly.
             </div>
           </Card>
         )}

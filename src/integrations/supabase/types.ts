@@ -86332,6 +86332,16 @@ export type Database = {
         Args: { _corporate_id: string }
         Returns: Json
       }
+      corporate_policy_precheck: {
+        Args: {
+          _corporate_id: string
+          _distance_km: number
+          _fare_cents: number
+          _ride_type_id: string
+          _scheduled_for?: string
+        }
+        Returns: Json
+      }
       corporate_settlement_retry: {
         Args: { _booking_id: string }
         Returns: Json

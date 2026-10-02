@@ -74155,6 +74155,53 @@ export type Database = {
           },
         ]
       }
+      safety_contact_notifications: {
+        Row: {
+          channel: string
+          contact_id: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          created_at: string
+          id: string
+          incident_id: string
+          status: string
+          status_detail: string | null
+          updated_at: string
+        }
+        Insert: {
+          channel?: string
+          contact_id?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          incident_id: string
+          status?: string
+          status_detail?: string | null
+          updated_at?: string
+        }
+        Update: {
+          channel?: string
+          contact_id?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          incident_id?: string
+          status?: string
+          status_detail?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "safety_contact_notifications_incident_id_fkey"
+            columns: ["incident_id"]
+            isOneToOne: false
+            referencedRelation: "safety_incidents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       safety_events: {
         Row: {
           created_at: string
@@ -74199,6 +74246,222 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      safety_incident_events: {
+        Row: {
+          actor_kind: string
+          actor_user_id: string | null
+          created_at: string
+          data: Json
+          event_type: string
+          id: string
+          incident_id: string
+          note: string | null
+        }
+        Insert: {
+          actor_kind?: string
+          actor_user_id?: string | null
+          created_at?: string
+          data?: Json
+          event_type: string
+          id?: string
+          incident_id: string
+          note?: string | null
+        }
+        Update: {
+          actor_kind?: string
+          actor_user_id?: string | null
+          created_at?: string
+          data?: Json
+          event_type?: string
+          id?: string
+          incident_id?: string
+          note?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "safety_incident_events_incident_id_fkey"
+            columns: ["incident_id"]
+            isOneToOne: false
+            referencedRelation: "safety_incidents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      safety_incidents: {
+        Row: {
+          accuracy_m: number | null
+          ack_due_at: string
+          acknowledged_at: string | null
+          activation_source: string
+          app_version: string | null
+          assigned_operator: string | null
+          booking_number: string | null
+          created_at: string
+          driver_id: string | null
+          driver_name: string | null
+          driver_phone: string | null
+          dropoff_address: string | null
+          escalation_level: number
+          follow_up_required: boolean
+          id: string
+          idempotency_key: string | null
+          incident_type: string
+          lat: number | null
+          lng: number | null
+          location_at: string | null
+          message: string | null
+          pickup_address: string | null
+          reference: string
+          reporter_role: string
+          reporter_user_id: string
+          resolution_notes: string | null
+          resolution_type: string | null
+          resolved_at: string | null
+          response_started_at: string | null
+          rider_user_id: string | null
+          severity: string
+          status: string
+          trip_booking_id: string | null
+          trip_status: string | null
+          updated_at: string
+          user_agent: string | null
+          vehicle_desc: string | null
+          vehicle_id: string | null
+          vehicle_plate: string | null
+        }
+        Insert: {
+          accuracy_m?: number | null
+          ack_due_at?: string
+          acknowledged_at?: string | null
+          activation_source?: string
+          app_version?: string | null
+          assigned_operator?: string | null
+          booking_number?: string | null
+          created_at?: string
+          driver_id?: string | null
+          driver_name?: string | null
+          driver_phone?: string | null
+          dropoff_address?: string | null
+          escalation_level?: number
+          follow_up_required?: boolean
+          id?: string
+          idempotency_key?: string | null
+          incident_type?: string
+          lat?: number | null
+          lng?: number | null
+          location_at?: string | null
+          message?: string | null
+          pickup_address?: string | null
+          reference?: string
+          reporter_role?: string
+          reporter_user_id: string
+          resolution_notes?: string | null
+          resolution_type?: string | null
+          resolved_at?: string | null
+          response_started_at?: string | null
+          rider_user_id?: string | null
+          severity?: string
+          status?: string
+          trip_booking_id?: string | null
+          trip_status?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          vehicle_desc?: string | null
+          vehicle_id?: string | null
+          vehicle_plate?: string | null
+        }
+        Update: {
+          accuracy_m?: number | null
+          ack_due_at?: string
+          acknowledged_at?: string | null
+          activation_source?: string
+          app_version?: string | null
+          assigned_operator?: string | null
+          booking_number?: string | null
+          created_at?: string
+          driver_id?: string | null
+          driver_name?: string | null
+          driver_phone?: string | null
+          dropoff_address?: string | null
+          escalation_level?: number
+          follow_up_required?: boolean
+          id?: string
+          idempotency_key?: string | null
+          incident_type?: string
+          lat?: number | null
+          lng?: number | null
+          location_at?: string | null
+          message?: string | null
+          pickup_address?: string | null
+          reference?: string
+          reporter_role?: string
+          reporter_user_id?: string
+          resolution_notes?: string | null
+          resolution_type?: string | null
+          resolved_at?: string | null
+          response_started_at?: string | null
+          rider_user_id?: string | null
+          severity?: string
+          status?: string
+          trip_booking_id?: string | null
+          trip_status?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          vehicle_desc?: string | null
+          vehicle_id?: string | null
+          vehicle_plate?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "safety_incidents_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: false
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      safety_location_pings: {
+        Row: {
+          accuracy_m: number | null
+          heading: number | null
+          id: string
+          incident_id: string
+          lat: number
+          lng: number
+          recorded_at: string
+          speed: number | null
+        }
+        Insert: {
+          accuracy_m?: number | null
+          heading?: number | null
+          id?: string
+          incident_id: string
+          lat: number
+          lng: number
+          recorded_at?: string
+          speed?: number | null
+        }
+        Update: {
+          accuracy_m?: number | null
+          heading?: number | null
+          id?: string
+          incident_id?: string
+          lat?: number
+          lng?: number
+          recorded_at?: string
+          speed?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "safety_location_pings_incident_id_fkey"
+            columns: ["incident_id"]
+            isOneToOne: false
+            referencedRelation: "safety_incidents"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       sales_assignment_events: {
         Row: {
@@ -86086,6 +86349,16 @@ export type Database = {
         Returns: string
       }
       resolve_operating_contexts: { Args: never; Returns: Json }
+      safety_incident_action: {
+        Args: {
+          _action: string
+          _incident_id: string
+          _note: string
+          _resolution_type: string
+        }
+        Returns: undefined
+      }
+      safety_is_operator: { Args: never; Returns: boolean }
       safety_raise_sos: {
         Args: {
           _booking_id: string
@@ -86094,6 +86367,34 @@ export type Database = {
           _message?: string
         }
         Returns: string
+      }
+      safety_sos_mark_safe: {
+        Args: { _incident_id: string; _note: string }
+        Returns: undefined
+      }
+      safety_sos_open: {
+        Args: {
+          _accuracy: number
+          _app_version: string
+          _booking_id: string
+          _idempotency_key: string
+          _incident_type: string
+          _lat: number
+          _lng: number
+          _message: string
+          _reporter_role: string
+          _source: string
+        }
+        Returns: Json
+      }
+      safety_sos_ping: {
+        Args: {
+          _accuracy: number
+          _incident_id: string
+          _lat: number
+          _lng: number
+        }
+        Returns: undefined
       }
       sales_day_close: {
         Args: { _materialise?: boolean; _staff?: string }

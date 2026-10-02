@@ -539,7 +539,7 @@ export default function MpesaDiagnostics() {
             </div>
             <div>
               <Label className="text-xs">Shortcode</Label>
-              <Input value={shortcodeFilter} onChange={(e) => setShortcodeFilter(e.target.value)} placeholder="e.g. 4148095" className="h-9" />
+              <Input value={shortcodeFilter} onChange={(e) => setShortcodeFilter(e.target.value)} placeholder="e.g. 4573823" className="h-9" />
             </div>
             <div>
               <Label className="text-xs">Phone</Label>

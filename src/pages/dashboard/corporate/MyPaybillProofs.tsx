@@ -93,7 +93,7 @@ export default function CorporateMyPaybillProofs({ corporateId }: { corporateId:
           <h3 className="font-semibold flex items-center gap-2"><Banknote className="h-4 w-4 text-primary" />My Paybill Top-up Proofs</h3>
           <p className="text-xs text-muted-foreground">
             Track approval status of M-Pesa top-up proofs submitted under{" "}
-            <span className="font-mono font-semibold">{paybillRef || "—"}</span> · Paybill 4148095 (Yalla Beena Limited).
+            <span className="font-mono font-semibold">{paybillRef || "—"}</span> · Paybill 4573823 (Yalla Beena Limited).
           </p>
         </div>
         <button data-analytics="mypaybillproofs.export_csv" onClick={exportCsv} className="text-sm px-3 py-1.5 rounded-md border hover:bg-muted flex items-center gap-1.5">

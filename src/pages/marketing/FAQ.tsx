@@ -30,7 +30,7 @@ const data: Record<string, { q: string; a: string }[]> = {
     { q: "What's the minimum rental period?", a: "1 hour for hourly rentals, 24 hours for daily contracts." },
   ],
   Payments: [
-    { q: "Is M-Pesa Daraja used?", a: "Yes — Paybill 4148095 with automated reconciliation." },
+    { q: "Is M-Pesa Daraja used?", a: "Yes — Paybill 4573823 with automated reconciliation." },
     { q: "How are refunds handled?", a: "Refunds return to the original payment method within 1–3 business days." },
   ],
 };

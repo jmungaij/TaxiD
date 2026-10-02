@@ -11,7 +11,7 @@
  *      `mpesa-reconcile-recent` to settle the attempt against Daraja rather
  *      than leaving the customer in limbo.
  *
- * Every charge runs against Safaricom paybill 4148095 via the same
+ * Every charge runs against Safaricom paybill 4573823 via the same
  * `mpesa-stkpush` integration the wallet top-ups use — no parallel stack.
  */
 import { supabase } from "@/integrations/supabase/client";

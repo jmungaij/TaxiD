@@ -144,7 +144,7 @@ export default function RiderTripDetailPage() {
     setTipping(true);
     if (viaMpesa) {
       const out = await runMpesaCheckout(
-        { amountKes: tipAmount, phone: tipPhone, reference: `TIP-${booking.booking_number}`, walletType: "personal" } as any,
+        { amountKes: tipAmount, phone: tipPhone, reference: `TIP-${booking.booking_number}`, walletType: "personal" },
         (p) => setTipProgress(p.message),
       );
       setTipProgress(null);

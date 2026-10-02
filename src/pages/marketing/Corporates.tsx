@@ -90,7 +90,7 @@ const Corporates = () => (
         </div>
         <div className="mt-8 max-w-4xl mx-auto p-6 rounded-2xl bg-primary text-primary-foreground text-center">
           <p className="text-sm uppercase tracking-wider mb-1 opacity-80">M-Pesa Daraja</p>
-          <p className="text-xl"><span className="font-bold">Paybill 4148095</span> · Settlement +254 142 970050</p>
+          <p className="text-xl"><span className="font-bold">Paybill 4573823</span> · Settlement +254 142 970050</p>
         </div>
       </div>
     </section>

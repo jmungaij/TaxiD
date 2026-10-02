@@ -257,7 +257,7 @@ export async function buildCharterInvoicePdf(input: CharterInvoiceInput): Promis
         ? `Paid via ${input.paymentMethod ?? "M-Pesa"}${input.mpesaReceipt ? ` - ${input.mpesaReceipt}` : ""}`
         : input.price.invoiceMonthly
           ? "Consolidated month-end billing - settle per your corporate credit terms."
-          : "Payable on approval via corporate wallet, M-Pesa Paybill 4148095 or bank transfer.",
+          : "Payable on approval via corporate wallet, M-Pesa Paybill 4573823 or bank transfer.",
     ),
     W - M - 6,
     ty + 20,

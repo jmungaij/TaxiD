@@ -33,7 +33,7 @@ Deno.serve(withRequest({
     const { data: prepared, error: prepErr } = await admin.rpc("provider_payout_prepare");
     if (prepErr) log.error("payout_prepare_failed", { error: prepErr.message });
 
-    const cfg = getB2CConfig();
+    const cfg = await getB2CConfig();
     const results: Record<string, unknown>[] = [];
 
     const { data: approved, error: listErr } = await admin

@@ -1,3 +1,4 @@
+import { setting, primeGatewaySettings } from "./gateway-settings.ts";
 // tax.ke eTIMS adapter — single point of integration with the KRA-compliant gateway.
 // All eTIMS HTTP calls must go through this module (no inline fetch elsewhere).
 
@@ -23,14 +24,14 @@ const DEFAULT_PATHS: Record<EtimsDeviceMode, { submit: string; health: string }>
 };
 
 function resolveDeviceMode(): EtimsDeviceMode {
-  const raw = (Deno.env.get("TAX_KE_DEVICE_MODE") || "OSCU").toUpperCase();
+  const raw = (setting("TAX_KE_DEVICE_MODE") || "OSCU").toUpperCase();
   return raw === "VSCU" ? "VSCU" : "OSCU";
 }
 
 export function getConfig(): EtimsConfig {
-  const apiKey = Deno.env.get("TAX_KE_API_KEY") || "";
-  const webhookSecret = Deno.env.get("TAX_KE_WEBHOOK_SECRET") || "";
-  const baseUrl = (Deno.env.get("TAX_KE_BASE_URL") || "").replace(/\/$/, "");
+  const apiKey = setting("TAX_KE_API_KEY") || "";
+  const webhookSecret = setting("TAX_KE_WEBHOOK_SECRET") || "";
+  const baseUrl = (setting("TAX_KE_BASE_URL") || "").replace(/\/$/, "");
   if (!apiKey || !webhookSecret || !baseUrl) {
     throw new Error("eTIMS config missing (TAX_KE_API_KEY / TAX_KE_WEBHOOK_SECRET / TAX_KE_BASE_URL)");
   }
@@ -51,9 +52,9 @@ function normalizePath(p: string): string {
 // upstream failures ("DEPLOYMENT_NOT_FOUND", "Body already consumed", etc.).
 export function validateEtimsEnv(): string[] {
   const problems: string[] = [];
-  const apiKey = Deno.env.get("TAX_KE_API_KEY");
-  const webhookSecret = Deno.env.get("TAX_KE_WEBHOOK_SECRET");
-  const baseUrl = Deno.env.get("TAX_KE_BASE_URL");
+  const apiKey = setting("TAX_KE_API_KEY");
+  const webhookSecret = setting("TAX_KE_WEBHOOK_SECRET");
+  const baseUrl = setting("TAX_KE_BASE_URL");
   if (!apiKey) problems.push("TAX_KE_API_KEY is not set");
   if (!webhookSecret) problems.push("TAX_KE_WEBHOOK_SECRET is not set");
   if (!baseUrl) {
@@ -73,7 +74,7 @@ export function validateEtimsEnv(): string[] {
       problems.push(`TAX_KE_BASE_URL is not a valid URL: ${baseUrl}`);
     }
   }
-  const mode = (Deno.env.get("TAX_KE_DEVICE_MODE") || "OSCU").toUpperCase();
+  const mode = (setting("TAX_KE_DEVICE_MODE") || "OSCU").toUpperCase();
   if (mode !== "OSCU" && mode !== "VSCU") {
     problems.push(`TAX_KE_DEVICE_MODE must be OSCU or VSCU, got ${mode}`);
   }
@@ -214,7 +215,7 @@ export async function checkEtimsEndpoint(timeoutMs = 8000): Promise<EtimsHealthR
   if (envProblems.length > 0) {
     return {
       ok: false,
-      base_url: Deno.env.get("TAX_KE_BASE_URL") || "",
+      base_url: setting("TAX_KE_BASE_URL") || "",
       device_mode: resolveDeviceMode(),
       submit_path: Deno.env.get("TAX_KE_SUBMIT_PATH") || DEFAULT_PATHS[resolveDeviceMode()].submit,
       health_path: Deno.env.get("TAX_KE_HEALTH_PATH") || DEFAULT_PATHS[resolveDeviceMode()].health,

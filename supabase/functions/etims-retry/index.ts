@@ -1,3 +1,4 @@
+import { primeGatewaySettings } from "../_shared/gateway-settings.ts";
 // etims-retry — pg_cron driver. Triggers etims-submit when there is work to do.
 // UPGRADE (minimal, additive):
 //   - Treat PENDING/RETRYING invoices as "due work" too, not only retry-queue rows.
@@ -11,6 +12,7 @@ import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 
 import { requireInternalOrStaff } from "../_shared/internal-auth.ts";
 Deno.serve(async (req) => {
+  await primeGatewaySettings();
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   // Privileged worker: cron/service-role callers, or an admin "run now" button.

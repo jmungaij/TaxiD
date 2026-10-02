@@ -1,3 +1,4 @@
+import { setting, primeGatewaySettings } from "./gateway-settings.ts";
 import { createHmac, timingSafeEqual } from "node:crypto";
 // M-Pesa Daraja B2C (business → customer) helpers.
 //
@@ -53,14 +54,15 @@ function functionsBase(): string {
  * caller must refuse with PROVIDER_CONFIGURATION_REQUIRED rather than
  * pretending a payout happened.
  */
-export function getB2CConfig(): B2CConfigResult {
-  const base = getConfig();
+export async function getB2CConfig(): Promise<B2CConfigResult> {
+  await primeGatewaySettings();
+  const base = await getConfig();
   // Safaricom's portal/test-credential tooling frequently emits the encrypted
   // password wrapped in quotes and with embedded newlines. Those characters are
   // not part of the base64 credential and make Daraja answer 2001 (invalid
   // initiator information), so normalise them here — once, centrally.
-  const initiatorName = Deno.env.get("MPESA_B2C_INITIATOR_NAME")?.trim() ?? "";
-  const securityCredential = (Deno.env.get("MPESA_B2C_SECURITY_CREDENTIAL") ?? "")
+  const initiatorName = setting("MPESA_B2C_INITIATOR_NAME")?.trim() ?? "";
+  const securityCredential = (setting("MPESA_B2C_SECURITY_CREDENTIAL") ?? "")
     .trim()
     .replace(/^["']+|["']+$/g, "")
     .replace(/\s+/g, "");
@@ -68,7 +70,7 @@ export function getB2CConfig(): B2CConfigResult {
   // wallet balance, and the money physically leaves a dedicated B2C (payouts)
   // short code. There is deliberately no fallback to the collections shortcode:
   // silently reusing it would make the paybill look like an operator float.
-  const shortcode = Deno.env.get("MPESA_B2C_SHORTCODE")?.trim() ?? "";
+  const shortcode = setting("MPESA_B2C_SHORTCODE")?.trim() ?? "";
 
   const missing: string[] = [];
   if (!initiatorName) missing.push("MPESA_B2C_INITIATOR_NAME");
@@ -158,10 +160,10 @@ export async function submitB2C(args: {
   remarks: string;
   occasion?: string;
 }): Promise<B2CSubmission> {
-  const cfg = getB2CConfig();
+  const cfg = await getB2CConfig();
   if (!cfg.ok || !cfg.config) throw new Error(`B2C_NOT_CONFIGURED:${cfg.missing.join(",")}`);
   const c = cfg.config;
-  const base = getConfig();
+  const base = await getConfig();
 
   // Fail closed on provider-documented limits before any network call.
   const amount = Math.round(args.amount);

@@ -1,3 +1,4 @@
+import { primeGatewaySettings } from "../_shared/gateway-settings.ts";
 // etims-webhook — public endpoint for inbound tax.ke callbacks.
 // Verifies X-TaxKe-Signature HMAC-SHA256 before mutating any state.
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -5,6 +6,7 @@ import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 import { verifyWebhookSignature } from "../_shared/etims.ts";
 
 Deno.serve(async (req) => {
+  await primeGatewaySettings();
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   const rawBody = await req.text();

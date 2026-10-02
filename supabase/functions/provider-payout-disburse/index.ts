@@ -56,7 +56,7 @@ Deno.serve(withRequest({
       });
     }
 
-    const cfg = getB2CConfig();
+    const cfg = await getB2CConfig();
     if (!cfg.ok) {
       log.error("b2c_not_configured", { missing: cfg.missing, disbursement_id: disbursementId });
       return fail(503, "PROVIDER_CONFIGURATION_REQUIRED",

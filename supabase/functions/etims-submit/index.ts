@@ -1,3 +1,4 @@
+import { primeGatewaySettings } from "../_shared/gateway-settings.ts";
 // etims-submit — drains PENDING / RETRYING eTIMS invoices and submits them to tax.ke.
 // Service-role only. Invoked by pg_cron / admin / etims-retry.
 //
@@ -20,6 +21,7 @@ const BATCH_LIMIT = 25;
 const STALE_SYNCING_MS = 10 * 60 * 1000; // 10 minutes
 
 Deno.serve(async (req) => {
+  await primeGatewaySettings();
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   try { await requireInternalOrStaff(req, ["admin", "super_admin"]); }
   catch (e) {

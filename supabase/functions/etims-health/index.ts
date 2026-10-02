@@ -1,3 +1,4 @@
+import { primeGatewaySettings } from "../_shared/gateway-settings.ts";
 // etims-health — on-demand startup health check for the KRA eTIMS gateway.
 // Verifies TAX_KE_BASE_URL is reachable and that the configured submit path
 // is a real API endpoint (not a KRA HTML 404 page). Safe to call from the
@@ -6,6 +7,7 @@ import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 import { checkEtimsEndpoint, validateEtimsEnv } from "../_shared/etims.ts";
 
 Deno.serve(async (req) => {
+  await primeGatewaySettings();
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   const requestId = crypto.randomUUID();

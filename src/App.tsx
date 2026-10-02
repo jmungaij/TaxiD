@@ -356,6 +356,7 @@ const OutboxDlq = lazyWithRetry(() => import("./pages/dashboard/admin/OutboxDlq"
 const CorporateKyb = lazyWithRetry(() => import("./pages/dashboard/admin/CorporateKyb"));
 const BankGuarantees = lazyWithRetry(() => import("./pages/dashboard/admin/BankGuarantees"));
 const MpesaPayments = lazyWithRetry(() => import("./pages/dashboard/admin/MpesaPayments"));
+const PickupPoints = lazyWithRetry(() => import("./pages/dashboard/admin/PickupPoints"));
 const CorporateAdminPortal = lazyWithRetry(() => import("./pages/dashboard/admin/CorporateAdminPortal"));
 const CorporateKybAuditLog = lazyWithRetry(() => import("./pages/dashboard/admin/CorporateKybAuditLog"));
 const ExportAuditTrail = lazyWithRetry(() => import("./pages/dashboard/admin/ExportAuditTrail"));
@@ -809,6 +810,7 @@ const App = () => (
             <Route path="/dashboard/admin/corporate-portal" element={<RequireRole roles={["admin","super_admin","compliance_admin"]}><CorporateAdminPortal /></RequireRole>} />
             <Route path="/dashboard/admin/bank-guarantees" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><BankGuarantees /></RequireRole>} />
             <Route path="/dashboard/admin/mpesa-payments" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><MpesaPayments /></RequireRole>} />
+            <Route path="/dashboard/admin/pickup-points" element={<RequireRole roles={["admin","super_admin"]}><PickupPoints /></RequireRole>} />
             <Route path="/dashboard/admin/export-audit-trail" element={<RequireRole roles={["admin","super_admin","compliance_admin"]}><ExportAuditTrail /></RequireRole>} />
             <Route path="/dashboard/admin/privileged-updates" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><PrivilegedUpdatesAudit /></RequireRole>} />
             <Route path="/dashboard/admin/privileged-metrics" element={<RequireRole roles={["admin","super_admin","finance_admin"]}><PrivilegedMetricsDashboard /></RequireRole>} />

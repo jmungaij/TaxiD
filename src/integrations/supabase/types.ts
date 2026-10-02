@@ -85890,7 +85890,10 @@ export type Database = {
         Args: { _decision: string; _document_id: string; _note?: string }
         Returns: Json
       }
+      provider_earnings_sync: { Args: never; Returns: Json }
       provider_payout_claim: { Args: { p: Json }; Returns: Json }
+      provider_payout_prepare: { Args: never; Returns: Json }
+      provider_settlement_run: { Args: never; Returns: Json }
       recognize_revenue_from_payment: {
         Args: {
           _customer_kra_pin?: string

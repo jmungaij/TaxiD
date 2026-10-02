@@ -85863,6 +85863,8 @@ export type Database = {
         Returns: string
       }
       payments_board: { Args: { p_limit?: number }; Returns: Json }
+      payout_disbursement_apply_result: { Args: { p: Json }; Returns: Json }
+      payout_disbursement_mark_submitted: { Args: { p: Json }; Returns: Json }
       payout_disbursement_mark_unknown: { Args: { p: Json }; Returns: Json }
       platform_wallet_console: { Args: never; Returns: Json }
       platform_wallet_fund_apply_mpesa: {

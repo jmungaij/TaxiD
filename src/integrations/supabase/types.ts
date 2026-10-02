@@ -83240,24 +83240,45 @@ export type Database = {
       trip_messages: {
         Row: {
           body: string
+          client_msg_id: string | null
           created_at: string
           id: string
+          kind: string
+          priority: string
+          read_at: string | null
+          report_reason: string | null
+          reported_at: string | null
+          reported_by: string | null
           sender_role: string
           sender_user_id: string
           trip_booking_id: string
         }
         Insert: {
           body: string
+          client_msg_id?: string | null
           created_at?: string
           id?: string
+          kind?: string
+          priority?: string
+          read_at?: string | null
+          report_reason?: string | null
+          reported_at?: string | null
+          reported_by?: string | null
           sender_role: string
           sender_user_id?: string
           trip_booking_id: string
         }
         Update: {
           body?: string
+          client_msg_id?: string | null
           created_at?: string
           id?: string
+          kind?: string
+          priority?: string
+          read_at?: string | null
+          report_reason?: string | null
+          reported_at?: string | null
+          reported_by?: string | null
           sender_role?: string
           sender_user_id?: string
           trip_booking_id?: string
@@ -86573,6 +86594,14 @@ export type Database = {
         Returns: string
       }
       trip_driver_card: { Args: { _booking_id: string }; Returns: Json }
+      trip_message_report: {
+        Args: { _message_id: string; _reason: string }
+        Returns: Json
+      }
+      trip_messages_mark_read: {
+        Args: { _booking_id: string }
+        Returns: number
+      }
       trip_pickup_pin: { Args: { _booking_id: string }; Returns: Json }
       trip_quote_fare: {
         Args: {

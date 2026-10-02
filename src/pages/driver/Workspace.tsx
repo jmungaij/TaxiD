@@ -8,11 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { LiveTripPanel } from "@/components/driver/LiveTripPanel";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type Driver = { id: string; first_name: string; last_name: string; driver_code: string; verification_status: string };
 type Vehicle = { id: string; plate_number: string; make: string | null; model: string | null; status: string };
-type Trip = { id: string; booking_number: string; pickup_address: string; dropoff_address: string; status: string; total_fare: number | null; driver_id: string | null; scheduled_for: string | null; business_request_id: string | null };
+type Trip = { id: string; booking_number: string; pickup_address: string; dropoff_address: string; status: string; total_fare: number | null; driver_id: string | null; scheduled_for: string | null; business_request_id: string | null; meeting_point_id?: string | null };
 type Earning = { amount: number; created_at: string };
 
 const NEXT: Record<string, { to: string; label: string }> = {
@@ -55,7 +56,7 @@ export default function DriverWorkspace() {
     if (d) {
       const [v, t, e] = await Promise.all([
         untypedDb.from("vehicles").select("id,plate_number,make,model,status").eq("driver_id", d.id),
-        untypedDb.from("trip_bookings").select("id,booking_number,pickup_address,dropoff_address,status,total_fare,driver_id,scheduled_for,business_request_id").or(`driver_id.eq.${d.id},and(driver_id.is.null,status.in.(pending,scheduled))`).order("created_at", { ascending: false }).limit(100),
+        untypedDb.from("trip_bookings").select("id,booking_number,pickup_address,dropoff_address,status,total_fare,driver_id,scheduled_for,business_request_id,meeting_point_id").or(`driver_id.eq.${d.id},and(driver_id.is.null,status.in.(pending,scheduled))`).order("created_at", { ascending: false }).limit(100),
         untypedDb.from("driver_earnings").select("amount,created_at").eq("driver_id", d.id),
       ]);
       setVehicles((v.data ?? []) as Vehicle[]);
@@ -131,7 +132,8 @@ export default function DriverWorkspace() {
         <CardContent className="space-y-3">{mine.length ? mine.map(t =>
           <div key={t.id} className="flex flex-wrap items-center justify-between gap-3 border-t pt-3"><div><p className="font-medium">{t.pickup_address} → {t.dropoff_address}</p><p className="text-xs text-muted-foreground">{t.booking_number}{t.business_request_id ? " · Business fleet" : ""}</p></div>
             <div className="flex items-center gap-2"><Badge variant="outline" className="capitalize">{t.status.replace("_", " ")}</Badge>
-              {t.status === "arrived" ? <div className="flex items-center gap-2"><Input aria-label="Rider PIN" inputMode="numeric" maxLength={4} placeholder="PIN" className="w-20 h-9" value={pins[t.id] ?? ""} onChange={(e) => setPins((p) => ({ ...p, [t.id]: e.target.value.replace(/\D/g, "") }))} /><Button size="sm" disabled={busy} onClick={() => void verifyAndStart(t.id)}>Verify &amp; start</Button></div> : NEXT[t.status] ? <Button size="sm" disabled={busy} onClick={() => void call("driver_update_trip_status", { _booking_id: t.id, _status: NEXT[t.status].to }, "Trip updated")}>{NEXT[t.status].label}</Button> : t.status === "completed" && <CheckCircle2 className="h-5 w-5 text-primary" />}</div></div>) : <p className="text-sm text-muted-foreground">You have no trips yet.</p>}</CardContent></Card>
+              {t.status === "arrived" ? <div className="flex items-center gap-2"><Input aria-label="Rider PIN" inputMode="numeric" maxLength={4} placeholder="PIN" className="w-20 h-9" value={pins[t.id] ?? ""} onChange={(e) => setPins((p) => ({ ...p, [t.id]: e.target.value.replace(/\D/g, "") }))} /><Button size="sm" disabled={busy} onClick={() => void verifyAndStart(t.id)}>Verify &amp; start</Button></div> : NEXT[t.status] ? <Button size="sm" disabled={busy} onClick={() => void call("driver_update_trip_status", { _booking_id: t.id, _status: NEXT[t.status].to }, "Trip updated")}>{NEXT[t.status].label}</Button> : t.status === "completed" && <CheckCircle2 className="h-5 w-5 text-primary" />}</div>
+              {["accepted", "arrived", "in_progress"].includes(t.status) && <LiveTripPanel bookingId={t.id} meetingPointId={t.meeting_point_id ?? null} />}</div>) : <p className="text-sm text-muted-foreground">You have no trips yet.</p>}</CardContent></Card>
     </div>
   );
 }

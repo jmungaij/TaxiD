@@ -175,7 +175,7 @@ export default function RiderTripDetailPage() {
         : code === "ALREADY_TIPPED" ? "You've already tipped on this trip."
         : "Tip not sent. Try again.");
     }
-    setTip(tipAmount);
+    setTip(tipAmount); setTipAt(new Date().toISOString());
     toast.success(`Thanks! KES ${tipAmount} tip sent to your driver.`);
   }
 
@@ -587,7 +587,7 @@ export default function RiderTripDetailPage() {
                   <li className="flex gap-2"><span className="text-primary">●</span><span><b>Recorded for your driver</b>{tipAt ? ` — ${new Date(tipAt).toLocaleTimeString()}` : ""}.</span></li>
                   <li className="flex gap-2"><span className="text-muted-foreground">○</span><span><b>Paid out to the driver</b> — added with their next scheduled TaxiD payout.</span></li>
                 </ol>
-                <p className="text-muted-foreground text-xs">Thank you! 100% of your tip goes to your driver.</p>
+                <p className="text-muted-foreground text-xs">Thank you for tipping your driver!</p>
               </div>
             ) : (
               <>

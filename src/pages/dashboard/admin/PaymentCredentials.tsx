@@ -18,6 +18,11 @@ interface SettingsStatus {
   b2c_initiator_name_set: boolean;
   b2c_security_credential_set: boolean;
   etims_device_serial_set: boolean;
+  b2c_short_code_set?: boolean;
+  etims_api_key_set?: boolean;
+  etims_base_url_set?: boolean;
+  etims_webhook_secret_set?: boolean;
+  etims_device_mode_set?: boolean;
 }
 
 const FIELDS = [
@@ -27,7 +32,12 @@ const FIELDS = [
   { key: "passkey", label: "Passkey", placeholder: "Paste the new passkey", setFlag: "passkey_set" },
   { key: "b2c_initiator_name", label: "B2C Initiator Name (payouts)", placeholder: "From your Safaricom B2C account", setFlag: "b2c_initiator_name_set" },
   { key: "b2c_security_credential", label: "B2C Security Credential (payouts)", placeholder: "Encrypted credential from Safaricom", setFlag: "b2c_security_credential_set" },
+  { key: "b2c_short_code", label: "B2C Payout Short Code", placeholder: "Your separate payouts short code (not PayBill 4573823)", setFlag: "b2c_short_code_set" },
   { key: "etims_device_serial", label: "eTIMS Device Serial (KRA)", placeholder: "From your KRA eTIMS registration", setFlag: "etims_device_serial_set" },
+  { key: "etims_device_mode", label: "eTIMS Device Type (OSCU or VSCU)", placeholder: "OSCU", setFlag: "etims_device_mode_set" },
+  { key: "etims_base_url", label: "eTIMS Connection Address", placeholder: "https://… (from KRA or your eTIMS provider)", setFlag: "etims_base_url_set" },
+  { key: "etims_api_key", label: "eTIMS Access Key", placeholder: "From KRA or your eTIMS provider", setFlag: "etims_api_key_set" },
+  { key: "etims_webhook_secret", label: "eTIMS Confirmation Secret", placeholder: "Shared secret for KRA confirmations", setFlag: "etims_webhook_secret_set" },
 ] as const;
 
 export default function PaymentCredentials() {

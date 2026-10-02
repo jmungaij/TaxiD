@@ -19,6 +19,11 @@ const SaveSchema = z.object({
   b2c_initiator_name: z.string().trim().min(2).max(100).optional(),
   b2c_security_credential: z.string().trim().min(10).max(2000).optional(),
   etims_device_serial: z.string().trim().min(2).max(100).optional(),
+  b2c_short_code: z.string().trim().regex(/^\d{5,7}$/).optional(),
+  etims_api_key: z.string().trim().min(8).max(2000).optional(),
+  etims_base_url: z.string().trim().url().max(300).optional(),
+  etims_webhook_secret: z.string().trim().min(8).max(500).optional(),
+  etims_device_mode: z.enum(["OSCU", "VSCU"]).optional(),
 });
 
 Deno.serve(async (req) => {
@@ -46,7 +51,7 @@ Deno.serve(async (req) => {
   if (req.method === "GET") {
     const { data, error } = await service
       .from("payment_gateway_settings")
-      .select("gateway, environment, short_code, consumer_key, consumer_secret, passkey, b2c_initiator_name, b2c_security_credential, etims_device_serial, updated_at")
+      .select("gateway, environment, short_code, consumer_key, consumer_secret, passkey, b2c_initiator_name, b2c_security_credential, etims_device_serial, b2c_short_code, etims_api_key, etims_base_url, etims_webhook_secret, etims_device_mode, updated_at")
       .eq("gateway", "mpesa");
     if (error) return response({ error: "Could not load settings" }, 500);
     const rows = (data ?? []).map((row: Record<string, unknown>) => ({
@@ -59,6 +64,11 @@ Deno.serve(async (req) => {
       b2c_initiator_name_set: Boolean(row.b2c_initiator_name),
       b2c_security_credential_set: Boolean(row.b2c_security_credential),
       etims_device_serial_set: Boolean(row.etims_device_serial),
+      b2c_short_code_set: Boolean(row.b2c_short_code),
+      etims_api_key_set: Boolean(row.etims_api_key),
+      etims_base_url_set: Boolean(row.etims_base_url),
+      etims_webhook_secret_set: Boolean(row.etims_webhook_secret),
+      etims_device_mode_set: Boolean(row.etims_device_mode),
     }));
     return response({ settings: rows });
   }

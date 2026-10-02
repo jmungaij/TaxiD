@@ -613,7 +613,7 @@ function DashboardOverview({
         </p>
         <div className="mt-3 rounded-lg bg-primary/5 border border-primary/20 p-3 text-xs">
           <b>Payment model:</b> TaxiD corporates fund their wallet via M-Pesa Paybill{" "}
-          <span className="font-mono">4148095</span> (Yalla Beena Limited). Rides are debited from your wallet balance in real time.
+          <span className="font-mono">4573823</span> (Yalla Beena Limited). Rides are debited from your wallet balance in real time.
         </div>
         <div className="mt-4 grid grid-cols-3 gap-3 text-center">
           <MiniStat label="Approval rate" value={counts.pending === 0 ? "100%" : "—"} />

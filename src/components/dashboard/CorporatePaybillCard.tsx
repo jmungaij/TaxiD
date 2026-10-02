@@ -16,7 +16,7 @@ interface Props {
   balanceCents: number;
 }
 
-const PAYBILL = "4148095";
+const PAYBILL = "4573823";
 const BUSINESS = "Yalla Beena Limited";
 
 /**

@@ -9,7 +9,7 @@ export type PickupPoint = { id: string; place_name: string; point_name: string; 
 
 /** Approved entrances/gates near the rider's pickup; rider picks one, driver sees it. */
 export function MeetingPointPicker({ bookingId, pickup, selectedId, editable, onChange }: {
-  bookingId: string; pickup: { lat: number; lng: number }; selectedId: string | null; editable: boolean;
+  bookingId?: string; pickup: { lat: number; lng: number }; selectedId: string | null; editable: boolean;
   onChange: (p: PickupPoint | null) => void;
 }) {
   const [points, setPoints] = useState<PickupPoint[]>([]);
@@ -33,6 +33,7 @@ export function MeetingPointPicker({ bookingId, pickup, selectedId, editable, on
   if (points.length === 0) return null;
 
   async function choose(p: PickupPoint) {
+    if (!bookingId) { onChange(p.id === selectedId ? null : p); return; }
     setSaving(true);
     const { error } = await supabase.rpc("trip_set_meeting_point", { _booking_id: bookingId, _point_id: p.id });
     setSaving(false);

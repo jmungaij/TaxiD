@@ -11,7 +11,7 @@
  *      `mpesa-reconcile-recent` to settle the attempt against Daraja rather
  *      than leaving the customer in limbo.
  *
- * Every charge runs against Safaricom paybill 4148095 via the same
+ * Every charge runs against Safaricom paybill 4573823 via the same
  * `mpesa-stkpush` integration the wallet top-ups use — no parallel stack.
  */
 import { supabase } from "@/integrations/supabase/client";
@@ -19,7 +19,7 @@ import { FunctionsHttpError } from "@supabase/supabase-js";
 import { normalizeKenyanMsisdn } from "@/lib/kenyaPhone";
 
 /** Paybill that receives every TaxiD M-Pesa collection. */
-export const YALLA_PAYBILL = "4148095";
+export const YALLA_PAYBILL = "4573823";
 
 /** Maximum a single M-Pesa transaction may carry, per paying phone number. */
 export const MPESA_MAX_TXN_KES = 250_000;

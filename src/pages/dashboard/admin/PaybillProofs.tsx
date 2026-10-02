@@ -91,7 +91,7 @@ export default function AdminPaybillProofs() {
     <div className="p-6 space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold flex items-center gap-2"><Banknote className="h-6 w-6 text-primary" />Paybill Payment Proofs</h1>
-        <p className="text-xs text-muted-foreground">Paybill 4148095 · Yalla Beena Limited</p>
+        <p className="text-xs text-muted-foreground">Paybill 4573823 · Yalla Beena Limited</p>
       </div>
 
       <div className="inline-flex rounded-lg border bg-card p-1 text-sm">

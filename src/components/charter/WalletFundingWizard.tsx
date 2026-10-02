@@ -306,7 +306,7 @@ export function WalletFundingWizard({
               </div>
               {phone && step2Errors.phone && <p className="text-xs text-destructive">{step2Errors.phone}</p>}
             </div>
-            <p className="text-xs text-muted-foreground">Payment method: M-Pesa STK Push · Paybill 4148095</p>
+            <p className="text-xs text-muted-foreground">Payment method: M-Pesa STK Push · Paybill 4573823</p>
             {stkError && (
               <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-3" data-testid="cwf-stk-error">
                 <p className="flex items-start gap-2 text-sm font-medium text-destructive">

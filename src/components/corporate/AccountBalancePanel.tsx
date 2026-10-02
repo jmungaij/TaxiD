@@ -171,7 +171,7 @@ export default function AccountBalancePanel({
               </p>
             )}
             <p className="rounded-md bg-muted/50 p-3 text-xs text-muted-foreground">
-              Prefer to pay from the bank or your own M-Pesa menu? Use Paybill <strong>4148095</strong> with account
+              Prefer to pay from the bank or your own M-Pesa menu? Use Paybill <strong>4573823</strong> with account
               number <strong className="font-mono">CORP-TOPUP-{corporateId?.slice(0, 8).toUpperCase()}</strong>. The
               balance updates automatically once M-Pesa confirms the payment.
             </p>

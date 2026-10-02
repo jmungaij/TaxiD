@@ -296,7 +296,6 @@ const CustomerOperationsCenter = lazyWithRetry(() => import("./pages/dashboard/a
 const PlatformCenter = lazyWithRetry(() => import("./pages/dashboard/admin/PlatformCenter"));
 const BackendOperations = lazyWithRetry(() => import("./pages/dashboard/admin/BackendOperations"));
 const PaymentCredentials = lazyWithRetry(() => import("./pages/dashboard/admin/PaymentCredentials"));
-const MpesaPayments = lazyWithRetry(() => import("./pages/dashboard/admin/MpesaPayments"));
 const BusinessOperations = lazyWithRetry(() => import("./pages/dashboard/admin/BusinessOperations"));
 const TrustSafetyCenter = lazyWithRetry(() => import("./pages/dashboard/admin/TrustSafetyCenter"));
 const PeoplePartnersCenter = lazyWithRetry(() => import("./pages/dashboard/admin/PeoplePartnersCenter"));
@@ -1029,7 +1028,6 @@ const App = () => (
             <Route path="/dashboard/admin/marketplace" element={<RequireRole roles={["admin","super_admin"]}><MarketplaceCenter /></RequireRole>} />
             <Route path="/dashboard/admin/super" element={<RequireRole roles={["super_admin"]}><BackendOperations /></RequireRole>} />
 <Route path="/dashboard/admin/backend" element={<RequireRole roles={["super_admin"]}><BackendOperations /></RequireRole>} />
-            <Route path="/dashboard/admin/mpesa-payments" element={<RequireRole roles={["super_admin","admin","finance_admin"]}><MpesaPayments /></RequireRole>} />
             <Route path="/dashboard/admin/payment-credentials" element={<RequireRole roles={["super_admin"]}><PaymentCredentials /></RequireRole>} />
             <Route path="/dashboard/admin/business-operations" element={<RequireRole roles={["admin","super_admin"]}><BusinessOperations /></RequireRole>} />
             <Route path="/dashboard/admin/audit-log" element={<RequireRole roles={["admin","super_admin"]}><AdminAuditLog /></RequireRole>} />

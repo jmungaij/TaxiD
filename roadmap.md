@@ -68,3 +68,9 @@
 - [x] Staff 360 SAMPLE staff, documents, qualifications, training, calendar, reviews
 - [ ] Live M-Pesa/eTIMS: needs Daraja consumer key/secret/passkey + eTIMS device serial
 - [ ] Readiness scorecard
+
+- [x] M-Pesa payments dashboard (/dashboard/admin/mpesa-payments)
+- [x] Driver payout + eTIMS tasks restored (read Payment Credentials)
+- [ ] Live B2C payouts: needs B2C payout short code
+- [ ] Live eTIMS: needs eTIMS connection address, access key, confirmation secret
+- [x] Cloud enabled (already on, healthy)

@@ -16165,6 +16165,47 @@ export type Database = {
           },
         ]
       }
+      corporate_employee_groups: {
+        Row: {
+          active: boolean
+          corporate_id: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          corporate_id: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          corporate_id?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_employee_groups_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_employees: {
         Row: {
           activated_at: string | null
@@ -16174,6 +16215,7 @@ export type Database = {
           email: string
           employee_code: string | null
           full_name: string | null
+          group_id: string | null
           id: string
           invited_at: string | null
           manager_user_id: string | null
@@ -16196,6 +16238,7 @@ export type Database = {
           email: string
           employee_code?: string | null
           full_name?: string | null
+          group_id?: string | null
           id?: string
           invited_at?: string | null
           manager_user_id?: string | null
@@ -16218,6 +16261,7 @@ export type Database = {
           email?: string
           employee_code?: string | null
           full_name?: string | null
+          group_id?: string | null
           id?: string
           invited_at?: string | null
           manager_user_id?: string | null
@@ -16245,6 +16289,13 @@ export type Database = {
             columns: ["department_id"]
             isOneToOne: false
             referencedRelation: "corporate_departments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_employees_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employee_groups"
             referencedColumns: ["id"]
           },
         ]
@@ -16505,6 +16556,41 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "corporate_financial_reconciliation_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_holidays: {
+        Row: {
+          corporate_id: string
+          created_at: string
+          holiday_date: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          corporate_id: string
+          created_at?: string
+          holiday_date: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          corporate_id?: string
+          created_at?: string
+          holiday_date?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_holidays_corporate_id_fkey"
             columns: ["corporate_id"]
             isOneToOne: false
             referencedRelation: "corporate_accounts"
@@ -18107,6 +18193,7 @@ export type Database = {
           effective_from: string
           effective_to: string | null
           employee_id: string | null
+          group_id: string | null
           id: string
           metadata: Json
           name: string
@@ -18124,6 +18211,7 @@ export type Database = {
           effective_from?: string
           effective_to?: string | null
           employee_id?: string | null
+          group_id?: string | null
           id?: string
           metadata?: Json
           name: string
@@ -18141,6 +18229,7 @@ export type Database = {
           effective_from?: string
           effective_to?: string | null
           employee_id?: string | null
+          group_id?: string | null
           id?: string
           metadata?: Json
           name?: string
@@ -18168,6 +18257,13 @@ export type Database = {
             columns: ["employee_id"]
             isOneToOne: false
             referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_ride_policies_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employee_groups"
             referencedColumns: ["id"]
           },
         ]

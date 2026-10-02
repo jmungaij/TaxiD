@@ -68,11 +68,16 @@ export async function decideCorporateRideRequest(
   decision: "approved" | "rejected",
   note?: string,
 ): Promise<RideDecisionResult> {
-  const { data, error } = await supabase.rpc("decide_corporate_ride_request", {
+  const { data, error } = await supabase.rpc("corporate_trip_decide", {
     _approval_id: approvalId,
-    _decision: decision,
+    _approve: decision === "approved",
     _note: note ?? null,
   });
   if (error) throw error;
-  return data as unknown as RideDecisionResult;
+  const r = data as { ok?: boolean; error?: string; booking_id?: string; approved?: boolean } | null;
+  if (!r?.ok) throw new Error(r?.error === "CANNOT_APPROVE_OWN_TRIP" ? "You can't approve your own trip." : r?.error === "ALREADY_DECIDED" ? "This request was already decided." : "Decision not saved.");
+  if (decision === "approved" && r.booking_id) {
+    await supabase.rpc("trip_assign_driver", { _booking_id: r.booking_id });
+  }
+  return { status: r.approved ? "approved" : "rejected", booking_id: r.booking_id ?? null };
 }

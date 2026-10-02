@@ -121,6 +121,22 @@ export default function RiderTripDetailPage() {
     };
   }, [id, user]);
 
+  const [serverDelay, setServerDelay] = useState<{ minutes_late: number; predicted_arrival: string } | null>(null);
+  useEffect(() => {
+    if (!id) return;
+    supabase.from("trip_delay_alerts").select("minutes_late,predicted_arrival").eq("trip_booking_id", id)
+      .order("created_at", { ascending: false }).limit(1).then(({ data }) => data?.[0] && setServerDelay(data[0] as typeof serverDelay));
+    const ch = supabase.channel(`delay-${id}`)
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "trip_delay_alerts", filter: `trip_booking_id=eq.${id}` }, (p) => {
+        const a = p.new as { minutes_late: number; predicted_arrival: string };
+        setServerDelay(a);
+        toast.warning(`Your driver is about ${a.minutes_late} min late`);
+        if ("vibrate" in navigator) navigator.vibrate?.(200);
+      })
+      .subscribe();
+    return () => { supabase.removeChannel(ch); };
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (!id || booking?.status !== "completed") return;
     supabase.from("trip_tips").select("amount").eq("trip_booking_id", id).maybeSingle()
@@ -347,7 +363,10 @@ export default function RiderTripDetailPage() {
   });
   const predicted = fix?.eta != null ? fix.at + fix.eta * 1000 : null;
   const promised = booking.pickup_eta ? new Date(booking.pickup_eta).getTime() : null;
-  const delayed = ["en_route", "arriving"].includes(stage) && predicted && promised && predicted - promised > 3 * 60_000;
+  const preArrival = ["assigned", "en_route", "arriving"].includes(stage);
+  const serverLate = preArrival && serverDelay && new Date(serverDelay.predicted_arrival).getTime() > Date.now() - 60_000;
+  const delayed = preArrival && ((predicted && promised && predicted - promised > 3 * 60_000) || serverLate);
+  const delayedAt = predicted ?? (serverDelay ? new Date(serverDelay.predicted_arrival).getTime() : null);
   const stale = ["assigned", "en_route", "arriving", "on_trip", "approaching"].includes(stage) && fix && !liveFresh;
   const fmt = (t: number) => new Date(t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   const nextAction: Record<string, string> = {
@@ -396,7 +415,7 @@ export default function RiderTripDetailPage() {
           )}
           {delayed && (
             <div role="status" className="rounded-md border border-warning/50 bg-warning/10 p-2 text-sm" data-testid="delay-alert">
-              Your driver is running late. Updated arrival: <strong>{fmt(predicted!)}</strong>
+              Your driver is running late{serverDelay ? ` (about ${serverDelay.minutes_late} min)` : ""}.{delayedAt ? <> Updated arrival: <strong>{fmt(delayedAt)}</strong></> : null}
             </div>
           )}
           {stale && (

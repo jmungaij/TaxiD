@@ -83119,6 +83119,41 @@ export type Database = {
           },
         ]
       }
+      trip_delay_alerts: {
+        Row: {
+          created_at: string
+          id: string
+          minutes_late: number
+          predicted_arrival: string
+          promised_arrival: string
+          trip_booking_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          minutes_late: number
+          predicted_arrival: string
+          promised_arrival: string
+          trip_booking_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          minutes_late?: number
+          predicted_arrival?: string
+          promised_arrival?: string
+          trip_booking_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_delay_alerts_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: false
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       trip_incidents: {
         Row: {
           created_at: string

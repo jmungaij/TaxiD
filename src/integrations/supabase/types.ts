@@ -58258,6 +58258,45 @@ export type Database = {
           },
         ]
       }
+      pickup_points: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          landmark: string | null
+          lat: number
+          lng: number
+          place_name: string
+          point_name: string
+          radius_m: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          landmark?: string | null
+          lat: number
+          lng: number
+          place_name: string
+          point_name: string
+          radius_m?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          landmark?: string | null
+          lat?: number
+          lng?: number
+          place_name?: string
+          point_name?: string
+          radius_m?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       pipeline_stage_weights: {
         Row: {
           created_at: string
@@ -82694,6 +82733,7 @@ export type Database = {
           dropoff_lng: number
           id: string
           intent: string | null
+          meeting_point_id: string | null
           passenger_count: number
           payment_method: string | null
           pickup_address: string
@@ -82726,6 +82766,7 @@ export type Database = {
           dropoff_lng: number
           id?: string
           intent?: string | null
+          meeting_point_id?: string | null
           passenger_count?: number
           payment_method?: string | null
           pickup_address: string
@@ -82758,6 +82799,7 @@ export type Database = {
           dropoff_lng?: number
           id?: string
           intent?: string | null
+          meeting_point_id?: string | null
           passenger_count?: number
           payment_method?: string | null
           pickup_address?: string
@@ -82782,6 +82824,13 @@ export type Database = {
             columns: ["business_request_id"]
             isOneToOne: false
             referencedRelation: "business_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trip_bookings_meeting_point_id_fkey"
+            columns: ["meeting_point_id"]
+            isOneToOne: false
+            referencedRelation: "pickup_points"
             referencedColumns: ["id"]
           },
           {
@@ -82889,6 +82938,41 @@ export type Database = {
           trip_id?: string
         }
         Relationships: []
+      }
+      trip_messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          sender_role: string
+          sender_user_id: string
+          trip_booking_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          sender_role: string
+          sender_user_id?: string
+          trip_booking_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          sender_role?: string
+          sender_user_id?: string
+          trip_booking_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_messages_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: false
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       trip_pickup_pins: {
         Row: {
@@ -83282,6 +83366,41 @@ export type Database = {
             foreignKeyName: "trip_status_history_trip_booking_id_fkey"
             columns: ["trip_booking_id"]
             isOneToOne: false
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      trip_tips: {
+        Row: {
+          amount: number
+          created_at: string
+          driver_id: string
+          id: string
+          rider_user_id: string
+          trip_booking_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          driver_id: string
+          id?: string
+          rider_user_id: string
+          trip_booking_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          driver_id?: string
+          id?: string
+          rider_user_id?: string
+          trip_booking_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trip_tips_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: true
             referencedRelation: "trip_bookings"
             referencedColumns: ["id"]
           },
@@ -85731,6 +85850,16 @@ export type Database = {
       }
       driver_payout_recipients: { Args: never; Returns: Json }
       driver_portal_summary: { Args: never; Returns: Json }
+      driver_post_location: {
+        Args: {
+          _booking_id: string
+          _heading?: number
+          _lat: number
+          _lng: number
+          _speed_kmh?: number
+        }
+        Returns: Json
+      }
       driver_rides_self: { Args: never; Returns: Json }
       driver_set_availability: {
         Args: {
@@ -86093,6 +86222,14 @@ export type Database = {
           quote_id: string
           total: number
         }[]
+      }
+      trip_set_meeting_point: {
+        Args: { _booking_id: string; _point_id: string }
+        Returns: undefined
+      }
+      trip_tip_driver: {
+        Args: { _amount: number; _booking_id: string }
+        Returns: Json
       }
       work_dispositions_outstanding: {
         Args: { _business_date?: string }

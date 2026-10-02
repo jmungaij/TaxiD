@@ -1,3 +1,4 @@
+import { MeetingPointPicker, type PickupPoint } from "@/components/rider/MeetingPointPicker";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { RiderShell } from "@/components/rider/RiderShell";
@@ -32,6 +33,7 @@ export default function RiderBookPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [pickup, setPickup] = useState<BookingPoint | null>(null);
+  const [meetingPoint, setMeetingPoint] = useState<PickupPoint | null>(null);
   const [dropoff, setDropoff] = useState<BookingPoint | null>(null);
   const [estimate, setEstimate] = useState<{ distanceKm: number; durationMin: number } | null>(null);
   const [rideTypes, setRideTypes] = useState<RideType[]>([]);
@@ -129,6 +131,11 @@ export default function RiderBookPage() {
         _scheduled_for: searchParams.get("when"),
       });
       if (e3 || !bookingId) throw e3 ?? new Error("Could not confirm booking");
+
+      if (meetingPoint) {
+        const { error: eMp } = await supabase.rpc("trip_set_meeting_point", { _booking_id: bookingId as string, _point_id: meetingPoint.id });
+        if (eMp) console.warn("meeting point not saved", eMp);
+      }
 
       // Dispatch: actually match a driver. Without this the booking stays
       // 'pending' forever and the trip screen shows "Searching…" indefinitely.
@@ -244,6 +251,17 @@ export default function RiderBookPage() {
               ))}
             </div>
           </Card>
+
+          {pickup && (
+            <Card className="p-4">
+              <MeetingPointPicker
+                pickup={{ lat: pickup.lat, lng: pickup.lng }}
+                selectedId={meetingPoint?.id ?? null}
+                editable
+                onChange={setMeetingPoint}
+              />
+            </Card>
+          )}
 
           <Card className="p-4">
             <label className="text-xs font-medium">Passengers</label>

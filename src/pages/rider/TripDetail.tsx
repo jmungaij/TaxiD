@@ -1,3 +1,4 @@
+import { runMpesaCheckout } from "@/lib/payments/checkout";
 import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { RiderShell } from "@/components/rider/RiderShell";
@@ -72,6 +73,8 @@ export default function RiderTripDetailPage() {
   const [tip, setTip] = useState<number | null>(null);
   const [tipAmount, setTipAmount] = useState(100);
   const [tipping, setTipping] = useState(false);
+  const [tipPhone, setTipPhone] = useState("");
+  const [tipProgress, setTipProgress] = useState<string | null>(null);
   const [driver, setDriver] = useState<DriverCard | null>(null);
   const [assigning, setAssigning] = useState(false);
   const [rating, setRating] = useState(0);
@@ -130,9 +133,26 @@ export default function RiderTripDetailPage() {
       .then(({ data }) => data && setTip(Number(data.amount)));
   }, [id, booking?.status]);
 
-  async function sendTip() {
+  useEffect(() => {
+    if (!user || booking?.status !== "completed") return;
+    supabase.from("profiles").select("phone").eq("id", user.id).maybeSingle()
+      .then(({ data }) => data?.phone && setTipPhone((p) => p || String(data.phone)));
+  }, [user, booking?.status]);
+
+  async function sendTip(viaMpesa: boolean) {
     if (!booking) return;
     setTipping(true);
+    if (viaMpesa) {
+      const out = await runMpesaCheckout(
+        { amountKes: tipAmount, phone: tipPhone, reference: `TIP-${booking.booking_number}`, walletType: "personal" } as any,
+        (p) => setTipProgress(p.message),
+      );
+      setTipProgress(null);
+      if (out.state !== "paid") {
+        setTipping(false);
+        return toast.error(out.message ?? "M-Pesa payment did not complete.");
+      }
+    }
     const { data, error } = await supabase.rpc("trip_tip_driver", { _booking_id: booking.id, _amount: tipAmount });
     setTipping(false);
     const r = data as any;
@@ -587,13 +607,16 @@ export default function RiderTripDetailPage() {
                     <Button key={a} size="sm" variant={tipAmount === a ? "default" : "outline"} onClick={() => setTipAmount(a)}>KES {a}</Button>
                   ))}
                 </div>
-                <p className="text-xs text-muted-foreground">Paid from your TaxiD wallet, which you top up with M-Pesa.</p>
-                <div className="flex gap-2">
-                  <Button size="sm" onClick={sendTip} disabled={tipping} aria-busy={tipping}>
-                    {tipping && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}Send KES {tipAmount} tip
+                <div className="flex gap-2 items-center">
+                  <Input aria-label="M-Pesa phone" inputMode="tel" placeholder="M-Pesa phone, e.g. 0712345678" value={tipPhone} onChange={(e) => setTipPhone(e.target.value)} className="max-w-[220px]" />
+                  <Button size="sm" onClick={() => void sendTip(true)} disabled={tipping || !tipPhone.trim()} aria-busy={tipping}>
+                    {tipping && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}Tip KES {tipAmount} with M-Pesa
                   </Button>
-                  <Button size="sm" variant="ghost" asChild><Link to="/rider/wallet">Top up wallet</Link></Button>
                 </div>
+                {tipProgress && <p className="text-xs text-primary" role="status">{tipProgress}</p>}
+                <Button size="sm" variant="ghost" className="px-0" disabled={tipping} onClick={() => void sendTip(false)}>
+                  Or pay from my TaxiD wallet balance
+                </Button>
               </>
             )}
           </Card>

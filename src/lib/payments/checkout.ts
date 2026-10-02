@@ -19,7 +19,7 @@ import { FunctionsHttpError } from "@supabase/supabase-js";
 import { normalizeKenyanMsisdn } from "@/lib/kenyaPhone";
 
 /** Paybill that receives every TaxiD M-Pesa collection. */
-export const YALLA_PAYBILL = "4148095";
+export const YALLA_PAYBILL = "4573823";
 
 /** Maximum a single M-Pesa transaction may carry, per paying phone number. */
 export const MPESA_MAX_TXN_KES = 250_000;

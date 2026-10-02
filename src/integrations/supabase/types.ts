@@ -83673,25 +83673,49 @@ export type Database = {
         Row: {
           amount: number
           created_at: string
+          credited_at: string | null
+          driver_balance_after_cents: number | null
           driver_id: string
+          driver_user_id: string | null
+          driver_wallet_txn_id: string | null
           id: string
+          journal_id: string | null
+          payment_source: string | null
           rider_user_id: string
+          rider_wallet_txn_id: string | null
+          state: string
           trip_booking_id: string
         }
         Insert: {
           amount: number
           created_at?: string
+          credited_at?: string | null
+          driver_balance_after_cents?: number | null
           driver_id: string
+          driver_user_id?: string | null
+          driver_wallet_txn_id?: string | null
           id?: string
+          journal_id?: string | null
+          payment_source?: string | null
           rider_user_id: string
+          rider_wallet_txn_id?: string | null
+          state?: string
           trip_booking_id: string
         }
         Update: {
           amount?: number
           created_at?: string
+          credited_at?: string | null
+          driver_balance_after_cents?: number | null
           driver_id?: string
+          driver_user_id?: string | null
+          driver_wallet_txn_id?: string | null
           id?: string
+          journal_id?: string | null
+          payment_source?: string | null
           rider_user_id?: string
+          rider_wallet_txn_id?: string | null
+          state?: string
           trip_booking_id?: string
         }
         Relationships: [
@@ -86488,6 +86512,7 @@ export type Database = {
         }
         Returns: string
       }
+      tip_reconciliation: { Args: never; Returns: Json }
       transition_payment_state: {
         Args: {
           p_actor: string
@@ -86568,6 +86593,7 @@ export type Database = {
         Args: { _amount: number; _booking_id: string }
         Returns: Json
       }
+      trip_tip_status: { Args: { _booking_id: string }; Returns: Json }
       work_dispositions_outstanding: {
         Args: { _business_date?: string }
         Returns: {
@@ -87160,6 +87186,7 @@ export type Database = {
         | "SETTLEMENT_BATCH"
         | "OTHER"
         | "DRIVER_EARNING"
+        | "DRIVER_TIP"
       journal_status: "DRAFT" | "POSTED" | "REVERSED"
       ledger_account_kind:
         | "ASSET"
@@ -87701,7 +87728,14 @@ export type Database = {
         | "device"
         | "ip"
       txn_direction: "credit" | "debit"
-      txn_kind: "topup" | "payout" | "trip_charge" | "refund" | "adjustment"
+      txn_kind:
+        | "topup"
+        | "payout"
+        | "trip_charge"
+        | "refund"
+        | "adjustment"
+        | "tip"
+        | "ride_earning"
       txn_status: "pending" | "completed" | "failed"
       wallet_lifecycle_status: "ACTIVE" | "CLOSED"
       wallet_type: "personal" | "driver" | "corporate"
@@ -88467,6 +88501,7 @@ export const Constants = {
         "SETTLEMENT_BATCH",
         "OTHER",
         "DRIVER_EARNING",
+        "DRIVER_TIP",
       ],
       journal_status: ["DRAFT", "POSTED", "REVERSED"],
       ledger_account_kind: [
@@ -89062,7 +89097,15 @@ export const Constants = {
         "ip",
       ],
       txn_direction: ["credit", "debit"],
-      txn_kind: ["topup", "payout", "trip_charge", "refund", "adjustment"],
+      txn_kind: [
+        "topup",
+        "payout",
+        "trip_charge",
+        "refund",
+        "adjustment",
+        "tip",
+        "ride_earning",
+      ],
       txn_status: ["pending", "completed", "failed"],
       wallet_lifecycle_status: ["ACTIVE", "CLOSED"],
       wallet_type: ["personal", "driver", "corporate"],

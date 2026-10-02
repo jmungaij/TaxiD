@@ -66,6 +66,7 @@ export default function RiderTripDetailPage() {
   const [meetingPoint, setMeetingPoint] = useState<PickupPoint | null>(null);
   const [tip, setTip] = useState<number | null>(null);
   const [tipAt, setTipAt] = useState<string | null>(null);
+  const [tipStatus, setTipStatus] = useState<any>(null);
   const [tipAmount, setTipAmount] = useState(100);
   const [tipping, setTipping] = useState(false);
   const [tipPhone, setTipPhone] = useState("");
@@ -140,9 +141,15 @@ export default function RiderTripDetailPage() {
 
   useEffect(() => {
     if (!id || booking?.status !== "completed") return;
-    supabase.from("trip_tips").select("amount, created_at").eq("trip_booking_id", id).maybeSingle()
-      .then(({ data }) => { if (data) { setTip(Number(data.amount)); setTipAt((data as any).created_at ?? null); } });
-  }, [id, booking?.status]);
+    let alive = true;
+    const load = () => (supabase.rpc as any)("trip_tip_status", { _booking_id: id }).then(({ data }: any) => {
+      if (!alive || !data?.ok) return;
+      setTip(Number(data.amount)); setTipAt(data.created_at ?? null); setTipStatus(data);
+    });
+    void load();
+    const t = window.setInterval(load, 30000);
+    return () => { alive = false; window.clearInterval(t); };
+  }, [id, booking?.status, tip]);
 
   useEffect(() => {
     if (!user || booking?.status !== "completed") return;
@@ -583,9 +590,28 @@ export default function RiderTripDetailPage() {
                   {tipAt && <div className="text-xs text-muted-foreground">Sent {new Date(tipAt).toLocaleString()}</div>}
                 </div>
                 <ol className="space-y-1.5 text-xs">
-                  <li className="flex gap-2"><span className="text-primary">●</span><span><b>Paid</b> — your payment went through.</span></li>
-                  <li className="flex gap-2"><span className="text-primary">●</span><span><b>Recorded for your driver</b>{tipAt ? ` — ${new Date(tipAt).toLocaleTimeString()}` : ""}.</span></li>
-                  <li className="flex gap-2"><span className="text-muted-foreground">○</span><span><b>Paid out to the driver</b> — added with their next scheduled TaxiD payout.</span></li>
+                  {(() => {
+                    const st = tipStatus?.stage as string | undefined;
+                    const legacy = st === "RECORDED_LEGACY";
+                    const credited = !!st && !legacy;
+                    const paidOut = st === "PAID_OUT";
+                    const steps: [boolean, string, string][] = [
+                      [true, "Paid", "your payment went through."],
+                      [credited, "Added to your driver's TaxiD balance",
+                        credited && tipStatus?.credited_at ? new Date(tipStatus.credited_at).toLocaleString()
+                        : legacy ? "recorded before tips joined driver payouts — our finance team will add it." : "confirming…"],
+                      [paidOut, "Paid out to the driver",
+                        paidOut ? (tipStatus?.paid_out_at ? new Date(tipStatus.paid_out_at).toLocaleString() : "done")
+                        : st === "PAYOUT_IN_PROGRESS" ? "a payout to the driver is being sent now."
+                        : "included in the driver's next withdrawal."],
+                    ];
+                    return steps.map(([done, label, note]) => (
+                      <li key={label} className="flex gap-2">
+                        <span className={done ? "text-primary" : "text-muted-foreground"}>{done ? "✓" : "○"}</span>
+                        <span><b>{label}</b> — {note}</span>
+                      </li>
+                    ));
+                  })()}
                 </ol>
                 <p className="text-muted-foreground text-xs">Thank you for tipping your driver!</p>
               </div>

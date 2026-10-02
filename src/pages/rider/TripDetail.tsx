@@ -65,6 +65,7 @@ export default function RiderTripDetailPage() {
   const [now, setNow] = useState(Date.now());
   const [meetingPoint, setMeetingPoint] = useState<PickupPoint | null>(null);
   const [tip, setTip] = useState<number | null>(null);
+  const [tipAt, setTipAt] = useState<string | null>(null);
   const [tipAmount, setTipAmount] = useState(100);
   const [tipping, setTipping] = useState(false);
   const [tipPhone, setTipPhone] = useState("");
@@ -139,8 +140,8 @@ export default function RiderTripDetailPage() {
 
   useEffect(() => {
     if (!id || booking?.status !== "completed") return;
-    supabase.from("trip_tips").select("amount").eq("trip_booking_id", id).maybeSingle()
-      .then(({ data }) => data && setTip(Number(data.amount)));
+    supabase.from("trip_tips").select("amount, created_at").eq("trip_booking_id", id).maybeSingle()
+      .then(({ data }) => { if (data) { setTip(Number(data.amount)); setTipAt((data as any).created_at ?? null); } });
   }, [id, booking?.status]);
 
   useEffect(() => {
@@ -575,7 +576,19 @@ export default function RiderTripDetailPage() {
           <Card className="p-4 space-y-2 text-sm" data-testid="tip-card">
             <div className="font-semibold">Tip your driver</div>
             {tip != null ? (
-              <p className="text-muted-foreground">You tipped KES {tip.toLocaleString()}. Thank you!</p>
+              <div className="space-y-3" data-testid="tip-confirmation" role="status">
+                <div className="rounded-md border bg-muted/40 p-3">
+                  <div className="text-xs text-muted-foreground">Tip amount</div>
+                  <div className="text-2xl font-bold">KES {tip.toLocaleString()}</div>
+                  {tipAt && <div className="text-xs text-muted-foreground">Sent {new Date(tipAt).toLocaleString()}</div>}
+                </div>
+                <ol className="space-y-1.5 text-xs">
+                  <li className="flex gap-2"><span className="text-primary">●</span><span><b>Paid</b> — your payment went through.</span></li>
+                  <li className="flex gap-2"><span className="text-primary">●</span><span><b>Recorded for your driver</b>{tipAt ? ` — ${new Date(tipAt).toLocaleTimeString()}` : ""}.</span></li>
+                  <li className="flex gap-2"><span className="text-muted-foreground">○</span><span><b>Paid out to the driver</b> — added with their next scheduled TaxiD payout.</span></li>
+                </ol>
+                <p className="text-muted-foreground text-xs">Thank you! 100% of your tip goes to your driver.</p>
+              </div>
             ) : (
               <>
                 <div className="flex flex-wrap gap-2">

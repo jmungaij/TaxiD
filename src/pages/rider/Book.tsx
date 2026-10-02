@@ -145,7 +145,8 @@ export default function RiderBookPage() {
           NOT_AN_ACTIVE_EMPLOYEE: "You're not an active member of that company.",
           COMPANY_NOT_ACTIVE: "That company account isn't active.",
           PURPOSE_REQUIRED: "Add a trip purpose for business trips.",
-          COMPANY_WALLET_INSUFFICIENT: "Your company's TaxiD wallet doesn't have enough for this trip. Ask your company admin to top up.",
+          COMPANY_WALLET_INSUFFICIENT: "Your company can't cover this trip right now. Ask your company admin to top up or contact TaxiD.",
+          COMPANY_FUNDS_INSUFFICIENT: "Your company can't cover this trip right now. Ask your company admin to top up or contact TaxiD.",
           INVALID_PAYMENT_METHOD: "Choose M-Pesa, cash or wallet.",
         };
         throw new Error((c?.error && map[c.error]) || e3?.message || "Could not confirm booking");

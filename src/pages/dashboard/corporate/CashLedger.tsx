@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import CorporateBillingPanel from "@/components/corporate/CorporateBillingPanel";
 import { ArrowDownLeft, ArrowUpRight, BookOpen, Download } from "lucide-react";
 
 interface Entry {
@@ -52,6 +53,7 @@ export default function CorporateCashLedger({ corporateId }: { corporateId: stri
 
   return (
     <div className="space-y-4">
+      <CorporateBillingPanel corporateId={corporateId} />
       <div className="rounded-xl border bg-card p-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="font-semibold flex items-center gap-2"><BookOpen className="h-4 w-4 text-primary" />Cash Ledger</h3>

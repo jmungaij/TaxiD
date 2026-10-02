@@ -15385,6 +15385,50 @@ export type Database = {
           },
         ]
       }
+      corporate_billing_arrangements: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          corporate_id: string
+          created_at: string
+          credit_period_days: number
+          mode: string
+          notes: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          corporate_id: string
+          created_at?: string
+          credit_period_days?: number
+          mode?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          corporate_id?: string
+          created_at?: string
+          credit_period_days?: number
+          mode?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_billing_arrangements_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: true
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_billing_periods: {
         Row: {
           billed_at: string | null
@@ -18216,6 +18260,81 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      corporate_trip_settlements: {
+        Row: {
+          attempts: number
+          booking_id: string
+          cash_ledger_id: string | null
+          corporate_id: string
+          created_at: string
+          credit_cents: number
+          exception_reason: string | null
+          facility_id: string | null
+          fare_cents: number
+          id: string
+          invoice_id: string | null
+          invoice_item_id: string | null
+          mode: string
+          settled_at: string | null
+          status: string
+          updated_at: string
+          wallet_cents: number
+        }
+        Insert: {
+          attempts?: number
+          booking_id: string
+          cash_ledger_id?: string | null
+          corporate_id: string
+          created_at?: string
+          credit_cents?: number
+          exception_reason?: string | null
+          facility_id?: string | null
+          fare_cents: number
+          id?: string
+          invoice_id?: string | null
+          invoice_item_id?: string | null
+          mode: string
+          settled_at?: string | null
+          status: string
+          updated_at?: string
+          wallet_cents?: number
+        }
+        Update: {
+          attempts?: number
+          booking_id?: string
+          cash_ledger_id?: string | null
+          corporate_id?: string
+          created_at?: string
+          credit_cents?: number
+          exception_reason?: string | null
+          facility_id?: string | null
+          fare_cents?: number
+          id?: string
+          invoice_id?: string | null
+          invoice_item_id?: string | null
+          mode?: string
+          settled_at?: string | null
+          status?: string
+          updated_at?: string
+          wallet_cents?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_trip_settlements_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: true
+            referencedRelation: "trip_bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_trip_settlements_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       cost_centers: {
         Row: {
@@ -86131,6 +86250,25 @@ export type Database = {
       }
       comms_is_unified_reader: { Args: never; Returns: boolean }
       comms_my_staff_id: { Args: never; Returns: string }
+      corporate_billing_overview: {
+        Args: { _corporate_id: string }
+        Returns: Json
+      }
+      corporate_billing_set: {
+        Args: {
+          _corporate_id: string
+          _credit_period_days?: number
+          _mode: string
+          _notes?: string
+          _status?: string
+        }
+        Returns: Json
+      }
+      corporate_credit_invoices_issue: { Args: never; Returns: Json }
+      corporate_settlement_retry: {
+        Args: { _booking_id: string }
+        Returns: Json
+      }
       corporate_trip_decide: {
         Args: { _approval_id: string; _approve: boolean; _note?: string }
         Returns: Json

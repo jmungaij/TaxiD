@@ -63,7 +63,7 @@ export function BookingProfilePicker({ value, onChange, fareCents }: {
         </div>
       ) : sel && (
         <div className="space-y-2 rounded-md border bg-muted/30 p-3">
-          <p className="text-xs">Charged to <b>{sel.name}</b> — you won't pay personally.</p>
+          <p className="text-xs"><b>{sel.name}</b> — Company pays. You won't pay personally.</p>
           <Input aria-label="Trip purpose" placeholder="Trip purpose (required), e.g. client meeting" maxLength={200}
             value={value.purpose} onChange={(e) => onChange({ ...value, purpose: e.target.value })} />
           <Input aria-label="Cost centre" placeholder="Cost centre (optional)" maxLength={40}

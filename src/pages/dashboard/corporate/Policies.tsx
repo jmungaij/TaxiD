@@ -12,11 +12,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Plus, Shield, Trash2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { EmployeeGroupsPanel, type EmployeeGroup } from "@/components/corporate/EmployeeGroupsPanel";
 
 interface Policy {
   id: string; name: string; description: string | null; scope: string;
   department_id: string | null; employee_id: string | null;
-  priority: number; active: boolean;
+  priority: number; active: boolean; group_id?: string | null;
 }
 
 interface Rule {
@@ -26,7 +27,7 @@ interface Rule {
   time_start: string | null; time_end: string | null;
   days_of_week: number[] | null;
   cap_cents: number | null; threshold_cents: number | null;
-  severity: string;
+  severity: string; max_trips?: number | null;
 }
 
 const RULE_KINDS = [
@@ -52,13 +53,14 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
   const [policies, setPolicies] = useState<Policy[]>([]);
   const [rulesByPolicy, setRulesByPolicy] = useState<Record<string, Rule[]>>({});
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", description: "", scope: "corporate", priority: "100" });
+  const [form, setForm] = useState({ name: "", description: "", scope: "corporate", priority: "100", group_id: "none" });
+  const [groups, setGroups] = useState<EmployeeGroup[]>([]);
   const [ruleDialog, setRuleDialog] = useState<{ open: boolean; policyId: string | null }>({ open: false, policyId: null });
   const [ruleForm, setRuleForm] = useState({
     rule_kind: "max_fare_per_trip", severity: "block",
     allowed_ride_types: "", blocked_ride_types: "",
     max_fare: "", max_distance: "", time_start: "", time_end: "",
-    days_of_week: "", cap: "", threshold: "",
+    days_of_week: "", cap: "", threshold: "", max_trips: "",
   });
 
   const load = async () => {
@@ -80,13 +82,14 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
       corporate_id: corporateId, name: form.name, description: form.description || null,
       scope: form.scope as "corporate" | "department" | "employee",
       priority: parseInt(form.priority) || 100, created_by: user.id,
+      group_id: form.group_id === "none" ? null : form.group_id,
     }).select().single();
     if (error) { toast({ title: "Failed", description: error.message, variant: "destructive" }); return; }
     await supabase.from("corporate_policy_audit_log").insert({
       corporate_id: corporateId, actor_user_id: user.id, action: "policy.create",
       target_type: "policy", target_id: data.id, after: { name: form.name },
     });
-    setOpen(false); setForm({ name: "", description: "", scope: "corporate", priority: "100" }); load();
+    setOpen(false); setForm({ name: "", description: "", scope: "corporate", priority: "100", group_id: "none" }); load();
   };
 
   const toggleActive = async (p: Policy) => {
@@ -115,12 +118,13 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
     if (ruleForm.time_end) payload.time_end = ruleForm.time_end;
     if (ruleForm.days_of_week) payload.days_of_week = ruleForm.days_of_week.split(",").map(s => parseInt(s.trim()));
     if (ruleForm.cap) payload.cap_cents = Math.round(parseFloat(ruleForm.cap) * 100);
+    if (ruleForm.max_trips) payload.max_trips = parseInt(ruleForm.max_trips);
     if (ruleForm.threshold) payload.threshold_cents = Math.round(parseFloat(ruleForm.threshold) * 100);
 
     const { error } = await supabase.from("corporate_policy_rules").insert(payload as never);
     if (error) { toast({ title: "Failed", description: error.message, variant: "destructive" }); return; }
     setRuleDialog({ open: false, policyId: null });
-    setRuleForm({ rule_kind: "max_fare_per_trip", severity: "block", allowed_ride_types: "", blocked_ride_types: "", max_fare: "", max_distance: "", time_start: "", time_end: "", days_of_week: "", cap: "", threshold: "" });
+    setRuleForm({ rule_kind: "max_fare_per_trip", severity: "block", allowed_ride_types: "", blocked_ride_types: "", max_fare: "", max_distance: "", time_start: "", time_end: "", days_of_week: "", cap: "", threshold: "", max_trips: "" });
     load();
   };
 
@@ -140,6 +144,11 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
       case "requires_approval_above": return `Approval above: KES ${(r.threshold_cents ?? 0) / 100}`;
       case "monthly_spend_cap": return `Monthly cap: KES ${(r.cap_cents ?? 0) / 100}`;
       case "weekly_spend_cap": return `Weekly cap: KES ${(r.cap_cents ?? 0) / 100}`;
+      case "rides_per_day_cap": return `Max ${r.max_trips} rides/day`;
+      case "rides_per_week_cap": return `Max ${r.max_trips} rides/week`;
+      case "rides_per_month_cap": return `Max ${r.max_trips} rides/month`;
+      case "no_weekends": return "No weekend trips";
+      case "no_holidays": return "No trips on company holidays";
       default: return r.rule_kind;
     }
   };
@@ -165,12 +174,23 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
                   </SelectContent>
                 </Select>
               </div>
+              <div><Label>Applies to employee group</Label>
+                <Select value={form.group_id} onValueChange={(v) => setForm({ ...form, group_id: v })}>
+                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">Everyone in scope</SelectItem>
+                    {groups.map(g => <SelectItem key={g.id} value={g.id}>{g.name} only</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
               <div><Label>Priority (lower = evaluated first)</Label><Input type="number" value={form.priority} onChange={(e) => setForm({ ...form, priority: e.target.value })} /></div>
             </div>
             <DialogFooter><Button onClick={createPolicy}>Create policy</Button></DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
+
+      {corporateId && <EmployeeGroupsPanel corporateId={corporateId} onGroupsChange={setGroups} />}
 
       <div className="space-y-3">
         {policies.map(p => (
@@ -180,6 +200,7 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold">{p.name}</h3>
                   <Badge variant="outline">{p.scope}</Badge>
+                  {p.group_id && <Badge>{groups.find(g => g.id === p.group_id)?.name ?? "group"}</Badge>}
                   <Badge variant="secondary">priority {p.priority}</Badge>
                 </div>
                 {p.description && <p className="text-sm text-muted-foreground mt-1">{p.description}</p>}
@@ -254,6 +275,9 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
             )}
             {(ruleForm.rule_kind === "monthly_spend_cap" || ruleForm.rule_kind === "weekly_spend_cap") && (
               <div><Label>Cap (KES)</Label><Input type="number" value={ruleForm.cap} onChange={(e) => setRuleForm({ ...ruleForm, cap: e.target.value })} /></div>
+            )}
+            {RIDE_CAPS.includes(ruleForm.rule_kind) && (
+              <div><Label>Max business rides</Label><Input type="number" min={1} value={ruleForm.max_trips} onChange={(e) => setRuleForm({ ...ruleForm, max_trips: e.target.value })} /></div>
             )}
           </div>
           <DialogFooter><Button onClick={addRule}>Add rule</Button></DialogFooter>

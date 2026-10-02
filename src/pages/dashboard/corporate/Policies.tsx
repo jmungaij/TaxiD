@@ -39,7 +39,13 @@ const RULE_KINDS = [
   { v: "requires_approval_above", label: "Requires approval above amount" },
   { v: "monthly_spend_cap", label: "Monthly spend cap" },
   { v: "weekly_spend_cap", label: "Weekly spend cap" },
+  { v: "rides_per_day_cap", label: "Max rides per day" },
+  { v: "rides_per_week_cap", label: "Max rides per week" },
+  { v: "rides_per_month_cap", label: "Max rides per month" },
+  { v: "no_weekends", label: "No trips on weekends" },
+  { v: "no_holidays", label: "No trips on company holidays" },
 ];
+const RIDE_CAPS = ["rides_per_day_cap", "rides_per_week_cap", "rides_per_month_cap"];
 
 export default function CorporatePolicies({ corporateId }: { corporateId: string | null }) {
   const { user } = useAuth();

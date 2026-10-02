@@ -517,6 +517,18 @@ export default function RiderTripDetailPage() {
           )
         )}
 
+        {booking.status === "awaiting_approval" && (
+          <Card className="p-4 text-sm border-warning/50" data-testid="awaiting-approval">
+            <div className="font-semibold">Waiting for your company's approval</div>
+            <p className="text-muted-foreground text-xs">This business trip needs approval. We'll look for a driver as soon as it's approved.</p>
+          </Card>
+        )}
+        {booking.status === "rejected" && (
+          <Card className="p-4 text-sm border-destructive/50">
+            <div className="font-semibold">Your company didn't approve this trip</div>
+            <p className="text-muted-foreground text-xs">You can book it as a personal trip instead.</p>
+          </Card>
+        )}
         {booking.status === "completed" && (
           <Card className="p-4 space-y-3 text-sm" data-testid="trip-rating-card">
             <div className="font-semibold">Rate your trip</div>

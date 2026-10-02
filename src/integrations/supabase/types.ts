@@ -82983,12 +82983,17 @@ export type Database = {
       }
       trip_bookings: {
         Row: {
+          booking_context: string
           booking_number: string
           business_request_id: string | null
           cancellation_reason: string | null
           cancelled_at: string | null
           cancelled_by: string | null
           completed_at: string | null
+          corporate_approval_id: string | null
+          corporate_employee_id: string | null
+          corporate_id: string | null
+          cost_center_code: string | null
           created_at: string
           driver_id: string | null
           dropoff_address: string
@@ -83010,18 +83015,24 @@ export type Database = {
           status: string
           surge_multiplier: number | null
           total_fare: number | null
+          trip_purpose: string | null
           trip_quote_id: string | null
           trip_request_id: string | null
           updated_at: string
           vehicle_id: string | null
         }
         Insert: {
+          booking_context?: string
           booking_number?: string
           business_request_id?: string | null
           cancellation_reason?: string | null
           cancelled_at?: string | null
           cancelled_by?: string | null
           completed_at?: string | null
+          corporate_approval_id?: string | null
+          corporate_employee_id?: string | null
+          corporate_id?: string | null
+          cost_center_code?: string | null
           created_at?: string
           driver_id?: string | null
           dropoff_address: string
@@ -83043,18 +83054,24 @@ export type Database = {
           status?: string
           surge_multiplier?: number | null
           total_fare?: number | null
+          trip_purpose?: string | null
           trip_quote_id?: string | null
           trip_request_id?: string | null
           updated_at?: string
           vehicle_id?: string | null
         }
         Update: {
+          booking_context?: string
           booking_number?: string
           business_request_id?: string | null
           cancellation_reason?: string | null
           cancelled_at?: string | null
           cancelled_by?: string | null
           completed_at?: string | null
+          corporate_approval_id?: string | null
+          corporate_employee_id?: string | null
+          corporate_id?: string | null
+          cost_center_code?: string | null
           created_at?: string
           driver_id?: string | null
           dropoff_address?: string
@@ -83076,6 +83093,7 @@ export type Database = {
           status?: string
           surge_multiplier?: number | null
           total_fare?: number | null
+          trip_purpose?: string | null
           trip_quote_id?: string | null
           trip_request_id?: string | null
           updated_at?: string
@@ -83087,6 +83105,20 @@ export type Database = {
             columns: ["business_request_id"]
             isOneToOne: false
             referencedRelation: "business_requests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trip_bookings_corporate_employee_id_fkey"
+            columns: ["corporate_employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trip_bookings_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
             referencedColumns: ["id"]
           },
           {
@@ -86099,6 +86131,10 @@ export type Database = {
       }
       comms_is_unified_reader: { Args: never; Returns: boolean }
       comms_my_staff_id: { Args: never; Returns: string }
+      corporate_trip_decide: {
+        Args: { _approval_id: string; _approve: boolean; _note?: string }
+        Returns: Json
+      }
       corporate_wallet_balance_cents: {
         Args: { _corporate_id: string }
         Returns: number
@@ -86429,6 +86465,7 @@ export type Database = {
         Returns: string
       }
       resolve_operating_contexts: { Args: never; Returns: Json }
+      rider_booking_profiles: { Args: never; Returns: Json }
       safety_incident_action: {
         Args: {
           _action: string
@@ -86592,6 +86629,18 @@ export type Database = {
           _scheduled_for?: string
         }
         Returns: string
+      }
+      trip_confirm_booking_ctx: {
+        Args: {
+          _context?: string
+          _corporate_id?: string
+          _cost_center?: string
+          _payment_method?: string
+          _purpose?: string
+          _quote_id: string
+          _scheduled_for?: string
+        }
+        Returns: Json
       }
       trip_driver_card: { Args: { _booking_id: string }; Returns: Json }
       trip_message_report: {

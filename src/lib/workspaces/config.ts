@@ -312,6 +312,7 @@ export const WORKSPACES: WorkspaceDefinition[] = [
     kpis: ["fraud_open", "kyc_pending", "policy_exceptions", "audit_streak"],
     items: [
       { path: "/dashboard/admin/trust-center", label: "Trust Center", section: "Overview" },
+      { path: "/dashboard/admin/safety-tower", label: "Safety Control Tower", section: "Overview" },
       { path: "/dashboard/admin/trust-console", label: "Trust Console", section: "Overview" },
       { path: "/dashboard/admin/fraud-center", label: "Fraud Intelligence", section: "Fraud" },
       { path: "/dashboard/admin/fraud-cases", label: "Fraud Cases", section: "Fraud" },

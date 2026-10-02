@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Loader2, AlertTriangle, Share2, X, Copy, UserRound, Star, Phone, Receipt } from "lucide-react";
 import { TripProgress, deriveStage, stageLabel, haversineM } from "@/components/rider/TripProgress";
 import { TripMessages } from "@/components/rider/TripMessages";
+import { SafetyCenter } from "@/components/safety/SafetyCenter";
 import { MeetingPointPicker, type PickupPoint } from "@/components/rider/MeetingPointPicker";
 import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription,
@@ -39,13 +40,6 @@ interface Booking {
   meeting_point_id?: string | null;
 }
 
-interface SosConfirmation {
-  sentAt: Date;
-  contactName: string | null;
-  contactPhone: string | null;
-  contactRelationship: string | null;
-  etaMinutes: number;
-}
 
 interface DriverCard {
   driver_id: string;
@@ -86,7 +80,7 @@ export default function RiderTripDetailPage() {
   const [savingRating, setSavingRating] = useState(false);
   const [pickupPin, setPickupPin] = useState<{ pin: string; verified: boolean } | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
-  const [sos, setSos] = useState<SosConfirmation | null>(null);
+  const [showSafety, setShowSafety] = useState(false);
   const mapEl = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<any>(null);
   const driverMarkerRef = useRef<any>(null);
@@ -304,46 +298,9 @@ export default function RiderTripDetailPage() {
     }
   }, [driverPos]);
 
-  async function raiseSOS() {
-    if (!booking) return;
-    const pos = driverPos ?? { lat: booking.pickup_lat, lng: booking.pickup_lng };
-    const { error } = await supabase.rpc("safety_raise_sos", {
-      _booking_id: booking.id,
-      _lat: pos.lat,
-      _lng: pos.lng,
-      _message: "SOS from rider",
-    });
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
-    toast.success("SOS alert sent. Help is on the way.");
-    // Pull the primary emergency contact so the rider can see who was notified
-    // and an ETA estimate. Falls back gracefully when nothing is set.
-    let contactName: string | null = null;
-    let contactPhone: string | null = null;
-    let contactRelationship: string | null = null;
-    if (user) {
-      const { data: contacts } = await supabase
-        .from("emergency_contacts")
-        .select("name, phone_number, relationship, is_primary")
-        .eq("user_id", user.id)
-        .order("is_primary", { ascending: false })
-        .limit(1);
-      const primary = contacts?.[0];
-      if (primary) {
-        contactName = primary.name;
-        contactPhone = primary.phone_number;
-        contactRelationship = primary.relationship;
-      }
-    }
-    setSos({
-      sentAt: new Date(),
-      contactName,
-      contactPhone,
-      contactRelationship,
-      etaMinutes: 5,
-    });
+  function raiseSOS() {
+    setShowSafety(true);
+    setTimeout(() => document.getElementById("trip-safety")?.scrollIntoView({ behavior: "smooth" }), 50);
   }
 
   async function cancelTrip() {
@@ -643,38 +600,11 @@ export default function RiderTripDetailPage() {
           </AlertDialogContent>
         </AlertDialog>
 
-        {sos && (
-          <Card
-            data-testid="sos-confirmation"
-            role="status"
-            aria-live="polite"
-            className="p-4 border-destructive/40 bg-destructive/5 space-y-2"
-          >
-            <div className="flex items-center gap-2 font-semibold text-destructive">
-              <AlertTriangle className="h-4 w-4" /> SOS confirmation
-            </div>
-            <div className="text-sm">
-              <span className="text-muted-foreground">Primary contact:</span>{" "}
-              <span data-testid="sos-contact-name">{sos.contactName ?? "No emergency contact on file"}</span>
-              {sos.contactPhone && (
-                <>
-                  {" · "}
-                  <span data-testid="sos-contact-phone">{sos.contactPhone}</span>
-                </>
-              )}
-              {sos.contactRelationship && (
-                <span className="text-muted-foreground"> ({sos.contactRelationship})</span>
-              )}
-            </div>
-            <div className="text-sm">
-              <span className="text-muted-foreground">Estimated response ETA:</span>{" "}
-              <span data-testid="sos-eta">~{sos.etaMinutes} min</span>
-            </div>
-            <div className="text-xs text-muted-foreground">
-              TaxiD safety operators have been alerted with your location. Use “Share trip” to send your
-              emergency contact a live link, or call them directly.
-            </div>
-          </Card>
+        {booking && (showSafety || !["completed", "cancelled"].includes(booking.status)) && (
+          <div id="trip-safety">
+            <SafetyCenter bookingId={booking.id} role="rider" source="rider_trip_screen"
+              fallbackLocation={driverPos ?? { lat: booking.pickup_lat, lng: booking.pickup_lng }} />
+          </div>
         )}
 
         {shareUrl && (

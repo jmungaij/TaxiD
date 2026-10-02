@@ -1,3 +1,4 @@
+import { SafetyCenter } from "@/components/safety/SafetyCenter";
 import { useEffect, useState } from "react";
 import { RiderShell } from "@/components/rider/RiderShell";
 import { ErrorState } from "@/components/rider/ErrorState";
@@ -64,23 +65,6 @@ export default function RiderSafetyPage() {
     setContacts(contacts.filter((c) => c.id !== id));
   }
 
-  async function panic() {
-    if (!navigator.geolocation) {
-      toast.error("Cannot get location");
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(async (pos) => {
-      const { error } = await supabase.rpc("safety_raise_sos", {
-        _booking_id: null,
-        _lat: pos.coords.latitude,
-        _lng: pos.coords.longitude,
-        _message: "Panic button activated",
-      });
-      if (error) toast.error(error.message);
-      else toast.success("SOS sent. Emergency contacts notified.");
-    });
-  }
-
   return (
     <RiderShell>
       <div className="flex items-center gap-2 mb-4">
@@ -88,17 +72,7 @@ export default function RiderSafetyPage() {
         <h1 className="text-2xl font-bold">Safety Center</h1>
       </div>
 
-      <Card className="p-6 mb-4 bg-destructive/5 border-destructive/30">
-        <h3 className="font-bold text-destructive flex items-center gap-2 mb-2">
-          <AlertTriangle className="h-5 w-5" /> Panic Button
-        </h3>
-        <p className="text-sm text-muted-foreground mb-3">
-          Sends your live location and an SOS alert to TaxiD safety operators and your emergency contacts.
-        </p>
-        <Button variant="destructive" size="lg" onClick={panic} className="w-full sm:w-auto">
-          <AlertTriangle className="h-4 w-4 mr-2" /> Trigger SOS now
-        </Button>
-      </Card>
+      <div className="mb-4"><SafetyCenter role="rider" source="rider_safety_center" /></div>
 
       <h2 className="font-semibold mb-2">Emergency contacts</h2>
       {loadError && (

@@ -11,7 +11,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2, Loader2, Search, Upload } from "lucide-react";
 import {
   submitDriverApplication, driverApplicationStatus, attachDriverDocument,
-  listDriverApplicationDocuments, myDriverApplications,
+  myDriverApplications,
   DRIVER_SERVICE_CATEGORIES, DRIVER_LICENCE_CLASSES,
   type DriverApplicationStatus, type DriverApplicationDocumentRow,
   type DriverApplicationRow,
@@ -184,7 +184,7 @@ export default function DriverApply() {
             </Badge>
             <CardTitle>Reference {receipt.reference}</CardTitle>
             <CardDescription>
-              Next: upload your ID, driving licence, certificate of good conduct and passport photo.
+              Next: upload your National ID or Passport, driving licence, PSV badge, good conduct certificate, KRA PIN, full-size photograph, logbook and PSV insurance certificate with sticker.
               A reviewer verifies each document before your driver record is created.
             </CardDescription>
           </CardHeader>
@@ -310,7 +310,7 @@ export default function DriverApply() {
             <CardContent className="grid gap-4 text-sm md:grid-cols-4">
               {[
                 ["1. Apply", "Your details, licence and the work you want."],
-                ["2. Documents", "ID, licence, good conduct certificate and photo."],
+                ["2. Documents", "ID or passport, licence, good conduct, PSV insurance and photo."],
                 ["3. Verification", "A reviewer checks each document individually."],
                 ["4. Go live", "Your driver record is created and activated for work."],
               ].map(([t, d]) => (

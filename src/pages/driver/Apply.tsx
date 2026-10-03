@@ -8,7 +8,8 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { CheckCircle2, Loader2, Search, Upload } from "lucide-react";
+import { CheckCircle2, Loader2, Search, Upload, ShieldCheck, IdCard, FileCheck2, CarFront, ArrowRight, Camera, Clock3 } from "lucide-react";
+import driverPhoto from "@/assets/driver-onboarding.jpg";
 import {
   submitDriverApplication, driverApplicationStatus, attachDriverDocument,
   myDriverApplications,
@@ -45,8 +46,21 @@ const stateTone: Record<string, string> = {
   EXPIRED: "bg-destructive/10 text-destructive border-destructive/30",
 };
 
-const NO_EXPIRY_CODES = ["KRA_PIN", "NATIONAL_ID", "PASSPORT", "FULL_PHOTO"];
+const NO_EXPIRY_CODES = ["KRA_PIN", "NATIONAL_ID", "FULL_PHOTO"];
 const IDENTITY_CODES = ["NATIONAL_ID", "PASSPORT"];
+const DOCUMENT_ORDER = ["NATIONAL_ID", "PASSPORT", "KRA_PIN", "FULL_PHOTO", "DRIVING_LICENCE", "PSV_BADGE", "GOOD_CONDUCT", "VEHICLE_LOGBOOK", "VEHICLE_INSURANCE", "INSURANCE_STICKER"];
+const DOCUMENT_HINTS: Record<string, string> = {
+  NATIONAL_ID: "Photograph both sides clearly and upload them together as one PDF or image.",
+  PASSPORT: "Upload the biodata page. The issue and expiry dates are required.",
+  KRA_PIN: "The name and PIN must be readable.",
+  FULL_PHOTO: "Use a clear, full-size photograph of yourself, not a cropped passport-size image.",
+  DRIVING_LICENCE: "Include the licence number, class and both dates.",
+  PSV_BADGE: "Include the badge number and validity dates.",
+  GOOD_CONDUCT: "Upload your current certificate of good conduct.",
+  VEHICLE_LOGBOOK: "The vehicle registration and owner details must be readable.",
+  VEHICLE_INSURANCE: "Upload the current PSV comprehensive motor insurance certificate.",
+  INSURANCE_STICKER: "Upload the matching PSV comprehensive insurance sticker.",
+};
 
 export default function DriverApply() {
   const [params, setParams] = useSearchParams();
@@ -62,6 +76,8 @@ export default function DriverApply() {
   const [documents, setDocuments] = useState<DriverApplicationDocumentRow[]>([]);
   const [mine, setMine] = useState<DriverApplicationRow[]>([]);
   const [checking, setChecking] = useState(false);
+  const [identity, setIdentity] = useState<"NATIONAL_ID" | "PASSPORT">("NATIONAL_ID");
+  const [selectedFiles, setSelectedFiles] = useState<Record<string, string>>({});
 
   const refParam = params.get("ref") ?? "";
   const tokenParam = params.get("token") ?? "";
@@ -86,6 +102,8 @@ export default function DriverApply() {
       notes: (res.review_notes as string | null) ?? null,
     });
     setDocuments((res.documents ?? []) as unknown as DriverApplicationDocumentRow[]);
+    const rows = (res.documents ?? []) as unknown as DriverApplicationDocumentRow[];
+    if (rows.find((d) => d.doc_code === "PASSPORT" && d.state !== "MISSING") && !rows.find((d) => d.doc_code === "NATIONAL_ID" && d.state !== "MISSING")) setIdentity("PASSPORT");
   }, []);
 
   useEffect(() => {
@@ -149,6 +167,15 @@ export default function DriverApply() {
   async function onUpload(doc: DriverApplicationDocumentRow, file: File, form: HTMLFormElement) {
     if (!lookup) return;
     const fd = new FormData(form);
+    if (!["application/pdf", "image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 15 * 1024 * 1024) {
+      return toast({ title: "Choose a JPG, PNG, WebP or PDF under 15 MB", variant: "destructive" });
+    }
+    const issued = String(fd.get("issued") ?? "");
+    const expires = String(fd.get("expires") ?? "");
+    const today = new Date().toISOString().slice(0, 10);
+    if (!issued || issued > today || (!NO_EXPIRY_CODES.includes(doc.doc_code) && (!expires || expires <= today || expires <= issued))) {
+      return toast({ title: "Check the document dates", description: "Enter a valid date of issue and, where required, a future expiry date.", variant: "destructive" });
+    }
     setUploading(doc.id);
     const res = await attachDriverDocument({
       documentId: doc.id,
@@ -170,8 +197,14 @@ export default function DriverApply() {
     }
     toast({ title: "Sent for verification", description: `${doc.doc_label} is now with our compliance team.` });
     form.reset();
+    setSelectedFiles((files) => ({ ...files, [doc.id]: "" }));
     await loadStatus(lookup.reference, tokenParam);
   }
+
+  const sortedDocuments = [...documents].sort((a, b) => DOCUMENT_ORDER.indexOf(a.doc_code) - DOCUMENT_ORDER.indexOf(b.doc_code));
+  const activeDocuments = sortedDocuments.filter((d) => !IDENTITY_CODES.includes(d.doc_code) || d.doc_code === identity);
+  const completedCount = activeDocuments.filter((d) => d.state === "VERIFIED").length;
+  const submittedCount = activeDocuments.filter((d) => d.state === "VERIFIED" || d.state === "PENDING_REVIEW").length;
 
   if (receipt) {
     const statusUrl = `/driver/apply?ref=${receipt.reference}&token=${receipt.token}`;

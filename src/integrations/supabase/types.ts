@@ -74217,6 +74217,63 @@ export type Database = {
         }
         Relationships: []
       }
+      rider_invitations: {
+        Row: {
+          claimed_at: string | null
+          claimed_user_id: string | null
+          created_at: string
+          credit_applied_at: string | null
+          credit_reason: string | null
+          decided_at: string | null
+          decided_by: string | null
+          email: string
+          full_name: string | null
+          id: string
+          invited_by: string | null
+          is_test: boolean
+          phone_number: string | null
+          status: string
+          updated_at: string
+          welcome_credit_cents: number
+        }
+        Insert: {
+          claimed_at?: string | null
+          claimed_user_id?: string | null
+          created_at?: string
+          credit_applied_at?: string | null
+          credit_reason?: string | null
+          decided_at?: string | null
+          decided_by?: string | null
+          email: string
+          full_name?: string | null
+          id?: string
+          invited_by?: string | null
+          is_test?: boolean
+          phone_number?: string | null
+          status?: string
+          updated_at?: string
+          welcome_credit_cents?: number
+        }
+        Update: {
+          claimed_at?: string | null
+          claimed_user_id?: string | null
+          created_at?: string
+          credit_applied_at?: string | null
+          credit_reason?: string | null
+          decided_at?: string | null
+          decided_by?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          invited_by?: string | null
+          is_test?: boolean
+          phone_number?: string | null
+          status?: string
+          updated_at?: string
+          welcome_credit_cents?: number
+        }
+        Relationships: []
+      }
       rider_kyc: {
         Row: {
           country: string
@@ -87850,6 +87907,24 @@ export type Database = {
       }
       resolve_operating_contexts: { Args: never; Returns: Json }
       rider_booking_profiles: { Args: never; Returns: Json }
+      rider_claim_invitation: { Args: never; Returns: string }
+      rider_invite: {
+        Args: {
+          _email: string
+          _full_name: string
+          _is_test?: boolean
+          _phone: string
+        }
+        Returns: string
+      }
+      rider_invite_decide: {
+        Args: { _approve: boolean; _id: string }
+        Returns: undefined
+      }
+      rider_invite_set_credit: {
+        Args: { _amount_kes: number; _id: string; _reason: string }
+        Returns: undefined
+      }
       safety_incident_action: {
         Args: {
           _action: string

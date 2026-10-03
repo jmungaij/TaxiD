@@ -76,7 +76,7 @@ const About = () => (
   <MarketingPage>
     <SeoHead
       title="About TaxiD — Africa's mobility & logistics OS"
-      description="TaxiD is a national mobility and logistics operating system. Safety, reliability, transparency, innovation and compliance — by design."
+      description="TaxiD is a digital platform that facilitates travel by connecting riders to a spectrum of mobility solutions."
       path="/about"
     />
 
@@ -103,11 +103,11 @@ const About = () => (
       <div className="relative container mx-auto px-4 py-24 md:py-32 max-w-5xl">
         <span className="inline-block px-3 py-1 rounded-full bg-ice/20 text-xs font-semibold mb-5 uppercase tracking-wider">About TaxiD</span>
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-5">
-          TaxiD is Building Africa's<br />
-          <span className="bg-gradient-to-r from-ice to-ice/70 bg-clip-text text-transparent">Mobility Operating System</span>
+          One Platform.<br />
+          <span className="bg-gradient-to-r from-ice to-ice/70 bg-clip-text text-transparent">Every Journey.</span>
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/90 max-w-3xl mb-8">
-          A unified platform powering transportation, logistics, corporate mobility, vehicle rentals and digital commerce across Africa.
+          TaxiD is a digital platform that facilitates travel by connecting riders to a spectrum of mobility solutions.
         </p>
         <div className="flex flex-wrap gap-3">
           <AppButton size="lg" className="bg-ice text-primary hover:bg-ice/90"

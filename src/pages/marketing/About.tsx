@@ -263,7 +263,7 @@ const About = () => (
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3">TaxiD by the numbers</h2>
-          <p className="text-primary-foreground/85">The scale behind Africa's mobility operating system.</p>
+          <p className="text-primary-foreground/85">The scale behind every journey we connect.</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
           {stats.map((s) => (
@@ -360,7 +360,7 @@ const About = () => (
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-10">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Investor Relations</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">Building Africa's mobility OS</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">One platform. Every journey.</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">Compounding platform economics across rides, delivery, corporate and rental.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
@@ -389,7 +389,7 @@ const About = () => (
       <div className="container mx-auto px-4 text-center max-w-3xl">
         <Headphones className="h-12 w-12 mx-auto mb-5 opacity-90" />
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Move with TaxiD</h2>
-        <p className="text-lg opacity-90 mb-8">Join the operating system powering Africa's mobility — as a rider, driver, corporate, partner or investor.</p>
+        <p className="text-lg opacity-90 mb-8">Join TaxiD — as a rider, driver, corporate, partner or investor.</p>
         <div className="flex flex-wrap justify-center gap-3">
           <AppButton analytics={AnalyticsEvents.MARKETING_GET_STARTED} action="navigate" target="/auth?mode=register"
             size="lg" className="bg-ice text-primary hover:bg-ice/90">

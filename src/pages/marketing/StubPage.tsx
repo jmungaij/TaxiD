@@ -146,7 +146,7 @@ export default function StubPage() {
       <section className="bg-primary text-primary-foreground py-16">
         <div className="container mx-auto px-4 text-center max-w-2xl">
           <h2 className="text-3xl font-bold mb-3">{c.ctaTitle ?? "Ready to move with TaxiD?"}</h2>
-          <p className="opacity-90 mb-6">{c.ctaSubtitle ?? "Join the operating system powering Africa's mobility."}</p>
+          <p className="opacity-90 mb-6">{c.ctaSubtitle ?? "Join TaxiD — one platform, every journey."}</p>
           <div className="flex flex-wrap justify-center gap-3">
             <AppButton size="lg" className="bg-ice text-primary hover:bg-ice/90"
               analytics="marketing.get_started" action="navigate" target="/auth?mode=register">

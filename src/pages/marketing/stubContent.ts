@@ -86,7 +86,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
     ],
   ),
   "/innovation": valuePage(
-    "Engineering Africa's mobility OS",
+    "Engineering every journey we connect",
     "Event-driven architecture, AI-assisted operations, predictive routing, and an open developer platform.",
     [
       { title: "Event-driven core", desc: "Every trip, payment, and incident is a versioned event you can replay.", icon: "Workflow" },
@@ -237,7 +237,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
   "/investors": {
     eyebrow: "Company",
     title: "Investor Relations",
-    subtitle: "TaxiD is building Africa's mobility operating system. Here is the opportunity.",
+    subtitle: "TaxiD connects riders to a spectrum of mobility solutions. Here is the opportunity.",
     highlights: [
       { value: "$120B", label: "African mobility TAM" },
       { value: "12,400+", label: "Active drivers" },
@@ -263,7 +263,7 @@ export const STUB_CONTENT: Record<string, StubContent> = {
         body: "For data rooms, briefings and partnership enquiries, contact sales@taxid.us.",
       },
     ],
-    ctaTitle: "Partner with the team building Africa's mobility OS",
+    ctaTitle: "Partner with the team behind every journey",
     ctaSubtitle: "Investor briefings available on request.",
   },
   "/sustainability": {

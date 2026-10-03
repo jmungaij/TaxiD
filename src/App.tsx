@@ -7,6 +7,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { RecoveryRedirect } from "@/components/auth/RecoveryRedirect";
 import Layout from "./components/layout/Layout";
 
 
@@ -543,6 +544,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <RecoveryRedirect />
         <StabilizationBanner />
         <NavigationTracker />
         <CommandPalette />

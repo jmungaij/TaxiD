@@ -32,9 +32,7 @@ import { recordDiagnostic } from "@/lib/runtime/diagnostics";
 // so the audit log stays clean and no duplicate downloads are produced.
 const exportRegistry = new InflightExportRegistry<{ count: number }>();
 
-type DocType =
-  | "business_photo" | "certificate_of_incorporation" | "contract" | "cr12"
-  | "crb_payment" | "crb_report" | "kra_pin" | "tax_compliance";
+type DocType = "certificate_of_incorporation" | "cr12" | "kra_pin";
 
 type Status = "pending" | "approved" | "rejected";
 
@@ -75,14 +73,9 @@ type NotifRow = {
 };
 
 const DOC_CATALOG: { key: DocType; label: string; hasExpiry: boolean; hasNumber: boolean }[] = [
-  { key: "business_photo",              label: "Business Photo",              hasExpiry: false, hasNumber: false },
-  { key: "certificate_of_incorporation",label: "Certificate of Incorporation",hasExpiry: true,  hasNumber: true  },
-  { key: "contract",                    label: "Contract",                    hasExpiry: true,  hasNumber: false },
-  { key: "cr12",                        label: "CR12 Application Form",       hasExpiry: true,  hasNumber: true  },
-  { key: "crb_payment",                 label: "CRB Payment",                 hasExpiry: false, hasNumber: true  },
-  { key: "crb_report",                  label: "CRB Report",                  hasExpiry: true,  hasNumber: false },
+  { key: "certificate_of_incorporation",label: "Certificate of Incorporation",hasExpiry: false, hasNumber: true  },
+  { key: "cr12",                        label: "Certificate of Registration (CR12)", hasExpiry: true, hasNumber: true },
   { key: "kra_pin",                     label: "KRA PIN",                     hasExpiry: false, hasNumber: true  },
-  { key: "tax_compliance",              label: "Tax Compliance",              hasExpiry: true,  hasNumber: true  },
 ];
 const LABELS: Record<string, string> = Object.fromEntries(DOC_CATALOG.map(d => [d.key, d.label]));
 

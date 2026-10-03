@@ -12,8 +12,9 @@ import {
   User, Car, FileCheck, ShieldCheck, GraduationCap, CheckCircle2, Rocket, ChevronLeft, ChevronRight, Save,
 } from "lucide-react";
 
+import { DocumentUploadField } from "@/components/common/DocumentUploadField";
 interface Draft {
-  identity?: { national_id?: string; full_name?: string; phone?: string; selfie_confirmed?: boolean };
+  identity?: { national_id?: string; full_name?: string; phone?: string; kra_pin?: string; selfie_confirmed?: boolean };
   license?:  { license_no?: string; psv_no?: string; years_experience?: number };
   vehicle?:  { make?: string; model?: string; year?: number; plate?: string; insurance_ref?: string };
   compliance?: { background_consent?: boolean; criminal_consent?: boolean };

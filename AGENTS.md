@@ -26,3 +26,4 @@
 - Multi-step approvals live in `corporate_approval_steps` (chains → steps with deadline + stand-in); `private.corporate_approval_step_decide` enforces maker-checker and distinct approvers; once a chain governs a trip the single-step `corporate_trip_decide` refuses it.
 - Location rules are evaluated by `private.corporate_location_evaluate` and merged into `private.corporate_policy_evaluate` (wrapper over `_base`) — still one rule engine.
 - Programs (why travel happens) are separate from groups (who travels); program-scoped policies are applied via the `taxid.program_id` session setting inside `private.corporate_evaluate_full`, which TravelDesk booking and the policy simulator share — one evaluator.
+- TravelDesk bookings become real trips via `private.corporate_guest_dispatch` (trigger on confirmation) — one trip/dispatch/driver/settlement path, never a parallel booking system.

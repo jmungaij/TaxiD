@@ -16822,6 +16822,7 @@ export type Database = {
           ride_type_id: string
           scheduled_for: string | null
           status: string
+          trip_booking_id: string | null
           updated_at: string
         }
         Insert: {
@@ -16859,6 +16860,7 @@ export type Database = {
           ride_type_id: string
           scheduled_for?: string | null
           status?: string
+          trip_booking_id?: string | null
           updated_at?: string
         }
         Update: {
@@ -16896,6 +16898,7 @@ export type Database = {
           ride_type_id?: string
           scheduled_for?: string | null
           status?: string
+          trip_booking_id?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -16925,6 +16928,13 @@ export type Database = {
             columns: ["ride_type_id"]
             isOneToOne: false
             referencedRelation: "ride_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_guest_bookings_trip_booking_id_fkey"
+            columns: ["trip_booking_id"]
+            isOneToOne: false
+            referencedRelation: "trip_bookings"
             referencedColumns: ["id"]
           },
         ]

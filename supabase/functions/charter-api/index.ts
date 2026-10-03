@@ -122,7 +122,7 @@ Deno.serve(async (req) => {
         if (!canWebhooks) return fail("forbidden", "Only administrators can manage webhooks.", 403);
         const p = z.object({
           id: z.string().uuid().optional(), label: z.string().trim().min(1).max(120), url: z.string().url().max(500),
-          events: z.array(z.enum(EVENT_TYPES as [string, ...string[]])).min(1), active: z.boolean().default(true),
+          events: z.array(z.string().regex(/^[a-z_]+\.[a-z_]+$/)).min(1).max(30), active: z.boolean().default(true),
           description: z.string().max(500).optional(),
         }).safeParse(body);
         if (!p.success) return fail("invalid_request", "Check the label, URL and events.");

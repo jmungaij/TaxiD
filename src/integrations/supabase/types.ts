@@ -16793,11 +16793,13 @@ export type Database = {
           booking_kind: string
           client_code: string | null
           corporate_id: string
+          cost_center_code: string | null
           created_at: string
           distance_km: number
           dropoff_address: string
           dropoff_lat: number
           dropoff_lng: number
+          employee_id: string | null
           estimated_fare_cents: number
           flight_number: string | null
           hotel_room: string | null
@@ -16813,7 +16815,9 @@ export type Database = {
           pickup_lng: number
           po_code: string | null
           policy: Json
+          program_id: string | null
           project_code: string | null
+          purpose: string | null
           reference: string
           ride_type_id: string
           scheduled_for: string | null
@@ -16826,11 +16830,13 @@ export type Database = {
           booking_kind: string
           client_code?: string | null
           corporate_id: string
+          cost_center_code?: string | null
           created_at?: string
           distance_km: number
           dropoff_address: string
           dropoff_lat: number
           dropoff_lng: number
+          employee_id?: string | null
           estimated_fare_cents: number
           flight_number?: string | null
           hotel_room?: string | null
@@ -16846,7 +16852,9 @@ export type Database = {
           pickup_lng: number
           po_code?: string | null
           policy?: Json
+          program_id?: string | null
           project_code?: string | null
+          purpose?: string | null
           reference?: string
           ride_type_id: string
           scheduled_for?: string | null
@@ -16859,11 +16867,13 @@ export type Database = {
           booking_kind?: string
           client_code?: string | null
           corporate_id?: string
+          cost_center_code?: string | null
           created_at?: string
           distance_km?: number
           dropoff_address?: string
           dropoff_lat?: number
           dropoff_lng?: number
+          employee_id?: string | null
           estimated_fare_cents?: number
           flight_number?: string | null
           hotel_room?: string | null
@@ -16879,7 +16889,9 @@ export type Database = {
           pickup_lng?: number
           po_code?: string | null
           policy?: Json
+          program_id?: string | null
           project_code?: string | null
+          purpose?: string | null
           reference?: string
           ride_type_id?: string
           scheduled_for?: string | null
@@ -16892,6 +16904,20 @@ export type Database = {
             columns: ["corporate_id"]
             isOneToOne: false
             referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_guest_bookings_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_guest_bookings_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_programs"
             referencedColumns: ["id"]
           },
           {
@@ -17957,6 +17983,72 @@ export type Database = {
           },
         ]
       }
+      corporate_programs: {
+        Row: {
+          active: boolean
+          active_from: string | null
+          active_to: string | null
+          administrator_employee_id: string | null
+          allows_guests: boolean
+          corporate_id: string
+          created_at: string
+          default_cost_center: string | null
+          description: string | null
+          eligible_group_ids: string[]
+          id: string
+          name: string
+          require_purpose: boolean
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          active_from?: string | null
+          active_to?: string | null
+          administrator_employee_id?: string | null
+          allows_guests?: boolean
+          corporate_id: string
+          created_at?: string
+          default_cost_center?: string | null
+          description?: string | null
+          eligible_group_ids?: string[]
+          id?: string
+          name: string
+          require_purpose?: boolean
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          active_from?: string | null
+          active_to?: string | null
+          administrator_employee_id?: string | null
+          allows_guests?: boolean
+          corporate_id?: string
+          created_at?: string
+          default_cost_center?: string | null
+          description?: string | null
+          eligible_group_ids?: string[]
+          id?: string
+          name?: string
+          require_purpose?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_programs_administrator_employee_id_fkey"
+            columns: ["administrator_employee_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_programs_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_registration_conflict_log: {
         Row: {
           correlation_id: string | null
@@ -18588,6 +18680,7 @@ export type Database = {
           metadata: Json
           name: string
           priority: number
+          program_id: string | null
           scope: Database["public"]["Enums"]["corporate_policy_scope"]
           updated_at: string
         }
@@ -18606,6 +18699,7 @@ export type Database = {
           metadata?: Json
           name: string
           priority?: number
+          program_id?: string | null
           scope?: Database["public"]["Enums"]["corporate_policy_scope"]
           updated_at?: string
         }
@@ -18624,6 +18718,7 @@ export type Database = {
           metadata?: Json
           name?: string
           priority?: number
+          program_id?: string | null
           scope?: Database["public"]["Enums"]["corporate_policy_scope"]
           updated_at?: string
         }
@@ -18654,6 +18749,13 @@ export type Database = {
             columns: ["group_id"]
             isOneToOne: false
             referencedRelation: "corporate_employee_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_ride_policies_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_programs"
             referencedColumns: ["id"]
           },
         ]
@@ -86852,8 +86954,28 @@ export type Database = {
         }
         Returns: Json
       }
+      corporate_policy_simulate: {
+        Args: {
+          _at: string
+          _corp: string
+          _dlat: number
+          _dlng: number
+          _employee: string
+          _fare_cents?: number
+          _plat: number
+          _plng: number
+          _program: string
+          _ride_type: string
+        }
+        Returns: Json
+      }
       corporate_settlement_retry: {
         Args: { _booking_id: string }
+        Returns: Json
+      }
+      corporate_traveldesk_board: { Args: { _corp: string }; Returns: Json }
+      corporate_traveller_profile: {
+        Args: { _corp: string; _employee: string }
         Returns: Json
       }
       corporate_trip_decide: {

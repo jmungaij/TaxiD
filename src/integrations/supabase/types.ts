@@ -15878,7 +15878,7 @@ export type Database = {
           daily_exposure_cents: number | null
           effective_date: string
           expiry_date: string
-          guarantee_id: string
+          guarantee_id: string | null
           id: string
           max_transaction_cents: number | null
           monthly_exposure_cents: number | null
@@ -15900,7 +15900,7 @@ export type Database = {
           daily_exposure_cents?: number | null
           effective_date: string
           expiry_date: string
-          guarantee_id: string
+          guarantee_id?: string | null
           id?: string
           max_transaction_cents?: number | null
           monthly_exposure_cents?: number | null
@@ -15922,7 +15922,7 @@ export type Database = {
           daily_exposure_cents?: number | null
           effective_date?: string
           expiry_date?: string
-          guarantee_id?: string
+          guarantee_id?: string | null
           id?: string
           max_transaction_cents?: number | null
           monthly_exposure_cents?: number | null
@@ -15945,6 +15945,72 @@ export type Database = {
             columns: ["guarantee_id"]
             isOneToOne: false
             referencedRelation: "corporate_bank_guarantees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_credit_requests: {
+        Row: {
+          approved_limit_cents: number | null
+          corporate_id: string
+          created_at: string
+          credit_period_days: number
+          decided_at: string | null
+          decided_by: string | null
+          decision_note: string | null
+          facility_id: string | null
+          id: string
+          reason: string | null
+          requested_by: string | null
+          requested_limit_cents: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          approved_limit_cents?: number | null
+          corporate_id: string
+          created_at?: string
+          credit_period_days?: number
+          decided_at?: string | null
+          decided_by?: string | null
+          decision_note?: string | null
+          facility_id?: string | null
+          id?: string
+          reason?: string | null
+          requested_by?: string | null
+          requested_limit_cents: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          approved_limit_cents?: number | null
+          corporate_id?: string
+          created_at?: string
+          credit_period_days?: number
+          decided_at?: string | null
+          decided_by?: string | null
+          decision_note?: string | null
+          facility_id?: string | null
+          id?: string
+          reason?: string | null
+          requested_by?: string | null
+          requested_limit_cents?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_credit_requests_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "corporate_credit_requests_facility_id_fkey"
+            columns: ["facility_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_credit_facilities"
             referencedColumns: ["id"]
           },
         ]
@@ -87339,7 +87405,27 @@ export type Database = {
       }
       corporate_budget_overview: { Args: { _c: string }; Returns: Json }
       corporate_claim_work_account: { Args: never; Returns: Json }
+      corporate_credit_decide: {
+        Args: {
+          _approve: boolean
+          _limit_kes?: number
+          _months?: number
+          _note?: string
+          _period_days?: number
+          _request_id: string
+        }
+        Returns: Json
+      }
       corporate_credit_invoices_issue: { Args: never; Returns: Json }
+      corporate_credit_request: {
+        Args: {
+          _corporate_id: string
+          _limit_kes: number
+          _period_days: number
+          _reason: string
+        }
+        Returns: Json
+      }
       corporate_director_handover: {
         Args: { _corp: string; _new_employee: string }
         Returns: Json
@@ -87355,6 +87441,10 @@ export type Database = {
       }
       corporate_executive_summary: {
         Args: { _corp: string; _from: string; _group?: string; _to: string }
+        Returns: Json
+      }
+      corporate_funding_overview: {
+        Args: { _corporate_id: string }
         Returns: Json
       }
       corporate_guest_book: {
@@ -87861,6 +87951,16 @@ export type Database = {
           _subject_user_id?: string
         }
         Returns: string
+      }
+      taxid_quote: {
+        Args: {
+          _dlat: number
+          _dlng: number
+          _plat: number
+          _plng: number
+          _ride_type: string
+        }
+        Returns: Json
       }
       tip_reconciliation: { Args: never; Returns: Json }
       transition_payment_state: {

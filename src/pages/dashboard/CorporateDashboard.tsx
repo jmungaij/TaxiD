@@ -49,6 +49,8 @@ import TripLimitsPanel from "@/components/corporate/TripLimitsPanel";
 import AllowedServicesPanel from "@/components/corporate/AllowedServicesPanel";
 import DepartmentBudgetsPanel from "@/components/corporate/DepartmentBudgetsPanel";
 import CostCenterBudgetsPanel from "@/components/corporate/CostCenterBudgetsPanel";
+import FundingPortal from "@/components/corporate/FundingPortal";
+import QuoteAndBook from "@/components/corporate/QuoteAndBook";
 import {
   CorporateLiveTripsCard, SpendByDepartmentCard,
   ScheduledKpiTile, CancelledKpiTile, useCorporateTripCounts,
@@ -91,6 +93,7 @@ const TOP_TABS: TopTab[] = [
     sub: [
       // Audit #5 — rename inner "Trips › Trips" to "Completed" (mounts CorporateCompletedRides).
       { key: "request",     label: "Request a Ride",  icon: Send },
+      { key: "quote",       label: "Quote & Book", icon: Send },
       { key: "guests",      label: "TravelDesk", icon: Send },
       { key: "trips",       label: "Completed",       icon: Car },
 
@@ -130,6 +133,7 @@ const TOP_TABS: TopTab[] = [
     ] },
   { key: "billing",     label: "Billing",     icon: FileSpreadsheet, layout: "vertical",
     sub: [
+      { key: "funding",        label: "Funding",         icon: CreditCard },
       { key: "statement",      label: "Statement",       icon: ScrollText },
       { key: "payments",       label: "Payments",        icon: CreditCard },
       { key: "cash-ledger",    label: "Cash Ledger",     icon: BookOpen },
@@ -493,6 +497,7 @@ function SectionPanel({
   if (top === "trips") {
     if (sub === "request")    return <CorporateRequestRide corporateId={corporateId} />;
     if (sub === "guests")     return corporateId ? <GuestRides corporateId={corporateId} /> : null;
+    if (sub === "quote")      return corporateId ? <QuoteAndBook corporateId={corporateId} /> : null;
     if (sub === "approvals")  return <div className="space-y-4">{corporateId && <MultiStepApprovals corporateId={corporateId} />}<CorporateApprovals corporateId={corporateId} /></div>;
 
     if (sub === "dispatch")   return <CorporateManualDispatch corporateId={corporateId} />;
@@ -537,6 +542,7 @@ function SectionPanel({
 
   // Billing (wallet-funded model)
   if (top === "billing") {
+    if (sub === "funding")        return <Panel title="Funding"><FundingPortal corporateId={corporateId} /></Panel>;
     if (sub === "payments")       return <TransactionsList walletId={walletId} />;
     if (sub === "cash-ledger")    return <CorporateCashLedger corporateId={corporateId} />;
     if (sub === "paybill-proofs") return <CorporateMyPaybillProofs corporateId={corporateId} />;

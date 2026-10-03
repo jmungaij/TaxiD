@@ -6,4 +6,7 @@
 - [x] Phase 2c: department/cost-centre budgets
 - [ ] Charter quotes priced from taxid_rate_card
 - [ ] Apply dynamic multipliers (pricing_modifiers) inside the fare calculation
-- [ ] Airport zone + charter day-rate booking flow
+- [x] Airport distance pricing with zone floor + Quote & Book screen
+- [x] Funding portal (M-Pesa top-up, super-admin credit approval, payment history)
+- [ ] Charter day-rate booking flow
+- [ ] Approve real drivers so trips dispatch (needs real driver sign-ups)

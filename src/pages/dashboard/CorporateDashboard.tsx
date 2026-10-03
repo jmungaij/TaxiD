@@ -48,6 +48,7 @@ import CorporateOrganisation from "./corporate/Organisation";
 import TripLimitsPanel from "@/components/corporate/TripLimitsPanel";
 import AllowedServicesPanel from "@/components/corporate/AllowedServicesPanel";
 import DepartmentBudgetsPanel from "@/components/corporate/DepartmentBudgetsPanel";
+import CostCenterBudgetsPanel from "@/components/corporate/CostCenterBudgetsPanel";
 import {
   CorporateLiveTripsCard, SpendByDepartmentCard,
   ScheduledKpiTile, CancelledKpiTile, useCorporateTripCounts,
@@ -529,7 +530,7 @@ function SectionPanel({
   // Budget
   if (top === "budget") {
     if (sub === "corporate")    return <BudgetSummary balance={balance} />;
-    if (sub === "departmental") return <Panel title="Departmental Budgets"><DepartmentBudgetsPanel corporateId={corporateId} /></Panel>;
+    if (sub === "departmental") return <Panel title="Departmental Budgets"><div className="space-y-6"><DepartmentBudgetsPanel corporateId={corporateId} /><CostCenterBudgetsPanel corporateId={corporateId} /></div></Panel>;
     if (sub === "insurance")    return <ComingSoon feature="Passenger accident cover enrolment per department" />;
     return <BudgetSummary balance={balance} />;
   }

@@ -15702,6 +15702,59 @@ export type Database = {
           },
         ]
       }
+      corporate_budgets: {
+        Row: {
+          active: boolean
+          corporate_id: string
+          cost_center_code: string | null
+          created_at: string
+          created_by: string | null
+          department_id: string | null
+          enforcement: string
+          id: string
+          monthly_amount_cents: number
+          scope: string
+          updated_at: string
+          warn_at_pct: number
+        }
+        Insert: {
+          active?: boolean
+          corporate_id: string
+          cost_center_code?: string | null
+          created_at?: string
+          created_by?: string | null
+          department_id?: string | null
+          enforcement?: string
+          id?: string
+          monthly_amount_cents: number
+          scope: string
+          updated_at?: string
+          warn_at_pct?: number
+        }
+        Update: {
+          active?: boolean
+          corporate_id?: string
+          cost_center_code?: string | null
+          created_at?: string
+          created_by?: string | null
+          department_id?: string | null
+          enforcement?: string
+          id?: string
+          monthly_amount_cents?: number
+          scope?: string
+          updated_at?: string
+          warn_at_pct?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_budgets_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_departments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_cash_ledger: {
         Row: {
           amount_cents: number
@@ -16782,6 +16835,59 @@ export type Database = {
             columns: ["corporate_id"]
             isOneToOne: false
             referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_fund_holds: {
+        Row: {
+          amount_cents: number
+          booking_id: string
+          captured_cents: number | null
+          closed_at: string | null
+          corporate_id: string
+          cost_center_code: string | null
+          created_at: string
+          department_id: string | null
+          held_at: string
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          booking_id: string
+          captured_cents?: number | null
+          closed_at?: string | null
+          corporate_id: string
+          cost_center_code?: string | null
+          created_at?: string
+          department_id?: string | null
+          held_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          booking_id?: string
+          captured_cents?: number | null
+          closed_at?: string | null
+          corporate_id?: string
+          cost_center_code?: string | null
+          created_at?: string
+          department_id?: string | null
+          held_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_fund_holds_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: true
+            referencedRelation: "trip_bookings"
             referencedColumns: ["id"]
           },
         ]
@@ -48359,6 +48465,7 @@ export type Database = {
           created_at: string
           example_models: string[]
           label: string
+          pricing_model: string
           ride_type_id: string | null
           seats: number
           service_class: string
@@ -48372,6 +48479,7 @@ export type Database = {
           created_at?: string
           example_models?: string[]
           label: string
+          pricing_model?: string
           ride_type_id?: string | null
           seats?: number
           service_class: string
@@ -48385,6 +48493,7 @@ export type Database = {
           created_at?: string
           example_models?: string[]
           label?: string
+          pricing_model?: string
           ride_type_id?: string | null
           seats?: number
           service_class?: string
@@ -60376,6 +60485,48 @@ export type Database = {
             referencedColumns: ["slug"]
           },
         ]
+      }
+      pricing_modifiers: {
+        Row: {
+          applies_to: string
+          ceiling_multiplier: number | null
+          code: string
+          conditions: Json
+          created_at: string
+          floor_multiplier: number | null
+          is_active: boolean
+          label: string
+          multiplier: number
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          applies_to?: string
+          ceiling_multiplier?: number | null
+          code: string
+          conditions?: Json
+          created_at?: string
+          floor_multiplier?: number | null
+          is_active?: boolean
+          label: string
+          multiplier?: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          applies_to?: string
+          ceiling_multiplier?: number | null
+          code?: string
+          conditions?: Json
+          created_at?: string
+          floor_multiplier?: number | null
+          is_active?: boolean
+          label?: string
+          multiplier?: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       pricing_negotiations: {
         Row: {
@@ -73728,15 +73879,20 @@ export type Database = {
           capacity: number
           code: string
           commission_pct: number
+          corporate_max_multiplier: number
           created_at: string
           description: string | null
           icon: string | null
           id: string
+          internal_class: string | null
           is_active: boolean
+          max_multiplier: number
+          min_multiplier: number
           minimum_fare: number
           name: string
           per_km_rate: number
           per_minute_rate: number
+          pricing_model: string
           sort_order: number | null
         }
         Insert: {
@@ -73745,15 +73901,20 @@ export type Database = {
           capacity?: number
           code: string
           commission_pct?: number
+          corporate_max_multiplier?: number
           created_at?: string
           description?: string | null
           icon?: string | null
           id?: string
+          internal_class?: string | null
           is_active?: boolean
+          max_multiplier?: number
+          min_multiplier?: number
           minimum_fare?: number
           name: string
           per_km_rate?: number
           per_minute_rate?: number
+          pricing_model?: string
           sort_order?: number | null
         }
         Update: {
@@ -73762,15 +73923,20 @@ export type Database = {
           capacity?: number
           code?: string
           commission_pct?: number
+          corporate_max_multiplier?: number
           created_at?: string
           description?: string | null
           icon?: string | null
           id?: string
+          internal_class?: string | null
           is_active?: boolean
+          max_multiplier?: number
+          min_multiplier?: number
           minimum_fare?: number
           name?: string
           per_km_rate?: number
           per_minute_rate?: number
+          pricing_model?: string
           sort_order?: number | null
         }
         Relationships: []
@@ -82858,6 +83024,7 @@ export type Database = {
           amount_kes: number
           basis: string
           created_at: string
+          direction: string | null
           effective_from: string
           id: string
           is_active: boolean
@@ -82873,6 +83040,7 @@ export type Database = {
           amount_kes: number
           basis: string
           created_at?: string
+          direction?: string | null
           effective_from?: string
           id?: string
           is_active?: boolean
@@ -82888,6 +83056,7 @@ export type Database = {
           amount_kes?: number
           basis?: string
           created_at?: string
+          direction?: string | null
           effective_from?: string
           id?: string
           is_active?: boolean
@@ -84155,6 +84324,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      trip_financial_ledger: {
+        Row: {
+          amount_cents: number
+          booking_id: string
+          commission_pct: number | null
+          corporate_id: string | null
+          cost_center_code: string | null
+          created_at: string
+          department_id: string | null
+          event: string
+          id: string
+          idempotency_key: string
+          metadata: Json
+          platform_commission_cents: number | null
+          provider_net_cents: number | null
+        }
+        Insert: {
+          amount_cents: number
+          booking_id: string
+          commission_pct?: number | null
+          corporate_id?: string | null
+          cost_center_code?: string | null
+          created_at?: string
+          department_id?: string | null
+          event: string
+          id?: string
+          idempotency_key: string
+          metadata?: Json
+          platform_commission_cents?: number | null
+          provider_net_cents?: number | null
+        }
+        Update: {
+          amount_cents?: number
+          booking_id?: string
+          commission_pct?: number | null
+          corporate_id?: string | null
+          cost_center_code?: string | null
+          created_at?: string
+          department_id?: string | null
+          event?: string
+          id?: string
+          idempotency_key?: string
+          metadata?: Json
+          platform_commission_cents?: number | null
+          provider_net_cents?: number | null
+        }
+        Relationships: []
       }
       trip_incidents: {
         Row: {
@@ -87120,6 +87337,7 @@ export type Database = {
         }
         Returns: Json
       }
+      corporate_budget_overview: { Args: { _c: string }; Returns: Json }
       corporate_claim_work_account: { Args: never; Returns: Json }
       corporate_credit_invoices_issue: { Args: never; Returns: Json }
       corporate_director_handover: {

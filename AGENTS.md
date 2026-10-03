@@ -26,3 +26,5 @@
 - TravelDesk bookings become real trips via `private.corporate_guest_dispatch` (trigger on confirmation) — one trip/dispatch/driver/settlement path, never a parallel booking system.
 - Company work-account sign-in links a confirmed work-domain email (`corporate_work_domains`) to its staff record via `corporate_claim_work_account` after sign-in; protected directors (`metadata.protected_director`) change only through `corporate_director_handover`.
 - Vehicle catalogue (Service → Service Class → Vehicle Class) lives in `mobility_services`/`mobility_vehicle_classes`; a class is bookable only when linked to a priced `ride_types` row, and policies store ride-type codes — pricing and the policy engine stay single-sourced.
+
+- Company funds: holds (`corporate_fund_holds`) sync by trigger on `trip_bookings` and capture on settlement; `trip_financial_ledger` is append-only, one idempotency key per booking event; `corporate_budgets` checked in `trip_confirm_booking_ctx`.

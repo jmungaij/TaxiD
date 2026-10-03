@@ -48325,6 +48325,90 @@ export type Database = {
           },
         ]
       }
+      mobility_services: {
+        Row: {
+          code: string
+          created_at: string
+          description: string | null
+          label: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          description?: string | null
+          label: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          description?: string | null
+          label?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      mobility_vehicle_classes: {
+        Row: {
+          accessible: boolean
+          code: string
+          created_at: string
+          example_models: string[]
+          label: string
+          ride_type_id: string | null
+          seats: number
+          service_class: string
+          service_code: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          accessible?: boolean
+          code: string
+          created_at?: string
+          example_models?: string[]
+          label: string
+          ride_type_id?: string | null
+          seats?: number
+          service_class: string
+          service_code: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          accessible?: boolean
+          code?: string
+          created_at?: string
+          example_models?: string[]
+          label?: string
+          ride_type_id?: string | null
+          seats?: number
+          service_class?: string
+          service_code?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mobility_vehicle_classes_ride_type_id_fkey"
+            columns: ["ride_type_id"]
+            isOneToOne: false
+            referencedRelation: "ride_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mobility_vehicle_classes_service_code_fkey"
+            columns: ["service_code"]
+            isOneToOne: false
+            referencedRelation: "mobility_services"
+            referencedColumns: ["code"]
+          },
+        ]
+      }
       moc_incident_events: {
         Row: {
           actor: string | null

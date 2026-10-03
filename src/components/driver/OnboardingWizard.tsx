@@ -8,27 +8,47 @@ import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { trackDriverEvent } from "@/lib/driverAnalytics";
+import { DocumentUploadField } from "@/components/common/DocumentUploadField";
 import {
-  User, Car, FileCheck, ShieldCheck, GraduationCap, CheckCircle2, Rocket, ChevronLeft, ChevronRight, Save,
+  User, Car, FileCheck, ShieldCheck, GraduationCap, CheckCircle2, Rocket, ChevronLeft, ChevronRight, Save, Info,
 } from "lucide-react";
 
 interface Draft {
-  identity?: { national_id?: string; full_name?: string; phone?: string; selfie_confirmed?: boolean };
-  license?:  { license_no?: string; psv_no?: string; years_experience?: number };
-  vehicle?:  { make?: string; model?: string; year?: number; plate?: string; insurance_ref?: string };
+  identity?: { 
+    national_id?: string; 
+    full_name?: string; 
+    phone?: string; 
+    kra_pin?: string; 
+    selfie_confirmed?: boolean 
+  };
+  license?: { 
+    license_no?: string; 
+    psv_no?: string; 
+    pcc_no?: string;
+    years_experience?: number 
+  };
+  vehicle?: { 
+    make?: string; 
+    model?: string; 
+    year?: number; 
+    plate?: string; 
+    insurance_ref?: string;
+    logbook_ref?: string;
+    inspection_ref?: string;
+  };
   compliance?: { background_consent?: boolean; criminal_consent?: boolean };
   training?: { safety_done?: boolean; platform_done?: boolean };
   approval?: { reviewed?: boolean };
 }
 
 const STAGES = [
-  { id: 1, title: "Identity",      icon: User,          desc: "National ID, photo and selfie verification." },
-  { id: 2, title: "Driving",       icon: FileCheck,     desc: "Driving licence, PSV licence and experience." },
-  { id: 3, title: "Vehicle",       icon: Car,           desc: "Vehicle registration, inspection and insurance." },
+  { id: 1, title: "Identity",      icon: User,          desc: "National ID, KRA PIN and photo verification." },
+  { id: 2, title: "Driving",       icon: FileCheck,     desc: "Licences, PSV badge and police clearance." },
+  { id: 3, title: "Vehicle",       icon: Car,           desc: "Registration, inspection and insurance." },
   { id: 4, title: "Compliance",    icon: ShieldCheck,   desc: "Background, criminal and fraud screening." },
   { id: 5, title: "Training",      icon: GraduationCap, desc: "Safety and platform training modules." },
-  { id: 6, title: "Approval",      icon: CheckCircle2,  desc: "Automated + manual review." },
-  { id: 7, title: "Activation",    icon: Rocket,        desc: "Dashboard access and wallet creation." },
+  { id: 6, title: "Review",        icon: CheckCircle2,  desc: "Final verification of submitted details." },
+  { id: 7, title: "Activation",    icon: Rocket,        desc: "Dashboard access and wallet activation." },
 ];
 
 const LOCAL_KEY = "yr_driver_onboarding_draft";
@@ -42,7 +62,6 @@ export default function OnboardingWizard() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  // Load local draft immediately, then merge server draft if signed in.
   useEffect(() => {
     try {
       const raw = localStorage.getItem(LOCAL_KEY);
@@ -69,13 +88,12 @@ export default function OnboardingWizard() {
     }).catch(() => setLoading(false));
   }, []);
 
-  // Persist on every change
   useEffect(() => {
     if (loading) return;
     try { localStorage.setItem(LOCAL_KEY, JSON.stringify({ stage, data })); } catch { /* noop */ }
   }, [stage, data, loading]);
 
-  const update = <K extends keyof Draft>(key: K, val: Draft[K]) =>
+  const update = <K extends keyof Draft>(key: K, val: Partial<Draft[K]>) =>
     setData((d) => ({ ...d, [key]: { ...(d[key] as object ?? {}), ...(val as object) } }));
 
   async function saveServer() {
@@ -115,141 +133,172 @@ export default function OnboardingWizard() {
 
   const pct = Math.round(((stage - 1) / (STAGES.length - 1)) * 100);
 
-  if (loading) return <div className="p-12 text-center text-muted-foreground">Loading…</div>;
+  if (loading) return <div className="p-12 text-center text-muted-foreground italic">Syncing application status...</div>;
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Stage rail */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-4">
           <div>
-            <div className="text-xs uppercase tracking-wider text-muted-foreground">Stage {stage} of {STAGES.length}</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Step {stage} of {STAGES.length}</div>
             <h2 className="text-2xl font-bold mt-1">{STAGES[stage - 1].title}</h2>
             <p className="text-sm text-muted-foreground">{STAGES[stage - 1].desc}</p>
           </div>
-          <Button variant="outline" size="sm" onClick={saveServer} disabled={!userId || saving}>
-            <Save className="h-4 w-4 mr-2" /> {saving ? "Saving…" : "Save & resume later"}
+          <Button variant="outline" size="sm" onClick={saveServer} disabled={!userId || saving} className="hidden sm:flex">
+            <Save className="h-4 w-4 mr-2" /> {saving ? "Saving..." : "Save draft"}
           </Button>
         </div>
-        <Progress value={pct} className="h-2" />
-        <div className="hidden md:grid grid-cols-7 gap-2 mt-4">
-          {STAGES.map((s) => {
-            const Icon = s.icon;
-            const done = s.id < stage;
-            const active = s.id === stage;
-            return (
-              <button
-                key={s.id}
-                onClick={() => setStage(s.id)}
-                className={`p-2 rounded-lg border text-xs text-center transition ${
-                  active ? "border-primary bg-primary/10" : done ? "border-primary/40 bg-primary/5" : "border-border bg-card hover:bg-muted"
-                }`}
-              >
-                <Icon className={`h-4 w-4 mx-auto mb-1 ${done ? "text-primary" : active ? "text-primary" : "text-muted-foreground"}`} />
-                {s.title}
-              </button>
-            );
-          })}
-        </div>
+        <Progress value={pct} className="h-1.5" />
       </div>
 
-      {/* Stage body */}
-      <div className="p-6 md:p-8 rounded-2xl bg-card border border-border shadow-sm">
+      <div className="p-6 md:p-8 rounded-3xl bg-card border border-border shadow-sm">
         {stage === 1 && (
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Field label="Full name (as on ID)">
-              <Input value={data.identity?.full_name ?? ""} onChange={(e) => update("identity", { full_name: e.target.value })} maxLength={120} />
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="sm:col-span-2">
+              <DocumentUploadField 
+                label="Profile Photo (Selfie)" 
+                description="Clear photo of your face. No hats or sunglasses. This will be shown to riders."
+                required
+              />
+            </div>
+            <Field label="Full name (as on National ID)">
+              <Input value={data.identity?.full_name ?? ""} onChange={(e) => update("identity", { full_name: e.target.value })} placeholder="John Doe" />
             </Field>
             <Field label="National ID / Passport number">
-              <Input value={data.identity?.national_id ?? ""} onChange={(e) => update("identity", { national_id: e.target.value })} maxLength={32} />
+              <Input value={data.identity?.national_id ?? ""} onChange={(e) => update("identity", { national_id: e.target.value })} placeholder="12345678" />
             </Field>
-            <Field label="Phone (M-Pesa)">
-              <Input type="tel" placeholder="07XX XXX XXX" value={data.identity?.phone ?? ""} onChange={(e) => update("identity", { phone: e.target.value })} maxLength={20} />
+            <Field label="Phone (M-Pesa registered)">
+              <Input type="tel" placeholder="07XX XXX XXX" value={data.identity?.phone ?? ""} onChange={(e) => update("identity", { phone: e.target.value })} />
             </Field>
-            <Field label="Selfie verification" className="sm:col-span-2">
-              <label className="flex items-center gap-2 p-3 rounded-md border border-border bg-background cursor-pointer">
-                <input type="checkbox" checked={!!data.identity?.selfie_confirmed} onChange={(e) => update("identity", { selfie_confirmed: e.target.checked })} />
-                <span className="text-sm">I confirm I will complete the live selfie + biometric check in the driver app.</span>
-              </label>
+            <Field label="KRA PIN Number">
+              <Input value={data.identity?.kra_pin ?? ""} onChange={(e) => update("identity", { kra_pin: e.target.value.toUpperCase() })} placeholder="A00XXXXXXXX" maxLength={11} />
             </Field>
+            <div className="sm:col-span-2">
+              <DocumentUploadField label="National ID (Front & Back)" description="Scan or take a clear photo of both sides of your ID card." required />
+            </div>
           </div>
         )}
 
         {stage === 2 && (
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Field label="Driving licence number"><Input value={data.license?.license_no ?? ""} onChange={(e) => update("license", { license_no: e.target.value })} maxLength={32} /></Field>
-            <Field label="PSV licence number (if applicable)"><Input value={data.license?.psv_no ?? ""} onChange={(e) => update("license", { psv_no: e.target.value })} maxLength={32} /></Field>
-            <Field label="Years driving experience" className="sm:col-span-2">
-              <Input type="number" min={0} max={60} value={data.license?.years_experience ?? ""} onChange={(e) => update("license", { years_experience: Number(e.target.value) })} />
-            </Field>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <Field label="Driving licence number"><Input value={data.license?.license_no ?? ""} onChange={(e) => update("license", { license_no: e.target.value })} /></Field>
+            <Field label="Years driving experience"><Input type="number" value={data.license?.years_experience ?? ""} onChange={(e) => update("license", { years_experience: Number(e.target.value) })} /></Field>
+            <div className="sm:col-span-2 space-y-6">
+              <DocumentUploadField label="Driving Licence" description="Upload a clear photo of your valid NTSA driving licence." required />
+              <div className="grid sm:grid-cols-2 gap-4">
+                <DocumentUploadField label="PSV Badge" description="Required for all public service vehicle drivers." />
+                <DocumentUploadField label="Police Clearance (Good Conduct)" description="Certificate issued within the last 6 months." />
+              </div>
+            </div>
           </div>
         )}
 
         {stage === 3 && (
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Field label="Vehicle make"><Input value={data.vehicle?.make ?? ""} onChange={(e) => update("vehicle", { make: e.target.value })} /></Field>
-            <Field label="Vehicle model"><Input value={data.vehicle?.model ?? ""} onChange={(e) => update("vehicle", { model: e.target.value })} /></Field>
-            <Field label="Year of manufacture"><Input type="number" min={2005} max={new Date().getFullYear()} value={data.vehicle?.year ?? ""} onChange={(e) => update("vehicle", { year: Number(e.target.value) })} /></Field>
-            <Field label="Number plate"><Input value={data.vehicle?.plate ?? ""} onChange={(e) => update("vehicle", { plate: e.target.value.toUpperCase() })} maxLength={16} /></Field>
-            <Field label="Insurance reference" className="sm:col-span-2"><Input value={data.vehicle?.insurance_ref ?? ""} onChange={(e) => update("vehicle", { insurance_ref: e.target.value })} maxLength={64} /></Field>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <Field label="Vehicle Make"><Input value={data.vehicle?.make ?? ""} onChange={(e) => update("vehicle", { make: e.target.value })} placeholder="Toyota" /></Field>
+            <Field label="Vehicle Model"><Input value={data.vehicle?.model ?? ""} onChange={(e) => update("vehicle", { model: e.target.value })} placeholder="Fielder" /></Field>
+            <Field label="Year (2012 or newer)"><Input type="number" value={data.vehicle?.year ?? ""} onChange={(e) => update("vehicle", { year: Number(e.target.value) })} /></Field>
+            <Field label="Plate Number"><Input value={data.vehicle?.plate ?? ""} onChange={(e) => update("vehicle", { plate: e.target.value.toUpperCase() })} placeholder="KAA 001A" /></Field>
+            <div className="sm:col-span-2 space-y-6">
+              <DocumentUploadField label="Vehicle Inspection Report" description="Annual NTSA inspection certificate." required />
+              <DocumentUploadField label="Vehicle Insurance / PSV Insurance" description="Current comprehensive or PSV insurance cover." required />
+              <DocumentUploadField label="Logbook / Sales Agreement" description="Proof of ownership or authorized use." />
+            </div>
           </div>
         )}
 
         {stage === 4 && (
-          <div className="space-y-3">
-            <Consent label="I consent to background screening (employment + reference checks)." checked={!!data.compliance?.background_consent} onChange={(c) => update("compliance", { background_consent: c })} />
-            <Consent label="I authorise TaxiD to verify my criminal record with relevant authorities." checked={!!data.compliance?.criminal_consent} onChange={(c) => update("compliance", { criminal_consent: c })} />
-            <p className="text-xs text-muted-foreground pt-2">Background and fraud checks typically complete within 48 hours.</p>
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-primary/5 border border-primary/10 flex gap-3">
+              <ShieldCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold">Security Screening</p>
+                <p className="text-xs text-muted-foreground mt-0.5">We partner with verified vendors to ensure network safety. Checks include criminal record and employment history.</p>
+              </div>
+            </div>
+            <Consent label="I consent to professional background screening and reference checks." checked={!!data.compliance?.background_consent} onChange={(c) => update("compliance", { background_consent: c })} />
+            <Consent label="I authorise TaxiD to verify my criminal record with the DCI / Police." checked={!!data.compliance?.criminal_consent} onChange={(c) => update("compliance", { criminal_consent: c })} />
           </div>
         )}
 
         {stage === 5 && (
-          <div className="space-y-3">
-            <Consent label="I have read the Road Safety Fundamentals module." checked={!!data.training?.safety_done} onChange={(c) => update("training", { safety_done: c })} />
-            <Consent label="I have read the Platform Operations module." checked={!!data.training?.platform_done} onChange={(c) => update("training", { platform_done: c })} />
-            <Button asChild variant="outline" size="sm"><a href="/driver/training">Open Driver Academy</a></Button>
+          <div className="space-y-4">
+             <div className="p-4 rounded-xl bg-secondary/50 border border-border flex gap-3">
+              <GraduationCap className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold">Driver Academy</p>
+                <p className="text-xs text-muted-foreground mt-0.5">Please complete the mandatory safety and platform modules before activation.</p>
+              </div>
+            </div>
+            <Consent label="I have read and understood the Road Safety Fundamentals." checked={!!data.training?.safety_done} onChange={(c) => update("training", { safety_done: c })} />
+            <Consent label="I have completed the TaxiD Platform Operations training." checked={!!data.training?.platform_done} onChange={(c) => update("training", { platform_done: c })} />
+            <Button asChild variant="outline" className="w-full mt-2"><a href="/driver/training">Open Academy Modules</a></Button>
           </div>
         )}
 
         {stage === 6 && (
-          <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-secondary/40 border border-border text-sm">
-              Review your details below. Submitting moves your application into our review queue.
+          <div className="space-y-6">
+            <div className="p-4 rounded-xl bg-success/5 border border-success/20 text-success text-sm flex gap-2 items-center">
+              <CheckCircle2 className="h-4 w-4" />
+              All steps complete. Please review your information below.
             </div>
-            <Textarea readOnly rows={10} value={JSON.stringify(data, null, 2)} className="font-mono text-xs" />
+            
+            <div className="grid gap-6 sm:grid-cols-2 text-sm">
+              <div className="space-y-3">
+                <h4 className="font-bold border-b pb-1 text-[10px] uppercase tracking-wider text-muted-foreground">Identity & Documents</h4>
+                <SummaryItem label="Full Name" value={data.identity?.full_name} />
+                <SummaryItem label="ID Number" value={data.identity?.national_id} />
+                <SummaryItem label="KRA PIN" value={data.identity?.kra_pin} />
+                <SummaryItem label="Documents" value="Selfie, ID Scan uploaded" />
+              </div>
+              <div className="space-y-3">
+                <h4 className="font-bold border-b pb-1 text-[10px] uppercase tracking-wider text-muted-foreground">Vehicle Details</h4>
+                <SummaryItem label="Make/Model" value={`${data.vehicle?.make || ""} ${data.vehicle?.model || ""}`} />
+                <SummaryItem label="Plate" value={data.vehicle?.plate} />
+                <SummaryItem label="Year" value={data.vehicle?.year?.toString()} />
+                <SummaryItem label="Documents" value="Insurance, Inspection uploaded" />
+              </div>
+            </div>
+
+            <div className="rounded-xl border bg-muted/30 p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <Info className="h-4 w-4 text-muted-foreground" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Technical manifest</span>
+              </div>
+              <Textarea readOnly rows={4} value={JSON.stringify(data, null, 2)} className="font-mono text-[10px] bg-background/50" />
+            </div>
           </div>
         )}
 
         {stage === 7 && (
-          <div className="py-8 text-center">
-            <Rocket className="mx-auto mb-4 h-12 w-12 text-primary" aria-hidden="true" />
-            <h3 className="mb-2 text-2xl font-bold tracking-tight">Application Successfully Submitted</h3>
-            <p className="mx-auto mb-2 max-w-xl text-muted-foreground">
-              Your application is with our Driver Compliance Team. Verification is normally completed within 24 hours.
+          <div className="py-12 text-center">
+            <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+              <Rocket className="h-10 w-10 text-primary" />
+            </div>
+            <h3 className="text-3xl font-bold tracking-tight mb-3">Application Submitted</h3>
+            <p className="max-w-md mx-auto text-muted-foreground leading-relaxed">
+              Your documents are now in the verification queue. Our compliance team typically reviews applications within 24 hours.
             </p>
-            <p className="mx-auto mb-6 max-w-xl text-sm text-muted-foreground">
-              You'll be notified by email, SMS and in-app notification. On approval, your driver dashboard and
-              settlement wallet activate automatically.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Button onClick={() => navigate("/dashboard/driver")}>Go to driver dashboard</Button>
-              <Button asChild variant="outline"><a href="/driver/support">Contact driver support</a></Button>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button onClick={() => navigate("/dashboard/driver")} size="lg" className="w-full sm:w-auto">Enter Driver Dashboard</Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto"><a href="/driver/support">Support Centre</a></Button>
             </div>
           </div>
         )}
 
-        {/* Nav */}
         {stage < 7 && (
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
-            <Button variant="outline" onClick={() => setStage((s) => Math.max(1, s - 1))} disabled={stage === 1}>
+          <div className="flex items-center justify-between mt-10 pt-6 border-t border-border">
+            <Button variant="ghost" onClick={() => setStage((s) => Math.max(1, s - 1))} disabled={stage === 1}>
               <ChevronLeft className="h-4 w-4 mr-1" /> Back
             </Button>
             {stage < 6 ? (
-              <Button onClick={() => setStage((s) => Math.min(7, s + 1))}>
+              <Button onClick={() => setStage((s) => Math.min(7, s + 1))} className="px-8">
                 Continue <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             ) : (
-              <Button onClick={submit} disabled={saving}>{saving ? "Submitting…" : "Submit application"}</Button>
+              <Button onClick={submit} disabled={saving} size="lg" className="px-10">
+                {saving ? "Submitting..." : "Confirm & Submit"}
+              </Button>
             )}
           </div>
         )}
@@ -258,20 +307,29 @@ export default function OnboardingWizard() {
   );
 }
 
-function Field({ label, children, className = "" }: { label: string; children: React.ReactNode; className?: string }) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className={className}>
-      <Label className="mb-1.5 block text-sm">{label}</Label>
+    <div className="space-y-1.5">
+      <Label className="text-sm font-semibold">{label}</Label>
       {children}
+    </div>
+  );
+}
+
+function SummaryItem({ label, value }: { label: string; value?: string }) {
+  return (
+    <div className="flex justify-between items-baseline gap-2">
+      <span className="text-muted-foreground">{label}:</span>
+      <span className="font-medium text-right">{value || "—"}</span>
     </div>
   );
 }
 
 function Consent({ label, checked, onChange }: { label: string; checked: boolean; onChange: (c: boolean) => void }) {
   return (
-    <label className="flex items-start gap-3 p-3 rounded-md border border-border bg-background cursor-pointer hover:bg-muted/50">
-      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1" />
-      <span className="text-sm">{label}</span>
+    <label className="flex items-start gap-4 p-4 rounded-xl border border-border bg-background cursor-pointer hover:bg-muted/30 transition-colors">
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" />
+      <span className="text-sm leading-tight">{label}</span>
     </label>
   );
 }

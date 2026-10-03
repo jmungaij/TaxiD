@@ -378,22 +378,16 @@ export default function DriverApply() {
         </>
       ) : (
         <>
-          <Card className="mb-8">
-            <CardHeader><CardTitle className="text-lg">What happens after you apply</CardTitle></CardHeader>
-            <CardContent className="grid gap-4 text-sm md:grid-cols-4">
-              {[
-                ["1. Apply", "Your details, licence and the work you want."],
-                ["2. Documents", "ID or passport, licence, good conduct, PSV insurance and photo."],
-                ["3. Verification", "A reviewer checks each document individually."],
-                ["4. Go live", "Your driver record is created and activated for work."],
-              ].map(([t, d]) => (
-                <div key={t} className="rounded-lg border p-3">
-                  <p className="font-medium">{t}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{d}</p>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+          <div className="mb-8 grid gap-4 border-y py-6 text-sm md:grid-cols-4">
+            {[
+              ["01 / Apply", "Your details and the work you want."],
+              ["02 / Upload", "Identity first, then your driving and vehicle documents."],
+              ["03 / Review", "A reviewer checks each submitted document."],
+              ["04 / Drive", "You can go live only after approval."],
+            ].map(([t, d]) => (
+              <div key={t}><p className="font-semibold text-primary">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div>
+            ))}
+          </div>
 
           {mine.length > 0 && (
             <Card className="mb-8">
@@ -444,9 +438,17 @@ export default function DriverApply() {
                   <Label htmlFor="date_of_birth">Date of birth</Label>
                   <Input id="date_of_birth" name="date_of_birth" type="date" />
                 </div>
+                <div className="md:col-span-2 space-y-2">
+                  <Label>Identity document *</Label>
+                  <div className="flex flex-wrap gap-2">
+                    <Button type="button" variant={identity === "NATIONAL_ID" ? "default" : "outline"} onClick={() => setIdentity("NATIONAL_ID")}>National Identity card</Button>
+                    <Button type="button" variant={identity === "PASSPORT" ? "default" : "outline"} onClick={() => setIdentity("PASSPORT")}>Passport</Button>
+                  </div>
+                </div>
                 <div>
-                  <Label htmlFor="national_id">National ID number *</Label>
+                  <Label htmlFor="national_id">{identity === "PASSPORT" ? "Passport number" : "National ID number"} *</Label>
                   <Input id="national_id" name="national_id" required minLength={5} maxLength={20} />
+                  {identity === "PASSPORT" && <p className="mt-1 text-xs text-muted-foreground">You will add the passport's issue and expiry dates when uploading it.</p>}
                 </div>
                 <div>
                   <Label htmlFor="kra_pin">KRA PIN</Label>

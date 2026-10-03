@@ -73727,6 +73727,7 @@ export type Database = {
           cancellation_fee: number
           capacity: number
           code: string
+          commission_pct: number
           created_at: string
           description: string | null
           icon: string | null
@@ -73743,6 +73744,7 @@ export type Database = {
           cancellation_fee?: number
           capacity?: number
           code: string
+          commission_pct?: number
           created_at?: string
           description?: string | null
           icon?: string | null
@@ -73759,6 +73761,7 @@ export type Database = {
           cancellation_fee?: number
           capacity?: number
           code?: string
+          commission_pct?: number
           created_at?: string
           description?: string | null
           icon?: string | null
@@ -82848,6 +82851,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      taxid_rate_card: {
+        Row: {
+          all_inclusive: boolean
+          amount_kes: number
+          basis: string
+          created_at: string
+          effective_from: string
+          id: string
+          is_active: boolean
+          km_cap: number | null
+          location: string
+          section: string
+          updated_at: string
+          vehicle_examples: string | null
+          vehicle_group: string
+        }
+        Insert: {
+          all_inclusive?: boolean
+          amount_kes: number
+          basis: string
+          created_at?: string
+          effective_from?: string
+          id?: string
+          is_active?: boolean
+          km_cap?: number | null
+          location?: string
+          section: string
+          updated_at?: string
+          vehicle_examples?: string | null
+          vehicle_group: string
+        }
+        Update: {
+          all_inclusive?: boolean
+          amount_kes?: number
+          basis?: string
+          created_at?: string
+          effective_from?: string
+          id?: string
+          is_active?: boolean
+          km_cap?: number | null
+          location?: string
+          section?: string
+          updated_at?: string
+          vehicle_examples?: string | null
+          vehicle_group?: string
+        }
+        Relationships: []
       }
       threat_advisories: {
         Row: {

@@ -7,7 +7,7 @@ import { z } from "npm:zod@3";
 
 const OPS_ROLES = ["super_admin", "admin", "operations_admin", "dispatch_manager"];
 const WEBHOOK_ROLES = ["super_admin", "admin", "operations_admin"];
-const FLIGHT_STAGES = ["requested", "scheduled", "departed", "arrived"];
+const FLIGHT_STAGES = ["scheduled", "departed", "landed", "completed"];
 const EVENT_TYPES = ["booking.created", "booking.updated", "flight.status_changed", "payment.confirmed", "webhook.test"];
 
 const json = (b: Record<string, unknown>, status = 200) =>
@@ -91,9 +91,9 @@ Deno.serve(async (req) => {
         if (!p.success) return fail("invalid_request", "Invalid flight update.");
         const b = await loadBooking(p.data.booking_id);
         if (!b) return fail("not_found", "Booking not found.", 404);
-        const from = FLIGHT_STAGES.indexOf(b.flight_status ?? "requested");
+        const from = FLIGHT_STAGES.indexOf(b.flight_status ?? "scheduled");
         const to = FLIGHT_STAGES.indexOf(p.data.status);
-        if (to !== from + 1) return fail("invalid_transition", `Cannot move from ${b.flight_status ?? "requested"} to ${p.data.status}.`, 409);
+        if (to !== from + 1) return fail("invalid_transition", `Cannot move from ${b.flight_status ?? "scheduled"} to ${p.data.status}.`, 409);
         const events = [...(Array.isArray(b.flight_events) ? b.flight_events : []), { status: p.data.status, at: new Date().toISOString(), actor_id: uid, note: p.data.note ?? null }];
         const { data, error } = await admin.from("charter_bookings").update({ flight_status: p.data.status, flight_events: events, updated_at: new Date().toISOString() }).eq("id", b.id).select("*").single();
         if (error) throw error;
@@ -210,14 +210,14 @@ Deno.serve(async (req) => {
         if (!inv) inv = (await admin.from("charter_inventory").select("*").eq("name", p.data.asset_name).eq("active", true).limit(1).maybeSingle()).data;
         const rateId = (inv?.metadata as Record<string, unknown> | null)?.rate_card_id as string | undefined;
         let breakdown: Record<string, unknown> = { source: "rfq", note: "No published TaxiD rate for this asset — priced by operations." };
-        let total: number | null = null; let status = "rfq";
+        let total: number | null = null; let status = "requested";
         if (rateId) {
           const { data: r } = await admin.from("taxid_rate_card").select("*").eq("id", rateId).eq("is_active", true).maybeSingle();
           if (r) {
             const days = Math.ceil(p.data.duration);
             if (r.basis === "per_day_min3" && days < 3) return fail("min_days", "Self-drive daily hire needs at least 3 days.");
             total = Number(r.amount_kes) * days * p.data.quantity;
-            status = "quoted";
+            status = "priced";
             breakdown = { source: "taxid_rate_card", rate_id: r.id, section: r.section, basis: r.basis, unit_kes: Number(r.amount_kes),
               units: days, quantity: p.data.quantity, km_cap: r.km_cap, all_inclusive: r.all_inclusive, total_kes: total,
               client_total: body.total ?? null };
@@ -228,7 +228,7 @@ Deno.serve(async (req) => {
           reference, user_id: uid, category_slug: p.data.category_slug, inventory_id: inv?.id ?? null, asset_name: p.data.asset_name,
           duration: p.data.duration, quantity: p.data.quantity, controls: p.data.controls ?? {}, cost_settings: p.data.cost_settings ?? {},
           breakdown, trip: p.data.trip, contact: p.data.contact, currency: "KES", total, status, pricing_version: p.data.pricing_version ?? null,
-          rfq_state: status === "rfq" ? "open" : "priced", rfq_state_at: new Date().toISOString(),
+          rfq_state: status === "requested" ? "REQUESTED" : "QUOTED", rfq_state_at: new Date().toISOString(),
         }).select("*").single();
         if (error) throw error;
         return json({ ok: true, quote: data });
@@ -250,7 +250,7 @@ Deno.serve(async (req) => {
         const p = z.object({
           quote_id: z.string().uuid(), passengers: z.array(z.record(z.string())).max(100).default([]),
           contact: z.record(z.unknown()).default({}), trip: z.record(z.unknown()).default({}),
-          payment_method: z.string().max(40).default("mpesa"), idempotency_key: z.string().min(8).max(120),
+          payment_method: z.enum(["invoice", "mpesa", "card", "corporate_wallet"]).default("mpesa"), idempotency_key: z.string().min(8).max(120),
         }).safeParse(body);
         if (!p.success) return fail("invalid_request", "Check the booking details.");
         const { data: dup } = await admin.from("charter_bookings").select("*").eq("user_id", uid).eq("trip->>idempotency_key", p.data.idempotency_key).maybeSingle();
@@ -262,12 +262,12 @@ Deno.serve(async (req) => {
         const { data, error } = await admin.from("charter_bookings").insert({
           reference, quote_id: q.id, user_id: uid, category_slug: q.category_slug, asset_name: q.asset_name,
           passengers: p.data.passengers, contact: p.data.contact, trip: { ...p.data.trip, idempotency_key: p.data.idempotency_key },
-          amount: q.total, currency: "KES", payment_method: p.data.payment_method, payment_status: "unpaid",
-          status: "pending_payment", flight_status: "requested", flight_events: [{ status: "requested", at: new Date().toISOString(), actor_id: uid }],
+          amount: q.total, currency: "KES", payment_method: p.data.payment_method, payment_status: "pending",
+          status: "pending", flight_status: "scheduled", flight_events: [{ status: "scheduled", at: new Date().toISOString(), actor_id: uid }],
           commission_bps: 1500, financials_source: "taxid_rate_card",
         }).select("*").single();
         if (error) throw error;
-        await admin.from("charter_quotes").update({ status: "booked", rfq_state: "booked", rfq_state_at: new Date().toISOString() }).eq("id", q.id);
+        await admin.from("charter_quotes").update({ status: "converted", rfq_state: "BOOKED", rfq_state_at: new Date().toISOString() }).eq("id", q.id);
         return json({ ok: true, booking: data });
       }
       // ── Corporate charter wallets (credits only via verified M-Pesa callback) ──
@@ -328,7 +328,7 @@ Deno.serve(async (req) => {
         const { data, error } = await admin.from("charter_wallet_funding_requests").insert({
           wallet_id: w.id, owner_id: uid, actor_id: uid, amount_kes: p.data.amount_kes, cost_center: p.data.cost_center, purpose: p.data.purpose ?? null,
           approver_name: p.data.approver_name ?? null, approver_title: p.data.approver_title ?? null, reference: `CWF-${Date.now().toString(36).toUpperCase()}`,
-          idempotency_key: key, status: "pending", expires_at: new Date(Date.now() + 30 * 60_000).toISOString(),
+          idempotency_key: key, status: "draft", expires_at: new Date(Date.now() + 30 * 60_000).toISOString(),
         }).select("*").single();
         if (error) throw error;
         return json({ ok: true, request: data, reused: false });
@@ -337,8 +337,8 @@ Deno.serve(async (req) => {
         const p = z.object({ request_id: z.string().uuid(), phone: z.string().max(20), checkout_request_id: z.string().max(120), merchant_request_id: z.string().max(120).optional() }).safeParse(body);
         if (!p.success) return fail("invalid_request", "Invalid M-Pesa reference.");
         const { data, error } = await admin.from("charter_wallet_funding_requests").update({ phone: p.data.phone, checkout_request_id: p.data.checkout_request_id,
-          merchant_request_id: p.data.merchant_request_id ?? null, status: "stk_sent", last_stk_at: new Date().toISOString() })
-          .eq("id", p.data.request_id).eq("owner_id", uid).in("status", ["pending", "stk_sent"]).select("*").maybeSingle();
+          merchant_request_id: p.data.merchant_request_id ?? null, status: "awaiting_callback", last_stk_at: new Date().toISOString() })
+          .eq("id", p.data.request_id).eq("owner_id", uid).in("status", ["draft", "stk_requested", "awaiting_callback"]).select("*").maybeSingle();
         if (error) throw error;
         if (!data) return fail("not_found", "Top-up request not found or already finished.", 404);
         return json({ ok: true, request: data });
@@ -349,7 +349,7 @@ Deno.serve(async (req) => {
         const { data: r } = await admin.from("charter_wallet_funding_requests").select("*").eq("id", id).maybeSingle();
         if (!r || (r.owner_id !== uid && !isOps)) return fail("not_found", "Top-up request not found.", 404);
         if (action === "wallet_funding_cancel") {
-          if (!["pending", "stk_sent"].includes(r.status)) return fail("invalid_state", "This top-up can no longer be cancelled.", 409);
+          if (!["draft", "stk_requested", "awaiting_callback"].includes(r.status)) return fail("invalid_state", "This top-up can no longer be cancelled.", 409);
           const { data } = await admin.from("charter_wallet_funding_requests").update({ status: "cancelled" }).eq("id", id).select("*").single();
           return json({ ok: true, request: data });
         }

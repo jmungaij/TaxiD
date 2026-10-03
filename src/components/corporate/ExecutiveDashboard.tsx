@@ -73,7 +73,6 @@ export function ExecutiveDashboard({ corporateId }: { corporateId: string }) {
   if (s && !s.ok) return <Card className="p-4 text-sm">Only company admins and managers can see the executive dashboard.</Card>;
   const max = Math.max(1, ...(s?.groups ?? []).map((g) => g.total_cents));
   const c = s?.compliance;
-  const compliancePct = c && c.total ? Math.round((c.compliant / c.total) * 100) : null;
   const kpi = (drill: Drill, icon: React.ReactNode, label: string, value: React.ReactNode) => (
     <button type="button" onClick={() => setF({ ...f, drill: f.drill === drill ? null : drill })} className="text-left">
       <Card className={`p-4 h-full transition-colors hover:border-primary ${f.drill === drill ? "border-primary" : ""}`}>
@@ -119,7 +118,7 @@ export function ExecutiveDashboard({ corporateId }: { corporateId: string }) {
         {kpi("live", <Users className="h-3 w-3" />, "Active travellers", s?.active_travellers ?? "…")}
         {kpi("live", <Car className="h-3 w-3" />, "Live trips now", s?.live_trips ?? "…")}
         {kpi("approvals", <Clock className="h-3 w-3" />, "Pending approvals", s?.pending_approvals ?? "…")}
-        {kpi("compliance", <CheckCircle2 className="h-3 w-3" />, "Policy compliance", compliancePct === null ? "No checks yet" : `${compliancePct}%`)}
+        {kpi("compliance", <CheckCircle2 className="h-3 w-3" />, "Policy compliance", !c ? "…" : `${c.exceptions + c.blocked} flagged`)}
         {kpi("invoices", <Wallet className="h-3 w-3" />, "Wallet balance", s ? kes(s.wallet.balance_cents) : "…")}
         {kpi("invoices", <Wallet className="h-3 w-3" />, "Credit", s ? (s.wallet.mode ? `${s.wallet.mode} · ${kes(s.wallet.credit_limit_cents)}` : "No credit arrangement") : "…")}
         {kpi("invoices", <FileText className="h-3 w-3" />, "Unpaid invoices", s ? kes(s.invoices.open_cents) : "…")}
@@ -130,7 +129,7 @@ export function ExecutiveDashboard({ corporateId }: { corporateId: string }) {
       <p className="text-xs text-muted-foreground">Budget utilisation will appear once department budgets are set. Click any figure to see the records behind it.</p>
 
       {f.drill === "compliance" && c && (
-        <Card className="p-4 text-sm">Policy checks in period: {c.total} · compliant {c.compliant} · warnings {c.warnings} · needed approval {c.exceptions} · blocked {c.blocked}</Card>
+        <Card className="p-4 text-sm">Policy decisions recorded in period: {c.total} · allowed {c.compliant} · needed approval {c.exceptions} · blocked {c.blocked}</Card>
       )}
       {f.drill === "approvals" && <Card className="p-4 text-sm">{s?.pending_approvals ?? 0} items waiting. Open the Approvals tab to decide them.</Card>}
       {f.drill === "exceptions" && <Card className="p-4 text-sm">{s?.exceptions ?? 0} trips could not be charged automatically. Finance resolves these under Billing.</Card>}

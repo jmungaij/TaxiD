@@ -2,7 +2,7 @@
 
 - Brand identity comes from `src/config/brand.ts` (TaxiD, "Move Smarter. Go Further."); contact channels from `src/config/contact.ts` — one place to change names/emails.
 - Legal entity text "Yalla Beena Limited" is kept on purpose (legal documents); only customer-facing brand text says TaxiD.
-- TaxiD artwork is served from `public/taxid-*.png`; CDN pointers failed in preview.
+- TaxiD artwork served from `public/taxid-*.png` (CDN failed in preview).
 - Verified ustaxid@gmail.com receives super admin; Amie and Naima use distinct confirmed support accounts, never shared passwords.
 - Code identifiers, database names, env vars, API headers (e.g. `X-Yalla-Tenant`, `YALLA_*` secrets) keep their legacy names — renaming would break integrations.
 - Use live schema, not compiled pages. Finance/charter stay enquiries until backend contracts exist. Public nav uses service links, no Marketplace tab.

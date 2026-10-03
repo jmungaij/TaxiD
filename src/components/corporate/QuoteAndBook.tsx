@@ -102,7 +102,7 @@ export default function QuoteAndBook({ corporateId }: { corporateId: string }) {
   const PointPicker = ({ label, value, onChange }: { label: string; value: Pt; onChange: (p: Pt) => void }) => (
     <div className="space-y-2">
       <Label>{label}</Label>
-      <Select onValueChange={(id) => { const p = all.find((x) => x.id === id); if (p) { onChange({ address: ("address" in p && p.address) || p.name, lat: String(p.lat), lng: String(p.lng) }); setQuote(null); } }}>
+      <Select onValueChange={(id) => { const p = all.find((x) => x.id === id) as { name: string; address?: string; lat: number; lng: number } | undefined; if (p) { onChange({ address: p.address || p.name, lat: String(p.lat), lng: String(p.lng) }); setQuote(null); } }}>
         <SelectTrigger><SelectValue placeholder="Choose an airport or saved place" /></SelectTrigger>
         <SelectContent>{all.map((p) => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}</SelectContent>
       </Select>

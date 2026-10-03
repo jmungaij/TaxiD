@@ -88,7 +88,7 @@ const TOP_TABS: TopTab[] = [
     sub: [
       // Audit #5 — rename inner "Trips › Trips" to "Completed" (mounts CorporateCompletedRides).
       { key: "request",     label: "Request a Ride",  icon: Send },
-      { key: "guests",      label: "Guest & Hotel Rides", icon: Send },
+      { key: "guests",      label: "TravelDesk", icon: Send },
       { key: "trips",       label: "Completed",       icon: Car },
 
       { key: "tickets",     label: "Tickets",         icon: Ticket },

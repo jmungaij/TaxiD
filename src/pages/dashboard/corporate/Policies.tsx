@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Plus, Shield, Trash2 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { ProgramsPanel, PolicySimulator } from "@/components/corporate/ProgramsAndSimulator";
 import { CompanyPlacesPanel } from "@/components/corporate/CompanyPlacesPanel";
 import { EmployeeGroupsPanel, type EmployeeGroup } from "@/components/corporate/EmployeeGroupsPanel";
 
@@ -199,6 +200,8 @@ export default function CorporatePolicies({ corporateId }: { corporateId: string
         </Dialog>
       </div>
 
+      {corporateId && <PolicySimulator corporateId={corporateId} />}
+      {corporateId && <ProgramsPanel corporateId={corporateId} groups={groups} />}
       {corporateId && <CompanyPlacesPanel corporateId={corporateId} />}
       {corporateId && <EmployeeGroupsPanel corporateId={corporateId} onGroupsChange={setGroups} />}
 

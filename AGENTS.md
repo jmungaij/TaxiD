@@ -25,3 +25,4 @@
 - Guest/client/hotel/airport bookings go through `private.corporate_guest_book` (server-computed fare, same policy evaluator, company capacity check) — booking codes and approvals enforced server-side, never in the browser.
 - Multi-step approvals live in `corporate_approval_steps` (chains → steps with deadline + stand-in); `private.corporate_approval_step_decide` enforces maker-checker and distinct approvers; once a chain governs a trip the single-step `corporate_trip_decide` refuses it.
 - Location rules are evaluated by `private.corporate_location_evaluate` and merged into `private.corporate_policy_evaluate` (wrapper over `_base`) — still one rule engine.
+- Programs (why travel happens) are separate from groups (who travels); program-scoped policies are applied via the `taxid.program_id` session setting inside `private.corporate_evaluate_full`, which TravelDesk booking and the policy simulator share — one evaluator.

@@ -89,3 +89,5 @@
 - [ ] 9. Reports, exports and expense-system connections
 - [ ] 10. Company sign-in through their own work accounts (SAML SSO)
 - [ ] 11. Data-protection controls: retention, visibility, maker-checker
+- [x] Business 360: travel programs, policy simulator, TravelDesk for employees with traveller panel, live TravelDesk board + CSV export
+- [ ] Business 360 next: dispatch TravelDesk bookings to drivers + settle on completion; executive KPI dashboard; invoice groups; saved views; people sync

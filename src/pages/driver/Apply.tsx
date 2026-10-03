@@ -8,7 +8,8 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { CheckCircle2, Loader2, Search, Upload } from "lucide-react";
+import { CheckCircle2, Loader2, Search, Upload, ShieldCheck, IdCard, FileCheck2, CarFront, ArrowRight, Camera, Clock3 } from "lucide-react";
+import driverPhoto from "@/assets/driver-onboarding.jpg";
 import {
   submitDriverApplication, driverApplicationStatus, attachDriverDocument,
   myDriverApplications,
@@ -45,8 +46,21 @@ const stateTone: Record<string, string> = {
   EXPIRED: "bg-destructive/10 text-destructive border-destructive/30",
 };
 
-const NO_EXPIRY_CODES = ["KRA_PIN", "NATIONAL_ID", "PASSPORT", "FULL_PHOTO"];
+const NO_EXPIRY_CODES = ["KRA_PIN", "NATIONAL_ID", "FULL_PHOTO"];
 const IDENTITY_CODES = ["NATIONAL_ID", "PASSPORT"];
+const DOCUMENT_ORDER = ["NATIONAL_ID", "PASSPORT", "KRA_PIN", "FULL_PHOTO", "DRIVING_LICENCE", "PSV_BADGE", "GOOD_CONDUCT", "VEHICLE_LOGBOOK", "VEHICLE_INSURANCE", "INSURANCE_STICKER"];
+const DOCUMENT_HINTS: Record<string, string> = {
+  NATIONAL_ID: "Photograph both sides clearly and upload them together as one PDF or image.",
+  PASSPORT: "Upload the biodata page. The issue and expiry dates are required.",
+  KRA_PIN: "The name and PIN must be readable.",
+  FULL_PHOTO: "Use a clear, full-size photograph of yourself, not a cropped passport-size image.",
+  DRIVING_LICENCE: "Include the licence number, class and both dates.",
+  PSV_BADGE: "Include the badge number and validity dates.",
+  GOOD_CONDUCT: "Upload your current certificate of good conduct.",
+  VEHICLE_LOGBOOK: "The vehicle registration and owner details must be readable.",
+  VEHICLE_INSURANCE: "Upload the current PSV comprehensive motor insurance certificate.",
+  INSURANCE_STICKER: "Upload the matching PSV comprehensive insurance sticker.",
+};
 
 export default function DriverApply() {
   const [params, setParams] = useSearchParams();
@@ -62,6 +76,8 @@ export default function DriverApply() {
   const [documents, setDocuments] = useState<DriverApplicationDocumentRow[]>([]);
   const [mine, setMine] = useState<DriverApplicationRow[]>([]);
   const [checking, setChecking] = useState(false);
+  const [identity, setIdentity] = useState<"NATIONAL_ID" | "PASSPORT">("NATIONAL_ID");
+  const [selectedFiles, setSelectedFiles] = useState<Record<string, string>>({});
 
   const refParam = params.get("ref") ?? "";
   const tokenParam = params.get("token") ?? "";
@@ -86,6 +102,8 @@ export default function DriverApply() {
       notes: (res.review_notes as string | null) ?? null,
     });
     setDocuments((res.documents ?? []) as unknown as DriverApplicationDocumentRow[]);
+    const rows = (res.documents ?? []) as unknown as DriverApplicationDocumentRow[];
+    if (rows.find((d) => d.doc_code === "PASSPORT" && d.state !== "MISSING") && !rows.find((d) => d.doc_code === "NATIONAL_ID" && d.state !== "MISSING")) setIdentity("PASSPORT");
   }, []);
 
   useEffect(() => {
@@ -149,6 +167,15 @@ export default function DriverApply() {
   async function onUpload(doc: DriverApplicationDocumentRow, file: File, form: HTMLFormElement) {
     if (!lookup) return;
     const fd = new FormData(form);
+    if (!["application/pdf", "image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 15 * 1024 * 1024) {
+      return toast({ title: "Choose a JPG, PNG, WebP or PDF under 15 MB", variant: "destructive" });
+    }
+    const issued = String(fd.get("issued") ?? "");
+    const expires = String(fd.get("expires") ?? "");
+    const today = new Date().toISOString().slice(0, 10);
+    if (!issued || issued > today || (!NO_EXPIRY_CODES.includes(doc.doc_code) && (!expires || expires <= today || expires <= issued))) {
+      return toast({ title: "Check the document dates", description: "Enter a valid date of issue and, where required, a future expiry date.", variant: "destructive" });
+    }
     setUploading(doc.id);
     const res = await attachDriverDocument({
       documentId: doc.id,
@@ -170,8 +197,14 @@ export default function DriverApply() {
     }
     toast({ title: "Sent for verification", description: `${doc.doc_label} is now with our compliance team.` });
     form.reset();
+    setSelectedFiles((files) => ({ ...files, [doc.id]: "" }));
     await loadStatus(lookup.reference, tokenParam);
   }
+
+  const sortedDocuments = [...documents].sort((a, b) => DOCUMENT_ORDER.indexOf(a.doc_code) - DOCUMENT_ORDER.indexOf(b.doc_code));
+  const activeDocuments = sortedDocuments.filter((d) => !IDENTITY_CODES.includes(d.doc_code) || d.doc_code === identity);
+  const completedCount = activeDocuments.filter((d) => d.state === "VERIFIED").length;
+  const submittedCount = activeDocuments.filter((d) => d.state === "VERIFIED" || d.state === "PENDING_REVIEW").length;
 
   if (receipt) {
     const statusUrl = `/driver/apply?ref=${receipt.reference}&token=${receipt.token}`;
@@ -219,16 +252,29 @@ export default function DriverApply() {
         title="Drive with TaxiD — Driver Application"
         description="Apply to join the TaxiD professional driver network in Kenya: submit your licence, ID and good conduct certificate and track your approval."
       />
-      <header className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Join the TaxiD driver network</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Apply once, upload your documents, and go live after verification. Corporate travel, airport
-          transfers, executive mobility and delivery work all run from one driver account.
-        </p>
+      <header className="mb-8 overflow-hidden rounded-md bg-foreground text-background md:grid md:grid-cols-2">
+        <div className="flex flex-col justify-center px-6 py-9 md:px-10 md:py-12">
+          <img src="/taxid-lockup.png" alt="TaxiD" className="mb-7 h-10 w-auto max-w-40 object-contain object-left" />
+          <p className="mb-3 text-xs font-semibold uppercase text-gold">DRIVE WITH TAXID</p>
+          <h1 className="text-3xl font-semibold leading-tight md:text-4xl">Your next journey starts here.</h1>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-background/80">
+            Join the TaxiD driver network. Send your details and documents, follow each review, and get ready for work once approved.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-4 text-xs text-background/80">
+            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-gold" /> Verified network</span>
+            <span className="flex items-center gap-2"><CarFront className="h-4 w-4 text-gold" /> One driver account</span>
+          </div>
+        </div>
+        <img src={driverPhoto} alt="Professional TaxiD driver in a car in Nairobi" width={1024} height={768} className="h-56 w-full object-cover md:h-full md:min-h-80" />
       </header>
 
       {lookup ? (
         <>
+          <div className="mb-8 grid gap-4 border-y py-6 sm:grid-cols-3">
+            <div><p className="flex items-center gap-2 text-sm font-medium"><IdCard className="h-4 w-4 text-primary" /> 01 / Identity</p><p className="mt-1 text-xs text-muted-foreground">ID or passport comes first</p></div>
+            <div><p className="flex items-center gap-2 text-sm font-medium"><FileCheck2 className="h-4 w-4 text-primary" /> 02 / Documents</p><p className="mt-1 text-xs text-muted-foreground">Upload and track each item</p></div>
+            <div><p className="flex items-center gap-2 text-sm font-medium"><ShieldCheck className="h-4 w-4 text-primary" /> 03 / Review</p><p className="mt-1 text-xs text-muted-foreground">Staff verify before activation</p></div>
+          </div>
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-lg">{lookup.name || lookup.reference}</CardTitle>
@@ -240,6 +286,12 @@ export default function DriverApply() {
               {lookup.status === "APPROVED" && (
                 <Button asChild><Link to="/driver/onboarding">Continue driver onboarding</Link></Button>
               )}
+              <div className="pt-3">
+                <div className="mb-2 flex items-center justify-between text-xs"><span>Document progress</span><span>{completedCount} verified · {submittedCount} sent / {activeDocuments.length}</span></div>
+                <div className="h-2 overflow-hidden rounded-full bg-muted" role="progressbar" aria-label="Documents sent for review" aria-valuenow={submittedCount} aria-valuemin={0} aria-valuemax={activeDocuments.length}>
+                  <div className="h-full bg-primary transition-all" style={{ width: `${activeDocuments.length ? submittedCount / activeDocuments.length * 100 : 0}%` }} />
+                </div>
+              </div>
               <Button variant="ghost" size="sm" onClick={() => { setLookup(null); setDocuments([]); setParams({}); }}>
                 Start a new application
               </Button>
@@ -255,24 +307,38 @@ export default function DriverApply() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="border-b pb-5">
+                <p className="mb-3 flex items-center gap-2 text-sm font-semibold"><IdCard className="h-4 w-4 text-primary" /> 01 / Choose your identity document *</p>
+                <div className="grid gap-2 sm:grid-cols-2" role="group" aria-label="Choose National ID or Passport">
+                  {IDENTITY_CODES.map((code) => {
+                    const row = documents.find((d) => d.doc_code === code);
+                    return <Button key={code} type="button" variant={identity === code ? "default" : "outline"} className="h-auto min-h-12 justify-start whitespace-normal text-left" onClick={() => setIdentity(code as typeof identity)}>
+                      <IdCard className="mr-2 h-4 w-4 shrink-0" /> {code === "NATIONAL_ID" ? "National Identity card" : "Passport"}{row?.state === "VERIFIED" ? " · Verified" : row?.state === "PENDING_REVIEW" ? " · Awaiting review" : ""}
+                    </Button>;
+                  })}
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">A passport needs both its issue and expiry dates. A National ID does not expire.</p>
+              </div>
               {documents.length === 0 && <p className="text-sm text-muted-foreground">No checklist items found.</p>}
-              {documents.map((d) => (
-                <div key={d.id} className="rounded-lg border p-4">
+              {activeDocuments.map((d, index) => (
+                <div key={d.id} className="rounded-md border p-4 md:p-5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <p className="text-sm font-medium">
+                      <p className="text-xs text-muted-foreground">{index === 0 ? "01 / Identity" : `02 / Document ${index} of ${activeDocuments.length - 1}`}</p>
+                      <p className="mt-1 text-sm font-semibold">
                         {d.doc_label}{d.is_mandatory ? " *" : ""}
                         {IDENTITY_CODES.includes(d.doc_code) && (
                           <span className="ml-2 text-xs font-normal text-muted-foreground">One of National ID or Passport *</span>
                         )}
                       </p>
+                      <p className="mt-1 text-xs text-muted-foreground">{DOCUMENT_HINTS[d.doc_code]}</p>
                       {d.review_notes && <p className="text-xs text-muted-foreground">Reviewer: {d.review_notes}</p>}
                     </div>
                     <Badge variant="outline" className={stateTone[d.state]}>{d.state.replace(/_/g, " ")}</Badge>
                   </div>
                   {d.state !== "VERIFIED" && (
                     <form
-                      className="mt-3 grid gap-2 md:grid-cols-5"
+                      className="mt-4 space-y-4"
                       onSubmit={(e) => {
                         e.preventDefault();
                         const form = e.currentTarget;
@@ -282,18 +348,25 @@ export default function DriverApply() {
                         void onUpload(d, file, form);
                       }}
                     >
-                      <Input name="file" type="file" accept="image/*,application/pdf" required className="md:col-span-2" />
-                      <Input name="number" placeholder="Document number" />
-                      <Input name="issued" type="date" aria-label="Issued on" title="Issued on" />
-                      {NO_EXPIRY_CODES.includes(d.doc_code)
-                        ? <p className="self-center text-xs text-muted-foreground">Does not expire</p>
-                        : <Input name="expires" type="date" aria-label="Expires on" title="Expires on" />}
-                      <div className="md:col-span-5">
+                      <label className="flex min-h-24 cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed border-primary/40 bg-accent/40 px-4 py-4 text-center transition-colors hover:bg-accent focus-within:ring-2 focus-within:ring-ring">
+                        <Camera className="h-5 w-5 text-primary" aria-hidden />
+                        <span className="break-all text-sm font-medium">{selectedFiles[d.id] || "Choose a clear photo or PDF"}</span>
+                        <span className="text-xs text-muted-foreground">JPG, PNG, WebP or PDF · up to 15 MB</span>
+                        <Input name="file" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required className="sr-only" onChange={(e) => setSelectedFiles((files) => ({ ...files, [d.id]: e.target.files?.[0]?.name ?? "" }))} />
+                      </label>
+                      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        <div><Label className="text-xs" htmlFor={`number-${d.id}`}>Document number</Label><Input id={`number-${d.id}`} name="number" placeholder="As printed on document" maxLength={80} /></div>
+                        <div><Label className="text-xs" htmlFor={`issued-${d.id}`}>Date of issue *</Label><Input id={`issued-${d.id}`} name="issued" type="date" required max={new Date().toISOString().slice(0, 10)} /></div>
+                        <div><Label className="text-xs" htmlFor={`expires-${d.id}`}>Expiry date{NO_EXPIRY_CODES.includes(d.doc_code) ? "" : " *"}</Label>
+                          {NO_EXPIRY_CODES.includes(d.doc_code) ? <p className="flex h-10 items-center gap-2 text-xs text-muted-foreground"><Clock3 className="h-4 w-4" /> Does not expire</p> : <Input id={`expires-${d.id}`} name="expires" type="date" required min={new Date().toISOString().slice(0, 10)} />}
+                        </div>
+                      </div>
+                      <div>
                         <Button type="submit" size="sm" disabled={uploading === d.id}>
                           {uploading === d.id
                             ? <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden />
                             : <Upload className="mr-2 h-4 w-4" aria-hidden />}
-                          Send for verification
+                          Send for verification <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
                         </Button>
                       </div>
                     </form>
@@ -305,22 +378,16 @@ export default function DriverApply() {
         </>
       ) : (
         <>
-          <Card className="mb-8">
-            <CardHeader><CardTitle className="text-lg">What happens after you apply</CardTitle></CardHeader>
-            <CardContent className="grid gap-4 text-sm md:grid-cols-4">
-              {[
-                ["1. Apply", "Your details, licence and the work you want."],
-                ["2. Documents", "ID or passport, licence, good conduct, PSV insurance and photo."],
-                ["3. Verification", "A reviewer checks each document individually."],
-                ["4. Go live", "Your driver record is created and activated for work."],
-              ].map(([t, d]) => (
-                <div key={t} className="rounded-lg border p-3">
-                  <p className="font-medium">{t}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{d}</p>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+          <div className="mb-8 grid gap-4 border-y py-6 text-sm md:grid-cols-4">
+            {[
+              ["01 / Apply", "Your details and the work you want."],
+              ["02 / Upload", "Identity first, then your driving and vehicle documents."],
+              ["03 / Review", "A reviewer checks each submitted document."],
+              ["04 / Drive", "You can go live only after approval."],
+            ].map(([t, d]) => (
+              <div key={t}><p className="font-semibold text-primary">{t}</p><p className="mt-1 text-xs text-muted-foreground">{d}</p></div>
+            ))}
+          </div>
 
           {mine.length > 0 && (
             <Card className="mb-8">
@@ -371,9 +438,17 @@ export default function DriverApply() {
                   <Label htmlFor="date_of_birth">Date of birth</Label>
                   <Input id="date_of_birth" name="date_of_birth" type="date" />
                 </div>
+                <div className="md:col-span-2 space-y-2">
+                  <Label>Identity document *</Label>
+                  <div className="flex flex-wrap gap-2">
+                    <Button type="button" variant={identity === "NATIONAL_ID" ? "default" : "outline"} onClick={() => setIdentity("NATIONAL_ID")}>National Identity card</Button>
+                    <Button type="button" variant={identity === "PASSPORT" ? "default" : "outline"} onClick={() => setIdentity("PASSPORT")}>Passport</Button>
+                  </div>
+                </div>
                 <div>
-                  <Label htmlFor="national_id">National ID number *</Label>
+                  <Label htmlFor="national_id">{identity === "PASSPORT" ? "Passport number" : "National ID number"} *</Label>
                   <Input id="national_id" name="national_id" required minLength={5} maxLength={20} />
+                  {identity === "PASSPORT" && <p className="mt-1 text-xs text-muted-foreground">You will add the passport's issue and expiry dates when uploading it.</p>}
                 </div>
                 <div>
                   <Label htmlFor="kra_pin">KRA PIN</Label>

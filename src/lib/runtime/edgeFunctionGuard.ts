@@ -9,7 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 /** Functions present in supabase/functions (keep in sync when adding one). */
 export const DEPLOYED_FUNCTIONS = new Set([
-  "auth-email-hook", "backend-operations", "cta-event", "dispatch-engine",
+  "auth-email-hook", "backend-operations", "corporate-kyb-review", "charter-api", "cta-event", "dispatch-engine",
   "dispatch-supply-refresh", "etims-health", "etims-retry", "etims-submit",
   "etims-webhook", "mcp", "mpesa-b2c-result", "mpesa-callback",
   "mpesa-reconcile-recent", "mpesa-status", "mpesa-stkpush",

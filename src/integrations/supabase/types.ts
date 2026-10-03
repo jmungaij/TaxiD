@@ -18824,6 +18824,44 @@ export type Database = {
           },
         ]
       }
+      corporate_saved_views: {
+        Row: {
+          corporate_id: string
+          created_at: string
+          filters: Json
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          corporate_id: string
+          created_at?: string
+          filters?: Json
+          id?: string
+          name: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          corporate_id?: string
+          created_at?: string
+          filters?: Json
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_saved_views_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       corporate_support_ticket_notes: {
         Row: {
           author_email: string | null
@@ -18981,6 +19019,32 @@ export type Database = {
           },
           {
             foreignKeyName: "corporate_trip_settlements_corporate_id_fkey"
+            columns: ["corporate_id"]
+            isOneToOne: false
+            referencedRelation: "corporate_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      corporate_work_domains: {
+        Row: {
+          corporate_id: string
+          created_at: string
+          domain: string
+        }
+        Insert: {
+          corporate_id: string
+          created_at?: string
+          domain: string
+        }
+        Update: {
+          corporate_id?: string
+          created_at?: string
+          domain?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "corporate_work_domains_corporate_id_fkey"
             columns: ["corporate_id"]
             isOneToOne: false
             referencedRelation: "corporate_accounts"
@@ -86921,7 +86985,24 @@ export type Database = {
         }
         Returns: Json
       }
+      corporate_claim_work_account: { Args: never; Returns: Json }
       corporate_credit_invoices_issue: { Args: never; Returns: Json }
+      corporate_director_handover: {
+        Args: { _corp: string; _new_employee: string }
+        Returns: Json
+      }
+      corporate_employee_set_status: {
+        Args: { _employee: string; _status: string }
+        Returns: Json
+      }
+      corporate_employees_import: {
+        Args: { _corp: string; _rows: Json; _suspend_missing?: boolean }
+        Returns: Json
+      }
+      corporate_executive_summary: {
+        Args: { _corp: string; _from: string; _group?: string; _to: string }
+        Returns: Json
+      }
       corporate_guest_book: {
         Args: {
           _corporate_id: string

@@ -9,7 +9,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
-import { Mail, UserPlus, ShieldOff, ShieldCheck } from "lucide-react";
+import { Mail, UserPlus, ShieldOff, ShieldCheck, UserMinus, Trash2, Crown } from "lucide-react";
+import { HrImportDialog } from "@/components/corporate/HrImportDialog";
 
 interface Employee {
   id: string;
@@ -21,6 +22,7 @@ interface Employee {
   department_id: string | null;
   monthly_cap_cents: number | null;
   per_trip_cap_cents: number | null;
+  metadata?: unknown;
 }
 
 interface Dept { id: string; name: string }
@@ -102,18 +104,30 @@ export default function CorporateEmployees({
     load();
   };
 
-  const setStatus = async (id: string, status: "active" | "suspended" | "removed") => {
-    await supabase.from("corporate_employees").update({ status, removed_at: status === "removed" ? new Date().toISOString() : null }).eq("id", id);
-    await supabase.from("corporate_policy_audit_log").insert({
-      corporate_id: corporateId!, actor_user_id: user!.id, action: `employee.${status}`, target_type: "employee", target_id: id,
-    });
+  const setStatus = async (id: string, status: "active" | "suspended" | "removed" | "deleted") => {
+    if (status === "deleted" && !confirm("Delete this employee permanently?")) return;
+    const { data, error } = await supabase.rpc("corporate_employee_set_status", { _employee: id, _status: status });
+    const r = data as { ok?: boolean; error?: string; message?: string } | null;
+    if (error || !r?.ok) toast({ title: "Not changed", description: r?.message ?? r?.error ?? error?.message, variant: "destructive" });
     load();
   };
+
+  const handover = async (id: string) => {
+    if (!corporateId || !confirm("Hand the Director role (and super admin) to this employee? You will stop being Director.")) return;
+    const { data } = await supabase.rpc("corporate_director_handover", { _corp: corporateId, _new_employee: id });
+    const r = data as { ok?: boolean; error?: string } | null;
+    toast({ title: r?.ok ? "Director replaced" : "Handover refused", description: r?.error, variant: r?.ok ? undefined : "destructive" });
+    load();
+  };
+  const isDirector = (e: Employee) => !!(e.metadata as Record<string, unknown> | null)?.protected_director;
+  const title = (e: Employee) => (e.metadata as Record<string, unknown> | null)?.title as string | undefined;
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Employees</h2>
+        <div className="flex gap-2">
+        {corporateId && <HrImportDialog corporateId={corporateId} onDone={load} />}
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2"><UserPlus className="h-4 w-4" /> Invite employee</Button>
@@ -150,6 +164,7 @@ export default function CorporateEmployees({
             <DialogFooter><Button onClick={invite} className="gap-2"><Mail className="h-4 w-4" /> Send invitation</Button></DialogFooter>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       <div className="rounded-xl border bg-card">
@@ -164,7 +179,7 @@ export default function CorporateEmployees({
             {employees.map(e => (
               <TableRow key={e.id}>
                 <TableCell>{e.email}</TableCell>
-                <TableCell>{e.full_name ?? "—"}</TableCell>
+                <TableCell>{e.full_name ?? "—"}{title(e) && <div className="text-xs text-muted-foreground">{title(e)}</div>}{isDirector(e) && <Badge className="mt-1">Director · protected</Badge>}</TableCell>
                 <TableCell>{e.role.replace("corporate_", "")}</TableCell>
                 <TableCell>{depts.find(d => d.id === e.department_id)?.name ?? "—"}</TableCell>
                 <TableCell className="text-xs">
@@ -172,9 +187,14 @@ export default function CorporateEmployees({
                   {e.monthly_cap_cents ? ` · KES ${(e.monthly_cap_cents/100).toFixed(0)}/mo` : ""}
                 </TableCell>
                 <TableCell><Badge variant={e.status === "active" ? "default" : e.status === "invited" ? "secondary" : "destructive"}>{e.status}</Badge></TableCell>
-                <TableCell className="space-x-2">
-                  {e.status !== "active" && <Button size="sm" variant="outline" onClick={() => setStatus(e.id, "active")}><ShieldCheck className="h-4 w-4" /></Button>}
-                  {e.status === "active" && <Button size="sm" variant="outline" onClick={() => setStatus(e.id, "suspended")}><ShieldOff className="h-4 w-4" /></Button>}
+                <TableCell className="space-x-1 whitespace-nowrap">
+                  {isDirector(e) ? <span className="text-xs text-muted-foreground">Replace only by handover</span> : <>
+                    {e.status !== "active" && <Button size="sm" variant="outline" title="Reactivate" onClick={() => setStatus(e.id, "active")}><ShieldCheck className="h-4 w-4" /></Button>}
+                    {e.status === "active" && <Button size="sm" variant="outline" title="Suspend" onClick={() => setStatus(e.id, "suspended")}><ShieldOff className="h-4 w-4" /></Button>}
+                    {e.status !== "removed" && <Button size="sm" variant="outline" title="Remove" onClick={() => setStatus(e.id, "removed")}><UserMinus className="h-4 w-4" /></Button>}
+                    <Button size="sm" variant="outline" title="Delete" onClick={() => setStatus(e.id, "deleted")}><Trash2 className="h-4 w-4" /></Button>
+                    {e.status === "active" && e.role === "corporate_admin" && <Button size="sm" variant="ghost" title="Make Director" onClick={() => handover(e.id)}><Crown className="h-4 w-4" /></Button>}
+                  </>}
                 </TableCell>
               </TableRow>
             ))}

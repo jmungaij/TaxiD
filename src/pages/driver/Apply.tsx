@@ -48,7 +48,7 @@ const stateTone: Record<string, string> = {
 
 const NO_EXPIRY_CODES = ["KRA_PIN", "NATIONAL_ID", "FULL_PHOTO"];
 const IDENTITY_CODES = ["NATIONAL_ID", "PASSPORT"];
-const DOCUMENT_ORDER = ["NATIONAL_ID", "PASSPORT", "KRA_PIN", "FULL_PHOTO", "DRIVING_LICENCE", "PSV_BADGE", "GOOD_CONDUCT", "VEHICLE_LOGBOOK", "VEHICLE_INSURANCE", "INSURANCE_STICKER"];
+const DOCUMENT_ORDER = ["NATIONAL_ID", "PASSPORT", "KRA_PIN", "FULL_PHOTO", "DRIVING_LICENCE", "PSV_BADGE", "GOOD_CONDUCT", "VEHICLE_LOGBOOK", "INSURANCE_STICKER"];
 const DOCUMENT_HINTS: Record<string, string> = {
   NATIONAL_ID: "Photograph both sides clearly and upload them together as one PDF or image.",
   PASSPORT: "Upload the biodata page. The issue and expiry dates are required.",
@@ -58,7 +58,6 @@ const DOCUMENT_HINTS: Record<string, string> = {
   PSV_BADGE: "Include the badge number and validity dates.",
   GOOD_CONDUCT: "Upload your current certificate of good conduct.",
   VEHICLE_LOGBOOK: "The vehicle registration and owner details must be readable.",
-  VEHICLE_INSURANCE: "Upload the current PSV comprehensive motor insurance certificate.",
   INSURANCE_STICKER: "Upload the matching PSV comprehensive insurance sticker.",
 };
 

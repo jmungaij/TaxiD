@@ -249,7 +249,7 @@ export default function OperatorPortal() {
                   </p>
 
                   <div className="flex flex-wrap gap-2">
-                    {["scheduled", "departed", "arrived"].map((s) => (
+                    {["departed", "landed", "completed"].map((s) => (
                       <Button
                         key={s}
                         size="sm"

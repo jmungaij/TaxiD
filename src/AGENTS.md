@@ -1,0 +1,2 @@
+- Rider tables (`components/riders/RiderTables.tsx`) have Vitest tests (`bun run test`) to catch JSX breakage.
+- `index.css` precompiled; import `tw-utilities.css` after.

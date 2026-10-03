@@ -130,14 +130,29 @@ function landingForRoles(roles: string[]): string {
 
 async function resolvePostLoginDestination(userId: string, override: string | null): Promise<string> {
   if (override) return override;
-  const { data } = await supabase.from("user_roles").select("role");
+  const [{ data }, { data: membership }] = await Promise.all([
+    supabase.from("user_roles").select("role"),
+    // Account context: an active company membership (read under RLS — users
+    // see only their own row) decides the landing before any staff role.
+    supabase
+      .from("corporate_employees")
+      .select("corporate_id,status")
+      .eq("user_id", userId)
+      .eq("status", "active")
+      .limit(1),
+  ]);
   const roles = data?.map((r) => r.role as string) ?? [];
-  const roleDefault = landingForRoles(roles);
+  const isCorporateMember = (membership?.length ?? 0) > 0;
+  const roleDefault = isCorporateMember ? "/dashboard/corporate" : landingForRoles(roles);
 
   // Portal memory: if this device last used an operating context the identity is
   // STILL authorised for, land there instead of the role default. Authority is
   // re-derived from the roles above — the stored hint can never widen it.
-  const remembered = rememberedLandingFor(operatingContextsFor(roles).map((c) => c.key));
+  // Company members always land in their company first; staff areas stay
+  // reachable through the portal switcher, never by automatic redirect.
+  const remembered = isCorporateMember
+    ? null
+    : rememberedLandingFor(operatingContextsFor(roles).map((c) => c.key));
   const dest = remembered?.to ?? roleDefault;
 
   void auditPortalTransition({

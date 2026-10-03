@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { workspace360Path } from "@/lib/workspace360/links";
 import { normalizeWorkspace360Tab } from "@/lib/workspace360/tabs";
+import RiderInvitationsPanel from "@/components/admin/RiderInvitationsPanel";
 
 /**
  * Rider Directory — Phase D7.1 lean listing that deep-links every row into
@@ -113,7 +114,7 @@ export default function RiderDirectory() {
                     <TableCell>{r.rider_tier ?? "—"}</TableCell>
                     <TableCell className="text-right">{r.lifetime_trips ?? 0}</TableCell>
                     <TableCell className="text-right">
-                      {Number(r.rating_avg ?? 0).toFixed(2)}
+                      {(r.lifetime_trips ?? 0) > 0 ? Number(r.rating_avg ?? 0).toFixed(2) : "—"}
                     </TableCell>
                   </TableRow>
                 );
@@ -122,6 +123,7 @@ export default function RiderDirectory() {
           </Table>
         </CardContent>
       </Card>
+      <RiderInvitationsPanel />
     </div>
   );
 }

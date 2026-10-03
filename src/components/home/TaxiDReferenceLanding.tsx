@@ -119,17 +119,17 @@ export function TaxiDReferenceLanding() {
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--tx-deep))] via-[hsl(var(--tx-deep)/0.7)] to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[hsl(var(--tx-deep))] to-transparent" />
         <div className="container relative mx-auto px-4 pb-44 pt-16 md:pt-24 lg:pb-56">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[hsl(var(--tx-ice)/0.85)]">Africa's integrated mobility platform</p>
-          <h1 className="mt-5 text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl">
-            Move smarter<span className="text-[hsl(var(--tx-gold))]">.</span><br />
-            <span className={accent}>Go further.</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[hsl(var(--tx-ice)/0.85)]">The mobility platform for Africa</p>
+          <h1 className="mt-5 max-w-3xl font-extrabold leading-[1.08]">
+            <span className="block text-6xl md:text-8xl">TaxiD<span className="text-[hsl(var(--tx-gold))]">.</span></span>
+            <span className="mt-4 block text-3xl md:text-5xl">One platform. <span className={accent}>Every way to move.</span></span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-[hsl(var(--tx-ice)/0.9)]">
-            One connected platform for rides, business travel, charter, rentals, delivery, logistics and air mobility.
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[hsl(var(--tx-ice)/0.9)] md:text-lg">
+            TaxiD connects people, businesses and mobility providers through one intelligent platform for rides, corporate travel, logistics, vehicle solutions and charter.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/rider" className={goldBtn}>Book a ride <ArrowRight className="h-4 w-4" /></Link>
-            <Link to="/business/portal" className={ghostBtn}>Explore TaxiD Business</Link>
+            <Link to="/rider" className={goldBtn}>Book a Journey <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/business/portal" className={ghostBtn}>Explore Enterprise</Link>
           </div>
           <div className="mt-5 flex flex-wrap gap-3">
             <PlayBadge audience="rider" label="TaxiD Rider" />
@@ -161,8 +161,8 @@ export function TaxiDReferenceLanding() {
       <section className="container mx-auto px-4 py-20">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 className="text-3xl font-extrabold md:text-5xl">One platform. <span className={accent}>Every way to move.</span></h2>
-            <p className="mt-3 max-w-xl text-[hsl(var(--tx-ice)/0.8)]">Connecting people, organisations and transport providers across Africa and beyond.</p>
+            <h2 className="text-3xl font-extrabold md:text-5xl">Connecting every side of <span className={accent}>the journey.</span></h2>
+            <p className="mt-3 max-w-xl text-[hsl(var(--tx-ice)/0.8)]">From everyday travel to movement at scale, TaxiD brings riders, businesses and mobility providers together.</p>
           </div>
           <Link to="/partners" className={ghostBtn}>Explore the Platform <ArrowRight className="h-4 w-4" /></Link>
         </div>

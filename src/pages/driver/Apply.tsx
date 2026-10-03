@@ -252,16 +252,29 @@ export default function DriverApply() {
         title="Drive with TaxiD — Driver Application"
         description="Apply to join the TaxiD professional driver network in Kenya: submit your licence, ID and good conduct certificate and track your approval."
       />
-      <header className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Join the TaxiD driver network</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Apply once, upload your documents, and go live after verification. Corporate travel, airport
-          transfers, executive mobility and delivery work all run from one driver account.
-        </p>
+      <header className="mb-8 overflow-hidden rounded-md bg-foreground text-background md:grid md:grid-cols-2">
+        <div className="flex flex-col justify-center px-6 py-9 md:px-10 md:py-12">
+          <img src="/taxid-lockup.png" alt="TaxiD" className="mb-7 h-10 w-auto max-w-40 object-contain object-left" />
+          <p className="mb-3 text-xs font-semibold uppercase text-gold">DRIVE WITH TAXID</p>
+          <h1 className="text-3xl font-semibold leading-tight md:text-4xl">Your next journey starts here.</h1>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-background/80">
+            Join the TaxiD driver network. Send your details and documents, follow each review, and get ready for work once approved.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-4 text-xs text-background/80">
+            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-gold" /> Verified network</span>
+            <span className="flex items-center gap-2"><CarFront className="h-4 w-4 text-gold" /> One driver account</span>
+          </div>
+        </div>
+        <img src={driverPhoto} alt="Professional TaxiD driver in a car in Nairobi" width={1024} height={768} className="h-56 w-full object-cover md:h-full md:min-h-80" />
       </header>
 
       {lookup ? (
         <>
+          <div className="mb-8 grid gap-4 border-y py-6 sm:grid-cols-3">
+            <div><p className="flex items-center gap-2 text-sm font-medium"><IdCard className="h-4 w-4 text-primary" /> 01 / Identity</p><p className="mt-1 text-xs text-muted-foreground">ID or passport comes first</p></div>
+            <div><p className="flex items-center gap-2 text-sm font-medium"><FileCheck2 className="h-4 w-4 text-primary" /> 02 / Documents</p><p className="mt-1 text-xs text-muted-foreground">Upload and track each item</p></div>
+            <div><p className="flex items-center gap-2 text-sm font-medium"><ShieldCheck className="h-4 w-4 text-primary" /> 03 / Review</p><p className="mt-1 text-xs text-muted-foreground">Staff verify before activation</p></div>
+          </div>
           <Card className="mb-8">
             <CardHeader>
               <CardTitle className="text-lg">{lookup.name || lookup.reference}</CardTitle>
@@ -273,6 +286,12 @@ export default function DriverApply() {
               {lookup.status === "APPROVED" && (
                 <Button asChild><Link to="/driver/onboarding">Continue driver onboarding</Link></Button>
               )}
+              <div className="pt-3">
+                <div className="mb-2 flex items-center justify-between text-xs"><span>Document progress</span><span>{completedCount} verified · {submittedCount} sent / {activeDocuments.length}</span></div>
+                <div className="h-2 overflow-hidden rounded-full bg-muted" role="progressbar" aria-label="Documents sent for review" aria-valuenow={submittedCount} aria-valuemin={0} aria-valuemax={activeDocuments.length}>
+                  <div className="h-full bg-primary transition-all" style={{ width: `${activeDocuments.length ? submittedCount / activeDocuments.length * 100 : 0}%` }} />
+                </div>
+              </div>
               <Button variant="ghost" size="sm" onClick={() => { setLookup(null); setDocuments([]); setParams({}); }}>
                 Start a new application
               </Button>
@@ -288,24 +307,38 @@ export default function DriverApply() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="border-b pb-5">
+                <p className="mb-3 flex items-center gap-2 text-sm font-semibold"><IdCard className="h-4 w-4 text-primary" /> 01 / Choose your identity document *</p>
+                <div className="grid gap-2 sm:grid-cols-2" role="group" aria-label="Choose National ID or Passport">
+                  {IDENTITY_CODES.map((code) => {
+                    const row = documents.find((d) => d.doc_code === code);
+                    return <Button key={code} type="button" variant={identity === code ? "default" : "outline"} className="h-auto min-h-12 justify-start whitespace-normal text-left" onClick={() => setIdentity(code as typeof identity)}>
+                      <IdCard className="mr-2 h-4 w-4 shrink-0" /> {code === "NATIONAL_ID" ? "National Identity card" : "Passport"}{row?.state === "VERIFIED" ? " · Verified" : row?.state === "PENDING_REVIEW" ? " · Awaiting review" : ""}
+                    </Button>;
+                  })}
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">A passport needs both its issue and expiry dates. A National ID does not expire.</p>
+              </div>
               {documents.length === 0 && <p className="text-sm text-muted-foreground">No checklist items found.</p>}
-              {documents.map((d) => (
-                <div key={d.id} className="rounded-lg border p-4">
+              {activeDocuments.map((d, index) => (
+                <div key={d.id} className="rounded-md border p-4 md:p-5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <p className="text-sm font-medium">
+                      <p className="text-xs text-muted-foreground">{index === 0 ? "01 / Identity" : `02 / Document ${index} of ${activeDocuments.length - 1}`}</p>
+                      <p className="mt-1 text-sm font-semibold">
                         {d.doc_label}{d.is_mandatory ? " *" : ""}
                         {IDENTITY_CODES.includes(d.doc_code) && (
                           <span className="ml-2 text-xs font-normal text-muted-foreground">One of National ID or Passport *</span>
                         )}
                       </p>
+                      <p className="mt-1 text-xs text-muted-foreground">{DOCUMENT_HINTS[d.doc_code]}</p>
                       {d.review_notes && <p className="text-xs text-muted-foreground">Reviewer: {d.review_notes}</p>}
                     </div>
                     <Badge variant="outline" className={stateTone[d.state]}>{d.state.replace(/_/g, " ")}</Badge>
                   </div>
                   {d.state !== "VERIFIED" && (
                     <form
-                      className="mt-3 grid gap-2 md:grid-cols-5"
+                      className="mt-4 space-y-4"
                       onSubmit={(e) => {
                         e.preventDefault();
                         const form = e.currentTarget;
@@ -315,18 +348,25 @@ export default function DriverApply() {
                         void onUpload(d, file, form);
                       }}
                     >
-                      <Input name="file" type="file" accept="image/*,application/pdf" required className="md:col-span-2" />
-                      <Input name="number" placeholder="Document number" />
-                      <Input name="issued" type="date" aria-label="Issued on" title="Issued on" />
-                      {NO_EXPIRY_CODES.includes(d.doc_code)
-                        ? <p className="self-center text-xs text-muted-foreground">Does not expire</p>
-                        : <Input name="expires" type="date" aria-label="Expires on" title="Expires on" />}
-                      <div className="md:col-span-5">
+                      <label className="flex min-h-24 cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed border-primary/40 bg-accent/40 px-4 py-4 text-center transition-colors hover:bg-accent focus-within:ring-2 focus-within:ring-ring">
+                        <Camera className="h-5 w-5 text-primary" aria-hidden />
+                        <span className="break-all text-sm font-medium">{selectedFiles[d.id] || "Choose a clear photo or PDF"}</span>
+                        <span className="text-xs text-muted-foreground">JPG, PNG, WebP or PDF · up to 15 MB</span>
+                        <Input name="file" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required className="sr-only" onChange={(e) => setSelectedFiles((files) => ({ ...files, [d.id]: e.target.files?.[0]?.name ?? "" }))} />
+                      </label>
+                      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        <div><Label className="text-xs" htmlFor={`number-${d.id}`}>Document number</Label><Input id={`number-${d.id}`} name="number" placeholder="As printed on document" maxLength={80} /></div>
+                        <div><Label className="text-xs" htmlFor={`issued-${d.id}`}>Date of issue *</Label><Input id={`issued-${d.id}`} name="issued" type="date" required max={new Date().toISOString().slice(0, 10)} /></div>
+                        <div><Label className="text-xs" htmlFor={`expires-${d.id}`}>Expiry date{NO_EXPIRY_CODES.includes(d.doc_code) ? "" : " *"}</Label>
+                          {NO_EXPIRY_CODES.includes(d.doc_code) ? <p className="flex h-10 items-center gap-2 text-xs text-muted-foreground"><Clock3 className="h-4 w-4" /> Does not expire</p> : <Input id={`expires-${d.id}`} name="expires" type="date" required min={new Date().toISOString().slice(0, 10)} />}
+                        </div>
+                      </div>
+                      <div>
                         <Button type="submit" size="sm" disabled={uploading === d.id}>
                           {uploading === d.id
                             ? <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden />
                             : <Upload className="mr-2 h-4 w-4" aria-hidden />}
-                          Send for verification
+                          Send for verification <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
                         </Button>
                       </div>
                     </form>

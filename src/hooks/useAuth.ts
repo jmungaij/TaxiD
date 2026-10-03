@@ -84,8 +84,13 @@ export function useAuth() {
         // Automatic role re-fetch so fresh grants (e.g. super_admin) are
         // recognized immediately after sign-in — no manual reload needed.
         // Deferred to avoid deadlocks inside onAuthStateChange.
-        const t = setTimeout(() => {
+        const t = setTimeout(async () => {
           timers.delete(t);
+          // Work-account sign-in: a confirmed company email (e.g. @yalla.africa)
+          // is linked to its staff record server-side; roles are re-read after.
+          if (event === "SIGNED_IN") {
+            try { await supabase.rpc("corporate_claim_work_account"); } catch { /* not a work account */ }
+          }
           void fetchRoles(session.user);
         }, 0);
         timers.add(t);

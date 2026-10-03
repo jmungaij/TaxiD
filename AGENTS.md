@@ -27,3 +27,4 @@
 - Location rules are evaluated by `private.corporate_location_evaluate` and merged into `private.corporate_policy_evaluate` (wrapper over `_base`) — still one rule engine.
 - Programs (why travel happens) are separate from groups (who travels); program-scoped policies are applied via the `taxid.program_id` session setting inside `private.corporate_evaluate_full`, which TravelDesk booking and the policy simulator share — one evaluator.
 - TravelDesk bookings become real trips via `private.corporate_guest_dispatch` (trigger on confirmation) — one trip/dispatch/driver/settlement path, never a parallel booking system.
+- Company work-account sign-in links a confirmed work-domain email (`corporate_work_domains`) to its staff record via `corporate_claim_work_account` after sign-in; protected directors (`metadata.protected_director`) change only through `corporate_director_handover`.

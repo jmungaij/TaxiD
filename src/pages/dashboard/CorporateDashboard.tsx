@@ -21,6 +21,7 @@ import {
   normalizeCorporateRole, corporateRoleLabel, type CorporateRole,
 } from "@/lib/corporateRoles";
 import CorporateEmployees from "./corporate/Employees";
+import { ExecutiveDashboard } from "@/components/corporate/ExecutiveDashboard";
 import CorporateDepartments from "./corporate/Departments";
 import CorporateCostCenters from "./corporate/CostCenters";
 import CorporateDesignations from "./corporate/Designations";
@@ -76,6 +77,7 @@ type TopTab = {
 
 const TOP_TABS: TopTab[] = [
   { key: "dashboard",   label: "Dashboard",   icon: LayoutDashboard },
+  { key: "executive",   label: "Executive",   icon: LineChart },
   { key: "staff",       label: "Staff",       icon: Users, layout: "horizontal",
     sub: [
       { key: "active",       label: "Active",       icon: CheckCircle2 },
@@ -475,6 +477,7 @@ function SectionPanel({
   if (top === "dashboard") {
     return <DashboardOverview corporateId={corporateId} walletId={walletId} counts={counts} balance={balance} />;
   }
+  if (top === "executive") return corporateId ? <ExecutiveDashboard corporateId={corporateId} /> : null;
 
   // Staff
   if (top === "staff") {

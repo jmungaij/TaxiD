@@ -196,7 +196,12 @@ export default function DriverApply() {
               </AlertDescription>
             </Alert>
             <div className="flex flex-wrap gap-3">
-              <Button asChild><Link to={statusUrl}>Upload my documents</Link></Button>
+              <Button onClick={() => {
+                const r = receipt;
+                setReceipt(null);
+                setParams({ ref: r.reference, token: r.token });
+                void loadStatus(r.reference, r.token);
+              }}>Upload my documents</Button>
               <Button variant="outline" onClick={() => setReceipt(null)}>Back to the form</Button>
             </div>
           </CardContent>

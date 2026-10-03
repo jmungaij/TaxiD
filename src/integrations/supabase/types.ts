@@ -87592,6 +87592,7 @@ export type Database = {
       }
       driver_application_decide: { Args: { p: Json }; Returns: Json }
       driver_application_document_attach: { Args: { p: Json }; Returns: Json }
+      driver_application_document_review: { Args: { p: Json }; Returns: Json }
       driver_application_status: {
         Args: { _reference: string; _token: string }
         Returns: Json

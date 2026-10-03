@@ -86991,6 +86991,7 @@ export type Database = {
         Args: { _corp: string; _new_employee: string }
         Returns: Json
       }
+      corporate_duty_of_care: { Args: { _corp: string }; Returns: Json }
       corporate_employee_set_status: {
         Args: { _employee: string; _status: string }
         Returns: Json

@@ -77,6 +77,13 @@ Deno.serve(async (req) => {
       return { delivery, event_id, status, response_status, error };
     };
 
+    const fanout = async (type: string, payload: Record<string, unknown>, booking?: { id?: string; reference?: string }) => {
+      const { data: eps } = await admin.from("charter_webhook_endpoints").select("id,url,secret,events").eq("active", true);
+      let last = `evt_${crypto.randomUUID()}`;
+      for (const ep of eps ?? []) if (!ep.events?.length || ep.events.includes(type)) last = (await deliver(ep, type, payload, booking)).event_id;
+      return last;
+    };
+
     switch (action) {
       case "booking_list": {
         let q = admin.from("charter_bookings").select("*").order("created_at", { ascending: false }).limit(200);
@@ -97,6 +104,7 @@ Deno.serve(async (req) => {
         const events = [...(Array.isArray(b.flight_events) ? b.flight_events : []), { status: p.data.status, at: new Date().toISOString(), actor_id: uid, note: p.data.note ?? null }];
         const { data, error } = await admin.from("charter_bookings").update({ flight_status: p.data.status, flight_events: events, updated_at: new Date().toISOString() }).eq("id", b.id).select("*").single();
         if (error) throw error;
+        await fanout("flight.status_changed", { booking_id: data.id, reference: data.reference, status: p.data.status }, data);
         return json({ ok: true, booking: data });
       }
       case "payment_status": {
@@ -267,6 +275,7 @@ Deno.serve(async (req) => {
           commission_bps: 1500, financials_source: "taxid_rate_card",
         }).select("*").single();
         if (error) throw error;
+        await fanout("booking.created", { booking_id: data.id, reference: data.reference, amount_kes: data.amount, asset: data.asset_name }, data);
         await admin.from("charter_quotes").update({ status: "converted", rfq_state: "BOOKED", rfq_state_at: new Date().toISOString() }).eq("id", q.id);
         return json({ ok: true, booking: data });
       }
@@ -362,6 +371,35 @@ Deno.serve(async (req) => {
         if (!(isOps && body.scope === "all")) q = q.eq("owner_id", uid);
         const { data } = await q;
         return json({ ok: true, requests: data ?? [], reconciliation: null });
+      }
+      case "payment_initiate": {
+        const p = z.object({ booking_id: z.string().uuid(), phone: z.string().min(9).max(20), idempotency_key: z.string().min(8).max(120) }).safeParse(body);
+        if (!p.success) return fail("invalid_request", "Enter a valid M-Pesa phone number.");
+        const b = await loadBooking(p.data.booking_id);
+        if (!b || b.user_id !== uid) return fail("not_found", "Booking not found.", 404);
+        if (b.payment_status === "paid") return fail("already_paid", "This booking is already paid.", 409);
+        const amount = Math.round(Number(b.amount));
+        if (!amount || amount < 1) return fail("no_amount", "This booking has no confirmed price yet.", 409);
+        if (amount > 250000) return fail("over_limit", "M-Pesa allows up to KES 250,000 per payment. Use the company wallet or invoice.", 409);
+        const res = await fetch(`${Deno.env.get("SUPABASE_URL")}/functions/v1/mpesa-stkpush`, {
+          method: "POST", headers: { "Content-Type": "application/json", Authorization: auth, apikey: Deno.env.get("SUPABASE_ANON_KEY") ?? "" },
+          body: JSON.stringify({ amount, phone: p.data.phone, wallet_type: "personal", account_reference: b.reference, idempotency_key: p.data.idempotency_key }),
+        });
+        const r = await res.json().catch(() => ({}));
+        const checkout = r?.checkoutRequestId ?? r?.data?.checkoutRequestId ?? null;
+        if (!res.ok || !checkout) return fail("stk_failed", r?.message ?? r?.error ?? "M-Pesa could not send the prompt. Try again.", 502);
+        await admin.from("charter_bookings").update({ checkout_request_id: checkout, payment_method: "mpesa", payment_provider: "mpesa", updated_at: new Date().toISOString() }).eq("id", b.id);
+        const phone = p.data.phone.replace(/\D/g, "");
+        return json({ ok: true, amount_kes: amount, phone_masked: `${phone.slice(0, 5)}***${phone.slice(-2)}`, checkout_request_id: checkout,
+          message: "Check your phone and enter your M-Pesa PIN. The booking is marked paid only after M-Pesa confirms.", replayed: !!r?.replayed });
+      }
+      case "event_emit": {
+        const type = String(body.event_type ?? "");
+        if (!/^[a-z_]+\.[a-z_]+$/.test(type)) return fail("invalid_request", "Invalid event type.");
+        const b = body.booking_id ? await loadBooking(String(body.booking_id)) : null;
+        if (body.booking_id && !b) return fail("not_found", "Booking not found.", 404);
+        const id = await fanout(type, { booking_id: b?.id ?? null, reference: b?.reference ?? body.reference ?? null, before: body.before ?? null, after: body.after ?? null, changed_fields: body.changed_fields ?? [] }, b ?? undefined);
+        return json({ ok: true, event_id: id });
       }
       default:
         return fail("not_available", "This charter feature is not connected yet.", 501);

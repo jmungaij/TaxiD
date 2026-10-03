@@ -3,6 +3,9 @@ import { HelmetProvider } from 'react-helmet-async'
 import * as Sentry from '@sentry/react'
 import App from './App.tsx'
 import { captureAttribution } from './lib/social/attribution'
+import { installEdgeFunctionGuard } from './lib/runtime/edgeFunctionGuard'
+
+installEdgeFunctionGuard();
 import { GlobalErrorBoundary, attemptStaleBundleRecovery, classifyRuntimeError } from './components/system/GlobalErrorBoundary'
 import { recordDiagnostic, supportReference, newCorrelationId } from './lib/runtime/diagnostics'
 import { buildManifest, hasMixedDependencyBundles } from './lib/runtime/buildManifest'

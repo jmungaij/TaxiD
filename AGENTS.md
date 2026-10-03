@@ -7,7 +7,7 @@
 - Code identifiers, database names, env vars, API headers (e.g. `X-Yalla-Tenant`, `YALLA_*` secrets) keep their legacy names — renaming would break integrations.
 - Use live schema, not compiled pages. Finance/charter stay enquiries until backend contracts exist. Public navigation uses service links, not a Marketplace tab.
 - Business requests stay owner-scoped; staff review uses guarded routines, and enquiry values never count as revenue.
-- Rider Management tables live in `src/components/riders/RiderTables.tsx` with Vitest regression tests (`bun run test`) — catches JSX breakage before publishing.
+- Rider tables (`src/components/riders/RiderTables.tsx`) have Vitest tests (`bun run test`) to catch JSX breakage.
 - AI drafts and backend analytics run in role-checked functions; never expose secrets or arbitrary SQL in the browser.
 
 - The Supabase client is typed with `LooseDatabase` (`src/integrations/supabase/loose-types.ts`), not the generated `types.ts`: the Cloud backend only has Cloud-created tables while the app queries a much larger schema. Switch back to generated types once the full schema is recreated. `types.ts` is platform-locked (write tool rejects edits).
@@ -27,4 +27,5 @@
 - Company work-account sign-in links a confirmed work-domain email (`corporate_work_domains`) to its staff record via `corporate_claim_work_account` after sign-in; protected directors (`metadata.protected_director`) change only through `corporate_director_handover`.
 - Vehicle catalogue (Service → Service Class → Vehicle Class) lives in `mobility_services`/`mobility_vehicle_classes`; a class is bookable only when linked to a priced `ride_types` row, and policies store ride-type codes — pricing and the policy engine stay single-sourced.
 
-- Company funds: holds (`corporate_fund_holds`) sync by trigger on `trip_bookings` and capture on settlement; `trip_financial_ledger` is append-only, one idempotency key per booking event; `corporate_budgets` checked in `trip_confirm_booking_ctx`.- Every trip price comes from `private.taxid_quote` (rate card; airport = distance + pickup premium, floored at zone price); `corporate_estimate_fare` delegates to it — one pricing path for quotes and bookings. Credit lines only via `corporate_credit_decide` (super admin).
+- Company funds: holds (`corporate_fund_holds`) sync by trigger on `trip_bookings` and capture on settlement; `trip_financial_ledger` is append-only, one idempotency key per booking event; `corporate_budgets` checked in `trip_confirm_booking_ctx`.
+- Prices come only from `private.taxid_quote` (airports: distance + pickup premium, zone floor); `corporate_estimate_fare` delegates. Credit only via super-admin `corporate_credit_decide`.

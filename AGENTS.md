@@ -28,4 +28,4 @@
 - Vehicle catalogue (Service → Service Class → Vehicle Class) lives in `mobility_services`/`mobility_vehicle_classes`; a class is bookable only when linked to a priced `ride_types` row, and policies store ride-type codes — pricing and the policy engine stay single-sourced.
 
 - Company funds: holds (`corporate_fund_holds`) sync by trigger on `trip_bookings` and capture on settlement; `trip_financial_ledger` is append-only, one idempotency key per booking event; `corporate_budgets` checked in `trip_confirm_booking_ctx`.
-- Prices come only from `private.taxid_quote` (airports: distance + pickup premium, zone floor); `corporate_estimate_fare` delegates. Credit only via super-admin `corporate_credit_decide`.
+- Prices come only from `private.taxid_quote` (airports: distance + pickup premium, zone floor); estimate_fare delegates. Credit only via super-admin `corporate_credit_decide`.

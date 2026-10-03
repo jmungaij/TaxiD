@@ -9,7 +9,7 @@ import ScopePicker, { useDepartments } from "./ScopePicker";
 import { loadManagedRules, setManagedRule } from "@/lib/corporate/adminControls";
 
 interface RideType { id: string; name: string; code: string }
-interface VClass { code: string; label: string; service_code: string; service_class: string; seats: number; accessible: boolean; example_models: string[]; ride_type_id: string | null }
+interface VClass { code: string; label: string; service_code: string; service_class: string; seats: number; accessible: boolean; example_models: string[]; ride_type_id: string | null; pricing_model: string }
 const SERVICE_LABEL: Record<string, string> = { ride: "TaxiD Ride", airport: "TaxiD Airport", charter: "TaxiD Charter" };
 
 export default function AllowedServicesPanel({ corporateId }: { corporateId: string | null }) {
@@ -118,7 +118,7 @@ export default function AllowedServicesPanel({ corporateId }: { corporateId: str
                           {vc.service_class} · {vc.seats} seats{vc.accessible ? " · wheelchair access" : ""}
                         </span>
                         <span className="block text-xs text-muted-foreground">{vc.example_models.join(", ")}</span>
-                        {!rt && <span className="block text-xs text-muted-foreground">Coming soon — not priced yet</span>}
+                        {!rt && <span className="block text-xs text-muted-foreground">{vc.pricing_model === "daily_charter" ? "Booked through charter day rates" : vc.pricing_model === "airport_zone" ? "Booked through airport zone rates" : "Not priced yet"}</span>}
                       </span>
                     </label>
                   );

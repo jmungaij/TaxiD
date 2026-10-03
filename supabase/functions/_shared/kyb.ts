@@ -58,38 +58,34 @@ export async function aiExtract(slot: string, bytes: Uint8Array, mime: string) {
   for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
   const dataUrl = `data:${mime};base64,${btoa(bin)}`;
   const part = mime === "application/pdf"
-    ? { type: "file", file: { filename: "doc.pdf", file_data: dataUrl } }
-    : { type: "image_url", image_url: { url: dataUrl } };
-  const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    ? { type: "input_file", filename: "doc.pdf", file_data: dataUrl }
+    : { type: "input_image", image_url: dataUrl };
+  const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      model: "google/gemini-2.5-flash",
-      messages: [
-        { role: "system", content: "You read Kenyan business and identity documents. Only report text actually visible. Never guess." },
-        { role: "user", content: [{ type: "text", text: `This should be a "${slot.replace(/_/g, " ")}". Extract: ${fields.join(", ")}. Dates as YYYY-MM-DD.` }, part] },
-      ],
+      model: "openai/gpt-6-astra",
+      instructions: "You read Kenyan business and identity documents. Only report text actually visible. Never guess.",
+      input: [{ role: "user", content: [{ type: "input_text", text: `This should be a "${slot.replace(/_/g, " ")}". Extract: ${fields.join(", ")}. Dates as YYYY-MM-DD. Confidence 0-1 per field.` }, part] }],
       tools: [{
         type: "function",
-        function: {
-          name: "report",
-          parameters: {
-            type: "object",
-            properties: {
-              matches_document_type: { type: "boolean" },
-              fields: { type: "object", properties: Object.fromEntries(fields.map((f) => [f, { type: ["string", "null"] }])) },
-              confidence: { type: "object", properties: Object.fromEntries(fields.map((f) => [f, { type: "number" }])) },
-            },
-            required: ["matches_document_type", "fields", "confidence"],
+        name: "report",
+        parameters: {
+          type: "object",
+          properties: {
+            matches_document_type: { type: "boolean" },
+            fields: { type: "object", properties: Object.fromEntries(fields.map((f) => [f, { type: ["string", "null"] }])) },
+            confidence: { type: "object", properties: Object.fromEntries(fields.map((f) => [f, { type: "number" }])) },
           },
+          required: ["matches_document_type", "fields", "confidence"],
         },
       }],
-      tool_choice: { type: "function", function: { name: "report" } },
+      tool_choice: { type: "function", name: "report" },
     }),
   });
   if (!res.ok) { console.error("aiExtract", res.status, await res.text()); return null; }
   const j = await res.json();
-  const args = j?.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
+  const args = (j?.output ?? []).find((o: any) => o.type === "function_call")?.arguments;
   if (!args) return null;
   try {
     const p = JSON.parse(args);
@@ -144,7 +140,7 @@ export async function scanDocument(admin: any, doc: any, draft: any, declared: R
     scan_result: { checked: "file_signature", detected: real, ai_read: !!ai },
     extracted: ai?.extracted ?? {},
     ocr_confidence: ai?.confidence ?? {},
-    ocr_provider: ai ? "lovable-ai/gemini-2.5-flash" : null,
+    ocr_provider: ai ? "lovable-ai" : null,
     validation: validateDoc(doc.slot_key, ai?.extracted ?? null, draft, declared),
     last_scanned_at: new Date().toISOString(),
   };

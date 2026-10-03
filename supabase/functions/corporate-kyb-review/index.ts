@@ -180,7 +180,7 @@ async function provision(admin: any, d: any, reviewer: string): Promise<{ error:
     registration_number: bi.certificate_of_incorporation_number ?? bi.registration_number ?? null,
     billing_email: email, billing_phone: p.corporate_phone ?? null,
     billing_address: [bi.building, bi.street, bi.town, bi.county].filter(Boolean).join(", ") || null,
-    status: "active", metadata: { source: "kyb_registration", draft_id: d.id, approved_by: reviewer, approved_at: new Date().toISOString() },
+    status: "ACTIVE", metadata: { source: "kyb_registration", draft_id: d.id, approved_by: reviewer, approved_at: new Date().toISOString() },
   }).select("id").single();
   if (error) return { error: error.message };
   const fullName = [p.first_name, p.middle_name, p.last_name].filter(Boolean).join(" ");

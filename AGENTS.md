@@ -13,7 +13,7 @@
 - The Supabase client is typed with `LooseDatabase` (`src/integrations/supabase/loose-types.ts`), not the generated `types.ts`: the Cloud backend only has Cloud-created tables while the app queries a much larger schema. Switch back to generated types once the full schema is recreated. `types.ts` is platform-locked (write tool rejects edits).
 - MCP server lives in `src/lib/mcp/` (OAuth via the Cloud auth server; tools run as the signed-in user under RLS) — `supabase/functions/mcp` is generated, never hand-edit.
 - `src/index.css` is precompiled; import `src/tw-utilities.css` after it.
-- Staff Access uses one public gateway; below 1600px categories use the existing drawer. Staff 360 scopes govern visibility; backend authorization remains authoritative.
+- Staff Access: one public gateway, drawer below 1600px; Staff 360 scopes govern visibility, backend auth is authoritative.
 
 - Legacy DB restores replay scripts kept in `legacy/restore/phaseN.sql`, applied area-by-area in dependency order with admin-only RLS until original helper functions return — avoids partial, unsafe domains.
 - Privileged (SECURITY DEFINER) routines live in the `private` schema; `public` keeps same-named SECURITY INVOKER wrappers — keeps the Data API free of elevated functions while RPC names stay stable.

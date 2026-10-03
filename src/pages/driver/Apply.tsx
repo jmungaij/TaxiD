@@ -45,6 +45,9 @@ const stateTone: Record<string, string> = {
   EXPIRED: "bg-destructive/10 text-destructive border-destructive/30",
 };
 
+const NO_EXPIRY_CODES = ["KRA_PIN", "NATIONAL_ID", "PASSPORT", "FULL_PHOTO"];
+const IDENTITY_CODES = ["NATIONAL_ID", "PASSPORT"];
+
 export default function DriverApply() {
   const [params, setParams] = useSearchParams();
   const [busy, setBusy] = useState(false);
@@ -165,10 +168,9 @@ export default function DriverApply() {
         variant: "destructive",
       });
     }
-    toast({ title: "Sent for verification", description: doc.doc_label });
+    toast({ title: "Sent for verification", description: `${doc.doc_label} is now with our compliance team.` });
     form.reset();
-    if (lookup.id) setDocuments(await listDriverApplicationDocuments(lookup.id));
-    else await loadStatus(lookup.reference, tokenParam);
+    await loadStatus(lookup.reference, tokenParam);
   }
 
   if (receipt) {
@@ -248,7 +250,8 @@ export default function DriverApply() {
             <CardHeader>
               <CardTitle className="text-lg">Your documents</CardTitle>
               <CardDescription>
-                Sign in with the email on your application to upload. Each document is reviewed on its own.
+                Sign in with the email on your application to upload. Every document marked * is required.
+                For identity, upload <strong>either</strong> your National ID <strong>or</strong> your Passport.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -259,6 +262,9 @@ export default function DriverApply() {
                     <div>
                       <p className="text-sm font-medium">
                         {d.doc_label}{d.is_mandatory ? " *" : ""}
+                        {IDENTITY_CODES.includes(d.doc_code) && (
+                          <span className="ml-2 text-xs font-normal text-muted-foreground">One of National ID or Passport *</span>
+                        )}
                       </p>
                       {d.review_notes && <p className="text-xs text-muted-foreground">Reviewer: {d.review_notes}</p>}
                     </div>
@@ -278,8 +284,10 @@ export default function DriverApply() {
                     >
                       <Input name="file" type="file" accept="image/*,application/pdf" required className="md:col-span-2" />
                       <Input name="number" placeholder="Document number" />
-                      <Input name="issued" type="date" aria-label="Issued on" />
-                      <Input name="expires" type="date" aria-label="Expires on" />
+                      <Input name="issued" type="date" aria-label="Issued on" title="Issued on" />
+                      {NO_EXPIRY_CODES.includes(d.doc_code)
+                        ? <p className="self-center text-xs text-muted-foreground">Does not expire</p>
+                        : <Input name="expires" type="date" aria-label="Expires on" title="Expires on" />}
                       <div className="md:col-span-5">
                         <Button type="submit" size="sm" disabled={uploading === d.id}>
                           {uploading === d.id

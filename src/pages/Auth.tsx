@@ -61,6 +61,8 @@ const PENDING_ROLE_KEY = "yalla.signup_role";
 
 /** Applies the audience role chosen at sign-up (server-validated allow-list). */
 async function applyPendingSignupRole() {
+  // Link any admin rider invitation for this confirmed email (server-checked, idempotent).
+  try { await (untypedDb).rpc("rider_claim_invitation"); } catch { /* non-fatal */ }
   let pending: string | null = null;
   try { pending = localStorage.getItem(PENDING_ROLE_KEY); } catch { /* ignore */ }
   if (!pending) return;

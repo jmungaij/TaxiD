@@ -84,6 +84,8 @@ async function recordLoginEvent(args: {
 }
 
 async function loadRoles(userId: string): Promise<string[]> {
+  // Link a confirmed work-domain email to its staff record first (idempotent).
+  try { await supabase.rpc("corporate_claim_work_account"); } catch { /* not a work account */ }
   const { data } = await supabase.from("user_roles").select("role").eq("user_id", userId);
   return (data ?? []).map((r) => r.role as string);
 }

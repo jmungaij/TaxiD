@@ -8,13 +8,16 @@ import { toast } from "@/hooks/use-toast";
 import ScopePicker, { useDepartments } from "./ScopePicker";
 import { loadManagedRules, setManagedRule } from "@/lib/corporate/adminControls";
 
-interface RideType { id: string; name: string }
+interface RideType { id: string; name: string; code: string }
+interface VClass { code: string; label: string; service_code: string; service_class: string; seats: number; accessible: boolean; example_models: string[]; ride_type_id: string | null }
+const SERVICE_LABEL: Record<string, string> = { ride: "TaxiD Ride", airport: "TaxiD Airport", charter: "TaxiD Charter" };
 
 export default function AllowedServicesPanel({ corporateId }: { corporateId: string | null }) {
   const { user } = useAuth();
   const depts = useDepartments(corporateId);
   const [scope, setScope] = useState("corporate");
   const [rideTypes, setRideTypes] = useState<RideType[]>([]);
+  const [classes, setClasses] = useState<VClass[]>([]);
   const [allowed, setAllowed] = useState<string[] | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -25,8 +28,12 @@ export default function AllowedServicesPanel({ corporateId }: { corporateId: str
 
   useEffect(() => {
     (async () => {
-      const { data } = await supabase.from("ride_types").select("id,name").eq("is_active", true).order("sort_order");
+      const [{ data }, { data: vc }] = await Promise.all([
+        supabase.from("ride_types").select("id,name,code").eq("is_active", true).order("sort_order"),
+        supabase.from("mobility_vehicle_classes").select("*").order("sort_order"),
+      ]);
       setRideTypes((data ?? []) as RideType[]);
+      setClasses((vc ?? []) as VClass[]);
     })();
   }, []);
 
@@ -44,7 +51,7 @@ export default function AllowedServicesPanel({ corporateId }: { corporateId: str
   useEffect(() => { load(); }, [load]);
 
   const restricted = allowed !== null;
-  const toggleRestrict = (on: boolean) => setAllowed(on ? (allowed ?? rideTypes.map((r) => r.name)) : null);
+  const toggleRestrict = (on: boolean) => setAllowed(on ? (allowed ?? rideTypes.map((r) => r.code)) : null);
 
   const save = async () => {
     if (!corporateId || !user) return;
@@ -83,25 +90,44 @@ export default function AllowedServicesPanel({ corporateId }: { corporateId: str
           Only allow selected services
         </label>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {rideTypes.map((rt) => (
-            <label key={rt.id} className="flex items-center gap-2 text-sm">
-              <Checkbox
-                disabled={!restricted}
-                checked={restricted ? (allowed ?? []).includes(rt.name) : true}
-                onCheckedChange={(checked) =>
-                  setAllowed((prev) => {
-                    const base = prev ?? [];
-                    return checked ? [...base, rt.name] : base.filter((n) => n !== rt.name);
-                  })
-                }
-                aria-label={rt.name}
-              />
-              {rt.name}
-            </label>
-          ))}
-          {rideTypes.length === 0 && <p className="text-sm text-muted-foreground">No services available yet.</p>}
-        </div>
+        {Object.keys(SERVICE_LABEL).map((svc) => {
+          const list = classes.filter((c) => c.service_code === svc);
+          if (!list.length) return null;
+          return (
+            <div key={svc} className="space-y-2">
+              <h4 className="text-sm font-semibold">{SERVICE_LABEL[svc]}</h4>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {list.map((vc) => {
+                  const rt = rideTypes.find((r) => r.id === vc.ride_type_id);
+                  const key = rt?.code;
+                  const isAllowed = (allowed ?? []).some((a) => a.toLowerCase() === key || a === rt?.name);
+                  return (
+                    <label key={vc.code} className={`flex items-start gap-2 rounded-md border p-3 text-sm ${rt ? "" : "opacity-60"}`}>
+                      <Checkbox
+                        disabled={!restricted || !rt}
+                        checked={rt ? (restricted ? isAllowed : true) : false}
+                        onCheckedChange={(checked) => key && setAllowed((prev) => {
+                          const base = (prev ?? []).filter((n) => n.toLowerCase() !== key && n !== rt?.name);
+                          return checked ? [...base, key] : base;
+                        })}
+                        aria-label={vc.label}
+                      />
+                      <span>
+                        <span className="font-medium">{vc.label}</span>
+                        <span className="block text-xs text-muted-foreground">
+                          {vc.service_class} · {vc.seats} seats{vc.accessible ? " · wheelchair access" : ""}
+                        </span>
+                        <span className="block text-xs text-muted-foreground">{vc.example_models.join(", ")}</span>
+                        {!rt && <span className="block text-xs text-muted-foreground">Coming soon — not priced yet</span>}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+        {classes.length === 0 && <p className="text-sm text-muted-foreground">No services available yet.</p>}
 
         <Button onClick={save} disabled={saving}>{saving ? "Saving…" : "Save services"}</Button>
       </Card>
